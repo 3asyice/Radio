@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <link rel="manifest" href="script/json/manifest.json"/>
-  <title>Rádio do Tempo</title>
+  <title>Rádio FM609</title>
   <style>
 body {
   background-color: #0f0f0f;
@@ -59,11 +59,9 @@ p {
   font-size: 15px;
   margin-bottom: 20px;
 }
-
 #startBtn {
   animation: pulseGlow 2s infinite ease-in-out;
 }
-
 @keyframes pulseGlow {
   0%, 100% {
     box-shadow: 0 0 10px #00ff88;
@@ -72,39 +70,36 @@ p {
     box-shadow: 0 0 20px #00ff88;
   }
 }
-
   </style>
 </head>
 <body>
 
-  <h1>Rádio do Tempo</h1>
+  <h1>Rádio FM609</h1>
 
-  <p><strong>Tocando agora:</strong></p>
-  <p id="audio_atual">---</p>
+  <p><strong>Tocando agora: </strong><span id="audio_atual">---</span></p>
+
   <p id="horario_atual">Início: --:--:-- | Fim: --:--:--</p>
 
-  <p><strong>Próximo:</strong></p>
-  <p id="proximo_audio">---</p>
+  <p><strong>Próximo: </strong><span id="proximo_audio">---</span></p>
 <br><br>
 <center>
 <button id="startBtn">Iniciar Rádio</button>
 </center>
 
-  <center>
-    <audio id="audioPlayer" controls autoplay style="display:none;">
-      <source id="audioSource" src="" type="audio/mp3">
-      Seu navegador não suporta áudio.
-    </audio>
-  </center>
+<center>
+<audio id="audioPlayer" controls autoplay style="display:none;">
+<source id="audioSource" src="" type="audio/mp3">
+</audio>
+</center>
 
 <script>
-  const audio = document.getElementById("audioPlayer");
-  const source = document.getElementById("audioSource");
-  const startBtn = document.getElementById("startBtn");
+const audio = document.getElementById("audioPlayer");
+const source = document.getElementById("audioSource");
+const startBtn = document.getElementById("startBtn");
 
-  const audioAtualTexto = document.getElementById("audio_atual");
-  const proximoAudioTexto = document.getElementById("proximo_audio");
-  const horarioAtualTexto = document.getElementById("horario_atual");
+const audioAtualTexto = document.getElementById("audio_atual");
+const proximoAudioTexto = document.getElementById("proximo_audio");
+const horarioAtualTexto = document.getElementById("horario_atual");
 
   const playlist = [
 { nome: "Aviso", arquivo: "assets/tape/The_Disclaimer.mp3", inicio: 0, fim: 1 },
@@ -144,6 +139,7 @@ p {
 { nome: "Hannah Baker Fita 5 Lado B", arquivo: "assets/HB_tape/HB_F5LB.mp3", inicio: 22, fim: 23 },
 { nome: "Hannah Baker Fita 6 Lado A", arquivo: "assets/HB_tape/HB_F6LA.mp3", inicio: 22, fim: 23 },
 { nome: "Hannah Baker Fita 6 Lado B", arquivo: "assets/HB_tape/HB_F6LB.mp3", inicio: 22, fim: 23 },
+{ nome: "Laura Branigan — Self Control", arquivo: "assets/23h/Laura_Branigan_Self_Control.mp3", inicio: 23, fim: 24 },
 { nome: "Leningrad — Voyage", arquivo: "assets/23h/Leningrad_Voyage.mp3", inicio: 23, fim: 24 },
 { nome: "Hungria — Zorro do Asfalto", arquivo: "assets/23h/Hungria_Zorro_do_Asfalto.mp3", inicio: 23, fim: 24 },
 { nome: "Tonight You Belong To Me", arquivo: "assets/23h/Tonight_You_Belong_To_Me.mp3", inicio: 23, fim: 24 },
