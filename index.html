@@ -8,90 +8,84 @@
   <title>Rádio FM609</title>
   <style>
 body {
-  background-color: #0f0f0f;
-  background-image: 
-    repeating-linear-gradient(0deg, rgba(0, 255, 70, 0.05) 0px, rgba(0, 255, 70, 0.05) 1px, transparent 1px, transparent 2px),
-    repeating-linear-gradient(90deg, rgba(0, 255, 70, 0.05) 0px, rgba(0, 255, 70, 0.05) 1px, transparent 1px, transparent 2px),
-    radial-gradient(circle at top left, rgba(0, 255, 255, 0.05), transparent 40%);
-  background-size: cover;
-  color: #00ff88;
-  font-family: 'Courier New', monospace;
-  margin: 0;
-  padding: 20px;
-  text-shadow: 0 0 5px #00ff88;
+background-color: #0f0f0f;
+background-image: 
+repeating-linear-gradient(0deg, rgba(0, 255, 70, 0.05) 0px, rgba(0, 255, 70, 0.05) 1px, transparent 1px, transparent 2px), repeating-linear-gradient(90deg, rgba(0, 255, 70, 0.05) 0px, rgba(0, 255, 70, 0.05) 1px, transparent 1px, transparent 2px),
+radial-gradient(circle at top left, rgba(0, 255, 255, 0.05), transparent 40%);
+background-size: cover;
+color: #00ff88;
+font-family: 'Courier New', monospace;
+margin: 0;
+padding: 20px;
+text-shadow: 0 0 5px #00ff88;
 }
 
 h1, h2, h3 {
-  color: #00ffcc;
-  text-shadow: 0 0 8px #00ffff;
+color: #00ffcc;
+text-shadow: 0 0 8px #00ffff;
 }
 
 button {
-  background-color: #111;
-  border: 1px solid #00ff88;
-  color: #00ff88;
-  padding: 10px 20px;
-  font-size: 1.2em;
-  font-family: 'Courier New', monospace;
-  border-radius: 6px;
-  box-shadow: 0 0 10px #00ff88;
-  cursor: pointer;
-  transition: background 0.2s;
+background-color: #111;
+border: 1px solid #00ff88;
+color: #00ff88;
+padding: 10px 20px;
+font-size: 1.2em;
+font-family: 'Courier New', monospace;
+border-radius: 6px;
+box-shadow: 0 0 10px #00ff88;
+cursor: pointer;
+transition: background 0.2s;
 }
 button:hover {
-  background-color: #00ff8840;
+background-color: #00ff8840;
 }
 
 audio {
-  filter: drop-shadow(0 0 6px #00ff88);
-  margin-top: 20px;
+filter: drop-shadow(0 0 6px #00ff88);
+margin-top: 20px;
 }
 
 p {
-  margin: 10px 0;
-  font-size: 1.1em;
+margin: 10px 0;
+font-size: 1.1em;
 }
 
 #horario_atual {
-  color: #00ffee;
-  font-weight: bold;
-  text-shadow: 0 0 4px #00ffee;
-  font-size: 15px;
-  margin-bottom: 20px;
+color: #00ffee;
+font-weight: bold;
+text-shadow: 0 0 4px #00ffee;
+font-size: 15px;
+margin-bottom: 20px;
 }
 #startBtn {
-  animation: pulseGlow 2s infinite ease-in-out;
+animation: pulseGlow 2s infinite ease-in-out;
 }
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 10px #00ff88;
+box-shadow: 0 0 10px #00ff88;
   }
   50% {
-    box-shadow: 0 0 20px #00ff88;
+box-shadow: 0 0 20px #00ff88;
   }
 }
-  </style>
+</style>
 </head>
 <body>
 
-  <h1>Rádio FM609</h1>
-
-  <p><strong>Tocando agora: </strong><span id="audio_atual">---</span></p>
-
-  <p id="horario_atual">Início: --:--:-- | Fim: --:--:--</p>
-
-  <p><strong>Próximo: </strong><span id="proximo_audio">---</span></p>
+<h1>Rádio FM609</h1>
+<p><strong>Tocando agora: </strong><span id="audio_atual">---</span></p>
+<p id="horario_atual">Início: --:--:-- | Fim: --:--:--</p>
+<p><strong>Próximo: </strong><span id="proximo_audio">---</span></p>
 <br><br>
 <center>
 <button id="startBtn">Iniciar Rádio</button>
 </center>
-
 <center>
 <audio id="audioPlayer" controls autoplay style="display:none;">
 <source id="audioSource" src="" type="audio/mp3">
 </audio>
 </center>
-
 <script>
 const audio = document.getElementById("audioPlayer");
 const source = document.getElementById("audioSource");
@@ -127,6 +121,11 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Entrevista no Stok Center", arquivo: "assets/tape/Entrevista_no_STOK_CENTER.mp3", inicio: 16, fim: 17 },
 { nome: "Policiais Corruptos", arquivo: "assets/tape/F3LB.mp3", inicio: 17, fim: 18 },
 { nome: "Uma Ameaça para Thales", arquivo: "assets/tape/F4LA.mp3", inicio: 18, fim: 19 },
+
+{ nome: "Murcof — Reflejo", arquivo: "assets/20h/Murcof_Reflejo.mp3", inicio: 20, fim: 21 },
+
+
+
 { nome: "Hannah Baker Fita 1 Lado A", arquivo: "assets/HB_tape/HB_F1LA.mp3", inicio: 22, fim: 23 },
 { nome: "Hannah Baker Fita 1 Lado B", arquivo: "assets/HB_tape/HB_F1LB.mp3", inicio: 22, fim: 23 },
 { nome: "Hannah Baker Fita 2 Lado A", arquivo: "assets/HB_tape/HB_F2LA.mp3", inicio: 22, fim: 23 },
@@ -144,56 +143,51 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Hungria — Zorro do Asfalto", arquivo: "assets/23h/Hungria_Zorro_do_Asfalto.mp3", inicio: 23, fim: 24 },
 { nome: "Tonight You Belong To Me", arquivo: "assets/23h/Tonight_You_Belong_To_Me.mp3", inicio: 23, fim: 24 },
  ];
+let indiceAtual = 0;
+let dataInicioFaixa = null;
+function formatarHorario(date)
+{
+return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
+}
 
-  let indiceAtual = 0;
-  let dataInicioFaixa = null;
+function atualizarInterface(indice) {
+const atual = playlist[indice];
+const proximo = playlist[(indice + 1) % playlist.length];
 
-  function formatarHorario(date) {
-    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
-  }
+audioAtualTexto.textContent = atual.nome;
+proximoAudioTexto.textContent = proximo.nome;
 
-  function atualizarInterface(indice) {
-    const atual = playlist[indice];
-    const proximo = playlist[(indice + 1) % playlist.length];
-
-    audioAtualTexto.textContent = atual.nome;
-    proximoAudioTexto.textContent = proximo.nome;
-
-    const horaInicioFormatada = formatarHorario(dataInicioFaixa);
+const horaInicioFormatada = formatarHorario(dataInicioFaixa);
 
     // Calcula horário de término com base na duração
-    if (!isNaN(audio.duration) && audio.duration > 0) {
-      const dataFim = new Date(dataInicioFaixa.getTime() + audio.duration * 1000);
-      const horaFimFormatada = formatarHorario(dataFim);
+if (!isNaN(audio.duration) && audio.duration > 0) {
+const dataFim = new Date(dataInicioFaixa.getTime() + audio.duration * 1000);
+const horaFimFormatada = formatarHorario(dataFim);
       horarioAtualTexto.textContent = `Início: ${horaInicioFormatada} | Fim: ${horaFimFormatada}`;
-    } else {
-      horarioAtualTexto.textContent = `Início: ${horaInicioFormatada} | Fim: carregando...`;
-    }
-  }
-
-  function tocarFaixa(indice) {
-    const faixa = playlist[indice];
-    source.src = faixa.arquivo;
-    audio.load();
+} else {
+horarioAtualTexto.textContent = `Início: ${horaInicioFormatada} | Fim: carregando...`;
+}
+}
+function tocarFaixa(indice) {
+const faixa = playlist[indice];
+source.src = faixa.arquivo;
+audio.load();
 
     // Marca horário de início da faixa
-    dataInicioFaixa = new Date();
+dataInicioFaixa = new Date();
+audio.play().catch(e => {
+console.warn("Erro ao tocar áudio:", e);
+});
+audio.onloadedmetadata = () => {
+atualizarInterface(indice);
+};
+}
 
-    audio.play().catch(e => {
-      console.warn("Erro ao tocar áudio:", e);
-    });
-
-    audio.onloadedmetadata = () => {
-      atualizarInterface(indice);
-    };
-  }
-
-  audio.addEventListener("ended", () => {
-    indiceAtual = (indiceAtual + 1) % playlist.length;
-    tocarFaixa(indiceAtual);
-  });
-
-  startBtn.addEventListener("click", () => {
+audio.addEventListener("ended", () => {
+indiceAtual = (indiceAtual + 1) % playlist.length;
+tocarFaixa(indiceAtual);
+});
+ startBtn.addEventListener("click", () => {
     startBtn.style.display = "none";
     audio.style.display = "block";
     indiceAtual = definirIndiceInicial();
