@@ -72,6 +72,7 @@ box-shadow: 0 0 20px #00ff88;
 </style>
 </head>
 <body>
+
 <h1>Rádio FM609</h1>
 <p><strong>Tocando agora: </strong><span id="audio_atual">---</span></p>
 <p id="horario_atual">Início: --:--:-- | Fim: --:--:--</p>
@@ -81,47 +82,77 @@ box-shadow: 0 0 20px #00ff88;
 <button id="startBtn">Iniciar Rádio</button>
 </center>
 <center>
-<audio
-  id="audioPlayer"
-  controls
-  autoplay
-  controlsList="nodownload noplaybackrate"
-  oncontextmenu="return false;"
-  style="display:none;">
-  <source id="audioSource" src="" type="audio/mp3">
-  Seu navegador não suporta o player de áudio.
+<audio id="audioPlayer" controls style="display:none;" autoplay controlsList="nodownload noplaybackrate">
+<source id="audioSource" src="" type="audio/mp3">
 </audio>
-
-<style>
-audio::-webkit-media-controls-time-remaining-display {
-  display: none !important;
-}
-
-</style>
-
-<script>
-  const audioc = document.getElementById("audioPlayer");
-
-  // Bloqueia tentativas de alterar a velocidade
-  audioc.playbackRate = 1.0;
-  audioc.addEventListener("ratechange", () => {
-    if (audioc.playbackRate !== 1.0) {
-      audioc.playbackRate = 1.0;
-    }
-  });
-
-  // Impede o usuário de avançar ou retroceder
-  let ultimaPosicao = 0;
-  setInterval(() => {
-    if (Math.abs(audioc.currentTime - ultimaPosicao) > 1) {
-      audioc.currentTime = ultimaPosicao;
-    } else {
-      ultimaPosicao = audioc.currentTime;
-    }
-  }, 500);
-</script>
-
 </center>
+<p style="margin-top: 35px;">Programação:</p>
+<p>Aviso - 0h até 1h</p>
+<p>A Decisão Errada - 0h até 1h</p>
+<p>Incorporação - 1h até 2h</p>
+<p>Internato - 2h até 3h</p>
+<p>Plantão - 3h até 4h</p>
+<p>A Mensagem - 4h até 5h</p>
+<p>A Dor do Luto - 5h até 6h</p>
+<p>Bergmann - 5h até 6h</p>
+<p>Campo - 6h até 7h</p>
+<p>Cover de Azevedo - 6h até 7h</p>
+<p>Azevedo - 6h até 7h</p>
+<p>Seções - 7h até 8h</p>
+<p>Isaias - 7h até 8h</p>
+<p>A Alteração — Acidente - 8h até 9h</p>
+<p>A Alteração - 8h até 9h</p>
+<p>O 2º Quarto de Hora - 9h até 10h</p>
+<p>Capisani - 10h até 11h</p>
+<p>A Expulsão - 11h até 12h</p>
+<p>Soares - 12h até 13h</p>
+<p>A Sindicância - 13h até 14h</p>
+<p>Último Episódio da Temporada 1 - 14h até 15h</p>
+<p>A Fita de Lemos - 15h até 16h</p>
+<p>Entrevista no Stok Center - 16h até 17h</p>
+<p>Policiais Corruptos - 17h até 18h</p>
+<p>Uma Ameaça para Thales - 18h até 19h</p>
+<p>Murcof — Reflejo - 20h até 21h</p>
+<p>Massiveattack — Red Light Means Go - 20h até 21h</p>
+<p>Max Richter — Organum - 20h até 21h</p>
+<p>ABBA — I Have A Dream - 20h até 21h</p>
+<p>N.E.R.D — Lapdance ft Lee Harvey, Vita - 20h até 21h</p>
+<p>Jessica Brown Findlay — Anyone Who Knows What Love Is - 20h até 21h</p>
+<p>Bing Abi by Stephen McKeon - 20h até 21h</p>
+<p>15 Million Merits — Stephen McKeon - 20h até 21h</p>
+<p>Messa da Requiem Dies Irae by Londom Philharmonic - 20h até 21h</p>
+<p>The Entire History Of You — Stuart Earl - 20h até 21h</p>
+<p>Yvonne Elliman — If I Can't Have You - 20h até 21h</p>
+<p>Heatwave — Boogie Nights - 20h até 21h</p>
+<p>Bee Gees — How Deep Is Your Love - 20h até 21h</p>
+<p>Jump — Vince Pope - 20h até 21h</p>
+<p>Alone — Vince Pope - 20h até 21h</p>
+<p>A New Home — Vince Pope - 20h até 21h</p>
+<p>Farmer Boy — Vince Pope - 20h até 21h</p>
+<p>Break My Heart — Vince Pope - 20h até 21h</p>
+<p>Starting Over — Vince Pope - 20h até 21h</p>
+<p>I Need You — Vince Pope - 20h até 21h</p>
+<p>Jon Opstad — Waking Up - 20h até 21h</p>
+<p>Jon Opstad — Masked Gunman - 20h até 21h</p>
+<p>Jon Opstad — I Saw It - 20h até 21h</p>
+<p>Jon Opstad — What's Your Problem? - 20h até 21h</p>
+<p>Hannah Baker Fita 1 Lado A - 22h até 23h</p>
+<p>Hannah Baker Fita 1 Lado B - 22h até 23h</p>
+<p>Hannah Baker Fita 2 Lado A - 22h até 23h</p>
+<p>Hannah Baker Fita 2 Lado B - 22h até 23h</p>
+<p>Hannah Baker Fita 3 Lado A - 22h até 23h</p>
+<p>Hannah Baker Fita 3 Lado B - 22h até 23h</p>
+<p>Hannah Baker Fita 4 Lado A - 22h até 23h</p>
+<p>Hannah Baker Fita 4 Lado B - 22h até 23h</p>
+<p>Hannah Baker Fita 5 Lado A - 22h até 23h</p>
+<p>Hannah Baker Fita 5 Lado B - 22h até 23h</p>
+<p>Hannah Baker Fita 6 Lado A - 22h até 23h</p>
+<p>Hannah Baker Fita 6 Lado B - 22h até 23h</p>
+<p>Laura Branigan — Self Control - 23h até 24h</p>
+<p>Leningrad — Voyage - 23h até 24h</p>
+<p>Hungria — Zorro do Asfalto - 23h até 24h</p>
+<p>Tonight You Belong To Me - 23h até 24h</p>
+
 <script>
 const audio = document.getElementById("audioPlayer");
 const source = document.getElementById("audioSource");
@@ -181,6 +212,9 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Jon Opstad — Masked Gunman", arquivo: "assets/20h/JonOpstad_MaskedGunman.mp3", inicio: 20, fim: 21 },
 { nome: "Jon Opstad — I Saw It", arquivo: "assets/20h/JonOpstad_ISawIt.mp3", inicio: 20, fim: 21 },
 { nome: "Jon Opstad — What's Your Problem?", arquivo: "assets/20h/JonOpstad_WhatsYourProblem.mp3", inicio: 20, fim: 21 },
+
+
+
 { nome: "Hannah Baker Fita 1 Lado A", arquivo: "assets/HB_tape/HB_F1LA.mp3", inicio: 22, fim: 23 },
 { nome: "Hannah Baker Fita 1 Lado B", arquivo: "assets/HB_tape/HB_F1LB.mp3", inicio: 22, fim: 23 },
 { nome: "Hannah Baker Fita 2 Lado A", arquivo: "assets/HB_tape/HB_F2LA.mp3", inicio: 22, fim: 23 },
@@ -272,5 +306,6 @@ tocarFaixa(indiceAtual);
     }
   });
 </script>
+
 </body>
 </html>
