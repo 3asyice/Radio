@@ -92,6 +92,13 @@ box-shadow: 0 0 20px #00ff88;
   Seu navegador não suporta o player de áudio.
 </audio>
 
+<style>
+audio::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+}
+</style>
+
+
 <script>
   const audioc = document.getElementById("audioPlayer");
 
