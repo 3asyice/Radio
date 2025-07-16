@@ -93,37 +93,30 @@ box-shadow: 0 0 20px #00ff88;
 </audio>
 
 <style>
-  audio::-internal-media-controls-download-button {
-    display: none;
-  }
+audio::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+}
 
-  audio::-webkit-media-controls-enclosure {
-    overflow: hidden;
-  }
-
-  audio::-webkit-media-controls-panel {
-    width: 100% !important;
-  }
 </style>
 
 <script>
-  const audio = document.getElementById("audioPlayer");
+  const audioc = document.getElementById("audioPlayer");
 
   // Bloqueia tentativas de alterar a velocidade
-  audio.playbackRate = 1.0;
-  audio.addEventListener("ratechange", () => {
-    if (audio.playbackRate !== 1.0) {
-      audio.playbackRate = 1.0;
+  audioc.playbackRate = 1.0;
+  audioc.addEventListener("ratechange", () => {
+    if (audioc.playbackRate !== 1.0) {
+      audioc.playbackRate = 1.0;
     }
   });
 
   // Impede o usuário de avançar ou retroceder
   let ultimaPosicao = 0;
   setInterval(() => {
-    if (Math.abs(audio.currentTime - ultimaPosicao) > 1) {
-      audio.currentTime = ultimaPosicao;
+    if (Math.abs(audioc.currentTime - ultimaPosicao) > 1) {
+      audioc.currentTime = ultimaPosicao;
     } else {
-      ultimaPosicao = audio.currentTime;
+      ultimaPosicao = audioc.currentTime;
     }
   }, 500);
 </script>
