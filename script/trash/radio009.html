@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="description" content="The world unique radio that is different of anything else ever seen."/>
+<meta name="author"content="Guilherme Carvalho"/>
+<meta name="copyright"content="&copy;Radio FM 609"/>
+<link rel="manifest" href="manifest.json"/>
+  <title>Rádio FM609</title>
+  <style>
+body {
+background-color: #0f0f0f;
+background-image: 
+repeating-linear-gradient(0deg, rgba(0, 255, 70, 0.05) 0px, rgba(0, 255, 70, 0.05) 1px, transparent 1px, transparent 2px), repeating-linear-gradient(90deg, rgba(0, 255, 70, 0.05) 0px, rgba(0, 255, 70, 0.05) 1px, transparent 1px, transparent 2px),
+radial-gradient(circle at top left, rgba(0, 255, 255, 0.05), transparent 40%);
+background-size: cover;
+color: #00ff88;
+font-family: 'Courier New', monospace;
+margin: 0;
+padding: 20px;
+text-shadow: 0 0 5px #00ff88;
+}
+
+h1, h2, h3 {
+color: #00ffcc;
+text-shadow: 0 0 8px #00ffff;
+}
+
+button {
+background-color: #111;
+border: 1px solid #00ff88;
+color: #00ff88;
+padding: 10px 20px;
+font-size: 1.2em;
+font-family: 'Courier New', monospace;
+border-radius: 6px;
+box-shadow: 0 0 10px #00ff88;
+cursor: pointer;
+transition: background 0.2s;
+}
+button:hover {
+background-color: #00ff8840;
+}
+
+audio {
+filter: drop-shadow(0 0 6px #00ff88);
+margin-top: 20px;
+}
+
+p {
+margin: 10px 0;
+font-size: 1.1em;
+}
+
+#horario_atual {
+color: #00ffee;
+font-weight: bold;
+text-shadow: 0 0 4px #00ffee;
+font-size: 15px;
+margin-bottom: 20px;
+}
+#startBtn {
+animation: pulseGlow 2s infinite ease-in-out;
+}
+@keyframes pulseGlow {
+  0%, 100% {
+box-shadow: 0 0 10px #00ff88;
+  }
+  50% {
+box-shadow: 0 0 20px #00ff88;
+  }
+}
+</style>
+</head>
+<body>
+<h1>Rádio FM609</h1>
+<p><strong>Tocando agora: </strong><span id="audio_atual">---</span></p>
+<p id="horario_atual">Início: --:--:-- | Fim: --:--:--</p>
+<p><strong>Próximo: </strong><span id="proximo_audio">---</span></p>
+<br><br>
+<center>
+<button id="startBtn">Iniciar Rádio</button>
+</center>
+<center>
+
+<audio
+  id="audioPlayer"
+  controls
+  autoplay
+  controlsList="nodownload noplaybackrate"
+  oncontextmenu="return false;"
+  style="display:none;">
+  <source id="audioSource" src="" type="audio/mp3">
+  Seu navegador não suporta o player de áudio.
+</audio>
+<br><br>
+<center>
+  <button id="add-button">Instalar</button>
+</center>
+<center>
+<style>
+audio::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+}
+</style>
+
+
+<script>
+
+  const audioc = document.getElementById("audioPlayer");
+
+  // Bloqueia tentativas de alterar a velocidade
+  audioc.playbackRate = 1.0;
+  audioc.addEventListener("ratechange", () => {
+    if (audioc.playbackRate !== 1.0) {
+      audioc.playbackRate = 1.0;
+    }
+  });
+
+  // Impede o usuário de avançar ou retroceder
+  let ultimaPosicao = 0;
+  setInterval(() => {
+  if (audioc.currentTime > 2 && Math.abs(audioc.currentTime - ultimaPosicao) >= 1) {
+    audioc.currentTime = ultimaPosicao;
+  } else {
+    ultimaPosicao = audioc.currentTime;
+  }
+}, 500);
+
+</script>
+
+</center>
+<script>
+const audio = document.getElementById("audioPlayer");
+const source = document.getElementById("audioSource");
+const startBtn = document.getElementById("startBtn");
+
+const audioAtualTexto = document.getElementById("audio_atual");
+const proximoAudioTexto = document.getElementById("proximo_audio");
+const horarioAtualTexto = document.getElementById("horario_atual");
+
+  const playlist = [
+{ nome: "Aviso", arquivo: "assets/tape/The_Disclaimer.mp3", inicio: 4, fim: 5 },
+{ nome: "A Decisão Errada", arquivo: "assets/tape/F4LB.mp3", inicio: 4, fim: 5 },
+{ nome: "Incorporação", arquivo: "assets/tape/F9LB.mp3", inicio: 4, fim: 5 },
+{ nome: "Internato", arquivo: "assets/tape/F7LB.mp3", inicio: 4, fim: 5 },
+{ nome: "Plantão", arquivo: "assets/tape/F5LA.mp3", inicio: 4, fim: 5 },
+{ nome: "A Mensagem", arquivo: "assets/tape/F6LA.mp3", inicio: 4, fim: 5 },
+{ nome: "A Dor do Luto", arquivo: "assets/tape/F1LA.mp3", inicio: 5, fim: 6 },
+{ nome: "Bergmann", arquivo: "assets/tape/F8LA.mp3", inicio: 5, fim: 6 },
+{ nome: "Campo", arquivo: "assets/tape/F6LB.mp3", inicio: 5, fim: 6 },
+{ nome: "Cover de Azevedo", arquivo: "assets/tape/Cover_Azevedo.mp3", inicio: 5, fim: 6 },
+{ nome: "Azevedo", arquivo: "assets/tape/F2LA.mp3", inicio: 5, fim: 6 },
+{ nome: "Seções", arquivo: "assets/tape/F7LA.mp3", inicio: 5, fim: 6 },
+{ nome: "Isaias", arquivo: "assets/tape/F1LB.mp3", inicio: 5, fim: 6 },
+{ nome: "A Alteração — Acidente", arquivo: "assets/tape/esse_sou_eu.mp3", inicio: 5, fim: 6 },
+{ nome: "A Alteração", arquivo: "assets/tape/F10LA.mp3", inicio: 5, fim: 6 },
+{ nome: "O 2º Quarto de Hora", arquivo: "assets/tape/F5LB.mp3", inicio: 6, fim: 7 },
+{ nome: "Capisani", arquivo: "assets/tape/F8LB.mp3", inicio: 6, fim: 7 },
+{ nome: "A Expulsão", arquivo: "assets/tape/F3LA.mp3", inicio: 6, fim: 6 },
+{ nome: "Soares", arquivo: "assets/tape/F2LB.mp3", inicio: 6, fim: 7 },
+{ nome: "A Sindicância", arquivo: "assets/tape/A_Sindicancia.mp3", inicio: 6, fim: 7 },
+{ nome: "Último Episódio da Temporada 1", arquivo: "assets/tape/Last_Episode_of_The_Season1.mp3", inicio: 6, fim: 7 },
+
+{ nome: "A Fita de Lemos", arquivo: "assets/tape/F27LA.mp3", inicio: 7, fim: 8 },
+{ nome: "Entrevista no Stok Center", arquivo: "assets/tape/Entrevista_no_STOK_CENTER.mp3", inicio: 7, fim: 8 },
+{ nome: "Policiais Corruptos", arquivo: "assets/tape/F3LB.mp3", inicio: 7, fim: 8 },
+{ nome: "Uma Ameaça para Thales", arquivo: "assets/tape/F4LA.mp3", inicio: 7, fim: 8 },
+
+
+// 08 horas
+{ nome: "The Weekend - The Hills", arquivo: "assets/08h/TheWeeknd_TheHills.mp3", inicio: 8, fim: 9 },
+{ nome: "Luis Fonsi - Despacito ft. Daddy Yankee", arquivo: "assets/08h/LuisFonsi_Despacito_ftDaddyYankee.mp3", inicio: 8, fim: 9 },
+{ nome: "Ed Sheeran - Shape Of You", arquivo: "assets/08h/EdSheeran_ShapeofYou.mp3", inicio: 8, fim: 9 },
+{ nome: "OneRepublic - Counting Stars", arquivo: "assets/08h/OneRepublic_CountingStars.mp3", inicio: 8, fim: 9 },
+{ nome: "Major Lazer ft Dj Snake - Lean On", arquivo: "assets/08h/MajorLazer_DJSnake_LeanOn.mp3", inicio: 8, fim: 9 },
+{ nome: "Twenty One Pilots - Stressed Out", arquivo: "assets/08h/twentyonepilots_StressedOut.mp3", inicio: 8, fim: 9 },
+{ nome: "Shakira - Chantaje ft. Maluma", arquivo: "assets/08h/Shakira_Chantaje_ftMaluma.mp3", inicio: 8, fim: 9 },
+{ nome: "Imagine Dragons - Believer", arquivo: "assets/08h/ImagineDragons_Believer.mp3", inicio: 8, fim: 9 },
+{ nome: "Eminem - Without Me", arquivo: "assets/08h/Eminem_WithoutMe.mp3", inicio: 8, fim: 9 },
+{ nome: "David Guetta - Titanium ft. Sia", arquivo: "assets/08h/DavidGuetta_Titanium_ftSia.mp3", inicio: 8, fim: 9 },
+{ nome: "Nirvana - Smells Like Teen Spirit", arquivo: "assets/08h/Nirvana_SmellsLikeTeenSpirit.mp3", inicio: 8, fim: 9 },
+{ nome: "Arctic Monkeys - Do I Wanna Know?", arquivo: "assets/08h/ArcticMonkeys_DoIWannaKnow.mp3", inicio: 8, fim: 9 },
+{ nome: "Mike Posner - I Took A Pill In Ibiza", arquivo: "assets/08h/MikePosner_ITookAPillInIbiza.mp3", inicio: 8, fim: 9 },
+{ nome: "The Cranberries - Zombie", arquivo: "assets/08h/TheCranberries_Zombie.mp3", inicio: 8, fim: 9 },
+{ nome: "Twenty One Pilots - Ride", arquivo: "assets/08h/twentyonepilots_Ride.mp3", inicio: 8, fim: 9 },
+{ nome: "Avicci - Waiting For Love", arquivo: "assets/08h/Avicii_WaitingForLove.mp3", inicio: 8, fim: 9 },
+
+
+// 09h
+{ nome: "Tove Lo - Habits (Stay High) Hippie Sabotage Remix", arquivo: "assets/09h/ToveLo_Habits_Stay High_Hippie_Sabotage_Remix.mp3", inicio: 9, fim: 10 },
+{ nome: "Imagine Dragons - Radioactive", arquivo: "assets/09h/ImagineDragons_Radioactive.mp3", inicio: 9, fim: 10 },
+{ nome: "Bruno Mars - Locked Out Of Heaven", arquivo: "assets/09h/BrunoMars_LockedOutOfHeaven.mp3", inicio: 9, fim: 10 },
+{ nome: "Hajime - Miyagi &amp; Эндшпиль feat. Рем Дигга - I Got Love (Official Video)", arquivo: "assets/09h/I_Got_Love_russian_song.mp3", inicio: 9, fim: 10 },
+{ nome: "Swedish House Mafia ft. John Martin - Don't You Worry Child", arquivo: "assets/09h/JohnMartin_DontYouWorryChild.mp3", inicio: 9, fim: 10 },
+{ nome: "Imagine Dragons - Whatever It Takes (Official Music Video)", arquivo: "assets/09h/ImagineDragons_WhateverItTakes.mp3", inicio: 9, fim: 10 },
+{ nome: "Eminem ft. Rihanna - The Monster (Explicit) [Official Video]", arquivo: "assets/09h/Eminem_ftRihanna_TheMonster.mp3", inicio: 9, fim: 10 },
+{ nome: "Maroon 5 - Animals", arquivo: "assets/09h/Maroon5_Animals.mp3", inicio: 9, fim: 10 },
+{ nome: "Kygo - Firestone ft. Conrad Sewell (Official Video)", arquivo: "assets/09h/Kygo_Firestone_ftConradSewell.mp3", inicio: 9, fim: 10 },
+{ nome: "Robin Thicke - Blurred Lines ft. T.I., Pharrell", arquivo: "assets/09h/RobinThicke_BlurredLines_ftTIPharrell.mp3", inicio: 9, fim: 10 },
+{ nome: "Hozier - Take Me To Church", arquivo: "assets/09h/Hozier_TakeMeToChurch.mp3", inicio: 9, fim: 10 },
+{ nome: "The Neighbourhood - Sweater Weather (Official Video)", arquivo: "assets/09h/TheNeighbourhood_SweaterWeather.mp3", inicio: 9, fim: 10 },
+{ nome: "Duke Dumont - Ocean Drive (Official Music Video)", arquivo: "assets/09h/DukeDumont_OceanDrive.mp3", inicio: 9, fim: 10 },
+{ nome: "Calvin Harris - Blame ft. John Newman", arquivo: "assets/09h/CalvinHarris_Blame_ftJohn Newman.mp3", inicio: 9, fim: 10 },
+{ nome: "Robin Schulz - Sugar ft. Francesco Yates", arquivo: "assets/09h/RobinSchulz_Sugar_featFrancescoYates.mp3", inicio: 9, fim: 10 },
+
+
+// 10h
+{ nome: "I Follow Rivers - Lykke Li", arquivo: "assets/10h/IFollowRivers_LykkeLi.mp3", inicio: 10, fim: 11 },
+{ nome: "Lil Waybe, Wiz Khalifa & Imagine Dragons, Logic Ty Dolla $ign ft. X Ambassadors - Sucker For Pain", arquivo: "assets/10h/LilWayne_WizKhalifa_ImagineDragons_Logic_TyDollaSign_ftXAmbassadors_SuckerforPain.mp3", inicio: 10, fim: 11 },
+{ nome: "Kaleo - Way Down We Go", arquivo: "assets/10h/KALEO_WayDownWeGo.mp3", inicio: 10, fim: 11 },
+{ nome: "Axwell Ingrosso - More Than You Know", arquivo: "assets/10h/AxwellIngrosso_MoreThanYouKnow.mp3", inicio: 10, fim: 11 },
+{ nome: "Spice Girls - Wannabe", arquivo: "assets/10h/SpiceGirls_Wannabe.mp3", inicio: 10, fim: 11 },
+{ nome: "Mr. Probz - Waves", arquivo: "assets/10h/MrProbz_Waves.mp3", inicio: 10, fim: 11 },
+{ nome: "G-Easy x Bebe Rexha - Me Myself & I", arquivo: "assets/10h/GEazyxBebeRexha_MeMyselfI.mp3", inicio: 10, fim: 11 },
+{ nome: "#SELFIE - The Chainsmokers", arquivo: "assets/10h/SELFIE_TheChainsmokers.mp3", inicio: 10, fim: 11 },
+{ nome: "Vance Joy - Riptide", arquivo: "assets/10h/VanceJoy_Riptide.mp3", inicio: 10, fim: 11 },
+{ nome: "Oasis - Wonderwall", arquivo: "assets/10h/Oasis_Wonderwall.mp3", inicio: 10, fim: 11 },
+{ nome: "Imagine Dragons - Bad Liar", arquivo: "assets/10h/ImagineDragons_BadLiar.mp3", inicio: 10, fim: 11 },
+{ nome: "Major Lazer - Light It Up", arquivo: "assets/10h/MajorLazer_LightitUp.mp3", inicio: 10, fim: 11 },
+{ nome: "Daft Punk - One More Time", arquivo: "assets/10h/DaftPunk_OneMoreTime.mp3", inicio: 10, fim: 11 },
+{ nome: "Kungs vs Cookin' on 3 Burners - This Girl", arquivo: "assets/10h/KungsvsCookinon3Burners_ThisGirl.mp3", inicio: 10, fim: 11 },
+{ nome: "Marshmello ft. Khalid - Silence", arquivo: "assets/10h/Marshmello_ftKhalid_Silence.mp3", inicio: 10, fim: 11 },
+{ nome: "Cartoon, Jéja - On & On ft. Daniel Levi", arquivo: "assets/10h/Cartoon_Jeja_OneOn_featDanielLevi.mp3", inicio: 10, fim: 11 },
+
+
+
+
+
+// 20h
+{ nome: "Locutor — Programação", arquivo: "assets/20h/Locutor_000.mp3", inicio: 20, fim: 21 },
+{ nome: "Murcof — Reflejo", arquivo: "assets/20h/Murcof_Reflejo.mp3", inicio: 20, fim: 21 },
+{ nome: "Massiveattack — Red Light Means Go", arquivo: "assets/20h/massiveattack_Red_Light_Means_Go.mp3", inicio: 20, fim: 21 },
+{ nome: "Max Richter — Organum", arquivo: "assets/20h/Max_Richter_Organum.mp3", inicio: 20, fim: 21 },
+{ nome: "ABBA — I Have A Dream", arquivo: "assets/20h/ABBA_I_Have_A_Dream.mp3", inicio: 20, fim: 21 },
+{ nome: "N.E.R.D — Lapdance ft Lee Harvey, Vita", arquivo: "assets/20h/NERD_Lapdance_ft_Lee_Harvey_Vita.mp3", inicio: 20, fim: 21 },
+{ nome: "Jessica Brown Findlay — Anyone Who Knows What Love Is", arquivo: "assets/20h/Jessica_Brown_Findlay_Anyone_who_knows_what_love_is.mp3", inicio: 20, fim: 21 },
+{ nome: "Bing Abi by Stephen McKeon", arquivo: "assets/20h/Bing_Abi_by_Stephen_McKeon.mp3", inicio: 20, fim: 21 },
+{ nome: "15 Million Merits — Stephen McKeon", arquivo: "assets/20h/Stephen_McKeon_15_Million_Merits.mp3", inicio: 20, fim: 21 },
+{ nome: "Messa da Requiem Dies Irae by Londom Philharmonic", arquivo: "assets/20h/London_Philharmonic_Orchestra_Messa_da_Requiem_Dies_Irae.mp3", inicio: 20, fim: 21 },
+{ nome: "The Entire History Of You — Stuart Earl", arquivo: "assets/20h/The_Entire_History_Of_You_by_Stuart_Earl.mp3", inicio: 20, fim: 21 },
+{ nome: "Yvonne Elliman — If I Can't Have You", arquivo: "assets/20h/Yvonne_Elliman_If_I_Cant_Have_You.mp3", inicio: 20, fim: 21 },
+{ nome: "Heatwave — Boogie Nights", arquivo: "assets/20h/Heatwave_Boogie_Nights.mp3", inicio: 20, fim: 21 },
+{ nome: "Bee Gees — How Deep Is Your Love", arquivo: "assets/20h/BeeGees_HowDeepIsYourLove.mp3", inicio: 20, fim: 21 },
+{ nome: "Jump — Vince Pope", arquivo: "assets/20h/Jump_VincePope.mp3", inicio: 20, fim: 21 },
+{ nome: "Alone — Vince Pope", arquivo: "assets/20h/Alone_VincePope.mp3", inicio: 20, fim: 21 },
+{ nome: "A New Home — Vince Pope", arquivo: "assets/20h/ANewHome_VincePope.mp3", inicio: 20, fim: 21 },
+{ nome: "Farmer Boy — Vince Pope", arquivo: "assets/20h/FarmerBoy_VincePope.mp3", inicio: 20, fim: 21 },
+{ nome: "Break My Heart — Vince Pope", arquivo: "assets/20h/BreakMyHeart_VincePope.mp3", inicio: 20, fim: 21 },
+{ nome: "Starting Over — Vince Pope", arquivo: "assets/20h/StartingOver_VincePope.mp3", inicio: 20, fim: 21 },
+{ nome: "I Need You — Vince Pope", arquivo: "assets/20h/INeedYou_VincePope.mp3", inicio: 20, fim: 21 },
+{ nome: "Jon Opstad — Waking Up", arquivo: "assets/20h/JonOpstad_WakingUp.mp3", inicio: 20, fim: 21 },
+{ nome: "Jon Opstad — Masked Gunman", arquivo: "assets/20h/JonOpstad_MaskedGunman.mp3", inicio: 20, fim: 21 },
+{ nome: "Jon Opstad — I Saw It", arquivo: "assets/20h/JonOpstad_ISawIt.mp3", inicio: 20, fim: 21 },
+{ nome: "Jon Opstad — What's Your Problem?", arquivo: "assets/20h/JonOpstad_WhatsYourProblem.mp3", inicio: 20, fim: 21 },
+
+{ nome: "Hannah Baker Fita 1 Lado A", arquivo: "assets/HB_tape/HB_F1LA.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 1 Lado B", arquivo: "assets/HB_tape/HB_F1LB.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 2 Lado A", arquivo: "assets/HB_tape/HB_F2LA.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 2 Lado B", arquivo: "assets/HB_tape/HB_F2LB.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 3 Lado A", arquivo: "assets/HB_tape/HB_F3LA.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 3 Lado B", arquivo: "assets/HB_tape/HB_F3LB.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 4 Lado A", arquivo: "assets/HB_tape/HB_F4LA.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 4 Lado B", arquivo: "assets/HB_tape/HB_F4LB.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 5 Lado A", arquivo: "assets/HB_tape/HB_F5LA.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 5 Lado B", arquivo: "assets/HB_tape/HB_F5LB.mp3", inicio: 22, fim: 23 },
+{ nome: "Poema de Hannah Baker", arquivo: "assets/HB_tape/other/Poema_de_Hannah.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 6 Lado A", arquivo: "assets/HB_tape/HB_F6LA.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 6 Lado B", arquivo: "assets/HB_tape/HB_F6LB.mp3", inicio: 22, fim: 23 },
+{ nome: "Dead Hannah Baker Speaks", arquivo: "assets/HB_tape/other/Dead_Hannah_says_everything.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Fita 7 Lado A", arquivo: "assets/HB_tape/HB_F7LA.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker Suicide", arquivo: "assets/HB_tape/other/the_suicide.mp3", inicio: 22, fim: 23 },
+{ nome: "Surto de Clay", arquivo: "assets/HB_tape/other/Clay_A_Verdade_Vai_Aparecer.mp3", inicio: 22, fim: 23 },
+{ nome: "Hannah Baker edit", arquivo: "assets/HB_tape/other/antes_de_voce_ir.mp3", inicio: 22, fim: 23 },
+{ nome: "The Night We Met - Lord Huron", arquivo: "assets/HB_tape/other/TheNightWeMet.mp3", inicio: 22, fim: 23 },
+{ nome: "The Killing Moon - Echo & The Bunnyman", arquivo: "assets/HB_tape/other/TheKillingMoon.mp3", inicio: 22, fim: 23 },
+{ nome: "Downtown - Petula Clark", arquivo: "assets/23h/downtown.mp3", inicio: 23, fim: 24 },
+{ nome: "Cults - Bad Things", arquivo: "assets/23h/cults---bad-things.mp3", inicio: 23, fim: 24 },
+{ nome: "Laura Branigan — Self Control", arquivo: "assets/23h/Laura_Branigan_Self_Control.mp3", inicio: 23, fim: 24 },
+{ nome: "Leningrad — Voyage", arquivo: "assets/23h/Leningrad_Voyage.mp3", inicio: 23, fim: 24 },
+{ nome: "Hungria — Zorro do Asfalto", arquivo: "assets/23h/Hungria_Zorro_do_Asfalto.mp3", inicio: 23, fim: 24 },
+{ nome: "Tonight You Belong To Me", arquivo: "assets/23h/Tonight_You_Belong_To_Me.mp3", inicio: 23, fim: 24 },
+ ];
+let indiceAtual = 0;
+let dataInicioFaixa = null;
+function formatarHorario(date)
+{
+return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
+}
+
+function atualizarInterface(indice) {
+const atual = playlist[indice];
+const proximo = playlist[(indice + 1) % playlist.length];
+
+audioAtualTexto.textContent = atual.nome;
+proximoAudioTexto.textContent = proximo.nome;
+
+const horaInicioFormatada = formatarHorario(dataInicioFaixa);
+
+    // Calcula horário de término com base na duração
+if (!isNaN(audio.duration) && audio.duration > 0) {
+const dataFim = new Date(dataInicioFaixa.getTime() + audio.duration * 1000);
+const horaFimFormatada = formatarHorario(dataFim);
+      horarioAtualTexto.textContent = `Início: ${horaInicioFormatada} | Fim: ${horaFimFormatada}`;
+} else {
+horarioAtualTexto.textContent = `Início: ${horaInicioFormatada} | Fim: carregando...`;
+}
+}
+function tocarFaixa(indice) {
+const faixa = playlist[indice];
+source.src = faixa.arquivo;
+audio.load();
+
+    // Marca horário de início da faixa
+dataInicioFaixa = new Date();
+audio.play().catch(e => {
+console.warn("Erro ao tocar áudio:", e);
+});
+audio.onloadedmetadata = () => {
+atualizarInterface(indice);
+};
+}
+
+audio.addEventListener("ended", () => {
+indiceAtual = (indiceAtual + 1) % playlist.length;
+tocarFaixa(indiceAtual);
+});
+ startBtn.addEventListener("click", () => {
+    startBtn.style.display = "none";
+    audio.style.display = "block";
+    indiceAtual = definirIndiceInicial();
+    tocarFaixa(indiceAtual);
+  });
+
+  function definirIndiceInicial() {
+    const hora = new Date().getHours();
+    const faixaAtual = playlist.findIndex(p => hora >= p.inicio && hora < p.fim);
+    return faixaAtual !== -1 ? faixaAtual : 0;
+  }
+
+  window.addEventListener("beforeunload", () => {
+    localStorage.setItem("indiceAtual", indiceAtual);
+    localStorage.setItem("tempoAtual", audio.currentTime);
+  });
+
+  indiceAtual = parseInt(localStorage.getItem("indiceAtual")) || definirIndiceInicial();
+  const tempoSalvo = parseFloat(localStorage.getItem("tempoAtual")) || 0;
+
+  tocarFaixa(indiceAtual);
+  audio.currentTime = tempoSalvo;
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      audio.play().catch(() => {});
+    }
+  });
+  
+// novo
+let wakeLock = null;
+
+async function ativarWakeLock() {
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+}
+
+</script>
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById("add-button");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = "block";
+});
+
+installBtn.addEventListener("click", () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("Usuário aceitou instalar");
+      } else {
+        console.log("Usuário recusou");
+      }
+      deferredPrompt = null;
+    });
+  }
+});
+
+</script>
+<script type="text/javascript" charset="utf-8" crossorigin="anonymous" defer async src="service-worker.js"></script>
+</body>
+</html>
