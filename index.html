@@ -84,6 +84,7 @@ box-shadow: 0 0 20px #00ff88;
 <button id="startBtn">Iniciar Rádio</button>
 </center>
 <center>
+
 <audio
   id="audioPlayer"
   controls
@@ -94,7 +95,11 @@ box-shadow: 0 0 20px #00ff88;
   <source id="audioSource" src="" type="audio/mp3">
   Seu navegador não suporta o player de áudio.
 </audio>
-
+<br><br>
+<center>
+  <button id="add-button">Instalar</button>
+</center>
+<center>
 <style>
 audio::-webkit-media-controls-time-remaining-display {
   display: none !important;
@@ -382,6 +387,29 @@ async function ativarWakeLock() {
   }
 }
 
+// instalação 
+let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          const addBtn = document.querySelector('#add-button');
+          addBtn.style.display = 'flex';
+        
+          addBtn.addEventListener('click', () => {
+            addBtn.style.display = 'block';
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+              if (choiceResult.outcome === 'accepted') {
+                console.log('Usuário aceitou o prompt de instalação');
+              } else {
+                console.log('Usuário rejeitou o prompt de instalação');
+              }
+              deferredPrompt = null;
+            });
+          });
+        });
+        
 </script>
 </body>
 </html>
