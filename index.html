@@ -103,6 +103,15 @@ audio::-webkit-media-controls-time-remaining-display {
 
 
 <script>
+self.addEventListener('install', function (event) {
+  console.log('Service Worker instalado');
+});
+
+self.addEventListener('fetch', function (event) {
+  // Você pode fazer cache ou deixar padrão
+});
+
+
   const audioc = document.getElementById("audioPlayer");
 
   // Bloqueia tentativas de alterar a velocidade
