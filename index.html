@@ -105,28 +105,9 @@ audio::-webkit-media-controls-time-remaining-display {
   display: none !important;
 }
 </style>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js')
-    .then(function () {
-      console.log('Service Worker registrado com sucesso');
-    })
-    .catch(function (error) {
-      console.log('Falha ao registrar o Service Worker:', error);
-    });
-}
-</script>
 
 
 <script>
-self.addEventListener('install', function (event) {
-  console.log('Service Worker instalado');
-});
-
-self.addEventListener('fetch', function (event) {
-  // Você pode fazer cache ou deixar padrão
-});
-
 
   const audioc = document.getElementById("audioPlayer");
 
@@ -387,29 +368,31 @@ async function ativarWakeLock() {
   }
 }
 
-// instalação 
-let deferredPrompt;
-        
-        window.addEventListener('beforeinstallprompt', (e) => {
-          e.preventDefault();
-          deferredPrompt = e;
-          const addBtn = document.querySelector('#add-button');
-          addBtn.style.display = 'flex';
-        
-          addBtn.addEventListener('click', () => {
-            addBtn.style.display = 'block';
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-              if (choiceResult.outcome === 'accepted') {
-                console.log('Usuário aceitou o prompt de instalação');
-              } else {
-                console.log('Usuário rejeitou o prompt de instalação');
-              }
-              deferredPrompt = null;
-            });
-          });
-        });
-        
 </script>
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById("add-button");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = "inline-block";
+});
+
+installBtn.addEventListener("click", () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("Usuário aceitou instalar");
+      } else {
+        console.log("Usuário recusou");
+      }
+      deferredPrompt = null;
+    });
+  }
+});
+</script>
+<script type="text/javascript" charset="utf-8" crossorigin="anonymous" defer async src="service-worker.js"></script>
 </body>
 </html>
