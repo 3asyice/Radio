@@ -10,3 +10,4 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (event) => {
   // Aqui você pode personalizar o comportamento offline, se desejar
 });
+
