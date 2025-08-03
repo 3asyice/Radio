@@ -425,10 +425,22 @@ tocarFaixa(indiceAtual);
   });
 
   function definirIndiceInicial() {
-    const hora = new Date().getHours();
-    const faixaAtual = playlist.findIndex(p => hora >= p.inicio && hora < p.fim);
-    return faixaAtual !== -1 ? faixaAtual : 0;
+  const agora = new Date();
+  const hora = agora.getHours();
+  const minuto = agora.getMinutes();
+  
+  // Pega a faixa mais próxima (hora igual e minuto menor ou igual)
+  const faixasValidas = playlist
+    .map((p, i) => ({ ...p, i }))
+    .filter(p => p.inicio === hora && p.minuto <= minuto);
+  
+  if (faixasValidas.length > 0) {
+    const ultimaFaixa = faixasValidas[faixasValidas.length - 1];
+    return ultimaFaixa.i;
   }
+  
+  return 0;
+}
 
   window.addEventListener("beforeunload", () => {
     localStorage.setItem("indiceAtual", indiceAtual);
