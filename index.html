@@ -140,27 +140,6 @@ audio::-webkit-media-controls-time-remaining-display {
   }
 }, 500);
 
-// Toca a faixa exatamente no horário certo, verificando a cada 10 segundos
-setInterval(() => {
-  const agora = new Date();
-  const hora = agora.getHours();
-  const minuto = agora.getMinutes();
-
-  const faixa = playlist.find((p, index) =>
-    p.inicio === hora &&
-    (p.minuto === undefined || p.minuto === minuto) &&
-    index !== indiceAtual // evita tocar de novo a mesma faixa
-  );
-
-  if (faixa) {
-    const novoIndice = playlist.indexOf(faixa);
-    if (novoIndice !== -1 && novoIndice !== indiceAtual) {
-      indiceAtual = novoIndice;
-      tocarFaixa(indiceAtual);
-    }
-  }
-}, 10000); // checa a cada 10 segundos
-
 </script>
 
 </center>
@@ -175,168 +154,370 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 
   const playlist = [
 // 00h
-{ nome: "The Civil Wars - Dust To Dust", arquivo: "assets/00h/TheCivilWars_DusttoDust.mp3", inicio: 0, minuto: 0, fim: 1 },
-{ nome: "The Midnight - Collateral", arquivo: "assets/00h/themidnight_collateral.mp3", inicio: 0, minuto: 4, fim: 1 },
-{ nome: "Roxette - I Don't Wanna Get Hurt", arquivo: "assets/00h/roxanne_i_dont_wanna_get_hurt.mp3", inicio: 0, minuto: 8, fim: 1 },
-{ nome: "Duran Duran - Ordinary World", arquivo: "assets/00h/duraduran_ordinaryworld.mp3", inicio: 0, minuto: 12, fim: 1 },
-{ nome: "M83 - Wait", arquivo: "assets/00h/M83_Wait.mp3", inicio: 0, minuto: 15, fim: 1 },
-{ nome: "M83 - Reunion", arquivo: "assets/00h/M83_Reunion.mp3", minuto: 20, inicio: 0, fim: 1 },
-{ nome: "Tame Impala - Let It Happen", arquivo: "assets/00h/TameImpala_LetItHappen.mp3", inicio: 0, minuto: 24, fim: 1 },
-{ nome: "OneRepublic - If I Lose Myself ft. Alesso", arquivo: "assets/00h/OneRepublic_IfILoseMyself_ftAlesso.mp3", minuto: 30, inicio: 0, fim: 1 },
-{ nome: "Skrillex - Summit ft. Ellie Goulding", arquivo: "assets/00h/Skrillex_Summit_featEllieGoulding.mp3", minuto: 35, inicio: 0, fim: 1 },
-{ nome: "X Ambassadors - Renegades", minuto: 38, arquivo: "assets/00h/XAmbassadors_Renegades.mp3", inicio: 0, fim: 1 },
-{ nome: "Lola Young - Messy", arquivo: "assets/00h/LolaYoung_Messy.mp3", inicio: 0, minuto: 42, fim: 1 },
-{ nome: "The Midnight - Memories", arquivo: "assets/00h/TheMidnight_Memories.mp3", inicio: 0, minuto: 55, fim: 1 },
-
+{ nome: "The Civil Wars - Dust To Dust", arquivo: "assets/00h/TheCivilWars_DusttoDust.mp3", inicio: 0, minuto: 0, segundo: 0, fim: 1 },
+// 3:47
+{ nome: "The Midnight - Collateral", arquivo: "assets/00h/themidnight_collateral.mp3", inicio: 0, minuto: 3, segundo: 47, fim: 1 },
+// 10:17
+{ nome: "Roxette - I Don't Wanna Get Hurt", arquivo: "assets/00h/roxanne_i_dont_wanna_get_hurt.mp3", inicio: 0, minuto: 10, segundo: 17, fim: 1 },
+// 14:26
+{ nome: "Duran Duran - Ordinary World", arquivo: "assets/00h/duraduran_ordinaryworld.mp3", inicio: 0, minuto: 14, segundo: 26, fim: 1 },
+//19:07
+{ nome: "M83 - Wait", arquivo: "assets/00h/M83_Wait.mp3", inicio: 0, minuto: 19, segundo: 7, fim: 1 },
+// 24:44
+{ nome: "M83 - Reunion", arquivo: "assets/00h/M83_Reunion.mp3", inicio: 0, minuto: 24, segundo: 44, fim: 1 },
+// 28:46
+{ nome: "Tame Impala - Let It Happen", arquivo: "assets/00h/TameImpala_LetItHappen.mp3", inicio: 0, minuto: 28, segundo: 46, fim: 1 },
+// 33:01
+{ nome: "OneRepublic - If I Lose Myself ft. Alesso", arquivo: "assets/00h/OneRepublic_IfILoseMyself_ftAlesso.mp3", inicio: 0, minuto: 33, segundo: 1, fim: 1 },
+// 36:33
+{ nome: "Skrillex - Summit ft. Ellie Goulding", arquivo: "assets/00h/Skrillex_Summit_featEllieGoulding.mp3", inicio: 0, minuto: 36, segundo: 33, fim: 1 },
+// 42:42
+{ nome: "X Ambassadors - Renegades", arquivo: "assets/00h/XAmbassadors_Renegades.mp3", inicio: 0, minuto: 42, segundo: 42, fim: 1 },
+// 45:55
+{ nome: "Lola Young - Messy", arquivo: "assets/00h/LolaYoung_Messy.mp3", inicio: 0, minuto: 45, segundo: 55, fim: 1 },
+// 50:27
+{ nome: "The Midnight - Memories", arquivo: "assets/00h/TheMidnight_Memories.mp3", inicio: 0, minuto: 50, segundo: 27, fim: 1 },
 
 
 // 01h
-{ nome: "Snow Patrol - Open Your Eyes", arquivo: "assets/01h/SnowPatrol_OpenYourEyes.mp3", inicio: 1, minuto: 1, fim: 2 },
-{ nome: "Kavinsky - Pacific Coast Highway", arquivo: "assets/01h/Kavinsky_PacificCoastHighway.mp3", inicio: 1, minuto: 5, fim: 2 },
+{ nome: "Snow Patrol - Open Your Eyes", arquivo: "assets/01h/SnowPatrol_OpenYourEyes.mp3", inicio: 1, minuto: 0, segundo: 0, fim: 2 },
+// 05:43
+{ nome: "Kavinsky - Pacific Coast Highway", arquivo: "assets/01h/Kavinsky_PacificCoastHighway.mp3", inicio: 1, minuto: 5, segundo: 43, fim: 2 },
+// 12:02
+{ nome: "Queen - Under Pressure", arquivo: "assets/01h/Queen_UnderPressure.mp3", inicio: 1, minuto: 12, segundo: 2, fim: 2 },
+// 16:02
+{ nome: "Billy Idol - Eyes Without A Face", arquivo: "assets/01h/BillyIdol_EyesWithoutAFace.mp3", inicio: 1, minuto: 16, segundo: 2, fim: 2 },
+// 20:56
+{ nome: "The Chainsmokers & Coldplay - Something Just Like This", arquivo: "assets/01h/TheChainsmokers_Coldplay_SomethingJustLikeThis.mp3", inicio: 1, minuto: 20, segundo: 56, fim: 2 },
+// 25:02
+{ nome: "Simple Minds - Don't You (Forget About Me)", arquivo: "assets/01h/SimpleMinds_DontYou_ForgetAboutMe.mp3", inicio: 1, minuto: 25, segundo: 2, fim: 2 },
+// 29:24
+{ nome: "Bonnie Tyler - Total Eclipse Of The Heart (Turn Around)", arquivo: "assets/01h/BonnieTyler_TotalEclipseoftheHeart_TurnAround.mp3", inicio: 1, minuto: 29, segundo: 24,  fim: 2 },
+
+// 2h
+
+{ nome: "BØRNS - Past Lives", arquivo: "assets/02h/BORNSPastLives.mp3", inicio: 2, minuto: 0, segundo: 0,  fim: 3 },
+
+{ nome: "Mr.Kitty - After Dark", arquivo: "assets/02h/MrKitty_AfterDark.mp3", inicio: 2, minuto: 4, segundo: 32, fim: 3 },
+// 08:49
+{ nome: "Lana Del Rei - Summertime Sadness (sxade synthwave remix)", arquivo: "assets/02h/nobody_lanadelrey_summertimesadness_sxade_synthwave_remix.mp3", inicio: 2, minuto: 8, segundo: 49,  fim: 3 },
+// 12:56
+{ nome: "Crystal Castles - KEROSENE", arquivo: "assets/02h/CrystalCastles_KEROSENE.mp3", inicio: 2, minuto: 12, segundo: 56,  fim: 3 },
+// 16:09
+{ nome: "VØJ x Narvent Memory Reboot (Slowed)", arquivo: "assets/02h/MemoryReboot.mp3", inicio: 2, minuto: 16, segundo: 9, fim: 3 },
+// 20:06
+{ nome: "Crystal Castles - TRANSGENDER", arquivo: "assets/02h/CrystalCastles_TRANSGENDER.mp3", inicio: 2, minuto: 20, segundo: 6,  fim: 3 },
 
 
+// 04h
+{ nome: "Aviso", arquivo: "assets/tape/The_Disclaimer.mp3", inicio: 4, minuto: 0, segundo: 0,  fim: 5 },
+// 01:01
+{ nome: "A Decisão Errada", arquivo: "assets/tape/F4LB.mp3", inicio: 4, minuto: 1, segundo: 1, fim: 5 },
+// 08:57
+{ nome: "Incorporação", arquivo: "assets/tape/F9LB.mp3", inicio: 4, minuto: 8, segundo: 57,  fim: 5 },
+// 17:53
+{ nome: "Internato", arquivo: "assets/tape/F7LB.mp3", inicio: 4, minuto: 17, segundo: 53,  fim: 5 },
+// 28:53 + 1min
+{ nome: "Plantão", arquivo: "assets/tape/F5LA.mp3", inicio: 4, minuto: 28, segundo: 53, fim: 5 },
+// 42:12 +1min
+{ nome: "A Mensagem", arquivo: "assets/tape/F6LA.mp3", inicio: 4, minuto: 42, segundo: 12, fim: 5 },
+// 5:03:18
+
+// 5h
+{ nome: "A Dor do Luto", arquivo: "assets/tape/F1LA.mp3", inicio: 5, minuto: 03, segundo: 18, fim: 6 },
+// 09:24
+{ nome: "Bergmann", arquivo: "assets/tape/F8LA.mp3", inicio: 5, minuto: 09, segundo: 24, fim: 6 },
+// 11:24
+{ nome: "Campo", arquivo: "assets/tape/F6LB.mp3", inicio: 5, minuto: 11, segundo: 24, fim: 6 },
+// 25:22 +1min
+{ nome: "Cover de Azevedo", arquivo: "assets/tape/Cover_Azevedo.mp3", inicio: 5, minuto: 25, segundo: 22, fim: 6 },
+// 26:33
+{ nome: "Azevedo", arquivo: "assets/tape/F2LA.mp3", inicio: 5, minuto: 26, segundo: 33, fim: 6 },
+// 27:55
+{ nome: "Seções", arquivo: "assets/tape/F7LA.mp3", inicio: 5, minuto: 27, segundo: 55, fim: 6 },
+// 36:08 +1min
+{ nome: "Isaias", arquivo: "assets/tape/F1LB.mp3", inicio: 5, minuto: 36, segundo: 8, fim: 6 },
+// 38:16
+{ nome: "A Alteração — Acidente", arquivo: "assets/tape/esse_sou_eu.mp3", inicio: 5, minuto: 38, segundo: 16, fim: 6 },
+// 38:50
+{ nome: "A Alteração", arquivo: "assets/tape/F10LA.mp3", inicio: 5, minuto: 38, segundo: 50, fim: 6 },
+// 59:07 +1min
+
+// 6h
+{ nome: "O 2º Quarto de Hora", arquivo: "assets/tape/F5LB.mp3", inicio: 6, minuto: 0, segundo: 0, fim: 7 },
+// 15:03
+{ nome: "Capisani", arquivo: "assets/tape/F8LB.mp3", inicio: 6, minuto: 15, segundo: 3, fim: 7 },
+// 16:03 +1min
+{ nome: "A Expulsão", arquivo: "assets/tape/F3LA.mp3", inicio: 6, minuto: 16, segundo: 3, fim: 6 },
+// 30:46
+{ nome: "Soares", arquivo: "assets/tape/F2LB.mp3", inicio: 6, minuto: 30, segundo: 46, fim: 7 },
+// 34:56
+{ nome: "A Sindicância", arquivo: "assets/tape/A_Sindicancia.mp3", inicio: 6, minuto: 34, segundo: 56, fim: 7 },
+// 56:04 +1min
+{ nome: "Último Episódio da Temporada 1", arquivo: "assets/tape/Last_Episode_of_The_Season1.mp3", inicio: 6, minuto: 56, segundo: 4, fim: 7 },
+// 6:02:45
+
+
+// 7h
+{ nome: "A Fita de Lemos", arquivo: "assets/tape/F27LA.mp3", inicio: 7, minuto: 2, segundo: 45, fim: 8 },
+// 08:34 +1min
+{ nome: "Entrevista no Stok Center", arquivo: "assets/tape/Entrevista_no_STOK_CENTER.mp3", inicio: 7, minuto: 8, segundo: 34, fim: 8 },
+// 38:41
+{ nome: "Policiais Corruptos", arquivo: "assets/tape/F3LB.mp3", inicio: 7, minuto: 38, segundo: 41, fim: 8 },
+// 59:18 +1min
+{ nome: "Uma Ameaça para Thales", arquivo: "assets/tape/F4LA.mp3", inicio: 7, minuto: 59, segundo: 18, fim: 8 },
+// 8:02:11 +1min
 
 
 // 08 horas
-{ nome: "The Weekend - The Hills", arquivo: "assets/08h/TheWeeknd_TheHills.mp3", inicio: 8, minuto: 1, fim: 9 },
-{ nome: "Luis Fonsi - Despacito ft. Daddy Yankee", arquivo: "assets/08h/LuisFonsi_Despacito_ftDaddyYankee.mp3", inicio: 8, minuto: 5, fim: 9 },
-{ nome: "Ed Sheeran - Shape Of You", arquivo: "assets/08h/EdSheeran_ShapeofYou.mp3", inicio: 8, minuto: 8, fim: 9 },
-{ nome: "OneRepublic - Counting Stars", arquivo: "assets/08h/OneRepublic_CountingStars.mp3", inicio: 8, minuto: 13, fim: 9 },
-{ nome: "Major Lazer ft Dj Snake - Lean On", arquivo: "assets/08h/MajorLazer_DJSnake_LeanOn.mp3", inicio: 8, minuto: 16, fim: 9 },
-{ nome: "Twenty One Pilots - Stressed Out", arquivo: "assets/08h/twentyonepilots_StressedOut.mp3", inicio: 8, minuto: 20, fim: 9 },
-{ nome: "Shakira - Chantaje ft. Maluma", arquivo: "assets/08h/Shakira_Chantaje_ftMaluma.mp3", inicio: 8, minuto: 25, fim: 9 },
-{ nome: "Imagine Dragons - Believer", arquivo: "assets/08h/ImagineDragons_Believer.mp3", inicio: 8, minuto: 28, fim: 9 },
-{ nome: "Eminem - Without Me", arquivo: "assets/08h/Eminem_WithoutMe.mp3", inicio: 8, minuto: 32, fim: 9 },
-{ nome: "David Guetta - Titanium ft. Sia", arquivo: "assets/08h/DavidGuetta_Titanium_ftSia.mp3", inicio: 8, minuto: 36, fim: 9 },
-{ nome: "Nirvana - Smells Like Teen Spirit", arquivo: "assets/08h/Nirvana_SmellsLikeTeenSpirit.mp3", inicio: 8, minuto: 43, fim: 9 },
-{ nome: "Arctic Monkeys - Do I Wanna Know?", arquivo: "assets/08h/ArcticMonkeys_DoIWannaKnow.mp3", inicio: 8, minuto: 47, fim: 9 },
-{ nome: "Mike Posner - I Took A Pill In Ibiza", arquivo: "assets/08h/MikePosner_ITookAPillInIbiza.mp3", inicio: 8, minuto: 50, fim: 9 },
-{ nome: "The Cranberries - Zombie", arquivo: "assets/08h/TheCranberries_Zombie.mp3", inicio: 8, minuto: 52, fim: 9 },
-{ nome: "Twenty One Pilots - Ride", arquivo: "assets/08h/twentyonepilots_Ride.mp3", inicio: 8, minuto: 55, fim: 9 },
-{ nome: "Avicci - Waiting For Love", arquivo: "assets/08h/Avicii_WaitingForLove.mp3", inicio: 8, minuto: 57, fim: 9 },
-
+{ nome: "The Weekend - The Hills", arquivo: "assets/08h/TheWeeknd_TheHills.mp3", inicio: 8, minuto: 2, segundo: 11, fim: 9 },
+// 06:06 +1min
+{ nome: "Luis Fonsi - Despacito ft. Daddy Yankee", arquivo: "assets/08h/LuisFonsi_Despacito_ftDaddyYankee.mp3", inicio: 8, minuto: 6, segundo: 6, fim: 9 },
+// 09:53
+{ nome: "Ed Sheeran - Shape Of You", arquivo: "assets/08h/EdSheeran_ShapeofYou.mp3", inicio: 8, minuto: 9, segundo: 53, fim: 9 },
+// 13:46 +1min
+{ nome: "OneRepublic - Counting Stars", arquivo: "assets/08h/OneRepublic_CountingStars.mp3", inicio: 8, minuto: 13, segundo: 46, fim: 9 },
+// 17:59
+{ nome: "Major Lazer ft Dj Snake - Lean On", arquivo: "assets/08h/MajorLazer_DJSnake_LeanOn.mp3", inicio: 8, minuto: 17, segundo: 59,  fim: 9 },
+// 20:58 +1min
+{ nome: "Twenty One Pilots - Stressed Out", arquivo: "assets/08h/twentyonepilots_StressedOut.mp3", inicio: 8, minuto: 20, segundo: 58,  fim: 9 },
+// 23:20 +1min
+{ nome: "Shakira - Chantaje ft. Maluma", arquivo: "assets/08h/Shakira_Chantaje_ftMaluma.mp3", inicio: 8, minuto: 23, segundo: 20, fim: 9 },
+// 26:33
+{ nome: "Imagine Dragons - Believer", arquivo: "assets/08h/ImagineDragons_Believer.mp3", inicio: 8, minuto: 26, segundo: 33, fim: 9 },
+// 29:55
+{ nome: "Eminem - Without Me", arquivo: "assets/08h/Eminem_WithoutMe.mp3", inicio: 8, minuto: 29, segundo: 55, fim: 9 },
+// 34:43 +1min
+{ nome: "David Guetta - Titanium ft. Sia", arquivo: "assets/08h/DavidGuetta_Titanium_ftSia.mp3", inicio: 8, minuto: 34, segundo: 43, fim: 9 },
+// 38:48
+{ nome: "Nirvana - Smells Like Teen Spirit", arquivo: "assets/08h/Nirvana_SmellsLikeTeenSpirit.mp3", inicio: 8, minuto: 38, segundo: 48,  fim: 9 },
+// 43:26 +1min
+{ nome: "Arctic Monkeys - Do I Wanna Know?", arquivo: "assets/08h/ArcticMonkeys_DoIWannaKnow.mp3", inicio: 8, minuto: 43, segundo: 26,  fim: 9 },
+// 47:48
+{ nome: "Mike Posner - I Took A Pill In Ibiza", arquivo: "assets/08h/MikePosner_ITookAPillInIbiza.mp3", inicio: 8, minuto: 47, segundo: 48, fim: 9 },
+// 51:03 +1min
+{ nome: "The Cranberries - Zombie", arquivo: "assets/08h/TheCranberries_Zombie.mp3", inicio: 8, minuto: 51, segundo: 03, fim: 9 },
+// 56:09
+{ nome: "Twenty One Pilots - Ride", arquivo: "assets/08h/twentyonepilots_Ride.mp3", inicio: 8, minuto: 56, segundo: 09, fim: 9 },
+// 59:43
+{ nome: "Avicci - Waiting For Love", arquivo: "assets/08h/Avicii_WaitingForLove.mp3", inicio: 8, minuto: 59, segundo: 43, fim: 9 },
+// 9:03:34 +1min
 
 // 09h
-{ nome: "Tove Lo - Habits (Stay High) Hippie Sabotage Remix", arquivo: "assets/09h/ToveLo_Habits_Stay High_Hippie_Sabotage_Remix.mp3", inicio: 9, minuto: 1, fim: 10 },
-{ nome: "Imagine Dragons - Radioactive", arquivo: "assets/09h/ImagineDragons_Radioactive.mp3", inicio: 9, minuto: 4, fim: 10 },
-{ nome: "Bruno Mars - Locked Out Of Heaven", arquivo: "assets/09h/BrunoMars_LockedOutOfHeaven.mp3", inicio: 9, minuto: 8, fim: 10 },
-{ nome: "Hajime - Miyagi &amp; Эндшпиль feat. Рем Дигга - I Got Love (Official Video)", arquivo: "assets/09h/I_Got_Love_russian_song.mp3", inicio: 9, minuto: 11, fim: 10 },
-{ nome: "Swedish House Mafia ft. John Martin - Don't You Worry Child", arquivo: "assets/09h/JohnMartin_DontYouWorryChild.mp3", inicio: 9, minuto: 14, fim: 10 },
-{ nome: "Imagine Dragons - Whatever It Takes (Official Music Video)", arquivo: "assets/09h/ImagineDragons_WhateverItTakes.mp3", inicio: 9, minuto: 17, fim: 10 },
-{ nome: "Eminem ft. Rihanna - The Monster (Explicit) [Official Video]", arquivo: "assets/09h/Eminem_ftRihanna_TheMonster.mp3", inicio: 9, minuto: 21, fim: 10 },
-{ nome: "Maroon 5 - Animals", arquivo: "assets/09h/Maroon5_Animals.mp3", inicio: 9, minuto: 24, fim: 10 },
-{ nome: "Kygo - Firestone ft. Conrad Sewell (Official Video)", arquivo: "assets/09h/Kygo_Firestone_ftConradSewell.mp3", inicio: 9, minuto: 26, fim: 10 },
-{ nome: "Robin Thicke - Blurred Lines ft. T.I., Pharrell", arquivo: "assets/09h/RobinThicke_BlurredLines_ftTIPharrell.mp3", inicio: 9, minuto: 29, fim: 10 },
-{ nome: "Hozier - Take Me To Church", arquivo: "assets/09h/Hozier_TakeMeToChurch.mp3", inicio: 9, minuto: 32, fim: 10 },
-{ nome: "The Neighbourhood - Sweater Weather (Official Video)", arquivo: "assets/09h/TheNeighbourhood_SweaterWeather.mp3", inicio: 9, minuto: 36, fim: 10 },
-{ nome: "Duke Dumont - Ocean Drive (Official Music Video)", arquivo: "assets/09h/DukeDumont_OceanDrive.mp3", inicio: 9, minuto: 38, fim: 10 },
-{ nome: "Calvin Harris - Blame ft. John Newman", arquivo: "assets/09h/CalvinHarris_Blame_ftJohn Newman.mp3", inicio: 9, minuto: 49, fim: 10 },
-{ nome: "Robin Schulz - Sugar ft. Francesco Yates", arquivo: "assets/09h/RobinSchulz_Sugar_featFrancescoYates.mp3", inicio: 9, minuto: 55, fim: 10 },
-
+{ nome: "Tove Lo - Habits (Stay High) Hippie Sabotage Remix", arquivo: "assets/09h/ToveLo_Habits_Stay High_Hippie_Sabotage_Remix.mp3", inicio: 9, minuto: 3, segundo: 34, fim: 10 },
+// 07:52
+{ nome: "Imagine Dragons - Radioactive", arquivo: "assets/09h/ImagineDragons_Radioactive.mp3", inicio: 9, minuto: 7, segundo: 52, fim: 10 },
+// 10:55
+{ nome: "Bruno Mars - Locked Out Of Heaven", arquivo: "assets/09h/BrunoMars_LockedOutOfHeaven.mp3", inicio: 9, minuto: 10, segundo: 55, fim: 10 },
+// 14:42 +1min
+{ nome: "Hajime - Miyagi &amp; Эндшпиль feat. Рем Дигга - I Got Love (Official Video)", arquivo: "assets/09h/I_Got_Love_russian_song.mp3", inicio: 9, minuto: 14, segundo: 42, fim: 10 },
+// 19:17 +1min
+{ nome: "Swedish House Mafia ft. John Martin - Don't You Worry Child", arquivo: "assets/09h/JohnMartin_DontYouWorryChild.mp3", inicio: 9, minuto: 19, segundo: 17, fim: 10 },
+// 24:42
+{ nome: "Imagine Dragons - Whatever It Takes (Official Music Video)", arquivo: "assets/09h/ImagineDragons_WhateverItTakes.mp3", inicio: 9, minuto: 24, segundo: 42, fim: 10 },
+// 27:59
+{ nome: "Eminem ft. Rihanna - The Monster (Explicit) [Official Video]", arquivo: "assets/09h/Eminem_ftRihanna_TheMonster.mp3", inicio: 9, minuto: 27, segundo: 59, fim: 10 },
+// 32:10 +1min
+{ nome: "Maroon 5 - Animals", arquivo: "assets/09h/Maroon5_Animals.mp3", inicio: 9, minuto: 32, segundo: 10, fim: 10 },
+// 35:56
+{ nome: "Kygo - Firestone ft. Conrad Sewell (Official Video)", arquivo: "assets/09h/Kygo_Firestone_ftConradSewell.mp3", inicio: 9, minuto: 35, segundo: 56, fim: 10 },
+// 39:21 +1min
+{ nome: "Robin Thicke - Blurred Lines ft. T.I., Pharrell", arquivo: "assets/09h/RobinThicke_BlurredLines_ftTIPharrell.mp3", inicio: 9, minuto: 39, segundo: 21, fim: 10 },
+// 43:39
+{ nome: "Hozier - Take Me To Church", arquivo: "assets/09h/Hozier_TakeMeToChurch.mp3", inicio: 9, minuto: 43, segundo: 39, fim: 10 },
+// 47:40
+{ nome: "The Neighbourhood - Sweater Weather (Official Video)", arquivo: "assets/09h/TheNeighbourhood_SweaterWeather.mp3", inicio: 9, minuto: 47, segundo: 40, fim: 10 },
+// 51:39 +1min
+{ nome: "Duke Dumont - Ocean Drive (Official Music Video)", arquivo: "assets/09h/DukeDumont_OceanDrive.mp3", inicio: 9, minuto: 51, segundo: 39, fim: 10 },
+// 55:07 +1min
+{ nome: "Calvin Harris - Blame ft. John Newman", arquivo: "assets/09h/CalvinHarris_Blame_ftJohn Newman.mp3", inicio: 9, minuto: 55, segundo: 07, fim: 10 },
+// 58:31
+{ nome: "Robin Schulz - Sugar ft. Francesco Yates", arquivo: "assets/09h/RobinSchulz_Sugar_featFrancescoYates.mp3", inicio: 9, minuto: 58, segundo: 31, fim: 10 },
+// 10:02:16 +1min
 
 // 10h
-{ nome: "I Follow Rivers - Lykke Li", arquivo: "assets/10h/IFollowRivers_LykkeLi.mp3", inicio: 10, minuto: 1, fim: 11 },
-{ nome: "Lil Waybe, Wiz Khalifa & Imagine Dragons, Logic Ty Dolla $ign ft. X Ambassadors - Sucker For Pain", arquivo: "assets/10h/LilWayne_WizKhalifa_ImagineDragons_Logic_TyDollaSign_ftXAmbassadors_SuckerforPain.mp3", inicio: 10, minuto: 5, fim: 11 },
-{ nome: "Kaleo - Way Down We Go", arquivo: "assets/10h/KALEO_WayDownWeGo.mp3", inicio: 10, minuto: 7, fim: 11 },
-{ nome: "Axwell Ingrosso - More Than You Know", arquivo: "assets/10h/AxwellIngrosso_MoreThanYouKnow.mp3", inicio: 10, minuto: 9, fim: 11 },
-{ nome: "Spice Girls - Wannabe", arquivo: "assets/10h/SpiceGirls_Wannabe.mp3", inicio: 10, minuto: 14, fim: 11 },
-{ nome: "Mr. Probz - Waves", arquivo: "assets/10h/MrProbz_Waves.mp3", inicio: 10, minuto: 17, fim: 11 },
-{ nome: "G-Easy x Bebe Rexha - Me Myself & I", arquivo: "assets/10h/GEazyxBebeRexha_MeMyselfI.mp3", inicio: 10, minuto: 19, fim: 11 },
-{ nome: "#SELFIE - The Chainsmokers", arquivo: "assets/10h/SELFIE_TheChainsmokers.mp3", inicio: 10, minuto: 22, fim: 11 },
-{ nome: "Vance Joy - Riptide", arquivo: "assets/10h/VanceJoy_Riptide.mp3", inicio: 10, minuto: 25, fim: 11 },
-{ nome: "Oasis - Wonderwall", arquivo: "assets/10h/Oasis_Wonderwall.mp3", inicio: 10, minuto: 27, fim: 11 },
-{ nome: "Imagine Dragons - Bad Liar", arquivo: "assets/10h/ImagineDragons_BadLiar.mp3", inicio: 10, minuto: 30, fim: 11 },
-{ nome: "Major Lazer - Light It Up", arquivo: "assets/10h/MajorLazer_LightitUp.mp3", inicio: 10, minuto: 33, fim: 11 },
-{ nome: "Daft Punk - One More Time", arquivo: "assets/10h/DaftPunk_OneMoreTime.mp3", inicio: 10, minuto: 42, fim: 11 },
-{ nome: "Kungs vs Cookin' on 3 Burners - This Girl", arquivo: "assets/10h/KungsvsCookinon3Burners_ThisGirl.mp3", inicio: 10, minuto: 48, fim: 11 },
-{ nome: "Marshmello ft. Khalid - Silence", arquivo: "assets/10h/Marshmello_ftKhalid_Silence.mp3", inicio: 10, minuto: 52, fim: 11 },
-{ nome: "Cartoon, Jéja - On & On ft. Daniel Levi", arquivo: "assets/10h/Cartoon_Jeja_OneOn_featDanielLevi.mp3", inicio: 10, minuto: 55, fim: 11 },
+{ nome: "I Follow Rivers - Lykke Li", arquivo: "assets/10h/IFollowRivers_LykkeLi.mp3", inicio: 10, minuto: 2, segundo: 16, fim: 11 },
+// 06:56
+{ nome: "Lil Waybe, Wiz Khalifa & Imagine Dragons, Logic Ty Dolla $ign ft. X Ambassadors - Sucker For Pain", arquivo: "assets/10h/LilWayne_WizKhalifa_ImagineDragons_Logic_TyDollaSign_ftXAmbassadors_SuckerforPain.mp3", inicio: 10, minuto: 6, segundo: 56, fim: 11 },
+// 10:58
+{ nome: "Kaleo - Way Down We Go", arquivo: "assets/10h/KALEO_WayDownWeGo.mp3", inicio: 10, minuto: 10, segundo: 58, fim: 11 },
+// 14:32 +1min
+{ nome: "Axwell Ingrosso - More Than You Know", arquivo: "assets/10h/AxwellIngrosso_MoreThanYouKnow.mp3", inicio: 10, minuto: 14, segundo: 32, fim: 11 },
+// 17:52
+{ nome: "Spice Girls - Wannabe", arquivo: "assets/10h/SpiceGirls_Wannabe.mp3", inicio: 10, minuto: 17, segundo: 52, fim: 11 },
+// 20:38 +1min
+{ nome: "Mr. Probz - Waves", arquivo: "assets/10h/MrProbz_Waves.mp3", inicio: 10, minuto: 20, segundo: 38, fim: 11 },
+// 24:29 +1min
+{ nome: "G-Easy x Bebe Rexha - Me Myself & I", arquivo: "assets/10h/GEazyxBebeRexha_MeMyselfI.mp3", inicio: 10, minuto: 24, segundo: 29, fim: 11 },
+// 28:37
+{ nome: "#SELFIE - The Chainsmokers", arquivo: "assets/10h/SELFIE_TheChainsmokers.mp3", inicio: 10, minuto: 28, segundo: 37, fim: 11 },
+// 32:15 +1min
+{ nome: "Vance Joy - Riptide", arquivo: "assets/10h/VanceJoy_Riptide.mp3", inicio: 10, minuto: 32, segundo: 15, fim: 11 },
+// 35:34
+{ nome: "Oasis - Wonderwall", arquivo: "assets/10h/Oasis_Wonderwall.mp3", inicio: 10, minuto: 35, segundo: 34, fim: 11 },
+// 39:48
+{ nome: "Imagine Dragons - Bad Liar", arquivo: "assets/10h/ImagineDragons_BadLiar.mp3", inicio: 10, minuto: 39, segundo: 48, fim: 11 },
+// 43:56
+{ nome: "Major Lazer - Light It Up", arquivo: "assets/10h/MajorLazer_LightitUp.mp3", inicio: 10, minuto: 43, segundo: 56, fim: 11 },
+// 46:41 +1min
+{ nome: "Daft Punk - One More Time", arquivo: "assets/10h/DaftPunk_OneMoreTime.mp3", inicio: 10, minuto: 46, segundo: 41, fim: 11 },
+// 51:40 +1min
+{ nome: "Kungs vs Cookin' on 3 Burners - This Girl", arquivo: "assets/10h/KungsvsCookinon3Burners_ThisGirl.mp3", inicio: 10, minuto: 51, segundo: 40, fim: 11 },
+// 54:55
+{ nome: "Marshmello ft. Khalid - Silence", arquivo: "assets/10h/Marshmello_ftKhalid_Silence.mp3", inicio: 10, minuto: 54, segundo: 55, fim: 11 },
+// 57:54 +1min
+{ nome: "Cartoon, Jéja - On & On ft. Daniel Levi", arquivo: "assets/10h/Cartoon_Jeja_OneOn_featDanielLevi.mp3", inicio: 10, minuto: 57, segundo: 54, fim: 11 },
+// next hour 01:22 +1min
 
-// 19h teste
-{ nome: "Locutor — Programação", arquivo: "assets/20h/Locutor_000.mp3", inicio: 19, minuto: 0, fim: 21 },
-{ nome: "Murcof — Reflejo", arquivo: "assets/20h/Murcof_Reflejo.mp3", inicio: 19, minuto: 2, fim: 21 },
-{ nome: "Massiveattack — Red Light Means Go", arquivo: "assets/20h/massiveattack_Red_Light_Means_Go.mp3", inicio: 19, minuto: 5, fim: 21 },
-{ nome: "Max Richter — Organum", arquivo: "assets/20h/Max_Richter_Organum.mp3", inicio: 19, minuto: 9, fim: 21 },
-{ nome: "ABBA — I Have A Dream", arquivo: "assets/20h/ABBA_I_Have_A_Dream.mp3", inicio: 19, minuto: 14, fim: 21 },
-{ nome: "N.E.R.D — Lapdance ft Lee Harvey, Vita", arquivo: "assets/20h/NERD_Lapdance_ft_Lee_Harvey_Vita.mp3", inicio: 19, minuto: 18, fim: 21 },
-{ nome: "Jessica Brown Findlay — Anyone Who Knows What Love Is", arquivo: "assets/20h/Jessica_Brown_Findlay_Anyone_who_knows_what_love_is.mp3", inicio: 19, minuto: 21, fim: 21 },
-{ nome: "Bing Abi by Stephen McKeon", arquivo: "assets/20h/Bing_Abi_by_Stephen_McKeon.mp3", inicio: 19, minuto: 24, fim: 21 },
-{ nome: "15 Million Merits — Stephen McKeon", arquivo: "assets/20h/Stephen_McKeon_15_Million_Merits.mp3", inicio: 19, minuto: 26, fim: 21 },
-{ nome: "Messa da Requiem Dies Irae by Londom Philharmonic", arquivo: "assets/20h/London_Philharmonic_Orchestra_Messa_da_Requiem_Dies_Irae.mp3", inicio: 19, minuto: 28, fim: 21 },
-{ nome: "The Entire History Of You — Stuart Earl", arquivo: "assets/20h/The_Entire_History_Of_You_by_Stuart_Earl.mp3", inicio: 19, minuto: 31, fim: 21 },
-{ nome: "Yvonne Elliman — If I Can't Have You", arquivo: "assets/20h/Yvonne_Elliman_If_I_Cant_Have_You.mp3", inicio: 19, minuto: 33, fim: 21 },
-{ nome: "Heatwave — Boogie Nights", arquivo: "assets/20h/Heatwave_Boogie_Nights.mp3", inicio: 19, minuto: 35, fim: 21 },
-{ nome: "Bee Gees — How Deep Is Your Love", arquivo: "assets/20h/BeeGees_HowDeepIsYourLove.mp3", inicio: 19, minuto: 36, fim: 21 },
-{ nome: "Jump — Vince Pope", arquivo: "assets/20h/Jump_VincePope.mp3", inicio: 19, minuto: 37, fim: 21 },
-{ nome: "Alone — Vince Pope", arquivo: "assets/20h/Alone_VincePope.mp3", inicio: 19, minuto: 38, fim: 21 },
-{ nome: "A New Home — Vince Pope", arquivo: "assets/20h/ANewHome_VincePope.mp3", inicio: 19, minuto: 40, fim: 21 },
-{ nome: "Farmer Boy — Vince Pope", arquivo: "assets/20h/FarmerBoy_VincePope.mp3", inicio: 19, minuto: 42, fim: 21 },
-{ nome: "Break My Heart — Vince Pope", arquivo: "assets/20h/BreakMyHeart_VincePope.mp3", inicio: 19, minuto: 44, fim: 21 },
-{ nome: "Starting Over — Vince Pope", arquivo: "assets/20h/StartingOver_VincePope.mp3", inicio: 19, minuto: 46, fim: 21 },
-{ nome: "I Need You — Vince Pope", arquivo: "assets/20h/INeedYou_VincePope.mp3", inicio: 19, minuto: 48, fim: 21 },
-{ nome: "Jon Opstad — Waking Up", arquivo: "assets/20h/JonOpstad_WakingUp.mp3", inicio: 19, minuto: 50, fim: 21 },
-{ nome: "Jon Opstad — Masked Gunman", arquivo: "assets/20h/JonOpstad_MaskedGunman.mp3", inicio: 19, minuto: 53, fim: 21 },
-{ nome: "Jon Opstad — I Saw It", arquivo: "assets/20h/JonOpstad_ISawIt.mp3", inicio: 19, minuto: 55, fim: 21 },
-{ nome: "Jon Opstad — What's Your Problem?", arquivo: "assets/20h/JonOpstad_WhatsYourProblem.mp3", inicio: 19, minuto: 57, fim: 21 },
+// 14h
+
+{ nome: "Melanie Martinez - Martinez", arquivo: "assets/14h/MelanieMartinez_Carousel.mp3", inicio: 14, fim: 15 },
+{ nome: "Melanie Martinez - Mad Hatter", arquivo: "assets/14h/MelanieMartinez_MadHatter.mp3", inicio: 14, fim: 15 },
+{ nome: "Melanie Martinez - Cry Baby", arquivo: "assets/14h/MelanieMartinez_CryBaby.mp3", inicio: 14, fim: 15 },
+{ nome: "Moderat - Last Time", arquivo: "assets/14h/Moderat_LastTime.mp3", inicio: 14, fim: 15 },
+{ nome: "Elton John - Rocket Man", arquivo: "assets/14h/EltonJohn_RocketMan.mp3", inicio: 14, fim: 15 },
+{ nome: "Nina Simone - Feeling Good", arquivo: "assets/14h/NinaSimone_FeelingGood.mp3", inicio: 14, fim: 15 },
+{ nome: "Irma Thomas - Anyone Who Knows What Love Is (Will Understand)", arquivo: "assets/14h/IrmaThomas_AnyoneWhoKnowsWhatLoveIs.mp3", inicio: 14, fim: 15 },
+
+
+
+
+
 
 
 
 // 20h
-{ nome: "Locutor — Programação", arquivo: "assets/20h/Locutor_000.mp3", inicio: 20, minuto: 1, fim: 21 },
-{ nome: "Murcof — Reflejo", arquivo: "assets/20h/Murcof_Reflejo.mp3", inicio: 20, minuto: 2, fim: 21 },
-{ nome: "Massiveattack — Red Light Means Go", arquivo: "assets/20h/massiveattack_Red_Light_Means_Go.mp3", inicio: 20, minuto: 10, fim: 21 },
-{ nome: "Max Richter — Organum", arquivo: "assets/20h/Max_Richter_Organum.mp3", inicio: 20, minuto: 2, fim: 21 },
-{ nome: "ABBA — I Have A Dream", arquivo: "assets/20h/ABBA_I_Have_A_Dream.mp3", inicio: 20, minuto: 14, fim: 21 },
-{ nome: "N.E.R.D — Lapdance ft Lee Harvey, Vita", arquivo: "assets/20h/NERD_Lapdance_ft_Lee_Harvey_Vita.mp3", inicio: 20, minuto: 18, fim: 21 },
-{ nome: "Jessica Brown Findlay — Anyone Who Knows What Love Is", arquivo: "assets/20h/Jessica_Brown_Findlay_Anyone_who_knows_what_love_is.mp3", inicio: 20, minuto: 21, fim: 21 },
-{ nome: "Bing Abi by Stephen McKeon", arquivo: "assets/20h/Bing_Abi_by_Stephen_McKeon.mp3", inicio: 20, minuto: 24, fim: 21 },
-{ nome: "15 Million Merits — Stephen McKeon", arquivo: "assets/20h/Stephen_McKeon_15_Million_Merits.mp3", inicio: 20, minuto: 26, fim: 21 },
-{ nome: "Messa da Requiem Dies Irae by Londom Philharmonic", arquivo: "assets/20h/London_Philharmonic_Orchestra_Messa_da_Requiem_Dies_Irae.mp3", inicio: 20, minuto: 28, fim: 21 },
-{ nome: "The Entire History Of You — Stuart Earl", arquivo: "assets/20h/The_Entire_History_Of_You_by_Stuart_Earl.mp3", inicio: 20, minuto: 31, fim: 21 },
-{ nome: "Yvonne Elliman — If I Can't Have You", arquivo: "assets/20h/Yvonne_Elliman_If_I_Cant_Have_You.mp3", inicio: 20, minuto: 33, fim: 21 },
-{ nome: "Heatwave — Boogie Nights", arquivo: "assets/20h/Heatwave_Boogie_Nights.mp3", inicio: 20, minuto: 35, fim: 21 },
-{ nome: "Bee Gees — How Deep Is Your Love", arquivo: "assets/20h/BeeGees_HowDeepIsYourLove.mp3", inicio: 20, minuto: 36, fim: 21 },
-{ nome: "Jump — Vince Pope", arquivo: "assets/20h/Jump_VincePope.mp3", inicio: 20, minuto: 36, fim: 21 },
-{ nome: "Alone — Vince Pope", arquivo: "assets/20h/Alone_VincePope.mp3", inicio: 20, minuto: 38, fim: 21 },
-{ nome: "A New Home — Vince Pope", arquivo: "assets/20h/ANewHome_VincePope.mp3", inicio: 20, minuto: 40, fim: 21 },
-{ nome: "Farmer Boy — Vince Pope", arquivo: "assets/20h/FarmerBoy_VincePope.mp3", inicio: 20, minuto: 42, fim: 21 },
-{ nome: "Break My Heart — Vince Pope", arquivo: "assets/20h/BreakMyHeart_VincePope.mp3", inicio: 20, minuto: 44, fim: 21 },
-{ nome: "Starting Over — Vince Pope", arquivo: "assets/20h/StartingOver_VincePope.mp3", inicio: 20, minuto: 46, fim: 21 },
-{ nome: "I Need You — Vince Pope", arquivo: "assets/20h/INeedYou_VincePope.mp3", inicio: 20, minuto: 48, fim: 21 },
-{ nome: "Jon Opstad — Waking Up", arquivo: "assets/20h/JonOpstad_WakingUp.mp3", inicio: 20, minuto: 50, fim: 21 },
-{ nome: "Jon Opstad — Masked Gunman", arquivo: "assets/20h/JonOpstad_MaskedGunman.mp3", inicio: 20, minuto: 53, fim: 21 },
-{ nome: "Jon Opstad — I Saw It", arquivo: "assets/20h/JonOpstad_ISawIt.mp3", inicio: 20, minuto: 55, fim: 21 },
-{ nome: "Jon Opstad — What's Your Problem?", arquivo: "assets/20h/JonOpstad_WhatsYourProblem.mp3", inicio: 20, minuto: 57, fim: 21 },
-
-{ nome: "Hannah Baker Fita 1 Lado A", arquivo: "assets/HB_tape/HB_F1LA.mp3", inicio: 22, minuto: 1, fim: 23 },
-{ nome: "Hannah Baker Fita 1 Lado B", arquivo: "assets/HB_tape/HB_F1LB.mp3", inicio: 22, minuto: 7, fim: 23 },
-{ nome: "Hannah Baker Fita 2 Lado A", arquivo: "assets/HB_tape/HB_F2LA.mp3", inicio: 22, minuto: 14, fim: 23 },
-{ nome: "Hannah Baker Fita 2 Lado B", arquivo: "assets/HB_tape/HB_F2LB.mp3", inicio: 22, minuto: 16, fim: 23 },
-{ nome: "Hannah Baker Fita 3 Lado A", arquivo: "assets/HB_tape/HB_F3LA.mp3", inicio: 22, minuto: 18, fim: 23 },
-{ nome: "Hannah Baker Fita 3 Lado B", arquivo: "assets/HB_tape/HB_F3LB.mp3", inicio: 22, minuto: 20, fim: 23 },
-{ nome: "Hannah Baker Fita 4 Lado A", arquivo: "assets/HB_tape/HB_F4LA.mp3", inicio: 22, minuto: 24, fim: 23 },
-{ nome: "Hannah Baker Fita 4 Lado B", arquivo: "assets/HB_tape/HB_F4LB.mp3", inicio: 22, minuto: 28, fim: 23 },
-{ nome: "Hannah Baker Fita 5 Lado A", arquivo: "assets/HB_tape/HB_F5LA.mp3", inicio: 22, minuto: 34, fim: 23 },
-{ nome: "Hannah Baker Fita 5 Lado B", arquivo: "assets/HB_tape/HB_F5LB.mp3", inicio: 22, minuto: 36, fim: 23 },
-{ nome: "Poema de Hannah Baker", arquivo: "assets/HB_tape/other/Poema_de_Hannah.mp3", inicio: 22, minuto: 36, fim: 23 },
-{ nome: "Hannah Baker Fita 6 Lado A", arquivo: "assets/HB_tape/HB_F6LA.mp3", inicio: 22, minuto: 38, fim: 23 },
-{ nome: "Hannah Baker Fita 6 Lado B", arquivo: "assets/HB_tape/HB_F6LB.mp3", inicio: 22, minuto: 40, fim: 23 },
-{ nome: "Dead Hannah Baker Speaks", arquivo: "assets/HB_tape/other/Dead_Hannah_says_everything.mp3", inicio: 22, minuto: 42, fim: 23 },
-{ nome: "Hannah Baker Fita 7 Lado A", arquivo: "assets/HB_tape/HB_F7LA.mp3", inicio: 22, minuto: 45, fim: 23 },
-{ nome: "Hannah Baker Suicide", arquivo: "assets/HB_tape/other/the_suicide.mp3", inicio: 22, minuto: 48, fim: 23 },
-{ nome: "Surto de Clay", arquivo: "assets/HB_tape/other/Clay_A_Verdade_Vai_Aparecer.mp3", inicio: 22, minuto: 50, fim: 23 },
-{ nome: "Hannah Baker edit", arquivo: "assets/HB_tape/other/antes_de_voce_ir.mp3", inicio: 22, minuto: 53, fim: 23 },
-{ nome: "The Night We Met - Lord Huron", arquivo: "assets/HB_tape/other/TheNightWeMet.mp3", inicio: 22, minuto: 55, fim: 23 },
-{ nome: "The Killing Moon - Echo & The Bunnyman", arquivo: "assets/HB_tape/other/TheKillingMoon.mp3", inicio: 22, minuto: 57, fim: 23 },
+{ nome: "Locutor — Programação", arquivo: "assets/20h/Locutor_000.mp3", inicio: 20, minuto: 0, segundo: 0, fim: 21 },
+// 00:20
+{ nome: "Murcof — Reflejo", arquivo: "assets/20h/Murcof_Reflejo.mp3", inicio: 0, minuto: 20, segundo: 34, fim: 21 },
+// 9:26
+{ nome: "Massiveattack — Red Light Means Go", arquivo: "assets/20h/massiveattack_Red_Light_Means_Go.mp3", inicio: 20, minuto: 9, segundo: 26, fim: 21 },
+// 11:30
+{ nome: "Max Richter — Organum", arquivo: "assets/20h/Max_Richter_Organum.mp3", inicio: 20, minuto: 11, segundo: 30, fim: 21 },
+// 14:43
+{ nome: "ABBA — I Have A Dream", arquivo: "assets/20h/ABBA_I_Have_A_Dream.mp3", inicio: 20, minuto: 14, segundo: 43, fim: 21 },
+// 19:19 +1min
+{ nome: "N.E.R.D — Lapdance ft Lee Harvey, Vita", arquivo: "assets/20h/NERD_Lapdance_ft_Lee_Harvey_Vita.mp3", inicio: 20, minuto: 19, segundo: 19, fim: 21 },
+// 22:50
+{ nome: "Jessica Brown Findlay — Anyone Who Knows What Love Is", arquivo: "assets/20h/Jessica_Brown_Findlay_Anyone_who_knows_what_love_is.mp3", inicio: 20, minuto: 22, segundo: 50, fim: 21 },
+// 26:52
+{ nome: "Bing Abi by Stephen McKeon", arquivo: "assets/20h/Bing_Abi_by_Stephen_McKeon.mp3", inicio: 20, minuto: 26, segundo: 52, fim: 21 },
+// 33:33 +1min
+{ nome: "15 Million Merits — Stephen McKeon", arquivo: "assets/20h/Stephen_McKeon_15_Million_Merits.mp3", inicio: 20, minuto: 33, segundo: 33, fim: 21 },
+// 38:51
+{ nome: "Messa da Requiem Dies Irae by Londom Philharmonic", arquivo: "assets/20h/London_Philharmonic_Orchestra_Messa_da_Requiem_Dies_Irae.mp3", inicio: 20, minuto: 38, segundo: 51, fim: 21 },
+// 41:09 +1min
+{ nome: "The Entire History Of You — Stuart Earl", arquivo: "assets/20h/The_Entire_History_Of_You_by_Stuart_Earl.mp3", inicio: 20, minuto: 41, segundo: 09, fim: 21 },
+// 44:18
+{ nome: "Yvonne Elliman — If I Can't Have You", arquivo: "assets/20h/Yvonne_Elliman_If_I_Cant_Have_You.mp3", inicio: 20,  minuto: 44, segundo: 18, fim: 21 },
+// 47:14 +1min
+{ nome: "Heatwave — Boogie Nights", arquivo: "assets/20h/Heatwave_Boogie_Nights.mp3", inicio: 20, minuto: 47, segundo: 14, fim: 21 },
+// 52:17
+{ nome: "Bee Gees — How Deep Is Your Love", arquivo: "assets/20h/BeeGees_HowDeepIsYourLove.mp3", inicio: 20, minuto: 52, segundo: 17, fim: 21 },
+// 56:23
+{ nome: "Jump — Vince Pope", arquivo: "assets/20h/Jump_VincePope.mp3", inicio: 20, minuto: 56, segundo: 23, fim: 21 },
+// 58:50
+{ nome: "Alone — Vince Pope", arquivo: "assets/20h/Alone_VincePope.mp3", inicio: 20, minuto: 58, segundo: 50, fim: 21 },
+// 21:00:19 +1min
 
 
+// 21h
+{ nome: "A New Home — Vince Pope", arquivo: "assets/20h/ANewHome_VincePope.mp3", inicio: 21, minuto: 0, segundo: 19, fim: 21 },
+// 01:15 +1min
+{ nome: "Farmer Boy — Vince Pope", arquivo: "assets/20h/FarmerBoy_VincePope.mp3", inicio: 21, minuto: 01, segundo: 15, fim: 21 },
+// 02:16
+{ nome: "Break My Heart — Vince Pope", arquivo: "assets/20h/BreakMyHeart_VincePope.mp3", inicio: 21, minuto: 2, segundo: 16,  fim: 21 },
+// 03:06 +1min
+{ nome: "Starting Over — Vince Pope", arquivo: "assets/20h/StartingOver_VincePope.mp3", inicio: 21, minuto: 3, segundo: 6, fim: 21 },
+// 04:12
+{ nome: "I Need You — Vince Pope", arquivo: "assets/20h/INeedYou_VincePope.mp3", inicio: 21, minuto: 4, segundo: 12, fim: 21 },
+// 06:40
+{ nome: "Jon Opstad — Waking Up", arquivo: "assets/20h/JonOpstad_WakingUp.mp3", inicio: 21, minuto: 6, segundo: 40, fim: 21 },
+// 08:44
+{ nome: "Jon Opstad — Masked Gunman", arquivo: "assets/20h/JonOpstad_MaskedGunman.mp3", inicio: 21, minuto: 8, segundo: 44, fim: 21 },
+// 15:06 +1min
+{ nome: "Jon Opstad — I Saw It", arquivo: "assets/20h/JonOpstad_ISawIt.mp3", inicio: 21, minuto: 15, segundo: 6, fim: 21 },
+// 16:52
+{ nome: "Jon Opstad — What's Your Problem?", arquivo: "assets/20h/JonOpstad_WhatsYourProblem.mp3", inicio: 21, minuto: 16, segundo: 52, fim: 21 },
+// 17:58
+{ nome: "The Orb - A Huge Ever Growing Pulsating Brain That Rules From The Center Of The Ultraworld", arquivo: "assets/21h/TheOrb_AHugeEvergrowingPulsatingBrainThatRulesFromTheCentreOfTheUltraworld.mp3", inicio: 21, minuto: 17, segundo: 58, fim: 22 },
+// 26:09 +1min
+{ nome: "Amyl and The Sniffers - Starfire 500", arquivo: "assets/21h/AmylandTheSniffers_Starfire500.mp3", inicio: 21, minuto: 26, segundo: 09, fim: 22 },
+// 29:45
+{ nome: "BIG SPECIAL - SHITHOUSE", arquivo: "assets/21h/BIGSPECIAL_SHITHOUSE.mp3", inicio: 21, minuto: 29, segundo: 45,  fim: 22 },
+// 34:38 +1min
+{ nome: "Ernitine Stoop - Suite Bergamesque, L. 75： III. Clair de lune (Transcr. V. Coeur)", arquivo: "assets/21h/ErnitineStoop_SuiteBergamesqueL75IIIClairdelune.mp3", inicio: 21, minuto: 34, segundo: 38, fim: 22 },
+// 40:08 +1min
+{ nome: "The Void", arquivo: "assets/21h/TheVoid.mp3", inicio: 21, minuto: 40, segundo: 08, fim: 22 },
+// 44:07 +1min
+{ nome: "Netflix Music - Ill be Yours Forevermore", arquivo: "assets/21h/NetflixMusic_IllBeYoursForevermore.mp3", inicio: 21, minuto: 44, segundo: 07, fim: 22 },
+// 51:30
+{ nome: "ч-Ziq", arquivo: "assets/21h/temaZiq.mp3", inicio: 21, minuto: 51, segundo: 30, fim: 22 },
+// 56:07 +1min
+{ nome: "Autechre - Eutow", arquivo: "assets/21h/Autechre_Eutow.mp3", inicio: 21, minuto: 56, segundo: 7, fim: 22 },
+// 22:00:22
 
-{ nome: "Downtown - Petula Clark", arquivo: "assets/23h/downtown.mp3", inicio: 23, fim: 24 },
-{ nome: "Cults - Bad Things", arquivo: "assets/23h/cults---bad-things.mp3", inicio: 23, fim: 24 },
-{ nome: "Laura Branigan — Self Control", arquivo: "assets/23h/Laura_Branigan_Self_Control.mp3", inicio: 23, fim: 24 },
-{ nome: "Leningrad — Voyage", arquivo: "assets/23h/Leningrad_Voyage.mp3", inicio: 23, fim: 24 },
-{ nome: "Hungria — Zorro do Asfalto", arquivo: "assets/23h/Hungria_Zorro_do_Asfalto.mp3", inicio: 23, fim: 24 },
-{ nome: "Tonight You Belong To Me", arquivo: "assets/23h/Tonight_You_Belong_To_Me.mp3", inicio: 23, fim: 24 },
+
+// 22h Hannah Baker Tapes
+{ nome: "Hannah Baker Fita 1 Lado A", arquivo: "assets/HB_tape/HB_F1LA.mp3", inicio: 22, minuto: 0, segundo: 22, fim: 23 },
+// 04:25
+{ nome: "Hannah Baker Fita 1 Lado B", arquivo: "assets/HB_tape/HB_F1LB.mp3", inicio: 22, minuto: 4, segundo: 25, fim: 23 },
+// 08:31
+{ nome: "Hannah Baker Fita 2 Lado A", arquivo: "assets/HB_tape/HB_F2LA.mp3", inicio: 22, minuto: 8, segundo: 31, fim: 23 },
+// 11:09 +1
+{ nome: "Hannah Baker Fita 2 Lado B", arquivo: "assets/HB_tape/HB_F2LB.mp3", inicio: 22, minuto: 11, segundo: 09, fim: 23 },
+// 14:18
+{ nome: "Hannah Baker Fita 3 Lado A", arquivo: "assets/HB_tape/HB_F3LA.mp3", inicio: 22, minuto: 14, segundo: 18, fim: 23 },
+// 15:27
+{ nome: "Hannah Baker Fita 3 Lado B", arquivo: "assets/HB_tape/HB_F3LB.mp3", inicio: 22, minuto: 15, segundo: 27,  fim: 23 },
+// 18:16 +1min
+{ nome: "Hannah Baker Fita 4 Lado A", arquivo: "assets/HB_tape/HB_F4LA.mp3", inicio: 22, minuto: 18, segundo: 16, fim: 23 },
+// 23:30
+{ nome: "Hannah Baker Fita 4 Lado B", arquivo: "assets/HB_tape/HB_F4LB.mp3", inicio: 22, minuto: 23, segundo: 30, fim: 23 },
+// 25:46
+{ nome: "Hannah Baker Fita 5 Lado A", arquivo: "assets/HB_tape/HB_F5LA.mp3", inicio: 22, minuto: 25, segundo: 46, fim: 23 },
+// 29:41 +1min
+{ nome: "Hannah Baker Fita 5 Lado B", arquivo: "assets/HB_tape/HB_F5LB.mp3", inicio: 22, minuto: 29, segundo: 41, fim: 23 },
+// 31:22 +1min
+{ nome: "Poema de Hannah Baker", arquivo: "assets/HB_tape/other/Poema_de_Hannah.mp3", inicio: 22, minuto: 31, segundo: 22, fim: 23 },
+// 33:41
+{ nome: "Hannah Baker Fita 6 Lado A", arquivo: "assets/HB_tape/HB_F6LA.mp3", inicio: 22, minuto: 33, segundo: 41, fim: 23 },
+// 36:31 +1min
+{ nome: "Hannah Baker Fita 6 Lado B", arquivo: "assets/HB_tape/HB_F6LB.mp3", inicio: 22, minuto: 36, segundo: 31, fim: 23 },
+// 40:09 +1
+{ nome: "Dead Hannah Baker Speaks", arquivo: "assets/HB_tape/other/Dead_Hannah_says_everything.mp3", inicio: 22, minuto: 40, segundo: 9,  fim: 23 },
+// 42:24
+{ nome: "Hannah Baker Fita 7 Lado A", arquivo: "assets/HB_tape/HB_F7LA.mp3", inicio: 22, minuto: 42, segundo: 24, fim: 23 },
+// 44:01 +1min
+{ nome: "Hannah Baker Suicide", arquivo: "assets/HB_tape/other/the_suicide.mp3", inicio: 22, minuto: 44, segundo: 1, fim: 23 },
+// 45:00
+{ nome: "Surto de Clay", arquivo: "assets/HB_tape/other/Clay_A_Verdade_Vai_Aparecer.mp3", inicio: 22, minuto: 45, segundo: 0,  fim: 23 },
+// 47:21
+{ nome: "Hannah Baker edit", arquivo: "assets/HB_tape/other/antes_de_voce_ir.mp3", inicio: 22, minuto: 47, segundo: 21, fim: 23 },
+// 51:42
+{ nome: "The Night We Met - Lord Huron", arquivo: "assets/HB_tape/other/TheNightWeMet.mp3", inicio: 22, minuto: 51, segundo: 42, fim: 23 },
+// 54:58
+{ nome: "The Killing Moon - Echo & The Bunnyman", arquivo: "assets/HB_tape/other/TheKillingMoon.mp3", inicio: 22, minuto: 54, segundo: 58, fim: 23 },
+// 59:40 +1min
+
+// 23h
+{ nome: "Downtown - Petula Clark", arquivo: "assets/23h/downtown.mp3", inicio: 23, minuto: 0, segundo: 0, fim: 24 },
+// 03:10
+{ nome: "Cults - Bad Things", arquivo: "assets/23h/cults---bad-things.mp3", inicio: 23, minuto: 3, segundo: 10, fim: 24 },
+// 06:50
+{ nome: "Laura Branigan — Self Control", arquivo: "assets/23h/Laura_Branigan_Self_Control.mp3", inicio: 23, minuto: 6, segundo: 50, fim: 24 },
+// 11:55
+{ nome: "Leningrad — Voyage", arquivo: "assets/23h/Leningrad_Voyage.mp3", inicio: 23, minuto: 11, segundo: 55, fim: 24 },
+// 15:35 +1min
+{ nome: "Hungria — Zorro do Asfalto", arquivo: "assets/23h/Hungria_Zorro_do_Asfalto.mp3", inicio: 23, minuto: 15, segundo: 35, fim: 24 },
+// 19:08 +1
+{ nome: "Tonight You Belong To Me", arquivo: "assets/23h/Tonight_You_Belong_To_Me.mp3", inicio: 23, minuto: 19, segundo: 8, fim: 24 },
+// 21:02 +1min
+{ nome: "The Future Sound of London - We Have Explosive", arquivo: "assets/21h/waves_TheFutureSoundofLondon_WeHaveExplosive.mp3", inicio: 23, minuto: 21, segundo: 02, fim: 22 },
+// 27:23
+{ nome: "The Stone Roses - Fools Gold", arquivo: "assets/21h/TheStoneRoses_FoolsGold.mp3", inicio: 23, minuto: 27, segundo: 23, fim: 22 },
+// 31:39
+{ nome: "Daniel Pemberton - USS Callister： The Next Adventures", arquivo: "assets/21h/DanielPemberton_USSCalliste_TheNextAdventures.mp3", inicio: 23, minuto: 31, segundo: 39, fim: 22 },
  ];
 let indiceAtual = 0;
 let dataInicioFaixa = null;
@@ -393,15 +574,19 @@ tocarFaixa(indiceAtual);
   const agora = new Date();
   const hora = agora.getHours();
   const minuto = agora.getMinutes();
-
-  // Procura por faixa exata da hora e minuto atual
-  const faixaAtual = playlist.findIndex(p => 
-    hora === p.inicio && (p.minuto === undefined || p.minuto === minuto)
-  );
-
-  return faixaAtual !== -1 ? faixaAtual : 0;
+  
+  // Pega a faixa mais próxima (hora igual e minuto menor ou igual)
+  const faixasValidas = playlist
+    .map((p, i) => ({ ...p, i }))
+    .filter(p => p.inicio === hora && p.minuto <= minuto);
+  
+  if (faixasValidas.length > 0) {
+    const ultimaFaixa = faixasValidas[faixasValidas.length - 1];
+    return ultimaFaixa.i;
+  }
+  
+  return 0;
 }
-
 
   window.addEventListener("beforeunload", () => {
     localStorage.setItem("indiceAtual", indiceAtual);
