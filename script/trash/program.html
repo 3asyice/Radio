@@ -1,88 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta http-equiv="refresh" content="86400" url="https://www.big-loser.site/">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
-<meta name="description" content="Author: Anonymous, Arquivos guardados e enterrados dentro do Internet Archive.">
-<link rel="canonical" href="https://big-loser.site">
-<link rel="icon" type="image/png" href="https://cdn.icon-icons.com/icons2/966/PNG/128/News_icon-icons.com_74697.png" sizes="16×16" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/style.css">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="https://cdn.icon-icons.com/icons2/966/PNG/128/News_icon-icons.com_74697.png" sizes="192x192">
-<link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1251"/>
+<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+<meta http-equiv="refresh" content="86400" url="https://www.big-loser.site/"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta name="description" content="Rádio 📻 FM 609"/>
+<link rel="canonical" href="https://3asyice.github.io/Radio"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Guilherme Carvalho"/>
+<meta name="copyright" content="Radio&copy;FM 609"/>
+<meta property="og:locale" content="pt_BR"/>
+<meta property="og:image" content="assets/00_img/logo.png"/>
+<meta property="og:image:secure" content="https://3asyice.github.io/Radio/assets/00_img/logo.png"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:width" content="400"/>
+<meta property="og:image:height" content="400"/>
+<meta property="og:url" content="https://www.facebook.com/gui.abreu.313"/>
+<meta property="og:url" content="https://www.instagram.com/guilherme_2k5"/>
+<meta property="og:description" content="A rádio FM 609 foi fundado por Guilherme Carvalho em 15 de Julho de 2025 usando somente javascript."/>
+<link rel="icon" type="image/png" href="assets/00_img/logo.png" sizes="16x16"/>
+<!-- <link rel="icon" href="https://cdn.icon-icons.com/icons2/966/PNG/128/News_icon-icons.com_74697.png" sizes="192x192"> -->
+<link rel="stylesheet" href="script/css/style.css"/>
+<link rel="manifest" href="manifest.json"/>
 <script src="https://cdn.tailwindcss.com"></script>
-  <title>Rádio FM609</title>
-  <style>
-body {
-background-color: #0f0f0f;
-background-image: 
-repeating-linear-gradient(0deg, rgba(0, 255, 70, 0.05) 0px, rgba(0, 255, 70, 0.05) 1px, transparent 1px, transparent 2px), repeating-linear-gradient(90deg, rgba(0, 255, 70, 0.05) 0px, rgba(0, 255, 70, 0.05) 1px, transparent 1px, transparent 2px),
-radial-gradient(circle at top left, rgba(0, 255, 255, 0.05), transparent 40%);
-background-size: cover;
-color: #00ff88;
-font-family: 'Courier New', monospace;
-margin: 0;
-padding: 20px;
-text-shadow: 0 0 5px #00ff88;
-}
-
-h1, h2, h3 {
-color: #00ffcc;
-text-shadow: 0 0 8px #00ffff;
-}
-
-button {
-background-color: #111;
-border: 1px solid #00ff88;
-color: #00ff88;
-padding: 10px 20px;
-font-size: 1.2em;
-font-family: 'Courier New', monospace;
-border-radius: 6px;
-box-shadow: 0 0 10px #00ff88;
-cursor: pointer;
-transition: background 0.2s;
-}
-button:hover {
-background-color: #00ff8840;
-}
-
-audio {
-filter: drop-shadow(0 0 6px #00ff88);
-margin-top: 20px;
-}
-
-p {
-margin: 10px 0;
-font-size: 1.1em;
-}
-
-#horario_atual {
-color: #00ffee;
-font-weight: bold;
-text-shadow: 0 0 4px #00ffee;
-font-size: 15px;
-margin-bottom: 20px;
-}
-#startBtn {
-animation: pulseGlow 2s infinite ease-in-out;
-}
-@keyframes pulseGlow {
-  0%, 100% {
-box-shadow: 0 0 10px #00ff88;
-  }
-  50% {
-box-shadow: 0 0 20px #00ff88;
-  }
-}
+<title>Rádio FM609</title>
+<style>
 </style>
 </head>
 <body>
@@ -193,6 +140,16 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Simple Minds - Don't You (Forget About Me)", arquivo: "assets/01h/SimpleMinds_DontYou_ForgetAboutMe.mp3", inicio: 1, minuto: 25, segundo: 2, fim: 2 },
 // 29:24
 { nome: "Bonnie Tyler - Total Eclipse Of The Heart (Turn Around)", arquivo: "assets/01h/BonnieTyler_TotalEclipseoftheHeart_TurnAround.mp3", inicio: 1, minuto: 29, segundo: 24,  fim: 2 },
+// 34:55
+{ nome: "Adele - Someone Like You", arquivo: "assets/01h/Adele_SomeoneLikeYou.mp3", inicio: 1, minuto: 34, segundo: 55,  fim: 2 },
+// 39:38 +1min
+{ nome: "Adele - Rolling In The Deep", arquivo: "assets/01h/Adele_RollingintheDeep.mp3", inicio: 1, minuto: 39, segundo: 38,  fim: 2 },
+// 42:25 +1min
+{ nome: "Kelly Clarkson - Because Of You", arquivo: "assets/01h/KellyClarkson_BecauseOfYou.mp3", inicio: 1, minuto: 42, segundo: 25,  fim: 2 },
+// 46:04 +1min
+{ nome: "Where Is My Mind? (The Pixies Piano Cover)", arquivo: "assets/01h/Whereismymind_ThePixiesPianocover.mp3", inicio: 1, minuto: 46, segundo: 4,  fim: 2 },
+
+
 
 // 2h
 
@@ -207,8 +164,57 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "VØJ x Narvent Memory Reboot (Slowed)", arquivo: "assets/02h/MemoryReboot.mp3", inicio: 2, minuto: 16, segundo: 9, fim: 3 },
 // 20:06
 { nome: "Crystal Castles - TRANSGENDER", arquivo: "assets/02h/CrystalCastles_TRANSGENDER.mp3", inicio: 2, minuto: 20, segundo: 6,  fim: 3 },
+// 23:10
+{ nome: "Christina Perri - A Thousand Years", arquivo: "assets/02h/ChristinaPerri_AThousandYears.mp3", inicio: 2, minuto: 23, segundo: 10,  fim: 3 },
+// 27:54
+{ nome: "The Kills - Siberian Nights (Strombo Sessions)", arquivo: "assets/02h/TheKills_SiberianNights_StromboSessions.mp3", inicio: 2, minuto: 27, segundo: 54,  fim: 3 },
+// 31:53 +1min
+{ nome: "James Bay - Let It Go", arquivo: "assets/02h/JamesBay_LetItGo.mp3", inicio: 2, minuto: 31, segundo: 53,  fim: 3 },
+// 36:02 +1min
+{ nome: "Gotye - Somebody That I Used To Know (feat Kimbra)", arquivo: "assets/02h/Gotye_SomebodyThatIUsedToKnow_featKimbra.mp3", inicio: 2, minuto: 36, segundo: 2,  fim: 3 },
+// 40:05
+{ nome: "Yeah Yeah Yeahs - Spitting Off The Edge Of The World", arquivo: "assets/02h/YeahYeahYeahs_SpittingOfftheEdgeoftheWorld.mp3", inicio: 2, minuto: 40, segundo: 5,  fim: 3 },
+// 43:03 +1min
+{ nome: "Lukas Graham - 7 Years", arquivo: "assets/02h/LukasGraham_7Years.mp3", inicio: 2, minuto: 43, segundo: 3,  fim: 3 },
+// 46:57
+{ nome: "Sam Smith - I'm Not The Only One", arquivo: "assets/02h/SamSmith_ImNotTheOnlyOne.mp3", inicio: 2, minuto: 46, segundo: 57,  fim: 3 },
+// 50:05 +1min
+{ nome: "Ed Sheeran - Thinking Out Loud", arquivo: "assets/02h/EdSheeran_ThinkingOutLoud.mp3", inicio: 2, minuto: 50, segundo: 5,  fim: 3 },
+// 54:54
+{ nome: "Martin Garrix & Bebe Rexha - In The Name Of Love", arquivo: "assets/02h/MartinGarrix_Bebe Rexha_InTheNameOfLove.mp3", inicio: 2, minuto: 54, segundo: 54,  fim: 3 },
+// 58:13 +1min
+{ nome: "Charlie Puth - We Don't Talk Anymore (feat Selena Gomez)", arquivo: "assets/02h/CharliePuth_WeDontTalkAnymore_featSelenaGomez.mp3", inicio: 2, minuto: 58, segundo: 13,  fim: 3 },
+// 03:01:49
 
 
+// 03h
+
+{ nome: "Kavinsky - Nightcall", arquivo: "assets/03h/Kavinsky_Nightcall.mp3", inicio: 3, minuto: 1, segundo: 49,  fim: 3 },
+// 06:06 +1min
+{ nome: "Kavinsky - Video Game", arquivo: "assets/03h/KAVINSKY_VideoGame.mp3", inicio: 3, minuto: 6, segundo: 6,  fim: 3 },
+// 07:36
+{ nome: "Weathers - Feel Good", arquivo: "assets/03h/Weathers_FeelGood.mp3", inicio: 3, minuto: 7, segundo: 36,  fim: 3 },
+// 10:26 +1
+{ nome: "Weathers - Problems", arquivo: "assets/03h/Weathers_Problems.mp3", inicio: 3, minuto: 10, segundo: 26,  fim: 3 },
+// 13:46
+{ nome: "Weathers - Shallow Water", arquivo: "assets/03h/Weathers_ShallowWater.mp3", inicio: 3, minuto: 13, segundo: 46,  fim: 3 },
+// 17:06 +1min
+{ nome: "Weathers - Happy Pills Water", arquivo: "assets/03h/Weathers_HappyPills.mp3", inicio: 3, minuto: 17, segundo: 6,  fim: 3 },
+// 20:27
+{ nome: "Kavinsky - Odd Look (feat The Weeknd", arquivo: "assets/03h/Kavinsky_OddLook_ftTheWeeknd.mp3", inicio: 3, minuto: 20, segundo: 27,  fim: 3 },
+// 24:37
+{ nome: "Modest Mouse - Ocean Breathes Salty", arquivo: "assets/03h/ModestMouse_OceanBreathesSalty.mp3", inicio: 3, minuto: 24, segundo: 27,  fim: 3 },
+// 28:26 +1min
+{ nome: "Highly Suspect - Lydia", arquivo: "assets/03h/HighlySuspect_Lydia.mp3", inicio: 3, minuto: 28, segundo: 26,  fim: 3 },
+// 32:30
+{ nome: "The Script - Superheroes", arquivo: "assets/03h/TheScript_Superheroes.mp3", inicio: 3, minuto: 32, segundo: 30,  fim: 3 },
+// 36:16 +1min
+{ nome: "Uma verdadeira despedida?", arquivo: "assets/03h/audio_final.mp3", inicio: 3, minuto: 36, segundo: 16,  fim: 3 },
+
+
+
+
+// 04h
 // 04h
 { nome: "Aviso", arquivo: "assets/tape/The_Disclaimer.mp3", inicio: 4, minuto: 0, segundo: 0,  fim: 5 },
 // 01:01
@@ -224,7 +230,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 5:03:18
 
 // 5h
-{ nome: "A Dor do Luto", arquivo: "assets/tape/F1LA.mp3", inicio: 5, minuto: 03, segundo: 18, fim: 6 },
+{ nome: "A Dor do Luto", arquivo: "assets/tape/F1LA.mp3", inicio: 5, minuto: 0, segundo: 0, fim: 6 },
 // 09:24
 { nome: "Bergmann", arquivo: "assets/tape/F8LA.mp3", inicio: 5, minuto: 09, segundo: 24, fim: 6 },
 // 11:24
@@ -267,6 +273,8 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 59:18 +1min
 { nome: "Uma Ameaça para Thales", arquivo: "assets/tape/F4LA.mp3", inicio: 7, minuto: 59, segundo: 18, fim: 8 },
 // 8:02:11 +1min
+
+// 08:02:11 +1min
 
 
 // 08 horas
@@ -366,30 +374,79 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 54:55
 { nome: "Marshmello ft. Khalid - Silence", arquivo: "assets/10h/Marshmello_ftKhalid_Silence.mp3", inicio: 10, minuto: 54, segundo: 55, fim: 11 },
 // 57:54 +1min
-{ nome: "Cartoon, Jéja - On & On ft. Daniel Levi", arquivo: "assets/10h/Cartoon_Jeja_OneOn_featDanielLevi.mp3", inicio: 10, minuto: 57, segundo: 54, fim: 11 },
+{ nome: "Cartoon, Jéja - On & On ft. Daniel Levi", arquivo: "assets/10h/Cartoon_Jeja_OneOn_featDanielLevi.mp3", inicio: 10, minuto: 57, segundo: 54, fim: 12 },
 // next hour 01:22 +1min
 
+// 11h
+{ nome: "AC/DC - Back In Black", arquivo: "assets/11h/ACDC_BackInBlack.mp3", inicio: 11, minuto: 1, segundo: 22, fim: 12 },
+// 5:35
+{ nome: "Creedence Clearwater Revival - Have You Ever Seen The Rain", arquivo: "assets/11h/CreedenceClearwaterRevival_HaveYouEverSeenTheRain.mp3", inicio: 11, minuto: 5, segundo: 35, fim: 12 },
+// 8:14 +1min
+{ nome: "AC/DC - Highway To Hell", arquivo: "assets/11h/ACDC_HighwaytoHell.mp3", inicio: 11, minuto: 8, segundo: 14, fim: 12 },
+// 11:41
+{ nome: "Creedance Clearwater Ravival - Green River", arquivo: "assets/11h/GreenRiver_CreedenceClearwaterRevival.mp3", inicio: 11, minuto: 11, segundo: 41, fim: 12 },
+// 14:18 +1min
+{ nome: "AC/DC - Thunderstruck", arquivo: "assets/11h/ACDC_Thunderstruck.mp3", inicio: 11, minuto: 14, segundo: 18, fim: 12 },
+// 19:11 +1min
+{ nome: "Creedence Clearwater Revival - Fortunate Son", arquivo: "assets/11h/FortunateSon_CreedenceClearwaterRevival.mp3", inicio: 11, minuto: 19, segundo: 11, fim: 12 },
+// 21:26
+{ nome: "AC/DC - You Shook Me All Night Long", arquivo: "assets/11h/ACDC_YouShookMeAllNightLong.mp3", inicio: 11, minuto: 21, segundo: 26, fim: 12 },
+// 24:53
+{ nome: "Creedence Clearwater Revival - Lookin' Out My Back Door", arquivo: "assets/11h/LookinOutMyBackDoor_CreedenceClearwaterRevival.mp3", inicio: 11, minuto: 24, segundo: 53, fim: 12 },
+// 27:19 +1min
+{ nome: "The Cars - Just What I Needed (1978)", arquivo: "assets/11h/THECARS_JUSTWHATINEEDED_1978.mp3", inicio: 11, minuto: 27, segundo: 19, fim: 12 },
+// 30:02 +1min
+{ nome: "The Outfield - Your Love", arquivo: "assets/11h/TheOutfield_YourLove.mp3", inicio: 11, minuto: 30, segundo: 2, fim: 12 },
+// 34:06
+{ nome: "The Cars - The Good Times Roll (1978)", arquivo: "assets/11h/TheCars_GoodTimesRoll1978.mp3", inicio: 11, minuto: 34, segundo: 6, fim: 12 },
+// 37:51
+{ nome: "Don't Fear The Reaper - Blue Oyster Cult", arquivo: "assets/11h/DontFeartheReaper_BlueOysterCult.mp3", inicio: 11, minuto: 37, segundo: 51, fim: 12 },
+// 42:45 +1mim
+{ nome: "Guns N' Roses - Sweet Child O' Mine", arquivo: "assets/11h/GunsNRosesSweetChildOMine.mp3", inicio: 11, minuto: 42, segundo: 45, fim: 12 },
+// 47:38 +1min
+{ nome: "Jefferson Starship - White Rabbit (Winterland - Nov 8, 1975)", arquivo: "assets/11h/JeffersonStarship_WhiteRabbit.mp3", inicio: 11, minuto: 47, segundo: 38, fim: 12 },
+// 54:22 +1min
+{ nome: "Lynyrd Skynyrd - Sweet Home Alabama", arquivo: "assets/11h/LynyrdSkynyrd_SweetHomeAlabama.mp3", inicio: 11, minuto: 54, segundo: 22, fim: 12 },
+// 59:08 +1min
+{ nome: "Kansas - Dust In The Wind", arquivo: "assets/11h/Kansas_DustintheWind.mp3", inicio: 11, minuto: 59, segundo: 8, fim: 12 },
+
+
+
+
+
+
 // 14h
+{ nome: "Melanie Martinez - Martinez", arquivo: "assets/14h/MelanieMartinez_Carousel.mp3", inicio: 14, minuto: 0, segundo: 0, fim: 15 },
+// 03:50
+{ nome: "Melanie Martinez - Mad Hatter", arquivo: "assets/14h/MelanieMartinez_MadHatter.mp3", inicio: 14, minuto: 3, segundo: 50, fim: 15 },
+// 07:02 +1min
+{ nome: "Melanie Martinez - Cry Baby", arquivo: "assets/14h/MelanieMartinez_CryBaby.mp3", inicio: 14, minuto: 7, segundo: 2,fim: 15 },
+// 11:02
+{ nome: "Moderat - Last Time", arquivo: "assets/14h/Moderat_LastTime.mp3", inicio: 14, minuto: 11, segundo: 02, fim: 15 },
+// 14:24
+{ nome: "Elton John - Rocket Man", arquivo: "assets/14h/EltonJohn_RocketMan.mp3", inicio: 14, minuto: 14, segundo: 24,  fim: 15 },
+// 19:07 +1min
+{ nome: "Nina Simone - Feeling Good", arquivo: "assets/14h/NinaSimone_FeelingGood.mp3", inicio: 14, minuto: 19, segundo: 07, fim: 15 },
+// 22:04 +1min
+{ nome: "Irma Thomas - Anyone Who Knows What Love Is (Will Understand)", arquivo: "assets/14h/IrmaThomas_AnyoneWhoKnowsWhatLoveIs.mp3", inicio: 14, minuto: 22, segundo: 04, fim: 15 },
 
-{ nome: "Melanie Martinez - Martinez", arquivo: "assets/14h/MelanieMartinez_Carousel.mp3", inicio: 14, fim: 15 },
-{ nome: "Melanie Martinez - Mad Hatter", arquivo: "assets/14h/MelanieMartinez_MadHatter.mp3", inicio: 14, fim: 15 },
-{ nome: "Melanie Martinez - Cry Baby", arquivo: "assets/14h/MelanieMartinez_CryBaby.mp3", inicio: 14, fim: 15 },
-{ nome: "Moderat - Last Time", arquivo: "assets/14h/Moderat_LastTime.mp3", inicio: 14, fim: 15 },
-{ nome: "Elton John - Rocket Man", arquivo: "assets/14h/EltonJohn_RocketMan.mp3", inicio: 14, fim: 15 },
-{ nome: "Nina Simone - Feeling Good", arquivo: "assets/14h/NinaSimone_FeelingGood.mp3", inicio: 14, fim: 15 },
-{ nome: "Irma Thomas - Anyone Who Knows What Love Is (Will Understand)", arquivo: "assets/14h/IrmaThomas_AnyoneWhoKnowsWhatLoveIs.mp3", inicio: 14, fim: 15 },
 
 
 
+// 17h
+{ nome: "Cliff Martinez - Are We Having A Party", arquivo: "assets/17h/CliffMartine_AreWeHavingAParty.mp3", inicio: 17, minuto: 0, segundo: 0, fim: 18 },
+{ nome: "Lux Aeterna - REQUIEM FOR A DREAM", arquivo: "assets/17h/TheSLuxAeterna_REQUIEMFORADREAM.mp3", inicio: 17, minuto: 5, segundo: 21, fim: 18 },
+// 09:12 +1min
+{ nome: "Highly Suspect - I Am", arquivo: "assets/17h/HighlySuspect_IAm.mp3", inicio: 17, minuto: 9, segundo: 12, fim: 18 },
+{ nome: "Highly Suspect - Alien Spaceship", arquivo: "assets/17h/HighlySuspect_AlienSpaceship.mp3", inicio: 17, minuto: 9, segundo: 12, fim: 18 },
 
-
-
+// 18h
 
 
 // 20h
 { nome: "Locutor — Programação", arquivo: "assets/20h/Locutor_000.mp3", inicio: 20, minuto: 0, segundo: 0, fim: 21 },
 // 00:20
-{ nome: "Murcof — Reflejo", arquivo: "assets/20h/Murcof_Reflejo.mp3", inicio: 0, minuto: 20, segundo: 34, fim: 21 },
+{ nome: "Murcof — Reflejo", arquivo: "assets/20h/Murcof_Reflejo.mp3", inicio: 20, minuto: 20, segundo: 34, fim: 21 },
 // 9:26
 { nome: "Massiveattack — Red Light Means Go", arquivo: "assets/20h/massiveattack_Red_Light_Means_Go.mp3", inicio: 20, minuto: 9, segundo: 26, fim: 21 },
 // 11:30
@@ -513,11 +570,28 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 19:08 +1
 { nome: "Tonight You Belong To Me", arquivo: "assets/23h/Tonight_You_Belong_To_Me.mp3", inicio: 23, minuto: 19, segundo: 8, fim: 24 },
 // 21:02 +1min
-{ nome: "The Future Sound of London - We Have Explosive", arquivo: "assets/21h/waves_TheFutureSoundofLondon_WeHaveExplosive.mp3", inicio: 23, minuto: 21, segundo: 02, fim: 22 },
+{ nome: "The Future Sound of London - We Have Explosive", arquivo: "assets/21h/waves_TheFutureSoundofLondon_WeHaveExplosive.mp3", inicio: 23, minuto: 21, segundo: 02, fim: 24 },
 // 27:23
-{ nome: "The Stone Roses - Fools Gold", arquivo: "assets/21h/TheStoneRoses_FoolsGold.mp3", inicio: 23, minuto: 27, segundo: 23, fim: 22 },
+{ nome: "The Stone Roses - Fools Gold", arquivo: "assets/21h/TheStoneRoses_FoolsGold.mp3", inicio: 23, minuto: 27, segundo: 23, fim: 24 },
 // 31:39
-{ nome: "Daniel Pemberton - USS Callister： The Next Adventures", arquivo: "assets/21h/DanielPemberton_USSCalliste_TheNextAdventures.mp3", inicio: 23, minuto: 31, segundo: 39, fim: 22 },
+{ nome: "Daniel Pemberton - USS Callister： The Next Adventures", arquivo: "assets/21h/DanielPemberton_USSCalliste_TheNextAdventures.mp3", inicio: 23, minuto: 31, segundo: 39, fim: 24 },
+// 34:20 +1min
+{ nome: "Scanners - Baby Blue", arquivo: "assets/23h/Scanners_BabyBlue.mp3", inicio: 23, minuto: 34, segundo: 20, fim: 24 },
+// 38:48
+{ nome: "Working For The Company - Graveyard Lovers", arquivo: "assets/23h/WORKINGFORTHECOMPANYGRAVEYARDLOVERS.mp3", inicio: 23, minuto: 34, segundo: 20, fim: 24 },
+// 43:25 +1min
+{ nome: "I Don't Want To Set The World On Fire - The Ink Spots", arquivo: "assets/23h/IDontWantToSetTheWorldOnFireTheInkSpots.mp3", inicio: 23, minuto: 43, segundo: 25, fim: 24 },
+// 46:29
+{ nome: "Cry - Cigarettes After Sex", arquivo: "assets/23h/Cry_CigarettesAfterSex.mp3", inicio: 23, minuto: 46, segundo: 29, fim: 24 },
+// 50:43
+{ nome: "BK’ part. Evinha (prod. Kolo) - Cacos De Vidro (sample： Esperar pra ver) - (Visualizer)", arquivo: "assets/23h/CacosDeVidro.mp3", inicio: 23, minuto: 50, segundo: 43, fim: 24 },
+// 53:13 +1min
+{ nome: "Brenn! - 4Runner", arquivo: "assets/23h/Brenn_4Runner.mp3", inicio: 23, minuto: 53, segundo: 13, fim: 24 },
+// 57:24
+{ nome: "Rio Romeo - Nothing's New", arquivo: "assets/23h/RioRomeo_NOTHINGsNEW.mp3", inicio: 23, minuto: 57, segundo: 24, fim: 24 },
+
+
+
  ];
 let indiceAtual = 0;
 let dataInicioFaixa = null;
