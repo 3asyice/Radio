@@ -45,6 +45,7 @@ font-family: 'ocra', sans-serif;
 }
 html body{
 margin:0;
+background: #3D4F8D;
 }
 header{
 padding:1px;
@@ -53,22 +54,34 @@ background:#3D4F8D;
 }
 header h1 img{
 display:inline;
+margin-right: 20px;
 }
 header h1{
 color:#0f0;
+font-size: 1em;
+margin-right: 6.9em;
+text-shadow: black .7px .7px .7px;
+}
+header button{
+font-size:2.2em;
+
+}
+p#horario_atual{
+margin:25px;
 }
 </style>
 </head>
 <body>
 <header>
-<h1><img width="100px" height="100px" src="assets/00_img/mix_logo.jpg" alt="logo">RADIO FM 609</h1>
+<h1><img width="100px" height="100px" src="assets/00_img/mix_logo.jpg" alt="logo"> FM 609</h1>
+<button>☰</button>
 </header>
-<p><strong>Tocando agora: </strong> <br><span id="audio_atual">---</span></p>
+<p><strong>Playing Now: </strong> <br><span id="audio_atual">---</span></p>
 <p id="horario_atual">Início: --:--:-- | Fim: --:--:--</p>
 <p><strong>Próximo: </strong><span id="proximo_audio">---</span></p>
 <br><br>
 <center>
-<button id="startBtn">Iniciar Rádio</button>
+<button id="startBtn">Start Broadcast</button>
 </center>
 <center>
 
@@ -84,7 +97,7 @@ color:#0f0;
 </audio>
 <br><br>
 <center>
-  <button><a href="https://storage.googleapis.com/appilder/app/5fe1ae7aa1b02d6e0603bf20d3937ef8/46cdcaecb44b7afb59419deb2e8749c9.apk?GoogleAccessId=desktopapi%40appilder-com.iam.gserviceaccount.com&Expires=1755138111&Signature=mbud6q63x%2BIj5vSf3539k6Rnu258pfhrf0a1pOkiU8mtsZp8yfKlEn8G%2B9SdFXYOkDrVklOefEnJks%2BP3zy56HgYeNHT75e4%2Bef%2FNSsVdDj%2FhOXM6CoQ5X01%2Fd4Wd8JrguPxNHmXTvK9wSt9RJUihJrK93fJFcvKVZneYnVQeQotHhd%2FSVnLdixYantU3ltlHmP%2Fq54s4EMDNRVq6Thq8S67X8S2BS1Td9UwE3heY7GbaCkqESz92wVRBhJ%2F5R4DCA8UNXrXi9ysNy38nGYkTzeSc%2BT4wSMg6ptQk50NCXsVNaKDLNDL9k5LmZ1YzJempJoToQx%2FdCUwrEO0Ul%2BZQg%3D%3D">Install</a></button>
+<button><a href="https://storage.googleapis.com/appilder/app/5fe1ae7aa1b02d6e0603bf20d3937ef8/46cdcaecb44b7afb59419deb2e8749c9.apk?GoogleAccessId=desktopapi%40appilder-com.iam.gserviceaccount.com&Expires=1755138111&Signature=mbud6q63x%2BIj5vSf3539k6Rnu258pfhrf0a1pOkiU8mtsZp8yfKlEn8G%2B9SdFXYOkDrVklOefEnJks%2BP3zy56HgYeNHT75e4%2Bef%2FNSsVdDj%2FhOXM6CoQ5X01%2Fd4Wd8JrguPxNHmXTvK9wSt9RJUihJrK93fJFcvKVZneYnVQeQotHhd%2FSVnLdixYantU3ltlHmP%2Fq54s4EMDNRVq6Thq8S67X8S2BS1Td9UwE3heY7GbaCkqESz92wVRBhJ%2F5R4DCA8UNXrXi9ysNy38nGYkTzeSc%2BT4wSMg6ptQk50NCXsVNaKDLNDL9k5LmZ1YzJempJoToQx%2FdCUwrEO0Ul%2BZQg%3D%3D">INSTALL</a></button>
 </center>
 <br>
 <p>Seja-bem vinda prima Gabi.</p>
@@ -94,7 +107,6 @@ color:#0f0;
 <p>Bem-vindo meu criador, Guilherme Carvalho.</p>
 <br>
 <p style="text-align: left;">A rádio FM 609 foi fundado por mim (Guilherme Carvalho) em 15 de julho de 2025 usando a linguagem de programação javascript.</p>
-
 <center>
 <style>
 audio::-webkit-media-controls-time-remaining-display {
