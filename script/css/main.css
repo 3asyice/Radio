@@ -1,0 +1,45 @@
+html, body {
+background: #F3F4F6;
+}
+
+h1, h2, h3 {
+color: #fff;
+background: #DE2432;
+text-shadow: 0 0 8px #00ffff;
+}
+header{
+background: #DE2432;
+display: flex;
+}
+button {
+
+}
+button:hover {
+background-color: #00ff8840;
+}
+
+audio {
+filter: drop-shadow(0 0 6px #00ff88);
+margin-top: 20px;
+}
+
+p {
+margin: 10px 0;
+font-size: 1.1em;
+}
+
+#horario_atual {
+color: #00ffee;
+font-weight: bold;
+text-shadow: 0 0 4px #00ffee;
+font-size: 15px;
+margin-bottom: 20px;
+}
+#startBtn {
+background: #DE2432;
+color:#fff;
+font-weight: 900;
+width: 170px;
+border-radius:20px;
+padding:10px;
+}
