@@ -5,7 +5,7 @@ background: #F3F4F6;
 h1, h2, h3 {
 color: #fff;
 background: #DE2432;
-text-shadow: 0 0 8px #00ffff;
+text-shadow: 0 0 8px #F3F4F6;
 }
 header{
 background: #DE2432;
@@ -19,7 +19,7 @@ background-color: #00ff8840;
 }
 
 audio {
-filter: drop-shadow(0 0 6px #00ff88);
+filter: drop-shadow(0 0 6px #F3F4F6);
 margin-top: 20px;
 }
 
