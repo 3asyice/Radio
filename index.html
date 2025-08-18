@@ -986,11 +986,11 @@ installBtn.addEventListener("click", () => {
 </script>
 <script>
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("script/js/sw_offline.js")
+  navigator.serviceWorker.register("script/js/sw.js")
     .then(() => console.log("Service Worker registrado!"));
 }
 </script>
-<script src="script/js/sw_offline.js" type="text/javascript" charset="utf-8"></script>
+<script src="script/js/sw.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript" charset="utf-8" crossorigin="anonymous" defer async src="service-worker.js"></script>
 </body>
