@@ -17,9 +17,9 @@ if ('mediaSession' in navigator) {
   navigator.mediaSession.metadata = new MediaMetadata({
     title: 'Rádio FM609',
     artist: 'Transmissão ao vivo',
-    album: 'FM609 Playlist',
+    album: 'FM 609 Playlist',
     artwork: [
-      { src: 'capa.jpg', sizes: '512x512', type: 'image/jpeg' }
+      { src: 'assets/00_img/radio_icon.png', sizes: '512x512', type: 'image/jpeg' }
     ]
   });
 
