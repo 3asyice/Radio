@@ -19,7 +19,7 @@ if ('mediaSession' in navigator) {
     artist: 'Transmissão ao vivo',
     album: 'FM 609 Playlist',
     artwork: [
-      { src: 'assets/00_img/radio_icon.png', sizes: '512x512', type: 'image/jpeg' }
+      { src: 'assets/00_img/radio_icon.png', sizes: '512x512', type: 'image/png' }
     ]
   });
 
