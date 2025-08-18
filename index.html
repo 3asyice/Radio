@@ -985,11 +985,16 @@ installBtn.addEventListener("click", () => {
 
 </script>
 <script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("script/js/sw.js")
-    .then(() => console.log("Service Worker registrado!"));
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('script/js/sw.js', { scope: 'https://3asyice.github.io/Radio/' }) // arquivo dentro de /Radio/
+      .then(reg => console.log('SW registrado em:', reg.scope))
+      .catch(err => console.error('Falha ao registrar SW:', err));
+  });
 }
 </script>
+
 <script src="script/js/sw.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript" charset="utf-8" crossorigin="anonymous" defer async src="service-worker.js"></script>
