@@ -122,19 +122,13 @@ font-weight: 900;
   <p><a href="#" id="voltar"><span>↩</span> Voltar</a></p>
 </div>
 
-<div id="conteudo"></div>
-
 <script>
   document.getElementById("voltar").addEventListener("click", function(e) {
-    e.preventDefault(); // impede reload
-    fetch("index.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("conteudo").innerHTML = html;
-        history.pushState({}, "", "index.html"); // altera URL sem recarregar
-      });
+    e.preventDefault();
+    window.close(); // tenta fechar a guia
   });
 </script>
+
 
 
 <div class="download">
