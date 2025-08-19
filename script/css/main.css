@@ -186,3 +186,21 @@ display:flex;
 div.download button img{
 margin-right: 8px;
 }
+
+footer{
+background: #202938;
+padding:25px;
+margin-top: 50px;
+}
+footer p{
+font-weight: 900;
+font-size: 1.4em;
+color:#fff;
+display:inline-flex;
+}
+footer p.copyright{
+font-weight: 400;
+font-size: 1.0em;
+color:#9BA1AD;
+margin-top: 20px;
+}
