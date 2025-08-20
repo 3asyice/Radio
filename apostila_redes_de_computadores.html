@@ -1,0 +1,1804 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apostila de Redes de Computadores</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .code-block { background: #f8f9fa; border-left: 4px solid #007bff; }
+        .diagram-box { border: 2px dashed #e2e8f0; background: #f7fafc; }
+        .chapter-number { background: linear-gradient(45deg, #4f46e5, #7c3aed); }
+        .protocol-card { transition: all 0.3s ease; }
+        .protocol-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        table { page-break-inside: avoid; }
+        .no-break { page-break-inside: avoid; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <div class="gradient-bg text-white py-16">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="mb-6">
+                <i class="fas fa-network-wired text-6xl mb-4"></i>
+            </div>
+            <h1 class="text-5xl font-bold mb-4">Apostila de Redes de Computadores</h1>
+            <p class="text-xl opacity-90 mb-6">Guia Completo sobre Conceitos Fundamentais, Protocolos e Tecnologias</p>
+            <div class="flex justify-center items-center space-x-8 text-sm">
+                <div class="flex items-center">
+                    <i class="fas fa-book mr-2"></i>
+                    <span>Material Educacional</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap mr-2"></i>
+                    <span>Nível Técnico/Superior</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span>Estudo Completo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sumário -->
+    <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12 no-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+                <i class="fas fa-list text-blue-600 mr-3"></i>
+                Sumário
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-3">
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">1</span>
+                        <span class="font-medium">Introdução às Redes de Computadores</span>
+                    </div>
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">2</span>
+                        <span class="font-medium">Modelo OSI e TCP/IP</span>
+                    </div>
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">3</span>
+                        <span class="font-medium">Topologias de Rede</span>
+                    </div>
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">4</span>
+                        <span class="font-medium">Protocolos de Comunicação</span>
+                    </div>
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">5</span>
+                        <span class="font-medium">Endereçamento IP e Sub-redes</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">6</span>
+                        <span class="font-medium">Equipamentos de Rede</span>
+                    </div>
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">7</span>
+                        <span class="font-medium">Tecnologias de Rede</span>
+                    </div>
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">8</span>
+                        <span class="font-medium">Segurança em Redes</span>
+                    </div>
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">9</span>
+                        <span class="font-medium">Administração e Monitoramento</span>
+                    </div>
+                    <div class="flex items-center p-3 rounded-lg hover:bg-gray-50">
+                        <span class="chapter-number text-white px-3 py-1 rounded-full text-sm font-bold mr-4">10</span>
+                        <span class="font-medium">Exercícios e Questões</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 1: Introdução -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12 no-break">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <span class="chapter-number text-white px-4 py-2 rounded-full text-lg font-bold mr-4">1</span>
+                Introdução às Redes de Computadores
+            </h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                        O que são Redes de Computadores?
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Uma rede de computadores é um conjunto de equipamentos interligados de maneira a trocarem informações e compartilharem recursos. Esta conexão pode ser estabelecida através de cabos físicos, sinais de rádio, linhas telefônicas, satélites ou qualquer outro método de comunicação.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                            <span class="font-semibold text-blue-700">Definição Técnica</span>
+                        </div>
+                        <p class="text-blue-800">
+                            "Sistema de comunicação de dados constituído por um conjunto de equipamentos terminais conectados para realizar comunicação de dados."
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-history text-green-500 mr-3"></i>
+                        Breve História das Redes
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-3 text-gray-800">Década de 1960-70</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    ARPANET - primeira rede de computadores
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    Protocolo TCP/IP desenvolvido
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    Primeiros experimentos de comunicação
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-3 text-gray-800">Década de 1980-90</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    Internet comercial surge
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    World Wide Web criada
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    Redes locais (LANs) popularizam
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-bullseye text-red-500 mr-3"></i>
+                        Objetivos das Redes de Computadores
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg">
+                            <i class="fas fa-share-alt text-3xl text-blue-600 mb-4"></i>
+                            <h4 class="font-semibold text-gray-800 mb-2">Compartilhamento</h4>
+                            <p class="text-gray-600 text-sm">Recursos, arquivos, aplicações e periféricos</p>
+                        </div>
+                        <div class="text-center bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
+                            <i class="fas fa-comments text-3xl text-green-600 mb-4"></i>
+                            <h4 class="font-semibold text-gray-800 mb-2">Comunicação</h4>
+                            <p class="text-gray-600 text-sm">Email, mensagens, videoconferência</p>
+                        </div>
+                        <div class="text-center bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg">
+                            <i class="fas fa-chart-line text-3xl text-purple-600 mb-4"></i>
+                            <h4 class="font-semibold text-gray-800 mb-2">Confiabilidade</h4>
+                            <p class="text-gray-600 text-sm">Backup, redundância e alta disponibilidade</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-sitemap text-orange-500 mr-3"></i>
+                        Classificação das Redes
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Abrangência</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Características</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Exemplos</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">PAN</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Pessoal (1-10m)</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Dispositivos pessoais próximos</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Bluetooth, USB</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">LAN</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Local (10m-1km)</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Edifício, campus</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Ethernet, Wi-Fi</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">MAN</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Metropolitana (1-100km)</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Cidade, região</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Metro Ethernet, WiMAX</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">WAN</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Ampla (>100km)</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">País, continente</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Internet, MPLS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 2: Modelos OSI e TCP/IP -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12 no-break">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <span class="chapter-number text-white px-4 py-2 rounded-full text-lg font-bold mr-4">2</span>
+                Modelo OSI e TCP/IP
+            </h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-layer-group text-blue-500 mr-3"></i>
+                        Modelo OSI (Open Systems Interconnection)
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        O modelo OSI é um modelo conceitual criado pela ISO (International Organization for Standardization) que padroniza as funções de um sistema de comunicação em sete camadas distintas.
+                    </p>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div class="bg-red-100 border-l-4 border-red-400 p-4 rounded">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">7</span>
+                                    <span class="font-semibold text-red-800">Aplicação</span>
+                                </div>
+                                <p class="text-red-700 text-sm">Interface com usuário, serviços de rede (HTTP, FTP, SMTP)</p>
+                            </div>
+                            
+                            <div class="bg-orange-100 border-l-4 border-orange-400 p-4 rounded">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">6</span>
+                                    <span class="font-semibold text-orange-800">Apresentação</span>
+                                </div>
+                                <p class="text-orange-700 text-sm">Criptografia, compressão, formatação de dados</p>
+                            </div>
+                            
+                            <div class="bg-yellow-100 border-l-4 border-yellow-400 p-4 rounded">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">5</span>
+                                    <span class="font-semibold text-yellow-800">Sessão</span>
+                                </div>
+                                <p class="text-yellow-700 text-sm">Controle de sessões, sincronização</p>
+                            </div>
+                            
+                            <div class="bg-green-100 border-l-4 border-green-400 p-4 rounded">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">4</span>
+                                    <span class="font-semibold text-green-800">Transporte</span>
+                                </div>
+                                <p class="text-green-700 text-sm">Segmentação, controle de fluxo (TCP, UDP)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-blue-100 border-l-4 border-blue-400 p-4 rounded">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">3</span>
+                                    <span class="font-semibold text-blue-800">Rede</span>
+                                </div>
+                                <p class="text-blue-700 text-sm">Roteamento, endereçamento lógico (IP)</p>
+                            </div>
+                            
+                            <div class="bg-indigo-100 border-l-4 border-indigo-400 p-4 rounded">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">2</span>
+                                    <span class="font-semibold text-indigo-800">Enlace</span>
+                                </div>
+                                <p class="text-indigo-700 text-sm">Controle de acesso ao meio, detecção de erros</p>
+                            </div>
+                            
+                            <div class="bg-purple-100 border-l-4 border-purple-400 p-4 rounded">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">1</span>
+                                    <span class="font-semibold text-purple-800">Física</span>
+                                </div>
+                                <p class="text-purple-700 text-sm">Transmissão de bits, características elétricas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-globe text-green-500 mr-3"></i>
+                        Modelo TCP/IP
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        O modelo TCP/IP é o modelo prático usado na Internet, composto por 4 camadas que correspondem às funções das camadas do modelo OSI.
+                    </p>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div class="bg-gradient-to-r from-red-400 to-red-500 text-white p-6 rounded-lg">
+                                <h4 class="text-xl font-bold mb-2">4. Aplicação</h4>
+                                <p class="mb-3">Combina as camadas 5, 6 e 7 do OSI</p>
+                                <div class="text-sm opacity-90">
+                                    <strong>Protocolos:</strong> HTTP, HTTPS, FTP, SMTP, DNS, TELNET, SSH
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-green-400 to-green-500 text-white p-6 rounded-lg">
+                                <h4 class="text-xl font-bold mb-2">3. Transporte</h4>
+                                <p class="mb-3">Equivale à camada 4 do OSI</p>
+                                <div class="text-sm opacity-90">
+                                    <strong>Protocolos:</strong> TCP (confiável), UDP (rápido)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-500 text-white p-6 rounded-lg">
+                                <h4 class="text-xl font-bold mb-2">2. Internet</h4>
+                                <p class="mb-3">Equivale à camada 3 do OSI</p>
+                                <div class="text-sm opacity-90">
+                                    <strong>Protocolos:</strong> IP, ICMP, ARP, RARP
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-purple-400 to-purple-500 text-white p-6 rounded-lg">
+                                <h4 class="text-xl font-bold mb-2">1. Acesso à Rede</h4>
+                                <p class="mb-3">Combina as camadas 1 e 2 do OSI</p>
+                                <div class="text-sm opacity-90">
+                                    <strong>Tecnologias:</strong> Ethernet, Wi-Fi, PPP, Frame Relay
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-exchange-alt text-purple-500 mr-3"></i>
+                        Comparação OSI vs TCP/IP
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aspecto</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Modelo OSI</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Modelo TCP/IP</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Camadas</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">7 camadas</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4 camadas</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Desenvolvimento</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">ISO (teórico)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">DARPA (prático)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Uso</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Referência educacional</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Internet real</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Flexibilidade</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rígido, detalhado</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Flexível, adaptável</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 3: Topologias de Rede -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12 no-break">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <span class="chapter-number text-white px-4 py-2 rounded-full text-lg font-bold mr-4">3</span>
+                Topologias de Rede
+            </h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-project-diagram text-blue-500 mr-3"></i>
+                        Conceitos Fundamentais
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        A topologia de rede refere-se à forma como os dispositivos são interconectados em uma rede, tanto do ponto de vista físico (como os cabos são conectados) quanto lógico (como os dados fluem pela rede).
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-3 text-blue-800 flex items-center">
+                                <i class="fas fa-sitemap text-blue-600 mr-2"></i>
+                                Topologia Física
+                            </h4>
+                            <p class="text-blue-700 text-sm mb-3">Arranjo físico real dos equipamentos e cabos</p>
+                            <ul class="space-y-1 text-blue-600 text-sm">
+                                <li>• Layout dos cabos</li>
+                                <li>• Posição dos equipamentos</li>
+                                <li>• Conectores utilizados</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-3 text-green-800 flex items-center">
+                                <i class="fas fa-route text-green-600 mr-2"></i>
+                                Topologia Lógica
+                            </h4>
+                            <p class="text-green-700 text-sm mb-3">Como os dados fluem pela rede</p>
+                            <ul class="space-y-1 text-green-600 text-sm">
+                                <li>• Caminho dos dados</li>
+                                <li>• Método de acesso</li>
+                                <li>• Controle de fluxo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-6 flex items-center">
+                        <i class="fas fa-shapes text-green-500 mr-3"></i>
+                        Principais Topologias
+                    </h3>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Topologia Estrela -->
+                        <div class="protocol-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-star text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Estrela</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Todos os dispositivos conectam-se a um ponto central (hub/switch)</p>
+                            
+                            <div class="mb-4">
+                                <h5 class="font-semibold text-green-700 mb-2">Vantagens:</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Fácil instalação e manutenção</li>
+                                    <li>• Falha de um cabo não afeta outros</li>
+                                    <li>• Fácil identificação de problemas</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-red-700 mb-2">Desvantagens:</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Dependente do dispositivo central</li>
+                                    <li>• Maior consumo de cabo</li>
+                                    <li>• Custo do equipamento central</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Topologia Barramento -->
+                        <div class="protocol-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-minus text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Barramento</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Todos os dispositivos compartilham um único cabo principal</p>
+                            
+                            <div class="mb-4">
+                                <h5 class="font-semibold text-green-700 mb-2">Vantagens:</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Menos cabo necessário</li>
+                                    <li>• Fácil de estender</li>
+                                    <li>• Custo baixo</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-red-700 mb-2">Desvantagens:</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Falha no cabo principal para tudo</li>
+                                    <li>• Difícil localizar problemas</li>
+                                    <li>• Performance degrada com mais nós</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Topologia Anel -->
+                        <div class="protocol-card bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-circle-notch text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Anel</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Dispositivos conectados em formato circular</p>
+                            
+                            <div class="mb-4">
+                                <h5 class="font-semibold text-green-700 mb-2">Vantagens:</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Performance previsível</li>
+                                    <li>• Sem colisões</li>
+                                    <li>• Igual acesso para todos</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-red-700 mb-2">Desvantagens:</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Falha de um nó afeta toda rede</li>
+                                    <li>• Difícil reconfiguração</li>
+                                    <li>• Latência aumenta com distância</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Topologia Malha -->
+                        <div class="protocol-card bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-orange-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-project-diagram text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Malha</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Múltiplas conexões entre dispositivos</p>
+                            
+                            <div class="mb-4">
+                                <h5 class="font-semibold text-green-700 mb-2">Vantagens:</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Alta redundância</li>
+                                    <li>• Múltiplos caminhos</li>
+                                    <li>• Tolerante a falhas</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-red-700 mb-2">Desvantagens:</h5>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Custo elevado</li>
+                                    <li>• Complexa de gerenciar</li>
+                                    <li>• Muitos cabos necessários</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-balance-scale text-orange-500 mr-3"></i>
+                        Comparativo de Topologias
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Topologia</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Custo</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Confiabilidade</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Uso Comum</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Estrela</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Médio</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Alta</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Boa</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">LAN moderna</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Barramento</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Baixo</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Baixa</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Degrada</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Redes antigas</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Anel</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Médio</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Média</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Consistente</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Token Ring</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Malha</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Alto</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Muito Alta</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Excelente</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">WAN crítica</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 4: Protocolos de Comunicação -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12 no-break">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <span class="chapter-number text-white px-4 py-2 rounded-full text-lg font-bold mr-4">4</span>
+                Protocolos de Comunicação
+            </h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-handshake text-blue-500 mr-3"></i>
+                        O que são Protocolos?
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Protocolos são conjuntos de regras e convenções que governam como os dispositivos em uma rede se comunicam. Eles definem o formato das mensagens, a sequência de comunicação e como lidar com erros.
+                    </p>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-6 mb-6">
+                        <h4 class="font-semibold text-blue-800 mb-3">Características dos Protocolos</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <ul class="space-y-2 text-blue-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    <span>Sintaxe: formato e estrutura dos dados</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    <span>Semântica: significado dos dados</span>
+                                </li>
+                            </ul>
+                            <ul class="space-y-2 text-blue-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    <span>Temporização: quando enviar dados</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    <span>Tratamento de erros: como lidar com falhas</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-6 flex items-center">
+                        <i class="fas fa-layer-group text-green-500 mr-3"></i>
+                        Protocolos por Camada
+                    </h3>
+
+                    <!-- Camada de Aplicação -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold text-red-700 mb-4 flex items-center">
+                            <i class="fas fa-desktop text-red-600 mr-2"></i>
+                            Camada de Aplicação
+                        </h4>
+                        <div class="grid lg:grid-cols-3 gap-6">
+                            <div class="bg-red-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-red-800 mb-2">HTTP/HTTPS</h5>
+                                <p class="text-red-700 text-sm mb-2">Protocolo de transferência de hipertexto</p>
+                                <div class="text-xs text-red-600">
+                                    <strong>Porta:</strong> 80/443<br>
+                                    <strong>Uso:</strong> Web browsing
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-red-800 mb-2">FTP</h5>
+                                <p class="text-red-700 text-sm mb-2">Protocolo de transferência de arquivos</p>
+                                <div class="text-xs text-red-600">
+                                    <strong>Porta:</strong> 20/21<br>
+                                    <strong>Uso:</strong> Upload/Download
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-red-800 mb-2">SMTP</h5>
+                                <p class="text-red-700 text-sm mb-2">Protocolo de transferência de email</p>
+                                <div class="text-xs text-red-600">
+                                    <strong>Porta:</strong> 25/587<br>
+                                    <strong>Uso:</strong> Envio de email
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-red-800 mb-2">DNS</h5>
+                                <p class="text-red-700 text-sm mb-2">Sistema de nomes de domínio</p>
+                                <div class="text-xs text-red-600">
+                                    <strong>Porta:</strong> 53<br>
+                                    <strong>Uso:</strong> Resolução de nomes
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-red-800 mb-2">DHCP</h5>
+                                <p class="text-red-700 text-sm mb-2">Configuração dinâmica de host</p>
+                                <div class="text-xs text-red-600">
+                                    <strong>Porta:</strong> 67/68<br>
+                                    <strong>Uso:</strong> Atribuição de IP
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-red-800 mb-2">SSH</h5>
+                                <p class="text-red-700 text-sm mb-2">Shell seguro</p>
+                                <div class="text-xs text-red-600">
+                                    <strong>Porta:</strong> 22<br>
+                                    <strong>Uso:</strong> Acesso remoto
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Camada de Transporte -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold text-green-700 mb-4 flex items-center">
+                            <i class="fas fa-truck text-green-600 mr-2"></i>
+                            Camada de Transporte
+                        </h4>
+                        <div class="grid lg:grid-cols-2 gap-6">
+                            <div class="bg-green-50 p-6 rounded-lg border">
+                                <h5 class="font-bold text-green-800 mb-3 text-lg">TCP (Transmission Control Protocol)</h5>
+                                <div class="space-y-3">
+                                    <p class="text-green-700 text-sm">Protocolo confiável, orientado à conexão</p>
+                                    
+                                    <div>
+                                        <h6 class="font-semibold text-green-800 mb-1">Características:</h6>
+                                        <ul class="text-xs text-green-700 space-y-1">
+                                            <li>• Controle de fluxo</li>
+                                            <li>• Controle de erro</li>
+                                            <li>• Segmentação e reordenação</li>
+                                            <li>• Estabelece conexão (3-way handshake)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <h6 class="font-semibold text-green-800 mb-1">Uso típico:</h6>
+                                        <p class="text-xs text-green-700">HTTP, FTP, SMTP, SSH</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-green-50 p-6 rounded-lg border">
+                                <h5 class="font-bold text-green-800 mb-3 text-lg">UDP (User Datagram Protocol)</h5>
+                                <div class="space-y-3">
+                                    <p class="text-green-700 text-sm">Protocolo simples, sem conexão</p>
+                                    
+                                    <div>
+                                        <h6 class="font-semibold text-green-800 mb-1">Características:</h6>
+                                        <ul class="text-xs text-green-700 space-y-1">
+                                            <li>• Sem controle de fluxo</li>
+                                            <li>• Sem garantia de entrega</li>
+                                            <li>• Baixo overhead</li>
+                                            <li>• Transmissão rápida</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <h6 class="font-semibold text-green-800 mb-1">Uso típico:</h6>
+                                        <p class="text-xs text-green-700">DNS, DHCP, streaming, jogos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Camada de Rede -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold text-blue-700 mb-4 flex items-center">
+                            <i class="fas fa-route text-blue-600 mr-2"></i>
+                            Camada de Rede
+                        </h4>
+                        <div class="grid lg:grid-cols-3 gap-6">
+                            <div class="bg-blue-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-blue-800 mb-2">IP (Internet Protocol)</h5>
+                                <p class="text-blue-700 text-sm mb-2">Endereçamento e roteamento</p>
+                                <div class="text-xs text-blue-600">
+                                    <strong>Versões:</strong> IPv4, IPv6<br>
+                                    <strong>Função:</strong> Entrega de pacotes
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-blue-800 mb-2">ICMP</h5>
+                                <p class="text-blue-700 text-sm mb-2">Mensagens de controle e erro</p>
+                                <div class="text-xs text-blue-600">
+                                    <strong>Uso:</strong> ping, traceroute<br>
+                                    <strong>Função:</strong> Diagnóstico
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-blue-800 mb-2">ARP</h5>
+                                <p class="text-blue-700 text-sm mb-2">Resolução de endereços</p>
+                                <div class="text-xs text-blue-600">
+                                    <strong>Função:</strong> IP → MAC<br>
+                                    <strong>Escopo:</strong> Rede local
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Camada de Enlace -->
+                    <div>
+                        <h4 class="text-xl font-semibold text-purple-700 mb-4 flex items-center">
+                            <i class="fas fa-link text-purple-600 mr-2"></i>
+                            Camada de Enlace
+                        </h4>
+                        <div class="grid lg:grid-cols-3 gap-6">
+                            <div class="bg-purple-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-purple-800 mb-2">Ethernet</h5>
+                                <p class="text-purple-700 text-sm mb-2">Padrão para redes locais</p>
+                                <div class="text-xs text-purple-600">
+                                    <strong>Padrão:</strong> IEEE 802.3<br>
+                                    <strong>Método:</strong> CSMA/CD
+                                </div>
+                            </div>
+                            
+                            <div class="bg-purple-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-purple-800 mb-2">Wi-Fi</h5>
+                                <p class="text-purple-700 text-sm mb-2">Rede sem fio</p>
+                                <div class="text-xs text-purple-600">
+                                    <strong>Padrão:</strong> IEEE 802.11<br>
+                                    <strong>Método:</strong> CSMA/CA
+                                </div>
+                            </div>
+                            
+                            <div class="bg-purple-50 p-4 rounded-lg border">
+                                <h5 class="font-bold text-purple-800 mb-2">PPP</h5>
+                                <p class="text-purple-700 text-sm mb-2">Protocolo ponto-a-ponto</p>
+                                <div class="text-xs text-purple-600">
+                                    <strong>Uso:</strong> Conexões dial-up<br>
+                                    <strong>Função:</strong> Links seriais
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-list-alt text-orange-500 mr-3"></i>
+                        Portas de Protocolos Comuns
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Protocolo</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Porta</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transporte</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">HTTP</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">80</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TCP</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Web - navegação</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">HTTPS</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">443</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TCP</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Web segura</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">FTP</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">20/21</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TCP</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Transferência de arquivos</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">SSH</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">22</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TCP</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Acesso remoto seguro</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">SMTP</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">25</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TCP</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Envio de email</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">DNS</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">53</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">UDP/TCP</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Resolução de nomes</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">DHCP</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">67/68</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">UDP</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Configuração automática</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 5: Endereçamento IP -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12 no-break">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <span class="chapter-number text-white px-4 py-2 rounded-full text-lg font-bold mr-4">5</span>
+                Endereçamento IP e Sub-redes
+            </h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 mr-3"></i>
+                        Conceitos de Endereçamento IP
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        O endereço IP (Internet Protocol) é um identificador único para cada dispositivo em uma rede. É como um endereço postal que permite que os dados sejam entregues ao destino correto.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-3 text-blue-800 flex items-center">
+                                <i class="fas fa-4 text-blue-600 mr-2"></i>
+                                IPv4 (Internet Protocol v4)
+                            </h4>
+                            <ul class="space-y-2 text-blue-700 text-sm">
+                                <li>• 32 bits (4 bytes)</li>
+                                <li>• Formato: xxx.xxx.xxx.xxx</li>
+                                <li>• Aproximadamente 4,3 bilhões de endereços</li>
+                                <li>• Padrão atual mais usado</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-3 text-green-800 flex items-center">
+                                <i class="fas fa-6 text-green-600 mr-2"></i>
+                                IPv6 (Internet Protocol v6)
+                            </h4>
+                            <ul class="space-y-2 text-green-700 text-sm">
+                                <li>• 128 bits (16 bytes)</li>
+                                <li>• Formato: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx</li>
+                                <li>• Aproximadamente 3,4 × 10³⁸ endereços</li>
+                                <li>• Sucessor do IPv4</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-layer-group text-green-500 mr-3"></i>
+                        Classes de Endereços IPv4
+                    </h3>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="grid lg:grid-cols-5 gap-4">
+                            <!-- Classe A -->
+                            <div class="bg-gradient-to-br from-red-100 to-red-200 p-4 rounded-lg border">
+                                <div class="text-center">
+                                    <div class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold mb-2">A</div>
+                                    <div class="text-red-800 font-semibold mb-2">1.0.0.0 - 126.255.255.255</div>
+                                    <div class="text-xs text-red-700">
+                                        <div>Máscara: /8 (255.0.0.0)</div>
+                                        <div>Redes: 126</div>
+                                        <div>Hosts: 16.777.214</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Classe B -->
+                            <div class="bg-gradient-to-br from-orange-100 to-orange-200 p-4 rounded-lg border">
+                                <div class="text-center">
+                                    <div class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold mb-2">B</div>
+                                    <div class="text-orange-800 font-semibold mb-2">128.0.0.0 - 191.255.255.255</div>
+                                    <div class="text-xs text-orange-700">
+                                        <div>Máscara: /16 (255.255.0.0)</div>
+                                        <div>Redes: 16.384</div>
+                                        <div>Hosts: 65.534</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Classe C -->
+                            <div class="bg-gradient-to-br from-green-100 to-green-200 p-4 rounded-lg border">
+                                <div class="text-center">
+                                    <div class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold mb-2">C</div>
+                                    <div class="text-green-800 font-semibold mb-2">192.0.0.0 - 223.255.255.255</div>
+                                    <div class="text-xs text-green-700">
+                                        <div>Máscara: /24 (255.255.255.0)</div>
+                                        <div>Redes: 2.097.152</div>
+                                        <div>Hosts: 254</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Classe D -->
+                            <div class="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-lg border">
+                                <div class="text-center">
+                                    <div class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold mb-2">D</div>
+                                    <div class="text-blue-800 font-semibold mb-2">224.0.0.0 - 239.255.255.255</div>
+                                    <div class="text-xs text-blue-700">
+                                        <div>Multicast</div>
+                                        <div>Não possui máscara</div>
+                                        <div>Uso especial</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Classe E -->
+                            <div class="bg-gradient-to-br from-purple-100 to-purple-200 p-4 rounded-lg border">
+                                <div class="text-center">
+                                    <div class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold mb-2">E</div>
+                                    <div class="text-purple-800 font-semibold mb-2">240.0.0.0 - 255.255.255.255</div>
+                                    <div class="text-xs text-purple-700">
+                                        <div>Experimental</div>
+                                        <div>Reservado</div>
+                                        <div>Não usado</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-home text-purple-500 mr-3"></i>
+                        Endereços Privados e Especiais
+                    </h3>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-3">Endereços Privados (RFC 1918)</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 p-4 rounded border">
+                                    <div class="font-semibold text-gray-800">Classe A</div>
+                                    <div class="text-gray-600">10.0.0.0 - 10.255.255.255 (/8)</div>
+                                    <div class="text-xs text-gray-500">1 rede, 16.777.214 hosts</div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded border">
+                                    <div class="font-semibold text-gray-800">Classe B</div>
+                                    <div class="text-gray-600">172.16.0.0 - 172.31.255.255 (/12)</div>
+                                    <div class="text-xs text-gray-500">16 redes, 1.048.574 hosts</div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded border">
+                                    <div class="font-semibold text-gray-800">Classe C</div>
+                                    <div class="text-gray-600">192.168.0.0 - 192.168.255.255 (/16)</div>
+                                    <div class="text-xs text-gray-500">256 redes, 65.534 hosts</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-3">Endereços Especiais</h4>
+                            <div class="space-y-3">
+                                <div class="bg-yellow-50 p-4 rounded border">
+                                    <div class="font-semibold text-yellow-800">Loopback</div>
+                                    <div class="text-yellow-700">127.0.0.0/8</div>
+                                    <div class="text-xs text-yellow-600">Teste local (localhost)</div>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded border">
+                                    <div class="font-semibold text-blue-800">Link-Local</div>
+                                    <div class="text-blue-700">169.254.0.0/16</div>
+                                    <div class="text-xs text-blue-600">Auto-configuração APIPA</div>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded border">
+                                    <div class="font-semibold text-red-800">Broadcast</div>
+                                    <div class="text-red-700">255.255.255.255</div>
+                                    <div class="text-xs text-red-600">Broadcast limitado</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-cut text-orange-500 mr-3"></i>
+                        Sub-redes (Subnetting)
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Subnetting é o processo de dividir uma rede IP em redes menores (sub-redes). Isso permite melhor organização, segurança e utilização eficiente dos endereços IP.
+                    </p>
+                    
+                    <div class="bg-orange-50 border-l-4 border-orange-400 p-6 mb-6">
+                        <h4 class="font-semibold text-orange-800 mb-3 flex items-center">
+                            <i class="fas fa-calculator text-orange-600 mr-2"></i>
+                            Cálculo de Sub-redes
+                        </h4>
+                        <div class="text-orange-700 text-sm space-y-2">
+                            <div><strong>Fórmula básica:</strong> 2ⁿ = número de sub-redes (onde n = bits emprestados)</div>
+                            <div><strong>Hosts por sub-rede:</strong> 2ᵐ - 2 (onde m = bits restantes para host)</div>
+                            <div><strong>Primeiro endereço:</strong> endereço de rede</div>
+                            <div><strong>Último endereço:</strong> endereço de broadcast</div>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-3">Exemplo Prático</h4>
+                            <div class="bg-gray-50 p-4 rounded-lg border">
+                                <div class="space-y-2 text-sm">
+                                    <div><strong>Rede original:</strong> 192.168.1.0/24</div>
+                                    <div><strong>Dividir em 4 sub-redes:</strong></div>
+                                    <div class="ml-4">
+                                        <div>• 192.168.1.0/26 (hosts: 1-62)</div>
+                                        <div>• 192.168.1.64/26 (hosts: 65-126)</div>
+                                        <div>• 192.168.1.128/26 (hosts: 129-190)</div>
+                                        <div>• 192.168.1.192/26 (hosts: 193-254)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-3">Máscara de Sub-rede</h4>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white border border-gray-200 rounded">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500">CIDR</th>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500">Máscara</th>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500">Hosts</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 text-xs">
+                                        <tr>
+                                            <td class="px-3 py-2">/24</td>
+                                            <td class="px-3 py-2">255.255.255.0</td>
+                                            <td class="px-3 py-2">254</td>
+                                        </tr>
+                                        <tr class="bg-gray-50">
+                                            <td class="px-3 py-2">/25</td>
+                                            <td class="px-3 py-2">255.255.255.128</td>
+                                            <td class="px-3 py-2">126</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2">/26</td>
+                                            <td class="px-3 py-2">255.255.255.192</td>
+                                            <td class="px-3 py-2">62</td>
+                                        </tr>
+                                        <tr class="bg-gray-50">
+                                            <td class="px-3 py-2">/27</td>
+                                            <td class="px-3 py-2">255.255.255.224</td>
+                                            <td class="px-3 py-2">30</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2">/28</td>
+                                            <td class="px-3 py-2">255.255.255.240</td>
+                                            <td class="px-3 py-2">14</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-random text-red-500 mr-3"></i>
+                        NAT (Network Address Translation)
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        NAT permite que múltiplos dispositivos com endereços privados compartilhem um único endereço IP público para acessar a Internet.
+                    </p>
+                    
+                    <div class="grid lg:grid-cols-3 gap-6">
+                        <div class="bg-red-50 p-6 rounded-lg border">
+                            <h4 class="text-lg font-semibold text-red-800 mb-3">Static NAT</h4>
+                            <p class="text-red-700 text-sm mb-3">Mapeamento 1:1 fixo entre endereços privados e públicos</p>
+                            <div class="text-xs text-red-600">
+                                <strong>Uso:</strong> Servidores que precisam ser acessados externamente
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 p-6 rounded-lg border">
+                            <h4 class="text-lg font-semibold text-green-800 mb-3">Dynamic NAT</h4>
+                            <p class="text-green-700 text-sm mb-3">Pool de endereços públicos atribuídos dinamicamente</p>
+                            <div class="text-xs text-green-600">
+                                <strong>Uso:</strong> Quando há mais IPs públicos que dispositivos ativos
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-lg border">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-3">PAT (Overload)</h4>
+                            <p class="text-blue-700 text-sm mb-3">Múltiplos endereços privados compartilham um IP público usando portas</p>
+                            <div class="text-xs text-blue-600">
+                                <strong>Uso:</strong> Redes domésticas e pequenas empresas
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 6: Equipamentos de Rede -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12 no-break">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <span class="chapter-number text-white px-4 py-2 rounded-full text-lg font-bold mr-4">6</span>
+                Equipamentos de Rede
+            </h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-server text-blue-500 mr-3"></i>
+                        Classificação por Camada OSI
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Os equipamentos de rede operam em diferentes camadas do modelo OSI, cada um com funções específicas para garantir o funcionamento adequado da comunicação.
+                    </p>
+                </div>
+
+                <!-- Camada Física -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-purple-700 mb-4 flex items-center">
+                        <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">1</span>
+                        Camada Física
+                    </h3>
+                    
+                    <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                        <div class="protocol-card bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-ethernet text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Hub</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Dispositivo que conecta múltiplos dispositivos criando um domínio de colisão único</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-purple-800 mb-2">Características:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Opera na camada física</li>
+                                        <li>• Repete sinal para todas as portas</li>
+                                        <li>• Half-duplex</li>
+                                        <li>• Domínio de colisão compartilhado</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-red-100 p-3 rounded">
+                                    <p class="text-red-700 text-xs">
+                                        <i class="fas fa-exclamation-triangle mr-1"></i>
+                                        <strong>Obsoleto:</strong> Substituído por switches
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="protocol-card bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-gray-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-wifi text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Repetidor</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Amplifica e regenera sinais para estender a distância da rede</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-gray-800 mb-2">Características:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Regenera sinais físicos</li>
+                                        <li>• Estende distância máxima</li>
+                                        <li>• Transparente aos dados</li>
+                                        <li>• Não toma decisões</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-semibold text-gray-800 mb-2">Uso:</h5>
+                                    <p class="text-xs text-gray-600">Conexões de longa distância, Wi-Fi extenders</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="protocol-card bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-indigo-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-plug text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Cabeamento</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Meio físico de transmissão dos dados</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-indigo-800 mb-2">Tipos:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Par trançado (UTP/STP)</li>
+                                        <li>• Fibra óptica</li>
+                                        <li>• Coaxial</li>
+                                        <li>• Sem fio (RF)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camada de Enlace -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-700 mb-4 flex items-center">
+                        <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">2</span>
+                        Camada de Enlace
+                    </h3>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6 mb-8">
+                        <div class="protocol-card bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-indigo-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-network-wired text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Switch</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Dispositivo inteligente que conecta dispositivos em uma LAN</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-indigo-800 mb-2">Características:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Aprende endereços MAC</li>
+                                        <li>• Cria tabela CAM</li>
+                                        <li>• Full-duplex</li>
+                                        <li>• Cada porta = domínio de colisão</li>
+                                        <li>• Suporte a VLANs</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-semibold text-indigo-800 mb-2">Tipos:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Unmanaged (básico)</li>
+                                        <li>• Managed (configurável)</li>
+                                        <li>• Layer 3 (com roteamento)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="protocol-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-bridge text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Bridge</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Conecta dois segmentos de rede, filtrando tráfego</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-blue-800 mb-2">Características:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Segmenta domínios de colisão</li>
+                                        <li>• Aprende endereços MAC</li>
+                                        <li>• Filtra tráfego local</li>
+                                        <li>• Transparente aos protocolos</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-semibold text-blue-800 mb-2">Uso:</h5>
+                                    <p class="text-xs text-gray-600">Conectar redes Ethernet diferentes, extensão de LANs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camada de Rede -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-4 flex items-center">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">3</span>
+                        Camada de Rede
+                    </h3>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6 mb-8">
+                        <div class="protocol-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-route text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Roteador</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Dispositivo que conecta diferentes redes e direciona tráfego</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-blue-800 mb-2">Características:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Trabalha com endereços IP</li>
+                                        <li>• Mantém tabela de roteamento</li>
+                                        <li>• Conecta redes diferentes</li>
+                                        <li>• Cria domínios de broadcast</li>
+                                        <li>• Suporte a protocolos de roteamento</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-semibold text-blue-800 mb-2">Protocolos:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• RIP, OSPF, EIGRP</li>
+                                        <li>• BGP (roteadores ISP)</li>
+                                        <li>• Roteamento estático</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="protocol-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-layer-group text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Switch Layer 3</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Switch com capacidades de roteamento</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-green-800 mb-2">Características:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Switching + roteamento</li>
+                                        <li>• Roteamento inter-VLAN</li>
+                                        <li>• Hardware otimizado</li>
+                                        <li>• Alta performance</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-semibold text-green-800 mb-2">Uso:</h5>
+                                    <p class="text-xs text-gray-600">Core de rede, distribuição, roteamento interno</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equipamentos Híbridos -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-green-700 mb-4 flex items-center">
+                        <i class="fas fa-cube text-green-500 mr-3"></i>
+                        Equipamentos Híbridos e Especiais
+                    </h3>
+                    
+                    <div class="grid lg:grid-cols-3 gap-6">
+                        <div class="protocol-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-home text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Roteador Doméstico</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Dispositivo all-in-one para uso residencial</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-green-800 mb-2">Funções:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Roteador (NAT/PAT)</li>
+                                        <li>• Switch (4-8 portas)</li>
+                                        <li>• Access Point Wi-Fi</li>
+                                        <li>• Firewall básico</li>
+                                        <li>• Servidor DHCP</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="protocol-card bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-orange-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-shield-alt text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Firewall</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Dispositivo de segurança que filtra tráfego</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-orange-800 mb-2">Características:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Filtragem de pacotes</li>
+                                        <li>• Controle de acesso</li>
+                                        <li>• Inspeção stateful</li>
+                                        <li>• Logging e monitoramento</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="protocol-card bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-500 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-balance-scale text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-gray-800">Load Balancer</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">Distribui tráfego entre múltiplos servidores</p>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <h5 class="font-semibold text-purple-800 mb-2">Características:</h5>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Distribuição de carga</li>
+                                        <li>• Alta disponibilidade</li>
+                                        <li>• Health checks</li>
+                                        <li>• SSL termination</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-chart-bar text-orange-500 mr-3"></i>
+                        Comparativo de Equipamentos
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Equipamento</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Camada OSI</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Função Principal</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Domínio de Colisão</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Domínio de Broadcast</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Hub</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Física (1)</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Repetir sinal</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Único grande</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Único grande</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Switch</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Enlace (2)</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Comutação por MAC</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Por porta</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Único (por VLAN)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Roteador</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rede (3)</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Roteamento por IP</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Por interface</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Por interface</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Bridge</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Enlace (2)</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Conectar segmentos</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Por segmento</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Único</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 7: Tecnologias de Rede -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12 no-break">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <span class="chapter-number text-white px-4 py-2 rounded-full text-lg font-bold mr-4">7</span>
+                Tecnologias de Rede
+            </h2>
+
+            <div class="space-y-8">
+                <!-- Ethernet -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-4 flex items-center">
+                        <i class="fas fa-ethernet text-blue-500 mr-3"></i>
+                        Ethernet (IEEE 802.3)
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Ethernet é a tecnologia de rede local mais utilizada no mundo, padronizada pelo IEEE como 802.3. Define como os dados são formatados e transmitidos através de cabos de rede.
+                    </p>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-3">Características Principais</h4>
+                            <ul class="space-y-2 text-blue-700 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    <span>CSMA/CD (Carrier Sense Multiple Access with Collision Detection)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    <span>Frame de 64 a 1518 bytes</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    <span>Endereçamento MAC (48 bits)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    <span>Full-duplex em switches</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-3">Estrutura do Frame</h4>
+                            <div class="space-y-2 text-blue-700 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Preâmbulo:</span>
+                                    <span>7 bytes</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>SFD:</span>
+                                    <span>1 byte</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>MAC Destino:</span>
+                                    <span>6 bytes</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>MAC Origem:</span>
+                                    <span>6 bytes</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Tipo/Tamanho:</span>
+                                    <span>2 bytes</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Dados:</span>
+                                    <span>46-1500 bytes</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>FCS:</span>
+                                    <span>4 bytes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-3">Padrões Ethernet</h4>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Padrão</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Velocidade</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Meio Físico</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distância Máx.</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Uso</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">10BASE-T</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10 Mbps</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">UTP Cat 3</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">100m</td>
+                                        <td class="px-6 py-4 text-sm text-gray-500">Redes antigas</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">100BASE-TX</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">100 Mbps</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">UTP Cat 5</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">100m</td>
+                                        <td class="px-6 py-4 text-sm text-gray-500">Fast Ethernet</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1000BASE-T</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1 Gbps</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">UTP Cat 5e/6</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">100m</td>
+                                        <td class="px-6 py-4 text-sm text-gray-500">Gigabit Ethernet</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">10GBASE-T</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10 Gbps</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">UTP Cat 6a/7</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">100m</td>
+                                        <td class="px-6 py-4 text-sm text-gray-500">10 Gigabit Ethernet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wi-Fi -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-green-700 mb-4 flex items-center">
+                        <i class="fas fa-wifi text-green-500 mr-3"></i>
+                        Wi-Fi (IEEE 802.11)
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Wi-Fi é um conjunto de padrões para redes locais sem fio (WLAN), permitindo que dispositivos se conectem à Internet e comuniquem entre si através de ondas de rádio.
+                    </p>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold text-green-800 mb-3">Características</h4>
+                            <ul class="space-y-2 text-green-700 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    <span>CSMA/CA (Collision Avoidance)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    <span>Transmissão em half-duplex</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    <span>Frequências 2.4 GHz e 5 GHz</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                    <span>SSID para identificação</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold text-green-800 mb-3">Componentes</h4>
+                            <ul class="space-y-2 text-green-700 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-broadcast-tower text-green-500 mr-2 mt-1"></i>
+                                    <span><strong>Access Point (AP):</strong> Ponto de acesso central</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-laptop text-green-500 mr-2 mt-1"></i>
+                                    <span><strong>Station (STA):</strong> Dispositivo cliente</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-green-500 mr-2 mt-1"></i>
+                                    <span><strong>BSS:</strong> Basic Service Set</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-project-diagram text-green-500 mr-2 mt-1"></i>
+                                    <span><strong>ESS:</strong> Extended Service Set</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-3">Padrões Wi-Fi</h4>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Padrão</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome Comercial</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Frequência</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Velocidade Máx.</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Alcance</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">802.11
+   
