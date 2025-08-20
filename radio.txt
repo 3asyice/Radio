@@ -1,2 +1,189 @@
 segredo:
 https://gossip-fm-base.lovable.app/
+https://jam-audio-player.lovable.app/
+
+Crie uma rádio FM 609 militarizado como se fosse um site de fofoca interno de uma base militar privada.
+Uma aparência mais militar e mais privada e a acessibilidade tem que melhorar tem que ter informações apenas dos áudios que foram disponibilizados na playlist. Coloque mapas de cidades e bussulas e o horário atual e a data atual e um pouco mais de cores verdes porque militar veste verde e faça com que o próximo áudio da playlist possa tocar automaticamente sem o usuário ter que mexer os dedos
+
+É algo mais real e sério não gossip desse tipo mas como algo ultra secreto:
+Adicione essas urls em uma playlist para o usuário reproduzilas
+Crie uma rádio FM 609 militarizado como se fosse um site de fofoca interno de uma base militar privada e adicione os seguintes playlist como um loop a ser tocado e fácil acessibilidade:
+
+Coloque mapas de cidades e bussulas e o horário atual e a data atual e um pouco mais de cores verdes porque militar veste verde e faça com que o próximo áudio da playlist possa tocar automaticamente sem o usuário ter que mexer os dedos
+áudios urls para que toquem no rádio militarizado
+
+Aviso:
+https://3asyice.github.io/Radio/assets/tape/The_Disclaimer.mp3
+A Decisão Errada:
+https://3asyice.github.io/Radio/assets/tape/F4LB.mp3
+Incorporação:
+https://3asyice.github.io/Radio/assets/tape/F9LB.mp3
+Internato:
+https://3asyice.github.io/Radio/assets/tape/F7LB.mp3
+O Plantão:
+https://3asyice.github.io/Radio/assets/tape/F5LA.mp3
+A Mensagem:
+https://3asyice.github.io/Radio/assets/tape/F6LA.mp3
+A Dor do Luto:
+https://3asyice.github.io/Radio/assets/tape/F1LA.mp3
+Sargento Bergmann:
+https://3asyice.github.io/Radio/assets/tape/F8LA.mp3
+O Campo:
+https://3asyice.github.io/Radio/assets/tape/F6LB.mp3
+Cover de Azevedo:
+https://3asyice.github.io/Radio/assets/tape/Cover_Azevedo.mp3
+Sargento Azevedo:
+https://3asyice.github.io/Radio/assets/tape/F2LA.mp3
+As Seções:
+https://3asyice.github.io/Radio/assets/tape/F7LA.mp3
+// 36:08 +1min
+Soldado Isaias:
+https://3asyice.github.io/Radio/assets/tape/F1LB.mp3
+A Alteração — Acidente:
+https://3asyice.github.io/Radio/assets/tape/esse_sou_eu.mp3
+A Alteração de Carvalho:
+https://3asyice.github.io/Radio/assets/tape/F10LA.mp3
+O 2º Quarto de Hora:
+https://3asyice.github.io/Radio/assets/tape/F5LB.mp3
+Sargento Capisani:
+https://3asyice.github.io/Radio/assets/tape/F8LB.mp3
+A Expulsão de Carvalho:
+https://3asyice.github.io/Radio/assets/tape/F3LA.mp3
+Coronel Soares:
+https://3asyice.github.io/Radio/assets/tape/F2LB.mp3
+SINDICÂNCIA:
+https://3asyice.github.io/Radio/assets/tape/A_Sindicancia.mp3
+Último Episódio da Temporada 1:
+https://3asyice.github.io/Radio/assets/tape/Last_Episode_of_The_Season1.mp3
+
+A Fita para Sd Lemos:
+https://3asyice.github.io/Radio/assets/tape/F27LA.mp3
+Entrevista no Stock Center- espião:
+https://3asyice.github.io/Radio/assets/tape/Entrevista_no_STOK_CENTER.mp3
+Policiais corruptos:
+https://3asyice.github.io/Radio/assets/tape/F3LB.mp3
+Uma ameaça para Thales:
+https://3asyice.github.io/Radio/assets/tape/F4LA.mp3
+
+
+Coloque mais de 50 features mapas de cidades e bussulas e o horário atual e para permitir que os áudios da playlist toquem precisa colocar o 
+usuário: User 
+senha: Admin
+e a data atual e um pouco mais de cores verdes porque militar veste verde e faça com que o próximo áudio da playlist possa tocar automaticamente sem o usuário ter que mexer os dedos
+áudios urls para que toquem no rádio militarizado
+
+Aviso:
+https://3asyice.github.io/Radio/assets/tape/The_Disclaimer.mp3
+A Decisão Errada:
+https://3asyice.github.io/Radio/assets/tape/F4LB.mp3
+Incorporação:
+https://3asyice.github.io/Radio/assets/tape/F9LB.mp3
+Internato:
+https://3asyice.github.io/Radio/assets/tape/F7LB.mp3
+O Plantão:
+https://3asyice.github.io/Radio/assets/tape/F5LA.mp3
+A Mensagem:
+https://3asyice.github.io/Radio/assets/tape/F6LA.mp3
+A Dor do Luto:
+https://3asyice.github.io/Radio/assets/tape/F1LA.mp3
+Sargento Bergmann:
+https://3asyice.github.io/Radio/assets/tape/F8LA.mp3
+O Campo:
+https://3asyice.github.io/Radio/assets/tape/F6LB.mp3
+Cover de Azevedo:
+https://3asyice.github.io/Radio/assets/tape/Cover_Azevedo.mp3
+Sargento Azevedo:
+https://3asyice.github.io/Radio/assets/tape/F2LA.mp3
+As Seções:
+https://3asyice.github.io/Radio/assets/tape/F7LA.mp3
+// 36:08 +1min
+Soldado Isaias:
+https://3asyice.github.io/Radio/assets/tape/F1LB.mp3
+A Alteração — Acidente:
+https://3asyice.github.io/Radio/assets/tape/esse_sou_eu.mp3
+A Alteração de Carvalho:
+https://3asyice.github.io/Radio/assets/tape/F10LA.mp3
+O 2º Quarto de Hora:
+https://3asyice.github.io/Radio/assets/tape/F5LB.mp3
+Sargento Capisani:
+https://3asyice.github.io/Radio/assets/tape/F8LB.mp3
+A Expulsão de Carvalho:
+https://3asyice.github.io/Radio/assets/tape/F3LA.mp3
+Coronel Soares:
+https://3asyice.github.io/Radio/assets/tape/F2LB.mp3
+SINDICÂNCIA:
+https://3asyice.github.io/Radio/assets/tape/A_Sindicancia.mp3
+Último Episódio da Temporada 1:
+https://3asyice.github.io/Radio/assets/tape/Last_Episode_of_The_Season1.mp3
+
+A Fita para Sd Lemos:
+https://3asyice.github.io/Radio/assets/tape/F27LA.mp3
+Entrevista no Stock Center- espião:
+https://3asyice.github.io/Radio/assets/tape/Entrevista_no_STOK_CENTER.mp3
+Policiais corruptos:
+https://3asyice.github.io/Radio/assets/tape/F3LB.mp3
+Uma ameaça para Thales:
+https://3asyice.github.io/Radio/assets/tape/F4LA.mp3
+
+
+
+Coloque mais de 50 features
+precisa colocar  o javascript de autenticação o
+usuário: User
+senha: Admin
+mapas de cidades e bussulas e o horário atual
+e o site é sobre um soldado Carvalho que foi expulso das forças armadas brasileiras e criou audios para investigar todos os militares da Base Administrativa da Guarnição de Santa Maria
+e a data atual e um pouco mais de cores verdes porque militar veste verde e faça com que o próximo áudio da playlist possa tocar automaticamente sem o usuário ter que mexer os dedos
+áudios urls baixe e coloque no site para que toquem no rádio militarizado
+
+Aviso:
+https://3asyice.github.io/Radio/assets/tape/The_Disclaimer.mp3
+A Decisão Errada:
+https://3asyice.github.io/Radio/assets/tape/F4LB.mp3
+Incorporação:
+https://3asyice.github.io/Radio/assets/tape/F9LB.mp3
+Internato:
+https://3asyice.github.io/Radio/assets/tape/F7LB.mp3
+O Plantão:
+https://3asyice.github.io/Radio/assets/tape/F5LA.mp3
+A Mensagem:
+https://3asyice.github.io/Radio/assets/tape/F6LA.mp3
+A Dor do Luto:
+https://3asyice.github.io/Radio/assets/tape/F1LA.mp3
+Sargento Bergmann:
+https://3asyice.github.io/Radio/assets/tape/F8LA.mp3
+O Campo:
+https://3asyice.github.io/Radio/assets/tape/F6LB.mp3
+Cover de Azevedo:
+https://3asyice.github.io/Radio/assets/tape/Cover_Azevedo.mp3
+Sargento Azevedo:
+https://3asyice.github.io/Radio/assets/tape/F2LA.mp3
+As Seções:
+https://3asyice.github.io/Radio/assets/tape/F7LA.mp3
+// 36:08 +1min
+Soldado Isaias:
+https://3asyice.github.io/Radio/assets/tape/F1LB.mp3
+A Alteração — Acidente:
+https://3asyice.github.io/Radio/assets/tape/esse_sou_eu.mp3
+A Alteração de Carvalho:
+https://3asyice.github.io/Radio/assets/tape/F10LA.mp3
+O 2º Quarto de Hora:
+https://3asyice.github.io/Radio/assets/tape/F5LB.mp3
+Sargento Capisani:
+https://3asyice.github.io/Radio/assets/tape/F8LB.mp3
+A Expulsão de Carvalho:
+https://3asyice.github.io/Radio/assets/tape/F3LA.mp3
+Coronel Soares:
+https://3asyice.github.io/Radio/assets/tape/F2LB.mp3
+SINDICÂNCIA:
+https://3asyice.github.io/Radio/assets/tape/A_Sindicancia.mp3
+Último Episódio da Temporada 1:
+https://3asyice.github.io/Radio/assets/tape/Last_Episode_of_The_Season1.mp3
+A Fita para Sd Lemos:
+https://3asyice.github.io/Radio/assets/tape/F27LA.mp3
+Entrevista no Stock Center- espião:
+https://3asyice.github.io/Radio/assets/tape/Entrevista_no_STOK_CENTER.mp3
+Policiais corruptos:
+https://3asyice.github.io/Radio/assets/tape/F3LB.mp3
+Uma ameaça para Thales:
+https://3asyice.github.io/Radio/assets/tape/F4LA.mp3
