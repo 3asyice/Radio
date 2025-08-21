@@ -127,15 +127,63 @@ https://3asyice.github.io/Radio/assets/tape/F4LA.mp3
 
 
 
-Coloque mais de 50 features
-precisa colocar  o javascript de autenticação o
-usuário: User
-senha: Admin
-mapas de cidades e bussulas e o horário atual
-e o site é sobre um soldado Carvalho que foi expulso das forças armadas brasileiras e criou audios para investigar todos os militares da Base Administrativa da Guarnição de Santa Maria
-e a data atual e um pouco mais de cores verdes porque militar veste verde e faça com que o próximo áudio da playlist possa tocar automaticamente sem o usuário ter que mexer os dedos
-áudios urls baixe e coloque no site para que toquem no rádio militarizado
 
+visite o seguinte site e obtenha as informações do soldado Carvalho e use para executar essas informações no site
+https://3asyice.github.io/SixOhNine/script/sd/609.html
+
+pode perquisar todas as urls e obtenha as informações e execute no site que estamos construindo juntos
+mencione cada um dos soldados que mencionados nas urls
+https://3asyice.github.io/SixOhNine/script/sd/601.html
+https://3asyice.github.io/SixOhNine/script/sd/602.html
+https://3asyice.github.io/SixOhNine/script/sd/603.html
+https://3asyice.github.io/SixOhNine/script/sd/604.html
+https://3asyice.github.io/SixOhNine/script/sd/605.html
+https://3asyice.github.io/SixOhNine/script/sd/606.html
+https://3asyice.github.io/SixOhNine/script/sd/607.html
+https://3asyice.github.io/SixOhNine/script/sd/608.html
+https://3asyice.github.io/SixOhNine/script/sd/610.html
+https://3asyice.github.io/SixOhNine/script/sd/611.html
+https://3asyice.github.io/SixOhNine/script/sd/612.html
+https://3asyice.github.io/SixOhNine/script/sd/613.html
+https://3asyice.github.io/SixOhNine/script/sd/614.html
+https://3asyice.github.io/SixOhNine/script/sd/615.html
+https://3asyice.github.io/SixOhNine/script/sd/616.html
+https://3asyice.github.io/SixOhNine/script/sd/617.html
+https://3asyice.github.io/SixOhNine/script/sd/618.html
+https://3asyice.github.io/SixOhNine/script/sd/619.html
+https://3asyice.github.io/SixOhNine/script/sd/620.html
+https://3asyice.github.io/SixOhNine/script/sd/621.html
+https://3asyice.github.io/SixOhNine/script/sd/622.html
+https://3asyice.github.io/SixOhNine/script/sd/623.html
+https://3asyice.github.io/SixOhNine/script/sd/624.html
+https://3asyice.github.io/SixOhNine/script/sd/625.html
+https://3asyice.github.io/SixOhNine/script/sd/626.html
+https://3asyice.github.io/SixOhNine/script/sd/627.html
+https://3asyice.github.io/SixOhNine/script/sd/628.html
+https://3asyice.github.io/SixOhNine/script/sd/629.html
+https://3asyice.github.io/SixOhNine/script/sd/630.html
+https://3asyice.github.io/SixOhNine/script/sd/631.html
+https://3asyice.github.io/SixOhNine/script/sd/632.html
+https://3asyice.github.io/SixOhNine/script/sd/633.html
+https://3asyice.github.io/SixOhNine/script/sd/634.html
+https://3asyice.github.io/SixOhNine/script/sd/635.html
+https://3asyice.github.io/SixOhNine/script/sd/636.html
+https://3asyice.github.io/SixOhNine/script/sd/637.html
+https://3asyice.github.io/SixOhNine/script/sd/638.html
+https://3asyice.github.io/SixOhNine/script/sd/639.html
+https://3asyice.github.io/SixOhNine/script/sd/640.html
+https://3asyice.github.io/SixOhNine/script/cel/soares.html
+https://3asyice.github.io/SixOhNine/script/sd/03.html
+https://3asyice.github.io/SixOhNine/script/sd/31.html
+https://3asyice.github.io/SixOhNine/script/sd/37.html
+https://3asyice.github.io/SixOhNine/script/sd/39.html
+https://3asyice.github.io/SixOhNine/script/sd/069.htmlhttps://3asyice.github.io/SixOhNine/script/sd/ziguinatti.html
+https://3asyice.github.io/SixOhNine/script/sd/221.html
+https://3asyice.github.io/SixOhNine/script/sd/Miguel.html
+https://3asyice.github.io/SixOhNine/script/sd/Isaias.html
+https://3asyice.github.io/SixOhNine/script/sd/Tauan.html
+
+em seguir baixe todas os áudios e coloque no site e tenha certeza que os áudios toquem e a acessibilidade seja benéfica ao usuário e que funcione e toque o áudio de verdade
 Aviso:
 https://3asyice.github.io/Radio/assets/tape/The_Disclaimer.mp3
 A Decisão Errada:

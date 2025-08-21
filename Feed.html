@@ -155,22 +155,49 @@ controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
 preload="auto"><source src="https://files.catbox.moe/75u14d.mp4" type="video/mp4"></video>
 </center>
 </div>
-
+<!-- 
+recruits story
+https://dn721700.ca.archive.org/0/items/a-historia-de-um-recruta-o-filme/A%20HIST%C3%93RIA%20DE%20UM%20RECRUTA%20-%20O%20FILME.mp4
+-->
 <div class="feed">
   <p><span>📹</span> video.mp4</p>
 <p class="text">
-História de um Recruta</p>
+Filmes (movie)</p>
 <center>
-<video autoplay
-muted
-loop
-controls
-disablePictureInPicture
-controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
-preload="auto"><source src="https://dn721700.ca.archive.org/0/items/a-historia-de-um-recruta-o-filme/A%20HIST%C3%93RIA%20DE%20UM%20RECRUTA%20-%20O%20FILME.mp4" type="video/mp4"></video>
+<video id="player" autoplay muted controls
+  disablePictureInPicture
+  controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
+  preload="auto">
+</video>
+
+<script>
+  // Lista de URLs dos vídeos
+// https://archive.org/download/movies_202211
+  const playlist = [
+"https://dn721504.ca.archive.org/0/items/fd_movies_all/Final.Destination.2000.720p.BrRip.x264.YIFY.mp4",
+"https://ia801002.us.archive.org/3/items/fd_movies_all/Final.Destination.2.2003.720p.BrRip.x264.YIFY.mp4",
+"https://dn721504.ca.archive.org/0/items/fd_movies_all/Final.Destination.3.2006.BrRip.x264.YIFY.mp4",
+"https://ia801002.us.archive.org/3/items/fd_movies_all/The.Final.Destination.2009.720p.BrRip.x264.YIFY.mp4",
+"https://dn721504.ca.archive.org/0/items/fd_movies_all/Final.Destination.5%20.2011.720p.BrRip.x264.YIFY.mp4",
+"https://dn720004.ca.archive.org/0/items/movies_202211/Hacked.mp4"
+  ];
+
+  let index = 0;
+  const player = document.getElementById("player");
+
+  // Carrega o primeiro vídeo
+  player.src = playlist[index];
+
+  // Quando terminar, troca para o próximo
+  player.addEventListener("ended", () => {
+    index = (index + 1) % playlist.length; // volta para 0 depois do último
+    player.src = playlist[index];
+    player.play();
+  });
+</script>
+
 </center>
 </div>
-
 
 <div class="feed">
   <p><span>📹</span> video.mp4</p>
