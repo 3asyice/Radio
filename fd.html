@@ -1,335 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análise do Código - Rádio FM 609</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .issue-card {
-            background: #f8f9fa;
-            border-left: 5px solid;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .issue-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        
-        .critical {
-            border-color: #e74c3c;
-            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
-        }
-        
-        .warning {
-            border-color: #f39c12;
-            background: linear-gradient(135deg, #fffbf0 0%, #fef5e7 100%);
-        }
-        
-        .info {
-            border-color: #3498db;
-            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
-        }
-        
-        .good {
-            border-color: #27ae60;
-            background: linear-gradient(135deg, #f0fff4 0%, #e8f5e8 100%);
-        }
-        
-        .issue-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .issue-icon {
-            font-size: 1.5em;
-            margin-right: 10px;
-        }
-        
-        .issue-title {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        
-        .code-block {
-            background: #2d3748;
-            color: #e2e8f0;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            overflow-x: auto;
-        }
-        
-        .before-after {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 15px 0;
-        }
-        
-        .before, .after {
-            padding: 15px;
-            border-radius: 8px;
-        }
-        
-        .before {
-            background: #ffe6e6;
-            border: 1px solid #ff9999;
-        }
-        
-        .after {
-            background: #e6ffe6;
-            border: 1px solid #99ff99;
-        }
-        
-        .summary {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        .priority-high { border-left-color: #e74c3c; }
-        .priority-medium { border-left-color: #f39c12; }
-        .priority-low { border-left-color: #3498db; }
-        
-        ul {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-        
-        li {
-            margin: 5px 0;
-        }
-        
-        @media (max-width: 768px) {
-            .before-after {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                margin: 10px;
-                border-radius: 15px;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>📻 Análise: Rádio FM 609</h1>
-            <p>Revisão técnica do seu código HTML/CSS/JS</p>
-        </div>
-        
-        <div class="content">
-            <div class="summary">
-                <h2>📊 Resumo Geral</h2>
-                <p>Encontrei <strong>8 áreas principais</strong> para melhoria no seu código. A maioria são questões de boas práticas e otimização. O projeto tem uma base sólida!</p>
-            </div>
-            
-            <div class="issue-card critical">
-                <div class="issue-header">
-                    <span class="issue-icon">🚨</span>
-                    <span class="issue-title">Meta Tags Duplicadas/Conflitantes</span>
-                </div>
-                <p><strong>Problema:</strong> Você tem meta tags duplicadas e conflitantes de charset e Content-Type.</p>
-                <div class="before-after">
-                    <div class="before">
-                        <strong>❌ Antes:</strong>
-                        <div class="code-block">
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/&gt;
-&lt;meta http-equiv="Content-Type" content="text/html;charset=windows-1251"/&gt;
-                        </div>
-                    </div>
-                    <div class="after">
-                        <strong>✅ Depois:</strong>
-                        <div class="code-block">
-&lt;meta charset="UTF-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="issue-card warning">
-                <div class="issue-header">
-                    <span class="issue-icon">⚠️</span>
-                    <span class="issue-title">CSS Desorganizado</span>
-                </div>
-                <p><strong>Problema:</strong> CSS espalhado em 3 blocos &lt;style&gt; diferentes no HTML.</p>
-                <ul>
-                    <li>Dificulta manutenção e organização</li>
-                    <li>Aumenta o tamanho do HTML desnecessariamente</li>
-                    <li>Mistura estrutura com apresentação</li>
-                </ul>
-                <p><strong>💡 Solução:</strong> Mover todo CSS para o arquivo main.css existente.</p>
-            </div>
-            
-            <div class="issue-card warning">
-                <div class="issue-header">
-                    <span class="issue-icon">🔧</span>
-                    <span class="issue-title">HTML Semântico</span>
-                </div>
-                <p><strong>Problemas encontrados:</strong></p>
-                <ul>
-                    <li>Uso de &lt;center&gt; (tag obsoleta)</li>
-                    <li>Falta de estrutura semântica (main, section, article)</li>
-                    <li>Links sem href adequado</li>
-                </ul>
-                <div class="before-after">
-                    <div class="before">
-                        <strong>❌ Antes:</strong>
-                        <div class="code-block">
-&lt;center&gt;
-&lt;video autoplay...&gt;
-&lt;/center&gt;
-                        </div>
-                    </div>
-                    <div class="after">
-                        <strong>✅ Depois:</strong>
-                        <div class="code-block">
-&lt;div class="video-container"&gt;
-&lt;video autoplay...&gt;
-&lt;/div&gt;
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>INFORMATION GATHERING</title>
+    
+    <meta name="description" content="Access prohibit for non allowed agents." />
+    <meta name="author" content="anonymous" />
+    <meta name="robots" content="index, follow" />
+    <meta name="copyright" content="InGT© GTFO" />
 
-.video-container {
-  text-align: center;
+<meta property="og:image:url" content=""/>
+<meta property="og:description" content="An information gathering page on the wide web world."/>
+<meta property="og:image:width" content="400"/>
+<meta property="og:image:height" content="400"/>
+<meta property="og:image:alt" content="page icon"/>
+<meta property="og:image:type" content="?"/>
+
+<link rel="stylesheet" href="css/index.css">
+</header>
+<style>
+*{
+box-sizing: border-box;
 }
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="issue-card warning">
-                <div class="issue-header">
-                    <span class="issue-icon">🎥</span>
-                    <span class="issue-title">Vídeos com Autoplay</span>
-                </div>
-                <p><strong>Problema:</strong> Autoplay pode ser problemático para UX e acessibilidade.</p>
-                <ul>
-                    <li>Consome dados desnecessariamente</li>
-                    <li>Pode ser intrusivo para o usuário</li>
-                    <li>Problemas de acessibilidade</li>
-                </ul>
-                <p><strong>💡 Dica:</strong> Considere remover o autoplay ou adicionar controles de usuário.</p>
-            </div>
-            
-            <div class="issue-card info">
-                <div class="issue-header">
-                    <span class="issue-icon">🔍</span>
-                    <span class="issue-title">SEO e Open Graph</span>
-                </div>
-                <p><strong>Questões encontradas:</strong></p>
-                <ul>
-                    <li>Duas propriedades og:url diferentes (Facebook e Instagram)</li>
-                    <li>Descrição poderia ser mais atrativa</li>
-                    <li>Falta alt text descritivo nas imagens</li>
-                </ul>
-            </div>
-            
-            <div class="issue-card info">
-                <div class="issue-header">
-                    <span class="issue-icon">📱</span>
-                    <span class="issue-title">Responsividade</span>
-                </div>
-                <p><strong>Observações:</strong></p>
-                <ul>
-                    <li>Vídeos com largura fixa (400px) podem quebrar em telas pequenas</li>
-                    <li>Botão "Voltar" fixo pode sobrepor conteúdo</li>
-                    <li>Considere usar max-width: 100% nos vídeos</li>
-                </ul>
-            </div>
-            
-            <div class="issue-card info">
-                <div class="issue-header">
-                    <span class="issue-icon">⚡</span>
-                    <span class="issue-title">Performance</span>
-                </div>
-                <p><strong>Melhorias sugeridas:</strong></p>
-                <ul>
-                    <li>Lazy loading para vídeos: loading="lazy"</li>
-                    <li>Otimizar carregamento do Tailwind (só usar se necessário)</li>
-                    <li>Minificar CSS quando em produção</li>
-                </ul>
-            </div>
-            
-            <div class="issue-card good">
-                <div class="issue-header">
-                    <span class="issue-icon">✅</span>
-                    <span class="issue-title">Pontos Positivos</span>
-                </div>
-                <ul>
-                    <li><strong>Boa estrutura básica</strong> - HTML bem organizado</li>
-                    <li><strong>Design atraente</strong> - Cards com sombras e bordas arredondadas</li>
-                    <li><strong>PWA ready</strong> - Já tem manifest.json</li>
-                    <li><strong>Segurança</strong> - oncontextmenu="return false" para proteger conteúdo</li>
-                    <li><strong>Acessibilidade</strong> - Alt text nas imagens principais</li>
-                </ul>
-            </div>
-            
-            <div class="summary">
-                <h2>🎯 Próximos Passos Recomendados</h2>
-                <p><strong>Prioridade Alta:</strong> Corrigir meta tags e organizar CSS<br>
-                <strong>Prioridade Média:</strong> Melhorar responsividade e semântica<br>
-                <strong>Prioridade Baixa:</strong> Otimizações de performance</p>
-            </div>
-        </div>
-    </div>
+html, body{
+margin:0;
+background: #002613;
+
+}
+
+header {
+text-align: center;
+}
+header img{
+width: 450px;
+height: auto;
+user-select: none;
+-webkit-user-select: none;
+-webkit-user-drag: none;
+-moz-user-focus: none;
+-ms-user-select: none;
+}
+header input{
+border: 1px solid #00FF7F;
+background: #700000;
+box-shadow: 3px 3px 15px #4CE411;
+}
+#search_id {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+.card {
+    background-color: #111;
+    border: 1px solid #00ff00;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    transition: transform 0.2s;
+  }
+.card:hover {
+    transform: scale(1.02);
+  }
+.destaque {
+    border-color: #ff0000;
+    color: #ff4444;
+  }
+</style>
+<body>
+<header>
+<img src="assets/img/img_header.webp" alt="header image" type="image/webp"/>
+<input type="text" name="search" id="search_id" placeholder="Search name..." />
+</header>
+
+
+<section>
+
+<div id="database"></div>
+
+</section>
+
+<footer>
+
+</footer>
+<script type="text/javascript" charset="utf-8" defer async crossorigin="anonymous">
+
+const soldados = [
+{
+img_url: "https://3asyice.github.io/SixOhNine/assets/img/sd/carvalho.jpg",
+nome: "Carvalho",
+numero: "609",
+status: "Desligado",
+fullname: "Guilherme de Abreu Carvalho",
+apelido: "Superman",
+data_nascimento: "27/01/2005",
+setor: "EB F@cil",
+descricao: "Soldado expulso em 11 de julho de 2024 após resultado de sindicância.",
+},
+{
+img_url: "",
+  nome: "Fabian Gabriel Murini Tassinari",
+  numero: "601",
+  status: "Ativo",
+  fullname: "Fabian Gabriel Murini Tassinari",
+  apelido: "",
+  data_nascimento: "10/03/2004",
+  setor: "Hotel de Trânsito",
+  descricao: "Soldado ativo no setor de Hotel de Trânsito.",
+  cor: "#fff" // <-- cor diferente
+}
+];
+
+const db = document.getElementById('database');
+
+function showList(filter = ""){
+db.innerHTML = "";
+soldados
+.filter(s =>
+s.nome.toLowerCase().includes(filter.toLowerCase()) || 
+s.numero.includes(filter)
+)
+
+.forEach(s => {
+const card = document.createElement('div');
+card.className = 'card';
+card.style.borderColor = s.cor;
+card.style.color = s.cor;
+card.style.fontSize = "0.8em";
+card.style.fontFamily = "monospace";
+card.style.color = "green";
+
+if (s.numero === '609') card.classList.add("destaque");
+card.innerHTML = `
+<img style="float:left;margin-right:10px;" width="60px" height="60px" src="${s.img_url}"/> <br>
+  <strong>${s.numero} - ${s.nome}</strong><br>
+  Status: ${s.status}<br>
+  Nome Completo: ${s.fullname}
+  ${s.apelido ? `<br>Apelido: ${s.apelido}` : ""} <br>
+  Nascimento: ${s.data_nascimento}<br>
+  Seção: ${s.setor}<br>
+  Informação: ${s.descricao}
+`;
+db.appendChild(card);
+});}
+
+
+document.getElementById('search_id').addEventListener("input", (e) => {
+  showList(e.target.value);
+});
+showList();
+</script>
 </body>
 </html>
