@@ -89,7 +89,44 @@ border-bottom-left-radius: 16px;
 }
 </style>
 
+<div class="feed">
+  <p><span>📹</span> video.mp4</p>
+<p class="text">
+Lore (tv series) true stories based on true people and events.</p>
+<center>
+<video id="player_lore" autoplay muted controls
+  disablePictureInPicture
+  controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
+  preload="auto">
+</video>
+<script>
+  // Lista de URLs da serie Lore que peguei no archive.org
+// s://archive.org/download/movies_202211 
+// 
+  const playlistLore = [
+"https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E1_They_Made_a_Tonic.ia.mp4",
+"https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E2_Echoes.ia.mp4",
+"https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E3_Black_Stockings.ia.mp4",
+"https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E4_Passing_Notes.ia.mp4"
 
+  ];
+
+  let indexLore = 0;
+  const playerLore = document.getElementById("player_lore");
+
+  // Carrega o primeiro vídeo
+  playerLore.src = playlistLore[indexLore];
+
+  // Quando terminar, troca para o próximo
+  playerLore.addEventListener("ended", () => {
+    indexLore = (indexLore + 1) % playlistLore.length; // volta para 0 depois do último
+    playerLore.src = playlistLore[indexLore];
+    playerLore.play();
+  });
+</script>
+
+</center>
+</div>
 <div class="feed">
   <p><span>🖋️</span> Poema: Hi Loneliness</p>
   <p class="news"> <i>
@@ -208,7 +245,7 @@ https://dn721700.ca.archive.org/0/items/a-historia-de-um-recruta-o-filme/A%20HIS
 <div class="feed">
   <p><span>📹</span> video.mp4</p>
 <p class="text">
-Filmes (movie)</p>
+Black Mirror (tv series) chronological order.</p>
 <center>
 <video id="player" autoplay muted controls
   disablePictureInPicture
