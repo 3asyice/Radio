@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção — Web & Internet (13 termos)</title>
+    <style>
+/* --- Reset / Base --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* --- Container / Header --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+header {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+header h1 { font-size: 2.2rem; margin-bottom: 0.3rem; text-shadow: 2px 2px 6px rgba(0,0,0,0.25); }
+.subtitle { font-size: 1rem; opacity: 0.95; }
+
+/* --- Intro / Section header --- */
+.section-header {
+    background: white;
+    padding: 1.6rem;
+    border-radius: 12px;
+    margin-bottom: 1.4rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+.section-header h2 { color: #667eea; margin-bottom: 0.6rem; }
+.section-header p { color: #444; }
+
+/* --- Grid de termos --- */
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.term-card {
+    background: white;
+    padding: 1.2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+.term-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    border-color: #667eea;
+}
+.term-name { font-weight: 700; color: #667eea; font-size: 1.05rem; margin-bottom: 0.4rem; }
+.term-desc { color: #666; font-size: 0.92rem; }
+
+/* --- Footer --- */
+footer { background: rgba(0,0,0,0.15); color: white; text-align: center; padding: 0.9rem 0; border-radius: 8px; }
+
+/* --- Botão voltar --- */
+.back-button {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.7rem 1.3rem;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 1rem;
+    transition: all 0.25s ease;
+}
+.back-button:hover { background: #5a6fd8; transform: translateY(-3px); }
+
+/* --- Modal --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1100;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.55);
+    backdrop-filter: blur(5px);
+}
+.modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 0;
+    border-radius: 14px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+    position: relative;
+    animation: modalSlideIn 0.28s ease-out;
+}
+@keyframes modalSlideIn {
+    from { opacity: 0; transform: translateY(-40px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.close-button {
+    position: absolute; top: 14px; right: 18px;
+    font-size: 26px; font-weight: bold; color: #777;
+    cursor: pointer; width: 36px; height: 36px;
+    display:flex; align-items:center; justify-content:center; border-radius:50%;
+    transition: all 0.2s ease;
+}
+.close-button:hover { color: #fff; background: #667eea; transform: rotate(90deg); }
+
+/* --- Modal body styles --- */
+#modal-body { padding: 26px; }
+#modal-body h2 { color: #667eea; margin-bottom: 14px; font-size: 1.6rem; border-bottom: 3px solid #667eea; padding-bottom: 8px; }
+.modal-description {
+    font-size: 1.03rem; color: #444; margin-bottom: 18px;
+    padding: 12px; background:#f7f9ff; border-left:4px solid #667eea; border-radius:6px;
+}
+.modal-details h3, .modal-details h4 { color: #667eea; margin-top: 18px; margin-bottom: 8px; }
+.modal-details p, .modal-details li { color: #555; line-height: 1.6; margin-bottom: 8px; }
+.modal-details ul, .modal-details ol { margin-left: 18px; margin-bottom: 10px; }
+
+/* --- Gallery & Video --- */
+.image-gallery { display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; }
+.modal-image { width:150px; height:100px; object-fit:cover; border-radius:8px; border:2px solid #667eea; cursor:pointer; transition: transform 0.22s ease; }
+.modal-image:hover { transform:scale(1.06); }
+.video-container { margin: 14px 0; padding: 12px; background: #fafafa; border-left: 4px solid #ff4444; border-radius:8px; }
+.video-link { color:#ff4444; text-decoration:none; font-weight:700; display:block; margin-bottom:6px; }
+.video-description { color:#666; font-style:italic; font-size:0.95rem; }
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    header h1 { font-size: 1.6rem; }
+    .modal-content { width: 96%; margin:4% auto; max-height: 86vh; }
+    .modal-image { width:120px; height:80px; }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>&#128187; Web & Internet — Glossário (13 termos)</h1>
+            <p class="subtitle">Termos essenciais sobre Web e Internet — clique em qualquer cartão para ver detalhes, imagens e vídeos.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="#" class="back-button" onclick="location.href='index.html'">&larr; Voltar ao Menu Principal</a>
+
+        <div class="section-header">
+            <h2>Seção: Conceitos Básicos da Web</h2>
+            <p>Esta página reúne 13 termos fundamentais relacionados à Web e à Internet. Cada cartão abre um modal com definição, exemplos práticos e links multimídia para aprofundar.</p>
+            <p><em>Dica: pressione ESC para fechar o modal.</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <!-- 13 cartões -->
+            <div class="term-card" onclick="openModal('internet')">
+                <div class="term-name">Internet</div>
+                <div class="term-desc">Rede global de computadores que conecta dispositivos e serviços usando protocolos padronizados.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('web')">
+                <div class="term-name">Web (WWW)</div>
+                <div class="term-desc">Serviço que roda sobre a Internet: páginas e recursos acessados via HTTP/HTTPS e navegadores.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('http')">
+                <div class="term-name">HTTP</div>
+                <div class="term-desc">Protocolo de transferência de hipertexto usado para comunicação entre clientes e servidores web.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('https')">
+                <div class="term-name">HTTPS</div>
+                <div class="term-desc">Versão segura do HTTP, que usa TLS/SSL para criptografar a comunicação.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('url')">
+                <div class="term-name">URL</div>
+                <div class="term-desc">Endereço que localiza um recurso na Web (ex.: https://exemplo.com/pagina).</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('dominio')">
+                <div class="term-name">Domínio</div>
+                <div class="term-desc">Nome legível que representa um endereço na Internet (ex.: exemplo.com) — parte do sistema DNS.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('dns')">
+                <div class="term-name">DNS</div>
+                <div class="term-desc">Sistema de nomes de domínio que traduz domínios em endereços IP.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('html')">
+                <div class="term-name">HTML</div>
+                <div class="term-desc">Linguagem de marcação usada para estruturar o conteúdo das páginas web.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('css')">
+                <div class="term-name">CSS</div>
+                <div class="term-desc">Linguagem para descrever a apresentação (layout, cores, tipografia) do HTML.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('javascript')">
+                <div class="term-name">JavaScript</div>
+                <div class="term-desc">Linguagem de programação para tornar páginas web interativas, no navegador e no servidor.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('tcpip')">
+                <div class="term-name">TCP/IP</div>
+                <div class="term-desc">Conjunto de protocolos básicos da Internet: IP para roteamento e TCP/UDP para transporte.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('isp')">
+                <div class="term-name">ISP</div>
+                <div class="term-desc">Provedor de Serviços de Internet — empresa que conecta residências e empresas à Internet.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('browser')">
+                <div class="term-name">Navegador (Browser)</div>
+                <div class="term-desc">Aplicativo que solicita, recebe e renderiza páginas web (ex.: Chrome, Firefox, Edge, Safari).</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <span class="close-button" onclick="closeModal()" title="Fechar">&times;</span>
+            <div id="modal-body">
+                <!-- Conteúdo será injetado via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 — Glossário Web & Internet — Seção personalizada</p>
+        </div>
+    </footer>
+
+    <script>
+        /* Dados dos termos (textos, imagens, vídeos) */
+        const termData = {
+            'internet': {
+                title: 'Internet',
+                description: 'Rede global de redes que permite comunicação entre milhões de dispositivos usando protocolos padronizados (ex.: TCP/IP).',
+                details: `
+                    <h3>Definição</h3>
+                    <p>A Internet é a infraestrutura global que conecta redes locais, provedores e servidores, permitindo troca de dados entre dispositivos em todo o mundo.</p>
+
+                    <h3>Por que é importante?</h3>
+                    <ul>
+                        <li>Acesso a informação e serviços (web, email, arquivos).</li>
+                        <li>Comunicação em tempo real: voz, vídeo, mensagens.</li>
+                        <li>Base para economia digital: comércio, bancos, plataformas.</li>
+                    </ul>
+
+                    <h3>Imagens:</h3>
+                    <div class="image-gallery">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Internet_map_1024.jpg" alt="Mapa Internet" class="modal-image" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=Internet'">
+                        <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=800&q=80" alt="Cabos de internet" class="modal-image" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=Cables'">
+                    </div>
+
+                    <h3>Vídeo explicativo</h3>
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=9hIQjrMHTv4" target="_blank">&#127909; Como a Internet funciona (vídeo)</a>
+                        <p class="video-description">Vídeo introdutório sobre a infraestrutura da Internet e roteamento.</p>
+                    </div>
+                `
+            },
+
+            'web': {
+                title: 'Web (World Wide Web)',
+                description: 'Sistema de documentos interconectados acessados por navegadores via HTTP/HTTPS — roda sobre a Internet.',
+                details: `
+                    <h3>Definição</h3>
+                    <p>A Web é um serviço da Internet que usa páginas HTML, links e recursos (imagens, scripts) acessíveis por URLs e navegadores.</p>
+
+                    <h3>Componentes principais</h3>
+                    <ul>
+                        <li>Servidores web (hospedam arquivos).</li>
+                        <li>Navegadores (solicitam e exibem páginas).</li>
+                        <li>Protocolos (HTTP/HTTPS) e URLs.</li>
+                    </ul>
+
+                    <h3>Exemplo prático</h3>
+                    <p>Ao digitar uma URL no navegador, ele solicita a página ao servidor via HTTP/HTTPS, que responde com HTML, imagens e scripts.</p>
+
+                    <h3>Imagens & Vídeo</h3>
+                    <div class="image-gallery">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/WWW_logo_by_Robert_Cailliau.svg" alt="WWW logo" class="modal-image" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=WWW'">
+                        <img src="https://images.unsplash.com/photo-1523475496153-3d6ccf2b1c1d?w=800&q=80" alt="Desenvolvimento web" class="modal-image" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=Web+Dev'">
+                    </div>
+
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=J3h4pE6gq5o" target="_blank">&#127909; O que é a Web? (vídeo explicativo)</a>
+                        <p class="video-description">Breve resumo histórico e funcionamento da World Wide Web.</p>
+                    </div>
+                `
+            },
+
+            'http': {
+                title: 'HTTP (Hypertext Transfer Protocol)',
+                description: 'Protocolo de aplicação usado para transferir recursos (HTML, imagens, JSON) entre cliente e servidor.',
+                details: `
+                    <h3>O que é</h3>
+                    <p>HTTP define métodos (GET, POST, PUT, DELETE), códigos de status (200, 404, 500) e cabeçalhos que controlam a comunicação web.</p>
+
+                    <h3>Exemplos de uso</h3>
+                    <ul>
+                        <li>GET /index.html — recuperar uma página.</li>
+                        <li>POST /api/usuario — enviar dados de formulário.</li>
+                    </ul>
+
+                    <h3>Códigos HTTP comuns</h3>
+                    <ul>
+                        <li>200 OK — sucesso</li>
+                        <li>301 / 302 — redirecionamento</li>
+                        <li>404 — não encontrado</li>
+                        <li>500 — erro interno do servidor</li>
+                    </ul>
+
+                    <h3>Recursos</h3>
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=iYM2zFP3Zn0" target="_blank">&#127909; HTTP em 10 minutos (vídeo)</a>
+                        <p class="video-description">Resumo sobre métodos e status codes do HTTP.</p>
+                    </div>
+                `
+            },
+
+            'https': {
+                title: 'HTTPS (HTTP Secure)',
+                description: 'HTTP com camada de segurança (TLS/SSL) para criptografar comunicação entre cliente e servidor.',
+                details: `
+                    <h3>O que muda com HTTPS</h3>
+                    <p>Os dados trafegam criptografados, evitando espionagem e alteração; o certificado digital (X.509) autentica o servidor.</p>
+
+                    <h3>Benefícios</h3>
+                    <ul>
+                        <li>Confidencialidade: criptografia de tráfego.</li>
+                        <li>Integridade: proteção contra alterações.</li>
+                        <li>Autenticação: identidade do servidor via certificado.</li>
+                    </ul>
+
+                    <h3>Como funciona (resumido)</h3>
+                    <ol>
+                        <li>Cliente inicia handshake TLS com o servidor.</li>
+                        <li>Servidor envia certificado; cliente verifica assinatura.</li>
+                        <li>Negociação de chaves simétricas; comunicação criptografada.</li>
+                    </ol>
+
+                    <h3>Vídeo prático</h3>
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=SJJmoDZ3il8" target="_blank">&#127909; TLS & HTTPS explicado</a>
+                        <p class="video-description">Entenda certificados, CA e o handshake TLS.</p>
+                    </div>
+                `
+            },
+
+            'url': {
+                title: 'URL (Uniform Resource Locator)',
+                description: 'Endereço que indica onde um recurso está localizado na Web e como acessá-lo.',
+                details: `
+                    <h3>Formato</h3>
+                    <p>Um URL típico: <code>https://www.exemplo.com:443/caminho/arquivo.html?q=busca#secao</code></p>
+
+                    <h3>Partes importantes</h3>
+                    <ul>
+                        <li>Protocolo (scheme): http, https, ftp</li>
+                        <li>Host / domínio: www.exemplo.com</li>
+                        <li>Porta: :80, :443 (opcional)</li>
+                        <li>Caminho, query string e fragmento</li>
+                    </ul>
+
+                    <h3>Exemplos</h3>
+                    <ul>
+                        <li><code>https://pt.wikipedia.org/wiki/URL</code></li>
+                        <li><code>mailto:contato@exemplo.com</code> (outro tipo de URL)</li>
+                    </ul>
+                `
+            },
+
+            'dominio': {
+                title: 'Domínio',
+                description: 'Nome legível que representa um endereço na Internet, organizado em níveis (TLD, SLD).',
+                details: `
+                    <h3>Estrutura</h3>
+                    <p>Domínios são hierárquicos: <strong>sub.dominio.com</strong>. O TLD é a parte final (.com, .org, .br).</p>
+
+                    <h3>Registro</h3>
+                    <p>Domínios são registrados em registrars autorizados e mapeados via DNS para endereços IP.</p>
+
+                    <h3>Exemplos e usos</h3>
+                    <ul>
+                        <li><strong>dominio.com</strong> — domínio comercial</li>
+                        <li><strong>exemplo.gov.br</strong> — domínio governamental (países usam regras específicas)</li>
+                    </ul>
+
+                    <h3>Vídeo</h3>
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=h3M0QqfZlM0" target="_blank">&#127909; O que é um domínio e como registrá-lo</a>
+                        <p class="video-description">Explica TLDs, registrars e DNS básico.</p>
+                    </div>
+                `
+            },
+
+            'dns': {
+                title: 'DNS (Domain Name System)',
+                description: 'Sistema que traduz nomes de domínio em endereços IP e vice-versa, permitindo localizar servidores na Internet.',
+                details: `
+                    <h3>Como funciona</h3>
+                    <p>Quando você acessa um domínio, o cliente consulta servidores DNS (caching, recursivos, autoritativos) até obter o IP correspondente.</p>
+
+                    <h3>Tipos de registros</h3>
+                    <ul>
+                        <li><strong>A</strong> — mapeia domínio para IPv4</li>
+                        <li><strong>AAAA</strong> — mapeia para IPv6</li>
+                        <li><strong>CNAME</strong> — alias para outro nome</li>
+                        <li><strong>MX</strong> — servidores de email</li>
+                    </ul>
+
+                    <h3>Problemas comuns</h3>
+                    <ul>
+                        <li>Propagação de DNS (atualizações levam tempo)</li>
+                        <li>Cache expirado</li>
+                        <li>Spoofing / ataques DNS (ex.: DNS cache poisoning)</li>
+                    </ul>
+
+                    <h3>Imagens</h3>
+                    <div class="image-gallery">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/DNS_SERVERS.png" alt="Arquitetura DNS" class="modal-image" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=DNS'">
+                    </div>
+
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=72snZctFFtA" target="_blank">&#127909; Como funciona o DNS (vídeo)</a>
+                        <p class="video-description">Explicação passo a passo sobre resolução de nomes e tipos de registros.</p>
+                    </div>
+                `
+            },
+
+            'html': {
+                title: 'HTML (HyperText Markup Language)',
+                description: 'Linguagem de marcação que estrutura o conteúdo das páginas web com elementos como headings, parágrafos e links.',
+                details: `
+                    <h3>O que é</h3>
+                    <p>HTML organiza o conteúdo em tags (ex.: <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;a&gt;</code>) que os navegadores interpretam e exibem.</p>
+
+                    <h3>Exemplo simples</h3>
+                    <pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;Ex&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;&lt;h1&gt;Olá&lt;/h1&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                    <h3>Relacionamento</h3>
+                    <p>HTML fornece a estrutura; CSS controla o visual; JavaScript adiciona comportamento.</p>
+
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=pQN-pnXPaVg" target="_blank">&#127909; HTML para iniciantes (tutorial)</a>
+                        <p class="video-description">Rápido guia para começar a escrever páginas HTML.</p>
+                    </div>
+                `
+            },
+
+            'css': {
+                title: 'CSS (Cascading Style Sheets)',
+                description: 'Linguagem usada para definir estilos (cores, layout, fontes) e tornar páginas visualmente atraentes.',
+                details: `
+                    <h3>O que faz</h3>
+                    <p>CSS separa apresentação de conteúdo: você define regras que afetam seletores (elementos, classes, ids).</p>
+
+                    <h3>Conceitos comuns</h3>
+                    <ul>
+                        <li>Boxes, display (block/inline/flex/grid)</li>
+                        <li>Selectors (classe, id, pseudo-classes)</li>
+                        <li>Responsividade (media queries)</li>
+                    </ul>
+
+                    <h3>Exemplo</h3>
+                    <pre><code>h1 { color: #667eea; font-size: 2rem; }
+.container { display: grid; gap: 1rem; }</code></pre>
+
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=1Rs2ND1ryYc" target="_blank">&#127909; CSS moderno: Flexbox & Grid</a>
+                        <p class="video-description">Aprenda layout moderno com exemplos práticos.</p>
+                    </div>
+                `
+            },
+
+            'javascript': {
+                title: 'JavaScript',
+                description: 'Linguagem de programação que roda no navegador (e em servidores) para criar interatividade e lógica em aplicações web.',
+                details: `
+                    <h3>Onde roda</h3>
+                    <p>Principalmente em navegadores (V8, SpiderMonkey) e no servidor (Node.js) — manipula DOM, eventos e faz chamadas de rede.</p>
+
+                    <h3>Uso comum</h3>
+                    <ul>
+                        <li>Manipular o DOM (atualizar conteúdo dinâmico)</li>
+                        <li>Consumir APIs via fetch / XMLHttpRequest</li>
+                        <li>Aplicações SPA com frameworks (React, Vue, Angular)</li>
+                    </ul>
+
+                    <h3>Exemplo</h3>
+                    <pre><code>document.querySelector('#btn').addEventListener('click', () =&gt; alert('Olá'));</code></pre>
+
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=upDLs1sn7g4" target="_blank">&#127909; JavaScript em 20 minutos</a>
+                        <p class="video-description">Introdução aos conceitos básicos de JS e manipulação de DOM.</p>
+                    </div>
+                `
+            },
+
+            'tcpip': {
+                title: 'TCP/IP',
+                description: 'Conjunto de protocolos fundamentais da Internet: IP para endereçamento/roteamento e TCP/UDP para transporte de dados.',
+                details: `
+                    <h3>Camadas (resumidas)</h3>
+                    <p>TCP/IP geralmente é apresentado em 4 camadas: Aplicação, Transporte (TCP/UDP), Internet (IP) e Acesso à Rede (Ethernet/Wi-Fi).</p>
+
+                    <h3>Diferenças TCP x UDP</h3>
+                    <ul>
+                        <li><strong>TCP</strong>: conexão orientada, confiável, reenvio e controle de fluxo.</li>
+                        <li><strong>UDP</strong>: sem conexão, baixo overhead, ideal para streaming e jogos.</li>
+                    </ul>
+
+                    <h3>Exemplos de protocolos</h3>
+                    <ul>
+                        <li>IP, ICMP, ARP, TCP, UDP, HTTP, DNS</li>
+                    </ul>
+
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=pCZ0J3V2mUs" target="_blank">&#127909; TCP vs UDP explicado</a>
+                        <p class="video-description">Diferenças principais e quando usar cada um.</p>
+                    </div>
+                `
+            },
+
+            'isp': {
+                title: 'ISP (Internet Service Provider)',
+                description: 'Empresas que fornecem conexão à Internet para residências, empresas e provedores menores.',
+                details: `
+                    <h3>O que faz um ISP</h3>
+                    <p>Fornece acesso físico (fibra, cabo, ADSL, rádio) e serviços associados (IP público, DNS, e-mail, hospedagem).</p>
+
+                    <h3>Modelos de serviço</h3>
+                    <ul>
+                        <li>Residencial (velocidade compartilhada)</li>
+                        <li>Empresarial (SLA, IP fixo)</li>
+                        <li>Data centers / backbone (provedores maiores)</li>
+                    </ul>
+
+                    <h3>Questões práticas</h3>
+                    <ul>
+                        <li>Capacidade de tráfego / limite de dados</li>
+                        <li>Latência e qualidade de atendimento</li>
+                        <li>Políticas de privacidade e logs</li>
+                    </ul>
+                `
+            },
+
+            'browser': {
+                title: 'Navegador (Browser)',
+                description: 'Aplicação que solicita páginas via HTTP/HTTPS, interpreta HTML/CSS/JS e renderiza o conteúdo para o usuário.',
+                details: `
+                    <h3>Funções principais</h3>
+                    <ul>
+                        <li>Interpretar e renderizar HTML/CSS</li>
+                        <li>Executar JavaScript (engine: V8, SpiderMonkey)</li>
+                        <li>Gerenciar segurança (sandbox, CORS, certificação)</li>
+                    </ul>
+
+                    <h3>Componentes</h3>
+                    <ul>
+                        <li>Motor de renderização (layout e painting)</li>
+                        <li>Engine JavaScript</li>
+                        <li>Interface do usuário (barra de endereços, abas)</li>
+                    </ul>
+
+                    <h3>Vídeo</h3>
+                    <div class="video-container">
+                        <a class="video-link" href="https://www.youtube.com/watch?v=8kFZ8kz7k6M" target="_blank">&#127909; Como os navegadores funcionam</a>
+                        <p class="video-description">Visão técnica de como páginas são processadas do request ao paint.</p>
+                    </div>
+                `
+            }
+        };
+
+        /* Modal control */
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+
+            if (!term) return;
+
+            modalBody.innerHTML = `
+                <h2 id="modal-title">${term.title}</h2>
+                <p class="modal-description"><strong>${term.description}</strong></p>
+                <div class="modal-details">${term.details}</div>
+            `;
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            // foco para acessibilidade
+            setTimeout(() => {
+                const closeBtn = document.querySelector('.close-button');
+                if (closeBtn) closeBtn.focus();
+            }, 100);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+        }
+
+        // fechar clicando fora
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) closeModal();
+        }
+
+        // ESC fecha modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
