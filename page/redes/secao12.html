@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção — Ferramentas e Diagnóstico (8 termos)</title>
+    <style>
+        /* --- Reset / Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #667eea 100%);
+            min-height: 100vh;
+        }
+
+        /* --- Container / Header --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.3rem; text-shadow: 2px 2px 6px rgba(0,0,0,0.25); }
+        .subtitle { font-size: 1rem; opacity: 0.95; }
+
+        /* --- Intro / Section header --- */
+        .section-header {
+            background: white;
+            padding: 1.6rem;
+            border-radius: 12px;
+            margin-bottom: 1.4rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .section-header h2 { color: #667eea; margin-bottom: 0.6rem; }
+        .section-header p { color: #444; }
+
+        /* --- Grid de termos --- */
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .term-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .term-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+            border-color: #667eea;
+        }
+        .term-name { font-weight: 700; color: #667eea; font-size: 1.05rem; margin-bottom: 0.4rem; }
+        .term-desc { color: #666; font-size: 0.92rem; }
+
+        /* --- Footer --- */
+        footer { background: rgba(0,0,0,0.15); color: white; text-align: center; padding: 0.9rem 0; border-radius: 8px; }
+
+        /* --- Botão voltar --- */
+        .back-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.7rem 1.3rem;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 1rem;
+            transition: all 0.25s ease;
+        }
+        .back-button:hover { background: #667eea; transform: translateY(-3px); }
+
+        /* --- Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1100;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.55);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 14px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+            position: relative;
+            animation: modalSlideIn 0.28s ease-out;
+        }
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-40px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .close-button {
+            position: absolute; top: 14px; right: 18px;
+            font-size: 26px; font-weight: bold; color: #777;
+            cursor: pointer; width: 36px; height: 36px;
+            display:flex; align-items:center; justify-content:center; border-radius:50%;
+            transition: all 0.2s ease;
+        }
+        .close-button:hover { color: #fff; background: #667eea; transform: rotate(90deg); }
+
+        /* --- Modal body styles --- */
+        #modal-body { padding: 26px; }
+        #modal-body h2 { color: #667eea; margin-bottom: 14px; font-size: 1.6rem; border-bottom: 3px solid #667eea; padding-bottom: 8px; }
+        .modal-description {
+            font-size: 1.03rem; color: #444; margin-bottom: 18px;
+            padding: 12px; background:#f7f9ff; border-left:4px solid #667eea; border-radius:6px;
+        }
+        .modal-details h3, .modal-details h4 { color: #667eea; margin-top: 18px; margin-bottom: 8px; }
+        .modal-details p, .modal-details li { color: #555; line-height: 1.6; margin-bottom: 8px; }
+        .modal-details ul, .modal-details ol { margin-left: 18px; margin-bottom: 10px; }
+
+        /* --- Gallery & Video --- */
+        .image-gallery { display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; }
+        .modal-image { width:150px; height:100px; object-fit:cover; border-radius:8px; border:2px solid #667eea; cursor:pointer; transition: transform 0.22s ease; }
+        .modal-image:hover { transform:scale(1.06); }
+        .video-container { margin: 14px 0; padding: 12px; background: #fafafa; border-left: 4px solid #ff4444; border-radius:8px; }
+        .video-link { color:#ff4444; text-decoration:none; font-weight:700; display:block; margin-bottom:6px; }
+        .video-description { color:#666; font-style:italic; font-size:0.95rem; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6rem; }
+            .modal-content { width: 96%; margin:4% auto; max-height: 86vh; }
+            .modal-image { width:120px; height:80px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>&#128187; Ferramentas & Diagnóstico — Glossário (8 termos)</h1>
+            <p class="subtitle">Principais comandos e ferramentas para diagnóstico de redes — clique em qualquer cartão para detalhes.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="#" class="back-button" onclick="location.href='index.html'">&larr; Voltar ao Menu Principal</a>
+
+        <div class="section-header">
+            <h2>Seção: Ferramentas de Diagnóstico</h2>
+            <p>Esta página reúne 8 termos essenciais para análise de redes e conectividade. Clique nos cartões para ver definições, exemplos e vídeos explicativos.</p>
+            <p><em>Dica: pressione ESC para fechar o modal.</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('ping')">
+                <div class="term-name">Ping</div>
+                <div class="term-desc">Comando que testa a conectividade entre dois dispositivos na rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('tracert')">
+                <div class="term-name">Tracert</div>
+                <div class="term-desc">Rastreia o caminho dos pacotes até um destino, mostrando cada salto.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('nslookup')">
+                <div class="term-name">Nslookup</div>
+                <div class="term-desc">Ferramenta para consultar registros DNS de domínios.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ipconfig')">
+                <div class="term-name">Ipconfig</div>
+                <div class="term-desc">Exibe informações de configuração de rede do dispositivo.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('netstat')">
+                <div class="term-name">Netstat</div>
+                <div class="term-desc">Mostra conexões de rede ativas e portas em uso.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('pathping')">
+                <div class="term-name">Pathping</div>
+                <div class="term-desc">Combina ping e tracert, mostrando estatísticas detalhadas de cada salto.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('telnet')">
+                <div class="term-name">Telnet</div>
+                <div class="term-desc">Protocolo para acessar remotamente dispositivos e testar portas TCP.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('wireshark')">
+                <div class="term-name">Wireshark</div>
+                <div class="term-desc">Ferramenta gráfica de captura e análise de pacotes de rede.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <span class="close-button" onclick="closeModal()" title="Fechar">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 — Glossário Ferramentas & Diagnóstico — Seção personalizada</p>
+        </div>
+    </footer>
+
+    <script>
+        const termData = {
+            ping: {
+                title: 'Ping',
+                description: 'Comando que envia pacotes ICMP para verificar conectividade com outro host.',
+                details: `<h3>Exemplo de uso</h3>
+                          <pre><code>ping 8.8.8.8</code></pre>
+                          <h3>Propósito</h3>
+                          <p>Determina se um host está acessível e mede o tempo de resposta.</p>`
+            },
+            tracert: {
+                title: 'Tracert',
+                description: 'Rastreia a rota dos pacotes até o host destino mostrando cada salto.',
+                details: `<h3>Exemplo</h3>
+                          <pre><code>tracert google.com</code></pre>
+                          <p>Útil para identificar problemas de rota e latência na rede.</p>`
+            },
+            nslookup: {
+                title: 'Nslookup',
+                description: 'Consulta registros DNS de domínios.',
+                details: `<h3>Exemplo</h3>
+                          <pre><code>nslookup exemplo.com</code></pre>
+                          <p>Verifica o IP associado a um domínio ou registros MX.</p>`
+            },
+            ipconfig: {
+                title: 'Ipconfig',
+                description: 'Mostra informações de rede do dispositivo (IP, máscara, gateway).',
+                details: `<h3>Exemplo</h3>
+                          <pre><code>ipconfig /all</code></pre>
+                          <p>Permite diagnosticar problemas de configuração de rede local.</p>`
+            },
+            netstat: {
+                title: 'Netstat',
+                description: 'Exibe conexões de rede, portas abertas e estatísticas de tráfego.',
+                details: `<h3>Exemplo</h3>
+                          <pre><code>netstat -an</code></pre>
+                          <p>Ajuda a identificar serviços ativos e conexões suspeitas.</p>`
+            },
+            pathping: {
+                title: 'Pathping',
+                description: 'Comando que combina ping e tracert, analisando cada salto detalhadamente.',
+                details: `<h3>Exemplo</h3>
+                          <pre><code>pathping 8.8.8.8</code></pre>
+                          <p>Fornece estatísticas de perda de pacotes em cada roteador do caminho.</p>`
+            },
+            telnet: {
+                title: 'Telnet',
+                description: 'Protocolo para conexão remota em TCP e teste de portas.',
+                details: `<h3>Exemplo</h3>
+                          <pre><code>telnet exemplo.com 80</code></pre>
+                          <p>Usado para testar serviços remotos e diagnosticar portas abertas.</p>`
+            },
+            wireshark: {
+                title: 'Wireshark',
+                description: 'Ferramenta gráfica para captura e análise de pacotes de rede.',
+                details: `<h3>Funções</h3>
+                          <ul>
+                              <li>Captura de pacotes em tempo real</li>
+                              <li>Análise de protocolos</li>
+                              <li>Filtragem de tráfego</li>
+                          </ul>`
+            }
+        };
+
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            if (!term) return;
+            modalBody.innerHTML = `
+                <h2 id="modal-title">${term.title}</h2>
+                <p class="modal-description"><strong>${term.description}</strong></p>
+                <div class="modal-details">${term.details}</div>
+            `;
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => { document.querySelector('.close-button').focus(); }, 100);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('modal')) closeModal();
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
