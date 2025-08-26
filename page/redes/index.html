@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gloss&aacute;rio de Redes de Computadores</title>
+    <link rel="stylesheet" href="styles.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.intro {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.intro h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+.menu-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.menu-item p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.term-count {
+    background: #667eea;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+footer {
+    background: rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Estilos para páginas de seção */
+.section-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.section-header h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.term-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.term-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.term-name {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.term-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+/* Estilos para galeria de imagens */
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.modal-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-image:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para container de vídeo */
+.video-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border-left: 4px solid #ff4444;
+}
+
+.video-link {
+    color: #ff4444;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+.video-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Responsividade para imagens */
+@media (max-width: 768px) {
+    .image-gallery {
+        justify-content: center;
+    }
+
+    .modal-image {
+        width: 120px;
+        height: 80px;
+    }
+}
+  </style>
+    <style>
+        /* Estilos para o sistema de login */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .login-input {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .login-button {
+            padding: 0.8rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background: #0056b3;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .content-locked {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        .logout-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 999;
+        }
+
+        .logout-button:hover {
+            background: #c82333;
+        }
+
+        .session-info {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 0.5rem 1rem;
+            background: #28a745;
+            color: white;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay de Login -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-container">
+            <h2>&#128274; Acesso ao Gloss&aacute;rio</h2>
+            <p>Digite suas credenciais para acessar o conte&uacute;do:</p>
+            <form class="login-form" onsubmit="return login(event)">
+                <input 
+                    type="text" 
+                    id="username" 
+                    class="login-input" 
+                    placeholder="Usu&aacute;rio" 
+                    required
+                >
+                <input 
+                    type="password" 
+                    id="password" 
+                    class="login-input" 
+                    placeholder="Senha" 
+                    required
+                >
+                <button type="submit" class="login-button">Entrar</button>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </form>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 1rem;">
+                &#9201; Sess&atilde;o expira em 60 minutos
+            </p>
+        </div>
+    </div>
+
+    <!-- Informa��es da Sess�o -->
+    <div id="sessionInfo" class="session-info" style="display: none;">
+        &#9201; Sess&atilde;o: <span id="timeRemaining"></span>
+    </div>
+
+    <!-- Bot�o de Logout -->
+    <button id="logoutButton" class="logout-button" onclick="logout()" style="display: none;">
+        Sair
+    </button>
+
+    <!-- Conte�do Principal -->
+    <div id="mainContent" class="content-locked">
+        <header>
+            <div class="container">
+                <h1>&#128225; Gloss&aacute;rio de Redes de Computadores</h1>
+                <p class="subtitle">Curso T&eacute;cnico em Inform&aacute;tica ETE 25 de Julho</p>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="intro">
+                <h2>&#127919; Bem-vindos ao Start para o Mundo das Redes!</h2>
+                <p><strong>Prof. Evandro Blume</strong></p>
+                <p>Este gloss&aacute;rio cont&eacute;m todos os termos fundamentais que voc&ecirc;s precisam conhecer para dominar as redes de computadores. Cada se&ccedil;&atilde;o foi cuidadosamente organizada para facilitar o aprendizado progressivo.</p>
+            </div>
+
+            <div class="menu-grid">
+                <a href="secao1.html" class="menu-item">
+                    <div class="menu-icon">&#127959;</div>
+                    <h3>1. Fundamentos de Redes</h3>
+                    <p>Conceitos b&aacute;sicos, tipos de rede e topologias</p>
+                    <span class="term-count">22 termos</span>
+                </a>
+
+                <a href="secao2.html" class="menu-item">
+                    <div class="menu-icon">&#127991;</div>
+                    <h3>2. Endere&ccedil;amento e Protocolos</h3>
+                    <p>IP, MAC, protocolos de comunica&ccedil;&atilde;o</p>
+                    <span class="term-count">22 termos</span>
+                </a>
+
+                <a href="secao3.html" class="menu-item">
+                    <div class="menu-icon">&#128295;</div>
+                    <h3>3. Equipamentos de Rede</h3>
+                    <p>Switches, roteadores, access points</p>
+                    <span class="term-count">13 termos</span>
+                </a>
+
+                <a href="secao4.html" class="menu-item">
+                    <div class="menu-icon">&#128268;</div>
+                    <h3>4. Meios de Transmiss&atilde;o</h3>
+                    <p>Cabos, fibras &oacute;pticas, conectores</p>
+                    <span class="term-count">17 termos</span>
+                </a>
+
+                <a href="secao5.html" class="menu-item">
+                    <div class="menu-icon">&#128225;</div>
+                    <h3>5. Comunica&ccedil;&atilde;o e Transmiss&atilde;o</h3>
+                    <p>Tipos de comunica&ccedil;&atilde;o, largura de banda</p>
+                    <span class="term-count">15 termos</span>
+                </a>
+
+                <a href="secao6.html" class="menu-item">
+                    <div class="menu-icon">&#128246;</div>
+                    <h3>6. Tecnologias Wireless</h3>
+                    <p>Wi-Fi, frequ&ecirc;ncias, seguran&ccedil;a wireless</p>
+                    <span class="term-count">12 termos</span>
+                </a>
+
+                <a href="secao7.html" class="menu-item">
+                    <div class="menu-icon">&#127760;</div>
+                    <h3>7. Tecnologias M&oacute;veis e Fibra</h3>
+                    <p>3G, 4G, FTTH, tecnologias PON</p>
+                    <span class="term-count">13 termos</span>
+                </a>
+
+                <a href="secao8.html" class="menu-item">
+                    <div class="menu-icon">&#9881;</div>
+                    <h3>8. Servi&ccedil;os de Rede</h3>
+                    <p>DNS, DHCP, QoS, firewall</p>
+                    <span class="term-count">12 termos</span>
+                </a>
+
+                <a href="secao9.html" class="menu-item">
+                    <div class="menu-icon">&#127757;</div>
+                    <h3>9. Protocolos e Servi&ccedil;os de Aplica&ccedil;&atilde;o</h3>
+                    <p>HTTP, FTP, SMTP, VoIP</p>
+                    <span class="term-count">10 termos</span>
+                </a>
+
+                <a href="secao10.html" class="menu-item">
+                    <div class="menu-icon">&#128187;</div>
+                    <h3>10. Web e Internet</h3>
+                    <p>Navega&ccedil;&atilde;o, sites, cloud computing</p>
+                    <span class="term-count">13 termos</span>
+                </a>
+
+                <a href="secao11.html" class="menu-item">
+                    <div class="menu-icon">&#128506;</div>
+                    <h3>11. Roteamento e Conectividade</h3>
+                    <p>Rotas, backbone, conectividade</p>
+                    <span class="term-count">11 termos</span>
+                </a>
+
+                <a href="secao12.html" class="menu-item">
+                    <div class="menu-icon">&#128269;</div>
+                    <h3>12. Ferramentas e Diagn&oacute;stico</h3>
+                    <p>Ping, tracert, ferramentas de teste</p>
+                    <span class="term-count">8 termos</span>
+                </a>
+
+                <a href="secao13.html" class="menu-item">
+                    <div class="menu-icon">&#127970;</div>
+                    <h3>13. Infraestrutura e Gest&atilde;o</h3>
+                    <p>Datacenter, provedores, gest&atilde;o</p>
+                    <span class="term-count">13 termos</span>
+                </a>
+
+                <a href="secao14.html" class="menu-item">
+                    <div class="menu-icon">&#128203;</div>
+                    <h3>14. Padr&otilde;es e Organiza&ccedil;&otilde;es</h3>
+                    <p>IEEE, modelo OSI, padr&otilde;es</p>
+                    <span class="term-count">3 termos</span>
+                </a>
+
+                <a href="secao15.html" class="menu-item">
+                    <div class="menu-icon">&#128274;</div>
+                    <h3>15. Seguran&ccedil;a e Monitoramento</h3>
+                    <p>Firewall, VPN, protocolos seguros</p>
+                    <span class="term-count">7 termos</span>
+                </a>
+
+                <a href="secao16.html" class="menu-item">
+                    <div class="menu-icon">&#128295;</div>
+                    <h3>16. Termos T&eacute;cnicos Diversos</h3>
+                    <p>Conceitos complementares</p>
+                    <span class="term-count">6 termos</span>
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 - Gloss&aacute;rio de Redes de Computadores | Curso T&eacute;cnico em Inform&aacute;tica ETE 25 de Julho</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Credenciais de acesso
+        const VALID_USERNAME = 'aluno424';
+        const VALID_PASSWORD = '4242025';
+        const SESSION_DURATION = 60 * 60 * 1000; // 60 minutos em millisegundos
+        
+        let sessionTimer;
+        let countdownTimer;
+
+        // Verifica se o usu�rio j� est� logado
+        function checkLoginStatus() {
+            const loginTime = sessionStorage.getItem('loginTime');
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            
+            if (isLoggedIn === 'true' && loginTime) {
+                const currentTime = new Date().getTime();
+                const elapsedTime = currentTime - parseInt(loginTime);
+                
+                if (elapsedTime < SESSION_DURATION) {
+                    showContent();
+                    startSessionTimer(SESSION_DURATION - elapsedTime);
+                } else {
+                    // Sess�o expirada
+                    sessionExpired();
+                }
+            } else {
+                showLogin();
+            }
+        }
+
+        // Fun��o de login
+        function login(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+                const loginTime = new Date().getTime();
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('loginTime', loginTime.toString());
+                showContent();
+                startSessionTimer(SESSION_DURATION);
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.textContent = 'Usu�rio ou senha incorretos!';
+                errorMessage.style.display = 'block';
+                
+                // Limpa os campos
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            }
+        }
+
+        // Fun��o de logout
+        function logout() {
+            clearTimers();
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('loginTime');
+            showLogin();
+        }
+
+        // Sess�o expirada
+        function sessionExpired() {
+            clearTimers();
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('loginTime');
+            alert('Sua sess�o expirou! Fa�a login novamente.');
+            showLogin();
+        }
+
+        // Inicia o timer da sess�o
+        function startSessionTimer(duration) {
+            clearTimers();
+            
+            // Timer para expirar a sess�o
+            sessionTimer = setTimeout(() => {
+                sessionExpired();
+            }, duration);
+            
+            // Countdown visual
+            startCountdown(duration);
+        }
+
+        // Inicia o countdown visual
+        function startCountdown(duration) {
+            const timeRemainingElement = document.getElementById('timeRemaining');
+            let remainingTime = duration;
+            
+            function updateCountdown() {
+                const minutes = Math.floor(remainingTime / (1000 * 60));
+                const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                
+                timeRemainingElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (remainingTime <= 0) {
+                    clearInterval(countdownTimer);
+                    return;
+                }
+                
+                remainingTime -= 1000;
+            }
+            
+            updateCountdown(); // Atualiza imediatamente
+            countdownTimer = setInterval(updateCountdown, 1000);
+        }
+
+        // Limpa os timers
+        function clearTimers() {
+            if (sessionTimer) {
+                clearTimeout(sessionTimer);
+                sessionTimer = null;
+            }
+            if (countdownTimer) {
+                clearInterval(countdownTimer);
+                countdownTimer = null;
+            }
+        }
+
+        // Mostra o conte�do ap�s login
+        function showContent() {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContent').classList.remove('content-locked');
+            document.getElementById('logoutButton').style.display = 'block';
+            document.getElementById('sessionInfo').style.display = 'block';
+        }
+
+        // Mostra a tela de login
+        function showLogin() {
+            document.getElementById('loginOverlay').style.display = 'flex';
+            document.getElementById('mainContent').classList.add('content-locked');
+            document.getElementById('logoutButton').style.display = 'none';
+            document.getElementById('sessionInfo').style.display = 'none';
+            
+            // Limpa os campos de login
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        // Intercepta cliques nos links para verificar autentica��o
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            
+            // Adiciona evento aos links das se��es
+            const menuLinks = document.querySelectorAll('.menu-item');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+                    const loginTime = sessionStorage.getItem('loginTime');
+                    
+                    if (isLoggedIn !== 'true' || !loginTime) {
+                        event.preventDefault();
+                        alert('Voc� precisa fazer login para acessar este conte�do!');
+                        return;
+                    }
+                    
+                    // Verifica se a sess�o ainda � v�lida
+                    const currentTime = new Date().getTime();
+                    const elapsedTime = currentTime - parseInt(loginTime);
+                    
+                    if (elapsedTime >= SESSION_DURATION) {
+                        event.preventDefault();
+                        sessionExpired();
+                    }
+                });
+            });
+        });
+
+        // Permite login com Enter
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' && document.getElementById('loginOverlay').style.display !== 'none') {
+                login(event);
+            }
+        });
+
+        // Limpa timers quando a p�gina � fechada
+        window.addEventListener('beforeunload', function() {
+            clearTimers();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,980 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se&ccedil;&atilde;o 14 - Padr&otilde;es e Organiza&ccedil;&otilde;es</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.intro {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.intro h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+.menu-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.menu-item p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.term-count {
+    background: #667eea;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+footer {
+    background: rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Estilos para páginas de seção */
+.section-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.section-header h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.term-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.term-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.term-name {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.term-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+/* Estilos para galeria de imagens */
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.modal-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-image:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para container de vídeo */
+.video-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border-left: 4px solid #ff4444;
+}
+
+.video-link {
+    color: #ff4444;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+.video-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Responsividade para imagens */
+@media (max-width: 768px) {
+    .image-gallery {
+        justify-content: center;
+    }
+
+    .modal-image {
+        width: 120px;
+        height: 80px;
+    }
+}
+</style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>&#128195; Padr&otilde;es e Organiza&ccedil;&otilde;es</h1>
+            <p class="subtitle">Se&ccedil;&atilde;o 14 - Normas e Entidades Reguladoras</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">&larr; Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Padr&otilde;es e Organiza&ccedil;&otilde;es de Redes</h2>
+            <p>Esta se&ccedil;&atilde;o apresenta as principais organiza&ccedil;&otilde;es e padr&otilde;es que regulamentam e definem as tecnologias de redes de computadores. Estes &oacute;rg&atilde;os s&atilde;o fundamentais para garantir interoperabilidade e qualidade.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('ieee')">
+                <div class="term-name">IEEE</div>
+                <div class="term-description">Institute of Electrical and Electronics Engineers - Principal organiza&ccedil;&atilde;o de padr&otilde;es em tecnologia.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ieee-802')">
+                <div class="term-name">IEEE 802</div>
+                <div class="term-description">Fam&iacute;lia de padr&otilde;es IEEE para redes locais e metropolitanas (LAN/MAN).</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('modelo-osi')">
+                <div class="term-name">Modelo OSI</div>
+                <div class="term-description">Open Systems Interconnection - Modelo de refer&ecirc;ncia de 7 camadas para redes.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Conte&uacute;do ser&aacute; inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - Gloss&aacute;rio de Redes de Computadores | Se&ccedil;&atilde;o 14</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'ieee': {
+                title: 'IEEE (Institute of Electrical and Electronics Engineers)',
+                description: 'Institute of Electrical and Electronics Engineers - Principal organiza&ccedil;&atilde;o de padr&otilde;es em tecnologia.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>IEEE &eacute; a maior organiza&ccedil;&atilde;o profissional t&eacute;cnica do mundo, dedicada ao avan&ccedil;o da tecnologia para o benef&iacute;cio da humanidade, sendo respons&aacute;vel por desenvolver padr&otilde;es fundamentais em redes e telecomunica&ccedil;&otilde;es.</p>
+                    
+                    <h3>Imagens:</h3>
+                    <div class="image-gallery">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/IEEE_logo.svg/320px-IEEE_logo.svg.png" alt="Logo oficial do IEEE" class="modal-image" title="Logo oficial do IEEE">
+                        <img src="https://spectrum.ieee.org/media-library/the-ieee-headquarters-building-in-new-york-city.jpg?id=25585024&width=400&height=300" alt="Sede do IEEE" class="modal-image" title="Sede do IEEE em Nova York" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=IEEE+HQ'">
+                        <img src="https://www.ieee.org/content/dam/ieee-org/ieee/web/org/about/ieee-conference-crowd.jpg" alt="Confer�ncia IEEE" class="modal-image" title="Confer�ncia IEEE com participantes" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=IEEE+Event'">
+                    </div>
+                    
+                    <h3>Hist&oacute;rico:</h3>
+                    <ul>
+                        <li><strong>1884:</strong> Funda&ccedil;&atilde;o como AIEE (American Institute of Electrical Engineers)</li>
+                        <li><strong>1912:</strong> Cria&ccedil;&atilde;o do IRE (Institute of Radio Engineers)</li>
+                        <li><strong>1963:</strong> Fus&atilde;o AIEE + IRE = IEEE</li>
+                        <li><strong>Atualmente:</strong> Mais de 400.000 membros em 160 pa&iacute;ses</li>
+                    </ul>
+                    
+                    <h3>Miss&atilde;o e Objetivos:</h3>
+                    <ul>
+                        <li><strong>Avan&ccedil;o tecnol&oacute;gico:</strong> Promover inova&ccedil;&atilde;o e excel&ecirc;ncia</li>
+                        <li><strong>Padroniza&ccedil;&atilde;o:</strong> Desenvolver padr&otilde;es t&eacute;cnicos globais</li>
+                        <li><strong>Educa&ccedil;&atilde;o:</strong> Promover conhecimento e desenvolvimento profissional</li>
+                        <li><strong>Publica&ccedil;&otilde;es:</strong> Disseminar pesquisa e conhecimento</li>
+                        <li><strong>Confer&ecirc;ncias:</strong> Facilitar troca de conhecimento</li>
+                    </ul>
+                    
+                    <h3>Principais Padr&otilde;es de Rede:</h3>
+                    <ul>
+                        <li><strong>IEEE 802.3:</strong> Ethernet (LAN cabeada)</li>
+                        <li><strong>IEEE 802.11:</strong> Wi-Fi (LAN sem fio)</li>
+                        <li><strong>IEEE 802.1Q:</strong> VLANs</li>
+                        <li><strong>IEEE 802.1X:</strong> Controle de acesso &agrave; rede</li>
+                        <li><strong>IEEE 802.15:</strong> Redes pessoais (Bluetooth, ZigBee)</li>
+                        <li><strong>IEEE 802.16:</strong> WiMAX (banda larga sem fio)</li>
+                    </ul>
+                    
+                    <h3>Processo de Padroniza&ccedil;&atilde;o:</h3>
+                    <ol>
+                        <li><strong>Proposta:</strong> Identifica&ccedil;&atilde;o de necessidade</li>
+                        <li><strong>Grupo de trabalho:</strong> Forma&ccedil;&atilde;o de comit&ecirc;</li>
+                        <li><strong>Draft:</strong> Desenvolvimento do rascunho</li>
+                        <li><strong>Revis&atilde;o:</strong> An&aacute;lise e coment&aacute;rios</li>
+                        <li><strong>Vota&ccedil;&atilde;o:</strong> Aprova&ccedil;&atilde;o pelo comit&ecirc;</li>
+                        <li><strong>Publica&ccedil;&atilde;o:</strong> Lan&ccedil;amento oficial</li>
+                        <li><strong>Manuten&ccedil;&atilde;o:</strong> Atualiza&ccedil;&otilde;es peri&oacute;dicas</li>
+                    </ol>
+                    
+                    <h3>Benef&iacute;cios dos Padr&otilde;es IEEE:</h3>
+                    <ul>
+                        <li><strong>Interoperabilidade:</strong> Equipamentos de diferentes fabricantes funcionam juntos</li>
+                        <li><strong>Qualidade:</strong> Garantia de performance e confiabilidade</li>
+                        <li><strong>Inova&ccedil;&atilde;o:</strong> Base para desenvolvimento de novas tecnologias</li>
+                        <li><strong>Economia:</strong> Redu&ccedil;&atilde;o de custos atrav&eacute;s de padroniza&ccedil;&atilde;o</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Especifica&ccedil;&otilde;es de seguran&ccedil;a robustas</li>
+                    </ul>
+                    
+                    <h3>Estrutura Organizacional:</h3>
+                    <ul>
+                        <li><strong>IEEE-SA:</strong> Standards Association (padr&otilde;es)</li>
+                        <li><strong>Sociedades t&eacute;cnicas:</strong> 39 sociedades especializadas</li>
+                        <li><strong>Conselhos:</strong> Coordena&ccedil;&atilde;o entre sociedades</li>
+                        <li><strong>Regi&otilde;es:</strong> 10 regi&otilde;es geogr&aacute;ficas</li>
+                        <li><strong>Se&ccedil;&otilde;es locais:</strong> Mais de 300 se&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Publica&ccedil;&otilde;es Importantes:</h3>
+                    <ul>
+                        <li><strong>IEEE Xplore:</strong> Biblioteca digital</li>
+                        <li><strong>IEEE Spectrum:</strong> Revista principal</li>
+                        <li><strong>IEEE Standards:</strong> Documenta&ccedil;&atilde;o de padr&otilde;es</li>
+                        <li><strong>Conference Proceedings:</strong> Anais de confer&ecirc;ncias</li>
+                        <li><strong>Journals:</strong> Mais de 200 peri&oacute;dicos</li>
+                    </ul>
+                    
+                    <h3>Impacto Global:</h3>
+                    <ul>
+                        <li><strong>Tecnologia moderna:</strong> Base para Internet, Wi-Fi, Ethernet</li>
+                        <li><strong>Economia digital:</strong> Habilita com&eacute;rcio eletr&ocirc;nico</li>
+                        <li><strong>Comunica&ccedil;&atilde;o global:</strong> Conectividade mundial</li>
+                        <li><strong>Inova&ccedil;&atilde;o cont&iacute;nua:</strong> IoT, 5G, IA</li>
+                    </ul>
+                    
+                    <h3>Parcerias e Colabora&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>ISO:</strong> International Organization for Standardization</li>
+                        <li><strong>ITU:</strong> International Telecommunication Union</li>
+                        <li><strong>ANSI:</strong> American National Standards Institute</li>
+                        <li><strong>ETSI:</strong> European Telecommunications Standards Institute</li>
+                    </ul>
+                    
+                    <h3>V&iacute;deo Explicativo:</h3>
+                    <div class="video-container">
+                        <a href="<div className="video-container mb-3"><iframe width="100%" height="315" src="https://www.youtube.com/embed/10408" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>" target="_blank" class="video-link">
+                            &#127909; Assista: "What is IEEE? Introduction to the Institute of Electrical and Electronics Engineers"
+                        </a>
+                        <p class="video-description">V&iacute;deo completo sobre a hist&oacute;ria, miss&atilde;o e import&acirc;ncia do IEEE na tecnologia mundial.</p>
+                    </div>
+                `
+            },
+            'ieee-802': {
+                title: 'IEEE 802',
+                description: 'Fam&iacute;lia de padr&otilde;es IEEE para redes locais e metropolitanas (LAN/MAN).',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>IEEE 802 &eacute; uma fam&iacute;lia de padr&otilde;es que define protocolos para redes locais (LAN) e redes metropolitanas (MAN), cobrindo as camadas f&iacute;sica e de enlace do modelo OSI.</p>
+                    
+                    <h3>Imagens:</h3>
+                    <div class="image-gallery">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/IEEE_802_Standards.svg/400px-IEEE_802_Standards.svg.png" alt="Diagrama dos padr&otilde;es IEEE 802" class="modal-image" title="Diagrama dos padr&otilde;es IEEE 802" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=IEEE+802+Standards'">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Equipamentos de rede" class="modal-image" title="Equipamentos de rede seguindo padr&otilde;es 802" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=Network+Equipment'">
+                        <img src="https://via.placeholder.com/150x100/667eea/ffffff?text=IEEE+802+Timeline" alt="Timeline IEEE 802" class="modal-image" title="Timeline da evolu&ccedil;&atilde;o dos padr&otilde;es IEEE 802">
+                    </div>
+                    
+                    <h3>Hist&oacute;rico:</h3>
+                    <ul>
+                        <li><strong>1980:</strong> In&iacute;cio do projeto IEEE 802</li>
+                        <li><strong>1985:</strong> Primeiros padr&otilde;es publicados</li>
+                        <li><strong>1990s:</strong> Expans&atilde;o para redes sem fio</li>
+                        <li><strong>2000s:</strong> Evolu&ccedil;&atilde;o para alta velocidade</li>
+                        <li><strong>Atualmente:</strong> Padr&otilde;es para IoT e 5G</li>
+                    </ul>
+                    
+                    <h3>Arquitetura das Camadas:</h3>
+                    <ul>
+                        <li><strong>Camada F&iacute;sica:</strong> Transmiss&atilde;o de bits</li>
+                        <li><strong>MAC (Media Access Control):</strong> Controle de acesso ao meio</li>
+                        <li><strong>LLC (Logical Link Control):</strong> Controle l&oacute;gico de enlace</li>
+                        <li><strong>Interface:</strong> Conex&atilde;o com camada de rede</li>
+                    </ul>
+                    
+                    <h3>Principais Padr&otilde;es IEEE 802:</h3>
+                    <ul>
+                        <li><strong>802.1:</strong> Ger&ecirc;ncia de rede e interconex&atilde;o
+                            <ul>
+                                <li>802.1Q: VLANs</li>
+                                <li>802.1X: Autentica&ccedil;&atilde;o</li>
+                                <li>802.1D: Spanning Tree</li>
+                            </ul>
+                        </li>
+                        <li><strong>802.2:</strong> Logical Link Control (LLC)</li>
+                        <li><strong>802.3:</strong> Ethernet (CSMA/CD)
+                            <ul>
+                                <li>802.3u: Fast Ethernet (100 Mbps)</li>
+                                <li>802.3z: Gigabit Ethernet</li>
+                                <li>802.3ae: 10 Gigabit Ethernet</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Padr&otilde;es Sem Fio:</h3>
+                    <ul>
+                        <li><strong>802.11:</strong> Wi-Fi (WLAN)
+                            <ul>
+                                <li>802.11a: 54 Mbps (5 GHz)</li>
+                                <li>802.11b: 11 Mbps (2.4 GHz)</li>
+                                <li>802.11g: 54 Mbps (2.4 GHz)</li>
+                                <li>802.11n: 600 Mbps (MIMO)</li>
+                                <li>802.11ac: 6.9 Gbps (5 GHz)</li>
+                                <li>802.11ax: 9.6 Gbps (Wi-Fi 6)</li>
+                            </ul>
+                        </li>
+                        <li><strong>802.15:</strong> Redes Pessoais (WPAN)
+                            <ul>
+                                <li>802.15.1: Bluetooth</li>
+                                <li>802.15.4: ZigBee, Thread</li>
+                            </ul>
+                        </li>
+                        <li><strong>802.16:</strong> WiMAX (banda larga sem fio)</li>
+                    </ul>
+                    
+                    <h3>Padr&otilde;es Especializados:</h3>
+                    <ul>
+                        <li><strong>802.4:</strong> Token Bus (obsoleto)</li>
+                        <li><strong>802.5:</strong> Token Ring (obsoleto)</li>
+                        <li><strong>802.6:</strong> MAN (Metropolitan Area Network)</li>
+                        <li><strong>802.7:</strong> Banda larga</li>
+                        <li><strong>802.8:</strong> Fibra &oacute;ptica</li>
+                        <li><strong>802.9:</strong> Redes integradas</li>
+                        <li><strong>802.10:</strong> Seguran&ccedil;a</li>
+                        <li><strong>802.12:</strong> 100VG-AnyLAN</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas Comuns:</h3>
+                    <ul>
+                        <li><strong>Endere&ccedil;amento MAC:</strong> 48 bits (6 bytes)</li>
+                        <li><strong>Frame format:</strong> Estrutura padronizada</li>
+                        <li><strong>Error detection:</strong> CRC (Cyclic Redundancy Check)</li>
+                        <li><strong>Flow control:</strong> Controle de fluxo</li>
+                        <li><strong>Interoperabilidade:</strong> Entre diferentes padr&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o e Tend&ecirc;ncias:</h3>
+                    <ul>
+                        <li><strong>Velocidades crescentes:</strong> Mbps para Gbps</li>
+                        <li><strong>Efici&ecirc;ncia energ&eacute;tica:</strong> Green Ethernet</li>
+                        <li><strong>QoS:</strong> Quality of Service</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Criptografia avan&ccedil;ada</li>
+                        <li><strong>IoT:</strong> Internet das Coisas</li>
+                        <li><strong>5G:</strong> Integra&ccedil;&atilde;o com redes celulares</li>
+                    </ul>
+                    
+                    <h3>Processo de Desenvolvimento:</h3>
+                    <ol>
+                        <li><strong>PAR:</strong> Project Authorization Request</li>
+                        <li><strong>Working Group:</strong> Forma&ccedil;&atilde;o do grupo</li>
+                        <li><strong>Draft:</strong> Desenvolvimento do padr&atilde;o</li>
+                        <li><strong>Letter Ballot:</strong> Vota&ccedil;&atilde;o</li>
+                        <li><strong>Sponsor Ballot:</strong> Aprova&ccedil;&atilde;o final</li>
+                        <li><strong>Publication:</strong> Publica&ccedil;&atilde;o oficial</li>
+                    </ol>
+                    
+                    <h3>Impacto na Ind&uacute;stria:</h3>
+                    <ul>
+                        <li><strong>Interoperabilidade:</strong> Equipamentos compat&iacute;veis</li>
+                        <li><strong>Mercado global:</strong> Padr&otilde;es universais</li>
+                        <li><strong>Inova&ccedil;&atilde;o:</strong> Base para novas tecnologias</li>
+                        <li><strong>Economia:</strong> Redu&ccedil;&atilde;o de custos</li>
+                        <li><strong>Qualidade:</strong> Performance garantida</li>
+                    </ul>
+                    
+                    <h3>Relacionamento com Outros Padr&otilde;es:</h3>
+                    <ul>
+                        <li><strong>ISO/OSI:</strong> Mapeamento para modelo OSI</li>
+                        <li><strong>TCP/IP:</strong> Integra&ccedil;&atilde;o com Internet</li>
+                        <li><strong>ITU-T:</strong> Padr&otilde;es de telecomunica&ccedil;&otilde;es</li>
+                        <li><strong>3GPP:</strong> Padr&otilde;es celulares</li>
+                    </ul>
+                    
+                    <h3>V&iacute;deo Explicativo:</h3>
+                    <div class="video-container">
+                        <a href="<div className="video-container mb-3"><iframe width="100%" height="315" src="https://www.youtube.com/embed/19530" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>" target="_blank" class="video-link">
+                            &#127909; Assista: "IEEE 802 Standards Overview - Networking Fundamentals"
+                        </a>
+                        <p class="video-description">Explica&ccedil;&atilde;o detalhada sobre a fam&iacute;lia de padr&otilde;es IEEE 802 e sua import&acirc;ncia nas redes modernas.</p>
+                    </div>
+                `
+            },
+            'modelo-osi': {
+                title: 'Modelo OSI (Open Systems Interconnection)',
+                description: 'Open Systems Interconnection - Modelo de refer&ecirc;ncia de 7 camadas para redes.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>O Modelo OSI &eacute; um framework conceitual de 7 camadas desenvolvido pela ISO para padronizar as fun&ccedil;&otilde;es de um sistema de comunica&ccedil;&atilde;o, facilitando a interoperabilidade entre diferentes sistemas.</p>
+                    
+                    <h3>Imagens:</h3>
+                    <div class="image-gallery">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/OSI_Model_v1.svg/400px-OSI_Model_v1.svg.png" alt="Diagrama das 7 camadas OSI" class="modal-image" title="Diagrama cl&aacute;ssico das 7 camadas OSI">
+                        <img src="https://www.guru99.com/images/1/102219_1135_OSIModelLay1.png" alt="Compara&ccedil;&atilde;o OSI vs TCP/IP" class="modal-image" title="Compara&ccedil;&atilde;o entre modelo OSI e TCP/IP" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=OSI+vs+TCP/IP'">
+                        <img src="https://www.computernetworkingnotes.org/images/ccna-study-guide/csg42-01-data-encapsulation-process.png" alt="Encapsulamento de dados OSI" class="modal-image" title="Processo de encapsulamento de dados nas camadas OSI" onerror="this.src='https://via.placeholder.com/150x100/667eea/ffffff?text=Data+Encapsulation'">
+                    </div>
+                    
+                    <h3>Hist&oacute;rico:</h3>
+                    <ul>
+                        <li><strong>1977:</strong> In&iacute;cio do desenvolvimento pela ISO</li>
+                        <li><strong>1984:</strong> Publica&ccedil;&atilde;o oficial (ISO 7498)</li>
+                        <li><strong>Objetivo:</strong> Padronizar comunica&ccedil;&atilde;o entre sistemas</li>
+                        <li><strong>Legado:</strong> Base te&oacute;rica para redes modernas</li>
+                    </ul>
+                    
+                    <h3>As 7 Camadas do Modelo OSI:</h3>
+                    
+                    <h4>7. Camada de Aplica&ccedil;&atilde;o (Application)</h4>
+                    <ul>
+                        <li><strong>Fun&ccedil;&atilde;o:</strong> Interface com o usu&aacute;rio final</li>
+                        <li><strong>Protocolos:</strong> HTTP, HTTPS, FTP, SMTP, DNS</li>
+                        <li><strong>Exemplos:</strong> Navegadores, clientes de email</li>
+                        <li><strong>Responsabilidade:</strong> Servi&ccedil;os de rede para aplica&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h4>6. Camada de Apresenta&ccedil;&atilde;o (Presentation)</h4>
+                    <ul>
+                        <li><strong>Fun&ccedil;&atilde;o:</strong> Tradu&ccedil;&atilde;o, criptografia, compress&atilde;o</li>
+                        <li><strong>Protocolos:</strong> SSL/TLS, JPEG, MPEG, ASCII</li>
+                        <li><strong>Exemplos:</strong> Codifica&ccedil;&atilde;o de caracteres</li>
+                        <li><strong>Responsabilidade:</strong> Formato e sintaxe dos dados</li>
+                    </ul>
+                    
+                    <h4>5. Camada de Sess&atilde;o (Session)</h4>
+                    <ul>
+                        <li><strong>Fun&ccedil;&atilde;o:</strong> Estabelecer, gerenciar e encerrar sess&otilde;es</li>
+                        <li><strong>Protocolos:</strong> NetBIOS, RPC, SQL</li>
+                        <li><strong>Exemplos:</strong> Login/logout, checkpoints</li>
+                        <li><strong>Responsabilidade:</strong> Controle de di&aacute;logo</li>
+                    </ul>
+                    
+                    <h4>4. Camada de Transporte (Transport)</h4>
+                    <ul>
+                        <li><strong>Fun&ccedil;&atilde;o:</strong> Transfer&ecirc;ncia confi&aacute;vel de dados</li>
+                        <li><strong>Protocolos:</strong> TCP, UDP</li>
+                        <li><strong>Exemplos:</strong> Segmenta&ccedil;&atilde;o, controle de fluxo</li>
+                        <li><strong>Responsabilidade:</strong> Entrega fim-a-fim</li>
+                    </ul>
+                    
+                    <h4>3. Camada de Rede (Network)</h4>
+                    <ul>
+                        <li><strong>Fun&ccedil;&atilde;o:</strong> Roteamento e endere&ccedil;amento l&oacute;gico</li>
+                        <li><strong>Protocolos:</strong> IP, ICMP, OSPF, BGP</li>
+                        <li><strong>Exemplos:</strong> Roteadores, endere&ccedil;os IP</li>
+                        <li><strong>Responsabilidade:</strong> Caminho atrav&eacute;s da rede</li>
+                    </ul>
+                    
+                    <h4>2. Camada de Enlace (Data Link)</h4>
+                    <ul>
+                        <li><strong>Fun&ccedil;&atilde;o:</strong> Transfer&ecirc;ncia confi&aacute;vel entre n&oacute;s adjacentes</li>
+                        <li><strong>Protocolos:</strong> Ethernet, Wi-Fi, PPP</li>
+                        <li><strong>Exemplos:</strong> Switches, endere&ccedil;os MAC</li>
+                        <li><strong>Responsabilidade:</strong> Detec&ccedil;&atilde;o/corre&ccedil;&atilde;o de erros</li>
+                    </ul>
+                    
+                    <h4>1. Camada F&iacute;sica (Physical)</h4>
+                    <ul>
+                        <li><strong>Fun&ccedil;&atilde;o:</strong> Transmiss&atilde;o de bits brutos</li>
+                        <li><strong>Protocolos:</strong> Ethernet f&iacute;sico, Wi-Fi f&iacute;sico</li>
+                        <li><strong>Exemplos:</strong> Cabos, conectores, sinais</li>
+                        <li><strong>Responsabilidade:</strong> Caracter&iacute;sticas el&eacute;tricas/&oacute;pticas</li>
+                    </ul>
+                    
+                    <h3>Princ&iacute;pios do Modelo:</h3>
+                    <ul>
+                        <li><strong>Modularidade:</strong> Cada camada tem fun&ccedil;&atilde;o espec&iacute;fica</li>
+                        <li><strong>Abstra&ccedil;&atilde;o:</strong> Camadas superiores n&atilde;o precisam conhecer detalhes inferiores</li>
+                        <li><strong>Padroniza&ccedil;&atilde;o:</strong> Interfaces bem definidas</li>
+                        <li><strong>Interoperabilidade:</strong> Sistemas diferentes podem comunicar</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Organiza&ccedil;&atilde;o:</strong> Estrutura clara e l&oacute;gica</li>
+                        <li><strong>Ensino:</strong> Excelente ferramenta educacional</li>
+                        <li><strong>Troubleshooting:</strong> Facilita diagn&oacute;stico de problemas</li>
+                        <li><strong>Desenvolvimento:</strong> Orienta design de protocolos</li>
+                        <li><strong>Padroniza&ccedil;&atilde;o:</strong> Base para padr&otilde;es de rede</li>
+                    </ul>
+                    
+                    <h3>Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Complexidade:</strong> Pode ser excessivamente detalhado</li>
+                        <li><strong>Performance:</strong> Overhead de m&uacute;ltiplas camadas</li>
+                        <li><strong>Realidade:</strong> Nem sempre reflete implementa&ccedil;&otilde;es reais</li>
+                        <li><strong>Flexibilidade:</strong> Pode ser r&iacute;gido demais</li>
+                    </ul>
+                    
+                    <h3>Compara&ccedil;&atilde;o com TCP/IP:</h3>
+                    <ul>
+                        <li><strong>OSI:</strong> 7 camadas (modelo te&oacute;rico)</li>
+                        <li><strong>TCP/IP:</strong> 4 camadas (modelo pr&aacute;tico)</li>
+                        <li><strong>Uso:</strong> OSI para ensino, TCP/IP para implementa&ccedil;&atilde;o</li>
+                        <li><strong>Flexibilidade:</strong> TCP/IP mais adapt&aacute;vel</li>
+                    </ul>
+                    
+                    <h3>Mapeamento TCP/IP para OSI:</h3>
+                    <ul>
+                        <li><strong>Aplica&ccedil;&atilde;o TCP/IP:</strong> Camadas 5, 6, 7 OSI</li>
+                        <li><strong>Transporte TCP/IP:</strong> Camada 4 OSI</li>
+                        <li><strong>Internet TCP/IP:</strong> Camada 3 OSI</li>
+                        <li><strong>Acesso &agrave; Rede TCP/IP:</strong> Camadas 1, 2 OSI</li>
+                    </ul>
+                    
+                    <h3>Encapsulamento de Dados:</h3>
+                    <ol>
+                        <li><strong>Dados:</strong> Informa&ccedil;&atilde;o do usu&aacute;rio</li>
+                        <li><strong>Segmentos:</strong> Cabe&ccedil;alho de transporte</li>
+                        <li><strong>Pacotes:</strong> Cabe&ccedil;alho de rede</li>
+                        <li><strong>Frames:</strong> Cabe&ccedil;alho de enlace</li>
+                        <li><strong>Bits:</strong> Sinais f&iacute;sicos</li>
+                    </ol>
+                    
+                    <h3>Aplica&ccedil;&otilde;es Pr&aacute;ticas:</h3>
+                    <ul>
+                        <li><strong>Educa&ccedil;&atilde;o:</strong> Ensino de redes</li>
+                        <li><strong>Documenta&ccedil;&atilde;o:</strong> Descri&ccedil;&atilde;o de arquiteturas</li>
+                        <li><strong>Troubleshooting:</strong> Diagn&oacute;stico sistem&aacute;tico</li>
+                        <li><strong>Design:</strong> Arquitetura de novos protocolos</li>
+                        <li><strong>Certifica&ccedil;&otilde;es:</strong> Base para exames t&eacute;cnicos</li>
+                    </ul>
+                    
+                    <h3>Relev&acirc;ncia Atual:</h3>
+                    <p>Embora n&atilde;o seja implementado literalmente, o Modelo OSI permanece fundamental para compreender redes, servindo como refer&ecirc;ncia universal para educa&ccedil;&atilde;o e comunica&ccedil;&atilde;o entre profissionais.</p>
+                    
+                    <h3>V&iacute;deo Explicativo:</h3>
+                    <div class="video-container">
+                        <a href="<div className="video-container mb-3"><iframe width="100%" height="315" src="https://www.youtube.com/embed/30471" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>" target="_blank" class="video-link">
+                            &#127909; Assista: "OSI Model Explained | OSI Animation | Open System Interconnection Model | OSI 7 layers"
+                        </a>
+                        <p class="video-description">V&iacute;deo animado explicando detalhadamente as 7 camadas do modelo OSI com exemplos pr&aacute;ticos.</p>
+                    </div>
+                `
+            }
+        };
+
+        // Fun��o para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da p�gina
+            }
+        }
+
+        // Fun��o para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da p�gina
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details h4 {
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Estilos para galeria de imagens */
+        .image-gallery {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .modal-image {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-image:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilos para container de v�deo */
+        .video-container {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            border-left: 4px solid #ff4444;
+        }
+
+        .video-link {
+            color: #ff4444;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .video-link:hover {
+            text-decoration: underline;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Melhorar apar�ncia dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+            @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body {
+                padding: 20px;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+
+            .image-gallery {
+                justify-content: center;
+            }
+
+            .modal-image {
+                width: 120px;
+                height: 80px;
+            }
+        }
+    </style>
+</body>
+</html>

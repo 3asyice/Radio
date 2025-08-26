@@ -1,0 +1,2327 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se&ccedil;&atilde;o 6 - Tecnologias Wireless</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.intro {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.intro h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+.menu-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.menu-item p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.term-count {
+    background: #667eea;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+footer {
+    background: rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Estilos para páginas de seção */
+.section-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.section-header h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.term-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.term-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.term-name {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.term-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+/* Estilos para galeria de imagens */
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.modal-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-image:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para container de vídeo */
+.video-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border-left: 4px solid #ff4444;
+}
+
+.video-link {
+    color: #ff4444;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+.video-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Responsividade para imagens */
+@media (max-width: 768px) {
+    .image-gallery {
+        justify-content: center;
+    }
+
+    .modal-image {
+        width: 120px;
+        height: 80px;
+    }
+}
+</style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>&#128246; Tecnologias Wireless</h1>
+            <p class="subtitle">Se&ccedil;&atilde;o 6 - Comunica&ccedil;&atilde;o Sem Fio e Redes Wi-Fi</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">&larr; Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Tecnologias de Comunica&ccedil;&atilde;o Sem Fio</h2>
+            <p>Esta se&ccedil;&atilde;o explora as tecnologias wireless que revolucionaram as comunica&ccedil;&otilde;es modernas, incluindo Wi-Fi, frequ&ecirc;ncias de r&aacute;dio, protocolos de seguran&ccedil;a e conceitos fundamentais para redes sem fio.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('wireless')">
+                <div class="term-name">Wireless</div>
+                <div class="term-description">Tecnologia de comunica&ccedil;&atilde;o sem fio que utiliza ondas eletromagn&eacute;ticas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('wi-fi')">
+                <div class="term-name">Wi-Fi</div>
+                <div class="term-description">Padr&atilde;o de rede sem fio baseado no IEEE 802.11 para conex&otilde;es locais.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cliente-wireless')">
+                <div class="term-name">Cliente wireless</div>
+                <div class="term-description">Dispositivo que se conecta a uma rede sem fio para acessar recursos.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('client-wireless')">
+                <div class="term-name">Client wireless</div>
+                <div class="term-description">Termo em ingl&ecirc;s para cliente wireless, dispositivo que acessa redes sem fio.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('frequencia-24ghz')">
+                <div class="term-name">Frequ&ecirc;ncia 2.4GHz</div>
+                <div class="term-description">Banda de frequ&ecirc;ncia ISM amplamente usada em Wi-Fi e Bluetooth.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('frequencia-5ghz')">
+                <div class="term-name">Frequ&ecirc;ncia 5GHz</div>
+                <div class="term-description">Banda de frequ&ecirc;ncia menos congestionada usada em Wi-Fi moderno.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ssid')">
+                <div class="term-name">SSID</div>
+                <div class="term-description">Service Set Identifier - Nome da rede wireless vis&iacute;vel aos usu&aacute;rios.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('wep')">
+                <div class="term-name">WEP</div>
+                <div class="term-description">Wired Equivalent Privacy - Protocolo de seguran&ccedil;a wireless obsoleto.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('wpa')">
+                <div class="term-name">WPA</div>
+                <div class="term-description">Wi-Fi Protected Access - Protocolo de seguran&ccedil;a que substituiu o WEP.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('wpa2')">
+                <div class="term-name">WPA2</div>
+                <div class="term-description">Vers&atilde;o melhorada do WPA com criptografia AES mais robusta.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('hotspot')">
+                <div class="term-name">Hotspot</div>
+                <div class="term-description">Ponto de acesso Wi-Fi p&uacute;blico ou compartilhado para acesso &agrave; internet.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('linha-visada')">
+                <div class="term-name">Linha de visada</div>
+                <div class="term-description">Line of Sight - Caminho direto sem obst�culos entre transmissor e receptor.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Conte&uacute;do ser&aacute; inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - Gloss&aacute;rio de Redes de Computadores | Se&ccedil;&atilde;o 6</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'wireless': {
+                title: 'Wireless (Sem Fio)',
+                description: 'Tecnologia de comunica&ccedil;&atilde;o sem fio que utiliza ondas eletromagn&eacute;ticas.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Wireless refere-se a qualquer tecnologia de comunica&ccedil;&atilde;o que transmite informa&ccedil;&otilde;es sem o uso de cabos f&iacute;sicos, utilizando ondas eletromagn&eacute;ticas atrav&eacute;s do ar ou espa&ccedil;o.</p>
+                    
+                    <h3>Princ&iacute;pios B&aacute;sicos:</h3>
+                    <ul>
+                        <li><strong>Ondas eletromagn&eacute;ticas:</strong> Propaga&ccedil;&atilde;o de energia sem meio f&iacute;sico</li>
+                        <li><strong>Modula&ccedil;&atilde;o:</strong> Codifica&ccedil;&atilde;o de dados em sinais de r&aacute;dio</li>
+                        <li><strong>Antenas:</strong> Dispositivos para transmitir e receber sinais</li>
+                        <li><strong>Frequ&ecirc;ncias:</strong> Diferentes bandas para diferentes aplica&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Tipos de Tecnologias Wireless:</h3>
+                    <ul>
+                        <li><strong>Wi-Fi:</strong> Redes locais sem fio (IEEE 802.11)</li>
+                        <li><strong>Bluetooth:</strong> Conex&otilde;es de curta dist&acirc;ncia</li>
+                        <li><strong>Celular:</strong> 2G, 3G, 4G, 5G</li>
+                        <li><strong>Sat&eacute;lite:</strong> Comunica&ccedil;&atilde;o global</li>
+                        <li><strong>Zigbee:</strong> IoT e automa&ccedil;&atilde;o</li>
+                        <li><strong>NFC:</strong> Near Field Communication</li>
+                        <li><strong>LoRa:</strong> Long Range para IoT</li>
+                    </ul>
+                    
+                    <h3>Bandas de Frequ&ecirc;ncia:</h3>
+                    <ul>
+                        <li><strong>ISM (Industrial, Scientific, Medical):</strong>
+                            <ul>
+                                <li>2,4 GHz: Wi-Fi, Bluetooth, microondas</li>
+                                <li>5 GHz: Wi-Fi de alta velocidade</li>
+                                <li>900 MHz: Aplica��es industriais</li>
+                            </ul>
+                        </li>
+                        <li><strong>Bandas licenciadas:</strong>
+                            <ul>
+                                <li>Telefonia celular</li>
+                                <li>TV e r&aacute;dio</li>
+                                <li>Servi&ccedil;os p&uacute;blicos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Mobilidade:</strong> Liberdade de movimento</li>
+                        <li><strong>Flexibilidade:</strong> F&aacute;cil reconfigura��o</li>
+                        <li><strong>Instala&ccedil;&atilde;o r&aacute;pida:</strong> Sem necessidade de cabeamento</li>
+                        <li><strong>Acesso remoto:</strong> Conectividade em locais dif&iacute;ceis</li>
+                        <li><strong>Escalabilidade:</strong> F&aacute;cil adi&ccedil;&atilde;o de dispositivos</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Interfer&ecirc;ncias:</strong> Suscet&iacute;vel a ru&iacute;dos</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Mais vulner&aacute;vel a ataques</li>
+                        <li><strong>Largura de banda limitada:</strong> Compartilhamento do espectro</li>
+                        <li><strong>Alcance limitado:</strong> Depend&ecirc;ncia de pot&ecirc;ncia e obst�culos</li>
+                        <li><strong>Consumo de energia:</strong> Baterias em dispositivos m&oacute;veis</li>
+                    </ul>
+                    
+                    <h3>Fatores que Afetam Performance:</h3>
+                    <ul>
+                        <li><strong>Dist&acirc;ncia:</strong> Sinal enfraquece com a dist&acirc;ncia</li>
+                        <li><strong>Obst�culos:</strong> Paredes, m&oacute;veis, pessoas</li>
+                        <li><strong>Interfer&ecirc;ncias:</strong> Outros dispositivos na mesma frequ&ecirc;ncia</li>
+                        <li><strong>Condi&ccedil;&otilde;es atmosf&eacute;ricas:</strong> Chuva, umidade</li>
+                        <li><strong>Pot&ecirc;ncia de transmiss&atilde;o:</strong> Limites regulat&oacute;rios</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Redes dom&eacute;sticas e corporativas</li>
+                        <li>Telefonia m&oacute;vel</li>
+                        <li>Internet das Coisas (IoT)</li>
+                        <li>Sistemas de monitoramento</li>
+                        <li>Entretenimento e streaming</li>
+                        <li>Automa&ccedil;&atilde;o industrial</li>
+                    </ul>
+                    
+                    <h3>Futuro:</h3>
+                    <p>Evolu&ccedil;&atilde;o cont&iacute;nua com 5G, Wi-Fi 6/7, e novas tecnologias para suportar IoT massivo e aplica&ccedil;&otilde;es emergentes.</p>
+                `
+            },
+            'wi-fi': {
+                title: 'Wi-Fi',
+                description: 'Padr&atilde;o de rede sem fio baseado no IEEE 802.11 para conex&otilde;es locais.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Wi-Fi &eacute; uma tecnologia de rede sem fio baseada nos padr&otilde;es IEEE 802.11, que permite dispositivos se conectarem &agrave; internet e entre si sem cabos f&iacute;sicos.</p>
+                    
+                    <h3>Origem do Nome:</h3>
+                    <ul>
+                        <li><strong>Wi-Fi Alliance:</strong> Organiza&ccedil;&atilde;o que certifica produtos</li>
+                        <li><strong>Marca registrada:</strong> N&atilde;o &eacute; acr&ocirc;nimo oficial</li>
+                        <li><strong>Marketing:</strong> Nome comercial para IEEE 802.11</li>
+                        <li><strong>Wireless Fidelity:</strong> Interpreta&ccedil;&atilde;o popular (n&atilde;o oficial)</li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o dos Padr&otilde;es:</h3>
+                    <ul>
+                        <li><strong>802.11 (1997):</strong> 2 Mbps, 2,4 GHz</li>
+                        <li><strong>802.11b (1999):</strong> 11 Mbps, 2,4 GHz</li>
+                        <li><strong>802.11a (1999):</strong> 54 Mbps, 5 GHz</li>
+                        <li><strong>802.11g (2003):</strong> 54 Mbps, 2,4 GHz</li>
+                        <li><strong>802.11n (2009):</strong> 600 Mbps, MIMO</li>
+                        <li><strong>802.11ac (2013):</strong> 6,93 Gbps, 5 GHz</li>
+                        <li><strong>802.11ax/Wi-Fi 6 (2019):</strong> 9,6 Gbps</li>
+                        <li><strong>Wi-Fi 6E (2020):</strong> Banda 6 GHz</li>
+                        <li><strong>Wi-Fi 7 (2024):</strong> At&eacute; 46 Gbps</li>
+                    </ul>
+                    
+                    <h3>Componentes de uma Rede Wi-Fi:</h3>
+                    <ul>
+                        <li><strong>Access Point (AP):</strong> Ponto de acesso central</li>
+                        <li><strong>Wireless Router:</strong> AP + roteador integrado</li>
+                        <li><strong>Clientes wireless:</strong> Dispositivos conectados</li>
+                        <li><strong>Controlador:</strong> Gerencia m&uacute;ltiplos APs (empresarial)</li>
+                    </ul>
+                    
+                    <h3>Bandas de Frequ&ecirc;ncia:</h3>
+                    <ul>
+                        <li><strong>2,4 GHz:</strong>
+                            <ul>
+                                <li>Maior alcance</li>
+                                <li>Melhor penetra&ccedil;&atilde;o em obst�culos</li>
+                                <li>Mais congestionada</li>
+                                <li>Velocidades menores</li>
+                            </ul>
+                        </li>
+                        <li><strong>5 GHz:</strong>
+                            <ul>
+                                <li>Maior largura de banda</li>
+                                <li>Menos congestionada</li>
+                                <li>Menor alcance</li>
+                                <li>Velocidades maiores</li>
+                            </ul>
+                        </li>
+                        <li><strong>6 GHz (Wi-Fi 6E):</strong>
+                            <ul>
+                                <li>Espectro adicional</li>
+                                <li>Menor congestionamento</li>
+                                <li>Ultra-baixa lat&ecirc;ncia</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tecnologias Avan&ccedil;adas:</h3>
+                    <ul>
+                        <li><strong>MIMO:</strong> Multiple Input Multiple Output</li>
+                        <li><strong>MU-MIMO:</strong> Multi-User MIMO</li>
+                        <li><strong>Beamforming:</strong> Direcionamento de sinal</li>
+                        <li><strong>OFDMA:</strong> Acesso m&uacute;ltiplo por divis&atilde;o ortogonal</li>
+                        <li><strong>QAM:</strong> Modula&ccedil;&atilde;o de amplitude em quadratura</li>
+                    </ul>
+                    
+                    <h3>Seguran&ccedil;a:</h3>
+                    <ul>
+                        <li><strong>WEP:</strong> Obsoleto, inseguro</li>
+                        <li><strong>WPA:</strong> Melhoria sobre WEP</li>
+                        <li><strong>WPA2:</strong> Padr&atilde;o atual com AES</li>
+                        <li><strong>WPA3:</strong> &Uacute;ltima vers&atilde;o, mais segura</li>
+                        <li><strong>Enterprise:</strong> Autentica&ccedil;&atilde;o 802.1X</li>
+                    </ul>
+                    
+                    <h3>Modos de Opera&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Infrastructure:</strong> Clientes conectam via AP</li>
+                        <li><strong>Ad-hoc:</strong> Conex&atilde;o direta entre dispositivos</li>
+                        <li><strong>Mesh:</strong> Rede malha auto-organiz&aacute;vel</li>
+                        <li><strong>Monitor:</strong> Captura de tr&aacute;fego para an&aacute;lise</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Acesso residencial &agrave; internet</li>
+                        <li>Redes corporativas</li>
+                        <li>Hotspots p&uacute;blicos</li>
+                        <li>IoT e casa inteligente</li>
+                        <li>Streaming de m&iacute;dia</li>
+                        <li>Trabalho remoto</li>
+                    </ul>
+                    
+                    <h3>Desafios:</h3>
+                    <ul>
+                        <li>Interfer&ecirc;ncias e congestionamento</li>
+                        <li>Seguran&ccedil;a e privacidade</li>
+                        <li>Cobertura e capacidade</li>
+                        <li>Consumo de energia</li>
+                        <li>Compatibilidade entre vers&otilde;es</li>
+                    </ul>
+                `
+            },
+            'cliente-wireless': {
+                title: 'Cliente Wireless',
+                description: 'Dispositivo que se conecta a uma rede sem fio para acessar recursos.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Cliente wireless &eacute; qualquer dispositivo equipado com interface de rede sem fio que se conecta a um ponto de acesso para acessar recursos de rede e internet.</p>
+                    
+                    <h3>Tipos de Clientes:</h3>
+                    <ul>
+                        <li><strong>Dispositivos M&oacute;veis:</strong>
+                            <ul>
+                                <li>Smartphones</li>
+                                <li>Tablets</li>
+                                <li>Laptops</li>
+                                <li>Smartwatches</li>
+                            </ul>
+                        </li>
+                        <li><strong>Computadores:</strong>
+                            <ul>
+                                <li>Notebooks com Wi-Fi integrado</li>
+                                <li>Desktops com adaptadores USB</li>
+                                <li>Placas PCI/PCIe wireless</li>
+                            </ul>
+                        </li>
+                        <li><strong>Dispositivos IoT:</strong>
+                            <ul>
+                                <li>Smart TVs</li>
+                                <li>C&acirc;meras IP</li>
+                                <li>Assistentes virtuais</li>
+                                <li>Sensores inteligentes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Consoles de Jogos:</strong>
+                            <ul>
+                                <li>PlayStation, Xbox, Nintendo</li>
+                                <li>Handhelds port&aacute;teis</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Componentes do Cliente:</h3>
+                    <ul>
+                        <li><strong>Placa de rede wireless:</strong> Hardware de r&aacute;dio</li>
+                        <li><strong>Antena:</strong> Transmiss&atilde;o e recep&ccedil;&atilde;o</li>
+                        <li><strong>Driver:</strong> Software de controle</li>
+                        <li><strong>Supplicant:</strong> Software de autentica&ccedil;&atilde;o</li>
+                        <li><strong>Interface de usu&aacute;rio:</strong> Gerenciamento de conex&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Processo de Conex&atilde;o:</h3>
+                    <ol>
+                        <li><strong>Descoberta:</strong> Scan de redes dispon&iacute;veis</li>
+                        <li><strong>Sele&ccedil;&atilde;o:</strong> Escolha da rede desejada</li>
+                        <li><strong>Autentica&ccedil;&atilde;o:</strong> Fornecimento de credenciais</li>
+                        <li><strong>Associa&ccedil;&atilde;o:</strong> Estabelecimento da conex&atilde;o</li>
+                        <li><strong>Configura&ccedil;&atilde;o IP:</strong> Obten&ccedil;&atilde;o de endere&ccedil;o</li>
+                        <li><strong>Acesso:</strong> Comunica&ccedil;&atilde;o com a rede</li>
+                    </ol>
+                    
+                    <h3>Estados do Cliente:</h3>
+                    <ul>
+                        <li><strong>Desconectado:</strong> Sem associa&ccedil;&atilde;o com AP</li>
+                        <li><strong>Scanning:</strong> Procurando redes</li>
+                        <li><strong>Autenticando:</strong> Processo de autentica&ccedil;&atilde;o</li>
+                        <li><strong>Associado:</strong> Conectado mas sem IP</li>
+                        <li><strong>Conectado:</strong> Totalmente funcional</li>
+                        <li><strong>Roaming:</strong> Mudando entre APs</li>
+                    </ul>
+                    
+                    <h3>Capacidades do Cliente:</h3>
+                    <ul>
+                        <li><strong>Padr&otilde;es suportados:</strong> 802.11a/b/g/n/ac/ax</li>
+                        <li><strong>Bandas de frequ&ecirc;ncia:</strong> 2,4 GHz, 5 GHz, 6 GHz</li>
+                        <li><strong>Seguran&ccedil;a:</strong> WEP, WPA, WPA2, WPA3</li>
+                        <li><strong>Antenas:</strong> SISO, MIMO, diversidade</li>
+                        <li><strong>Pot&ecirc;ncia:</strong> Controle din&acirc;mico</li>
+                    </ul>
+                    
+                    <h3>Gerenciamento de Energia:</h3>
+                    <ul>
+                        <li><strong>Power Save Mode:</strong> Economia de bateria</li>
+                        <li><strong>Sleep/Wake cycles:</strong> Ciclos de atividade</li>
+                        <li><strong>DTIM:</strong> Delivery Traffic Indication Message</li>
+                        <li><strong>WMM Power Save:</strong> Economia por classe de tr&aacute;fego</li>
+                    </ul>
+                    
+                    <h3>Roaming:</h3>
+                    <ul>
+                        <li><strong>Seamless handoff:</strong> Troca transparente de AP</li>
+                        <li><strong>Fast roaming:</strong> 802.11r para redu&ccedil;&atilde;o de lat&ecirc;ncia</li>
+                        <li><strong>Load balancing:</strong> Distribui&ccedil;&atilde;o entre APs</li>
+                        <li><strong>Band steering:</strong> Direcionamento para banda ideal</li>
+                    </ul>
+                    
+                    <h3>Problemas Comuns:</h3>
+                    <ul>
+                        <li><strong>Sinal fraco:</strong> Dist&acirc;ncia ou obst�culos</li>
+                        <li><strong>Interfer&ecirc;ncias:</strong> Outros dispositivos</li>
+                        <li><strong>Autentica&ccedil;&atilde;o:</strong> Credenciais incorretas</li>
+                        <li><strong>Compatibilidade:</strong> Padr&otilde;es n&atilde;o suportados</li>
+                        <li><strong>Congestionamento:</strong> Muitos clientes no AP</li>
+                    </ul>
+                    
+                    <h3>Otimiza&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li>Posicionamento adequado</li>
+                        <li>Atualiza&ccedil;&atilde;o de drivers</li>
+                        <li>Sele&ccedil;&atilde;o de canal apropriado</li>
+                        <li>Configura&ccedil;&atilde;o de QoS</li>
+                        <li>Monitoramento de performance</li>
+                    </ul>
+                `
+            },
+            'client-wireless': {
+                title: 'Client Wireless',
+                description: 'Termo em ingl&ecirc;s para cliente wireless, dispositivo que acessa redes sem fio.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Client wireless &eacute; o termo em ingl&ecirc;s para cliente sem fio, referindo-se a qualquer dispositivo que possui capacidade de se conectar a redes wireless para acessar recursos e servi&ccedil;os.</p>
+                    
+                    <h3>Terminologia Internacional:</h3>
+                    <ul>
+                        <li><strong>Wireless Client:</strong> Termo padr&atilde;o em ingl&ecirc;s</li>
+                        <li><strong>Wi-Fi Client:</strong> Espec&iacute;fico para redes Wi-Fi</li>
+                        <li><strong>Mobile Station (MS):</strong> Termo em telefonia celular</li>
+                        <li><strong>User Equipment (UE):</strong> Termo em LTE/5G</li>
+                        <li><strong>Wireless Device:</strong> Termo gen&eacute;rico</li>
+                    </ul>
+                    
+                    <h3>Classifica&ccedil;&otilde;es por Mobilidade:</h3>
+                    <ul>
+                        <li><strong>Fixed Wireless Client:</strong>
+                            <ul>
+                                <li>Posi&ccedil;&atilde;o fixa</li>
+                                <li>Desktops com adaptador</li>
+                                <li>Equipamentos industriais</li>
+                                <li>Maior pot&ecirc;ncia dispon&iacute;vel</li>
+                            </ul>
+                        </li>
+                        <li><strong>Mobile Wireless Client:</strong>
+                            <ul>
+                                <li>Dispositivos port&aacute;teis</li>
+                                <li>Smartphones, tablets</li>
+                                <li>Laptops</li>
+                                <li>Limita&ccedil;&otilde;es de bateria</li>
+                            </ul>
+                        </li>
+                        <li><strong>Nomadic Client:</strong>
+                            <ul>
+                                <li>M&oacute;vel mas usado estaticamente</li>
+                                <li>Laptops em diferentes locais</li>
+                                <li>Tablets em reuni&otilde;es</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Client Capabilities (Capacidades):</h3>
+                    <ul>
+                        <li><strong>PHY Capabilities:</strong>
+                            <ul>
+                                <li>Supported rates (taxas suportadas)</li>
+                                <li>Channel width (largura de canal)</li>
+                                <li>MIMO configuration</li>
+                                <li>Modulation schemes</li>
+                            </ul>
+                        </li>
+                        <li><strong>MAC Capabilities:</strong>
+                            <ul>
+                                <li>QoS support</li>
+                                <li>Security protocols</li>
+                                <li>Power management</li>
+                                <li>Roaming features</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Client Management:</h3>
+                    <ul>
+                        <li><strong>Association Management:</strong>
+                            <ul>
+                                <li>Client database</li>
+                                <li>Session tracking</li>
+                                <li>Load balancing</li>
+                                <li>Access control</li>
+                            </ul>
+                        </li>
+                        <li><strong>Performance Monitoring:</strong>
+                            <ul>
+                                <li>Signal strength (RSSI)</li>
+                                <li>Throughput measurement</li>
+                                <li>Error rates</li>
+                                <li>Roaming behavior</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Client Types por Uso:</h3>
+                    <ul>
+                        <li><strong>Enterprise Clients:</strong>
+                            <ul>
+                                <li>Laptops corporativos</li>
+                                <li>Dispositivos BYOD</li>
+                                <li>Equipamentos especializados</li>
+                                <li>Autentica&ccedil;&atilde;o 802.1X</li>
+                            </ul>
+                        </li>
+                        <li><strong>Consumer Clients:</strong>
+                            <ul>
+                                <li>Dispositivos pessoais</li>
+                                <li>Smart home devices</li>
+                                <li>Gaming consoles</li>
+                                <li>Streaming devices</li>
+                            </ul>
+                        </li>
+                        <li><strong>IoT Clients:</strong>
+                            <ul>
+                                <li>Sensors</li>
+                                <li>Actuators</li>
+                                <li>Wearables</li>
+                                <li>Low power devices</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Client Behavior Analysis:</h3>
+                    <ul>
+                        <li><strong>Connection Patterns:</strong> Padr&otilde;es de conex&atilde;o</li>
+                        <li><strong>Traffic Characteristics:</strong> Caracter&iacute;sticas de tr&aacute;fego</li>
+                        <li><strong>Mobility Patterns:</strong> Padr&otilde;es de mobilidade</li>
+                        <li><strong>Application Usage:</strong> Uso de aplica&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Client Security:</h3>
+                    <ul>
+                        <li><strong>Device Authentication:</strong> Autentica&ccedil;&atilde;o do dispositivo</li>
+                        <li><strong>User Authentication:</strong> Autentica&ccedil;&atilde;o do usu&aacute;rio</li>
+                        <li><strong>Encryption:</strong> Criptografia de dados</li>
+                        <li><strong>Access Control:</strong> Controle de acesso</li>
+                    </ul>
+                    
+                    <h3>Troubleshooting:</h3>
+                    <ul>
+                        <li><strong>Connectivity Issues:</strong> Problemas de conectividade</li>
+                        <li><strong>Performance Problems:</strong> Problemas de performance</li>
+                        <li><strong>Security Violations:</strong> Viola&ccedil;&otilde;es de seguran&ccedil;a</li>
+                        <li><strong>Roaming Failures:</strong> Falhas de roaming</li>
+                    </ul>
+                    
+                    <h3>Future Trends:</h3>
+                    <ul>
+                        <li>AI-powered client optimization</li>
+                        <li>Enhanced security protocols</li>
+                        <li>Better power management</li>
+                        <li>Improved roaming algorithms</li>
+                    </ul>
+                `
+            },
+            'frequencia-24ghz': {
+                title: 'Frequ&ecirc;ncia 2.4GHz',
+                description: 'Banda de frequ&ecirc;ncia ISM amplamente usada em Wi-Fi e Bluetooth.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>A banda de 2,4 GHz &eacute; uma faixa do espectro eletromagn&eacute;tico (2400-2485 MHz) designada para uso Industrial, Cient&iacute;fico e M&eacute;dico (ISM), amplamente utilizada em tecnologias wireless.</p>
+                    
+                    <h3>Caracter&iacute;sticas da Banda ISM:</h3>
+                    <ul>
+                        <li><strong>Faixa:</strong> 2400-2485 MHz (85 MHz total)</li>
+                        <li><strong>Uso n&atilde;o licenciado:</strong> Livre para uso p&uacute;blico</li>
+                        <li><strong>Regula&ccedil;&atilde;o:</strong> Limites de pot&ecirc;ncia e emiss&atilde;o</li>
+                        <li><strong>Global:</strong> Dispon&iacute;vel mundialmente</li>
+                    </ul>
+                    
+                    <h3>Tecnologias que Usam 2,4 GHz:</h3>
+                    <ul>
+                        <li><strong>Wi-Fi:</strong>
+                            <ul>
+                                <li>802.11b: 11 Mbps</li>
+                                <li>802.11g: 54 Mbps</li>
+                                <li>802.11n: at&eacute; 150 Mbps por stream</li>
+                                <li>802.11ax: melhorias em efici&ecirc;ncia</li>
+                            </ul>
+                        </li>
+                        <li><strong>Bluetooth:</strong>
+                            <ul>
+                                <li>Classic Bluetooth</li>
+                                <li>Bluetooth Low Energy (BLE)</li>
+                                <li>Frequency hopping</li>
+                            </ul>
+                        </li>
+                        <li><strong>Zigbee:</strong> Redes de sensores</li>
+                        <li><strong>Micro-ondas:</strong> Aquecimento de alimentos</li>
+                        <li><strong>Dispositivos m&eacute;dicos:</strong> Diatermia</li>
+                        <li><strong>Controles remotos:</strong> Drones, brinquedos</li>
+                    </ul>
+                    
+                    <h3>Canais Wi-Fi em 2,4 GHz:</h3>
+                    <ul>
+                        <li><strong>14 canais dispon&iacute;veis:</strong> Nem todos em todas regi&otilde;es</li>
+                        <li><strong>Espa&ccedil;amento:</strong> 5 MHz entre canais</li>
+                        <li><strong>Largura do canal:</strong> 20 MHz (22 MHz com guard bands)</li>
+                        <li><strong>Canais n&atilde;o sobrepostos:</strong> 1, 6, 11 (Am&eacute;ricas)</li>
+                        <li><strong>Europa:</strong> Canais 1, 5, 9, 13</li>
+                        <li><strong>Jap&atilde;o:</strong> Canal 14 adicional</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Maior alcance:</strong> Menor atenua&ccedil;&atilde;o</li>
+                        <li><strong>Melhor penetra&ccedil;&atilde;o:</strong> Atravessa obst�culos</li>
+                        <li><strong>Compatibilidade:</strong> Suporte universal</li>
+                        <li><strong>Custo:</strong> Componentes mais baratos</li>
+                        <li><strong>Consumo:</strong> Menor gasto energ&eacute;tico</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Congestionamento:</strong> Muitos dispositivos</li>
+                        <li><strong>Interfer&ecirc;ncias:</strong>
+                            <ul>
+                                <li>Fornos micro-ondas</li>
+                                <li>Bluetooth</li>
+                                <li>Dispositivos m&eacute;dicos</li>
+                                <li>Equipamentos industriais</li>
+                            </ul>
+                        </li>
+                        <li><strong>Largura de banda limitada:</strong> Apenas 3 canais n&atilde;o sobrepostos</li>
+                        <li><strong>Velocidades menores:</strong> Comparado a 5 GHz</li>
+                    </ul>
+                    
+                    <h3>Propaga&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Alcance t&iacute;pico:</strong>
+                            <ul>
+                                <li>Indoor: 30-50 metros</li>
+                                <li>Outdoor: 100-300 metros</li>
+                                <li>Varia com pot&ecirc;ncia e obst�culos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Atenua&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Espa&ccedil;o livre: ~40 dB/d&eacute;cada</li>
+                                <li>Paredes: 3-5 dB</li>
+                                <li>Pisos: 10-15 dB</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Planejamento de Rede:</h3>
+                    <ul>
+                        <li><strong>Site survey:</strong> Mapeamento de interfer&ecirc;ncias</li>
+                        <li><strong>Sele&ccedil;&atilde;o de canal:</strong> Evitar sobreposi&ccedil;&atilde;o</li>
+                        <li><strong>Pot&ecirc;ncia adequada:</strong> Minimizar interfer&ecirc;ncia</li>
+                        <li><strong>Posicionamento:</strong> Otimizar cobertura</li>
+                    </ul>
+                    
+                    <h3>Ferramentas de An&aacute;lise:</h3>
+                    <ul>
+                        <li><strong>Analisadores de espectro:</strong> Visualizar uso do espectro</li>
+                        <li><strong>Wi-Fi scanners:</strong> Detectar redes</li>
+                        <li><strong>Apps m&oacute;veis:</strong> WiFi Analyzer, inSSIDer</li>
+                        <li><strong>Equipamentos profissionais:</strong> Fluke, Ekahau</li>
+                    </ul>
+                    
+                    <h3>Otimiza&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li>Usar canais 1, 6, 11 preferencialmente</li>
+                        <li>Ajustar pot&ecirc;ncia para minimizar interfer&ecirc;ncia</li>
+                        <li>Considerar migra&ccedil;&atilde;o para 5 GHz</li>
+                        <li>Implementar band steering</li>
+                        <li>Monitorar qualidade do sinal regularmente</li>
+                    </ul>
+                    
+                    <h3>Futuro:</h3>
+                    <p>Embora congestionada, a banda 2,4 GHz continuar&aacute; importante para IoT e dispositivos de baixo consumo, com melhorias em efici&ecirc;ncia espectral.</p>
+                `
+            },
+            'frequencia-5ghz': {
+                title: 'Frequ&ecirc;ncia 5GHz',
+                description: 'Banda de frequ&ecirc;ncia menos congestionada usada em Wi-Fi moderno.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>A banda de 5 GHz refere-se &agrave;s faixas de frequ&ecirc;ncia ao redor de 5 GHz utilizadas para comunica&ccedil;&otilde;es wireless, oferecendo maior largura de banda e menos congestionamento que 2,4 GHz.</p>
+                    
+                    <h3>Sub-bandas da Frequ&ecirc;ncia 5 GHz:</h3>
+                    <ul>
+                        <li><strong>UNII-1 (Lower):</strong>
+                            <ul>
+                                <li>5150-5250 MHz</li>
+                                <li>Canais 36, 40, 44, 48</li>
+                                <li>Uso interno apenas</li>
+                                <li>Pot&ecirc;ncia limitada</li>
+                            </ul>
+                        </li>
+                        <li><strong>UNII-2A (Middle):</strong>
+                            <ul>
+                                <li>5250-5350 MHz</li>
+                                <li>Canais 52, 56, 60, 64</li>
+                                <li>DFS requerido</li>
+                                <li>TPC necess&aacute;rio</li>
+                            </ul>
+                        </li>
+                        <li><strong>UNII-2C (Extended):</strong>
+                            <ul>
+                                <li>5470-5725 MHz</li>
+                                <li>Canais 100-140</li>
+                                <li>DFS obrigat&oacute;rio</li>
+                                <li>Maior pot&ecirc;ncia permitida</li>
+                            </ul>
+                        </li>
+                                                   <li><strong>UNII-3 (Upper):</strong>
+                                <ul>
+                                    <li>5725-5850 MHz</li>
+                                    <li>Canais 149, 153, 157, 161, 165</li>
+                                    <li>Sem DFS</li>
+                                    <li>Maior pot&ecirc;ncia</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Caracter&iacute;sticas T&eacute;cnicas:</h3>
+                        <ul>
+                            <li><strong>Largura de banda:</strong> Muito maior que 2,4 GHz</li>
+                            <li><strong>Canais dispon&iacute;veis:</strong> 25+ canais (varia por regi&atilde;o)</li>
+                            <li><strong>Largura do canal:</strong> 20, 40, 80, 160 MHz</li>
+                            <li><strong>Velocidades:</strong> At&eacute; 6,93 Gbps (802.11ac)</li>
+                            <li><strong>MIMO:</strong> At&eacute; 8x8 espacial streams</li>
+                        </ul>
+                        
+                        <h3>Tecnologias em 5 GHz:</h3>
+                        <ul>
+                            <li><strong>802.11a:</strong> Primeiro padr&atilde;o 5 GHz (54 Mbps)</li>
+                            <li><strong>802.11n:</strong> MIMO em 5 GHz</li>
+                            <li><strong>802.11ac:</strong> Exclusivo para 5 GHz</li>
+                            <li><strong>802.11ax:</strong> Wi-Fi 6 em 5 GHz</li>
+                            <li><strong>Wi-Fi 6E:</strong> Extens&atilde;o para 6 GHz</li>
+                        </ul>
+                        
+                        <h3>Vantagens:</h3>
+                        <ul>
+                            <li><strong>Menos congestionamento:</strong> Menos dispositivos</li>
+                            <li><strong>Maior largura de banda:</strong> Mais espectro dispon&iacute;vel</li>
+                            <li><strong>Velocidades superiores:</strong> Maior throughput</li>
+                            <li><strong>Canais mais largos:</strong> 80/160 MHz</li>
+                            <li><strong>Menos interfer&ecirc;ncia:</strong> Poucos dispositivos n&atilde;o-Wi-Fi</li>
+                        </ul>
+                        
+                        <h3>Desvantagens:</h3>
+                        <ul>
+                            <li><strong>Menor alcance:</strong> Maior atenua&ccedil;&atilde;o</li>
+                            <li><strong>Pior penetra&ccedil;&atilde;o:</strong> Dificuldade com obst�culos</li>
+                            <li><strong>DFS:</strong> Dynamic Frequency Selection complexo</li>
+                            <li><strong>Custo:</strong> Componentes mais caros</li>
+                            <li><strong>Consumo:</strong> Maior gasto energ&eacute;tico</li>
+                        </ul>
+                        
+                        <h3>DFS (Dynamic Frequency Selection):</h3>
+                        <ul>
+                            <li><strong>Prop&oacute;sito:</strong> Evitar interfer&ecirc;ncia com radar</li>
+                            <li><strong>Detec&ccedil;&atilde;o:</strong> Monitoramento cont&iacute;nuo</li>
+                            <li><strong>Mudan&ccedil;a de canal:</strong> Autom&aacute;tica quando radar detectado</li>
+                            <li><strong>Tempo de espera:</strong> 60 segundos antes de usar canal</li>
+                            <li><strong>Canais afetados:</strong> 52-144</li>
+                        </ul>
+                        
+                        <h3>TPC (Transmit Power Control):</h3>
+                        <ul>
+                            <li><strong>Controle autom&aacute;tico:</strong> Ajuste de pot&ecirc;ncia</li>
+                            <li><strong>Redu&ccedil;&atilde;o de interfer&ecirc;ncia:</strong> Minimiza impacto</li>
+                            <li><strong>Conformidade:</strong> Atende regula&ccedil;&otilde;es</li>
+                            <li><strong>Efici&ecirc;ncia:</strong> Otimiza uso do espectro</li>
+                        </ul>
+                        
+                        <h3>Planejamento de Canal:</h3>
+                        <ul>
+                            <li><strong>Canais preferenciais:</strong>
+                                <ul>
+                                    <li>36, 40, 44, 48 (sem DFS)</li>
+                                    <li>149, 153, 157, 161, 165 (sem DFS)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Canais DFS:</strong> Usar quando necess&aacute;rio</li>
+                            <li><strong>Largura de canal:</strong>
+                                <ul>
+                                    <li>20 MHz: M&aacute;xima compatibilidade</li>
+                                    <li>40 MHz: Bom compromisso</li>
+                                    <li>80 MHz: Alta performance</li>
+                                    <li>160 MHz: M&aacute;xima velocidade</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Aplica&ccedil;&otilde;es Ideais:</h3>
+                        <ul>
+                            <li><strong>Streaming 4K/8K:</strong> Alta largura de banda</li>
+                            <li><strong>Gaming:</strong> Baixa lat&ecirc;ncia</li>
+                            <li><strong>Transfer&ecirc;ncias de arquivo:</strong> Velocidade m&aacute;xima</li>
+                            <li><strong>Videoconfer&ecirc;ncia:</strong> Qualidade superior</li>
+                            <li><strong>Backup em nuvem:</strong> Upload r&aacute;pido</li>
+                        </ul>
+                        
+                        <h3>Considera&ccedil;&otilde;es de Design:</h3>
+                        <ul>
+                            <li><strong>Densidade de APs:</strong> Maior que 2,4 GHz</li>
+                            <li><strong>Posicionamento:</strong> Linha de visada importante</li>
+                            <li><strong>Pot&ecirc;ncia:</strong> Balancear alcance vs interfer&ecirc;ncia</li>
+                            <li><strong>Antenas:</strong> Direcionais podem ajudar</li>
+                        </ul>
+                        
+                        <h3>Ferramentas de Monitoramento:</h3>
+                        <ul>
+                            <li>Analisadores de espectro 5 GHz</li>
+                            <li>Detectores de radar</li>
+                            <li>Software de planejamento RF</li>
+                            <li>Medidores de campo</li>
+                        </ul>
+                        
+                        <h3>Tend&ecirc;ncias:</h3>
+                        <ul>
+                            <li>Migra&ccedil;&atilde;o crescente de 2,4 GHz</li>
+                            <li>Uso de canais mais largos</li>
+                            <li>Melhoria em algoritmos DFS</li>
+                            <li>Integra&ccedil;&atilde;o com 6 GHz (Wi-Fi 6E)</li>
+                        </ul>
+                    `
+                },
+                'ssid': {
+                    title: 'SSID (Service Set Identifier)',
+                    description: 'Service Set Identifier - Nome da rede wireless vis&iacute;vel aos usu&aacute;rios.',
+                    details: `
+                        <h3>Defini&ccedil;&atilde;o:</h3>
+                        <p>SSID &eacute; o nome de identifica&ccedil;&atilde;o de uma rede wireless que permite aos usu&aacute;rios distinguir entre diferentes redes Wi-Fi dispon&iacute;veis em uma &aacute;rea.</p>
+                        
+                        <h3>Caracter&iacute;sticas T&eacute;cnicas:</h3>
+                        <ul>
+                            <li><strong>Tamanho:</strong> 0 a 32 caracteres</li>
+                            <li><strong>Codifica&ccedil;&atilde;o:</strong> UTF-8</li>
+                            <li><strong>Case sensitive:</strong> Diferencia mai&uacute;sculas/min&uacute;sculas</li>
+                            <li><strong>Caracteres especiais:</strong> Permitidos (espa&ccedil;os, s&iacute;mbolos)</li>
+                            <li><strong>Transmiss&atilde;o:</strong> Em beacon frames</li>
+                        </ul>
+                        
+                        <h3>Tipos de SSID:</h3>
+                        <ul>
+                            <li><strong>Broadcast SSID:</strong>
+                                <ul>
+                                    <li>Vis&iacute;vel em scans</li>
+                                    <li>Anunciado em beacons</li>
+                                    <li>F&aacute;cil descoberta</li>
+                                    <li>Padr&atilde;o na maioria dos APs</li>
+                                </ul>
+                            </li>
+                            <li><strong>Hidden SSID:</strong>
+                                <ul>
+                                    <li>N&atilde;o aparece em scans</li>
+                                    <li>SSID vazio em beacons</li>
+                                    <li>Usu&aacute;rio deve conhecer o nome</li>
+                                    <li>Seguran&ccedil;a por obscuridade</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Fun&ccedil;&otilde;es do SSID:</h3>
+                        <ul>
+                            <li><strong>Identifica&ccedil;&atilde;o:</strong> Distingue redes</li>
+                            <li><strong>Sele&ccedil;&atilde;o:</strong> Permite escolha pelo usu&aacute;rio</li>
+                            <li><strong>Associa&ccedil;&atilde;o:</strong> Necess&aacute;rio para conectar</li>
+                            <li><strong>Roaming:</strong> Identifica&ccedil;&atilde;o de rede estendida</li>
+                            <li><strong>Seguran&ccedil;a:</strong> Parte da autentica&ccedil;&atilde;o</li>
+                        </ul>
+                        
+                        <h3>Boas Pr&aacute;ticas para Nomes:</h3>
+                        <ul>
+                            <li><strong>Descritivo:</strong> Indica localiza&ccedil;&atilde;o ou prop&oacute;sito</li>
+                            <li><strong>Evitar informa&ccedil;&otilde;es sens&iacute;veis:</strong> N&atilde;o revelar equipamento</li>
+                            <li><strong>F&aacute;cil de lembrar:</strong> Para usu&aacute;rios leg&iacute;timos</li>
+                            <li><strong>Evitar caracteres especiais:</strong> Compatibilidade</li>
+                            <li><strong>N&atilde;o usar padr&otilde;es:</strong> Evitar nomes gen&eacute;ricos</li>
+                        </ul>
+                        
+                        <h3>Exemplos de Nomenclatura:</h3>
+                        <ul>
+                            <li><strong>Corporativo:</strong>
+                                <ul>
+                                    <li>Empresa_Funcionarios</li>
+                                    <li>Empresa_Visitantes</li>
+                                    <li>Andar2_Vendas</li>
+                                </ul>
+                            </li>
+                            <li><strong>Residencial:</strong>
+                                <ul>
+                                    <li>Casa_Silva</li>
+                                    <li>Apto_201</li>
+                                    <li>Familia_Santos_5G</li>
+                                </ul>
+                            </li>
+                            <li><strong>P&uacute;blico:</strong>
+                                <ul>
+                                    <li>Hotel_Guests</li>
+                                    <li>Cafe_WiFi_Free</li>
+                                    <li>Aeroporto_Public</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>M&uacute;ltiplos SSIDs:</h3>
+                        <ul>
+                            <li><strong>VLAN separation:</strong> Segmenta&ccedil;&atilde;o de rede</li>
+                            <li><strong>Diferentes pol&iacute;ticas:</strong> Acesso e seguran&ccedil;a</li>
+                            <li><strong>Bandas separadas:</strong> 2,4 GHz vs 5 GHz</li>
+                            <li><strong>Tipos de usu&aacute;rio:</strong> Funcion&aacute;rios vs visitantes</li>
+                            <li><strong>Limita&ccedil;&otilde;es:</strong> M&aacute;ximo por AP (geralmente 8-16)</li>
+                        </ul>
+                        
+                        <h3>SSID e Seguran&ccedil;a:</h3>
+                        <ul>
+                            <li><strong>N&atilde;o &eacute; senha:</strong> SSID &eacute; p&uacute;blico</li>
+                            <li><strong>Parte da autentica&ccedil;&atilde;o:</strong> Usado em c&aacute;lculos WPA</li>
+                            <li><strong>Hidden SSID:</strong> N&atilde;o adiciona seguran&ccedil;a real</li>
+                            <li><strong>SSID spoofing:</strong> Ataques de personifica&ccedil;&atilde;o</li>
+                        </ul>
+                        
+                        <h3>Gerenciamento Empresarial:</h3>
+                        <ul>
+                            <li><strong>Naming convention:</strong> Padr&atilde;o de nomenclatura</li>
+                            <li><strong>Centraliza&ccedil;&atilde;o:</strong> Controladores wireless</li>
+                            <li><strong>Propaga&ccedil;&atilde;o:</strong> Mesmo SSID em m&uacute;ltiplos APs</li>
+                            <li><strong>Documenta&ccedil;&atilde;o:</strong> Registro de configura&ccedil;&otilde;es</li>
+                        </ul>
+                        
+                        <h3>Troubleshooting:</h3>
+                        <ul>
+                            <li><strong>SSID n&atilde;o aparece:</strong>
+                                <ul>
+                                    <li>Verificar broadcast</li>
+                                    <li>Verificar alcance</li>
+                                    <li>Verificar canal</li>
+                                </ul>
+                            </li>
+                            <li><strong>M&uacute;ltiplos SSIDs iguais:</strong>
+                                <ul>
+                                    <li>Identificar por BSSID</li>
+                                    <li>Verificar intensidade</li>
+                                    <li>Analisar seguran&ccedil;a</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Ferramentas de An&aacute;lise:</h3>
+                        <ul>
+                            <li>WiFi scanners (inSSIDer, WiFi Analyzer)</li>
+                            <li>Comandos nativos (netsh, iwlist)</li>
+                            <li>Analisadores profissionais</li>
+                            <li>Apps m&oacute;veis</li>
+                        </ul>
+                        
+                        <h3>Considera&ccedil;&otilde;es Futuras:</h3>
+                        <ul>
+                            <li>Passpoint/Hotspot 2.0</li>
+                            <li>Automatic network selection</li>
+                            <li>Enhanced security protocols</li>
+                            <li>IoT device management</li>
+                        </ul>
+                    `
+                },
+                'wep': {
+                    title: 'WEP (Wired Equivalent Privacy)',
+                    description: 'Wired Equivalent Privacy - Protocolo de seguran&ccedil;a wireless obsoleto.',
+                    details: `
+                        <h3>Defini&ccedil;&atilde;o:</h3>
+                        <p>WEP foi o primeiro protocolo de seguran&ccedil;a para redes wireless, projetado para fornecer confidencialidade equivalente a uma rede cabeada. Hoje &eacute; considerado obsoleto e inseguro.</p>
+                        
+                        <h3>Hist&oacute;rico:</h3>
+                        <ul>
+                            <li><strong>1997:</strong> Introduzido com IEEE 802.11</li>
+                            <li><strong>Objetivo:</strong> Seguran&ccedil;a b&aacute;sica para Wi-Fi</li>
+                            <li><strong>2001:</strong> Primeiras vulnerabilidades descobertas</li>
+                            <li><strong>2004:</strong> Oficialmente descontinuado pelo IEEE</li>
+                            <li><strong>Atualmente:</strong> Considerado inseguro</li>
+                        </ul>
+                        
+                        <h3>Caracter&iacute;sticas T&eacute;cnicas:</h3>
+                        <ul>
+                            <li><strong>Algoritmo:</strong> RC4 stream cipher</li>
+                            <li><strong>Tamanho da chave:</strong>
+                                <ul>
+                                    <li>64-bit: 40 bits + 24 bits IV</li>
+                                    <li>128-bit: 104 bits + 24 bits IV</li>
+                                    <li>256-bit: 232 bits + 24 bits IV (n&atilde;o padr&atilde;o)</li>
+                                </ul>
+                            </li>
+                            <li><strong>IV (Initialization Vector):</strong> 24 bits</li>
+                            <li><strong>CRC-32:</strong> Verifica&ccedil;&atilde;o de integridade</li>
+                        </ul>
+                        
+                        <h3>Como Funciona:</h3>
+                        <ol>
+                            <li><strong>Gera&ccedil;&atilde;o de IV:</strong> 24 bits aleat&oacute;rios</li>
+                            <li><strong>Concatena&ccedil;&atilde;o:</strong> IV + chave secreta</li>
+                            <li><strong>RC4:</strong> Gera keystream</li>
+                            <li><strong>XOR:</strong> Dados &#8853; keystream</li>
+                            <li><strong>Transmiss&atilde;o:</strong> IV + dados criptografados</li>
+                        </ol>
+                        
+                        <h3>Tipos de Autentica&ccedil;&atilde;o:</h3>
+                        <ul>
+                            <li><strong>Open System:</strong>
+                                <ul>
+                                    <li>Sem autentica&ccedil;&atilde;o real</li>
+                                    <li>Qualquer cliente pode associar</li>
+                                    <li>Seguran&ccedil;a apenas na criptografia</li>
+                                </ul>
+                            </li>
+                            <li><strong>Shared Key:</strong>
+                                <ul>
+                                    <li>Challenge-response</li>
+                                    <li>Usa chave WEP para autentica&ccedil;&atilde;o</li>
+                                    <li>Paradoxalmente menos seguro</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Vulnerabilidades Principais:</h3>
+                        <ul>
+                            <li><strong>IV curto:</strong>
+                                <ul>
+                                    <li>Apenas 24 bits</li>
+                                    <li>Repeti&ccedil;&atilde;o frequente</li>
+                                    <li>Ataques estat&iacute;sticos</li>
+                                </ul>
+                            </li>
+                            <li><strong>Chave est&aacute;tica:</strong>
+                                <ul>
+                                    <li>Mesma chave para todos</li>
+                                    <li>N&atilde;o muda automaticamente</li>
+                                    <li>Comprometimento permanente</li>
+                                </ul>
+                            </li>
+                            <li><strong>CRC-32 fr&aacute;gil:</strong>
+                                <ul>
+                                    <li>N&atilde;o &eacute; hash criptogr&aacute;fico</li>
+                                    <li>Permite modifica&ccedil;&atilde;o de dados</li>
+                                    <li>Ataques de bit-flipping</li>
+                                </ul>
+                            </li>
+                            <li><strong>RC4 weaknesses:</strong>
+                                <ul>
+                                    <li>Chaves fracas conhecidas</li>
+                                    <li>Padr&otilde;es previs&iacute;veis</li>
+                                    <li>Ataques FMS e KoreK</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>M&eacute;todos de Ataque:</h3>
+                        <ul>
+                            <li><strong>Passive attacks:</strong>
+                                <ul>
+                                    <li>Captura de tr&aacute;fego</li>
+                                    <li>An&aacute;lise estat&iacute;stica</li>
+                                    <li>Recupera&ccedil;&atilde;o de chave</li>
+                                </ul>
+                            </li>
+                            <li><strong>Active attacks:</strong>
+                                <ul>
+                                    <li>Injection de pacotes</li>
+                                    <li>ARP replay</li>
+                                    <li>Acelera&ccedil;&atilde;o de tr&aacute;fego</li>
+                                </ul>
+                            </li>
+                            <li><strong>Ferramentas:</strong>
+                                <ul>
+                                    <li>Aircrack-ng</li>
+                                    <li>Kismet</li>
+                                    <li>Wireshark</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Tempo para Quebrar:</h3>
+                        <ul>
+                            <li><strong>WEP 64-bit:</strong> Minutos</li>
+                            <li><strong>WEP 128-bit:</strong> Algumas horas</li>
+                            <li><strong>Com tr&aacute;fego ativo:</strong> Ainda mais r&aacute;pido</li>
+                            <li><strong>Ferramentas automatizadas:</strong> Processo trivial</li>
+                        </ul>
+                        
+                        <h3>Por que N&atilde;o Usar:</h3>
+                        <ul>
+                            <li><strong>Facilmente quebr&aacute;vel:</strong> Ferramentas gratuitas</li>
+                            <li><strong>Sem prote&ccedil;&atilde;o real:</strong> Falsa sensa��o de seguran&ccedil;a</li>
+                            <li><strong>Padr&atilde;o obsoleto:</strong> N&atilde;o suportado em novos dispositivos</li>
+                            <li><strong>Compliance:</strong> N&atilde;o atende normas de seguran&ccedil;a</li>
+                        </ul>
+                        
+                        <h3>Alternativas Seguras:</h3>
+                        <ul>
+                            <li><strong>WPA2:</strong> Padr&atilde;o atual m&iacute;nimo</li>
+                            <li><strong>WPA3:</strong> &Uacute;ltima vers&atilde;o</li>
+                            <li><strong>VPN:</strong> Camada adicional de seguran&ccedil;a</li>
+                            <li><strong>802.1X:</strong> Autentica&ccedil;&atilde;o empresarial</li>
+                        </ul>
+                        
+                        <h3>Migra&ccedil;&atilde;o:</h3>
+                        <ul>
+                            <li><strong>Audit de rede:</strong> Identificar uso de WEP</li>
+                            <li><strong>Atualiza&ccedil;&atilde;o:</strong> Firmware e equipamentos</li>
+                            <li><strong>Reconfigura&ccedil;&atilde;o:</strong> Implementar WPA2/WPA3</li>
+                            <li><strong>Treinamento:</strong> Conscientizar usu&aacute;rios</li>
+                        </ul>
+                        
+                        <h3>Detec&ccedil;&atilde;o:</h3>
+                        <ul>
+                            <li>Scanners de seguran&ccedil;a wireless</li>
+                            <li>Auditorias de rede</li>
+                            <li>Ferramentas de compliance</li>
+                            <li>Monitoramento cont&iacute;nuo</li>
+                        </ul>
+                        
+                        <h3>Li&ccedil;&atilde;o Aprendida:</h3>
+                        <p>WEP demonstrou a import&acirc;ncia de design criptogr&aacute;fico adequado e a necessidade de evolu&ccedil;&atilde;o cont&iacute;nua em seguran&ccedil;a wireless.</p>
+                    `
+                },
+                'wpa': {
+                    title: 'WPA (Wi-Fi Protected Access)',
+                    description: 'Wi-Fi Protected Access - Protocolo de seguran&ccedil;a que substituiu o WEP.',
+                    details: `
+                        <h3>Defini&ccedil;&atilde;o:</h3>
+                        <p>WPA foi desenvolvido como uma solu&ccedil;&atilde;o tempor&aacute;ria para substituir o WEP inseguro, introduzindo melhorias significativas na seguran&ccedil;a de redes wireless at&eacute; que o WPA2 fosse finalizado.</p>
+                        
+                        <h3>Hist&oacute;rico:</h3>
+                        <ul>
+                            <li><strong>2003:</strong> Lan&ccedil;ado pela Wi-Fi Alliance</li>
+                            <li><strong>Objetivo:</strong> Substitui&ccedil;&atilde;o urgente do WEP</li>
+                            <li><strong>Base:</strong> Draft do IEEE 802.11i</li>
+                            <li><strong>Transi&ccedil;&atilde;o:</strong> Ponte para WPA2</li>
+                            <li><strong>Status atual:</strong> Legado, substitu&iacute;do por WPA2</li>
+                        </ul>
+                        
+                        <h3>Melhorias sobre WEP:</h3>
+                        <ul>
+                            <li><strong>TKIP:</strong> Temporal Key Integrity Protocol</li>
+                            <li><strong>Chaves din&acirc;micas:</strong> Mudan&ccedil;a autom&aacute;tica</li>
+                            <li><strong>IV maior:</strong> 48 bits vs 24 bits</li>
+                            <li><strong>MIC:</strong> Message Integrity Check</li>
+                            <li><strong>Autentica&ccedil;&atilde;o melhorada:</strong> 802.1X ou PSK</li>
+                        </ul>
+                        
+                        <h3>TKIP (Temporal Key Integrity Protocol):</h3>
+                        <ul>
+                            <li><strong>Chave tempor&aacute;ria:</strong> Muda a cada 10.000 pacotes</li>
+                            <li><strong>Key mixing:</strong> Combina chaves de diferentes n&iacute;veis</li>
+                            <li><strong>Sequence counter:</strong> Prote&ccedil;&atilde;o contra replay</li>
+                            <li><strong>Per-packet key:</strong> Chave &uacute;nica por pacote</li>
+                            <li><strong>Compatibilidade:</strong> Hardware WEP existente</li>
+                        </ul>
+                        
+                        <h3>Hierarquia de Chaves:</h3>
+                        <ul>
+                            <li><strong>PMK (Pairwise Master Key):</strong>
+                                <ul>
+                                    <li>Derivada da senha ou certificado</li>
+                                    <li>256 bits</li>
+                                    <li>Base para outras chaves</li>
+                                </ul>
+                            </li>
+                            <li><strong>PTK (Pairwise Transient Key):</strong>
+                                <ul>
+                                    <li>Derivada do PMK</li>
+                                    <li>512 bits total</li>
+                                    <li>Inclui KCK, KEK, TK</li>
+                                </ul>
+                            </li>
+                            <li><strong>GTK (Group Temporal Key):</strong>
+                                <ul>
+                                    <li>Para tr&aacute;fego multicast/broadcast</li>
+                                    <li>Compartilhada por todos clientes</li>
+                                    <li>Renovada periodicamente</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Modos de Autentica&ccedil;&atilde;o:</h3>
+                        <ul>
+                            <li><strong>WPA-Personal (PSK):</strong>
+                                <ul>
+                                    <li>Pre-Shared Key</li>
+                                    <li>Senha compartilhada</li>
+                                    <li>8-63 caracteres</li>
+                                    <li>Adequado para uso dom&eacute;stico</li>
+                                </ul>
+                            </li>
+                            <li><strong>WPA-Enterprise (802.1X):</strong>
+                                <ul>
+                                    <li>Servidor RADIUS</li>
+                                    <li>Certificados digitais</li>
+                                    <li>Autentica&ccedil;&atilde;o por usu&aacute;rio</li>
+                                    <li>Adequado para empresas</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>4-Way Handshake:</h3>
+                        <ol>
+                            <li><strong>Message 1:</strong> AP &#8594; Client (ANonce)</li>
+                            <li><strong>Message 2:</strong> Client &#8594; AP (SNonce + MIC)</li>
+                            <li><strong>Message 3:</strong> AP &#8594; Client (GTK + MIC)</li>
+                            <li><strong>Message 4:</strong> Client &#8594; AP (Confirma&ccedil;&atilde;o)</li>
+                        </ol>
+                        
+                        <h3>MIC (Message Integrity Check):</h3>
+                        <ul>
+                            <li><strong>Algoritmo:</strong> Michael</li>
+                            <li><strong>Tamanho:</strong> 64 bits</li>
+                            <li><strong>Prop&oacute;sito:</strong> Detectar altera&ccedil;&otilde;es</li>
+                            <li><strong>Contramedidas:</strong> Desconex&atilde;o ap&oacute;s falhas</li>
+                        </ul>
+                        
+                        <h3>Vulnerabilidades:</h3>
+                        <ul>
+                            <li><strong>TKIP attacks:</strong>
+                                <ul>
+                                    <li>Beck-Tews attack</li>
+                                    <li>Ohigashi-Morii attack</li>
+                                    <li>Limita&ccedil;&otilde;es do RC4</li>
+                                </ul>
+                            </li>
+                            <li><strong>Michael algorithm:</strong>
+                                <ul>
+                                    <li>N&atilde;o &eacute; hash criptogr&aacute;fico</li>
+                                    <li>Vulnerabilidades te&oacute;ricas</li>
+                                    <li>Ataques de for&ccedil;a bruta</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Limita&ccedil;&otilde;es:</h3>
+                        <ul>
+                            <li><strong>Baseado em RC4:</strong> Algoritmo com fraquezas</li>
+                            <li><strong>Compatibilidade:</strong> Limitado por hardware WEP</li>
+                            <li><strong>Performance:</strong> Overhead do TKIP</li>
+                            <li><strong>Seguran&ccedil;a:</strong> Menos robusta que AES</li>
+                        </ul>
+                        
+                        <h3>Configura&ccedil;&atilde;o T&iacute;pica:</h3>
+                        <ul>
+                            <li><strong>Modo:</strong> WPA-PSK</li>
+                            <li><strong>Criptografia:</strong> TKIP</li>
+                            <li><strong>Senha:</strong> 8-63 caracteres</li>
+                            <li><strong>Renova&ccedil;&atilde;o:</strong> Chaves a cada 3600s</li>
+                        </ul>
+                        
+                        <h3>Migra&ccedil;&atilde;o para WPA2:</h3>
+                        <ul>
+                            <li><strong>Vantagens do WPA2:</strong>
+                                <ul>
+                                    <li>AES em vez de RC4</li>
+                                    <li>CCMP em vez de TKIP</li>
+                                    <li>Seguran&ccedil;a superior</li>
+                                    <li>Melhor performance</li>
+                                </ul>
+                            </li>
+                            <li><strong>Considera&ccedil;&otilde;es:</strong>
+                                <ul>
+                                    <li>Compatibilidade de hardware</li>
+                                    <li>Atualiza&ccedil;&atilde;o de firmware</li>
+                                    <li>Reconfigura��o de clientes</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Status Atual:</h3>
+                        <ul>
+                            <li><strong>Legado:</strong> N&atilde;o recomendado para novas instala&ccedil;&otilde;es</li>
+                            <li><strong>Suporte:</strong> Ainda presente em equipamentos antigos</li>
+                            <li><strong>Seguran&ccedil;a:</strong> Melhor que WEP, inferior ao WPA2</li>
+                            <li><strong>Uso:</strong> Apenas quando WPA2 n&atilde;o dispon&iacute;vel</li>
+                        </ul>
+                        
+                        <h3>Ferramentas de Teste:</h3>
+                        <ul>
+                            <li>Aircrack-ng suite</li>
+                            <li>Wireshark para an&aacute;lise</li>
+                            <li>Scanners de seguran&ccedil;a</li>
+                            <li>Penetration testing tools</li>
+                        </ul>
+                        
+                        <h3>Recomenda&ccedil;&atilde;o:</h3>
+                        <p>Migrar para WPA2 ou WPA3 sempre que poss&iacute;vel, usando WPA apenas como &uacute;ltimo recurso para dispositivos legados.</p>
+                    `
+                },
+                'wpa2': {
+                    title: 'WPA2 (Wi-Fi Protected Access 2)',
+                    description: 'Vers&atilde;o melhorada do WPA com criptografia AES mais robusta.',
+                    details: `
+                        <h3>Defini&ccedil;&atilde;o:</h3>
+                        <p>WPA2 &eacute; o padr&atilde;o de seguran&ccedil;a wireless baseado no IEEE 802.11i completo, oferecendo criptografia AES e sendo considerado seguro para a maioria das aplica&ccedil;&otilde;es at&eacute; hoje.</p>
+                        
+                        <h3>Hist&oacute;rico:</h3>
+                        <ul>
+                            <li><strong>2004:</strong> Ratificado como IEEE 802.11i</li>
+                            <li><strong>2006:</strong> Obrigat&oacute;rio para certifica&ccedil;&atilde;o Wi-Fi</li>
+                            <li><strong>2018:</strong> WPA3 lan&ccedil;ado como sucessor</li>
+                            <li><strong>Atualmente:</strong> Padr&atilde;o m&iacute;nimo recomendado</li>
+                        </ul>
+                        
+                        <h3>Principais Melhorias sobre WPA:</h3>
+                        <ul>
+                            <li><strong>AES:</strong> Advanced Encryption Standard</li>
+                            <li><strong>CCMP:</strong> Counter Mode CBC-MAC Protocol</li>
+                            <li><strong>Elimina&ccedil;&atilde;o do RC4:</strong> Algoritmo mais seguro</li>
+                            <li><strong>Performance:</strong> Menor overhead</li>
+                            <li><strong>Robustez:</strong> Resist&ecirc;ncia a ataques conhecidos</li>
+                        </ul>
+                        
+                        <h3>CCMP (Counter Mode CBC-MAC Protocol):</h3>
+                        <ul>
+                            <li><strong>Base:</strong> AES em modo CTR + CBC-MAC</li>
+                            <li><strong>Chave:</strong> 128 bits</li>
+                            <li><strong>Nonce:</strong> 48 bits (Packet Number)</li>
+                            <li><strong>MIC:</strong> 64 bits</li>
+                            <li><strong>Atomicidade:</strong> Criptografia + autentica&ccedil;&atilde;o</li>
+                        </ul>
+                        
+                        <h3>Modos de Opera&ccedil;&atilde;o:</h3>
+                        <ul>
+                            <li><strong>WPA2-Personal (PSK):</strong>
+                                <ul>
+                                    <li>Pre-Shared Key</li>
+                                    <li>Senha de 8-63 caracteres</li>
+                                    <li>PBKDF2 para deriva&ccedil;&atilde;o</li>
+                                    <li>Ideal para casa/pequenos escrit&oacute;rios</li>
+                                </ul>
+                            </li>
+                            <li><strong>WPA2-Enterprise:</strong>
+                                <ul>
+                                    <li>802.1X/EAP</li>
+                                    <li>Servidor RADIUS</li>
+                                    <li>Certificados ou credenciais</li>
+                                    <li>Ideal para empresas</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Processo de Autentica&ccedil;&atilde;o (PSK):</h3>
+                        <ol>
+                            <li><strong>Deriva&ccedil;&atilde;o PMK:</strong> PBKDF2(PSK, SSID, 4096)</li>
+                            <li><strong>4-Way Handshake:</strong> Estabelece PTK</li>
+                            <li><strong>Group Key Handshake:</strong> Distribui GTK</li>
+                            <li><strong>Comunica&ccedil;&atilde;o segura:</strong> CCMP ativo</li>
+                        </ol>
+                        
+                        <h3>Seguran&ccedil;a do AES:</h3>
+                        <ul>
+                            <li><strong>Algoritmo aprovado:</strong> NIST, NSA</li>
+                            <li><strong>Chave 128-bit:</strong> Computacionalmente segura</li>
+                            <li><strong>Resist&ecirc;ncia:</strong> Ataques conhecidos</li>
+                            <li><strong>Performance:</strong> Acelera&ccedil;&atilde;o por hardware</li>
+                        </ul>
+                        
+                        <h3>Vulnerabilidades e Ataques:</h3>
+                        <ul>
+                            <li><strong>KRACK (2017):</strong>
+                                <ul>
+                                    <li>Key Reinstallation Attack</li>
+                                    <li>Explora 4-way handshake</li>
+                                    <li>Permite descriptografia</li>
+                                    <li>Corrigido via patches</li>
+                                </ul>
+                            </li>
+                            <li><strong>Dictionary attacks:</strong>
+                                <ul>
+                                    <li>Senhas fracas</li>
+                                    <li>Ataques offline</li>
+                                    <li>Rainbow tables</li>
+                                </ul>
+                            </li>
+                            <li><strong>Evil twin:</strong>
+                                <ul>
+                                    <li>APs maliciosos</li>
+                                    <li>Captura de handshake</li>
+                                    <li>Phishing de credenciais</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Boas Pr&aacute;ticas de Seguran&ccedil;a:</h3>
+                        <ul>
+                            <li><strong>Senhas fortes:</strong>
+                                <ul>
+                                    <li>M&iacute;nimo 12 caracteres</li>
+                                    <li>Combina&ccedil;&atilde;o de caracteres</li>
+                                    <li>Evitar dicion&aacute;rio</li>
+                                    <li>Mudan&ccedil;a peri&oacute;dica</li>
+                                </ul>
+                            </li>
+                            <li><strong>Configura&ccedil;&otilde;es:</strong>
+                                <ul>
+                                    <li>Desabilitar WPS</li>
+                                    <li>Atualizar firmware</li>
+                                    <li>SSID n&atilde;o &oacute;bvio</li>
+                                    <li>Monitoramento regular</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>WPA2-Enterprise (802.1X):</h3>
+                        <ul>
+                            <li><strong>Componentes:</strong>
+                                <ul>
+                                    <li>Supplicant (cliente)</li>
+                                    <li>Authenticator (AP)</li>
+                                    <li>Authentication Server (RADIUS)</li>
+                                </ul>
+                            </li>
+                            <li><strong>M&eacute;todos EAP:</strong>
+                                <ul>
+                                    <li>EAP-TLS: Certificados m&uacute;tuos</li>
+                                    <li>PEAP: Certificado do servidor</li>
+                                    <li>EAP-TTLS: T&uacute;nel seguro</li>
+                                    <li>EAP-FAST: Cisco propriet&aacute;rio</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Performance:</h3>
+                        <ul>
+                            <li><strong>Overhead m&iacute;nimo:</strong> ~4% vs dados n&atilde;o criptografados</li>
+                                      <li><strong>Acelera&ccedil;&atilde;o hardware:</strong> AES-NI em processadores modernos</li>
+                            <li><strong>Throughput:</strong> Pr&oacute;ximo ao m&aacute;ximo te&oacute;rico</li>
+                            <li><strong>Lat&ecirc;ncia:</strong> Impacto m&iacute;nimo</li>
+                        </ul>
+                        
+                        <h3>Configura&ccedil;&atilde;o Recomendada:</h3>
+                        <ul>
+                            <li><strong>Modo:</strong> WPA2-PSK ou WPA2-Enterprise</li>
+                            <li><strong>Criptografia:</strong> AES (CCMP)</li>
+                            <li><strong>Desabilitar:</strong> WPS, WEP, WPA</li>
+                            <li><strong>Renova&ccedil;&atilde;o GTK:</strong> 3600 segundos</li>
+                        </ul>
+                        
+                        <h3>Ferramentas de Teste:</h3>
+                        <ul>
+                            <li>Hashcat para testes de senha</li>
+                            <li>Aircrack-ng para captura</li>
+                            <li>Wireshark para an&aacute;lise</li>
+                            <li>Nessus para auditoria</li>
+                        </ul>
+                        
+                        <h3>Migra&ccedil;&atilde;o para WPA3:</h3>
+                        <ul>
+                            <li><strong>Vantagens WPA3:</strong>
+                                <ul>
+                                    <li>SAE (Simultaneous Authentication of Equals)</li>
+                                    <li>Prote&ccedil;&atilde;o contra ataques offline</li>
+                                    <li>Forward secrecy</li>
+                                    <li>Criptografia mais forte</li>
+                                </ul>
+                            </li>
+                            <li><strong>Considera&ccedil;&otilde;es:</strong>
+                                <ul>
+                                    <li>Suporte de dispositivos</li>
+                                    <li>Compatibilidade legada</li>
+                                    <li>Custo de atualiza&ccedil;&atilde;o</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Status Atual:</h3>
+                        <p>WPA2 permanece como padr&atilde;o m&iacute;nimo aceit&aacute;vel para seguran&ccedil;a wireless, sendo gradualmente substitu&iacute;do pelo WPA3 em novas implementa&ccedil;&otilde;es.</p>
+                    `
+                },
+                'hotspot': {
+                    title: 'Hotspot',
+                    description: 'Ponto de acesso Wi-Fi p&uacute;blico ou compartilhado para acesso &agrave; internet.',
+                    details: `
+                        <h3>Defini&ccedil;&atilde;o:</h3>
+                        <p>Hotspot &eacute; um local f&iacute;sico onde pessoas podem acessar a internet via Wi-Fi, geralmente oferecido em locais p&uacute;blicos ou comerciais como servi&ccedil;o gratuito ou pago.</p>
+                        
+                        <h3>Tipos de Hotspots:</h3>
+                        <ul>
+                            <li><strong>P&uacute;blicos Gratuitos:</strong>
+                                <ul>
+                                    <li>Bibliotecas, universidades</li>
+                                    <li>Aeroportos, esta&ccedil;&otilde;es</li>
+                                    <li>Pra&ccedil;as, parques p&uacute;blicos</li>
+                                    <li>Governo municipal</li>
+                                </ul>
+                            </li>
+                            <li><strong>Comerciais:</strong>
+                                <ul>
+                                    <li>Caf&eacute;s, restaurantes</li>
+                                    <li>Hot&eacute;is, pousadas</li>
+                                    <li>Shopping centers</li>
+                                    <li>Lojas de varejo</li>
+                                </ul>
+                            </li>
+                            <li><strong>Pagos:</strong>
+                                <ul>
+                                    <li>Provedores especializados</li>
+                                    <li>Redes de hotspots</li>
+                                    <li>Servi&ccedil;os premium</li>
+                                </ul>
+                            </li>
+                            <li><strong>M&oacute;veis:</strong>
+                                <ul>
+                                    <li>Smartphones (tethering)</li>
+                                    <li>Dispositivos MiFi</li>
+                                    <li>Ve&iacute;culos conectados</li>
+                                    <li>Transporte p&uacute;blico</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Componentes T&eacute;cnicos:</h3>
+                        <ul>
+                            <li><strong>Access Point:</strong> Equipamento Wi-Fi</li>
+                            <li><strong>Gateway:</strong> Conex&atilde;o com internet</li>
+                            <li><strong>Captive Portal:</strong> P&aacute;gina de autentica&ccedil;&atilde;o</li>
+                            <li><strong>RADIUS Server:</strong> Autentica&ccedil;&atilde;o centralizada</li>
+                            <li><strong>Firewall:</strong> Seguran&ccedil;a e controle</li>
+                            <li><strong>Bandwidth Management:</strong> Controle de velocidade</li>
+                        </ul>
+                        
+                        <h3>Captive Portal:</h3>
+                        <ul>
+                            <li><strong>Fun&ccedil;&atilde;o:</strong> Controlar acesso inicial</li>
+                            <li><strong>Autentica&ccedil;&atilde;o:</strong>
+                                <ul>
+                                    <li>Aceite de termos</li>
+                                    <li>Registro de usu&aacute;rio</li>
+                                    <li>Login com credenciais</li>
+                                    <li>Pagamento online</li>
+                                    <li>C&oacute;digos de acesso</li>
+                                </ul>
+                            </li>
+                            <li><strong>Personaliza&ccedil;&atilde;o:</strong>
+                                <ul>
+                                    <li>Branding da empresa</li>
+                                    <li>Promo&ccedil;&otilde;es e ofertas</li>
+                                    <li>Coleta de dados</li>
+                                    <li>Redes sociais</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Modelos de Neg&oacute;cio:</h3>
+                        <ul>
+                            <li><strong>Gratuito com publicidade:</strong>
+                                <ul>
+                                    <li>Receita via an&uacute;ncios</li>
+                                    <li>Coleta de dados</li>
+                                    <li>Marketing direcionado</li>
+                                </ul>
+                            </li>
+                            <li><strong>Freemium:</strong>
+                                <ul>
+                                    <li>Acesso b&aacute;sico gratuito</li>
+                                    <li>Velocidade/tempo limitado</li>
+                                    <li>Upgrade pago</li>
+                                </ul>
+                            </li>
+                            <li><strong>Incluso no servi&ccedil;o:</strong>
+                                <ul>
+                                    <li>Hot&eacute;is, restaurantes</li>
+                                    <li>Valor agregado</li>
+                                    <li>Fideliza&ccedil;&atilde;o de clientes</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Seguran&ccedil;a em Hotspots:</h3>
+                        <ul>
+                            <li><strong>Riscos para Usu&aacute;rios:</strong>
+                                <ul>
+                                    <li>Tr&aacute;fego n&atilde;o criptografado</li>
+                                    <li>Evil twin attacks</li>
+                                    <li>Man-in-the-middle</li>
+                                    <li>Packet sniffing</li>
+                                    <li>Malware injection</li>
+                                </ul>
+                            </li>
+                            <li><strong>Medidas de Prote&ccedil;&atilde;o:</strong>
+                                <ul>
+                                    <li>VPN sempre ativa</li>
+                                    <li>HTTPS obrigat&oacute;rio</li>
+                                    <li>Firewall pessoal</li>
+                                    <li>Antiv&iacute;rus atualizado</li>
+                                    <li>Evitar transa&ccedil;&otilde;es sens&iacute;veis</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Tecnologias Avan&ccedil;adas:</h3>
+                        <ul>
+                            <li><strong>Hotspot 2.0 (Passpoint):</strong>
+                                <ul>
+                                    <li>Autentica&ccedil;&atilde;o autom&aacute;tica</li>
+                                    <li>Roaming entre operadoras</li>
+                                    <li>Seguran&ccedil;a WPA2-Enterprise</li>
+                                    <li>Descoberta autom&aacute;tica</li>
+                                </ul>
+                            </li>
+                            <li><strong>Wi-Fi 6/6E:</strong>
+                                <ul>
+                                    <li>Maior capacidade</li>
+                                    <li>Melhor performance</li>
+                                    <li>Menor lat&ecirc;ncia</li>
+                                    <li>Efici&ecirc;ncia energ&eacute;tica</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Gerenciamento e Monitoramento:</h3>
+                        <ul>
+                            <li><strong>Analytics:</strong>
+                                <ul>
+                                    <li>N&uacute;mero de usu&aacute;rios</li>
+                                    <li>Tempo de conex&atilde;o</li>
+                                    <li>Uso de largura de banda</li>
+                                    <li>Localiza&ccedil;&atilde;o dos usu&aacute;rios</li>
+                                </ul>
+                            </li>
+                            <li><strong>Controles:</strong>
+                                <ul>
+                                    <li>Limites de tempo</li>
+                                    <li>Quotas de dados</li>
+                                    <li>Filtragem de conte&uacute;do</li>
+                                    <li>QoS por usu&aacute;rio</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Aspectos Legais:</h3>
+                        <ul>
+                            <li><strong>Responsabilidade:</strong> Uso indevido por terceiros</li>
+                            <li><strong>Logs:</strong> Manuten&ccedil;&atilde;o de registros</li>
+                            <li><strong>Privacidade:</strong> LGPD/GDPR compliance</li>
+                            <li><strong>Filtragem:</strong> Conte&uacute;do inapropriado</li>
+                        </ul>
+                        
+                        <h3>Tend&ecirc;ncias:</h3>
+                        <ul>
+                            <li>Integra&ccedil;&atilde;o com 5G</li>
+                            <li>IoT e smart cities</li>
+                            <li>Intelig&ecirc;ncia artificial</li>
+                            <li>Personaliza&ccedil;&atilde;o avan&ccedil;ada</li>
+                            <li>Sustentabilidade energ&eacute;tica</li>
+                        </ul>
+                        
+                        <h3>Melhores Pr&aacute;ticas:</h3>
+                        <ul>
+                            <li>Planejamento de capacidade adequado</li>
+                            <li>Seguran&ccedil;a em camadas</li>
+                            <li>Monitoramento cont&iacute;nuo</li>
+                            <li>Experi&ecirc;ncia do usu&aacute;rio otimizada</li>
+                            <li>Compliance com regula&ccedil;&otilde;es</li>
+                        </ul>
+                    `
+                },
+                'linha-visada': {
+                    title: 'Linha de Visada (Line of Sight)',
+                    description: 'Line of Sight - Caminho direto sem obst�culos entre transmissor e receptor.',
+                    details: `
+                        <h3>Defini&ccedil;&atilde;o:</h3>
+                        <p>Linha de visada refere-se a um caminho direto e desobstru&iacute;do entre o transmissor e receptor de sinais de radiofrequ&ecirc;ncia, essencial para comunica&ccedil;&otilde;es de alta frequ&ecirc;ncia e longas dist&acirc;ncias.</p>
+                        
+                        <h3>Tipos de Linha de Visada:</h3>
+                        <ul>
+                            <li><strong>Visual Line of Sight (VLOS):</strong>
+                                <ul>
+                                    <li>Visibilidade &oacute;ptica direta</li>
+                                    <li>Sem obst�culos vis&iacute;veis</li>
+                                    <li>Usado como refer&ecirc;ncia inicial</li>
+                                </ul>
+                            </li>
+                            <li><strong>Radio Line of Sight (RLOS):</strong>
+                                <ul>
+                                    <li>Caminho livre para ondas de r&aacute;dio</li>
+                                    <li>Considera zona de Fresnel</li>
+                                    <li>Mais cr&iacute;tico que VLOS</li>
+                                </ul>
+                            </li>
+                            <li><strong>Optical Line of Sight:</strong>
+                                <ul>
+                                    <li>Para comunica&ccedil;&otilde;es &oacute;pticas</li>
+                                    <li>Laser e infravermelho</li>
+                                    <li>Extremamente sens&iacute;vel</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Zona de Fresnel:</h3>
+                        <ul>
+                            <li><strong>Defini&ccedil;&atilde;o:</strong> Regi&atilde;o el&iacute;ptica ao redor da linha direta</li>
+                            <li><strong>C&aacute;lculo:</strong> F = 17,3 � &#8730;(d/(4�f�D))</li>
+                            <li><strong>Onde:</strong>
+                                <ul>
+                                    <li>F = raio da zona (metros)</li>
+                                    <li>d = dist&acirc;ncia do obst&aacute;culo (km)</li>
+                                    <li>f = frequ&ecirc;ncia (GHz)</li>
+                                    <li>D = dist&acirc;ncia total (km)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Regra pr&aacute;tica:</strong> 60% da primeira zona deve estar livre</li>
+                        </ul>
+                        
+                        <h3>Fatores que Afetam:</h3>
+                        <ul>
+                            <li><strong>Obst�culos F&iacute;sicos:</strong>
+                                <ul>
+                                    <li>Montanhas e morros</li>
+                                    <li>Edif&iacute;cios e estruturas</li>
+                                    <li>&Aacute;rvores e vegeta&ccedil;&atilde;o</li>
+                                    <li>Torres e antenas</li>
+                                </ul>
+                            </li>
+                            <li><strong>Curvatura da Terra:</strong>
+                                <ul>
+                                    <li>Limita dist&acirc;ncia m&aacute;xima</li>
+                                    <li>Requer altura de antenas</li>
+                                    <li>F&oacute;rmula: d = 3,57 � &#8730;h</li>
+                                    <li>Onde d = dist&acirc;ncia (km), h = altura (m)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Condi&ccedil;&otilde;es Atmosf&eacute;ricas:</strong>
+                                <ul>
+                                    <li>Refra&ccedil;&atilde;o atmosf&eacute;rica</li>
+                                    <li>Ducting e fading</li>
+                                    <li>Chuva e umidade</li>
+                                    <li>Temperatura e press&atilde;o</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Aplica&ccedil;&otilde;es Cr&iacute;ticas:</h3>
+                        <ul>
+                            <li><strong>Microondas:</strong>
+                                <ul>
+                                    <li>Links ponto-a-ponto</li>
+                                    <li>Backbone de telecomunica&ccedil;&otilde;es</li>
+                                    <li>Frequ&ecirc;ncias acima de 2 GHz</li>
+                                </ul>
+                            </li>
+                            <li><strong>Sat&eacute;lite:</strong>
+                                <ul>
+                                    <li>Esta&ccedil;&otilde;es terrestres</li>
+                                    <li>VSAT networks</li>
+                                    <li>Comunica&ccedil;&otilde;es espaciais</li>
+                                </ul>
+                            </li>
+                            <li><strong>Wi-Fi de longa dist&acirc;ncia:</strong>
+                                <ul>
+                                    <li>Links entre pr&eacute;dios</li>
+                                    <li>Redes rurais</li>
+                                    <li>Backhaul wireless</li>
+                                </ul>
+                            </li>
+                            <li><strong>Comunica&ccedil;&otilde;es &oacute;pticas:</strong>
+                                <ul>
+                                    <li>Free Space Optics (FSO)</li>
+                                    <li>Laser communications</li>
+                                    <li>Infrared links</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Ferramentas de Planejamento:</h3>
+                        <ul>
+                            <li><strong>Software de Propaga&ccedil;&atilde;o:</strong>
+                                <ul>
+                                    <li>Radio Mobile</li>
+                                    <li>Pathloss</li>
+                                    <li>Planet</li>
+                                    <li>ATDI HTZ</li>
+                                </ul>
+                            </li>
+                            <li><strong>Mapas Topogr&aacute;ficos:</strong>
+                                <ul>
+                                    <li>Eleva&ccedil;&atilde;o do terreno</li>
+                                    <li>Perfil do caminho</li>
+                                    <li>Identifica&ccedil;&atilde;o de obst�culos</li>
+                                </ul>
+                            </li>
+                            <li><strong>Site Survey:</strong>
+                                <ul>
+                                    <li>Inspe&ccedil;&atilde;o visual</li>
+                                    <li>Medi��es de campo</li>
+                                    <li>Testes de conectividade</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Solu&ccedil;&otilde;es para Obst�culos:</h3>
+                        <ul>
+                            <li><strong>Aumento de Altura:</strong>
+                                <ul>
+                                    <li>Torres mais altas</li>
+                                    <li>Mastros e postes</li>
+                                    <li>Instala&ccedil;&atilde;o em edif&iacute;cios</li>
+                                </ul>
+                            </li>
+                            <li><strong>Repetidores:</strong>
+                                <ul>
+                                    <li>Esta&ccedil;&otilde;es intermedi&aacute;rias</li>
+                                    <li>Amplifica&ccedil;&atilde;o de sinal</li>
+                                    <li>Mudan&ccedil;a de dire&ccedil;&atilde;o</li>
+                                </ul>
+                            </li>
+                            <li><strong>Reflex&atilde;o Passiva:</strong>
+                                <ul>
+                                    <li>Refletores met&aacute;licos</li>
+                                    <li>Superf�cies naturais</li>
+                                    <li>Solu&ccedil;&atilde;o econ&ocirc;mica</li>
+                                </ul>
+                            </li>
+                            <li><strong>Tecnologias Alternativas:</strong>
+                                <ul>
+                                    <li>NLOS (Non-Line-of-Sight)</li>
+                                    <li>Difra&ccedil;&atilde;o e espalhamento</li>
+                                    <li>MIMO e beamforming</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>C&aacute;lculos Pr&aacute;ticos:</h3>
+                        <ul>
+                            <li><strong>Altura M&iacute;nima da Antena:</strong>
+                                <ul>
+                                    <li>h = (d�)/(17�K)</li>
+                                    <li>Onde K = fator de curvatura (1,33)</li>
+                                    <li>d = dist&acirc;ncia em km</li>
+                                    <li>h = altura em metros</li>
+                                </ul>
+                            </li>
+                            <li><strong>Perda por Obst�culos:</strong>
+                                <ul>
+                                    <li>Difra&ccedil;&atilde;o knife-edge</li>
+                                    <li>M&uacute;ltiplos obst�culos</li>
+                                    <li>Modelos de propaga&ccedil;&atilde;o</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Monitoramento:</h3>
+                        <ul>
+                            <li><strong>Qualidade do Link:</strong>
+                                <ul>
+                                    <li>RSSI (Received Signal Strength)</li>
+                                    <li>SNR (Signal-to-Noise Ratio)</li>
+                                    <li>BER (Bit Error Rate)</li>
+                                    <li>Availability percentage</li>
+                                </ul>
+                            </li>
+                            <li><strong>Fatores Ambientais:</strong>
+                                <ul>
+                                    <li>Condi&ccedil;&otilde;es meteorol&oacute;gicas</li>
+                                    <li>Crescimento de vegeta&ccedil;&atilde;o</li>
+                                    <li>Novas constru&ccedil;&otilde;es</li>
+                                    <li>Mudan&ccedil;as sazonais</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Import&acirc;ncia:</h3>
+                        <p>Linha de visada &eacute; fundamental para o sucesso de comunica&ccedil;&otilde;es wireless de alta performance, especialmente em frequ&ecirc;ncias elevadas onde a propaga&ccedil;&atilde;o &eacute; mais direcional.</p>
+                    `
+                }
+            };
+
+            // Fun��o para abrir o modal
+            function openModal(termId) {
+                const modal = document.getElementById('modal');
+                const modalBody = document.getElementById('modal-body');
+                const term = termData[termId];
+                
+                if (term) {
+                    modalBody.innerHTML = `
+                        <h2>${term.title}</h2>
+                        <p class="modal-description"><strong>${term.description}</strong></p>
+                        <div class="modal-details">
+                            ${term.details}
+                        </div>
+                    `;
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // Impede scroll da p�gina
+                }
+            }
+
+            // Fun��o para fechar o modal
+            function closeModal() {
+                const modal = document.getElementById('modal');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restaura scroll da p�gina
+            }
+
+            // Fechar modal clicando fora dele
+            window.onclick = function(event) {
+                const modal = document.getElementById('modal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            }
+
+            // Fechar modal com tecla ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        </script>
+
+        <style>
+            /* Estilos do Modal */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(5px);
+            }
+
+            .modal-content {
+                background-color: white;
+                margin: 2% auto;
+                padding: 0;
+                border-radius: 15px;
+                width: 90%;
+                max-width: 800px;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                position: relative;
+                animation: modalSlideIn 0.3s ease-out;
+            }
+
+            @keyframes modalSlideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-50px) scale(0.9);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+
+            .close-button {
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                font-size: 28px;
+                font-weight: bold;
+                color: #999;
+                cursor: pointer;
+                z-index: 1001;
+                width: 35px;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: all 0.3s ease;
+            }
+
+            .close-button:hover {
+                color: #667eea;
+                background-color: #f0f0f0;
+                transform: rotate(90deg);
+            }
+
+            #modal-body {
+                padding: 30px;
+            }
+
+            #modal-body h2 {
+                color: #667eea;
+                margin-bottom: 15px;
+                font-size: 1.8rem;
+                border-bottom: 3px solid #667eea;
+                padding-bottom: 10px;
+            }
+
+            .modal-description {
+                font-size: 1.1rem;
+                color: #555;
+                margin-bottom: 25px;
+                padding: 15px;
+                background-color: #f8f9ff;
+                border-left: 4px solid #667eea;
+                border-radius: 5px;
+            }
+
+            .modal-details h3 {
+                color: #667eea;
+                margin-top: 25px;
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+            }
+
+            .modal-details ul {
+                margin-left: 20px;
+                margin-bottom: 15px;
+            }
+
+            .modal-details li {
+                margin-bottom: 8px;
+                line-height: 1.6;
+            }
+
+            .modal-details p {
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+
+            .modal-details strong {
+                color: #667eea;
+            }
+
+            .modal-details ol {
+                margin-left: 20px;
+                margin-bottom: 15px;
+            }
+
+            .modal-details ol li {
+                margin-bottom: 8px;
+                line-height: 1.6;
+            }
+
+            /* Melhorar apar�ncia dos cards */
+            .term-card {
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .term-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+                border-color: #667eea;
+            }
+
+            .term-card:active {
+                transform: translateY(-2px);
+            }
+
+            /* Responsividade do modal */
+            @media (max-width: 768px) {
+                .modal-content {
+                    width: 95%;
+                    margin: 5% auto;
+                    max-height: 85vh;
+                }
+                
+                #modal-body {
+                    padding: 20px;
+                }
+                
+                #modal-body h2 {
+                    font-size: 1.5rem;
+                }
+                
+                .modal-description {
+                    font-size: 1rem;
+                }
+            }
+        </style>
+    </body>
+    </html>
+                            

@@ -1,0 +1,1351 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se&ccedil;&atilde;o 3 - Equipamentos de Rede</title>
+    <link rel="stylesheet" href="styles.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.intro {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.intro h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+.menu-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.menu-item p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.term-count {
+    background: #667eea;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+footer {
+    background: rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Estilos para páginas de seção */
+.section-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.section-header h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.term-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.term-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.term-name {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.term-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+/* Estilos para galeria de imagens */
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.modal-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-image:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para container de vídeo */
+.video-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border-left: 4px solid #ff4444;
+}
+
+.video-link {
+    color: #ff4444;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+.video-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Responsividade para imagens */
+@media (max-width: 768px) {
+    .image-gallery {
+        justify-content: center;
+    }
+
+    .modal-image {
+        width: 120px;
+        height: 80px;
+    }
+}
+  </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>&#128295; Equipamentos de Rede</h1>
+            <p class="subtitle">Se&ccedil;&atilde;o 3 - Dispositivos de Infraestrutura</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">&larr; Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Equipamentos Essenciais de Rede</h2>
+            <p>Esta se&ccedil;&atilde;o apresenta os principais dispositivos utilizados para construir e gerenciar redes de computadores. Cada equipamento tem fun&ccedil;&otilde;es espec&iacute;ficas na infraestrutura de rede.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('switch')">
+                <div class="term-name">Switch</div>
+                <div class="term-description">Dispositivo que conecta dispositivos em uma rede local, criando uma rede comutada inteligente.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('hub')">
+                <div class="term-name">HUB</div>
+                <div class="term-description">Dispositivo simples que conecta m&uacute;ltiplos dispositivos, repetindo sinais para todas as portas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('roteador')">
+                <div class="term-name">Roteador</div>
+                <div class="term-description">Equipamento que conecta diferentes redes e direciona o tr&aacute;fego entre elas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('bridge')">
+                <div class="term-name">Bridge</div>
+                <div class="term-description">Dispositivo que conecta dois segmentos de rede, filtrando tr&aacute;fego entre eles.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('repetidor')">
+                <div class="term-name">Repetidor de sinal</div>
+                <div class="term-description">Equipamento que amplifica e regenera sinais para estender o alcance da rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('gateway')">
+                <div class="term-name">Gateway</div>
+                <div class="term-description">Dispositivo que conecta redes com protocolos diferentes, fazendo tradu&ccedil;&atilde;o entre elas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('access-point')">
+                <div class="term-name">Access Point</div>
+                <div class="term-description">Equipamento que cria uma rede sem fio, permitindo conex&atilde;o Wi-Fi para dispositivos m&oacute;veis.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ponto-acesso')">
+                <div class="term-name">Ponto de Acesso</div>
+                <div class="term-description">Termo em portugu&ecirc;s para Access Point, dispositivo de acesso &agrave; rede sem fio.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('nic')">
+                <div class="term-name">NIC</div>
+                <div class="term-description">Network Interface Card - Placa de rede que conecta um dispositivo &agrave; rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('transceiver')">
+                <div class="term-name">Transceiver</div>
+                <div class="term-description">Dispositivo que transmite e recebe sinais, combinando transmissor e receptor.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('transceptor')">
+                <div class="term-name">Transceptor</div>
+                <div class="term-description">Termo em portugu&ecirc;s para transceiver, equipamento de transmiss&atilde;o e recep&ccedil;&atilde;o.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('conversor-midia')">
+                <div class="term-name">Conversor m&iacute;dia</div>
+                <div class="term-description">Dispositivo que converte sinais entre diferentes tipos de m&iacute;dia de rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('modem')">
+                <div class="term-name">Modem</div>
+                <div class="term-description">Modulador-Demodulador que converte sinais digitais em anal&oacute;gicos e vice-versa.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Conte&uacute;do ser&aacute; inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - Gloss&aacute;rio de Redes de Computadores | Se&ccedil;&atilde;o 3</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'switch': {
+                title: 'Switch',
+                description: 'Dispositivo que conecta dispositivos em uma rede local, criando uma rede comutada inteligente.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Switch &eacute; um dispositivo de rede que conecta m&uacute;ltiplos dispositivos em uma LAN, criando uma rede comutada onde cada porta tem sua pr&oacute;pria largura de banda dedicada.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Aprendizado:</strong> Aprende endere&ccedil;os MAC dos dispositivos conectados</li>
+                        <li><strong>Tabela MAC:</strong> Mant&eacute;m tabela de endere&ccedil;os por porta</li>
+                        <li><strong>Comuta&ccedil;&atilde;o:</strong> Envia dados apenas para a porta de destino</li>
+                        <li><strong>Full-duplex:</strong> Comunica&ccedil;&atilde;o simult&acirc;nea em ambas dire&ccedil;&otilde;es</li>
+                        <li><strong>Dom&iacute;nios de colis&atilde;o:</strong> Cada porta &eacute; um dom&iacute;nio separado</li>
+                    </ul>
+                    
+                    <h3>Tipos de Switch:</h3>
+                    <ul>
+                        <li><strong>Unmanaged:</strong> Configura&ccedil;&atilde;o autom&aacute;tica, plug-and-play</li>
+                        <li><strong>Managed:</strong> Configura&ccedil;&atilde;o avan&ccedil;ada via interface web/CLI</li>
+                        <li><strong>Smart/Web-managed:</strong> Funcionalidades intermedi&aacute;rias</li>
+                        <li><strong>PoE:</strong> Fornece energia via cabo Ethernet</li>
+                        <li><strong>Layer 3:</strong> Com capacidades de roteamento</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li>Elimina colis&otilde;es de dados</li>
+                        <li>Largura de banda dedicada por porta</li>
+                        <li>Melhor seguran&ccedil;a (tr&aacute;fego segmentado)</li>
+                        <li>Suporte a VLANs</li>
+                        <li>Auto-negocia&ccedil;&atilde;o de velocidade</li>
+                        <li>Detec&ccedil;&atilde;o de duplex</li>
+                    </ul>
+                    
+                    <h3>Especifica&ccedil;&otilde;es Comuns:</h3>
+                    <ul>
+                        <li>8, 16, 24, 48 portas</li>
+                        <li>Velocidades: 10/100 Mbps, Gigabit, 10 Gigabit</li>
+                        <li>Backplane: 1 Gbps a 1 Tbps</li>
+                        <li>Buffer de mem&oacute;ria para pacotes</li>
+                    </ul>
+                `
+            },
+            'hub': {
+                title: 'HUB',
+                description: 'Dispositivo simples que conecta m&uacute;ltiplos dispositivos, repetindo sinais para todas as portas.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Hub &eacute; um dispositivo de rede simples que conecta m&uacute;ltiplos dispositivos Ethernet, funcionando como um repetidor multiporta que replica todos os sinais para todas as portas.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Repetidor:</strong> Amplifica e retransmite sinais</li>
+                        <li><strong>Broadcast:</strong> Envia dados para todas as portas</li>
+                        <li><strong>Half-duplex:</strong> Comunica&ccedil;&atilde;o em apenas uma dire&ccedil;&atilde;o por vez</li>
+                        <li><strong>Dom&iacute;nio de colis&atilde;o:</strong> Todas as portas compartilham o mesmo dom&iacute;nio</li>
+                        <li><strong>CSMA/CD:</strong> Detec&ccedil;&atilde;o de colis&otilde;es necess&aacute;ria</li>
+                    </ul>
+                    
+                    <h3>Tipos de Hub:</h3>
+                    <ul>
+                        <li><strong>Hub Passivo:</strong> Apenas conecta cabos, sem amplifica&ccedil;&atilde;o</li>
+                        <li><strong>Hub Ativo:</strong> Amplifica sinais (mais comum)</li>
+                        <li><strong>Hub Inteligente:</strong> Com recursos de diagn&oacute;stico</li>
+                    </ul>
+                    
+                    <h3>Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Colis&otilde;es:</strong> Aumentam com mais dispositivos</li>
+                        <li><strong>Largura de banda compartilhada:</strong> Dividida entre todas as portas</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Todos veem o tr&aacute;fego de todos</li>
+                        <li><strong>Performance:</strong> Degrada com mais usu&aacute;rios</li>
+                        <li><strong>Half-duplex:</strong> N&atilde;o permite comunica&ccedil;&atilde;o simult&acirc;nea</li>
+                    </ul>
+                    
+                    <h3>Status Atual:</h3>
+                    <p><strong>Obsoleto:</strong> Substitu&iacute;do por switches devido &agrave;s suas limita&ccedil;&otilde;es. Ainda pode ser encontrado em redes muito antigas ou aplica&ccedil;&otilde;es espec&iacute;ficas.</p>
+                    
+                    <h3>Diferen&ccedil;a do Switch:</h3>
+                    <ul>
+                        <li>Hub: Repete para todas as portas</li>
+                        <li>Switch: Envia apenas para destino espec&iacute;fico</li>
+                        <li>Hub: Dom&iacute;nio de colis&atilde;o &uacute;nico</li>
+                        <li>Switch: Dom&iacute;nio de colis&atilde;o por porta</li>
+                    </ul>
+                `
+            },
+            'roteador': {
+                title: 'Roteador',
+                description: 'Equipamento que conecta diferentes redes e direciona o tr&aacute;fego entre elas.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Roteador &eacute; um dispositivo de rede que conecta duas ou mais redes diferentes, determinando o melhor caminho para encaminhar pacotes de dados entre elas.</p>
+                    
+                    <h3>Fun&ccedil;&otilde;es Principais:</h3>
+                    <ul>
+                        <li><strong>Roteamento:</strong> Determina melhor caminho para dados</li>
+                        <li><strong>Encaminhamento:</strong> Envia pacotes para o pr&oacute;ximo salto</li>
+                        <li><strong>Segmenta&ccedil;&atilde;o:</strong> Separa dom&iacute;nios de broadcast</li>
+                        <li><strong>NAT:</strong> Tradu&ccedil;&atilde;o de endere&ccedil;os de rede</li>
+                        <li><strong>Firewall:</strong> Filtragem de tr&aacute;fego b&aacute;sica</li>
+                        <li><strong>DHCP:</strong> Atribui&ccedil;&atilde;o de IPs</li>
+                    </ul>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Tabela de roteamento:</strong> Mant&eacute;m informa&ccedil;&otilde;es de rotas</li>
+                        <li><strong>Protocolos de roteamento:</strong> RIP, OSPF, BGP</li>
+                        <li><strong>M&eacute;tricas:</strong> Hop count, largura de banda, lat&ecirc;ncia</li>
+                        <li><strong>Algoritmos:</strong> Dijkstra, Bellman-Ford</li>
+                        <li><strong>Atualiza&ccedil;&otilde;es:</strong> Troca informa&ccedil;&otilde;es com outros roteadores</li>
+                    </ul>
+                    
+                    <h3>Tipos de Roteador:</h3>
+                    <ul>
+                        <li><strong>Dom&eacute;stico:</strong> Para uso residencial com Wi-Fi</li>
+                        <li><strong>Empresarial:</strong> Para redes corporativas</li>
+                        <li><strong>Core:</strong> Backbone de grandes redes</li>
+                        <li><strong>Edge:</strong> Fronteira entre redes</li>
+                        <li><strong>Wireless:</strong> Com ponto de acesso integrado</li>
+                    </ul>
+                    
+                    <h3>Protocolos Suportados:</h3>
+                    <ul>
+                        <li><strong>Est&aacute;ticos:</strong> Rotas configuradas manualmente</li>
+                        <li><strong>RIP:</strong> Routing Information Protocol</li>
+                        <li><strong>OSPF:</strong> Open Shortest Path First</li>
+                        <li><strong>EIGRP:</strong> Enhanced Interior Gateway Routing Protocol</li>
+                        <li><strong>BGP:</strong> Border Gateway Protocol</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas Modernas:</h3>
+                    <ul>
+                        <li>QoS (Quality of Service)</li>
+                        <li>VPN (Virtual Private Network)</li>
+                        <li>Load balancing</li>
+                        <li>Redund�ncia e failover</li>
+                        <li>Gerenciamento via web/SNMP</li>
+                    </ul>
+                `
+            },
+            'bridge': {
+                title: 'Bridge',
+                description: 'Dispositivo que conecta dois segmentos de rede, filtrando tr&aacute;fego entre eles.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Bridge &eacute; um dispositivo de rede que conecta dois ou mais segmentos de rede, operando na camada de enlace (Layer 2) para filtrar e encaminhar tr&aacute;fego baseado em endere&ccedil;os MAC.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Aprendizado:</strong> Aprende endere&ccedil;os MAC de cada segmento</li>
+                        <li><strong>Filtragem:</strong> Mant&eacute;m tr&aacute;fego local no pr&oacute;prio segmento</li>
+                        <li><strong>Encaminhamento:</strong> Passa apenas tr&aacute;fego destinado a outro segmento</li>
+                        <li><strong>Transparente:</strong> Invis&iacute;vel para os dispositivos finais</li>
+                        <li><strong>Store-and-forward:</strong> Armazena frame completo antes de encaminhar</li>
+                    </ul>
+                    
+                    <h3>Tipos de Bridge:</h3>
+                    <ul>
+                        <li><strong>Transparent Bridge:</strong> Aprende automaticamente (IEEE 802.1D)</li>
+                        <li><strong>Source Routing:</strong> Caminho definido pelo remetente</li>
+                        <li><strong>Translation Bridge:</strong> Conecta redes com protocolos diferentes</li>
+                        <li><strong>Remote Bridge:</strong> Conecta segmentos distantes via WAN</li>
+                    </ul>
+                    
+                    <h3>Algoritmo Spanning Tree:</h3>
+                    <ul>
+                        <li><strong>Preven&ccedil;&atilde;o de loops:</strong> Evita ciclos na rede</li>
+                        <li><strong>Redund&acirc;ncia:</strong> Permite m&uacute;ltiplos caminhos</li>
+                        <li><strong>Converg&ecirc;ncia:</strong> Recalcula topologia em caso de falha</li>
+                        <li><strong>Estados de porta:</strong> Blocking, Listening, Learning, Forwarding</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Segmenta&ccedil;&atilde;o:</strong> Reduz dom&iacute;nios de colis&atilde;o</li>
+                        <li><strong>Performance:</strong> Melhora performance geral da rede</li>
+                        <li><strong>Extens&atilde;o:</strong> Aumenta dist&acirc;ncia da rede</li>
+                        <li><strong>Isolamento:</strong> Isola problemas por segmento</li>
+                        <li><strong>Compatibilidade:</strong> Conecta diferentes tipos de LAN</li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o:</h3>
+                    <p>Bridges evolu&iacute;ram para switches modernos, que s&atilde;o essencialmente bridges multiportas com maior intelig&ecirc;ncia e capacidade de processamento.</p>
+                    
+                    <h3>Diferen&ccedil;a do Switch:</h3>
+                    <ul>
+                        <li>Bridge: Normalmente 2 portas</li>
+                        <li>Switch: M&uacute;ltiplas portas (bridge multiporta)</li>
+                        <li>Bridge: Processamento por software</li>
+                        <li>Switch: Processamento por hardware (ASIC)</li>
+                    </ul>
+                `
+            },
+            'repetidor': {
+                title: 'Repetidor de Sinal',
+                description: 'Equipamento que amplifica e regenera sinais para estender o alcance da rede.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Repetidor &eacute; um dispositivo que amplifica e regenera sinais de rede, estendendo o alcance f&iacute;sico da rede al&eacute;m das limita&ccedil;&otilde;es naturais dos cabos.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Recep&ccedil;&atilde;o:</strong> Recebe sinal enfraquecido</li>
+                        <li><strong>Amplifica&ccedil;&atilde;o:</strong> Aumenta a pot&ecirc;ncia do sinal</li>
+                        <li><strong>Regenera&ccedil;&atilde;o:</strong> Reconstr&oacute;i o sinal original</li>
+                        <li><strong>Retransmiss&atilde;o:</strong> Envia sinal renovado</li>
+                        <li><strong>Sincroniza&ccedil;&atilde;o:</strong> Mant&eacute;m timing correto</li>
+                    </ul>
+                    
+                    <h3>Tipos de Repetidor:</h3>
+                    <ul>
+                        <li><strong>Anal&oacute;gico:</strong> Amplifica sinal sem processamento</li>
+                        <li><strong>Digital:</strong> Regenera bits digitais</li>
+                        <li><strong>Ethernet:</strong> Para redes Ethernet cabeadas</li>
+                        <li><strong>Wi-Fi:</strong> Para redes sem fio</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> Para sinais &oacute;pticos</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Extens&atilde;o de cabo:</strong> Supera limite de 100m do Ethernet</li>
+                        <li><strong>Wi-Fi:</strong> Amplia cobertura de redes sem fio</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> Compensa atenua&ccedil;&atilde;o em longas dist&acirc;ncias</li>
+                        <li><strong>Backbone:</strong> Interconex&atilde;o de pr&eacute;dios</li>
+                        <li><strong>Ambientes grandes:</strong> Galp&otilde;es, armaz&eacute;ns</li>
+                    </ul>
+                    
+                    <h3>Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Regra 5-4-3:</strong> M&aacute;ximo 5 segmentos, 4 repetidores, 3 com dispositivos</li>
+                        <li><strong>Lat&ecirc;ncia:</strong> Adiciona atraso na transmiss&atilde;o</li>
+                        <li><strong>Ru&iacute;do:</strong> Pode amplificar interfer&ecirc;ncias junto com sinal</li>
+                        <li><strong>Colis&otilde;es:</strong> N&atilde;o reduz dom&iacute;nios de colis&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Repetidores Wi-Fi:</h3>
+                    <ul>
+                        <li><strong>Range Extender:</strong> Amplia cobertura Wi-Fi</li>
+                        <li><strong>Mesh:</strong> Sistema de m&uacute;ltiplos pontos</li>
+                        <li><strong>Dual-band:</strong> Opera em 2.4GHz e 5GHz</li>
+                        <li><strong>WPS:</strong> Configura&ccedil;&atilde;o simplificada</li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es:</h3>
+                    <p>Repetidores s&atilde;o solu&ccedil;&otilde;es simples mas limitadas. Para redes modernas, switches e access points oferecem melhor performance e funcionalidades.</p>
+                `
+            },
+            'gateway': {
+                title: 'Gateway',
+                description: 'Dispositivo que conecta redes com protocolos diferentes, fazendo tradu&ccedil;&atilde;o entre elas.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Gateway &eacute; um dispositivo que atua como "porta de entrada" entre redes diferentes, realizando tradu&ccedil;&atilde;o de protocolos e permitindo comunica&ccedil;&atilde;o entre sistemas incompat&iacute;veis.</p>
+                    
+                    <h3>Fun&ccedil;&otilde;es Principais:</h3>
+                    <ul>
+                        <li><strong>Tradu&ccedil;&atilde;o de protocolos:</strong> Converte entre diferentes protocolos</li>
+                        <li><strong>Convers&atilde;o de dados:</strong> Adapta formatos de dados</li>
+                        <li><strong>Roteamento:</strong> Direciona tr&aacute;fego entre redes</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Controle de acesso e filtragem</li>
+                        <li><strong>Monitoramento:</strong> Log e auditoria de tr&aacute;fego</li>
+                    </ul>
+                    
+                    <h3>Tipos de Gateway:</h3>
+                    <ul>
+                        <li><strong>Default Gateway:</strong> Rota padr&atilde;o para sa&iacute;da da rede local</li>
+                        <li><strong>Protocol Gateway:</strong> Tradu&ccedil;&atilde;o entre protocolos diferentes</li>
+                        <li><strong>Application Gateway:</strong> Proxy para aplica&ccedil;&otilde;es espec&iacute;ficas</li>
+                        <li><strong>VoIP Gateway:</strong> Conecta telefonia tradicional com IP</li>
+                        <li><strong>Email Gateway:</strong> Filtragem e seguran&ccedil;a de e-mail</li>
+                        <li><strong>IoT Gateway:</strong> Conecta dispositivos IoT &agrave; Internet</li>
+                    </ul>
+                    
+                    <h3>Camadas de Opera&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Layer 3 (Rede):</strong> Roteamento IP</li>
+                        <li><strong>Layer 4 (Transporte):</strong> TCP/UDP</li>
+                        <li><strong>Layer 7 (Aplica&ccedil;&atilde;o):</strong> HTTP, FTP, SMTP</li>
+                        <li><strong>Todas as camadas:</strong> Tradu&ccedil;&atilde;o completa de protocolos</li>
+                    </ul>
+                    
+                    <h3>Exemplos Pr&aacute;ticos:</h3>
+                    <ul>
+                        <li><strong>Roteador dom&eacute;stico:</strong> Gateway entre LAN e Internet</li>
+                        <li><strong>Proxy server:</strong> Gateway para acesso web</li>
+                        <li><strong>Firewall:</strong> Gateway de seguran&ccedil;a</li>
+                        <li><strong>NAT device:</strong> Tradu&ccedil;&atilde;o de endere&ccedil;os</li>
+                        <li><strong>VPN concentrator:</strong> Gateway para redes privadas</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li>Conecta redes incompat&iacute;veis</li>
+                        <li>Centraliza controle de acesso</li>
+                        <li>Melhora seguran&ccedil;a da rede</li>
+                        <li>Facilita gerenciamento</li>
+                        <li>Permite migra&ccedil;&atilde;o gradual de tecnologias</li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Performance:</strong> Pode introduzir lat&ecirc;ncia</li>
+                        <li><strong>Complexidade:</strong> Configura&ccedil;&atilde;o mais complexa</li>
+                        <li><strong>Ponto de falha:</strong> Criticidade para conectividade</li>
+                        <li><strong>Custo:</strong> Equipamentos especializados podem ser caros</li>
+                    </ul>
+                `
+            },
+            'access-point': {
+                title: 'Access Point',
+                description: 'Equipamento que cria uma rede sem fio, permitindo conex&atilde;o Wi-Fi para dispositivos m&oacute;veis.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Access Point (AP) &eacute; um dispositivo que cria uma rede sem fio (Wi-Fi), permitindo que dispositivos m&oacute;veis se conectem &agrave; rede cabeada atrav&eacute;s de sinais de r&aacute;dio.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Ponte sem fio:</strong> Conecta rede cabeada &agrave; sem fio</li>
+                        <li><strong>Transmiss&atilde;o:</strong> Envia sinais de r&aacute;dio Wi-Fi</li>
+                        <li><strong>Autentica&ccedil;&atilde;o:</strong> Controla acesso &agrave; rede</li>
+                        <li><strong>Criptografia:</strong> Protege dados transmitidos</li>
+                        <li><strong>Roaming:</strong> Permite mobilidade entre APs</li>
+                    </ul>
+                    
+                    <h3>Tipos de Access Point:</h3>
+                    <ul>
+                        <li><strong>Standalone:</strong> Aut&ocirc;nomo, configurado individualmente</li>
+                        <li><strong>Controller-based:</strong> Gerenciado centralmente</li>
+                        <li><strong>Cloud-managed:</strong> Gerenciamento via nuvem</li>
+                        <li><strong>Mesh:</strong> Forma rede malha sem fio</li>
+                        <li><strong>Outdoor:</strong> Para uso externo</li>
+                        <li><strong>Indoor:</strong> Para uso interno</li>
+                    </ul>
+                    
+                    <h3>Padr&otilde;es Wi-Fi:</h3>
+                    <ul>
+                        <li><strong>802.11n:</strong> At&eacute; 600 Mbps, 2.4/5 GHz</li>
+                        <li><strong>802.11ac:</strong> At&eacute; 6.9 Gbps, 5 GHz</li>
+                        <li><strong>802.11ax (Wi-Fi 6):</strong> At&eacute; 9.6 Gbps</li>
+                        <li><strong>802.11be (Wi-Fi 7):</strong> At&eacute; 46 Gbps</li>
+                    </ul>
+                    
+                    <h3>Recursos Avan&ccedil;ados:</h3>
+                    <ul>
+                        <li><strong>MIMO:</strong> M&uacute;ltiplas antenas para melhor performance</li>
+                        <li><strong>Beamforming:</strong> Direciona sinal para dispositivos espec&iacute;ficos</li>
+                        <li><strong>Band steering:</strong> Direciona dispositivos para melhor frequ&ecirc;ncia</li>
+                        <li><strong>Load balancing:</strong> Distribui carga entre APs</li>
+                        <li><strong>QoS:</strong> Prioriza&ccedil;&atilde;o de tr&aacute;fego</li>
+                        <li><strong>Guest network:</strong> Rede separada para visitantes</li>
+                    </ul>
+                    
+                    <h3>Seguran&ccedil;a:</h3>
+                    <ul>
+                        <li><strong>WPA3:</strong> Padr&atilde;o de seguran&ccedil;a mais recente</li>
+                        <li><strong>WPA2:</strong> Seguran&ccedil;a robusta amplamente suportada</li>
+                        <li><strong>802.1X:</strong> Autentica&ccedil;&atilde;o empresarial</li>
+                        <li><strong>MAC filtering:</strong> Controle por endere&ccedil;o MAC</li>
+                        <li><strong>VLAN:</strong> Segmenta&ccedil;&atilde;o de rede</li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es de Instala&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Cobertura:</strong> Planejamento de &aacute;rea de alcance</li>
+                        <li><strong>Interfer&ecirc;ncia:</strong> Evitar sobreposi&ccedil;&atilde;o de canais</li>
+                        <li><strong>Capacidade:</strong> N&uacute;mero de usu&aacute;rios simult&acirc;neos</li>
+                        <li><strong>PoE:</strong> Alimenta&ccedil;&atilde;o via cabo Ethernet</li>
+                        <li><strong>Posi&ccedil;&atilde;o:</strong> Altura e localiza&ccedil;&atilde;o ideais</li>
+                    </ul>
+                `
+            },
+            'ponto-acesso': {
+                title: 'Ponto de Acesso',
+                description: 'Termo em portugu&ecirc;s para Access Point, dispositivo de acesso &agrave; rede sem fio.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Ponto de Acesso &eacute; a tradu&ccedil;&atilde;o em portugu&ecirc;s para Access Point (AP). &Eacute; o dispositivo que permite acesso sem fio &agrave; rede, criando uma ponte entre a infraestrutura cabeada e os dispositivos m&oacute;veis.</p>
+                    
+                    <h3>Terminologia:</h3>
+                    <ul>
+                        <li><strong>Ponto de Acesso:</strong> Termo em portugu&ecirc;s</li>
+                        <li><strong>Access Point:</strong> Termo em ingl&ecirc;s</li>
+                        <li><strong>AP:</strong> Abrevia&ccedil;&atilde;o comum</li>
+                        <li><strong>WAP:</strong> Wireless Access Point</li>
+                        <li><strong>Hot Spot:</strong> &Aacute;rea de cobertura do AP</li>
+                    </ul>
+                    
+                    <h3>Fun&ccedil;&otilde;es Principais:</h3>
+                    <ul>
+                        <li><strong>Conex&atilde;o sem fio:</strong> Permite acesso Wi-Fi</li>
+                        <li><strong>Ponte de rede:</strong> Liga rede cabeada &agrave; sem fio</li>
+                        <li><strong>Gerenciamento:</strong> Controla conex&otilde;es dos dispositivos</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Autentica&ccedil;&atilde;o e criptografia</li>
+                        <li><strong>Distribui&ccedil;&atilde;o:</strong> Reparte largura de banda</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es Comuns:</h3>
+                    <ul>
+                        <li><strong>Escrit&oacute;rios:</strong> Acesso corporativo sem fio</li>
+                        <li><strong>Escolas:</strong> Internet para estudantes e professores</li>
+                        <li><strong>Hospitais:</strong> Conectividade para equipamentos m&eacute;dicos</li>
+                        <li><strong>Hot&eacute;is:</strong> Internet para h&oacute;spedes</li>
+                        <li><strong>Aeroportos:</strong> Wi-Fi p&uacute;blico</li>
+                        <li><strong>Caf&eacute;s:</strong> Internet para clientes</li>
+                    </ul>
+                    
+                    <h3>Benef&iacute;cios:</h3>
+                    <ul>
+                        <li><strong>Mobilidade:</strong> Acesso sem restri&ccedil;&atilde;o de cabos</li>
+                        <li><strong>Flexibilidade:</strong> F&aacute;cil reposicionamento de dispositivos</li>
+                        <li><strong>Escalabilidade:</strong> Adicionar usu&aacute;rios sem novos cabos</li>
+                        <li><strong>Custo-benef&iacute;cio:</strong> Menor custo que cabeamento</li>
+                        <li><strong>Conveni&ecirc;ncia:</strong> Acesso instant&acirc;neo</li>
+                    </ul>
+                    
+                    <h3>Planejamento de Instala&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Survey de site:</strong> Mapeamento de cobertura</li>
+                        <li><strong>Densidade de usu&aacute;rios:</strong> Capacidade necess&aacute;ria</li>
+                        <li><strong>Obst&aacute;culos:</strong> Paredes, m&oacute;veis, interfer&ecirc;ncias</li>
+                        <li><strong>Canais:</strong> Distribui&ccedil;&atilde;o para evitar sobreposi&ccedil;&atilde;o</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Pol&iacute;ticas de acesso</li>
+                    </ul>
+                    
+                    <h3>Manuten&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li>Atualiza&ccedil;&atilde;o de firmware</li>
+                        <li>Monitoramento de performance</li>
+                        <li>Ajuste de pot&ecirc;ncia e canais</li>
+                        <li>Limpeza e inspe&ccedil;&atilde;o f&iacute;sica</li>
+                    </ul>
+                `
+            },
+            'nic': {
+                title: 'NIC (Network Interface Card)',
+                description: 'Network Interface Card - Placa de rede que conecta um dispositivo &agrave; rede.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>NIC (Network Interface Card) &eacute; um componente de hardware que permite a um dispositivo conectar-se a uma rede, fornecendo a interface f&iacute;sica e l&oacute;gica necess&aacute;ria para comunica&ccedil;&atilde;o.</p>
+                    
+                    <h3>Nomes Alternativos:</h3>
+                    <ul>
+                        <li><strong>Placa de Rede:</strong> Termo em portugu&ecirc;s</li>
+                        <li><strong>Network Adapter:</strong> Adaptador de rede</li>
+                        <li><strong>Ethernet Card:</strong> Espec&iacute;fico para Ethernet</li>
+                        <li><strong>LAN Card:</strong> Placa de rede local</li>
+                        <li><strong>Network Controller:</strong> Controlador de rede</li>
+                    </ul>
+                    
+                    <h3>Tipos de NIC:</h3>
+                    <ul>
+                        <li><strong>Ethernet:</strong> Conex&atilde;o cabeada RJ45</li>
+                        <li><strong>Wi-Fi:</strong> Conex&atilde;o sem fio</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> Conectores SFP/SFP+</li>
+                        <li><strong>USB:</strong> Adaptadores externos</li>
+                        <li><strong>PCIe:</strong> Placas de expans&atilde;o</li>
+                        <li><strong>Onboard:</strong> Integrada na placa-m&atilde;e</li>
+                    </ul>
+                    
+                    <h3>Componentes Principais:</h3>
+                    <ul>
+                        <li><strong>Controlador:</strong> Chip principal de processamento</li>
+                        <li><strong>Transceiver:</strong> Transmissor/receptor de sinais</li>
+                        <li><strong>Conector:</strong> Interface f&iacute;sica (RJ45, SFP, etc.)</li>
+                        <li><strong>Buffer:</strong> Mem&oacute;ria para armazenamento tempor&aacute;rio</li>
+                        <li><strong>LEDs:</strong> Indicadores de status</li>
+                        <li><strong>Transformador:</strong> Isolamento el&eacute;trico</li>
+                    </ul>
+                    
+                    <h3>Fun&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Encapsulamento:</strong> Adiciona cabe&ccedil;alhos de rede</li>
+                        <li><strong>Serializa&ccedil;&atilde;o:</strong> Converte dados paralelos em seriais</li>
+                        <li><strong>Codifica&ccedil;&atilde;o:</strong> Prepara sinais para transmiss&atilde;o</li>
+                        <li><strong>Detec&ccedil;&atilde;o de erros:</strong> Verifica integridade dos dados</li>
+                        <li><strong>Controle de fluxo:</strong> Gerencia velocidade de transmiss&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas Importantes:</h3>
+                    <ul>
+                        <li><strong>Endere&ccedil;o MAC:</strong> Identificador &uacute;nico mundial</li>
+                        <li><strong>Velocidade:</strong> 10/100/1000 Mbps, 10 Gbps</li>
+                        <li><strong>Duplex:</strong> Full-duplex (transmiss&atilde;o simult&acirc;nea)</li>
+                        <li><strong>Auto-negocia&ccedil;&atilde;o:</strong> Detecta melhor velocidade</li>
+                                              <li><strong>Wake-on-LAN:</strong> Liga computador remotamente</li>
+                    </ul>
+                    
+                    <h3>Tecnologias Avan&ccedil;adas:</h3>
+                    <ul>
+                        <li><strong>TCP Offload:</strong> Processamento de TCP em hardware</li>
+                        <li><strong>RDMA:</strong> Acesso direto &agrave; mem&oacute;ria remota</li>
+                        <li><strong>SR-IOV:</strong> Virtualiza&ccedil;&atilde;o de hardware</li>
+                        <li><strong>Jumbo Frames:</strong> Pacotes maiores para melhor efici&ecirc;ncia</li>
+                        <li><strong>VLAN Tagging:</strong> Suporte a redes virtuais</li>
+                    </ul>
+                    
+                    <h3>Instala&ccedil;&atilde;o e Configura&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Drivers:</strong> Software para comunica&ccedil;&atilde;o com SO</li>
+                        <li><strong>Configura&ccedil;&atilde;o IP:</strong> Endere&ccedil;amento de rede</li>
+                        <li><strong>Diagn&oacute;stico:</strong> Testes de conectividade</li>
+                        <li><strong>Otimiza&ccedil;&atilde;o:</strong> Ajustes de performance</li>
+                    </ul>
+                `
+            },
+            'transceiver': {
+                title: 'Transceiver',
+                description: 'Dispositivo que transmite e recebe sinais, combinando transmissor e receptor.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Transceiver &eacute; um dispositivo que combina as fun&ccedil;&otilde;es de transmissor (transmitter) e receptor (receiver) em uma &uacute;nica unidade, permitindo comunica&ccedil;&atilde;o bidirecional.</p>
+                    
+                    <h3>Etimologia:</h3>
+                    <ul>
+                        <li><strong>Trans:</strong> Transmitir (enviar)</li>
+                        <li><strong>Ceiver:</strong> Receiver (receber)</li>
+                        <li><strong>Combina&ccedil;&atilde;o:</strong> TRANSmitter + reCEIVER = TRANSCEIVER</li>
+                    </ul>
+                    
+                    <h3>Tipos de Transceiver:</h3>
+                    <ul>
+                        <li><strong>SFP:</strong> Small Form-factor Pluggable</li>
+                        <li><strong>SFP+:</strong> Enhanced SFP para 10 Gbps</li>
+                        <li><strong>QSFP:</strong> Quad SFP para 40/100 Gbps</li>
+                        <li><strong>XFP:</strong> 10 Gigabit SFP</li>
+                        <li><strong>GBIC:</strong> Gigabit Interface Converter (legado)</li>
+                        <li><strong>CFP:</strong> C Form-factor Pluggable</li>
+                    </ul>
+                    
+                    <h3>Meios de Transmiss&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Fibra &oacute;ptica:</strong> Monomodo e multimodo</li>
+                        <li><strong>Cobre:</strong> Ethernet sobre par tran&ccedil;ado</li>
+                        <li><strong>Coaxial:</strong> Para aplica&ccedil;&otilde;es espec&iacute;ficas</li>
+                        <li><strong>Sem fio:</strong> R&aacute;dio frequ&ecirc;ncia</li>
+                    </ul>
+                    
+                    <h3>Especifica&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> 1 Gbps a 400 Gbps</li>
+                        <li><strong>Dist&acirc;ncia:</strong> 100m a 80km+</li>
+                        <li><strong>Comprimento de onda:</strong> 850nm, 1310nm, 1550nm</li>
+                        <li><strong>Pot&ecirc;ncia &oacute;ptica:</strong> -40 dBm a +5 dBm</li>
+                        <li><strong>Temperatura:</strong> 0�C a 70�C (comercial)</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Modularidade:</strong> F&aacute;cil substitui&ccedil;&atilde;o</li>
+                        <li><strong>Flexibilidade:</strong> Diferentes tipos no mesmo equipamento</li>
+                        <li><strong>Hot-swappable:</strong> Troca sem desligar equipamento</li>
+                        <li><strong>Padroniza&ccedil;&atilde;o:</strong> Compatibilidade entre fabricantes</li>
+                        <li><strong>Diagn&oacute;stico:</strong> Monitoramento digital</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Switches:</strong> Portas de uplink</li>
+                        <li><strong>Roteadores:</strong> Interfaces WAN</li>
+                        <li><strong>Servidores:</strong> Placas de rede de alta velocidade</li>
+                        <li><strong>Storage:</strong> Redes SAN</li>
+                        <li><strong>Telecom:</strong> Equipamentos de operadoras</li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Compatibilidade:</strong> Verificar suporte do equipamento</li>
+                        <li><strong>Dist&acirc;ncia:</strong> Escolher tipo adequado</li>
+                        <li><strong>Custo:</strong> Varia conforme especifica&ccedil;&atilde;o</li>
+                        <li><strong>Qualidade:</strong> Prefer&ecirc;ncia por fabricantes conhecidos</li>
+                    </ul>
+                `
+            },
+            'transceptor': {
+                title: 'Transceptor',
+                description: 'Termo em portugu&ecirc;s para transceiver, equipamento de transmiss&atilde;o e recep&ccedil;&atilde;o.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Transceptor &eacute; a tradu&ccedil;&atilde;o em portugu&ecirc;s para transceiver. &Eacute; um equipamento que realiza tanto a transmiss&atilde;o quanto a recep&ccedil;&atilde;o de sinais de comunica&ccedil;&atilde;o.</p>
+                    
+                    <h3>Terminologia:</h3>
+                    <ul>
+                        <li><strong>Transceptor:</strong> Termo em portugu&ecirc;s</li>
+                        <li><strong>Transceiver:</strong> Termo em ingl&ecirc;s</li>
+                        <li><strong>Transmissor-Receptor:</strong> Descri&ccedil;&atilde;o completa</li>
+                        <li><strong>M&oacute;dulo &oacute;ptico:</strong> Quando para fibra &oacute;ptica</li>
+                    </ul>
+                    
+                    <h3>Princ&iacute;pio de Funcionamento:</h3>
+                    <ul>
+                        <li><strong>Transmiss&atilde;o:</strong> Converte sinais el&eacute;tricos em &oacute;pticos</li>
+                        <li><strong>Recep&ccedil;&atilde;o:</strong> Converte sinais &oacute;pticos em el&eacute;tricos</li>
+                        <li><strong>Amplifica&ccedil;&atilde;o:</strong> Melhora qualidade do sinal</li>
+                        <li><strong>Filtragem:</strong> Remove ru&iacute;dos e interfer&ecirc;ncias</li>
+                        <li><strong>Sincroniza&ccedil;&atilde;o:</strong> Mant&eacute;m timing correto</li>
+                    </ul>
+                    
+                    <h3>Componentes Internos:</h3>
+                    <ul>
+                        <li><strong>Laser/LED:</strong> Fonte de luz para transmiss&atilde;o</li>
+                        <li><strong>Fotodiodo:</strong> Detector de luz para recep&ccedil;&atilde;o</li>
+                        <li><strong>Amplificadores:</strong> Melhoram pot&ecirc;ncia do sinal</li>
+                        <li><strong>Circuitos de controle:</strong> Gerenciam opera&ccedil;&atilde;o</li>
+                        <li><strong>Conectores:</strong> Interface f&iacute;sica</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es no Brasil:</h3>
+                    <ul>
+                        <li><strong>Provedores:</strong> Backbone de fibra &oacute;ptica</li>
+                        <li><strong>Empresas:</strong> Conex&otilde;es dedicadas</li>
+                        <li><strong>Data centers:</strong> Interconex&atilde;o de equipamentos</li>
+                        <li><strong>Universidades:</strong> Redes acad&ecirc;micas</li>
+                        <li><strong>Governo:</strong> Redes p&uacute;blicas</li>
+                    </ul>
+                    
+                    <h3>Padr&otilde;es Brasileiros:</h3>
+                    <ul>
+                        <li><strong>ANATEL:</strong> Regulamenta&ccedil;&atilde;o de equipamentos</li>
+                        <li><strong>ABNT:</strong> Normas t&eacute;cnicas</li>
+                        <li><strong>Homologa&ccedil;&atilde;o:</strong> Certifica&ccedil;&atilde;o obrigat&oacute;ria</li>
+                        <li><strong>Qualidade:</strong> Atendimento a padr&otilde;es nacionais</li>
+                    </ul>
+                    
+                    <h3>Mercado Nacional:</h3>
+                    <ul>
+                        <li><strong>Fornecedores:</strong> Empresas especializadas</li>
+                        <li><strong>Importa&ccedil;&atilde;o:</strong> Maioria dos produtos</li>
+                        <li><strong>Suporte t&eacute;cnico:</strong> Assist&ecirc;ncia local</li>
+                        <li><strong>Treinamento:</strong> Capacita&ccedil;&atilde;o de profissionais</li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias:</h3>
+                    <ul>
+                        <li>Aumento de velocidades (100G, 400G)</li>
+                        <li>Redu&ccedil;&atilde;o de custos</li>
+                        <li>Maior integra&ccedil;&atilde;o</li>
+                        <li>Efici&ecirc;ncia energ&eacute;tica</li>
+                    </ul>
+                `
+            },
+            'conversor-midia': {
+                title: 'Conversor M&iacute;dia',
+                description: 'Dispositivo que converte sinais entre diferentes tipos de m&iacute;dia de rede.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Conversor de m&iacute;dia &eacute; um dispositivo que converte sinais de rede entre diferentes tipos de m&iacute;dia f&iacute;sica, como cobre para fibra &oacute;ptica, mantendo a integridade dos dados.</p>
+                    
+                    <h3>Tipos Principais:</h3>
+                    <ul>
+                        <li><strong>Cobre para Fibra:</strong> Ethernet RJ45 para fibra &oacute;ptica</li>
+                        <li><strong>Multimodo para Monomodo:</strong> Entre tipos de fibra</li>
+                        <li><strong>Velocidades diferentes:</strong> 10/100 para 1000 Mbps</li>
+                        <li><strong>Conectores diferentes:</strong> SC, LC, ST, FC</li>
+                        <li><strong>Comprimentos de onda:</strong> 850nm, 1310nm, 1550nm</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es Comuns:</h3>
+                    <ul>
+                        <li><strong>Extens&atilde;o de dist&acirc;ncia:</strong> Superar limita&ccedil;&otilde;es do cobre</li>
+                        <li><strong>Isolamento el&eacute;trico:</strong> Prote&ccedil;&atilde;o contra surtos</li>
+                        <li><strong>Ambientes hostis:</strong> Resist&ecirc;ncia a interfer&ecirc;ncias</li>
+                        <li><strong>Migra&ccedil;&atilde;o:</strong> Transi&ccedil;&atilde;o entre tecnologias</li>
+                        <li><strong>Integra&ccedil;&atilde;o:</strong> Conectar equipamentos incompat&iacute;veis</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Transparente:</strong> N&atilde;o altera dados</li>
+                        <li><strong>Auto-negocia&ccedil;&atilde;o:</strong> Detecta velocidade automaticamente</li>
+                        <li><strong>Full-duplex:</strong> Comunica&ccedil;&atilde;o simult&acirc;nea</li>
+                        <li><strong>Plug-and-play:</strong> F&aacute;cil instala&ccedil;&atilde;o</li>
+                        <li><strong>LEDs indicadores:</strong> Status de opera&ccedil;&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Flexibilidade:</strong> Conecta diferentes m&iacute;dias</li>
+                        <li><strong>Economia:</strong> Aproveita infraestrutura existente</li>
+                        <li><strong>Simplicidade:</strong> Solu&ccedil;&atilde;o direta</li>
+                        <li><strong>Confiabilidade:</strong> Opera&ccedil;&atilde;o est&aacute;vel</li>
+                        <li><strong>Manuten&ccedil;&atilde;o:</strong> F&aacute;cil substitui&ccedil;&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es de Instala&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Dist&acirc;ncia:</strong> Verificar alcance suportado</li>
+                        <li><strong>Velocidade:</strong> Compatibilidade com equipamentos</li>
+                        <li><strong>Tipo de fibra:</strong> Monomodo vs multimodo</li>
+                        <li><strong>Conectores:</strong> Padr&atilde;o utilizado na rede</li>
+                        <li><strong>Alimenta&ccedil;&atilde;o:</strong> Fonte externa ou PoE</li>
+                    </ul>
+                    
+                    <h3>Exemplos Pr&aacute;ticos:</h3>
+                    <ul>
+                        <li><strong>Interconex&atilde;o de pr&eacute;dios:</strong> Fibra entre edif&iacute;cios</li>
+                        <li><strong>Ambientes industriais:</strong> Resist&ecirc;ncia a ru&iacute;dos</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Isolamento el&eacute;trico</li>
+                        <li><strong>Upgrade gradual:</strong> Moderniza&ccedil;&atilde;o por etapas</li>
+                    </ul>
+                    
+                    <h3>Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Lat&ecirc;ncia:</strong> Pequeno atraso adicional</li>
+                        <li><strong>Ponto de falha:</strong> Dispositivo adicional na rede</li>
+                        <li><strong>Custo:</strong> Investimento em equipamento</li>
+                        <li><strong>Energia:</strong> Consumo el&eacute;trico adicional</li>
+                    </ul>
+                `
+            },
+            'modem': {
+                title: 'Modem',
+                description: 'Modulador-Demodulador que converte sinais digitais em anal&oacute;gicos e vice-versa.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Modem &eacute; a abrevia&ccedil;&atilde;o de MOdulador-DEModulador. &Eacute; um dispositivo que converte sinais digitais de computadores em sinais anal&oacute;gicos para transmiss&atilde;o e vice-versa.</p>
+                    
+                    <h3>Etimologia:</h3>
+                    <ul>
+                        <li><strong>MO:</strong> MOdulador (digital para anal&oacute;gico)</li>
+                        <li><strong>DEM:</strong> DEModulador (anal&oacute;gico para digital)</li>
+                        <li><strong>Fun&ccedil;&atilde;o:</strong> Convers&atilde;o bidirecional de sinais</li>
+                    </ul>
+                    
+                    <h3>Tipos de Modem:</h3>
+                    <ul>
+                        <li><strong>Dial-up:</strong> Linha telef&ocirc;nica (56 Kbps)</li>
+                        <li><strong>DSL/ADSL:</strong> Linha telef&ocirc;nica digital</li>
+                        <li><strong>Cable:</strong> TV a cabo (DOCSIS)</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> ONT/ONU</li>
+                        <li><strong>Sat&eacute;lite:</strong> Comunica&ccedil;&atilde;o via sat&eacute;lite</li>
+                        <li><strong>Celular:</strong> 3G/4G/5G</li>
+                    </ul>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Modula&ccedil;&atilde;o:</strong> Converte bits em sinais anal&oacute;gicos</li>
+                        <li><strong>Demodula&ccedil;&atilde;o:</strong> Converte sinais anal&oacute;gicos em bits</li>
+                        <li><strong>Codifica&ccedil;&atilde;o:</strong> Prepara dados para transmiss&atilde;o</li>
+                        <li><strong>Sincroniza&ccedil;&atilde;o:</strong> Coordena transmiss&atilde;o/recep&ccedil;&atilde;o</li>
+                        <li><strong>Corre&ccedil;&atilde;o de erros:</strong> Detecta e corrige falhas</li>
+                    </ul>
+                    
+                    <h3>Tecnologias de Modula&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>FSK:</strong> Frequency Shift Keying</li>
+                        <li><strong>PSK:</strong> Phase Shift Keying</li>
+                        <li><strong>QAM:</strong> Quadrature Amplitude Modulation</li>
+                        <li><strong>OFDM:</strong> Orthogonal Frequency Division Multiplexing</li>
+                        <li><strong>MIMO:</strong> Multiple Input Multiple Output</li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o Hist&oacute;rica:</h3>
+                    <ul>
+                        <li><strong>Anos 60:</strong> Primeiros modems (300 bps)</li>
+                        <li><strong>Anos 80:</strong> Modems de 1200/2400 bps</li>
+                        <li><strong>Anos 90:</strong> 56K dial-up</li>
+                        <li><strong>Anos 2000:</strong> DSL e cable modems</li>
+                        <li><strong>Atualmente:</strong> Fibra &oacute;ptica e 5G</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas Modernas:</h3>
+                    <ul>
+                        <li><strong>Alta velocidade:</strong> Mbps a Gbps</li>
+                        <li><strong>Wi-Fi integrado:</strong> Roteador + modem</li>
+                        <li><strong>M&uacute;ltiplas portas:</strong> Ethernet, USB</li>
+                        <li><strong>Configura&ccedil;&atilde;o web:</strong> Interface gr&aacute;fica</li>
+                        <li><strong>QoS:</strong> Priorizac&atilde;o de tr&aacute;fego</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Firewall integrado</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Acesso &agrave; Internet:</strong> Conex&atilde;o residencial/empresarial</li>
+                        <li><strong>Comunica&ccedil;&atilde;o remota:</strong> Acesso a sistemas distantes</li>
+                        <li><strong>Backup:</strong> Conex&atilde;o secund&aacute;ria</li>
+                        <li><strong>IoT:</strong> Dispositivos conectados</li>
+                    </ul>
+                `
+            }
+        };
+
+        // Fun��o para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da p�gina
+            }
+        }
+
+        // Fun��o para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da p�gina
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar apar�ncia dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body {
+                padding: 20px;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

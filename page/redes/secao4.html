@@ -1,0 +1,1584 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se&ccedil;&atilde;o 4 - Meios de Transmiss&atilde;o</title>
+    <link rel="stylesheet" href="styles.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.intro {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.intro h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+.menu-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.menu-item p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.term-count {
+    background: #667eea;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+footer {
+    background: rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Estilos para páginas de seção */
+.section-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.section-header h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.term-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.term-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.term-name {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.term-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+/* Estilos para galeria de imagens */
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.modal-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-image:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para container de vídeo */
+.video-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border-left: 4px solid #ff4444;
+}
+
+.video-link {
+    color: #ff4444;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+.video-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Responsividade para imagens */
+@media (max-width: 768px) {
+    .image-gallery {
+        justify-content: center;
+    }
+
+    .modal-image {
+        width: 120px;
+        height: 80px;
+    }
+}
+  </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>&#128268; Meios de Transmiss&atilde;o</h1>
+            <p class="subtitle">Se&ccedil;&atilde;o 4 - Cabos, Fibras e Conectores</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">&larr; Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Meios F&iacute;sicos de Transmiss&atilde;o de Dados</h2>
+            <p>Esta se&ccedil;&atilde;o apresenta os diferentes tipos de cabos, fibras e conectores utilizados para transmitir dados em redes de computadores. S&atilde;o os componentes f&iacute;sicos que permitem a comunica&ccedil;&atilde;o entre dispositivos.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('cabo-utp')">
+                <div class="term-name">Cabo UTP</div>
+                <div class="term-description">Unshielded Twisted Pair - Cabo de par tran&ccedil;ado sem blindagem, mais comum em redes.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cabo-blindado')">
+                <div class="term-name">Cabo Blindado</div>
+                <div class="term-description">Cabo com prote&ccedil;&atilde;o contra interfer&ecirc;ncias eletromagn&eacute;ticas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('par-trancado')">
+                <div class="term-name">Par Tran&ccedil;ado</div>
+                <div class="term-description">Dois fios entrela�ados para reduzir interfer&ecirc;ncias e crosstalk.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cat5')">
+                <div class="term-name">Cat5</div>
+                <div class="term-description">Categoria 5 - Padr&atilde;o de cabo UTP para redes at&eacute; 100 Mbps.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cat6')">
+                <div class="term-name">Cat6</div>
+                <div class="term-description">Categoria 6 - Padr&atilde;o de cabo UTP para redes at&eacute; 1 Gbps.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('rj45')">
+                <div class="term-name">RJ45</div>
+                <div class="term-description">Conector padr&atilde;o para cabos Ethernet, com 8 pinos.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cabo-coaxial')">
+                <div class="term-name">Cabo Coaxial</div>
+                <div class="term-description">Cabo com condutor central e blindagem, usado em TV e redes antigas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cabo-drop')">
+                <div class="term-name">Cabo Drop</div>
+                <div class="term-description">Cabo de descida usado para conectar cliente final &agrave; rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cabo-flat')">
+                <div class="term-name">Cabo Flat</div>
+                <div class="term-description">Cabo achatado e flex&iacute;vel, usado em instala&ccedil;&otilde;es internas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('fibra-optica')">
+                <div class="term-name">Fibra &Oacute;ptica</div>
+                <div class="term-description">Meio de transmiss&atilde;o que usa luz para transportar dados em alta velocidade.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('fibra-monomodo')">
+                <div class="term-name">Fibra Monomodo</div>
+                <div class="term-description">Fibra &oacute;ptica para longas dist&acirc;ncias com um &uacute;nico modo de propaga&ccedil;&atilde;o.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('fibra-multimodo')">
+                <div class="term-name">Fibra Multimodo</div>
+                <div class="term-description">Fibra &oacute;ptica para curtas dist&acirc;ncias com m&uacute;ltiplos modos de propaga&ccedil;&atilde;o.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('fibra-reflexao')">
+                <div class="term-name">Fibra Reflex&atilde;o</div>
+                <div class="term-description">Princ&iacute;pio de funcionamento da fibra &oacute;ptica baseado na reflex&atilde;o total.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('dio-fibra')">
+                <div class="term-name">DIO - Fibra &Oacute;ptica</div>
+                <div class="term-description">Distribuidor Interno &Oacute;ptico - Equipamento para organizar conex&otilde;es de fibra.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('patch-panel')">
+                <div class="term-name">Patch Panel</div>
+                <div class="term-description">Painel de conex&otilde;es para organizar e gerenciar cabos de rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('patch-cord')">
+                <div class="term-name">Patch Cord</div>
+                <div class="term-description">Cabo curto com conectores nas extremidades para interconex&otilde;es.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('alicate-crimpar')">
+                <div class="term-name">Alicate Crimpar</div>
+                <div class="term-description">Ferramenta para fixar conectores RJ45 em cabos UTP.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Conte&uacute;do ser&aacute; inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - Gloss&aacute;rio de Redes de Computadores | Se&ccedil;&atilde;o 4</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'cabo-utp': {
+                title: 'Cabo UTP (Unshielded Twisted Pair)',
+                description: 'Unshielded Twisted Pair - Cabo de par tran&ccedil;ado sem blindagem, mais comum em redes.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>UTP &eacute; o tipo de cabo mais utilizado em redes locais. Consiste em 4 pares de fios de cobre entrela�ados, sem blindagem externa, organizados dentro de uma capa pl&aacute;stica.</p>
+                    
+                    <h3>Estrutura:</h3>
+                    <ul>
+                        <li><strong>8 fios:</strong> Organizados em 4 pares coloridos</li>
+                        <li><strong>Entrela�amento:</strong> Fios torcidos para reduzir interfer&ecirc;ncias</li>
+                        <li><strong>Capa externa:</strong> Prote&ccedil;&atilde;o pl&aacute;stica (PVC ou LSZH)</li>
+                        <li><strong>Sem blindagem:</strong> N&atilde;o possui prote&ccedil;&atilde;o met&aacute;lica</li>
+                    </ul>
+                    
+                    <h3>Padr&otilde;es de Cores (T568B):</h3>
+                    <ul>
+                        <li><strong>Par 1:</strong> Branco-Laranja / Laranja</li>
+                        <li><strong>Par 2:</strong> Branco-Verde / Verde</li>
+                        <li><strong>Par 3:</strong> Branco-Azul / Azul</li>
+                        <li><strong>Par 4:</strong> Branco-Marrom / Marrom</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Baixo custo:</strong> Mais barato que cabos blindados</li>
+                        <li><strong>F&aacute;cil instala&ccedil;&atilde;o:</strong> Flex&iacute;vel e mane&aacute;vel</li>
+                        <li><strong>Compatibilidade:</strong> Padr&atilde;o universal</li>
+                        <li><strong>Disponibilidade:</strong> Amplamente dispon&iacute;vel</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Suscet&iacute;vel a interfer&ecirc;ncias:</strong> EMI e RFI</li>
+                        <li><strong>Dist&acirc;ncia limitada:</strong> M&aacute;ximo 100 metros</li>
+                        <li><strong>Menor seguran&ccedil;a:</strong> Mais f&aacute;cil de interceptar</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <p>Redes Ethernet, telefonia, sistemas de seguran&ccedil;a, automa&ccedil;&atilde;o predial.</p>
+                `
+            },
+            'cabo-blindado': {
+                title: 'Cabo Blindado (STP/FTP)',
+                description: 'Cabo com prote&ccedil;&atilde;o contra interfer&ecirc;ncias eletromagn&eacute;ticas.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Cabos blindados possuem uma camada de prote&ccedil;&atilde;o met&aacute;lica (folha de alum&iacute;nio ou malha de cobre) que protege os fios internos contra interfer&ecirc;ncias eletromagn&eacute;ticas.</p>
+                    
+                    <h3>Tipos de Blindagem:</h3>
+                    <ul>
+                        <li><strong>STP (Shielded Twisted Pair):</strong> Blindagem individual em cada par + blindagem geral</li>
+                        <li><strong>FTP (Foiled Twisted Pair):</strong> Blindagem geral com folha de alum&iacute;nio</li>
+                        <li><strong>SFTP:</strong> Combina&ccedil;&atilde;o de blindagem por folha e malha</li>
+                        <li><strong>S/UTP:</strong> Blindagem externa sobre pares n&atilde;o blindados</li>
+                    </ul>
+                    
+                    <h3>Componentes da Blindagem:</h3>
+                    <ul>
+                        <li><strong>Folha de alum&iacute;nio:</strong> Prote&ccedil;&atilde;o contra EMI</li>
+                        <li><strong>Malha de cobre:</strong> Prote&ccedil;&atilde;o adicional e aterramento</li>
+                        <li><strong>Fio dreno:</strong> Facilita aterramento da blindagem</li>
+                        <li><strong>Capa externa:</strong> Prote&ccedil;&atilde;o mec&acirc;nica</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Menor interfer&ecirc;ncia:</strong> Prote&ccedil;&atilde;o contra EMI/RFI</li>
+                        <li><strong>Maior seguran&ccedil;a:</strong> Dif&iacute;cil intercepta&ccedil;&atilde;o</li>
+                        <li><strong>Melhor performance:</strong> Menos erros de transmiss&atilde;o</li>
+                        <li><strong>Ambientes industriais:</strong> Ideal para locais com muito ru&iacute;do</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Maior custo:</strong> Mais caro que UTP</li>
+                        <li><strong>Instala&ccedil;&atilde;o complexa:</strong> Requer aterramento adequado</li>
+                        <li><strong>Menos flex&iacute;vel:</strong> Mais r&iacute;gido que UTP</li>
+                        <li><strong>Conectores especiais:</strong> Requer conectores blindados</li>
+                    </ul>
+                    
+                    <h3>Quando Usar:</h3>
+                    <p>Ambientes industriais, pr&oacute;ximo a equipamentos el&eacute;tricos, instala&ccedil;&otilde;es cr&iacute;ticas, seguran&ccedil;a elevada.</p>
+                `
+            },
+            'par-trancado': {
+                title: 'Par Tran&ccedil;ado',
+                description: 'Dois fios entrela�ados para reduzir interfer&ecirc;ncias e crosstalk.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Par tran&ccedil;ado &eacute; uma t&eacute;cnica onde dois fios condutores s&atilde;o entrela�ados em espiral para cancelar interfer&ecirc;ncias eletromagn&eacute;ticas e reduzir o crosstalk entre pares adjacentes.</p>
+                    
+                    <h3>Princ&iacute;pio de Funcionamento:</h3>
+                    <ul>
+                        <li><strong>Cancelamento:</strong> Interfer&ecirc;ncias afetam ambos os fios igualmente</li>
+                        <li><strong>Diferen&ccedil;a de potencial:</strong> Sinal &eacute; a diferen&ccedil;a entre os fios</li>
+                        <li><strong>Ru&iacute;do comum:</strong> Cancelado na recep&ccedil;&atilde;o</li>
+                        <li><strong>Tran�amento:</strong> Varia&ccedil;&atilde;o do passo reduz crosstalk</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Passo de tran&ccedil;a:</strong> N&uacute;mero de voltas por metro</li>
+                        <li><strong>Pares diferentes:</strong> Cada par tem passo &uacute;nico</li>
+                        <li><strong>Imped&acirc;ncia:</strong> Geralmente 100 ohms</li>
+                        <li><strong>Capacit&acirc;ncia:</strong> Baixa capacit&acirc;ncia entre fios</li>
+                    </ul>
+                    
+                    <h3>Tipos de Sinais:</h3>
+                    <ul>
+                        <li><strong>Diferencial:</strong> Sinal transmitido entre os dois fios</li>
+                        <li><strong>Modo comum:</strong> Ru&iacute;do que afeta ambos os fios</li>
+                        <li><strong>Balan&ccedil;eado:</strong> Sinais opostos em cada fio</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Redu&ccedil;&atilde;o de ru&iacute;do:</strong> Cancelamento de interfer&ecirc;ncias</li>
+                        <li><strong>Menor crosstalk:</strong> Isolamento entre pares</li>
+                        <li><strong>Custo-benef&iacute;cio:</strong> Solu&ccedil;&atilde;o econ&ocirc;mica</li>
+                        <li><strong>Flexibilidade:</strong> F&aacute;cil de trabalhar</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Redes Ethernet (10/100/1000 Mbps)</li>
+                        <li>Telefonia anal&oacute;gica e digital</li>
+                        <li>Sistemas de seguran&ccedil;a</li>
+                        <li>Controle industrial</li>
+                    </ul>
+                `
+            },
+            'cat5': {
+                title: 'Cat5 (Categoria 5)',
+                description: 'Categoria 5 - Padr&atilde;o de cabo UTP para redes at&eacute; 100 Mbps.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Categoria 5 &eacute; um padr&atilde;o de cabo UTP definido pela TIA/EIA que suporta frequ&ecirc;ncias at&eacute; 100 MHz e velocidades de at&eacute; 100 Mbps em redes Ethernet.</p>
+                    
+                    <h3>Especifica&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Frequ&ecirc;ncia:</strong> At&eacute; 100 MHz</li>
+                        <li><strong>Velocidade:</strong> 10/100 Mbps</li>
+                        <li><strong>Dist&acirc;ncia:</strong> At&eacute; 100 metros</li>
+                        <li><strong>Imped&acirc;ncia:</strong> 100 ohms � 15%</li>
+                        <li><strong>Pares:</strong> 4 pares de fios (8 fios total)</li>
+                    </ul>
+                    
+                    <h3>Padr&otilde;es Suportados:</h3>
+                    <ul>
+                        <li><strong>10BASE-T:</strong> Ethernet 10 Mbps</li>
+                        <li><strong>100BASE-TX:</strong> Fast Ethernet 100 Mbps</li>
+                        <li><strong>1000BASE-T:</strong> Gigabit (limitado, n&atilde;o recomendado)</li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Cat5:</strong> Padr&atilde;o original</li>
+                        <li><strong>Cat5e (Enhanced):</strong> Vers&atilde;o melhorada com menos crosstalk</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>Crosstalk:</strong> Controle b&aacute;sico de interfer&ecirc;ncia</li>
+                        <li><strong>Atenua��o:</strong> Perda de sinal controlada</li>
+                        <li><strong>Conectores:</strong> RJ45 padr&atilde;o</li>
+                        <li><strong>Cores:</strong> Padr&atilde;o T568A ou T568B</li>
+                    </ul>
+                    
+                    <h3>Status Atual:</h3>
+                    <ul>
+                        <li><strong>Legado:</strong> Considerado obsoleto</li>
+                        <li><strong>Substitui&ccedil;&atilde;o:</strong> Cat5e &eacute; o m&iacute;nimo recomendado</li>
+                        <li><strong>Instala&ccedil;&otilde;es antigas:</strong> Ainda encontrado em sistemas antigos</li>
+                    </ul>
+                    
+                    <h3>Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>N&atilde;o adequado para Gigabit Ethernet</li>
+                        <li>Maior suscetibilidade a interfer&ecirc;ncias</li>
+                        <li>Performance degradada em dist&acirc;ncias longas</li>
+                    </ul>
+                `
+            },
+            'cat6': {
+                title: 'Cat6 (Categoria 6)',
+                description: 'Categoria 6 - Padr&atilde;o de cabo UTP para redes at&eacute; 1 Gbps.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Categoria 6 &eacute; um padr&atilde;o avan&ccedil;ado de cabo UTP que suporta frequ&ecirc;ncias at&eacute; 250 MHz e velocidades de at&eacute; 1 Gbps, com melhor controle de crosstalk que Cat5e.</p>
+                    
+                    <h3>Especifica&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Frequ&ecirc;ncia:</strong> At&eacute; 250 MHz</li>
+                        <li><strong>Velocidade:</strong> 10/100/1000 Mbps</li>
+                        <li><strong>Dist&acirc;ncia:</strong> 100m (Gigabit), 55m (10 Gigabit)</li>
+                        <li><strong>Imped&acirc;ncia:</strong> 100 ohms � 15%</li>
+                        <li><strong>Crosstalk:</strong> Muito melhor que Cat5e</li>
+                    </ul>
+                    
+                    <h3>Melhorias sobre Cat5e:</h3>
+                    <ul>
+                        <li><strong>Separador pl&aacute;stico:</strong> Isola os pares internamente</li>
+                        <li><strong>Fios mais grossos:</strong> AWG 23 vs AWG 24</li>
+                        <li><strong>Tran&ccedil;a mais apertada:</strong> Menor crosstalk</li>
+                        <li><strong>Melhor isolamento:</strong> Materiais de qualidade superior</li>
+                    </ul>
+                    
+                    <h3>Padr&otilde;es Suportados:</h3>
+                    <ul>
+                        <li><strong>10BASE-T:</strong> 10 Mbps Ethernet</li>
+                        <li><strong>100BASE-TX:</strong> 100 Mbps Fast Ethernet</li>
+                        <li><strong>1000BASE-T:</strong> 1 Gbps Gigabit Ethernet</li>
+                        <li><strong>10GBASE-T:</strong> 10 Gbps (dist&acirc;ncia limitada)</li>
+                    </ul>
+                    
+                    <h3>Variantes:</h3>
+                    <ul>
+                        <li><strong>Cat6:</strong> Padr&atilde;o b&aacute;sico</li>
+                        <li><strong>Cat6A (Augmented):</strong> 500 MHz, 10 Gbps at&eacute; 100m</li>
+                        <li><strong>Cat6 blindado:</strong> Com prote&ccedil;&atilde;o EMI</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Future-proof:</strong> Suporta tecnologias futuras</li>
+                        <li><strong>Melhor performance:</strong> Menos erros de transmiss&atilde;o</li>
+                        <li><strong>Maior largura de banda:</strong> 250 MHz vs 100 MHz</li>
+                        <li><strong>Compatibilidade:</strong> Retrocompat&iacute;vel com Cat5e</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Redes corporativas modernas</li>
+                        <li>Data centers</li>
+                        <li>Instala&ccedil;&otilde;es que requerem alta performance</li>
+                        <li>Prepara&ccedil;&atilde;o para 10 Gigabit Ethernet</li>
+                    </ul>
+                `
+            },
+            'rj45': {
+                title: 'RJ45',
+                description: 'Conector padr&atilde;o para cabos Ethernet, com 8 pinos.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>RJ45 (Registered Jack 45) &eacute; o conector padr&atilde;o usado em cabos Ethernet. Possui 8 pinos organizados em linha, permitindo conex&atilde;o dos 4 pares de fios do cabo UTP.</p>
+                    
+                    <h3>Caracter&iacute;sticas F&iacute;sicas:</h3>
+                    <ul>
+                        <li><strong>8 pinos:</strong> Numerados de 1 a 8</li>
+                        <li><strong>Trava pl&aacute;stica:</strong> Mant&eacute;m conex&atilde;o segura</li>
+                        <li><strong>Corpo transparente:</strong> Permite visualizar fios</li>
+                        <li><strong>Contatos dourados:</strong> Resist&ecirc;ncia &agrave; corros&atilde;o</li>
+                        <li><strong>Guia de inser&ccedil;&atilde;o:</strong> Evita conex&atilde;o incorreta</li>
+                    </ul>
+                    
+                    <h3>Padr&otilde;es de Crimpa&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>T568A:</strong>
+                            <ul>
+                                <li>1-Branco/Verde, 2-Verde, 3-Branco/Laranja, 4-Azul</li>
+                                <li>5-Branco/Azul, 6-Laranja, 7-Branco/Marrom, 8-Marrom</li>
+                            </ul>
+                        </li>
+                        <li><strong>T568B:</strong>
+                            <ul>
+                                <li>1-Branco/Laranja, 2-Laranja, 3-Branco/Verde, 4-Azul</li>
+                                <li>5-Branco/Azul, 6-Verde, 7-Branco/Marrom, 8-Marrom</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tipos de Cabos:</h3>
+                    <ul>
+                        <li><strong>Cabo Direto:</strong> Ambas as pontas iguais (T568B-T568B)</li>
+                        <li><strong>Cabo Crossover:</strong> Pontas diferentes (T568A-T568B)</li>
+                        <li><strong>Cabo Rollover:</strong> Sequ�ncia invertida (1-8, 2-7, etc.)</li>
+                    </ul>
+                    
+                    <h3>Processo de Crimpa&ccedil;&atilde;o:</h3>
+                    <ol>
+                        <li><strong>Descascar:</strong> Remover capa externa do cabo</li>
+                        <li><strong>Desentran&ccedil;ar:</strong> Separar os 4 pares</li>
+                        <li><strong>Alinhar:</strong> Organizar fios conforme padr&atilde;o</li>
+                        <li><strong>Cortar:</strong> Deixar fios com mesmo comprimento</li>
+                        <li><strong>Inserir:</strong> Colocar fios no conector</li>
+                        <li><strong>Crimpar:</strong> Usar alicate para fixar</li>
+                    </ol>
+                    
+                    <h3>Ferramentas Necess&aacute;rias:</h3>
+                    <ul>
+                        <li>Alicate de crimpa&ccedil;&atilde;o</li>
+                        <li>Alicate desencapador</li>
+                        <li>Testador de cabo</li>
+                        <li>Conectores RJ45</li>
+                    </ul>
+                    
+                    <h3>Problemas Comuns:</h3>
+                    <ul>
+                        <li>Crimpa&ccedil;&atilde;o inadequada</li>
+                        <li>Ordem incorreta dos fios</li>
+                        <li>Fios muito curtos ou longos</li>
+                        <li>Conector de baixa qualidade</li>
+                    </ul>
+                `
+            },
+            'cabo-coaxial': {
+                title: 'Cabo Coaxial',
+                description: 'Cabo com condutor central e blindagem, usado em TV e redes antigas.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Cabo coaxial &eacute; um tipo de cabo que possui um condutor central cercado por isolante, blindagem met&aacute;lica e capa externa, mantendo imped&acirc;ncia constante ao longo de seu comprimento.</p>
+                    
+                    <h3>Estrutura:</h3>
+                    <ul>
+                        <li><strong>Condutor central:</strong> Fio de cobre s&oacute;lido ou multifilar</li>
+                        <li><strong>Diel&eacute;trico:</strong> Isolante pl&aacute;stico (polietileno)</li>
+                        <li><strong>Blindagem:</strong> Malha de cobre ou folha de alum&iacute;nio</li>
+                        <li><strong>Capa externa:</strong> Prote&ccedil;&atilde;o pl&aacute;stica (PVC)</li>
+                    </ul>
+                    
+                    <h3>Tipos Comuns:</h3>
+                    <ul>
+                        <li><strong>RG-6:</strong> TV a cabo, sat&eacute;lite (75 ohms)</li>
+                        <li><strong>RG-11:</strong> Longas dist&acirc;ncias, menor atenua��o</li>
+                        <li><strong>RG-58:</strong> Redes antigas (50 ohms)</li>
+                        <li><strong>RG-59:</strong> CFTV, v&iacute;deo anal&oacute;gico</li>
+                    </ul>
+                    
+                    <h3>Conectores:</h3>
+                    <ul>
+                        <li><strong>F-Type:</strong> TV a cabo, sat&eacute;lite</li>
+                        <li><strong>BNC:</strong> Equipamentos profissionais, CFTV</li>
+                        <li><strong>N-Type:</strong> Aplica&ccedil;&otilde;es de alta frequ&ecirc;ncia</li>
+                        <li><strong>SMA:</strong> Equipamentos de RF</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Blindagem excelente:</strong> Prote&ccedil;&atilde;o contra interfer&ecirc;ncias</li>
+                        <li><strong>Longas dist&acirc;ncias:</strong> Menor atenua��o que UTP</li>
+                        <li><strong>Alta frequ&ecirc;ncia:</strong> Suporta sinais de RF</li>
+                        <li><strong>Imped&acirc;ncia constante:</strong> Caracter&iacute;stica controlada</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Custo elevado:</strong> Mais caro que UTP</li>
+                        <li><strong>Instala&ccedil;&atilde;o complexa:</strong> Conectores especializados</li>
+                        <li><strong>Menos flex&iacute;vel:</strong> Mais r&iacute;gido que UTP</li>
+                        <li><strong>Topologia limitada:</strong> Principalmente bus</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es Atuais:</h3>
+                    <ul>
+                        <li>TV a cabo e sat&eacute;lite</li>
+                        <li>Sistemas de CFTV</li>
+                        <li>Equipamentos de radiofrequ&ecirc;ncia</li>
+                        <li>Instrumenta&ccedil;&atilde;o e teste</li>
+                        <li>Conex&otilde;es de antenas</li>
+                    </ul>
+                    
+                    <h3>Uso em Redes (Hist&oacute;rico):</h3>
+                    <p>Foi usado em redes Ethernet antigas (10Base2, 10Base5), mas foi substitu&iacute;do pelo UTP devido ao custo e facilidade de instala&ccedil;&atilde;o.</p>
+                `
+            },
+            'cabo-drop': {
+                title: 'Cabo Drop',
+                description: 'Cabo de descida usado para conectar cliente final &agrave; rede.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Cabo drop &eacute; o segmento final de cabo que conecta a rede principal (backbone) at&eacute; o cliente final, fazendo a "descida" da infraestrutura principal para o ponto de consumo.</p>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>Segmento final:</strong> &Uacute;ltima milha da conex&atilde;o</li>
+                        <li><strong>Dedicado:</strong> Exclusivo para um cliente</li>
+                        <li><strong>Flex&iacute;vel:</strong> Adaptado &agrave;s necessidades locais</li>
+                        <li><strong>Resist&ecirc;ncia:</strong> Preparado para ambiente externo</li>
+                    </ul>
+                    
+                    <h3>Tipos por Tecnologia:</h3>
+                    <ul>
+                        <li><strong>Drop Coaxial:</strong> TV a cabo, internet via cabo</li>
+                        <li><strong>Drop de Fibra:</strong> FTTH, conex&otilde;es de alta velocidade</li>
+                        <li><strong>Drop de Cobre:</strong> Telefonia, ADSL</li>
+                        <li><strong>Drop UTP:</strong> Redes locais, &uacute;ltimo segmento</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Provedores de Internet:</strong> Conex&atilde;o residencial</li>
+                        <li><strong>TV a cabo:</strong> Sinal para casa do cliente</li>
+                        <li><strong>Telefonia:</strong> Linha telef&ocirc;nica residencial</li>
+                        <li><strong>Empresas:</strong> Conex&atilde;o dedicada</li>
+                    </ul>
+                    
+                    <h3>Instala&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>A&eacute;rea:</strong> Postes, torres, fachadas</li>
+                        <li><strong>Subterr&acirc;nea:</strong> Dutos, galerias</li>
+                        <li><strong>Interna:</strong> Dentro de edif&iacute;cios</li>
+                        <li><strong>Mista:</strong> Combina&ccedil;&atilde;o de m&eacute;todos</li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Dist&acirc;ncia:</strong> Limita&ccedil;&otilde;es por tipo de cabo</li>
+                        <li><strong>Atenua��o:</strong> Perda de sinal ao longo do cabo</li>
+                        <li><strong>Prote&ccedil;&atilde;o:</strong> Contra intemp�ries e vandalismo</li>
+                        <li><strong>Acessibilidade:</strong> Facilidade de manuten&ccedil;&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Desafios:</h3>
+                    <ul>
+                        <li>Custo de instala&ccedil;&atilde;o por cliente</li>
+                        <li>Manuten&ccedil;&atilde;o individual</li>
+                        <li>Varia&ccedil;&otilde;es de dist&acirc;ncia</li>
+                        <li>Diferentes ambientes de instala&ccedil;&atilde;o</li>
+                    </ul>
+                `
+            },
+            'cabo-flat': {
+                title: 'Cabo Flat',
+                description: 'Cabo achatado e flex&iacute;vel, usado em instala&ccedil;&otilde;es internas.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Cabo flat &eacute; um tipo de cabo com formato achatado e flex&iacute;vel, projetado para instala&ccedil;&otilde;es onde o espa&ccedil;o &eacute; limitado ou onde se deseja uma apar�ncia mais discreta.</p>
+                    
+                    <h3>Caracter&iacute;sticas F&iacute;sicas:</h3>
+                    <ul>
+                        <li><strong>Formato achatado:</strong> Perfil baixo e largo</li>
+                        <li><strong>Flexibilidade:</strong> F&aacute;cil de dobrar e moldar</li>
+                        <li><strong>Espessura reduzida:</strong> Passa por espa&ccedil;os apertados</li>
+                        <li><strong>Largura vari&aacute;vel:</strong> Conforme n&uacute;mero de condutores</li>
+                    </ul>
+                    
+                    <h3>Tipos Comuns:</h3>
+                    <ul>
+                        <li><strong>Cabo flat Ethernet:</strong> UTP em formato achatado</li>
+                        <li><strong>Cabo flat telef&ocirc;nico:</strong> Instala&ccedil;&otilde;es residenciais</li>
+                        <li><strong>Cabo flat de dados:</strong> Conex&otilde;es internas</li>
+                        <li><strong>Cabo flat decorativo:</strong> Instala&ccedil;&otilde;es vis&iacute;veis</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Est&eacute;tica:</strong> Menos vis&iacute;vel em instala&ccedil;&otilde;es</li>
+                        <li><strong>Espa&ccedil;o:</strong> Passa por frestas e cantos</li>
+                        <li><strong>Flexibilidade:</strong> F&aacute;cil manuseio e instala&ccedil;&atilde;o</li>
+                        <li><strong>Organiza&ccedil;&atilde;o:</strong> Melhor gerenciamento de cabos</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Performance:</strong> Pode ter caracter&iacute;sticas el&eacute;tricas inferiores</li>
+                        <li><strong>Durabilidade:</strong> Menos resistente que cabos redondos</li>
+                        <li><strong>Custo:</strong> Geralmente mais caro</li>
+                        <li><strong>Conectores:</strong> Pode precisar de adaptadores</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Resid&ecirc;ncias:</strong> Instala&ccedil;&otilde;es discretas</li>
+                        <li><strong>Escrit&oacute;rios:</strong> Conex&otilde;es tempor&aacute;rias</li>
+                        <li><strong>Eventos:</strong> Cabeamento tempor&aacute;rio</li>
+                        <li><strong>Reforma:</strong> Quando n&atilde;o se pode quebrar paredes</li>
+                    </ul>
+                    
+                    <h3>Instala&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Sob tapetes:</strong> Instala&ccedil;&atilde;o invis&iacute;vel</li>
+                        <li><strong>Atr&aacute;s de m&oacute;veis:</strong> Aproveita espa&ccedil;os existentes</li>
+                        <li><strong>Rodap&eacute;s:</strong> Acompanha contornos</li>
+                        <li><strong>Portas e janelas:</strong> Passa por frestas</li>
+                    </ul>
+                    
+                    <h3>Cuidados:</h3>
+                    <ul>
+                        <li>Evitar dobras muito acentuadas</li>
+                        <li>Prote&ccedil;&atilde;o contra pisoteamento</li>
+                        <li>Verifica&ccedil;&atilde;o de compatibilidade</li>
+                        <li>Teste de performance ap&oacute;s instala&ccedil;&atilde;o</li>
+                    </ul>
+                `
+            },
+            'fibra-optica': {
+                title: 'Fibra &Oacute;ptica',
+                description: 'Meio de transmiss&atilde;o que usa luz para transportar dados em alta velocidade.',
+                 details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+   <p>Fibra &oacute;ptica &eacute; um meio de transmiss&atilde;o que utiliza pulsos de luz para transportar informa&ccedil;&otilde;es digitais atrav&eacute;s de fios de vidro ou pl&aacute;stico extremamente finos.</p>
+                    
+                    <h3>Estrutura:</h3>
+                    <ul>
+                        <li><strong>N&uacute;cleo:</strong> Centro de vidro onde a luz viaja</li>
+                        <li><strong>Casca:</strong> Camada que reflete a luz de volta ao n&uacute;cleo</li>
+                        <li><strong>Revestimento:</strong> Prote&ccedil;&atilde;o pl&aacute;stica</li>
+                        <li><strong>Capa externa:</strong> Prote&ccedil;&atilde;o mec&acirc;nica</li>
+                    </ul>
+                    
+                    <h3>Princ&iacute;pio de Funcionamento:</h3>
+                    <ul>
+                        <li><strong>Reflex&atilde;o total:</strong> Luz fica "presa" no n&uacute;cleo</li>
+                        <li><strong>Pulsos de luz:</strong> Representam bits 0 e 1</li>
+                        <li><strong>Velocidade da luz:</strong> Transmiss&atilde;o ultra-r&aacute;pida</li>
+                        <li><strong>Baixa atenua��o:</strong> Sinal viaja longas dist&acirc;ncias</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Alta velocidade:</strong> Gbps a Tbps</li>
+                        <li><strong>Longas dist&acirc;ncias:</strong> At&eacute; 100 km sem amplifica&ccedil;&atilde;o</li>
+                        <li><strong>Imune a EMI:</strong> N&atilde;o sofre interfer&ecirc;ncia el&eacute;trica</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Dif&iacute;cil de interceptar</li>
+                        <li><strong>Largura de banda:</strong> Capacidade quase ilimitada</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Custo inicial alto:</strong> Equipamentos caros</li>
+                        <li><strong>Instala&ccedil;&atilde;o especializada:</strong> Requer t&eacute;cnicos treinados</li>
+                        <li><strong>Fr&aacute;gil:</strong> Quebra com dobras excessivas</li>
+                        <li><strong>Conectores especiais:</strong> Equipamentos espec&iacute;ficos</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Internet de alta velocidade (FTTH)</li>
+                        <li>Backbone de provedores</li>
+                        <li>Cabos submarinos</li>
+                        <li>Redes corporativas</li>
+                        <li>Data centers</li>
+                    </ul>
+                `
+            },
+            'fibra-monomodo': {
+                title: 'Fibra Monomodo',
+                description: 'Fibra &oacute;ptica para longas dist&acirc;ncias com um &uacute;nico modo de propaga&ccedil;&atilde;o.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Fibra monomodo possui um n&uacute;cleo muito pequeno (8-10 &#956;m) que permite apenas um modo de propaga&ccedil;&atilde;o da luz, eliminando dispers&atilde;o modal e permitindo transmiss&otilde;es de longa dist&acirc;ncia.</p>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>N&uacute;cleo pequeno:</strong> 8-10 micrometros</li>
+                        <li><strong>Um modo de luz:</strong> Apenas um caminho &oacute;ptico</li>
+                        <li><strong>Laser requerido:</strong> Fonte de luz coerente</li>
+                        <li><strong>Baixa dispers&atilde;o:</strong> Sinal mant�m forma</li>
+                    </ul>
+                    
+                    <h3>Especifica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Dist&acirc;ncia:</strong> At&eacute; 100+ km</li>
+                        <li><strong>Velocidade:</strong> 10 Gbps a 100+ Gbps</li>
+                        <li><strong>Comprimento de onda:</strong> 1310nm, 1550nm</li>
+                        <li><strong>Atenua��o:</strong> 0,2-0,5 dB/km</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Longas dist&acirc;ncias:</strong> Ideal para WAN</li>
+                        <li><strong>Alta largura de banda:</strong> Capacidade superior</li>
+                        <li><strong>Baixa atenua��o:</strong> Menos perdas</li>
+                        <li><strong>Sem dispers&atilde;o modal:</strong> Sinal mais limpo</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Custo elevado:</strong> Equipamentos mais caros</li>
+                        <li><strong>Instala&ccedil;&atilde;o complexa:</strong> Maior precis&atilde;o</li>
+                        <li><strong>Conectores especiais:</strong> Toler&acirc;ncias menores</li>
+                        <li><strong>Laser obrigat&oacute;rio:</strong> N&atilde;o funciona com LED</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Backbone de Internet</li>
+                        <li>Cabos submarinos</li>
+                        <li>Conex&otilde;es entre cidades</li>
+                        <li>Redes metropolitanas</li>
+                        <li>Data centers grandes</li>
+                    </ul>
+                `
+            },
+            'fibra-multimodo': {
+                title: 'Fibra Multimodo',
+                description: 'Fibra &oacute;ptica para curtas dist&acirc;ncias com m&uacute;ltiplos modos de propaga&ccedil;&atilde;o.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Fibra multimodo possui n&uacute;cleo maior (50-62,5 &#956;m) que permite m&uacute;ltiplos modos de propaga&ccedil;&atilde;o da luz, adequada para dist&acirc;ncias curtas e m&eacute;dias.</p>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>N&uacute;cleo grande:</strong> 50 ou 62,5 micrometros</li>
+                        <li><strong>M&uacute;ltiplos modos:</strong> V&aacute;rios caminhos de luz</li>
+                        <li><strong>LED ou Laser:</strong> Fontes de luz mais baratas</li>
+                        <li><strong>Dispers&atilde;o modal:</strong> Limita dist&acirc;ncia</li>
+                    </ul>
+                    
+                    <h3>Tipos:</h3>
+                    <ul>
+                        <li><strong>OM1:</strong> 62,5/125 &#956;m - legado</li>
+                        <li><strong>OM2:</strong> 50/125 &#956;m - padr&atilde;o</li>
+                        <li><strong>OM3:</strong> 50/125 &#956;m - otimizada para laser</li>
+                        <li><strong>OM4:</strong> 50/125 &#956;m - alta performance</li>
+                        <li><strong>OM5:</strong> 50/125 &#956;m - wideband</li>
+                    </ul>
+                    
+                    <h3>Especifica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Dist&acirc;ncia:</strong> 300m a 2km</li>
+                        <li><strong>Velocidade:</strong> 100 Mbps a 100 Gbps</li>
+                        <li><strong>Comprimento de onda:</strong> 850nm, 1300nm</li>
+                        <li><strong>Atenua��o:</strong> 2-4 dB/km</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Menor custo:</strong> Equipamentos mais baratos</li>
+                        <li><strong>F&aacute;cil instala&ccedil;&atilde;o:</strong> Toler&acirc;ncias maiores</li>
+                        <li><strong>LED compat&iacute;vel:</strong> Fontes mais simples</li>
+                        <li><strong>Conectores padr&atilde;o:</strong> Mais dispon&iacute;veis</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Dist&acirc;ncia limitada:</strong> Dispers&atilde;o modal</li>
+                        <li><strong>Menor largura de banda:</strong> Comparado a monomodo</li>
+                        <li><strong>Maior atenua��o:</strong> Mais perdas por km</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Redes locais (LAN)</li>
+                        <li>Conex&otilde;es de pr&eacute;dio</li>
+                        <li>Data centers pequenos</li>
+                        <li>Campus universit&aacute;rios</li>
+                        <li>Redes corporativas</li>
+                    </ul>
+                `
+            },
+            'fibra-reflexao': {
+                title: 'Fibra Reflex&atilde;o',
+                description: 'Princ&iacute;pio de funcionamento da fibra &oacute;ptica baseado na reflex&atilde;o total.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Reflex&atilde;o total interna &eacute; o princ&iacute;pio f&iacute;sico que permite &agrave; luz viajar atrav&eacute;s da fibra &oacute;ptica, mantendo-se confinada no n&uacute;cleo atrav&eacute;s de reflex&otilde;es sucessivas.</p>
+                    
+                    <h3>Princ&iacute;pio F&iacute;sico:</h3>
+                    <ul>
+                        <li><strong>&Iacute;ndice de refra&ccedil;&atilde;o:</strong> N&uacute;cleo tem &iacute;ndice maior que a casca</li>
+                        <li><strong>&Acirc;ngulo cr&iacute;tico:</strong> &Acirc;ngulo m&iacute;nimo para reflex&atilde;o total</li>
+                        <li><strong>Confinamento:</strong> Luz fica "presa" no n&uacute;cleo</li>
+                        <li><strong>Propaga&ccedil;&atilde;o:</strong> Luz viaja por reflex&otilde;es sucessivas</li>
+                    </ul>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ol>
+                        <li><strong>Entrada:</strong> Luz entra no n&uacute;cleo em &acirc;ngulo adequado</li>
+                        <li><strong>Reflex&atilde;o:</strong> Luz bate na interface n&uacute;cleo-casca</li>
+                        <li><strong>Retorno:</strong> Reflete totalmente de volta ao n&uacute;cleo</li>
+                        <li><strong>Propaga&ccedil;&atilde;o:</strong> Processo se repete ao longo da fibra</li>
+                    </ol>
+                    
+                    <h3>Fatores Importantes:</h3>
+                    <ul>
+                        <li><strong>Diferen&ccedil;a de &iacute;ndices:</strong> Determina confinamento</li>
+                        <li><strong>Abertura num&eacute;rica:</strong> Define cone de aceita&ccedil;&atilde;o</li>
+                        <li><strong>Perfil de &iacute;ndice:</strong> Gradual ou degrau</li>
+                        <li><strong>Pureza do material:</strong> Afeta atenua��o</li>
+                    </ul>
+                    
+                    <h3>Tipos de Reflex&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Reflex&atilde;o total:</strong> 100% da luz refletida</li>
+                        <li><strong>Reflex&atilde;o parcial:</strong> Parte da luz escapa</li>
+                        <li><strong>Refra&ccedil;&atilde;o:</strong> Luz sai da fibra (perda)</li>
+                    </ul>
+                    
+                    <h3>Perdas por Reflex&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Microcurvaturas:</strong> Dobras pequenas causam perdas</li>
+                        <li><strong>Macrocurvaturas:</strong> Dobras grandes quebram reflex&atilde;o</li>
+                        <li><strong>Conectores:</strong> Interfaces podem causar reflex&otilde;es</li>
+                        <li><strong>Emendas:</strong> Uni&otilde;es imperfeitas geram perdas</li>
+                    </ul>
+                    
+                    <h3>Otimiza&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li>Controle rigoroso de &iacute;ndices de refra&ccedil;&atilde;o</li>
+                        <li>Pureza extrema dos materiais</li>
+                        <li>Geometria precisa do n&uacute;cleo</li>
+                        <li>Minimiza&ccedil;&atilde;o de imperfei��es</li>
+                    </ul>
+                `
+            },
+            'dio-fibra': {
+                title: 'DIO - Distribuidor Interno &Oacute;ptico',
+                description: 'Distribuidor Interno &Oacute;ptico - Equipamento para organizar conex&otilde;es de fibra.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>DIO &eacute; um equipamento usado para organizar, proteger e facilitar as conex&otilde;es de fibras &oacute;pticas em instala&ccedil;&otilde;es internas, permitindo gerenciamento eficiente das conex&otilde;es.</p>
+                    
+                    <h3>Fun&ccedil;&otilde;es Principais:</h3>
+                    <ul>
+                        <li><strong>Organiza&ccedil;&atilde;o:</strong> Arranja fibras de forma ordenada</li>
+                        <li><strong>Prote&ccedil;&atilde;o:</strong> Protege emendas e conectores</li>
+                        <li><strong>Distribui&ccedil;&atilde;o:</strong> Conecta backbone com drops</li>
+                        <li><strong>Gerenciamento:</strong> Facilita manuten&ccedil;&atilde;o e expans&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Componentes:</h3>
+                    <ul>
+                        <li><strong>Caixa/Rack:</strong> Estrutura principal de montagem</li>
+                        <li><strong>Bandejas:</strong> Organizam emendas e sobras</li>
+                        <li><strong>Adaptadores:</strong> Conectores para fibras</li>
+                        <li><strong>Guias:</strong> Direcionam fibras sem dobrar</li>
+                        <li><strong>Identifica&ccedil;&atilde;o:</strong> Etiquetas e cores</li>
+                    </ul>
+                    
+                    <h3>Tipos:</h3>
+                    <ul>
+                        <li><strong>DIO Parede:</strong> Montagem em parede</li>
+                        <li><strong>DIO Rack:</strong> Para racks 19"</li>
+                        <li><strong>DIO Sobrepor:</strong> Instala&ccedil;&atilde;o externa</li>
+                        <li><strong>DIO Embutir:</strong> Instala&ccedil;&atilde;o embutida</li>
+                    </ul>
+                    
+                    <h3>Capacidades:</h3>
+                    <ul>
+                        <li><strong>Pequeno:</strong> 12-24 fibras</li>
+                        <li><strong>M&eacute;dio:</strong> 48-96 fibras</li>
+                        <li><strong>Grande:</strong> 144+ fibras</li>
+                        <li><strong>Modular:</strong> Expans&iacute;vel conforme necessidade</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Organiza&ccedil;&atilde;o:</strong> Instala&ccedil;&atilde;o limpa e organizada</li>
+                        <li><strong>Prote&ccedil;&atilde;o:</strong> Fibras protegidas de danos</li>
+                        <li><strong>Flexibilidade:</strong> F&aacute;cil reconfigura��o</li>
+                        <li><strong>Identifica&ccedil;&atilde;o:</strong> R&aacute;pida localiza&ccedil;&atilde;o de circuitos</li>
+                        <li><strong>Manuten&ccedil;&atilde;o:</strong> Acesso facilitado</li>
+                    </ul>
+                    
+                    <h3>Instala&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Planejamento:</strong> Definir capacidade e localiza&ccedil;&atilde;o</li>
+                        <li><strong>Montagem:</strong> Fixar estrutura adequadamente</li>
+                        <li><strong>Organiza&ccedil;&atilde;o:</strong> Arranjar fibras sem dobras excessivas</li>
+                        <li><strong>Testes:</strong> Verificar todas as conex&otilde;es</li>
+                        <li><strong>Documenta&ccedil;&atilde;o:</strong> Registrar configura&ccedil;&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Edif&iacute;cios comerciais</li>
+                        <li>Data centers</li>
+                        <li>Provedores de Internet</li>
+                        <li>Redes corporativas</li>
+                        <li>Instala&ccedil;&otilde;es FTTH</li>
+                    </ul>
+                `
+            },
+            'patch-panel': {
+                title: 'Patch Panel',
+                description: 'Painel de conex&otilde;es para organizar e gerenciar cabos de rede.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Patch panel &eacute; um painel de conex&otilde;es que centraliza e organiza as termina&ccedil;&otilde;es de cabos de rede, facilitando o gerenciamento e permitindo conex&otilde;es flex&iacute;veis entre equipamentos.</p>
+                    
+                    <h3>Fun&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Centraliza&ccedil;&atilde;o:</strong> Ponto central para todas as conex&otilde;es</li>
+                        <li><strong>Organiza&ccedil;&atilde;o:</strong> Mant&eacute;m cabos organizados</li>
+                        <li><strong>Flexibilidade:</strong> Permite reconfigura��o f&aacute;cil</li>
+                        <li><strong>Identifica&ccedil;&atilde;o:</strong> Etiquetas para cada porta</li>
+                        <li><strong>Prote&ccedil;&atilde;o:</strong> Protege termina&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Tipos:</h3>
+                    <ul>
+                        <li><strong>UTP:</strong> Para cabos de par tran&ccedil;ado</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> Para conex&otilde;es &oacute;pticas</li>
+                        <li><strong>Coaxial:</strong> Para cabos coaxiais</li>
+                        <li><strong>Modular:</strong> Combina diferentes tipos</li>
+                    </ul>
+                    
+                    <h3>Configura&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>12 portas:</strong> Pequenas instala&ccedil;&otilde;es</li>
+                        <li><strong>24 portas:</strong> Padr&atilde;o mais comum</li>
+                        <li><strong>48 portas:</strong> Instala&ccedil;&otilde;es maiores</li>
+                        <li><strong>Densidade alta:</strong> At&eacute; 96 portas</li>
+                    </ul>
+                    
+                    <h3>Componentes:</h3>
+                    <ul>
+                        <li><strong>Painel frontal:</strong> Conectores RJ45 ou &oacute;pticos</li>
+                        <li><strong>Parte traseira:</strong> Blocos de conex&atilde;o (110/Krone)</li>
+                        <li><strong>Estrutura:</strong> Montagem em rack 19"</li>
+                        <li><strong>Etiquetas:</strong> Identifica&ccedil;&atilde;o das portas</li>
+                        <li><strong>Guias:</strong> Organiza&ccedil;&atilde;o de cabos</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Organiza&ccedil;&atilde;o:</strong> Cabeamento limpo e profissional</li>
+                        <li><strong>Manuten&ccedil;&atilde;o:</strong> F&aacute;cil acesso para reparos</li>
+                        <li><strong>Flexibilidade:</strong> Mudan&ccedil;as sem recabeamento</li>
+                        <li><strong>Documenta&ccedil;&atilde;o:</strong> Facilita mapeamento da rede</li>
+                        <li><strong>Troubleshooting:</strong> Localiza&ccedil;&atilde;o r&aacute;pida de problemas</li>
+                    </ul>
+                    
+                    <h3>Instala&ccedil;&atilde;o:</h3>
+                    <ol>
+                        <li><strong>Montagem:</strong> Fixar no rack ou parede</li>
+                        <li><strong>Termina&ccedil;&atilde;o:</strong> Conectar cabos na parte traseira</li>
+                        <li><strong>Teste:</strong> Verificar continuidade</li>
+                        <li><strong>Etiquetagem:</strong> Identificar todas as portas</li>
+                        <li><strong>Documenta&ccedil;&atilde;o:</strong> Registrar configura&ccedil;&atilde;o</li>
+                    </ol>
+                    
+                    <h3>Melhores Pr&aacute;ticas:</h3>
+                    <ul>
+                        <li>Usar padr&otilde;es de cores consistentes</li>
+                        <li>Manter documenta&ccedil;&atilde;o atualizada</li>
+                        <li>Deixar espa&ccedil;o para expans&atilde;o</li>
+                        <li>Usar patch cords de qualidade</li>
+                        <li>Organizar com velcros ou guias</li>
+                    </ul>
+                `
+            },
+            'patch-cord': {
+                title: 'Patch Cord',
+                description: 'Cabo curto com conectores nas extremidades para interconex&otilde;es.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Patch cord &eacute; um cabo curto e flex&iacute;vel com conectores em ambas as extremidades, usado para fazer conex&otilde;es entre equipamentos, patch panels e tomadas de rede.</p>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>Comprimento:</strong> 0,5m a 5m (mais comum 1-3m)</li>
+                        <li><strong>Flexibilidade:</strong> Cabo macio e mane&aacute;vel</li>
+                        <li><strong>Conectores:</strong> RJ45, fibra &oacute;ptica, coaxial</li>
+                        <li><strong>Cores:</strong> Diferentes cores para organiza&ccedil;&atilde;o</li>
+                        <li><strong>Qualidade:</strong> Constru&ccedil;&atilde;o robusta</li>
+                    </ul>
+                    
+                    <h3>Tipos por Material:</h3>
+                    <ul>
+                        <li><strong>UTP:</strong> Par tran&ccedil;ado sem blindagem</li>
+                        <li><strong>STP:</strong> Par tran&ccedil;ado blindado</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> Monomodo ou multimodo</li>
+                        <li><strong>Coaxial:</strong> Para aplica&ccedil;&otilde;es RF</li>
+                    </ul>
+                    
+                    <h3>Tipos por Conex&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Direto:</strong> Mesmo padr&atilde;o nas duas pontas</li>
+                        <li><strong>Crossover:</strong> Padr&otilde;es diferentes (T568A/T568B)</li>
+                        <li><strong>Console:</strong> Para acesso a equipamentos</li>
+                        <li><strong>Adaptador:</strong> Conectores diferentes</li>
+                    </ul>
+                    
+                    <h3>Categorias UTP:</h3>
+                    <ul>
+                        <li><strong>Cat5e:</strong> At&eacute; 1 Gbps</li>
+                        <li><strong>Cat6:</strong> At&eacute; 1 Gbps (10 Gbps curta dist&acirc;ncia)</li>
+                        <li><strong>Cat6A:</strong> At&eacute; 10 Gbps</li>
+                        <li><strong>Cat7:</strong> At&eacute; 10 Gbps blindado</li>
+                    </ul>
+                    
+                    <h3>Cores Padr&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Azul:</strong> Rede horizontal</li>
+                        <li><strong>Verde:</strong> Rede de equipamentos</li>
+                        <li><strong>Amarelo:</strong> Conex&otilde;es auxiliares</li>
+                        <li><strong>Vermelho:</strong> Equipamentos cr&iacute;ticos</li>
+                        <li><strong>Branco:</strong> Backbone principal</li>
+                    </ul>
+                    
+                    <h3>Qualidade e Especifica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Conectores:</strong> Contatos banhados a ouro</li>
+                        <li><strong>Cabo:</strong> Fios de cobre puro</li>
+                        <li><strong>Moldagem:</strong> Prote&ccedil;&atilde;o contra dobras</li>
+                        <li><strong>Trava:</strong> Mecanismo resistente</li>
+                        <li><strong>Flexibilidade:</strong> Resist&ecirc;ncia a dobras repetidas</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Conex&atilde;o equipamento-patch panel</li>
+                        <li>Interconex&atilde;o entre patch panels</li>
+                        <li>Conex&atilde;o de dispositivos finais</li>
+                        <li>Testes e troubleshooting</li>
+                        <li>Conex&otilde;es tempor&aacute;rias</li>
+                    </ul>
+                    
+                    <h3>Cuidados:</h3>
+                    <ul>
+                        <li>Evitar dobras excessivas</li>
+                        <li>N&atilde;o puxar pelo cabo</li>
+                        <li>Armazenar adequadamente</li>
+                        <li>Verificar conectores regularmente</li>
+                        <li>Substituir se danificado</li>
+                    </ul>
+                `
+            },
+            'alicate-crimpar': {
+                title: 'Alicate de Crimpa&ccedil;&atilde;o',
+                description: 'Ferramenta para fixar conectores RJ45 em cabos UTP.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Alicate de crimpa&ccedil;&atilde;o &eacute; uma ferramenta especializada usada para fixar conectores RJ45 em cabos UTP, garantindo conex&atilde;o el&eacute;trica e mec&acirc;nica adequada.</p>
+                    
+                    <h3>Fun&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Crimpar:</strong> Fixa conectores RJ45</li>
+                        <li><strong>Descascar:</strong> Remove capa externa do cabo</li>
+                        <li><strong>Cortar:</strong> Apara fios no comprimento correto</li>
+                        <li><strong>Testar:</strong> Alguns modelos t&ecirc;m testador integrado</li>
+                    </ul>
+                    
+                    <h3>Tipos:</h3>
+                    <ul>
+                        <li><strong>B&aacute;sico:</strong> Apenas crimpa&ccedil;&atilde;o</li>
+                        <li><strong>Multifun&ccedil;&atilde;o:</strong> Crimpa, descasca e corta</li>
+                        <li><strong>Profissional:</strong> Precis&atilde;o e durabilidade superiores</li>
+                        <li><strong>Com testador:</strong> Testa continuidade</li>
+                    </ul>
+                    
+                    <h3>Conectores Suportados:</h3>
+                    <ul>
+                        <li><strong>RJ45:</strong> Ethernet (8P8C)</li>
+                        <li><strong>RJ11:</strong> Telefone (6P4C)</li>
+                        <li><strong>RJ12:</strong> Telefone (6P6C)</li>
+                        <li><strong>Outros:</strong> Conforme modelo</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas Importantes:</h3>
+                    <ul>
+                        <li><strong>Press&atilde;o uniforme:</strong> Crimpa&ccedil;&atilde;o consistente</li>
+                        <li><strong>Guias de alinhamento:</strong> Posicionamento correto</li>
+                        <li><strong>Cabo ergon&ocirc;mico:</strong> Conforto no uso</li>
+                        <li><strong>Material resistente:</strong> Durabilidade</li>
+                        <li><strong>Ajuste de press&atilde;o:</strong> Diferentes tipos de cabo</li>
+                    </ul>
+                    
+                    <h3>Como Usar:</h3>
+                    <ol>
+                        <li><strong>Descascar:</strong> Remover 2cm da capa externa</li>
+                        <li><strong>Organizar:</strong> Alinhar fios conforme padr&atilde;o</li>
+                        <li><strong>Cortar:</strong> Deixar fios com 1,2cm</li>
+                        <li><strong>Inserir:</strong> Colocar fios no conector</li>
+                        <li><strong>Posicionar:</strong> Conector no alicate</li>
+                        <li><strong>Crimpar:</strong> Pressionar firmemente</li>
+                    </ol>
+                    
+                    <h3>Qualidade da Crimpa&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Contato el&eacute;trico:</strong> Pinos penetram nos fios</li>
+                        <li><strong>Fixa&ccedil;&atilde;o mec&acirc;nica:</strong> Cabo preso firmemente</li>
+                        <li><strong>Alinhamento:</strong> Fios na posi&ccedil;&atilde;o correta</li>
+                        <li><strong>Isolamento:</strong> Sem curto-circuitos</li>
+                    </ul>
+                    
+                    <h3>Problemas Comuns:</h3>
+                    <ul>
+                        <li><strong>Press&atilde;o insuficiente:</strong> Mau contato</li>
+                        <li><strong>Desalinhamento:</strong> Fios fora de posi&ccedil;&atilde;o</li>
+                        <li><strong>Fios muito longos:</strong> Curto-circuito</li>
+                        <li><strong>Cabo mal fixado:</strong> Conex&atilde;o inst&aacute;vel</li>
+                    </ul>
+                    
+                    <h3>Manuten&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li>Limpeza regular das l&acirc;minas</li>
+                        <li>Lubrifica&ccedil;&atilde;o das articula&ccedil;&otilde;es</li>
+                        <li>Verifica&ccedil;&atilde;o do alinhamento</li>
+                        <li>Substitui&ccedil;&atilde;o quando desgastado</li>
+                    </ul>
+                    
+                    <h3>Ferramentas Complementares:</h3>
+                    <ul>
+                        <li>Testador de cabo</li>
+                        <li>Alicate desencapador</li>
+                        <li>Conectores RJ45</li>
+                        <li>Guia de cores</li>
+                    </ul>
+                `
+            }
+        };
+
+        // Fun��o para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da p�gina
+            }
+        }
+
+        // Fun��o para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da p�gina
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar apar�ncia dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body {
+                padding: 20px;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

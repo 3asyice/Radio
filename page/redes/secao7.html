@@ -1,0 +1,3910 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se&ccedil;&atilde;o 7 - Tecnologias M&oacute;veis e Fibra</title>
+    <link rel="stylesheet" href="styles.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.intro {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.intro h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+.menu-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.menu-item p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.term-count {
+    background: #667eea;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+footer {
+    background: rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Estilos para páginas de seção */
+.section-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.section-header h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.term-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.term-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.term-name {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.term-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+/* Estilos para galeria de imagens */
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.modal-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-image:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para container de vídeo */
+.video-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border-left: 4px solid #ff4444;
+}
+
+.video-link {
+    color: #ff4444;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+.video-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Responsividade para imagens */
+@media (max-width: 768px) {
+    .image-gallery {
+        justify-content: center;
+    }
+
+    .modal-image {
+        width: 120px;
+        height: 80px;
+    }
+}
+  </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>&#128241; Tecnologias M&oacute;veis e Fibra</h1>
+            <p class="subtitle">Se&ccedil;&atilde;o 7 - Redes Celulares e Infraestrutura &Oacute;ptica</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">&larr; Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Tecnologias M&oacute;veis e Infraestrutura de Fibra &Oacute;ptica</h2>
+            <p>Esta se&ccedil;&atilde;o aborda as tecnologias de comunica&ccedil;&atilde;o m&oacute;vel (3G, 4G) e as solu&ccedil;&otilde;es avan&ccedil;adas de fibra &oacute;ptica, incluindo FTTH, GPON e equipamentos especializados que formam a espinha dorsal das redes modernas.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('3g')">
+                <div class="term-name">3G</div>
+                <div class="term-description">Terceira gera&ccedil;&atilde;o de tecnologia de telefonia m&oacute;vel com acesso &agrave; internet.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('4g')">
+                <div class="term-name">4G</div>
+                <div class="term-description">Quarta gera&ccedil;&atilde;o de tecnologia m&oacute;vel com alta velocidade e baixa lat&ecirc;ncia.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ftth')">
+                <div class="term-name">FTTH</div>
+                <div class="term-description">Fiber to the Home - Fibra &oacute;ptica diretamente at&eacute; a resid&ecirc;ncia do usu&aacute;rio.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('fttx')">
+                <div class="term-name">FTTx</div>
+                <div class="term-description">Fiber to the X - Termo gen&eacute;rico para diferentes arquiteturas de fibra.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('gepon')">
+                <div class="term-name">GEPON</div>
+                <div class="term-description">Gigabit Ethernet Passive Optical Network - Padr&atilde;o IEEE para redes PON.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('gpon')">
+                <div class="term-name">GPON</div>
+                <div class="term-description">Gigabit Passive Optical Network - Padr&atilde;o ITU-T para redes &oacute;pticas passivas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('pon')">
+                <div class="term-name">PON</div>
+                <div class="term-description">Passive Optical Network - Rede &oacute;ptica passiva sem equipamentos ativos no meio.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('olt')">
+                <div class="term-name">OLT</div>
+                <div class="term-description">Optical Line Terminal - Equipamento central que gerencia a rede PON.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('onu')">
+                <div class="term-name">ONU</div>
+                <div class="term-description">Optical Network Unit - Equipamento terminal do usu&aacute;rio em redes PON.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('last-mile')">
+                <div class="term-name">Last mile</div>
+                <div class="term-description">&Uacute;ltima milha - Segmento final da rede at&eacute; o usu&aacute;rio final.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('maquina-fusao')">
+                <div class="term-name">M&aacute;quina fus&atilde;o</div>
+                <div class="term-description">Equipamento para emenda de fibras &oacute;pticas por fus&atilde;o a arco el&eacute;trico.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('otdr')">
+                <div class="term-name">OTDR</div>
+                <div class="term-description">Optical Time Domain Reflectometer - Equipamento para teste e diagn&oacute;stico de fibra.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('splitter')">
+                <div class="term-name">Splitter</div>
+                <div class="term-description">Divisor &oacute;ptico passivo que distribui sinal para m&uacute;ltiplas sa&iacute;das.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Conte&uacute;do ser&aacute; inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - Gloss&aacute;rio de Redes de Computadores | Se&ccedil;&atilde;o 7</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            '3g': {
+                title: '3G (Terceira Gera&ccedil;&atilde;o)',
+                description: 'Terceira gera&ccedil;&atilde;o de tecnologia de telefonia m&oacute;vel com acesso &agrave; internet.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>3G representa a terceira gera&ccedil;&atilde;o de padr&otilde;es de telefonia m&oacute;vel, introduzindo acesso &agrave; internet de banda larga, videochamadas e servi&ccedil;os multim&iacute;dia avan&ccedil;ados.</p>
+                    
+                    <h3>Evolu&ccedil;&atilde;o das Gera&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>1G:</strong> Anal&oacute;gico, apenas voz</li>
+                        <li><strong>2G:</strong> Digital, voz + SMS</li>
+                        <li><strong>3G:</strong> Banda larga m&oacute;vel, multim&iacute;dia</li>
+                        <li><strong>4G:</strong> All-IP, alta velocidade</li>
+                        <li><strong>5G:</strong> Ultra-velocidade, IoT massivo</li>
+                    </ul>
+                    
+                    <h3>Principais Padr&otilde;es 3G:</h3>
+                    <ul>
+                        <li><strong>UMTS (Universal Mobile Telecommunications System):</strong>
+                            <ul>
+                                <li>Padr&atilde;o europeu/global</li>
+                                <li>Baseado em WCDMA</li>
+                                <li>Frequ&ecirc;ncias: 2100 MHz, 850/900/1900 MHz</li>
+                                <li>Velocidades: 384 Kbps - 2 Mbps</li>
+                            </ul>
+                        </li>
+                        <li><strong>CDMA2000:</strong>
+                            <ul>
+                                <li>Evolu&ccedil;&atilde;o do CDMA</li>
+                                <li>Usado principalmente nas Am&eacute;ricas</li>
+                                <li>1xRTT, EV-DO</li>
+                                <li>Velocidades: 144 Kbps - 3,1 Mbps</li>
+                            </ul>
+                        </li>
+                        <li><strong>TD-SCDMA:</strong>
+                            <ul>
+                                <li>Padr&atilde;o chin&ecirc;s</li>
+                                <li>Time Division Duplex</li>
+                                <li>Menor uso global</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tecnologias Principais:</h3>
+                    <ul>
+                        <li><strong>WCDMA (Wideband CDMA):</strong>
+                            <ul>
+                                <li>Acesso m&uacute;ltiplo por divis&atilde;o de c&oacute;digo</li>
+                                <li>Largura de banda: 5 MHz</li>
+                                <li>Suporte a m&uacute;ltiplos usu&aacute;rios simult&acirc;neos</li>
+                            </ul>
+                        </li>
+                        <li><strong>HSPA (High Speed Packet Access):</strong>
+                            <ul>
+                                <li>HSDPA: Download at&eacute; 14,4 Mbps</li>
+                                <li>HSUPA: Upload at&eacute; 5,76 Mbps</li>
+                                <li>HSPA+: At&eacute; 42 Mbps download</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Arquitetura de Rede:</h3>
+                    <ul>
+                        <li><strong>UE (User Equipment):</strong> Dispositivo do usu&aacute;rio</li>
+                        <li><strong>Node B:</strong> Esta&ccedil;&atilde;o base (equivalente &agrave; BTS)</li>
+                        <li><strong>RNC (Radio Network Controller):</strong> Controlador de rede</li>
+                        <li><strong>Core Network:</strong> N&uacute;cleo da rede (CS + PS)</li>
+                        <li><strong>GGSN/SGSN:</strong> Gateways para dados</li>
+                    </ul>
+                    
+                    <h3>Servi&ccedil;os Introduzidos:</h3>
+                    <ul>
+                        <li><strong>Videochamadas:</strong> Comunica&ccedil;&atilde;o visual em tempo real</li>
+                        <li><strong>Internet m&oacute;vel:</strong> Navega&ccedil;&atilde;o web completa</li>
+                        <li><strong>Streaming de v&iacute;deo:</strong> Conte&uacute;do multim&iacute;dia</li>
+                        <li><strong>MMS:</strong> Mensagens multim&iacute;dia</li>
+                        <li><strong>Email m&oacute;vel:</strong> Acesso completo a e-mail</li>
+                        <li><strong>Aplica&ccedil;&otilde;es:</strong> Download de apps e jogos</li>
+                    </ul>
+                    
+                    <h3>Velocidades T&iacute;picas:</h3>
+                    <ul>
+                        <li><strong>3G b&aacute;sico:</strong> 384 Kbps</li>
+                        <li><strong>3G melhorado:</strong> 2 Mbps</li>
+                        <li><strong>HSDPA:</strong> 7,2 - 14,4 Mbps</li>
+                        <li><strong>HSPA+:</strong> 21 - 42 Mbps</li>
+                        <li><strong>DC-HSPA+:</strong> At&eacute; 84 Mbps</li>
+                    </ul>
+                    
+                    <h3>Frequ&ecirc;ncias Utilizadas:</h3>
+                    <ul>
+                        <li><strong>2100 MHz:</strong> Banda principal na Europa/&Aacute;sia</li>
+                        <li><strong>1900 MHz:</strong> Am&eacute;rica do Norte</li>
+                        <li><strong>850 MHz:</strong> Cobertura rural</li>
+                        <li><strong>900 MHz:</strong> Europa, cobertura estendida</li>
+                        <li><strong>AWS (1700/2100):</strong> Am&eacute;rica do Norte</li>
+                    </ul>
+                    
+                    <h3>Vantagens sobre 2G:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> 10-100x mais r&aacute;pido</li>
+                        <li><strong>Capacidade:</strong> Mais usu&aacute;rios simult&acirc;neos</li>
+                        <li><strong>Servi&ccedil;os:</strong> Multim&iacute;dia avan&ccedil;ada</li>
+                        <li><strong>Efici&ecirc;ncia espectral:</strong> Melhor uso do espectro</li>
+                        <li><strong>Qualidade:</strong> Menor taxa de erro</li>
+                    </ul>
+                    
+                    <h3>Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Cobertura:</strong> Menor alcance que 2G</li>
+                        <li><strong>Consumo:</strong> Maior gasto de bateria</li>
+                        <li><strong>Custo:</strong> Infraestrutura mais cara</li>
+                        <li><strong>Lat&ecirc;ncia:</strong> Ainda alta para algumas aplica&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Impacto Social:</h3>
+                    <ul>
+                        <li>Populariza&ccedil;&atilde;o da internet m&oacute;vel</li>
+                        <li>Surgimento de smartphones</li>
+                        <li>Redes sociais m&oacute;veis</li>
+                        <li>Com&eacute;rcio eletr&ocirc;nico m&oacute;vel</li>
+                        <li>Streaming de conte&uacute;do</li>
+                    </ul>
+                    
+                    <h3>Status Atual:</h3>
+                    <ul>
+                        <li><strong>Legado:</strong> Sendo desativado gradualmente</li>
+                        <li><strong>Migra&ccedil;&atilde;o:</strong> Para 4G/5G</li>
+                        <li><strong>Uso residual:</strong> &Aacute;reas rurais e dispositivos antigos</li>
+                        <li><strong>Sunset:</strong> Cronograma de desligamento definido</li>
+                    </ul>
+                    
+                    <h3>Legado:</h3>
+                    <p>3G foi fundamental para estabelecer a base da internet m&oacute;vel moderna, criando o ecossistema que permitiu o desenvolvimento de smartphones e aplica&ccedil;&otilde;es m&oacute;veis.</p>
+                `
+            },
+            '4g': {
+                title: '4G (Quarta Gera&ccedil;&atilde;o)',
+                description: 'Quarta gera&ccedil;&atilde;o de tecnologia m&oacute;vel com alta velocidade e baixa lat&ecirc;ncia.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>4G representa a quarta gera&ccedil;&atilde;o de tecnologia de telefonia m&oacute;vel, baseada em arquitetura All-IP, oferecendo alta velocidade, baixa lat&ecirc;ncia e suporte avan&ccedil;ado para aplica&ccedil;&otilde;es multim&iacute;dia.</p>
+                    
+                    <h3>Principais Padr&otilde;es:</h3>
+                    <ul>
+                        <li><strong>LTE (Long Term Evolution):</strong>
+                            <ul>
+                                <li>Padr&atilde;o dominante global</li>
+                                <li>3GPP Release 8+</li>
+                                <li>Velocidades: 100 Mbps - 1 Gbps</li>
+                                <li>Lat&ecirc;ncia: 10-20 ms</li>
+                            </ul>
+                        </li>
+                        <li><strong>LTE-Advanced (LTE-A):</strong>
+                            <ul>
+                                <li>"True 4G" segundo ITU</li>
+                                <li>Carrier Aggregation</li>
+                                <li>MIMO avan&ccedil;ado</li>
+                                <li>Velocidades: at&eacute; 3 Gbps</li>
+                            </ul>
+                        </li>
+                        <li><strong>WiMAX 2:</strong>
+                            <ul>
+                                <li>IEEE 802.16m</li>
+                                <li>Uso limitado</li>
+                                <li>Descontinuado na maioria dos pa&iacute;ses</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tecnologias Principais:</h3>
+                    <ul>
+                        <li><strong>OFDMA (Orthogonal Frequency Division Multiple Access):</strong>
+                            <ul>
+                                <li>Acesso m&uacute;ltiplo eficiente</li>
+                                <li>Resist&ecirc;ncia a interfer&ecirc;ncias</li>
+                                <li>Flexibilidade espectral</li>
+                            </ul>
+                        </li>
+                        <li><strong>MIMO (Multiple Input Multiple Output):</strong>
+                            <ul>
+                                <li>M&uacute;ltiplas antenas</li>
+                                <li>Spatial multiplexing</li>
+                                <li>Diversity gain</li>
+                                <li>Configura&ccedil;&otilde;es: 2x2, 4x4, 8x8</li>
+                            </ul>
+                        </li>
+                        <li><strong>Carrier Aggregation:</strong>
+                            <ul>
+                                <li>Combina&ccedil;&atilde;o de bandas</li>
+                                <li>Aumento de largura de banda</li>
+                                <li>At&eacute; 5 carriers simult&acirc;neos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Arquitetura EPC (Evolved Packet Core):</h3>
+                    <ul>
+                        <li><strong>eNodeB:</strong> Esta&ccedil;&atilde;o base evolu&iacute;da</li>
+                        <li><strong>MME (Mobility Management Entity):</strong> Gerenciamento de mobilidade</li>
+                        <li><strong>S-GW (Serving Gateway):</strong> Gateway de servi&ccedil;o</li>
+                        <li><strong>P-GW (PDN Gateway):</strong> Gateway para redes externas</li>
+                        <li><strong>HSS (Home Subscriber Server):</strong> Base de dados de usu&aacute;rios</li>
+                    </ul>
+                    
+                    <h3>Bandas de Frequ&ecirc;ncia LTE:</h3>
+                    <ul>
+                        <li><strong>Baixas (Sub-1GHz):</strong>
+                            <ul>
+                                <li>700 MHz (Band 12, 13, 17)</li>
+                                <li>800 MHz (Band 20)</li>
+                                <li>850 MHz (Band 5)</li>
+                                <li>900 MHz (Band 8)</li>
+                            </ul>
+                        </li>
+                        <li><strong>M&eacute;dias (1-2GHz):</strong>
+                            <ul>
+                                <li>1800 MHz (Band 3)</li>
+                                <li>1900 MHz (Band 2)</li>
+                                <li>2100 MHz (Band 1)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Altas (2GHz+):</strong>
+                            <ul>
+                                <li>2300 MHz (Band 40)</li>
+                                <li>2500 MHz (Band 7, 41)</li>
+                                <li>2600 MHz (Band 38, 39)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Categorias de Dispositivos:</h3>
+                    <ul>
+                        <li><strong>Cat 1:</strong> 10 Mbps DL / 5 Mbps UL</li>
+                        <li><strong>Cat 3:</strong> 100 Mbps DL / 50 Mbps UL</li>
+                        <li><strong>Cat 4:</strong> 150 Mbps DL / 50 Mbps UL</li>
+                        <li><strong>Cat 6:</strong> 300 Mbps DL / 50 Mbps UL</li>
+                        <li><strong>Cat 9:</strong> 450 Mbps DL / 50 Mbps UL</li>
+                        <li><strong>Cat 12:</strong> 600 Mbps DL / 100 Mbps UL</li>
+                        <li><strong>Cat 16:</strong> 1 Gbps DL / 150 Mbps UL</li>
+                    </ul>
+                    
+                    <h3>Recursos Avan&ccedil;ados:</h3>
+                    <ul>
+                        <li><strong>VoLTE (Voice over LTE):</strong>
+                            <ul>
+                                <li>Voz sobre IP</li>
+                                <li>Qualidade HD</li>
+                                <li>Conex&atilde;o mais r&aacute;pida</li>
+                                <li>Uso simult&acirc;neo voz/dados</li>
+                            </ul>
+                        </li>
+                        <li><strong>eMBMS (Enhanced Multimedia Broadcast Multicast Service):</strong>
+                            <ul>
+                                <li>Broadcast eficiente</li>
+                                <li>Streaming para multid&otilde;es</li>
+                                <li>Eventos ao vivo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Self-Organizing Networks (SON):</strong>
+                            <ul>
+                                <li>Otimiza&ccedil;&atilde;o autom&aacute;tica</li>
+                                <li>Autoconfigura&ccedil;&atilde;o</li>
+                                <li>Auto-healing</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Melhorias sobre 3G:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> 10-50x mais r&aacute;pido</li>
+                        <li><strong>Lat&ecirc;ncia:</strong> 5-10x menor</li>
+                        <li><strong>Capacidade:</strong> 3-5x mais usu&aacute;rios</li>
+                        <li><strong>Efici&ecirc;ncia espectral:</strong> 2-4x melhor</li>
+                        <li><strong>Arquitetura:</strong> All-IP simplificada</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es Habilitadas:</h3>
+                    <ul>
+                        <li><strong>Streaming 4K:</strong> V&iacute;deo ultra-alta defini&ccedil;&atilde;o</li>
+                        <li><strong>Gaming online:</strong> Jogos em tempo real</li>
+                        <li><strong>Video conferencing:</strong> Reuni&otilde;es m&oacute;veis</li>
+                        <li><strong>Cloud computing:</strong> Aplica&ccedil;&otilde;es na nuvem</li>
+                        <li><strong>IoT:</strong> Internet das Coisas</li>
+                        <li><strong>Realidade aumentada:</strong> AR m&oacute;vel</li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o LTE:</h3>
+                    <ul>
+                        <li><strong>Release 8:</strong> LTE b&aacute;sico</li>
+                        <li><strong>Release 9:</strong> eMBMS, SON</li>
+                        <li><strong>Release 10:</strong> LTE-Advanced</li>
+                        <li><strong>Release 11:</strong> CoMP, eICIC</li>
+                        <li><strong>Release 12:</strong> Small cells</li>
+                        <li><strong>Release 13:</strong> LTE-M, NB-IoT</li>
+                        <li><strong>Release 14:</strong> LAA, V2X</li>
+                        <li><strong>Release 15:</strong> Ponte para 5G</li>
+                    </ul>
+                    
+                    <h3>Desafios:</h3>
+                    <ul>
+                        <li><strong>Cobertura indoor:</strong> Penetra&ccedil;&atilde;o em edif&iacute;cios</li>
+                        <li><strong>Congestionamento:</strong> &Aacute;reas densas</li>
+                        <li><strong>Consumo de bateria:</strong> Dispositivos m&oacute;veis</li>
+                        <li><strong>Interfer&ecirc;ncia:</strong> Entre operadoras</li>
+                        <li><strong>Custo de infraestrutura:</strong> Investimento elevado</li>
+                    </ul>
+                    
+                    <h3>Migra&ccedil;&atilde;o para 5G:</h3>
+                    <ul>
+                        <li><strong>NSA (Non-Standalone):</strong> 5G sobre core 4G</li>
+                        <li><strong>SA (Standalone):</strong> 5G nativo</li>
+                        <li><strong>Coexist&ecirc;ncia:</strong> 4G/5G simult&acirc;neo</li>
+                        <li><strong>Refarming:</strong> Reutiliza&ccedil;&atilde;o de espectro</li>
+                    </ul>
+                    
+                    <h3>Status Atual:</h3>
+                    <p>4G permanece como tecnologia principal globalmente, com cobertura universal na maioria dos pa&iacute;ses desenvolvidos e expans&atilde;o cont&iacute;nua em mercados emergentes.</p>
+                `
+            },
+            'ftth': {
+                title: 'FTTH (Fiber to the Home)',
+                description: 'Fiber to the Home - Fibra &oacute;ptica diretamente at&eacute; a resid&ecirc;ncia do usu&aacute;rio.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>FTTH &eacute; uma arquitetura de rede onde a fibra &oacute;ptica se estende desde o provedor de servi&ccedil;os diretamente at&eacute; a resid&ecirc;ncia ou edif&iacute;cio do usu&aacute;rio final, oferecendo a maior largura de banda poss&iacute;vel.</p>
+                    
+                    <h3>Arquiteturas FTTH:</h3>
+                    <ul>
+                        <li><strong>Point-to-Point (P2P):</strong>
+                            <ul>
+                                <li>Fibra dedicada por usu&aacute;rio</li>
+                                <li>Largura de banda total</li>
+                                <li>M&aacute;xima seguran&ccedil;a</li>
+                                <li>Custo mais elevado</li>
+                            </ul>
+                        </li>
+                        <li><strong>Passive Optical Network (PON):</strong>
+                            <ul>
+                                <li>Fibra compartilhada</li>
+                                <li>Splitters passivos</li>
+                                <li>Custo-benef&iacute;cio melhor</li>
+                                <li>Mais comum atualmente</li>
+                            </ul>
+                        </li>
+                        <li><strong>Active Optical Network (AON):</strong>
+                            <ul>
+                                <li>Equipamentos ativos no meio</li>
+                                <li>Switches Ethernet</li>
+                                <li>Maior flexibilidade</li>
+                                <li>Consumo de energia</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Componentes da Rede FTTH:</h3>
+                    <ul>
+                        <li><strong>OLT (Optical Line Terminal):</strong>
+                            <ul>
+                                <li>Equipamento central</li>
+                                <li>Interface com backbone</li>
+                                <li>Gerenciamento da rede PON</li>
+                                <li>Localizado na central</li>
+                            </ul>
+                        </li>
+                        <li><strong>ODN (Optical Distribution Network):</strong>
+                            <ul>
+                                <li>Rede de distribui&ccedil;&atilde;o &oacute;ptica</li>
+                                <li>Cabos, splitters, conectores</li>
+                                <li>Infraestrutura passiva</li>
+                            </ul>
+                        </li>
+                        <li><strong>ONU/ONT:</strong>
+                            <ul>
+                                <li>Equipamento do usu&aacute;rio</li>
+                                <li>Convers&atilde;o &oacute;ptico-el&eacute;trica</li>
+                                <li>Interfaces para servi&ccedil;os</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tecnologias PON Utilizadas:</h3>
+                    <ul>
+                        <li><strong>GPON (ITU-T G.984):</strong>
+                            <ul>
+                                <li>2,5 Gbps downstream</li>
+                                <li>1,25 Gbps upstream</li>
+                                <li>Split ratio: 1:64</li>
+                                <li>Alcance: 20 km</li>
+                            </ul>
+                        </li>
+                        <li><strong>XG-PON (ITU-T G.987):</strong>
+                            <ul>
+                                <li>10 Gbps downstream</li>
+                                <li>2,5 Gbps upstream</li>
+                                <li>Compatibilidade com GPON</li>
+                            </ul>
+                        </li>
+                        <li><strong>XGS-PON (ITU-T G.9807):</strong>
+                            <ul>
+                                <li>10 Gbps sim&eacute;trico</li>
+                                <li>Melhor para empresas</li>
+                                <li>Baixa lat&ecirc;ncia</li>
+                            </ul>
+                        </li>
+                        <li><strong>NG-PON2:</strong>
+                            <ul>
+                                <li>40 Gbps agregado</li>
+                                <li>WDM-PON</li>
+                                <li>M&uacute;ltiplos comprimentos de onda</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Vantagens do FTTH:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong>
+                            <ul>
+                                <li>At&eacute; 10 Gbps por usu&aacute;rio</li>
+                                <li>Upload sim&eacute;trico</li>
+                                <li>Sem gargalos de cobre</li>
+                            </ul>
+                        </li>
+                        <li><strong>Lat&ecirc;ncia:</strong>
+                            <ul>
+                                <li>Ultra-baixa lat&ecirc;ncia</li>
+                                <li>Ideal para gaming</li>
+                                <li>Aplica&ccedil;&otilde;es em tempo real</li>
+                            </ul>
+                        </li>
+                        <li><strong>Confiabilidade:</strong>
+                            <ul>
+                                <li>Imune a interfer&ecirc;ncias</li>
+                                <li>N&atilde;o afetada por clima</li>
+                                <li>Vida &uacute;til longa</li>
+                            </ul>
+                        </li>
+                        <li><strong>Future-proof:</strong>
+                            <ul>
+                                <li>Capacidade quase ilimitada</li>
+                                <li>Upgrades via equipamentos</li>
+                                <li>Suporte a novas tecnologias</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Desafios de Implementa&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Custo inicial:</strong>
+                            <ul>
+                                <li>Investimento elevado em infraestrutura</li>
+                                <li>Escava&ccedil;&otilde;es e obras civis</li>
+                                <li>Equipamentos especializados</li>
+                            </ul>
+                        </li>
+                        <li><strong>Complexidade:</strong>
+                            <ul>
+                                <li>Planejamento detalhado</li>
+                                <li>M&atilde;o de obra especializada</li>
+                                <li>Testes e certifica&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Regulat&oacute;rio:</strong>
+                            <ul>
+                                <li>Aprova&ccedil;&otilde;es municipais</li>
+                                <li>Direitos de passagem</li>
+                                <li>Normas de seguran&ccedil;a</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Modelos de Implanta&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Greenfield:</strong>
+                            <ul>
+                                <li>Novas constru&ccedil;&otilde;es</li>
+                                <li>Planejamento integrado</li>
+                                <li>Custo otimizado</li>
+                            </ul>
+                        </li>
+                        <li><strong>Brownfield:</strong>
+                            <ul>
+                                <li>&Aacute;reas j&aacute; constru&iacute;das</li>
+                                <li>Retrofit de infraestrutura</li>
+                                <li>Maior complexidade</li>
+                            </ul>
+                        </li>
+                        <li><strong>Overbuild:</strong>
+                            <ul>
+                                <li>Sobreposi&ccedil;&atilde;o de redes</li>
+                                <li>Competi&ccedil;&atilde;o direta</li>
+                                <li>Duplica&ccedil;&atilde;o de investimento</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Servi&ccedil;os Oferecidos:</h3>
+                    <ul>
+                        <li><strong>Triple Play:</strong>
+                            <ul>
+                                <li>Internet banda larga</li>
+                                <li>TV digital (IPTV)</li>
+                                <li>Telefonia (VoIP)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Servi&ccedil;os Avan&ccedil;ados:</strong>
+                            <ul>
+                                <li>Cloud computing</li>
+                                <li>Backup online</li>
+                                <li>Seguran&ccedil;a digital</li>
+                                <li>Smart home</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias Globais:</h3>
+                    <ul>
+                        <li><strong>Penetra&ccedil;&atilde;o crescente:</strong> Especialmente na &Aacute;sia</li>
+                        <li><strong>Pol&iacute;ticas p&uacute;blicas:</strong> Incentivos governamentais</li>
+                        <li><strong>Competi&ccedil;&atilde;o:</strong> Entre operadoras tradicionais e novas</li>
+                        <li><strong>Inova&ccedil;&atilde;o:</strong> Novas tecnologias PON</li>
+                    </ul>
+                    
+                    <h3>ROI e Viabilidade:</h3>
+                    <ul>
+                        <li><strong>Fatores positivos:</strong>
+                            <ul>
+                                <li>Demanda crescente por banda</li>
+                                <li>Servi&ccedil;os de maior valor</li>
+                                <li>Redu&ccedil;&atilde;o de custos operacionais</li>
+                            </ul>
+                        </li>
+                        <li><strong>Considera&ccedil;&otilde;es:</strong>
+                            <ul>
+                                <li>Densidade populacional</li>
+                                <li>Poder aquisitivo</li>
+                                <li>Competi&ccedil;&atilde;o local</li>
+                                <li>Regulamenta&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Futuro:</h3>
+                    <p>FTTH representa o futuro das telecomunica&ccedil;&otilde;es fixas, sendo essencial para suportar aplica&ccedil;&otilde;es emergentes como 8K, VR/AR, IoT e cidades inteligentes.</p>
+                `
+            },
+            'fttx': {
+                title: 'FTTx (Fiber to the X)',
+                description: 'Fiber to the X - Termo gen&eacute;rico para diferentes arquiteturas de fibra.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>FTTx &eacute; um termo gen&eacute;rico que descreve diferentes arquiteturas de rede onde a fibra &oacute;ptica &eacute; usada para substituir todo ou parte do cabeamento met&aacute;lico tradicional, onde "X" representa diferentes pontos de termina&ccedil;&atilde;o.</p>
+                    
+                    <h3>Principais Arquiteturas FTTx:</h3>
+                    <ul>
+                        <li><strong>FTTH (Fiber to the Home):</strong>
+                            <ul>
+                                <li>Fibra at&eacute; a resid&ecirc;ncia</li>
+                                <li>M&aacute;xima largura de banda</li>
+                                <li>Melhor performance</li>
+                                <li>Maior custo de implanta&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>FTTB (Fiber to the Building):</strong>
+                            <ul>
+                                <li>Fibra at&eacute; o edif&iacute;cio</li>
+                                <li>Distribui&ccedil;&atilde;o interna via cobre</li>
+                                <li>Ideal para pr&eacute;dios</li>
+                                <li>Custo intermedi&aacute;rio</li>
+                            </ul>
+                        </li>
+                        <li><strong>FTTC (Fiber to the Curb/Cabinet):</strong>
+                            <ul>
+                                <li>Fibra at&eacute; o arm�rio da rua</li>
+                                <li>&Uacute;ltimos metros em cobre</li>
+                                <li>Upgrade de redes existentes</li>
+                                <li>Menor investimento inicial</li>
+                            </ul>
+                        </li>
+                        <li><strong>FTTN (Fiber to the Node/Neighborhood):</strong>
+                            <ul>
+                                <li>Fibra at&eacute; n&oacute; de distribui&ccedil;&atilde;o</li>
+                                <li>Atende v&aacute;rias centenas de usu&aacute;rios</li>
+                                <li>Dist&acirc;ncia de cobre maior</li>
+                                <li>Menor custo por usu&aacute;rio</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Outras Varia&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>FTTP (Fiber to the Premises):</strong>
+                            <ul>
+                                <li>Similar ao FTTH</li>
+                                <li>Inclui resid&ecirc;ncias e empresas</li>
+                                <li>Termo mais gen&eacute;rico</li>
+                            </ul>
+                        </li>
+                        <li><strong>FTTO (Fiber to the Office):</strong>
+                            <ul>
+                                <li>Foco em ambiente corporativo</li>
+                                <li>Maiores larguras de banda</li>
+                                <li>SLAs mais r&iacute;gidos</li>
+                            </ul>
+                        </li>
+                        <li><strong>FTTD (Fiber to the Desktop):</strong>
+                            <ul>
+                                <li>Fibra at&eacute; a esta&ccedil;&atilde;o de trabalho</li>
+                                <li>Ambientes especializados</li>
+                                <li>Alta seguran&ccedil;a</li>
+                            </ul>
+                        </li>
+                        <li><strong>FTTS (Fiber to the Street):</strong>
+                            <ul>
+                                <li>Fibra at&eacute; poste ou caixa na rua</li>
+                                <li>Distribui&ccedil;&atilde;o a&eacute;rea final</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Fatores de Escolha:</h3>
+                    <ul>
+                        <li><strong>Densidade populacional:</strong>
+                            <ul>
+                                <li>Alta densidade: FTTH vi&aacute;vel</li>
+                                  <li>Baixa densidade: FTTN mais econ&ocirc;mico</li>
+                                <li>M&eacute;dia densidade: FTTC/FTTB</li>
+                            </ul>
+                        </li>
+                        <li><strong>Infraestrutura existente:</strong>
+                            <ul>
+                                <li>Qualidade do cobre instalado</li>
+                                <li>Dutos e postes dispon&iacute;veis</li>
+                                <li>Dist&acirc;ncias at&eacute; usu&aacute;rios</li>
+                            </ul>
+                        </li>
+                        <li><strong>Demanda de largura de banda:</strong>
+                            <ul>
+                                <li>Resid&ecirc;ncias: FTTC pode ser suficiente</li>
+                                <li>Empresas: FTTH/FTTB preferencial</li>
+                                <li>Aplica&ccedil;&otilde;es cr&iacute;ticas: FTTH obrigat&oacute;rio</li>
+                            </ul>
+                        </li>
+                        <li><strong>Or&ccedil;amento dispon&iacute;vel:</strong>
+                            <ul>
+                                <li>CAPEX inicial</li>
+                                <li>OPEX de longo prazo</li>
+                                <li>ROI esperado</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Compara&ccedil;&atilde;o de Performance:</h3>
+                    <ul>
+                        <li><strong>FTTH:</strong>
+                            <ul>
+                                <li>Velocidade: At&eacute; 10 Gbps+</li>
+                                <li>Lat&ecirc;ncia: &lt;1 ms</li>
+                                <li>Confiabilidade: M&aacute;xima</li>
+                                <li>Escalabilidade: Ilimitada</li>
+                            </ul>
+                        </li>
+                        <li><strong>FTTB:</strong>
+                            <ul>
+                                <li>Velocidade: 100 Mbps - 1 Gbps</li>
+                                <li>Lat&ecirc;ncia: 1-2 ms</li>
+                                <li>Confiabilidade: Alta</li>
+                                <li>Escalabilidade: Boa</li>
+                            </ul>
+                        </li>
+                        <li><strong>FTTC:</strong>
+                            <ul>
+                                <li>Velocidade: 50-200 Mbps</li>
+                                <li>Lat&ecirc;ncia: 2-5 ms</li>
+                                <li>Confiabilidade: M&eacute;dia</li>
+                                <li>Escalabilidade: Limitada</li>
+                            </ul>
+                        </li>
+                        <li><strong>FTTN:</strong>
+                            <ul>
+                                <li>Velocidade: 25-100 Mbps</li>
+                                <li>Lat&ecirc;ncia: 5-10 ms</li>
+                                <li>Confiabilidade: Vari&aacute;vel</li>
+                                <li>Escalabilidade: Restrita</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tecnologias de &Uacute;ltima Milha:</h3>
+                    <ul>
+                        <li><strong>Para FTTC/FTTN:</strong>
+                            <ul>
+                                <li>VDSL2: At&eacute; 100 Mbps</li>
+                                <li>G.fast: At&eacute; 1 Gbps (curta dist&acirc;ncia)</li>
+                                <li>Ethernet sobre cobre</li>
+                                <li>Coaxial (HFC)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Para FTTB:</strong>
+                            <ul>
+                                <li>Ethernet sobre UTP</li>
+                                <li>Wi-Fi de alta performance</li>
+                                <li>Powerline communication</li>
+                                <li>Coaxial interno</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Estrat&eacute;gias de Migra&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Abordagem Gradual:</strong>
+                            <ol>
+                                <li>FTTN como primeira fase</li>
+                                <li>FTTC para &aacute;reas de maior demanda</li>
+                                <li>FTTB/FTTH conforme viabilidade</li>
+                            </ol>
+                        </li>
+                        <li><strong>Abordagem Direta:</strong>
+                            <ul>
+                                <li>Implementa&ccedil;&atilde;o direta de FTTH</li>
+                                <li>Maior investimento inicial</li>
+                                <li>Melhor ROI de longo prazo</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es Econ&ocirc;micas:</h3>
+                    <ul>
+                        <li><strong>CAPEX (Investimento Inicial):</strong>
+                            <ul>
+                                <li>FTTH: Mais alto</li>
+                                <li>FTTC: M&eacute;dio</li>
+                                <li>FTTN: Mais baixo</li>
+                            </ul>
+                        </li>
+                        <li><strong>OPEX (Custo Operacional):</strong>
+                            <ul>
+                                <li>FTTH: Menor (longo prazo)</li>
+                                <li>FTTC: M&eacute;dio</li>
+                                <li>FTTN: Maior (manuten&ccedil;&atilde;o cobre)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Impacto Regulat&oacute;rio:</h3>
+                    <ul>
+                        <li><strong>Pol&iacute;ticas de incentivo:</strong>
+                            <ul>
+                                <li>Subs&iacute;dios para FTTH</li>
+                                <li>Metas de cobertura</li>
+                                <li>Facilita&ccedil;&atilde;o de licen&ccedil;as</li>
+                            </ul>
+                        </li>
+                        <li><strong>Compartilhamento de infraestrutura:</strong>
+                            <ul>
+                                <li>Dutos e postes</li>
+                                <li>Redu&ccedil;&atilde;o de custos</li>
+                                <li>Acelera&ccedil;&atilde;o do deployment</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias de Mercado:</h3>
+                    <ul>
+                        <li><strong>Migra&ccedil;&atilde;o para FTTH:</strong> Tend&ecirc;ncia global</li>
+                        <li><strong>Obsolesc&ecirc;ncia do cobre:</strong> Gradual abandono</li>
+                        <li><strong>Novas tecnologias:</strong> G.fast como ponte</li>
+                        <li><strong>5G integration:</strong> Backhaul para small cells</li>
+                    </ul>
+                    
+                    <h3>Casos de Uso Espec&iacute;ficos:</h3>
+                    <ul>
+                        <li><strong>&Aacute;reas rurais:</strong> FTTN com wireless</li>
+                        <li><strong>Centros urbanos:</strong> FTTH preferencial</li>
+                        <li><strong>Edif&iacute;cios comerciais:</strong> FTTB + Ethernet</li>
+                        <li><strong>Campus universit&aacute;rios:</strong> FTTH/FTTD</li>
+                    </ul>
+                    
+                    <h3>Futuro das Arquiteturas FTTx:</h3>
+                    <p>A evolu&ccedil;&atilde;o natural aponta para FTTH como padr&atilde;o, com outras arquiteturas servindo como solu&ccedil;&otilde;es de transi&ccedil;&atilde;o ou para casos espec&iacute;ficos onde o custo-benef&iacute;cio &eacute; mais favor&aacute;vel.</p>
+                `
+            },
+            'gepon': {
+                title: 'GEPON (Gigabit Ethernet PON)',
+                description: 'Gigabit Ethernet Passive Optical Network - Padr&atilde;o IEEE para redes PON.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>GEPON &eacute; um padr&atilde;o de rede &oacute;ptica passiva baseado em Ethernet, definido pelo IEEE 802.3ah, que oferece servi&ccedil;os de banda larga usando tecnologia PON com protocolos Ethernet nativos.</p>
+                    
+                    <h3>Especifica&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Padr&atilde;o:</strong> IEEE 802.3ah (2004)</li>
+                        <li><strong>Velocidade downstream:</strong> 1,25 Gbps</li>
+                        <li><strong>Velocidade upstream:</strong> 1,25 Gbps</li>
+                        <li><strong>Protocolo:</strong> Ethernet nativo</li>
+                        <li><strong>Comprimentos de onda:</strong>
+                            <ul>
+                                <li>Downstream: 1490 nm</li>
+                                <li>Upstream: 1310 nm</li>
+                                <li>RF overlay: 1550 nm (opcional)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Alcance:</strong> At&eacute; 20 km</li>
+                        <li><strong>Split ratio:</strong> 1:16, 1:32 (t&iacute;pico)</li>
+                    </ul>
+                    
+                    <h3>Arquitetura GEPON:</h3>
+                    <ul>
+                        <li><strong>OLT (Optical Line Terminal):</strong>
+                            <ul>
+                                <li>Localizado na central</li>
+                                <li>Interface com rede de backbone</li>
+                                <li>Controle de acesso m&eacute;dio</li>
+                                <li>Gerenciamento de largura de banda</li>
+                            </ul>
+                        </li>
+                        <li><strong>ODN (Optical Distribution Network):</strong>
+                            <ul>
+                                <li>Fibras &oacute;pticas</li>
+                                <li>Splitters passivos</li>
+                                <li>Conectores e emendas</li>
+                            </ul>
+                        </li>
+                        <li><strong>ONU (Optical Network Unit):</strong>
+                            <ul>
+                                <li>Equipamento do cliente</li>
+                                <li>Convers&atilde;o O/E/O</li>
+                                <li>Interfaces Ethernet</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Protocolos e Mecanismos:</h3>
+                    <ul>
+                        <li><strong>MPCP (Multi-Point Control Protocol):</strong>
+                            <ul>
+                                <li>Controle de acesso ao meio</li>
+                                <li>Discovery de ONUs</li>
+                                <li>Sincroniza&ccedil;&atilde;o temporal</li>
+                                <li>Aloca&ccedil;&atilde;o de largura de banda</li>
+                            </ul>
+                        </li>
+                        <li><strong>DBA (Dynamic Bandwidth Allocation):</strong>
+                            <ul>
+                                <li>Aloca&ccedil;&atilde;o din&acirc;mica</li>
+                                <li>Otimiza&ccedil;&atilde;o de recursos</li>
+                                <li>QoS garantido</li>
+                                <li>Efici&ecirc;ncia espectral</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ranging:</strong>
+                            <ul>
+                                <li>Medi&ccedil;&atilde;o de dist&acirc;ncia</li>
+                                <li>Compensa&ccedil;&atilde;o de delay</li>
+                                <li>Sincroniza&ccedil;&atilde;o de transmiss&atilde;o</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Vantagens do GEPON:</h3>
+                    <ul>
+                        <li><strong>Ethernet nativo:</strong>
+                            <ul>
+                                <li>Compatibilidade total com Ethernet</li>
+                                <li>Sem necessidade de encapsulamento</li>
+                                <li>Interoperabilidade simples</li>
+                                <li>Equipamentos mais baratos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Simplicidade:</strong>
+                            <ul>
+                                <li>Protocolos bem conhecidos</li>
+                                <li>F&aacute;cil integra&ccedil;&atilde;o</li>
+                                <li>Menor complexidade</li>
+                            </ul>
+                        </li>
+                        <li><strong>Flexibilidade:</strong>
+                            <ul>
+                                <li>Suporte a m&uacute;ltiplos servi&ccedil;os</li>
+                                <li>QoS nativo</li>
+                                <li>VLAN support</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Compara&ccedil;&atilde;o com GPON:</h3>
+                    <ul>
+                        <li><strong>GEPON:</strong>
+                            <ul>
+                                <li>Baseado em Ethernet</li>
+                                <li>1,25 Gbps sim&eacute;trico</li>
+                                <li>Menor overhead</li>
+                                <li>Mais simples</li>
+                                <li>Predominante na &Aacute;sia</li>
+                            </ul>
+                        </li>
+                        <li><strong>GPON:</strong>
+                            <ul>
+                                <li>Baseado em ATM/GEM</li>
+                                <li>2,5 Gbps down / 1,25 Gbps up</li>
+                                <li>Maior efici&ecirc;ncia</li>
+                                <li>Mais recursos avan&ccedil;ados</li>
+                                <li>Predominante na Europa/Am&eacute;ricas</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o - 10G-EPON:</h3>
+                    <ul>
+                        <li><strong>IEEE 802.3av (2009):</strong>
+                            <ul>
+                                <li>10 Gbps downstream</li>
+                                <li>1 Gbps upstream (assim�trico)</li>
+                                <li>10 Gbps upstream (sim�trico)</li>
+                                <li>Compatibilidade com GEPON</li>
+                            </ul>
+                        </li>
+                        <li><strong>Coexist&ecirc;ncia:</strong>
+                            <ul>
+                                <li>Mesmo ODN</li>
+                                <li>Diferentes comprimentos de onda</li>
+                                <li>Migra&ccedil;&atilde;o suave</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Implementa&ccedil;&atilde;o e Deployment:</h3>
+                    <ul>
+                        <li><strong>Planejamento:</strong>
+                            <ul>
+                                <li>An&aacute;lise de demanda</li>
+                                <li>Design da rede</li>
+                                <li>Dimensionamento de splitters</li>
+                                <li>Aloca&ccedil;&atilde;o de largura de banda</li>
+                            </ul>
+                        </li>
+                        <li><strong>Instala&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Infraestrutura &oacute;ptica</li>
+                                <li>Equipamentos OLT/ONU</li>
+                                <li>Testes e comissionamento</li>
+                                <li>Ativa&ccedil;&atilde;o de servi&ccedil;os</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Gerenciamento e Opera&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>OAM (Operations, Administration, Maintenance):</strong>
+                            <ul>
+                                <li>Monitoramento de performance</li>
+                                <li>Detec&ccedil;&atilde;o de falhas</li>
+                                <li>Configura&ccedil;&atilde;o remota</li>
+                                <li>Diagn&oacute;stico autom&aacute;tico</li>
+                            </ul>
+                        </li>
+                        <li><strong>Seguran&ccedil;a:</strong>
+                            <ul>
+                                <li>Criptografia downstream</li>
+                                <li>Isolamento entre ONUs</li>
+                                <li>Autentica&ccedil;&atilde;o de equipamentos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es e Servi&ccedil;os:</h3>
+                    <ul>
+                        <li><strong>Residencial:</strong>
+                            <ul>
+                                <li>Internet banda larga</li>
+                                <li>IPTV</li>
+                                <li>VoIP</li>
+                                <li>Smart home</li>
+                            </ul>
+                        </li>
+                        <li><strong>Empresarial:</strong>
+                            <ul>
+                                <li>Conectividade dedicada</li>
+                                <li>VPN</li>
+                                <li>Cloud access</li>
+                                <li>Backup/disaster recovery</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Mercado e Ado&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Regi&otilde;es principais:</strong>
+                            <ul>
+                                <li>Jap&atilde;o: Pioneiro e l&iacute;der</li>
+                                <li>Coreia do Sul: Ampla ado&ccedil;&atilde;o</li>
+                                <li>China: Maior mercado</li>
+                                <li>Outros pa&iacute;ses asi&aacute;ticos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fatores de ado&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Simplicidade de implementa&ccedil;&atilde;o</li>
+                                <li>Custo-benef&iacute;cio</li>
+                                <li>Ecosistema maduro</li>
+                                <li>Interoperabilidade</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Desafios e Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Menor efici&ecirc;ncia que GPON</li>
+                        <li>Recursos de QoS mais limitados</li>
+                        <li>Menor penetra&ccedil;&atilde;o global</li>
+                        <li>Competi&ccedil;&atilde;o com padr&otilde;es ITU-T</li>
+                    </ul>
+                    
+                    <h3>Futuro:</h3>
+                    <p>GEPON continua evoluindo com 25G-EPON e 50G-EPON em desenvolvimento, mantendo sua relev�ncia especialmente em mercados onde a simplicidade Ethernet &eacute; valorizada.</p>
+                `
+            },
+            'gpon': {
+                title: 'GPON (Gigabit PON)',
+                description: 'Gigabit Passive Optical Network - Padr&atilde;o ITU-T para redes &oacute;pticas passivas.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>GPON &eacute; um padr&atilde;o de rede &oacute;ptica passiva definido pela ITU-T (G.984), oferecendo alta efici&ecirc;ncia e flexibilidade para entrega de servi&ccedil;os de banda larga, sendo o padr&atilde;o PON mais amplamente adotado globalmente.</p>
+                    
+                    <h3>Especifica&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Padr&atilde;o:</strong> ITU-T G.984 series</li>
+                        <li><strong>Velocidade downstream:</strong> 2,488 Gbps</li>
+                        <li><strong>Velocidade upstream:</strong> 1,244 Gbps</li>
+                        <li><strong>Protocolo:</strong> GEM (GPON Encapsulation Method)</li>
+                        <li><strong>Comprimentos de onda:</strong>
+                            <ul>
+                                <li>Downstream: 1490 nm</li>
+                                <li>Upstream: 1310 nm</li>
+                                <li>RF overlay: 1550 nm (CATV)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Alcance:</strong> At&eacute; 20 km (60 km estendido)</li>
+                        <li><strong>Split ratio:</strong> 1:32, 1:64, 1:128</li>
+                    </ul>
+                    
+                    <h3>Arquitetura GPON:</h3>
+                    <ul>
+                        <li><strong>OLT (Optical Line Terminal):</strong>
+                            <ul>
+                                <li>Equipamento central na CO</li>
+                                <li>Interface com core network</li>
+                                <li>Controle de protocolo GPON</li>
+                                <li>Gerenciamento de QoS</li>
+                                <li>Provisionamento de servi&ccedil;os</li>
+                            </ul>
+                        </li>
+                        <li><strong>ODN (Optical Distribution Network):</strong>
+                            <ul>
+                                <li>Fibra feeder (OLT para splitter)</li>
+                                <li>Splitters &oacute;pticos passivos</li>
+                                <li>Fibra de distribui&ccedil;&atilde;o (splitter para ONU)</li>
+                                <li>Conectores e emendas</li>
+                            </ul>
+                        </li>
+                        <li><strong>ONT/ONU:</strong>
+                            <ul>
+                                <li>Optical Network Terminal/Unit</li>
+                                <li>Equipamento do cliente</li>
+                                <li>Interfaces de servi&ccedil;o</li>
+                                <li>Fun&ccedil;&otilde;es de gateway</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Protocolo GEM:</h3>
+                    <ul>
+                        <li><strong>GPON Encapsulation Method:</strong>
+                            <ul>
+                                <li>Encapsulamento eficiente</li>
+                                <li>Suporte a m&uacute;ltiplos protocolos</li>
+                                <li>Fragmenta&ccedil;&atilde;o de frames</li>
+                                <li>QoS granular</li>
+                            </ul>
+                        </li>
+                        <li><strong>T-CONT (Transmission Container):</strong>
+                            <ul>
+                                <li>Unidade de aloca&ccedil;&atilde;o de largura de banda</li>
+                                <li>5 tipos (T-CONT 1-5)</li>
+                                <li>Diferentes n&iacute;veis de QoS</li>
+                                <li>Garantias de servi&ccedil;o</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tipos de T-CONT:</h3>
+                    <ul>
+                        <li><strong>Tipo 1:</strong> Fixed bandwidth (CBR)</li>
+                        <li><strong>Tipo 2:</strong> Assured bandwidth (rtVBR)</li>
+                        <li><strong>Tipo 3:</strong> Assured + Non-assured (nrtVBR)</li>
+                        <li><strong>Tipo 4:</strong> Best effort (UBR)</li>
+                        <li><strong>Tipo 5:</strong> Combina&ccedil;&atilde;o de tipos</li>
+                    </ul>
+                    
+                    <h3>Mecanismos de Controle:</h3>
+                    <ul>
+                        <li><strong>DBA (Dynamic Bandwidth Allocation):</strong>
+                            <ul>
+                                <li>Aloca&ccedil;&atilde;o din&acirc;mica de largura de banda</li>
+                                <li>Otimiza&ccedil;&atilde;o de recursos</li>
+                                <li>Adapta&ccedil;&atilde;o &agrave; demanda</li>
+                                <li>M&aacute;xima efici&ecirc;ncia</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ranging:</strong>
+                            <ul>
+                                <li>Medi&ccedil;&atilde;o de dist&acirc;ncia &oacute;ptica</li>
+                                <li>Compensa&ccedil;&atilde;o de delay</li>
+                                <li>Sincroniza&ccedil;&atilde;o temporal</li>
+                                <li>Evita colis&otilde;es upstream</li>
+                            </ul>
+                        </li>
+                        <li><strong>Encryption:</strong>
+                            <ul>
+                                <li>AES-128 downstream</li>
+                                <li>Chaves por ONU</li>
+                                <li>Seguran&ccedil;a de dados</li>
+                                <li>Priva&ccedil;idade entre usu&aacute;rios</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Vantagens do GPON:</h3>
+                    <ul>
+                        <li><strong>Alta efici&ecirc;ncia:</strong>
+                            <ul>
+                                <li>Melhor utiliza&ccedil;&atilde;o de largura de banda</li>
+                                <li>Overhead m&iacute;nimo</li>
+                                <li>DBA avan&ccedil;ado</li>
+                            </ul>
+                        </li>
+                        <li><strong>QoS avan&ccedil;ado:</strong>
+                            <ul>
+                                <li>M&uacute;ltiplos n&iacute;veis de servi&ccedil;o</li>
+                                <li>Garantias de largura de banda</li>
+                                <li>Prioriza&ccedil;&atilde;o de tr&aacute;fego</li>
+                            </ul>
+                        </li>
+                        <li><strong>Flexibilidade:</strong>
+                            <ul>
+                                <li>Suporte a m&uacute;ltiplos servi&ccedil;os</li>
+                                <li>Diferentes tipos de ONUs</li>
+                                <li>Configura&ccedil;&atilde;o flex&iacute;vel</li>
+                            </ul>
+                        </li>
+                        <li><strong>Escalabilidade:</strong>
+                            <ul>
+                                <li>Split ratios altos</li>
+                                <li>Longas dist&acirc;ncias</li>
+                                <li>Upgrade path claro</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Servi&ccedil;os Suportados:</h3>
+                    <ul>
+                        <li><strong>Triple Play:</strong>
+                            <ul>
+                                <li>Internet banda larga</li>
+                                <li>IPTV/Video on Demand</li>
+                                <li>VoIP/Telefonia</li>
+                            </ul>
+                        </li>
+                        <li><strong>Servi&ccedil;os Empresariais:</strong>
+                            <ul>
+                                <li>Ethernet dedicado</li>
+                                <li>VPN Layer 2/3</li>
+                                <li>SLA garantido</li>
+                                <li>Backup/redund�ncia</li>
+                            </ul>
+                        </li>
+                        <li><strong>Servi&ccedil;os Avan&ccedil;ados:</strong>
+                            <ul>
+                                <li>Cloud connectivity</li>
+                                <li>IoT/M2M</li>
+                                <li>Smart grid</li>
+                                <li>Seguran&ccedil;a digital</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o GPON:</h3>
+                    <ul>
+                        <li><strong>XG-PON (10G-PON):</strong>
+                            <ul>
+                                <li>ITU-T G.987</li>
+                                <li>10 Gbps downstream</li>
+                                <li>2,5 Gbps upstream</li>
+                                <li>Coexist&ecirc;ncia com GPON</li>
+                            </ul>
+                        </li>
+                        <li><strong>XGS-PON:</strong>
+                            <ul>
+                                <li>ITU-T G.9807</li>
+                                <li>10 Gbps sim&eacute;trico</li>
+                                <li>Baixa lat&ecirc;ncia</li>
+                                <li>Ideal para 5G backhaul</li>
+                            </ul>
+                        </li>
+                        <li><strong>NG-PON2:</strong>
+                            <ul>
+                                <li>ITU-T G.989</li>
+                                <li>40 Gbps agregado</li>
+                                <li>WDM-PON</li>
+                                <li>M&aacute;xima flexibilidade</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Implementa&ccedil;&atilde;o e Deployment:</h3>
+                    <ul>
+                        <li><strong>Planejamento de rede:</strong>
+                            <ul>
+                                <li>An&aacute;lise de demanda</li>
+                                <li>Design de splitters</li>
+                                <li>Dimensionamento de OLT</li>
+                                <li>Planejamento de fibra</li>
+                            </ul>
+                        </li>
+                        <li><strong>Considera&ccedil;&otilde;es de design:</strong>
+                            <ul>
+                                <li>Or&ccedil;amento de pot&ecirc;ncia &oacute;ptica</li>
+                                <li>Dispers&atilde;o crom&aacute;tica</li>
+                                <li>Reflex&otilde;es e perdas</li>
+                                <li>Temperatura e ambiente</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Opera&ccedil;&atilde;o e Manuten&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>OMCI (ONU Management and Control Interface):</strong>
+                            <ul>
+                                <li>Gerenciamento remoto de ONUs</li>
+                                <li>Provisionamento autom&aacute;tico</li>
+                                <li>Monitoramento de performance</li>
+                                <li>Diagn&oacute;stico de falhas</li>
+                            </ul>
+                        </li>
+                        <li><strong>OAM (Operations, Administration, Maintenance):</strong>
+                            <ul>
+                                <li>Monitoramento cont&iacute;nuo</li>
+                                <li>Detec&ccedil;&atilde;o proativa de problemas</li>
+                                <li>Otimiza&ccedil;&atilde;o autom&aacute;tica</li>
+                                <li>Relat&oacute;rios de performance</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Mercado Global:</h3>
+                    <ul>
+                        <li><strong>Ado&ccedil;&atilde;o mundial:</strong> Padr&atilde;o dominante</li>
+                        <li><strong>Ecosistema maduro:</strong> M&uacute;ltiplos fornecedores</li>
+                        <li><strong>Interoperabilidade:</strong> Certifica��o ITU-T</li>
+                        <li><strong>Roadmap claro:</strong> Evolu&ccedil;&atilde;o para NG-PON</li>
+                    </ul>
+                    
+                    <h3>Futuro:</h3>
+                    <p>GPON continua sendo a base para evolu&ccedil;&atilde;o das redes PON, com migra&ccedil;&atilde;o gradual para XGS-PON e NG-PON2 conforme demanda por maior largura de banda e novos servi&ccedil;os como 5G.</p>
+                `
+            },
+            'pon': {
+                title: 'PON (Passive Optical Network)',
+                description: 'Passive Optical Network - Rede &oacute;ptica passiva sem equipamentos ativos no meio.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>PON &eacute; uma arquitetura de rede de telecomunica&ccedil;&otilde;es que utiliza componentes &oacute;pticos passivos (sem energia el&eacute;trica) para distribuir dados entre um terminal central e m&uacute;ltiplos terminais de usu&aacute;rio.</p>
+                    
+                    <h3>Princ&iacute;pios Fundamentais:</h3>
+                    <ul>
+                        <li><strong>Componentes passivos:</strong>
+                            <ul>
+                                <li>Sem necessidade de energia el&eacute;trica</li>
+                                <li>Maior confiabilidade</li>
+                                <li>Menor manuten&ccedil;&atilde;o</li>
+                                <li>Custo operacional reduzido</li>
+                            </ul>
+                        </li>
+                        <li><strong>Arquitetura ponto-multiponto:</strong>
+                            <ul>
+                                <li>Um OLT atende m&uacute;ltiplos ONUs</li>
+                                <li>Compartilhamento de fibra</li>
+                                <li>Economia de infraestrutura</li>
+                                <li>Escalabilidade</li>
+                            </ul>
+                        </li>
+                        <li><strong>Multiplexa��o &oacute;ptica:</strong>
+                            <ul>
+                                <li>TDM (Time Division Multiplexing)</li>
+                                <li>WDM (Wavelength Division Multiplexing)</li>
+                                <li>Combina&ccedil;&atilde;o de ambos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Componentes Principais:</h3>
+                    <ul>
+                        <li><strong>OLT (Optical Line Terminal):</strong>
+                            <ul>
+                                <li>Equipamento ativo na central</li>
+                                <li>Interface com rede backbone</li>
+                                <li>Controle de protocolos PON</li>
+                                <li>Gerenciamento de largura de banda</li>
+                                <li>Provisionamento de servi&ccedil;os</li>
+                            </ul>
+                        </li>
+                        <li><strong>Splitters &Oacute;pticos:</strong>
+                            <ul>
+                                <li>Divisores de pot&ecirc;ncia passivos</li>
+                                <li>Raz&otilde;es: 1:2, 1:4, 1:8, 1:16, 1:32, 1:64</li>
+                                <li>Tecnologia PLC ou FBT</li>
+                                <li>Baixa perda de inser&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>ONU/ONT:</strong>
+                            <ul>
+                                <li>Optical Network Unit/Terminal</li>
+                                <li>Equipamento ativo no cliente</li>
+                                <li>Convers&atilde;o O/E/O</li>
+                                <li>Interfaces de servi&ccedil;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>ODN (Optical Distribution Network):</strong>
+                            <ul>
+                                <li>Infraestrutura &oacute;ptica passiva</li>
+                                <li>Fibras, conectores, emendas</li>
+                                <li>Caixas de distribui&ccedil;&atilde;o</li>
+                                <li>Prote&ccedil;&otilde;es ambientais</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tipos de Redes PON:</h3>
+                    <ul>
+                        <li><strong>APON/BPON:</strong>
+                            <ul>
+                                <li>ATM PON / Broadband PON</li>
+                                <li>Primeira gera&ccedil;&atilde;o</li>
+                                <li>155/622 Mbps</li>
+                                <li>Baseado em ATM</li>
+                                <li>Obsoleto</li>
+                            </ul>
+                        </li>
+                        <li><strong>GPON:</strong>
+                            <ul>
+                                <li>Gigabit PON (ITU-T)</li>
+                                <li>2,5 Gbps down / 1,25 Gbps up</li>
+                                <li>Padr&atilde;o mais adotado</li>
+                                <li>GEM encapsulation</li>
+                            </ul>
+                        </li>
+                        <li><strong>GEPON/EPON:</strong>
+                            <ul>
+                                <li>Gigabit Ethernet PON (IEEE)</li>
+                                <li>1,25 Gbps sim&eacute;trico</li>
+                                <li>Ethernet nativo</li>
+                                <li>Popular na &Aacute;sia</li>
+                            </ul>
+                        </li>
+                        <li><strong>XG-PON:</strong>
+                            <ul>
+                                <li>10 Gigabit PON</li>
+                                <li>10 Gbps down / 2,5 Gbps up</li>
+                                <li>Evolu&ccedil;&atilde;o do GPON</li>
+                            </ul>
+                        </li>
+                        <li><strong>XGS-PON:</strong>
+                            <ul>
+                                <li>10 Gbps sim&eacute;trico</li>
+                                <li>Baixa lat&ecirc;ncia</li>
+                                <li>Ideal para 5G backhaul</li>
+                            </ul>
+                        </li>
+                        <li><strong>NG-PON2:</strong>
+                            <ul>
+                                <li>Next Generation PON 2</li>
+                                <li>WDM-PON</li>
+                                <li>40 Gbps agregado</li>
+                                <li>M&aacute;xima flexibilidade</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Vantagens das Redes PON:</h3>
+                    <ul>
+                        <li><strong>Econ&ocirc;micas:</strong>
+                            <ul>
+                                <li>Compartilhamento de fibra</li>
+                                <li>Componentes passivos</li>
+                                <li>Menor CAPEX e OPEX</li>
+                                <li>Economia de energia</li>
+                            </ul>
+                        </li>
+                        <li><strong>T&eacute;cnicas:</strong>
+                            <ul>
+                                <li>Alta largura de banda</li>
+                                <li>Baixa lat&ecirc;ncia</li>
+                                <li>Longa dist&acirc;ncia</li>
+                                <li>Imunidade a EMI</li>
+                            </ul>
+                        </li>
+                        <li><strong>Operacionais:</strong>
+                            <ul>
+                                <li>F&aacute;cil manuten&ccedil;&atilde;o</li>
+                                <li>Alta confiabilidade</li>
+                                <li>Gerenciamento centralizado</li>
+                                <li>Escalabilidade</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Desafios e Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>T&eacute;cnicos:</strong>
+                            <ul>
+                                <li>Or&ccedil;amento de pot&ecirc;ncia</li>
+                                <li>Dispers&atilde;o crom&aacute;tica</li>
+                                <li>Reflex&otilde;es &oacute;pticas</li>
+                                <li>Sincroniza&ccedil;&atilde;o temporal</li>
+                            </ul>
+                        </li>
+                        <li><strong>Operacionais:</strong>
+                            <ul>
+                                <li>Planejamento complexo</li>
+                                <li>Testes especializados</li>
+                                <li>Troubleshooting</li>
+                                <li>Upgrade de tecnologia</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>FTTH/FTTB:</strong>
+                            <ul>
+                                <li>Servi&ccedil;os residenciais</li>
+                                <li>Triple play</li>
+                                <li>Internet banda larga</li>
+                            </ul>
+                        </li>
+                        <li><strong>Business Services:</strong>
+                            <ul>
+                                <li>Conectividade empresarial</li>
+                                <li>VPN</li>
+                                <li>SLA garantido</li>                                <li>SLA garantido</li>
+                                <li>Backup e redund�ncia</li>
+                            </ul>
+                        </li>
+                        <li><strong>Mobile Backhaul:</strong>
+                            <ul>
+                                <li>Conex&atilde;o de esta&ccedil;&otilde;es base</li>
+                                <li>4G/5G backhaul</li>
+                                <li>Small cells</li>
+                                <li>DAS (Distributed Antenna Systems)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Wholesale:</strong>
+                            <ul>
+                                <li>Revenda para outros operadores</li>
+                                <li>Acesso regulado</li>
+                                <li>Compartilhamento de infraestrutura</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Planejamento e Design:</h3>
+                    <ul>
+                        <li><strong>Or&ccedil;amento &Oacute;ptico:</strong>
+                            <ul>
+                                <li>C&aacute;lculo de perdas</li>
+                                <li>Margem de seguran&ccedil;a</li>
+                                <li>Sensibilidade do receptor</li>
+                                <li>Pot&ecirc;ncia do transmissor</li>
+                            </ul>
+                        </li>
+                        <li><strong>Topologia:</strong>
+                            <ul>
+                                <li>Distribui&ccedil;&atilde;o de splitters</li>
+                                <li>Roteamento de fibras</li>
+                                <li>Pontos de acesso</li>
+                                <li>Redund&acirc;ncia</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Testes e Certifica&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Testes de fibra:</strong>
+                            <ul>
+                                <li>OTDR (Optical Time Domain Reflectometer)</li>
+                                <li>Medidores de pot&ecirc;ncia</li>
+                                <li>Fontes de luz</li>
+                                <li>Inspe&ccedil;&atilde;o de conectores</li>
+                            </ul>
+                        </li>
+                        <li><strong>Testes de rede:</strong>
+                            <ul>
+                                <li>Throughput</li>
+                                <li>Lat&ecirc;ncia</li>
+                                <li>Jitter</li>
+                                <li>Packet loss</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Gerenciamento e Opera&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>NMS (Network Management System):</strong>
+                            <ul>
+                                <li>Monitoramento centralizado</li>
+                                <li>Configura&ccedil;&atilde;o remota</li>
+                                <li>Detec&ccedil;&atilde;o de falhas</li>
+                                <li>Performance management</li>
+                            </ul>
+                        </li>
+                        <li><strong>Provisionamento:</strong>
+                            <ul>
+                                <li>Ativa&ccedil;&atilde;o autom&aacute;tica</li>
+                                <li>Configura&ccedil;&atilde;o de servi&ccedil;os</li>
+                                <li>QoS policies</li>
+                                <li>Billing integration</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Seguran&ccedil;a:</h3>
+                    <ul>
+                        <li><strong>Criptografia:</strong>
+                            <ul>
+                                <li>AES downstream</li>
+                                <li>Chaves por ONU</li>
+                                <li>Atualiza&ccedil;&atilde;o peri&oacute;dica</li>
+                            </ul>
+                        </li>
+                        <li><strong>Isolamento:</strong>
+                            <ul>
+                                <li>Separa&ccedil;&atilde;o entre ONUs</li>
+                                <li>VLANs dedicadas</li>
+                                <li>Controle de acesso</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias Futuras:</h3>
+                    <ul>
+                        <li><strong>Velocidades maiores:</strong> 25G, 50G PON</li>
+                        <li><strong>Lat&ecirc;ncia ultra-baixa:</strong> Para 5G e IoT</li>
+                        <li><strong>AI/ML:</strong> Otimiza&ccedil;&atilde;o inteligente</li>
+                        <li><strong>SDN/NFV:</strong> Redes program&aacute;veis</li>
+                        <li><strong>Sustentabilidade:</strong> Efici&ecirc;ncia energ&eacute;tica</li>
+                    </ul>
+                    
+                    <h3>Mercado Global:</h3>
+                    <ul>
+                        <li><strong>Crescimento acelerado:</strong> Demanda por banda larga</li>
+                        <li><strong>Pol&iacute;ticas p&uacute;blicas:</strong> Incentivos governamentais</li>
+                        <li><strong>Competi&ccedil;&atilde;o:</strong> Entre tecnologias de acesso</li>
+                        <li><strong>Padroniza&ccedil;&atilde;o:</strong> Harmoniza&ccedil;&atilde;o global</li>
+                    </ul>
+                    
+                    <h3>Conclus&atilde;o:</h3>
+                    <p>PON representa a solu&ccedil;&atilde;o mais eficiente e econ&ocirc;mica para entrega de servi&ccedil;os de banda larga, sendo fundamental para a digitaliza&ccedil;&atilde;o da sociedade e suporte a aplica&ccedil;&otilde;es futuras.</p>
+                `
+            },
+            'olt': {
+                title: 'OLT (Optical Line Terminal)',
+                description: 'Optical Line Terminal - Equipamento central que gerencia a rede PON.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>OLT &eacute; o equipamento central em uma rede PON, localizado na central do provedor, respons&aacute;vel por gerenciar a comunica&ccedil;&atilde;o com m&uacute;ltiplas ONUs e fazer a interface com a rede de backbone.</p>
+                    
+                    <h3>Fun&ccedil;&otilde;es Principais:</h3>
+                    <ul>
+                        <li><strong>Gerenciamento de Protocolo PON:</strong>
+                            <ul>
+                                <li>Controle de acesso ao meio</li>
+                                <li>Ranging e sincroniza&ccedil;&atilde;o</li>
+                                <li>Discovery de ONUs</li>
+                                <li>Autentica&ccedil;&atilde;o de equipamentos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Aloca&ccedil;&atilde;o de Largura de Banda:</strong>
+                            <ul>
+                                <li>DBA (Dynamic Bandwidth Allocation)</li>
+                                <li>QoS enforcement</li>
+                                <li>Traffic shaping</li>
+                                <li>Prioriza&ccedil;&atilde;o de servi&ccedil;os</li>
+                            </ul>
+                        </li>
+                        <li><strong>Interface com Backbone:</strong>
+                            <ul>
+                                <li>Agrega&ccedil;&atilde;o de tr&aacute;fego</li>
+                                <li>Roteamento Layer 2/3</li>
+                                <li>MPLS/VPN support</li>
+                                <li>Peering com core network</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Arquitetura do OLT:</h3>
+                    <ul>
+                        <li><strong>Chassis Principal:</strong>
+                            <ul>
+                                <li>Estrutura modular</li>
+                                <li>Slots para placas</li>
+                                <li>Fonte de alimenta&ccedil;&atilde;o redundante</li>
+                                <li>Sistema de ventila&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Placas PON:</strong>
+                            <ul>
+                                <li>Interfaces &oacute;pticas</li>
+                                <li>Processamento de protocolo</li>
+                                <li>8, 16 ou 32 portas PON</li>
+                                <li>Hot-swappable</li>
+                            </ul>
+                        </li>
+                        <li><strong>Placas Uplink:</strong>
+                            <ul>
+                                <li>Interfaces Ethernet</li>
+                                <li>10GE, 40GE, 100GE</li>
+                                <li>Fibra ou cobre</li>
+                                <li>Redund&acirc;ncia ativa/standby</li>
+                            </ul>
+                        </li>
+                        <li><strong>Placa de Controle:</strong>
+                            <ul>
+                                <li>CPU principal</li>
+                                <li>Sistema operacional</li>
+                                <li>Interfaces de gerenciamento</li>
+                                <li>Mem&oacute;ria e armazenamento</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Capacidades T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Densidade de Portas:</strong>
+                            <ul>
+                                <li>At&eacute; 32 portas PON por placa</li>
+                                <li>At&eacute; 1024 portas por chassis</li>
+                                <li>Suporte a 32.768 ONUs</li>
+                                <li>Throughput agregado: Tbps</li>
+                            </ul>
+                        </li>
+                        <li><strong>Protocolos Suportados:</strong>
+                            <ul>
+                                <li>GPON (ITU-T G.984)</li>
+                                <li>XG-PON (ITU-T G.987)</li>
+                                <li>XGS-PON (ITU-T G.9807)</li>
+                                <li>EPON (IEEE 802.3ah)</li>
+                                <li>10G-EPON (IEEE 802.3av)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Alcance:</strong>
+                            <ul>
+                                <li>Padr&atilde;o: 20 km</li>
+                                <li>Estendido: 40-60 km</li>
+                                <li>Long reach: 100+ km</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Recursos de QoS:</h3>
+                    <ul>
+                        <li><strong>Traffic Classification:</strong>
+                            <ul>
+                                <li>Por VLAN, IP, porta</li>
+                                <li>DiffServ marking</li>
+                                <li>CoS mapping</li>
+                                <li>Application awareness</li>
+                            </ul>
+                        </li>
+                        <li><strong>Bandwidth Management:</strong>
+                            <ul>
+                                <li>CIR/PIR per service</li>
+                                <li>Burst allowance</li>
+                                <li>Fair queuing</li>
+                                <li>Congestion control</li>
+                            </ul>
+                        </li>
+                        <li><strong>Queue Management:</strong>
+                            <ul>
+                                <li>M&uacute;ltiplas filas por porta</li>
+                                <li>Scheduling algorithms</li>
+                                <li>Buffer management</li>
+                                <li>Drop policies</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Recursos de Seguran&ccedil;a:</h3>
+                    <ul>
+                        <li><strong>Autentica&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>ONU serial number</li>
+                                <li>Password authentication</li>
+                                <li>Certificate-based</li>
+                                <li>RADIUS integration</li>
+                            </ul>
+                        </li>
+                        <li><strong>Criptografia:</strong>
+                            <ul>
+                                <li>AES-128 downstream</li>
+                                <li>Key management</li>
+                                <li>Per-ONU encryption</li>
+                                <li>Key rotation</li>
+                            </ul>
+                        </li>
+                        <li><strong>Access Control:</strong>
+                            <ul>
+                                <li>MAC filtering</li>
+                                <li>IP access lists</li>
+                                <li>Port security</li>
+                                <li>Storm control</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Gerenciamento e Opera&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Interfaces de Gerenciamento:</strong>
+                            <ul>
+                                <li>CLI (Command Line Interface)</li>
+                                <li>Web GUI</li>
+                                <li>SNMP v2c/v3</li>
+                                <li>NETCONF/YANG</li>
+                                <li>TR-069</li>
+                            </ul>
+                        </li>
+                        <li><strong>Provisionamento:</strong>
+                            <ul>
+                                <li>Zero-touch provisioning</li>
+                                <li>Template-based config</li>
+                                <li>Bulk operations</li>
+                                <li>Service activation</li>
+                            </ul>
+                        </li>
+                        <li><strong>Monitoramento:</strong>
+                            <ul>
+                                <li>Performance metrics</li>
+                                <li>Fault detection</li>
+                                <li>Threshold alarms</li>
+                                <li>Historical data</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Recursos Avan&ccedil;ados:</h3>
+                    <ul>
+                        <li><strong>Virtualiza&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>vOLT (Virtual OLT)</li>
+                                <li>Multi-tenancy</li>
+                                <li>Resource slicing</li>
+                                <li>Service isolation</li>
+                            </ul>
+                        </li>
+                        <li><strong>SDN Integration:</strong>
+                            <ul>
+                                <li>OpenFlow support</li>
+                                <li>Centralized control</li>
+                                <li>Programmable forwarding</li>
+                                <li>Service chaining</li>
+                            </ul>
+                        </li>
+                        <li><strong>Analytics:</strong>
+                            <ul>
+                                <li>Real-time monitoring</li>
+                                <li>Predictive maintenance</li>
+                                <li>Capacity planning</li>
+                                <li>Optimization algorithms</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tipos de OLT:</h3>
+                    <ul>
+                        <li><strong>Chassis-based:</strong>
+                            <ul>
+                                <li>Alta densidade</li>
+                                <li>Escalabilidade m&aacute;xima</li>
+                                <li>Redund&acirc;ncia completa</li>
+                                <li>Data centers e grandes POPs</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pizza box:</strong>
+                            <ul>
+                                <li>Formato 1U/2U</li>
+                                <li>Densidade m&eacute;dia</li>
+                                <li>Custo otimizado</li>
+                                <li>&Aacute;reas menores</li>
+                            </ul>
+                        </li>
+                        <li><strong>Outdoor:</strong>
+                            <ul>
+                                <li>Instala&ccedil;&atilde;o externa</li>
+                                <li>Compacto e robusto</li>
+                                <li>Menor CAPEX</li>
+                                <li>Distribui&ccedil;&atilde;o descentralizada</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es de Deployment:</h3>
+                    <ul>
+                        <li><strong>Dimensionamento:</strong>
+                            <ul>
+                                <li>N&uacute;mero de assinantes</li>
+                                <li>Perfil de tr&aacute;fego</li>
+                                <li>Crescimento projetado</li>
+                                <li>SLA requirements</li>
+                            </ul>
+                        </li>
+                        <li><strong>Localiza&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Central office</li>
+                                <li>Remote terminal</li>
+                                <li>Outdoor cabinet</li>
+                                <li>Considera&ccedil;&otilde;es ambientais</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Integra&ccedil;&atilde;o com OSS/BSS:</h3>
+                    <ul>
+                        <li><strong>Service Orchestration:</strong> Automa&ccedil;&atilde;o de servi&ccedil;os</li>
+                        <li><strong>Inventory Management:</strong> Controle de recursos</li>
+                        <li><strong>Billing Integration:</strong> Medi&ccedil;&atilde;o e faturamento</li>
+                        <li><strong>Customer Care:</strong> Suporte ao cliente</li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias Futuras:</h3>
+                    <ul>
+                        <li>Disaggrega&ccedil;&atilde;o hardware/software</li>
+                        <li>Cloud-native architectures</li>
+                        <li>AI/ML para otimiza&ccedil;&atilde;o</li>
+                        <li>Integration com 5G</li>
+                        <li>Sustainability e green networking</li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>O OLT &eacute; o c&eacute;rebro da rede PON, sendo cr&iacute;tico para a entrega de servi&ccedil;os de qualidade e fundamental para o sucesso de implementa&ccedil;&otilde;es FTTH.</p>
+                `
+            },
+            'onu': {
+                title: 'ONU (Optical Network Unit)',
+                description: 'Optical Network Unit - Equipamento terminal do usu&aacute;rio em redes PON.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>ONU &eacute; o equipamento terminal do usu&aacute;rio em uma rede PON, respons&aacute;vel por converter sinais &oacute;pticos em el&eacute;tricos e fornecer interfaces de servi&ccedil;o para conectar dispositivos do cliente.</p>
+                    
+                    <h3>Terminologia:</h3>
+                    <ul>
+                        <li><strong>ONU (Optical Network Unit):</strong>
+                            <ul>
+                                <li>Termo gen&eacute;rico ITU-T</li>
+                                <li>Equipamento na rede PON</li>
+                                <li>Pode estar no cliente ou pr&oacute;ximo</li>
+                            </ul>
+                        </li>
+                        <li><strong>ONT (Optical Network Terminal):</strong>
+                            <ul>
+                                <li>ONU instalada no cliente final</li>
+                                <li>Termina&ccedil;&atilde;o da rede &oacute;ptica</li>
+                                <li>Uso mais espec&iacute;fico</li>
+                            </ul>
+                        </li>
+                        <li><strong>Uso pr&aacute;tico:</strong>
+                            <ul>
+                                <li>Termos frequentemente intercambi&aacute;veis</li>
+                                <li>Depend&ecirc;ncia regional</li>
+                                <li>Contexto de aplica&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Fun&ccedil;&otilde;es Principais:</h3>
+                    <ul>
+                        <li><strong>Convers&atilde;o O/E/O:</strong>
+                            <ul>
+                                <li>Recep&ccedil;&atilde;o de sinais &oacute;pticos</li>
+                                <li>Convers&atilde;o para sinais el&eacute;tricos</li>
+                                <li>Transmiss&atilde;o &oacute;ptica upstream</li>
+                                <li>Processamento de protocolos PON</li>
+                            </ul>
+                        </li>
+                        <li><strong>Interface de Servi&ccedil;os:</strong>
+                            <ul>
+                                <li>Portas Ethernet</li>
+                                <li>Interfaces telef&ocirc;nicas (POTS)</li>
+                                <li>Sa&iacute;das de v&iacute;deo (RF)</li>
+                                <li>Wi-Fi integrado</li>
+                            </ul>
+                        </li>
+                        <li><strong>Gerenciamento Local:</strong>
+                            <ul>
+                                <li>Configura&ccedil;&atilde;o de rede local</li>
+                                <li>QoS enforcement</li>
+                                <li>Seguran&ccedil;a de acesso</li>
+                                <li>Monitoramento de status</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tipos de ONU:</h3>
+                    <ul>
+                        <li><strong>Por Localiza&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li><strong>Indoor:</strong> Instala&ccedil;&atilde;o interna</li>
+                                <li><strong>Outdoor:</strong> Instala&ccedil;&atilde;o externa</li>
+                                <li><strong>Desktop:</strong> Sobre mesa/prateleira</li>
+                                <li><strong>Wall-mount:</strong> Fixa&ccedil;&atilde;o em parede</li>
+                            </ul>
+                        </li>
+                        <li><strong>Por Aplica&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li><strong>Residencial:</strong> Servi&ccedil;os dom&eacute;sticos</li>
+                                <li><strong>Empresarial:</strong> Conectividade corporativa</li>
+                                <li><strong>MDU:</strong> Edif&iacute;cios m&uacute;ltiplos usu&aacute;rios</li>
+                                <li><strong>Industrial:</strong> Ambientes industriais</li>
+                            </ul>
+                        </li>
+                        <li><strong>Por Funcionalidade:</strong>
+                            <ul>
+                                <li><strong>Bridge:</strong> Modo transparente</li>
+                                <li><strong>Router:</strong> Roteamento integrado</li>
+                                <li><strong>Gateway:</strong> M&uacute;ltiplos servi&ccedil;os</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Interfaces de Servi&ccedil;o:</h3>
+                    <ul>
+                        <li><strong>Ethernet:</strong>
+                            <ul>
+                                <li>10/100/1000 Mbps</li>
+                                <li>1-4 portas t&iacute;pico</li>
+                                <li>Auto-negocia&ccedil;&atilde;o</li>
+                                <li>PoE support (alguns modelos)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Wi-Fi:</strong>
+                            <ul>
+                                <li>802.11ac/ax integrado</li>
+                                <li>Dual-band 2.4/5 GHz</li>
+                                <li>MIMO support</li>
+                                <li>Guest network</li>
+                            </ul>
+                        </li>
+                        <li><strong>Telefonia:</strong>
+                            <ul>
+                                <li>1-2 portas FXS</li>
+                                <li>VoIP/SIP support</li>
+                                <li>Codec G.711/G.729</li>
+                                <li>Fax over IP</li>
+                            </ul>
+                        </li>
+                        <li><strong>V&iacute;deo:</strong>
+                            <ul>
+                                <li>RF overlay (1550nm)</li>
+                                <li>IPTV multicast</li>
+                                <li>Set-top box integration</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Recursos T&eacute;cnicos:</h3>
+                    <ul>
+                        <li><strong>Protocolos PON:</strong>
+                            <ul>
+                                <li>GPON (ITU-T G.984)</li>
+                                <li>XG-PON (ITU-T G.987)</li>
+                                <li>XGS-PON (ITU-T G.9807)</li>
+                                <li>EPON (IEEE 802.3ah)</li>
+                            </ul>
+                        </li>
+                        <li><strong>QoS:</strong>
+                            <ul>
+                                <li>Traffic classification</li>
+                                <li>Rate limiting</li>
+                                <li>Priority queuing</li>
+                                <li>DSCP marking</li>
+                            </ul>
+                        </li>
+                        <li><strong>VLAN Support:</strong>
+                            <ul>
+                                <li>802.1Q tagging</li>
+                                <li>VLAN translation</li>
+                                <li>Port-based VLANs</li>
+                                <li>Service VLANs</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Seguran&ccedil;a:</h3>
+                    <ul>
+                        <li><strong>Autentica&ccedil;&atilde;o PON:</strong>
+                            <ul>
+                                <li>Serial number</li>
+                                <li>Password authentication</li>
+                                <li>Certificate-based</li>
+                            </ul>
+                        </li>
+                        <li><strong>Firewall:</strong>
+                            <ul>
+                                <li>Stateful packet inspection</li>
+                                <li>Access control lists</li>
+                                <li>DoS protection</li>
+                                <li>Port filtering</li>
+                            </ul>
+                        </li>
+                        <li><strong>Wi-Fi Security:</strong>
+                            <ul>
+                                <li>WPA2/WPA3</li>
+                                <li>MAC filtering</li>
+                                <li>Guest isolation</li>
+                                <li>WPS disable</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Gerenciamento:</h3>
+                    <ul>
+                        <li><strong>Remoto (via OLT):</strong>
+                            <ul>
+                                <li>OMCI (ONU Management and Control Interface)</li>
+                                <li>TR-069/TR-181</li>
+                                <li>SNMP</li>
+                                <li>Firmware upgrade</li>
+                            </ul>
+                        </li>
+                        <li><strong>Local:</strong>
+                            <ul>
+                                <li>Web interface</li>
+                                <li>CLI access</li>
+                                <li>Mobile app</li>
+                                <li>LED indicators</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Especifica&ccedil;&otilde;es T&iacute;picas:</h3>
+                    <ul>
+                        <li><strong>Performance:</strong>
+                            <ul>
+                                <li>Downstream: at&eacute; 2.5 Gbps</li>
+                                <li>Upstream: at&eacute; 1.25 Gbps</li>
+                                <li>Lat&ecirc;ncia: &lt;1 ms</li>
+                                <li>Packet forwarding: wire-speed</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ambiental:</strong>
+                            <ul>
+                                <li>Temperatura: 0-40�C (indoor)</li>
+                                <li>Umidade: 5-95% RH</li>
+                                <li>Alimenta&ccedil;&atilde;o: 12V DC</li>
+                                <li>Consumo: 5-15W</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Instala&ccedil;&atilde;o e Ativa&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Processo:</strong>
+                            <ol>
+                                <li>Instala&ccedil;&atilde;o f&iacute;sica</li>
+                                <li>Conex&atilde;o da fibra</li>
+                                <li>Liga&ccedil;&atilde;o do equipamento</li>
+                                <li>Discovery autom&aacute;tico</li>
+                                <li>Provisionamento de servi&ccedil;os</li>
+                                <li>Testes de conectividade</li>
+                            </ol>
+                        </li>
+                        <li><strong>Zero Touch Provisioning:</strong>
+                            <ul>
+                                <li>Configura&ccedil;&atilde;o autom&aacute;tica</li>
+                                <li>Template-based setup</li>
+                                <li>Service activation</li>
+                                <li>Minimal truck roll</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Troubleshooting:</h3>
+                    <ul>
+                        <li><strong>Indicadores LED:</strong>
+                            <ul>
+                                <li>Power status</li>
+                                <li>PON link status</li>
+                                <li>LAN activity</li>
+                                <li>Service status</li>
+                            </ul>
+                        </li>
+                        <li><strong>Diagn&oacute;sticos:</strong>
+                            <ul>
+                                <li>Optical power measurement</li>
+                                <li>Link quality metrics</li>
+                                <li>Performance counters</li>
+                                <li>Loop-back tests</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o e Futuro:</h3>
+                    <ul>
+                        <li><strong>Tend&ecirc;ncias:</strong>
+                            <ul>
+                                <li>Wi-Fi 6/6E integration</li>
+                                <li>10G PON support</li>
+                                <li>IoT gateway functions</li>
+                                <li>Edge computing capabilities</li>
+                                <li>AI-powered optimization</li>
+                            </ul>
+                        </li>
+                        <li><strong>Smart Home Integration:</strong>
+                            <ul>
+                                <li>Home automation hub</li>
+                                <li>Voice assistant integration</li>
+                                <li>Security system support</li>
+                                <li>Energy management</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>A ONU &eacute; o ponto de interface entre a rede do provedor e o ambiente do cliente, sendo fundamental para a experi&ecirc;ncia do usu&aacute;rio e o sucesso dos servi&ccedil;os FTTH.</p>
+                `
+            },
+            'last-mile': {
+                title: 'Last Mile (&Uacute;ltima Milha)',
+                description: '&Uacute;ltima milha - Segmento final da rede at&eacute; o usu&aacute;rio final.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Last mile refere-se ao segmento final de uma rede de telecomunica&ccedil;&otilde;es que conecta o provedor de servi&ccedil;os diretamente ao cliente final, sendo frequentemente o gargalo mais caro e desafiador de implementar.</p>
+                    
+                    <h3>Import&acirc;ncia Estrat&eacute;gica:</h3>
+                    <ul>
+                        <li><strong>Gargalo principal:</strong>
+                            <ul>
+                                <li>Limita velocidade total da conex&atilde;o</li>
+                                <li>Determina qualidade do servi&ccedil;o</li>
+                                <li>Maior custo por bit transmitido</li>
+                                <li>Complexidade de implementa&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Diferencial competitivo:</strong>
+                            <ul>
+                                <li>Qualidade da experi&ecirc;ncia do cliente</li>
+                                <li>Velocidades oferecidas</li>
+                                <li>Confiabilidade do servi&ccedil;o</li>
+                                <li>Custo para o consumidor</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tecnologias de Last Mile:</h3>
+                    <ul>
+                        <li><strong>Fibra &Oacute;ptica:</strong>
+                            <ul>
+                                <li><strong>FTTH:</strong> Fibra at&eacute; a casa</li>
+                                <li><strong>FTTB:</strong> Fibra at&eacute; o edif&iacute;cio</li>
+                                <li><strong>FTTC:</strong> Fibra at&eacute; o arm�rio</li>
+                                <li><strong>Vantagens:</strong> Alta velocidade, baixa lat&ecirc;ncia</li>
+                                <li><strong>Desvantagens:</strong> Alto custo inicial</li>
+                            </ul>
+                        </li>
+                        <li><strong>DSL (Digital Subscriber Line):</strong>
+                            <ul>
+                                <li><strong>ADSL:</strong> Assim�trico, at&eacute; 24 Mbps</li>
+                                <li><strong>VDSL:</strong> At&eacute; 100 Mbps</li>
+                                <li><strong>G.fast:</strong> At&eacute; 1 Gbps (curta dist&acirc;ncia)</li>
+                                <li><strong>Vantagens:</strong> Usa infraestrutura existente</li>
+                                <li><strong>Desvantagens:</strong> Limitado pela dist&acirc;ncia</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cable/HFC:</strong>
+                            <ul>
+                                <li><strong>DOCSIS 3.0:</strong> At&eacute; 1 Gbps</li>
+                                <li><strong>DOCSIS 3.1:</strong> At&eacute; 10 Gbps</li>
+                                <li><strong>DOCSIS 4.0:</strong> At&eacute; 10 Gbps upstream</li>
+                                <li><strong>Vantagens:</strong> Alta velocidade, cobertura ampla</li>
+                                <li><strong>Desvantagens:</strong> Largura de banda compartilhada</li>
+                            </ul>
+                        </li>
+                        <li><strong>Wireless:</strong>
+                            <ul>
+                                <li><strong>4G/LTE:</strong> 10-100 Mbps</li>
+                                <li><strong>5G:</strong> 100 Mbps - 10 Gbps</li>
+                                <li><strong>Fixed Wireless:</strong> Ponto-a-ponto</li>
+                                <li><strong>Satellite:</strong> Cobertura global</li>
+                                <li><strong>Vantagens:</strong> R&aacute;pida implanta&ccedil;&atilde;o</li>
+                                <li><strong>Desvantagens:</strong> Lat&ecirc;ncia, clima</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Desafios da Last Mile:</h3>
+                    <ul>
+                        <li><strong>Econ&ocirc;micos:</strong>
+                            <ul>
+                                <li>Alto CAPEX por cliente</li>
+                                <li>ROI de longo prazo</li>
+                                <li>Densidade populacional vari&aacute;vel</li>
+                                <li>Competi&ccedil;&atilde;o de pre&ccedil;os</li>
+                            </ul>
+                        </li>
+                        <li><strong>T&eacute;cnicos:</strong>
+                            <ul>
+                                <li>Dist&acirc;ncias vari&aacute;veis</li>
+                                <li>Obst�culos f&iacute;sicos</li>
+                                <li>Interfer&ecirc;ncias ambientais</li>
+                                <li>Qualidade da infraestrutura</li>
+                            </ul>
+                        </li>
+                        <li><strong>Regulat&oacute;rios:</strong>
+                            <ul>
+                                <li>Direitos de passagem</li>
+                                <li>Licen&ccedil;as municipais</li>
+                                <li>Normas de seguran&ccedil;a</li>
+                                <li>Impacto ambiental</li>
+                            </ul>
+                        </li>
+                        <li><strong>Operacionais:</strong>
+                            <ul>
+                                <li>Instala&ccedil;&atilde;o complexa</li>
+                                <li>Manuten&ccedil;&atilde;o descentralizada</li>
+                                <li>Atendimento ao cliente</li>
+                                <li>Troubleshooting remoto</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Fatores de Escolha Tecnol&oacute;gica:</h3>
+                    <ul>
+                        <li><strong>Densidade populacional:</strong>
+                            <ul>
+                                <li>Urbana densa: FTTH vi&aacute;vel</li>
+                                <li>Suburbana: Cable/DSL</li>
+                                <li>Rural: Wireless/Satellite</li>
+                            </ul>
+                        </li>
+                        <li><strong>Infraestrutura existente:</strong>
+                            <ul>
+                                <li>Dutos dispon&iacute;veis</li>
+                                <li>Postes e torres</li>
+                                <li>Cabos legados</li>
+                                <li>Direitos de passagem</li>
+                            </ul>
+                        </li>
+                        <li><strong>Demanda de mercado:</strong>
+                            <ul>
+                                <li>Velocidades requeridas</li>
+                                <li>Disposi&ccedil;&atilde;o a pagar</li>
+                                <li>Aplica&ccedil;&otilde;es cr&iacute;ticas</li>
+                                <li>Crescimento projetado</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Estrat&eacute;gias de Implementa&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Overbuild:</strong>
+                            <ul>
+                                <li>Constru&ccedil;&atilde;o de nova infraestrutura</li>
+                                <li>Competi&ccedil;&atilde;o direta</li>
+                                <li>Alto investimento</li>
+                                <li>Diferencia&ccedil;&atilde;o por qualidade</li>
+                            </ul>
+                        </li>
+                        <li><strong>Upgrade:</strong>
+                            <ul>
+                                <li>Melhoria da rede existente</li>
+                                <li>Aproveita infraestrutura</li>
+                                <li>Menor investimento</li>
+                                <li>Limita&ccedil;&otilde;es t&eacute;cnicas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Partnerships:</strong>
+                            <ul>
+                                <li>Compartilhamento de custos</li>
+                                <li>Complementa&ccedil;&atilde;o de expertise</li>
+                                <li>Acelera&ccedil;&atilde;o do deployment</li>
+                                <li>Divis&atilde;o de riscos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Modelos de Neg&oacute;cio:</h3>
+                    <ul>
+                        <li><strong>Retail:</strong>
+                            <ul>
+                                <li>Provedor possui toda infraestrutura</li>
+                                <li>Controle total da experi&ecirc;ncia</li>
+                                <li>Maior investimento</li>
+                                <li>Maior margem</li>
+                            </ul>
+                        </li>
+                        <li><strong>Wholesale:</strong>
+                            <ul>
+                                <li>Infraestrutura compartilhada</li>
+                                <li>M&uacute;ltiplos provedores de servi&ccedil;o</li>
+                                <li>Economia de escala</li>
+                                <li>Competi&ccedil;&atilde;o em servi&ccedil;os</li>
+                            </ul>
+                        </li>
+                        <li><strong>Municipal:</strong>
+                            <ul>
+                                <li>Governo local como provedor</li>
+                                <li>Foco em servi&ccedil;o p&uacute;blico</li>
+                                <li>Financiamento p&uacute;blico</li>
+                                <li>Cobertura universal</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Impacto da Last Mile:</h3>
+                    <ul>
+                        <li><strong>Econ&ocirc;mico:</strong>
+                            <ul>
+                                <li>Produtividade empresarial</li>
+                                <li>Trabalho remoto</li>
+                                <li>Com&eacute;rcio eletr&ocirc;nico</li>
+                                <li>Inova&ccedil;&atilde;o tecnol&oacute;gica</li>
+                                <li>Atra&ccedil;&atilde;o de investimentos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Social:</strong>
+                            <ul>
+                                <li>Inclus&atilde;o digital</li>
+                                <li>Educa&ccedil;&atilde;o a dist&acirc;ncia</li>
+                                <li>Telemedicina</li>
+                                <li>Acesso &agrave; informa&ccedil;&atilde;o</li>
+                                <li>Servi&ccedil;os governamentais digitais</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tecnol&oacute;gico:</strong>
+                            <ul>
+                                <li>IoT e smart cities</li>
+                                <li>Streaming de alta qualidade</li>
+                                <li>Cloud computing</li>
+                                <li>Realidade virtual/aumentada</li>
+                                <li>Intelig&ecirc;ncia artificial</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias Futuras:</h3>
+                    <ul>
+                        <li><strong>Tecnol&oacute;gicas:</strong>
+                            <ul>
+                                <li>5G Fixed Wireless Access</li>
+                                <li>Satellite constellations (Starlink)</li>
+                                <li>Li-Fi e comunica&ccedil;&atilde;o &oacute;ptica</li>
+                                <li>G.fast e XG-FAST</li>
+                                <li>Quantum networking</li>
+                            </ul>
+                        </li>
+                        <li><strong>Regulat&oacute;rias:</strong>
+                            <ul>
+                                <li>Right to fiber policies</li>
+                                <li>Municipal broadband</li>
+                                <li>Infrastructure sharing mandates</li>
+                                <li>Universal service obligations</li>
+                            </ul>
+                        </li>
+                        <li><strong>Econ&ocirc;micas:</strong>
+                            <ul>
+                                <li>Funding p&uacute;blico para rural</li>
+                                <li>PPP (Public-Private Partnerships)</li>
+                                <li>Cooperative models</li>
+                                <li>Infrastructure as a Service</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>M&eacute;tricas de Performance:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong>
+                            <ul>
+                                <li>Download/upload speeds</li>
+                                <li>Throughput sustentado</li>
+                                <li>Peak vs average performance</li>
+                            </ul>
+                        </li>
+                        <li><strong>Qualidade:</strong>
+                            <ul>
+                                <li>Lat&ecirc;ncia (RTT)</li>
+                                <li>Jitter</li>
+                                <li>Packet loss</li>
+                                <li>Availability/uptime</li>
+                            </ul>
+                        </li>
+                        <li><strong>Econ&ocirc;micas:</strong>
+                            <ul>
+                                <li>Cost per Mbps</li>
+                                <li>Total cost of ownership</li>
+                                <li>Revenue per user</li>
+                                <li>Market penetration</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Solu&ccedil;&otilde;es Inovadoras:</h3>
+                    <ul>
+                        <li><strong>Micro-trenching:</strong>
+                            <ul>
+                                <li>Escava&ccedil;&atilde;o m&iacute;nima</li>
+                                <li>Redu&ccedil;&atilde;o de custos</li>
+                                <li>Menor impacto urbano</li>
+                            </ul>
+                        </li>
+                        <li><strong>Aerial deployment:</strong>
+                            <ul>
+                                <li>Uso de postes existentes</li>
+                                <li>Implanta&ccedil;&atilde;o mais r&aacute;pida</li>
+                                <li>Menor custo inicial</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sewer and utility sharing:</strong>
+                            <ul>
+                                <li>Uso de infraestrutura existente</li>
+                                <li>Parcerias com utilities</li>
+                                <li>Economia de escala</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Desafios Emergentes:</h3>
+                    <ul>
+                        <li><strong>Demanda crescente:</strong>
+                            <ul>
+                                <li>Streaming 4K/8K</li>
+                                <li>Work from home</li>
+                                <li>Gaming online</li>
+                                <li>IoT proliferation</li>
+                            </ul>
+                        </li>
+                        <li><strong>Expectativas do cliente:</strong>
+                            <ul>
+                                <li>Velocidades sim&eacute;tricas</li>
+                                <li>Zero downtime</li>
+                                <li>Instala&ccedil;&atilde;o instant&acirc;nea</li>
+                                <li>Pre&ccedil;os competitivos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Melhores Pr&aacute;ticas:</h3>
+                    <ul>
+                        <li>Planejamento baseado em dados demogr&aacute;ficos</li>
+                        <li>Considera&ccedil;&atilde;o de m&uacute;ltiplas tecnologias</li>
+                        <li>Partnerships estrat&eacute;gicas</li>
+                        <li>Focus na experi&ecirc;ncia do cliente</li>
+                        <li>Planejamento para escalabilidade futura</li>
+                    </ul>
+                    
+                    <h3>Conclus&atilde;o:</h3>
+                    <p>A last mile continua sendo o segmento mais cr&iacute;tico e desafiador das redes de telecomunica&ccedil;&otilde;es, determinando o sucesso dos provedores e o acesso da sociedade aos benef&iacute;cios da conectividade digital.</p>
+                `
+            },
+            'maquina-fusao': {
+                title: 'M&aacute;quina de Fus&atilde;o',
+                description: 'Equipamento para emenda de fibras &oacute;pticas por fus&atilde;o a arco el&eacute;trico.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>M&aacute;quina de fus&atilde;o &eacute; um equipamento especializado que une duas fibras &oacute;pticas permanentemente atrav&eacute;s de aquecimento por arco el&eacute;trico, criando uma emenda de baixa perda e alta resist&ecirc;ncia mec&acirc;nica.</p>
+                    
+                    <h3>Princ&iacute;pio de Funcionamento:</h3>
+                    <ul>
+                        <li><strong>Prepara&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Remo&ccedil;&atilde;o do revestimento</li>
+                                <li>Limpeza da fibra nua</li>
+                                <li>Clivagem precisa</li>
+                                <li>Inspe&ccedil;&atilde;o da qualidade</li>
+                            </ul>
+                        </li>
+                        <li><strong>Alinhamento:</strong>
+                            <ul>
+                                <li>Posicionamento das fibras</li>
+                                <li>Alinhamento dos n&uacute;cleos</li>
+                                <li>Ajuste fino autom&aacute;tico</li>
+                                <li>Verifica&ccedil;&atilde;o visual</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fus&atilde;o:</strong>
+                            <ul>
+                                <li>Arco el&eacute;trico controlado</li>
+                                <li>Aquecimento das extremidades</li>
+                                <li>Uni&atilde;o molecular</li>
+                                <li>Resfriamento gradual</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Componentes Principais:</h3>
+                    <ul>
+                        <li><strong>Sistema de Alinhamento:</strong>
+                            <ul>
+                                <li>Microsc&oacute;pios de precis&atilde;o</li>
+                                <li>C&acirc;meras CCD/CMOS</li>
+                                <li>Motores de posi&ccedil;&atilde;o</li>
+                                <li>Software de reconhecimento</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sistema de Fus&atilde;o:</strong>
+                            <ul>
+                                <li>Eletrodos de tungst&ecirc;nio</li>
+                                <li>Fonte de alta voltagem</li>
+                                <li>Controle de arco</li>
+                                <li>Sensores de temperatura</li>
+                            </ul>
+                        </li>
+                        <li><strong>Interface do Usu&aacute;rio:</strong>
+                            <ul>
+                                <li>Display LCD/touchscreen</li>
+                                <li>Controles manuais</li>
+                                <li>Indicadores de status</li>
+                                <li>Sistema de menu</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sistema de Prote&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Cobertura contra vento</li>
+                                <li>Prote&ccedil;&atilde;o contra poeira</li>
+                                <li>Estabiliza&ccedil;&atilde;o vibra&ccedil;&atilde;o</li>
+                                <li>Bateria interna</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tipos de M&aacute;quinas:</h3>
+                    <ul>
+                        <li><strong>Core Alignment:</strong>
+                            <ul>
+                                <li>Alinhamento pelo n&uacute;cleo</li>
+                                <li>M&aacute;xima precis&atilde;o</li>
+                                <li>Menor perda de emenda</li>
+                                <li>Mais caras</li>
+                                <li>Uso profissional</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cladding Alignment:</strong>
+                            <ul>
+                                <li>Alinhamento pela casca</li>
+                                <li>Menor precis&atilde;o</li>
+                                <li>Custo mais baixo</li>
+                                <li>Adequada para multimodo</li>
+                                <li>Uso geral</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ribbon Fusion:</strong>
+                            <ul>
+                                <li>M&uacute;ltiplas fibras simult&acirc;neas</li>
+                                <li>Alta produtividade</li>
+                                <li>Cabos de alta densidade</li>
+                                <li>Aplica&ccedil;&otilde;es especializadas</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Especifica&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Perda de Emenda:</strong>
+                            <ul>
+                                <li>Monomodo: &lt;0,02 dB t&iacute;pica</li>
+                                <li>Multimodo: &lt;0,05 dB t&iacute;pica</li>
+                                <li>Varia&ccedil;&atilde;o: �0,01 dB</li>
+                            </ul>
+                        </li>
+                        <li><strong>Resist&ecirc;ncia Mec&acirc;nica:</strong>
+                            <ul>
+                                <li>Tens&atilde;o: &gt;1,96 N (200 gf)</li>
+                                <li>Teste de tra&ccedil;&atilde;o</li>
+                                <li>Durabilidade longo prazo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tempo de Opera&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Ciclo de fus&atilde;o: 5-15 segundos</li>
+                                <li>Aquecimento: 15-30 segundos</li>
+                                <li>Tempo total: 1-2 minutos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Processo de Emenda:</h3>
+                    <ol>
+                        <li><strong>Prepara&ccedil;&atilde;o das fibras:</strong>
+                            <ul>
+                                <li>Remo&ccedil;&atilde;o do revestimento (2-3 cm)</li>
+                                <li>Limpeza com &aacute;lcool isoprop&iacute;lico</li>
+                                <li>Clivagem com &acirc;ngulo &lt;0,5�</li>
+                            </ul>
+                        </li>
+                        <li><strong>Posicionamento:</strong>
+                            <ul>
+                                <li>Inser&ccedil;&atilde;o nas guias</li>
+                                <li>Ajuste de posi&ccedil;&atilde;o</li>
+                                <li>Verifica&ccedil;&atilde;o visual</li>
+                            </ul>
+                        </li>
+                        <li><strong>Alinhamento autom&aacute;tico:</strong>
+                            <ul>
+                                <li>An&aacute;lise por imagem</li>
+                                <li>Corre&ccedil;&atilde;o de desalinhamento</li>
+                                <li>Otimiza&ccedil;&atilde;o de posi&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fus&atilde;o:</strong>
+                            <ul>
+                                <li>Pr&eacute;-aquecimento</li>
+                                <li>Arco principal</li>
+                                <li>Resfriamento controlado</li>
+                            </ul>
+                        </li>
+                        <li><strong>Teste:</strong>
+                            <ul>
+                                <li>Estimativa de perda</li>
+                                <li>Teste de tra&ccedil;&atilde;o</li>
+                                <li>Inspe&ccedil;&atilde;o visual</li>
+                            </ul>
+                        </li>
+                        <li><strong>Prote&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Instala&ccedil;&atilde;o de sleeve</li>
+                                <li>Aquecimento do sleeve</li>
+                                <li>Resfriamento final</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Acess&oacute;rios Necess&aacute;rios:</h3>
+                    <ul>
+                        <li><strong>Ferramentas de prepara&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Alicate desencapador</li>
+                                <li>Clivador de precis&acirc;o</li>
+                                <li>Len�os de limpeza</li>
+                                <li>&Aacute;lcool isoprop&iacute;lico</li>
+                            </ul>
+                        </li>
+                        <li><strong>Prote&ccedil;&atilde;o de emendas:</strong>
+                            <ul>
+                                <li>Sleeves de prote&ccedil;&atilde;o</li>
+                                <li>Tubos termoencolh&iacute;veis</li>
+                                <li>Refor&ccedil;os mec&acirc;nicos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Testes:</strong>
+                            <ul>
+                                <li>OTDR</li>
+                                <li>Power meter</li>
+                                <li>Light source</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Fatores de Qualidade:</h3>
+                    <ul>
+                        <li><strong>Alinhamento:</strong>
+                            <ul>
+                                <li>Precis&atilde;o de posicionamento</li>
+                                <li>Concentricidade dos n&uacute;cleos</li>
+                                <li>Paralelismo das faces</li>
+                            </ul>
+                        </li>
+                        <li><strong>Clivagem:</strong>
+                            <ul>
+                                <li>&Acirc;ngulo da face</li>
+                                <li>Qualidade da superf&iacute;cie</li>
+                                <li>Comprimento adequado</li>
+                            </ul>
+                        </li>
+                        <li><strong>Limpeza:</strong>
+                            <ul>
+                                <li>Aus&ecirc;ncia de contaminantes</li>
+                                <li>Superf&iacute;cie livre de &oacute;leo</li>
+                                <li>Remo&ccedil;&atilde;o de part&iacute;culas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Par&acirc;metros de fus&atilde;o:</strong>
+                            <ul>
+                                <li>Corrente do arco</li>
+                                <li>Tempo de aquecimento</li>
+                                <li>Dist&acirc;ncia entre eletrodos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Manuten&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Limpeza regular:</strong>
+                            <ul>
+                                <li>Eletrodos</li>
+                                <li>Lentes e espelhos</li>
+                                <li>Guias de fibra</li>
+                                <li>Tela de prote&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Calibra&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Alinhamento &oacute;ptico</li>
+                                <li>Par&acirc;metros de fus&atilde;o</li>
+                                <li>Sistema de medi&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Substitui&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Eletrodos desgastados</li>
+                                <li>Componentes &oacute;pticos</li>
+                                <li>Bateria</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Instala&ccedil;&atilde;o FTTH:</strong> Emendas residenciais</li>
+                        <li><strong>Backbone:</strong> Redes de longa dist&acirc;ncia</li>
+                        <li><strong>Data centers:</strong> Interconex&otilde;es internas</li>
+                        <li><strong>Reparos:</strong> Manuten&ccedil;&atilde;o de cabos</li>
+                        <li><strong>Laborat&oacute;rio:</strong> Testes e desenvolvimento</li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es de Compra:</h3>
+                    <ul>
+                        <li><strong>Tipo de aplica&ccedil;&atilde;o:</strong> Monomodo vs multimodo</li>
+                        <li><strong>Volume de trabalho:</strong> Produtividade necess&aacute;ria</li>
+                        <li><strong>Ambiente:</strong> Campo vs laborat&oacute;rio</li>
+                        <li><strong>Or&ccedil;amento:</strong> CAPEX vs OPEX</li>
+                        <li><strong>Suporte:</strong> Treinamento e assist&ecirc;ncia</li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias:</h3>
+                    <ul>
+                        <li>Automa&ccedil;&atilde;o avan&ccedil;ada</li>
+                        <li>Intelig&ecirc;ncia artificial</li>
+                        <li>Conectividade IoT</li>
+                        <li>Interfaces mais intuitivas</li>
+                        <li>Maior portabilidade</li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>A m&aacute;quina de fus&atilde;o &eacute; ferramenta essencial para instala&ccedil;&atilde;o e manuten&ccedil;&atilde;o de redes de fibra &oacute;ptica, sendo fundamental para garantir a qualidade e confiabilidade das conex&otilde;es.</p>
+                `
+            },
+            'otdr': {
+                title: 'OTDR (Optical Time Domain Reflectometer)',
+                description: 'Optical Time Domain Reflectometer - Equipamento para teste e diagn&oacute;stico de fibra.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>OTDR &eacute; um instrumento de teste que utiliza reflex&otilde;es de luz para caracterizar fibras &oacute;pticas, medindo dist&acirc;ncia, localiza&ccedil;&atilde;o de falhas, perdas de emendas e conectores, e atenua��o ao longo do comprimento da fibra.</p>
+                    
+                    <h3>Princ&iacute;pio de Funcionamento:</h3>
+                    <ul>
+                        <li><strong>Retroespalhamento Rayleigh:</strong>
+                            <ul>
+                                <li>Espalhamento natural da luz na fibra</li>
+                                <li>Pequena por&ccedil;&atilde;o retorna &agrave; origem</li>
+                                <li>Proporcional &agrave; pot&ecirc;ncia transmitida</li>
+                                <li>Permite medir atenua��o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Reflex&otilde;es de Fresnel:</strong>
+                            <ul>
+                                <li>Reflex&otilde;es em descontinuidades</li>
+                                <li>Conectores, emendas, quebras</li>
+                                <li>Mudan&ccedil;as de &iacute;ndice de refra&ccedil;&atilde;o</li>
+                                <li>Permite localizar eventos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Medi&ccedil;&atilde;o de tempo:</strong>
+                            <ul>
+                                <li>Pulso de luz enviado</li>
+                                <li>Tempo de retorno medido</li>
+                                <li>Dist&acirc;ncia calculada (c/2n)</li>
+                                <li>Resolu&ccedil;&atilde;o espacial determinada</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Componentes Principais:</h3>
+                    <ul>
+                        <li><strong>Fonte de Luz:</strong>
+                            <ul>
+                                <li>Laser semicondutor</li>
+                                <li>M&uacute;ltiplos comprimentos de onda</li>
+                                <li>Pulsos controlados</li>
+                                <li>Pot&ecirc;ncia ajust&aacute;vel</li>
+                            </ul>
+                        </li>
+                        <li><strong>Detector:</strong>
+                            <ul>
+                                <li>Fotodiodo APD ou PIN</li>
+                                <li>Alta sensibilidade</li>
+                                <li>Baixo ru&iacute;do</li>
+                                <li>Resposta r&aacute;pida</li>
+                            </ul>
+                        </li>
+                        <li><strong>Processamento:</strong>
+                            <ul>
+                                <li>Digitiza&ccedil;&atilde;o do sinal</li>
+                                <li>Promedia&ccedil;&atilde;o de traces</li>
+                                <li>Algoritmos de an&aacute;lise</li>
+                                <li>C&aacute;lculos autom&aacute;ticos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Interface:</strong>
+                            <ul>
+                                <li>Display gr&aacute;fico</li>
+                                <li>Controles de configura&ccedil;&atilde;o</li>
+                                <li>Armazenamento de dados</li>
+                                <li>Conectividade externa</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Par&acirc;metros de Medi&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Faixa Din&acirc;mica:</strong>
+                            <ul>
+                                <li>Diferen&ccedil;a entre sinal e ru&iacute;do</li>
+                                <li>Determina alcance m&aacute;ximo</li>
+                                <li>T&iacute;pico: 30-45 dB</li>
+                                <li>Maior = fibras mais longas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Resolu&ccedil;&atilde;o Espacial:</strong>
+                            <ul>
+                                <li>Menor dist&acirc;ncia entre eventos</li>
+                                <li>Determinada pela largura do pulso</li>
+                                <li>T&iacute;pico: 0,5-5 metros</li>
+                                <li>Trade-off com alcance</li>
+                            </ul>
+                        </li>
+                        <li><strong>Zona Morta:</strong>
+                            <ul>
+                                <li>Regi&atilde;o ap&oacute;s reflex&atilde;o forte</li>
+                                <li>Event dead zone: ~0,5-2m</li>
+                                <li>Attenuation dead zone: ~2-10m</li>
+                                <li>Limita detec&ccedil;&atilde;o de eventos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tipos de OTDR:</h3>
+                    <ul>
+                        <li><strong>Por Aplica&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li><strong>Handheld:</strong> Port&aacute;til, campo</li>
+                                <li><strong>Benchtop:</strong> Laborat&oacute;rio, precis&atilde;o</li>
+                                <li><strong>Rack-mount:</strong> Monitoramento cont&iacute;nuo</li>
+                                <li><strong>Modular:</strong> Sistemas integrados</li>
+                            </ul>
+                        </li>
+                        <li><strong>Por Comprimento de Onda:</strong>
+                            <ul>
+                                <li><strong>850/1300 nm:</strong> Multimodo</li>
+                                <li><strong>1310/1550 nm:</strong> Monomodo</li>
+                                <li><strong>1625/1650 nm:</strong> Fora de banda</li>
+                                <li><strong>Multi-wavelength:</strong> Teste simult&acirc;neo</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Medi&ccedil;&otilde;es Realizadas:</h3>
+                    <ul>
+                        <li><strong>Atenua��o Total:</strong>
+                            <ul>
+                                <li>Perda fim-a-fim</li>
+                                <li>Inclui fibra + eventos</li>
+                                <li>Compara&ccedil;&atilde;o com especifica&ccedil;&otilde;es</li>
+                            </ul>
+                        </li>
+                        <li><strong>Localiza&ccedil;&atilde;o de Eventos:</strong>
+                            <ul>
+                                <li>Emendas e conectores</li>
+                                <li>Quebras e dobras</li>
+                                <li>Dist&acirc;ncia precisa</li>
+                            </ul>
+                        </li>
+                        <li><strong>Perda de Eventos:</strong>
+                            <ul>
+                                <li>Perda individual</li>
+                                <li>Qualidade de emendas</li>
+                                <li>Performance de conectores</li>
+                            </ul>
+                        </li>
+                        <li><strong>Comprimento da Fibra:</strong>
+                            <ul>
+                                <li>Dist&acirc;ncia total</li>
+                                <li>Segmentos individuais</li>
+                                <li>Verifica&ccedil;&atilde;o de instala&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Coeficiente de Atenua��o:</strong>
+                            <ul>
+                                <li>dB/km da fibra</li>
+                                <li>Qualidade do cabo</li>
+                                <li>Compara&ccedil;&atilde;o com padr&otilde;es</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Procedimento de Teste:</h3>
+                    <ol>
+                        <li><strong>Configura&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Sele&ccedil;&atilde;o de comprimento de onda</li>
+                                <li>Ajuste de faixa</li>
+                                <li>Configura&ccedil;&atilde;o de &iacute;ndice de refra&ccedil;&atilde;o</li>
+                                <li>Sele&ccedil;&atilde;o de largura de pulso</li>
+                            </ul>
+                        </li>
+                        <li><strong>Conex&atilde;o:</strong>
+                            <ul>
+                                <li>Limpeza de conectores</li>
+                                <li>Conex&atilde;o do launch cable</li>
+                                <li>Verifica&ccedil;&atilde;o de pot&ecirc;ncia</li>
+                            </ul>
+                        </li>
+                        <li><strong>Aquisi&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>In&iacute;cio da medi&ccedil;&atilde;o</li>
+                                <li>Promedia&ccedil;&atilde;o de traces</li>
+                                <li>Monitoramento de progresso</li>
+                            </ul>
+                        </li>
+                        <li><strong>An&aacute;lise:</strong>
+                            <ul>
+                                <li>Identifica&ccedil;&atilde;o de eventos</li>
+                                <li>C&aacute;lculo de perdas</li>
+                                <li>Verifica&ccedil;&atilde;o de resultados</li>
+                                <li>Gera&ccedil;&atilde;o de relat&oacute;rio</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Interpreta&ccedil;&atilde;o de Traces:</h3>
+                    <ul>
+                        <li><strong>Linha Base:</strong>
+                            <ul>
+                                <li>Declive constante = atenua��o da fibra</li>
+                                <li>Inclina&ccedil;&atilde;o = coeficiente dB/km</li>
+                                <li>Ru&iacute;do no final = limite de detec&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Eventos Refletivos:</strong>
+                            <ul>
+                                <li>Picos para cima = reflex&otilde;es</li>
+                                <li>Conectores, emendas mec&acirc;nicas</li>
+                                <li>Quebras, extremidades</li>
+                            </ul>
+                        </li>
+                        <li><strong>Eventos N&atilde;o-Refletivos:</strong>
+                            <ul>
+                                <li>Quedas no n&iacute;vel = perdas</li>
+                                <li>Emendas por fus&atilde;o</li>
+                                <li>Dobras, macro-curvaturas</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Instala&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Aceita&ccedil;&atilde;o de cabos novos</li>
+                                <li>Certifica&ccedil;&atilde;o de links</li>
+                                <li>Documenta&ccedil;&atilde;o de rede</li>
+                            </ul>
+                        </li>
+                        <li><strong>Manuten&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Localiza&ccedil;&atilde;o de falhas</li>
+                                <li>Diagn&oacute;stico de problemas</li>
+                                <li>Monitoramento preventivo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fabrica&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Controle de qualidade</li>
+                                <li>Caracteriza&ccedil;&atilde;o de produtos</li>
+                                <li>Desenvolvimento de cabos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Zona morta:</strong> Limita detec&ccedil;&atilde;o pr&oacute;xima</li>
+                        <li><strong>Resolu&ccedil;&atilde;o:</strong> Eventos muito pr&oacute;ximos</li>
+                        <li><strong>Sensibilidade:</strong> Perdas muito pequenas</li>
+                        <li><strong>Interpreta&ccedil;&atilde;o:</strong> Requer experi&ecirc;ncia</li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias:</h3>
+                    <ul>
+                        <li>OTDR inteligente com IA</li>
+                        <li>Monitoramento cont&iacute;nuo</li>
+                        <li>Integra&ccedil;&atilde;o com sistemas OSS</li>
+                        <li>Conectividade em nuvem</li>
+                        <li>Interfaces mais intuitivas</li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>OTDR &eacute; ferramenta fundamental para instala&ccedil;&atilde;o, manuten&ccedil;&atilde;o e troubleshooting de redes de fibra &oacute;ptica, sendo essencial para garantir performance e confiabilidade.</p>
+                `
+            },
+            'splitter': {
+                title: 'Splitter (&Oacute;ptico)',
+                description: 'Divisor &oacute;ptico passivo que distribui sinal para m&uacute;ltiplas sa&iacute;das.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Splitter &oacute;ptico &eacute; um dispositivo passivo que divide um sinal &oacute;ptico de entrada em m&uacute;ltiplos sinais de sa&iacute;da, ou combina m&uacute;ltiplos sinais em uma sa&iacute;da, sendo fundamental em redes PON e distribui&ccedil;&atilde;o &oacute;ptica.</p>
+                    
+                    <h3>Princ&iacute;pio de Funcionamento:</h3>
+                    <ul>
+                        <li><strong>Divis&atilde;o de pot&ecirc;ncia:</strong>
+                            <ul>
+                                <li>Pot&ecirc;ncia de entrada dividida</li>
+                                <li>Cada sa&iacute;da recebe fra&ccedil;&atilde;o</li>
+                                <li>Processo passivo (sem energia)</li>
+                                <li>Bidirecional por natureza</li>
+                            </ul>
+                        </li>
+                        <li><strong>Conserva&ccedil;&atilde;o de energia:</strong>
+                            <ul>
+                                <li>Pot&ecirc;ncia total conservada</li>
+                                <li>Perdas por inser&ccedil;&atilde;o</li>
+                                <li>Distribui&ccedil;&atilde;o uniforme ou n&atilde;o</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tipos de Splitters:</h3>
+                    <ul>
+                        <li><strong>Por Tecnologia:</strong>
+                            <ul>
+                                <li><strong>FBT (Fused Biconical Taper):</strong>
+                                    <ul>
+                                        <li>Fibras fundidas e estiradas</li>
+                                        <li>Baixo custo</li>
+                                        <li>Depend&ecirc;ncia de comprimento de onda</li>
+                                        <li>Raz&otilde;es limitadas (1:2, 1:4)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>PLC (Planar Lightwave Circuit):</strong>
+                                    <ul>
+                                        <li>Circuito integrado &oacute;ptico</li>
+                                        <li>Independente de comprimento de onda</li>
+                                        <li>Raz&otilde;es altas (1:64, 1:128)</li>
+                                        <li>Maior custo, melhor performance</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Por Configura&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li><strong>Sim&eacute;trico:</strong> Sa&iacute;das com mesma pot&ecirc;ncia</li>
+                                <li><strong>Assim&eacute;trico:</strong> Sa&iacute;das com pot&ecirc;ncias diferentes</li>
+                                <li><strong>Cascateado:</strong> M&uacute;ltiplos n&iacute;veis</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Raz&otilde;es de Divis&atilde;o Comuns:</h3>
+                    <ul>
+                        <li><strong>1:2</strong> - Perda te&oacute;rica: 3,0 dB</li>
+                        <li><strong>1:4</strong> - Perda te&oacute;rica: 6,0 dB</li>
+                        <li><strong>1:8</strong> - Perda te&oacute;rica: 9,0 dB</li>
+                        <li><strong>1:16</strong> - Perda te&oacute;rica: 12,0 dB</li>
+                        <li><strong>1:32</strong> - Perda te&oacute;rica: 15,0 dB</li>
+                        <li><strong>1:64</strong> - Perda te&oacute;rica: 18,0 dB</li>
+                        <li><strong>1:128</strong> - Perda te&oacute;rica: 21,0 dB</li>
+                    </ul>
+                    
+                    <h3>Especifica&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Perda de Inser&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Perda adicional al&eacute;m da te&oacute;rica</li>
+                                <li>T&iacute;pico: 0,2-0,5 dB extra</li>
+                                <li>Varia com comprimento de onda</li>
+                                <li>Especificada por porta</li>
+                            </ul>
+                        </li>
+                        <li><strong>Uniformidade:</strong>
+                            <ul>
+                                <li>Varia&ccedil;&atilde;o entre portas</li>
+                                <li>T&iacute;pico: �0,5 dB</li>
+                                <li>Importante para balanceamento</li>
+                            </ul>
+                        </li>
+                        <li><strong>Isolamento:</strong>
+                            <ul>
+                                <li>Isolamento entre portas de sa&iacute;da</li>
+                                <li>T&iacute;pico: &gt;55 dB</li>
+                                <li>Evita crosstalk</li>
+                            </ul>
+                        </li>
+                        <li><strong>Perda de Retorno:</strong>
+                            <ul>
+                                <li>Reflex&atilde;o na entrada</li>
+                                <li>T&iacute;pico: &gt;50 dB</li>
+                                <li>Minimiza interfer&ecirc;ncias</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Encapsulamentos:</h3>
+                    <ul>
+                        <li><strong>Bare Fiber:</strong>
+                            <ul>
+                                <li>Apenas fibras nuas</li>
+                                <li>Menor custo</li>
+                                <li>Requer prote&ccedil;&atilde;o externa</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tube Type:</strong>
+                            <ul>
+                                <li>Tubo de a&ccedil;o inoxid&aacute;vel</li>
+                                <li>Prote&ccedil;&atilde;o mec&acirc;nica</li>
+                                <li>Instala&ccedil;&atilde;o em caixas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Box Type:</strong>
+                            <ul>
+                                <li>Caixa pl&aacute;stica ou met&aacute;lica</li>
+                                <li>Conectores integrados</li>
+                                <li>F&aacute;cil instala&ccedil;&atilde;o</li>
+                                <li>Prote&ccedil;&atilde;o completa</li>
+                            </ul>
+                        </li>
+                        <li><strong>Rack Mount:</strong>
+                            <ul>
+                                <li>Montagem em rack 19"</li>
+                                <li>M&uacute;ltiplos splitters</li>
+                                <li>Uso em centrais</li>
+                                <li>Gerenciamento organizado</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es em Redes PON:</h3>
+                    <ul>
+                        <li><strong>Arquitetura Centralizada:</strong>
+                            <ul>
+                                <li>Splitter na central (CO)</li>
+                                <li>Fibras dedicadas para cada ONU</li>
+                                <li>Maior uso de fibra</li>
+                                <li>Melhor controle</li>
+                            </ul>
+                        </li>
+                        <li><strong>Arquitetura Distribu&iacute;da:</strong>
+                            <ul>
+                                <li>Splitters no campo</li>
+                                <li>Fibra compartilhada at&eacute; splitter</li>
+                                <li>Economia de fibra</li>
+                                <li>Flexibilidade de expans&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Arquitetura Cascateada:</strong>
+                            <ul>
+                                <li>M&uacute;ltiplos n&iacute;veis de splitters</li>
+                                <li>1:4 + 1:8 = 1:32 total</li>
+                                <li>Flexibilidade m&aacute;xima</li>
+                                <li>Maior complexidade</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es de Design:</h3>
+                    <ul>
+                        <li><strong>Or&ccedil;amento de Pot&ecirc;ncia:</strong>
+                            <ul>
+                                <li>Pot&ecirc;ncia OLT dispon&iacute;vel</li>
+                                <li>Sensibilidade das ONUs</li>
+                                <li>Margem de sistema</li>
+                                <li>Perdas adicionais</li>
+                            </ul>
+                        </li>
+                        <li><strong>Planejamento de Capacidade:</strong>
+                            <ul>
+                                <li>N&uacute;mero atual de usu&aacute;rios</li>
+                                <li>Crescimento projetado</li>
+                                <li>Densidade populacional</li>
+                                <li>Taxa de penetra&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Localiza&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Acessibilidade para manuten&ccedil;&atilde;o</li>
+                                <li>Prote&ccedil;&atilde;o ambiental</li>
+                                <li>Seguran&ccedil;a f&iacute;sica</li>
+                                <li>Proximidade aos usu&aacute;rios</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Instala&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Prepara&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Limpeza de conectores</li>
+                                <li>Verifica&ccedil;&atilde;o de especifica&ccedil;&otilde;es</li>
+                                <li>Teste de continuidade</li>
+                            </ul>
+                        </li>
+                        <li><strong>Conex&atilde;o:</strong>
+                            <ul>
+                                <li>Identifica&ccedil;&atilde;o de portas</li>
+                                <li>Conex&atilde;o da entrada</li>
+                                <li>Conex&atilde;o das sa&iacute;das</li>
+                                <li>Fixa&ccedil;&atilde;o mec&acirc;nica</li>
+                            </ul>
+                        </li>
+                        <li><strong>Testes:</strong>
+                            <ul>
+                                <li>Medi&ccedil;&atilde;o de pot&ecirc;ncia</li>
+                                <li>Verifica&ccedil;&atilde;o de perdas</li>
+                                <li>Teste de uniformidade</li>
+                                <li>Documenta&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Testes e Medi��es:</h3>
+                    <ul>
+                        <li><strong>Perda de Inser&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Power meter + light source</li>
+                                <li>Medi&ccedil;&atilde;o por porta</li>
+                                <li>M&uacute;ltiplos comprimentos de onda</li>
+                            </ul>
+                        </li>
+                        <li><strong>Uniformidade:</strong>
+                            <ul>
+                                <li>Compara&ccedil;&atilde;o entre portas</li>
+                                <li>C&aacute;lculo de varia&ccedil;&atilde;o</li>
+                                <li>Verifica&ccedil;&atilde;o de especifica&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Perda de Retorno:</strong>
+                            <ul>
+                                <li>OTDR ou reflectometer</li>
+                                <li>Medi&ccedil;&atilde;o na entrada</li>
+                                <li>Verifica&ccedil;&atilde;o de qualidade</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Manuten&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Preventiva:</strong>
+                            <ul>
+                                <li>Inspe&ccedil;&atilde;o visual peri&oacute;dica</li>
+                                <li>Limpeza de conectores</li>
+                                <li>Verifica&ccedil;&atilde;o de fixa&ccedil;&otilde;es</li>
+                                <li>Teste de performance</li>
+                            </ul>
+                        </li>
+                        <li><strong>Corretiva:</strong>
+                            <ul>
+                                <li>Substitui&ccedil;&atilde;o de unidades defeituosas</li>
+                                <li>Reparo de conex&otilde;es</li>
+                                <li>Realinhamento de fibras</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Fatores de Degrada&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Ambientais:</strong>
+                            <ul>
+                                <li>Temperatura extrema</li>
+                                <li>Umidade</li>
+                                <li>Vibra&ccedil;&otilde;es</li>
+                                <li>Corros&atilde;o</li>
+                            </ul>
+                        </li>
+                        <li><strong>Mec&acirc;nicos:</strong>
+                            <ul>
+                                <li>Dobras excessivas</li>
+                                <li>Tens&atilde;o nas fibras</li>
+                                <li>Conectores sujos</li>
+                                <li>Micro-curvaturas</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Sele&ccedil;&atilde;o de Splitters:</h3>
+                    <ul>
+                        <li><strong>Crit&eacute;rios T&eacute;cnicos:</strong>
+                            <ul>
+                                <li>Raz&atilde;o de divis&atilde;o necess&aacute;ria</li>
+                                <li>Comprimentos de onda de opera&ccedil;&atilde;o</li>
+                                <li>Especifica&ccedil;&otilde;es de perda</li>
+                                <li>Tipo de fibra (SM/MM)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Crit&eacute;rios Econ&ocirc;micos:</strong>
+                            <ul>
+                                <li>Custo inicial</li>
+                                <li>Custo de instala&ccedil;&atilde;o</li>
+                                <li>Custo de manuten&ccedil;&atilde;o</li>
+                                <li>Vida &uacute;til esperada</li>
+                            </ul>
+                        </li>
+                        <li><strong>Crit&eacute;rios Operacionais:</strong>
+                            <ul>
+                                <li>Facilidade de instala&ccedil;&atilde;o</li>
+                                <li>Acessibilidade para manuten&ccedil;&atilde;o</li>
+                                <li>Compatibilidade com equipamentos</li>
+                                <li>Disponibilidade de fornecedores</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias Futuras:</h3>
+                    <ul>
+                        <li><strong>Splitters inteligentes:</strong> Monitoramento integrado</li>
+                        <li><strong>Maior integra&ccedil;&atilde;o:</strong> M&uacute;ltiplas fun&ccedil;&otilde;es</li>
+                        <li><strong>Raz&otilde;es maiores:</strong> 1:256, 1:512</li>
+                        <li><strong>Banda larga:</strong> Opera&ccedil;&atilde;o multi-banda</li>
+                        <li><strong>Miniaturiza&ccedil;&atilde;o:</strong> Tamanhos menores</li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>Splitters s&atilde;o componentes fundamentais em redes PON, determinando a arquitetura da rede, capacidade de atendimento e viabilidade econ&ocirc;mica do sistema FTTH.</p>
+                `
+            }
+        };
+
+        // Fun��o para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da p�gina
+            }
+        }
+
+        // Fun��o para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da p�gina
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar apar�ncia dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body {
+                padding: 20px;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>
+                                  

@@ -1,0 +1,1945 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se&ccedil;&atilde;o 5 - Comunica&ccedil;&atilde;o e Transmiss&atilde;o</title>
+    <link rel="stylesheet" href="styles.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.intro {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.intro h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+.menu-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.menu-item p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.term-count {
+    background: #667eea;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+footer {
+    background: rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Estilos para páginas de seção */
+.section-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.section-header h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.term-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.term-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.term-name {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.term-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+/* Estilos para galeria de imagens */
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.modal-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-image:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para container de vídeo */
+.video-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border-left: 4px solid #ff4444;
+}
+
+.video-link {
+    color: #ff4444;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+.video-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Responsividade para imagens */
+@media (max-width: 768px) {
+    .image-gallery {
+        justify-content: center;
+    }
+
+    .modal-image {
+        width: 120px;
+        height: 80px;
+    }
+}
+  </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>&#128225; Comunica&ccedil;&atilde;o e Transmiss&atilde;o</h1>
+            <p class="subtitle">Se&ccedil;&atilde;o 5 - Protocolos e Tecnologias de Transmiss&atilde;o</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">&larr; Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Tecnologias de Comunica&ccedil;&atilde;o e Transmiss&atilde;o de Dados</h2>
+            <p>Esta se&ccedil;&atilde;o aborda os conceitos fundamentais sobre como os dados s&atilde;o transmitidos em redes, incluindo tipos de comunica&ccedil;&atilde;o, protocolos de transmiss&atilde;o e tecnologias que garantem a qualidade e efici&ecirc;ncia da transfer&ecirc;ncia de informa&ccedil;&otilde;es.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('canal-transmissao')">
+                <div class="term-name">Canal de transmiss&atilde;o</div>
+                <div class="term-description">Meio f&iacute;sico ou l&oacute;gico por onde os dados trafegam entre origem e destino.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('comunicacao-simplex')">
+                <div class="term-name">Comunica&ccedil;&atilde;o Simplex</div>
+                <div class="term-description">Transmiss&atilde;o unidirecional onde dados fluem apenas em uma dire&ccedil;&atilde;o.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('comunicacao-duplex')">
+                <div class="term-name">Comunica&ccedil;&atilde;o Duplex</div>
+                <div class="term-description">Transmiss&atilde;o bidirecional onde dados podem fluir em ambas as dire&ccedil;&otilde;es.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('comunicacao-full-duplex')">
+                <div class="term-name">Comunica&ccedil;&atilde;o Full duplex</div>
+                <div class="term-description">Transmiss&atilde;o bidirecional simult&acirc;nea em ambas as dire&ccedil;&otilde;es.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('transmissao-half-duplex')">
+                <div class="term-name">Transmiss&atilde;o Half Duplex</div>
+                <div class="term-description">Transmiss&atilde;o bidirecional alternada, uma dire&ccedil;&atilde;o por vez.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ethernet')">
+                <div class="term-name">Ethernet</div>
+                <div class="term-description">Padr&atilde;o de rede local mais utilizado mundialmente para conex&otilde;es cabeadas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('fast-ethernet')">
+                <div class="term-name">Fast Ethernet</div>
+                <div class="term-description">Evolu&ccedil;&atilde;o do Ethernet com velocidade de 100 Mbps.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('fddi')">
+                <div class="term-name">FDDI</div>
+                <div class="term-description">Fiber Distributed Data Interface - Padr&atilde;o de rede em anel com fibra &oacute;ptica.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('largura-banda')">
+                <div class="term-name">Largura de banda</div>
+                <div class="term-description">Capacidade m&aacute;xima de transmiss&atilde;o de dados de um canal de comunica&ccedil;&atilde;o.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('banda-larga')">
+                <div class="term-name">Banda Larga</div>
+                <div class="term-description">Conex&atilde;o de internet de alta velocidade e sempre ativa.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('atenuacao')">
+                <div class="term-name">Atenua&ccedil;&atilde;o</div>
+                <div class="term-description">Redu&ccedil;&atilde;o da intensidade do sinal durante a transmiss&atilde;o.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('interferencia')">
+                <div class="term-name">Interfer&ecirc;ncia</div>
+                <div class="term-description">Ru&iacute;do ou sinal indesejado que afeta a qualidade da transmiss&atilde;o.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('db')">
+                <div class="term-name">dB</div>
+                <div class="term-description">Decibel - Unidade de medida para express&atilde;o de pot&ecirc;ncia e atenua��o.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('potencia')">
+                <div class="term-name">Pot&ecirc;ncia</div>
+                <div class="term-description">Energia por unidade de tempo, fundamental em transmiss&otilde;es de RF.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('power-meter')">
+                <div class="term-name">Power Meter</div>
+                <div class="term-description">Equipamento para medir pot&ecirc;ncia de sinais &oacute;pticos ou el&eacute;tricos.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Conte&uacute;do ser&aacute; inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - Gloss&aacute;rio de Redes de Computadores | Se&ccedil;&atilde;o 5</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'canal-transmissao': {
+                title: 'Canal de Transmiss&atilde;o',
+                description: 'Meio f&iacute;sico ou l&oacute;gico por onde os dados trafegam entre origem e destino.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Canal de transmiss&atilde;o &eacute; o meio ou caminho atrav&eacute;s do qual os sinais de dados s&atilde;o enviados de um ponto a outro em um sistema de comunica&ccedil;&atilde;o.</p>
+                    
+                    <h3>Tipos de Canais:</h3>
+                    <ul>
+                        <li><strong>F&iacute;sicos:</strong> Cabos, fibras, ondas de r&aacute;dio</li>
+                        <li><strong>L&oacute;gicos:</strong> Canais virtuais, t&uacute;neis VPN</li>
+                        <li><strong>Guiados:</strong> Cabos UTP, coaxial, fibra &oacute;ptica</li>
+                        <li><strong>N&atilde;o-guiados:</strong> Ondas de r&aacute;dio, micro-ondas, infravermelho</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas Principais:</h3>
+                    <ul>
+                        <li><strong>Largura de banda:</strong> Capacidade de transmiss&atilde;o</li>
+                        <li><strong>Atenua��o:</strong> Perda de sinal ao longo da dist&acirc;ncia</li>
+                        <li><strong>Ru&iacute;do:</strong> Interfer&ecirc;ncias que afetam o sinal</li>
+                        <li><strong>Distor&ccedil;&atilde;o:</strong> Altera&ccedil;&atilde;o da forma do sinal</li>
+                        <li><strong>Atraso:</strong> Tempo de propaga&ccedil;&atilde;o do sinal</li>
+                    </ul>
+                    
+                    <h3>Fatores que Afetam a Qualidade:</h3>
+                    <ul>
+                        <li><strong>Dist&acirc;ncia:</strong> Maior dist&acirc;ncia = maior atenua��o</li>
+                        <li><strong>Frequ&ecirc;ncia:</strong> Diferentes frequ&ecirc;ncias t&ecirc;m comportamentos distintos</li>
+                        <li><strong>Ambiente:</strong> Condi&ccedil;&otilde;es ambientais afetam a transmiss&atilde;o</li>
+                        <li><strong>Interfer&ecirc;ncias:</strong> Fontes externas de ru&iacute;do</li>
+                    </ul>
+                    
+                    <h3>Capacidade do Canal:</h3>
+                    <ul>
+                        <li><strong>Taxa de bits:</strong> Bits por segundo que podem ser transmitidos</li>
+                        <li><strong>Teorema de Shannon:</strong> Capacidade m&aacute;xima te&oacute;rica</li>
+                        <li><strong>Efici&ecirc;ncia:</strong> Utiliza&ccedil;&atilde;o real vs te&oacute;rica</li>
+                    </ul>
+                    
+                    <h3>Exemplos Pr&aacute;ticos:</h3>
+                    <ul>
+                        <li>Cabo Ethernet entre computador e switch</li>
+                        <li>Sinal Wi-Fi entre dispositivo e access point</li>
+                        <li>Fibra &oacute;ptica entre cidades</li>
+                        <li>Canal de sat&eacute;lite para comunica&ccedil;&atilde;o global</li>
+                    </ul>
+                    
+                    <h3>Otimiza&ccedil;&atilde;o:</h3>
+                    <p>A escolha adequada do canal e sua configura&ccedil;&atilde;o s&atilde;o fundamentais para garantir comunica&ccedil;&atilde;o eficiente e confi&aacute;vel.</p>
+                `
+            },
+            'comunicacao-simplex': {
+                title: 'Comunica&ccedil;&atilde;o Simplex',
+                description: 'Transmiss&atilde;o unidirecional onde dados fluem apenas em uma dire&ccedil;&atilde;o.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Comunica&ccedil;&atilde;o simplex &eacute; um modo de transmiss&atilde;o onde os dados fluem apenas em uma dire&ccedil;&atilde;o, do transmissor para o receptor, sem possibilidade de resposta ou confirma&ccedil;&atilde;o.</p>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>Unidirecional:</strong> Fluxo de dados em apenas uma dire&ccedil;&atilde;o</li>
+                        <li><strong>Sem feedback:</strong> Receptor n&atilde;o pode responder</li>
+                        <li><strong>Simples:</strong> Implementa&ccedil;&atilde;o mais f&aacute;cil</li>
+                        <li><strong>Econ&ocirc;mico:</strong> Menor custo de infraestrutura</li>
+                        <li><strong>Limitado:</strong> N&atilde;o permite intera&ccedil;&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Simplicidade:</strong> F&aacute;cil de implementar e manter</li>
+                        <li><strong>Custo baixo:</strong> Menor complexidade de equipamentos</li>
+                        <li><strong>Efici&ecirc;ncia:</strong> Toda largura de banda para uma dire&ccedil;&atilde;o</li>
+                        <li><strong>Velocidade:</strong> N&atilde;o h&aacute; overhead de controle</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Sem confirma&ccedil;&atilde;o:</strong> N&atilde;o sabe se dados chegaram</li>
+                        <li><strong>Sem controle de erro:</strong> N&atilde;o pode corrigir problemas</li>
+                        <li><strong>Limitada intera&ccedil;&atilde;o:</strong> Comunica&ccedil;&atilde;o apenas em um sentido</li>
+                        <li><strong>Sem adapta&ccedil;&atilde;o:</strong> N&atilde;o se ajusta &agrave;s condi&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Exemplos Pr&aacute;ticos:</h3>
+                    <ul>
+                        <li><strong>Televis&atilde;o:</strong> Esta&ccedil;&atilde;o transmite, TV recebe</li>
+                        <li><strong>R&aacute;dio:</strong> Emissora envia, r&aacute;dio recebe</li>
+                        <li><strong>Pager:</strong> Central envia mensagens</li>
+                        <li><strong>Monitores:</strong> Computador envia v&iacute;deo para tela</li>
+                        <li><strong>Impressoras:</strong> Computador envia dados para impress&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es em Redes:</h3>
+                    <ul>
+                        <li>Streaming de v&iacute;deo ao vivo</li>
+                        <li>Distribui&ccedil;&atilde;o de conte&uacute;do</li>
+                        <li>Sistemas de monitoramento</li>
+                        <li>Backup de dados</li>
+                    </ul>
+                    
+                    <h3>Considera&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Confiabilidade:</strong> Deve ser muito alta no transmissor</li>
+                        <li><strong>Qualidade do sinal:</strong> Importante para recep&ccedil;&atilde;o adequada</li>
+                        <li><strong>Sincroniza&ccedil;&atilde;o:</strong> Receptor deve estar sincronizado</li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o:</h3>
+                    <p>Muitos sistemas simplex evolu&iacute;ram para duplex para permitir intera&ccedil;&atilde;o e controle de qualidade.</p>
+                `
+            },
+            'comunicacao-duplex': {
+                title: 'Comunica&ccedil;&atilde;o Duplex',
+                description: 'Transmiss&atilde;o bidirecional onde dados podem fluir em ambas as dire&ccedil;&otilde;es.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Comunica&ccedil;&atilde;o duplex permite transmiss&atilde;o de dados em ambas as dire&ccedil;&otilde;es entre dois dispositivos, possibilitando intera&ccedil;&atilde;o e troca de informa&ccedil;&otilde;es bidirecional.</p>
+                    
+                    <h3>Tipos de Duplex:</h3>
+                    <ul>
+                        <li><strong>Half-Duplex:</strong> Uma dire&ccedil;&atilde;o por vez</li>
+                        <li><strong>Full-Duplex:</strong> Ambas dire&ccedil;&otilde;es simultaneamente</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>Bidirecional:</strong> Fluxo de dados em ambas dire&ccedil;&otilde;es</li>
+                        <li><strong>Interativo:</strong> Permite di&aacute;logo entre dispositivos</li>
+                        <li><strong>Feedback:</strong> Confirma&ccedil;&otilde;es e respostas poss&iacute;veis</li>
+                        <li><strong>Controle:</strong> Mecanismos de controle de fluxo e erro</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Intera&ccedil;&atilde;o:</strong> Comunica&ccedil;&atilde;o bidirecional</li>
+                        <li><strong>Confirma&ccedil;&atilde;o:</strong> Verifica&ccedil;&atilde;o de recebimento</li>
+                        <li><strong>Controle de erro:</strong> Detec&ccedil;&atilde;o e corre&ccedil;&atilde;o</li>
+                        <li><strong>Adapta&ccedil;&atilde;o:</strong> Ajuste din&acirc;mico &agrave;s condi&ccedil;&otilde;es</li>
+                        <li><strong>Efici&ecirc;ncia:</strong> Otimiza&ccedil;&atilde;o do uso do canal</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Complexidade:</strong> Mais complexo de implementar</li>
+                        <li><strong>Custo:</strong> Equipamentos mais caros</li>
+                        <li><strong>Overhead:</strong> Protocolos de controle consomem largura de banda</li>
+                        <li><strong>Lat&ecirc;ncia:</strong> Tempo adicional para confirma&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Exemplos de Half-Duplex:</h3>
+                    <ul>
+                        <li><strong>Walkie-talkie:</strong> Fala um por vez</li>
+                        <li><strong>Hubs Ethernet:</strong> Colis&otilde;es impedem transmiss&atilde;o simult&acirc;nea</li>
+                        <li><strong>Modems antigos:</strong> Alternavam entre envio e recebimento</li>
+                    </ul>
+                    
+                    <h3>Exemplos de Full-Duplex:</h3>
+                    <ul>
+                        <li><strong>Telefone:</strong> Ambos falam simultaneamente</li>
+                        <li><strong>Switches Ethernet:</strong> Transmiss&atilde;o simult&acirc;nea</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> Fibras separadas para cada dire&ccedil;&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Implementa&ccedil;&atilde;o T&eacute;cnica:</h3>
+                    <ul>
+                        <li><strong>Canais separados:</strong> Fios ou frequ&ecirc;ncias diferentes</li>
+                        <li><strong>Multiplexa��o:</strong> Divis&atilde;o de tempo ou frequ&ecirc;ncia</li>
+                        <li><strong>Protocolos:</strong> Regras para coordenar transmiss&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es Modernas:</h3>
+                    <p>A maioria das redes modernas utiliza comunica&ccedil;&atilde;o full-duplex para maximizar efici&ecirc;ncia e performance.</p>
+                `
+            },
+            'comunicacao-full-duplex': {
+                title: 'Comunica&ccedil;&atilde;o Full Duplex',
+                description: 'Transmiss&atilde;o bidirecional simult&acirc;nea em ambas as dire&ccedil;&otilde;es.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Full duplex permite transmiss&atilde;o simult&acirc;nea de dados em ambas as dire&ccedil;&otilde;es, maximizando a efici&ecirc;ncia do canal de comunica&ccedil;&atilde;o.</p>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>Simult&acirc;neo:</strong> Transmiss&atilde;o e recep&ccedil;&atilde;o ao mesmo tempo</li>
+                        <li><strong>Bidirecional:</strong> Fluxo em ambas dire&ccedil;&otilde;es</li>
+                        <li><strong>Eficiente:</strong> Uso m&aacute;ximo da largura de banda</li>
+                        <li><strong>R&aacute;pido:</strong> N&atilde;o h&aacute; espera para alternar dire&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Implementa&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Canais f&iacute;sicos separados:</strong>
+                            <ul>
+                                <li>Pares de fios diferentes (UTP)</li>
+                                <li>Fibras separadas para TX/RX</li>
+                                <li>Faixas de frequ&ecirc;ncia distintas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Separa&ccedil;&atilde;o por frequ&ecirc;ncia:</strong>
+                            <ul>
+                                <li>FDM (Frequency Division Multiplexing)</li>
+                                <li>Diferentes portadoras</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cancelamento de eco:</strong>
+                            <ul>
+                                <li>Algoritmos para remover sinal pr&oacute;prio</li>
+                                <li>Usado em modems e telefonia</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>M&aacute;xima efici&ecirc;ncia:</strong> Uso total da largura de banda</li>
+                        <li><strong>Baixa lat&ecirc;ncia:</strong> Resposta imediata</li>
+                        <li><strong>Alto throughput:</strong> Dobra a capacidade efetiva</li>
+                        <li><strong>Melhor intera&ccedil;&atilde;o:</strong> Comunica&ccedil;&atilde;o natural</li>
+                    </ul>
+                    
+                    <h3>Exemplos Pr&aacute;ticos:</h3>
+                    <ul>
+                        <li><strong>Ethernet moderna:</strong> Switches full-duplex</li>
+                        <li><strong>Telefonia:</strong> Conversa&ccedil;&atilde;o simult&acirc;nea</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> Fibras TX/RX separadas</li>
+                        <li><strong>USB:</strong> Linhas de dados separadas</li>
+                        <li><strong>Wi-Fi moderno:</strong> MIMO full-duplex</li>
+                    </ul>
+                    
+                    <h3>Ethernet Full-Duplex:</h3>
+                    <ul>
+                        <li><strong>Pares 1-2:</strong> Transmiss&atilde;o</li>
+                        <li><strong>Pares 3-6:</strong> Recep&ccedil;&atilde;o</li>
+                        <li><strong>Sem colis&otilde;es:</strong> N&atilde;o h&aacute; CSMA/CD</li>
+                        <li><strong>Switches:</strong> Cada porta &eacute; um dom&iacute;nio de colis&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Requisitos T&eacute;cnicos:</h3>
+                    <ul>
+                        <li><strong>Isolamento:</strong> Separa&ccedil;&atilde;o adequada entre TX/RX</li>
+                        <li><strong>Sincroniza&ccedil;&atilde;o:</strong> Coordena&ccedil;&atilde;o de sinais</li>
+                        <li><strong>Controle de pot&ecirc;ncia:</strong> Evitar satura&ccedil;&atilde;o</li>
+                        <li><strong>Filtragem:</strong> Elimina&ccedil;&atilde;o de interfer&ecirc;ncias</li>
+                    </ul>
+                    
+                    <h3>Desafios:</h3>
+                    <ul>
+                        <li>Maior complexidade de hardware</li>
+                        <li>Necessidade de isolamento adequado</li>
+                        <li>Controle de eco e interfer&ecirc;ncias</li>
+                        <li>Custo mais elevado</li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias:</h3>
+                    <p>Full-duplex &eacute; o padr&atilde;o em redes modernas, sendo essencial para aplica��es de alta performance.</p>
+                `
+            },
+            'transmissao-half-duplex': {
+                title: 'Transmiss&atilde;o Half Duplex',
+                description: 'Transmiss&atilde;o bidirecional alternada, uma dire&ccedil;&atilde;o por vez.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Half duplex permite transmiss&atilde;o bidirecional, mas apenas uma dire&ccedil;&atilde;o por vez. Os dispositivos devem alternar entre envio e recebimento de dados.</p>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>Alternado:</strong> Uma dire&ccedil;&atilde;o por vez</li>
+                        <li><strong>Bidirecional:</strong> Ambas dire&ccedil;&otilde;es poss&iacute;veis</li>
+                        <li><strong>Compartilhado:</strong> Mesmo canal para ambas dire&ccedil;&otilde;es</li>
+                        <li><strong>Coordenado:</strong> Necessita coordena&ccedil;&atilde;o entre dispositivos</li>
+                    </ul>
+                    
+                    <h3>Funcionamento:</h3>
+                    <ol>
+                        <li><strong>Solicita&ccedil;&atilde;o:</strong> Dispositivo pede permiss&atilde;o para transmitir</li>
+                        <li><strong>Autoriza&ccedil;&atilde;o:</strong> Canal liberado para transmiss&atilde;o</li>
+                        <li><strong>Transmiss&atilde;o:</strong> Dados enviados em uma dire&ccedil;&atilde;o</li>
+                        <li><strong>Libera&ccedil;&atilde;o:</strong> Canal liberado ap&oacute;s transmiss&atilde;o</li>
+                        <li><strong>Altern&acirc;ncia:</strong> Outro dispositivo pode transmitir</li>
+                    </ol>
+                    
+                    <h3>M&eacute;todos de Controle:</h3>
+                    <ul>
+                        <li><strong>Polling:</strong> Controlador pergunta quem quer transmitir</li>
+                        <li><strong>Token passing:</strong> Token d&aacute; direito de transmiss&atilde;o</li>
+                        <li><strong>CSMA/CD:</strong> Escuta antes de transmitir</li>
+                        <li><strong>Contention:</strong> Competi&ccedil;&atilde;o pelo canal</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Simplicidade:</strong> Mais simples que full-duplex</li>
+                        <li><strong>Custo:</strong> Menor custo de implementa&ccedil;&atilde;o</li>
+                        <li><strong>Compatibilidade:</strong> Funciona com canais simples</li>
+                        <li><strong>Flexibilidade:</strong> Adapta-se a diferentes necessidades</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Efici&ecirc;ncia reduzida:</strong> Tempo perdido na altern&acirc;ncia</li>
+                        <li><strong>Lat&ecirc;ncia:</strong> Atraso para mudar dire&ccedil;&atilde;o</li>
+                        <li><strong>Colis&otilde;es:</strong> Poss&iacute;veis conflitos de acesso</li>
+                        <li><strong>Overhead:</strong> Protocolos de coordena&ccedil;&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Exemplos Pr&aacute;ticos:</h3>
+                    <ul>
+                        <li><strong>Walkie-talkie:</strong> Aperta bot&atilde;o para falar</li>
+                        <li><strong>Hubs Ethernet:</strong> Dom&iacute;nio de colis&atilde;o compartilhado</li>
+                        <li><strong>Wi-Fi b&aacute;sico:</strong> Acesso compartilhado ao meio</li>
+                        <li><strong>RS-485:</strong> Comunica&ccedil;&atilde;o serial multidrop</li>
+                    </ul>
+                    
+                    <h3>Ethernet Half-Duplex:</h3>
+                    <ul>
+                        <li><strong>CSMA/CD:</strong> Carrier Sense Multiple Access with Collision Detection</li>
+                        <li><strong>Backoff:</strong> Espera aleat&oacute;ria ap&oacute;s colis&atilde;o</li>
+                        <li><strong>Jam signal:</strong> Sinal de colis&atilde;o</li>
+                        <li><strong>Slot time:</strong> Tempo m&iacute;nimo de transmiss&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Protocolos de Acesso:</h3>
+                    <ul>
+                        <li><strong>ALOHA:</strong> Transmite quando quiser</li>
+                        <li><strong>Slotted ALOHA:</strong> Transmiss&atilde;o em slots</li>
+                        <li><strong>CSMA:</strong> Escuta antes de transmitir</li>
+                        <li><strong>CSMA/CA:</strong> Evita colis&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es Atuais:</h3>
+                    <p>Ainda usado em sistemas de r&aacute;dio, redes sem fio b&aacute;sicas e comunica&ccedil;&otilde;es seriais industriais.</p>
+                `
+            },
+            'ethernet': {
+                title: 'Ethernet',
+                description: 'Padr&atilde;o de rede local mais utilizado mundialmente para conex&otilde;es cabeadas.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Ethernet &eacute; uma fam&iacute;lia de tecnologias de rede para LANs, padronizada pelo IEEE 802.3, que define como os dados s&atilde;o transmitidos em redes cabeadas.</p>
+                    
+                    <h3>Hist&oacute;rico:</h3>
+                    <ul>
+                        <li><strong>1973:</strong> Inventado na Xerox por Bob Metcalfe</li>
+                        <li><strong>1980:</strong> Padr&atilde;o DIX (Digital, Intel, Xerox)</li>
+                        <li><strong>1983:</strong> IEEE 802.3 padronizado</li>
+                        <li><strong>1990s:</strong> Fast Ethernet (100 Mbps)</li>
+                        <li><strong>1998:</strong> Gigabit Ethernet</li>
+                        <li><strong>2002:</strong> 10 Gigabit Ethernet</li>
+                    </ul>
+                    
+                    <h3>Velocidades Padr&atilde;o:</h3>
+                    <ul>
+                        <li><strong>10BASE-T:</strong> 10 Mbps sobre UTP</li>
+                        <li><strong>100BASE-TX:</strong> 100 Mbps (Fast Ethernet)</li>
+                        <li><strong>1000BASE-T:</strong> 1 Gbps (Gigabit Ethernet)</li>
+                        <li><strong>10GBASE-T:</strong> 10 Gbps</li>
+                        <li><strong>25/40/100 GbE:</strong> Data center</li>
+                    </ul>
+                    
+                    <h3>Caracter&iacute;sticas T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>CSMA/CD:</strong> Controle de acesso (half-duplex)</li>
+                        <li><strong>Frame format:</strong> Estrutura padronizada</li>
+                        <li><strong>Endere&ccedil;amento MAC:</strong> 48 bits &uacute;nicos</li>
+                        <li><strong>MTU:</strong> 1500 bytes padr&atilde;o</li>
+                        <li><strong>CRC:</strong> Detec&ccedil;&atilde;o de erros</li>
+                    </ul>
+                    
+                    <h3>Estrutura do Frame:</h3>
+                    <ul>
+                        <li><strong>Pre&acirc;mbulo:</strong> 7 bytes de sincroniza&ccedil;&atilde;o</li>
+                        <li><strong>SFD:</strong> Start Frame Delimiter (1 byte)</li>
+                        <li><strong>Destino:</strong> Endere&ccedil;o MAC destino (6 bytes)</li>
+                        <li><strong>Origem:</strong> Endere&ccedil;o MAC origem (6 bytes)</li>
+                        <li><strong>Tipo/Tamanho:</strong> EtherType ou Length (2 bytes)</li>
+                        <li><strong>Dados:</strong> 46-1500 bytes</li>
+                        <li><strong>FCS:</strong> Frame Check Sequence (4 bytes)</li>
+                    </ul>
+                    
+                    <h3>Topologias:</h3>
+                    <ul>
+                        <li><strong>Bus:</strong> Ethernet original (obsoleto)</li>
+                        <li><strong>Estrela:</strong> Padr&atilde;o atual com switches</li>
+                        <li><strong>Ponto-a-ponto:</strong> Conex&otilde;es diretas</li>
+                    </ul>
+                    
+                    <h3>Evolu&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Hubs &#8594; Switches:</strong> Elimina&ccedil;&atilde;o de colis&otilde;es</li>
+                        <li><strong>Half &#8594; Full duplex:</strong> Dobrou capacidade</li>
+                        <li><strong>Coaxial &#8594; UTP:</strong> Facilidade de instala&ccedil;&atilde;o</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> Longas dist&acirc;ncias e alta velocidade</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Simplicidade:</strong> F&aacute;cil de implementar</li>
+                        <li><strong>Compatibilidade:</strong> Padr&atilde;o universal</li>
+                        <li><strong>Escalabilidade:</strong> V&aacute;rias velocidades</li>
+                        <li><strong>Custo-benef&iacute;cio:</strong> Tecnologia madura</li>
+                        <li><strong>Confiabilidade:</strong> Tecnologia comprovada</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li>Redes locais corporativas</li>
+                        <li>Conex&otilde;es residenciais</li>
+                        <li>Data centers</li>
+                        <li>Backbone de Internet</li>
+                        <li>Automa&ccedil;&atilde;o industrial</li>
+                    </ul>
+                `
+            },
+            'fast-ethernet': {
+                title: 'Fast Ethernet',
+                description: 'Evolu&ccedil;&atilde;o do Ethernet com velocidade de 100 Mbps.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Fast Ethernet &eacute; a evolu&ccedil;&atilde;o do Ethernet original, oferecendo velocidade de 100 Mbps, definido pelo padr&atilde;o IEEE 802.3u em 1995.</p>
+                    
+                    <h3>Especifica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> 100 Mbps</li>
+                        <li><strong>Padr&atilde;o:</strong> IEEE 802.3u</li>
+                        <li><strong>Compatibilidade:</strong> Retrocompat&iacute;vel com 10 Mbps</li>
+                        <li><strong>Auto-negocia&ccedil;&atilde;o:</strong> Detecta velocidade automaticamente</li>
+                    </ul>
+                    
+                    <h3>Variantes Principais:</h3>
+                    <ul>
+                        <li><strong>100BASE-TX:</strong>
+                            <ul>
+                                <li>Cabo UTP Cat5 ou superior</li>
+                                <li>2 pares de fios</li>
+                                <li>Dist&acirc;ncia: 100 metros</li>
+                                <li>Mais comum</li>
+                            </ul>
+                        </li>
+                        <li><strong>100BASE-FX:</strong>
+                            <ul>
+                                <li>Fibra &oacute;ptica multimodo</li>
+                                <li>Dist&acirc;ncia: 2 km</li>
+                                <li>Imune a interfer&ecirc;ncias</li>
+                            </ul>
+                        </li>
+                        <li><strong>100BASE-T4:</strong>
+                            <ul>
+                                <li>4 pares de fios Cat3</li>
+                                <li>Obsoleto</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Melhorias sobre 10 Mbps:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> 10x mais r&aacute;pido</li>
+                        <li><strong>Efici&ecirc;ncia:</strong> Melhor utiliza&ccedil;&atilde;o da rede</li>
+                        <li><strong>Auto-negocia&ccedil;&atilde;o:</strong> Configura&ccedil;&atilde;o autom&aacute;tica</li>
+                        <li><strong>Compatibilidade:</strong> Funciona com equipamentos antigos</li>
+                    </ul>
+                    
+                    <h3>Auto-Negocia&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Detec&ccedil;&atilde;o autom&aacute;tica:</strong> Velocidade e duplex</li>
+                        <li><strong>Prioridade:</strong> 100 Full > 100 Half > 10 Full > 10 Half</li>
+                        <li><strong>Fallback:</strong> Usa menor denominador comum</li>
+                        <li><strong>Link pulses:</strong> Sinais de negocia&ccedil;&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Requisitos T&eacute;cnicos:</h3>
+                    <ul>
+                        <li><strong>Cabo:</strong> Cat5 m&iacute;nimo para UTP</li>
+                        <li><strong>Conectores:</strong> RJ45 padr&atilde;o</li>
+                        <li><strong>Equipamentos:</strong> NICs e switches compat&iacute;veis</li>
+                        <li><strong>Dist&acirc;ncia:</strong> M&aacute;ximo 100m para UTP</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Performance:</strong> 10x mais r&aacute;pido que Ethernet</li>
+                        <li><strong>Compatibilidade:</strong> Funciona com infraestrutura existente</li>
+                        <li><strong>Custo:</strong> Upgrade econ&ocirc;mico</li>
+                        <li><strong>Facilidade:</strong> Instala&ccedil;&atilde;o simples</li>
+                    </ul>
+                    
+                    <h3>Limita&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Cabo:</strong> Requer Cat5 m&iacute;nimo</li>
+                        <li><strong>Dist&acirc;ncia:</strong> Mesmas limita&ccedil;&otilde;es do Ethernet</li>
+                                               <li><strong>Compartilhamento:</strong> Em hubs, largura de banda &eacute; compartilhada</li>
+                        <li><strong>Colis&otilde;es:</strong> Ainda existem em topologia half-duplex</li>
+                    </ul>
+                    
+                    <h3>Migra&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Gradual:</strong> Substitui&ccedil;&atilde;o progressiva de equipamentos</li>
+                        <li><strong>Mista:</strong> Redes 10/100 Mbps convivendo</li>
+                        <li><strong>Switches:</strong> Elimina&ccedil;&atilde;o de hubs</li>
+                        <li><strong>Cabeamento:</strong> Upgrade para Cat5e</li>
+                    </ul>
+                    
+                    <h3>Status Atual:</h3>
+                    <p>Ainda amplamente usado, especialmente em dispositivos que n&atilde;o precisam de Gigabit, como IoT, c&acirc;meras IP e equipamentos industriais.</p>
+                `
+            },
+            'fddi': {
+                title: 'FDDI (Fiber Distributed Data Interface)',
+                description: 'Fiber Distributed Data Interface - Padr&atilde;o de rede em anel com fibra &oacute;ptica.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>FDDI &eacute; um padr&atilde;o de rede de alta velocidade que utiliza fibra &oacute;ptica em topologia de anel duplo, oferecendo 100 Mbps e alta confiabilidade.</p>
+                    
+                    <h3>Caracter&iacute;sticas Principais:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> 100 Mbps</li>
+                        <li><strong>Meio:</strong> Fibra &oacute;ptica multimodo</li>
+                        <li><strong>Topologia:</strong> Anel duplo contra-rotativo</li>
+                        <li><strong>Dist&acirc;ncia:</strong> At&eacute; 200 km de per&iacute;metro</li>
+                        <li><strong>N&oacute;s:</strong> At&eacute; 500 esta&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Arquitetura de Anel Duplo:</h3>
+                    <ul>
+                        <li><strong>Anel prim&aacute;rio:</strong> Tr&aacute;fego normal</li>
+                        <li><strong>Anel secund&aacute;rio:</strong> Backup e redund&acirc;ncia</li>
+                        <li><strong>Contra-rotativo:</strong> Dire&ccedil;&otilde;es opostas</li>
+                        <li><strong>Auto-cura:</strong> Recupera&ccedil;&atilde;o autom&aacute;tica de falhas</li>
+                    </ul>
+                    
+                    <h3>Tipos de Esta&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>DAS (Dual Attachment Station):</strong>
+                            <ul>
+                                <li>Conecta aos dois an&eacute;is</li>
+                                <li>Pode participar da recupera&ccedil;&atilde;o</li>
+                                <li>Mais confi&aacute;vel</li>
+                            </ul>
+                        </li>
+                        <li><strong>SAS (Single Attachment Station):</strong>
+                            <ul>
+                                <li>Conecta apenas ao anel prim&aacute;rio</li>
+                                <li>Atrav&eacute;s de concentrador</li>
+                                <li>Mais econ&ocirc;mica</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Protocolo de Acesso:</h3>
+                    <ul>
+                        <li><strong>Token passing:</strong> Controle de acesso determin&iacute;stico</li>
+                        <li><strong>Token rotation time:</strong> Tempo m&aacute;ximo de circula&ccedil;&atilde;o</li>
+                        <li><strong>Prioridades:</strong> Tr&aacute;fego s&iacute;ncrono e ass&iacute;ncrono</li>
+                        <li><strong>Fairness:</strong> Acesso justo para todas esta&ccedil;&otilde;es</li>
+                    </ul>
+                    
+                    <h3>Recupera&ccedil;&atilde;o de Falhas:</h3>
+                    <ul>
+                        <li><strong>Wrap:</strong> Forma anel &uacute;nico em caso de falha</li>
+                        <li><strong>Beacon:</strong> Detec&ccedil;&atilde;o e localiza&ccedil;&atilde;o de falhas</li>
+                        <li><strong>Optical bypass:</strong> Isolamento de n&oacute;s com falha</li>
+                        <li><strong>Tempo de recupera&ccedil;&atilde;o:</strong> Alguns milissegundos</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Alta confiabilidade:</strong> Redund&acirc;ncia e auto-cura</li>
+                        <li><strong>Performance determin&iacute;stica:</strong> Token passing</li>
+                        <li><strong>Longas dist&acirc;ncias:</strong> Fibra &oacute;ptica</li>
+                        <li><strong>Imunidade EMI:</strong> Fibra n&atilde;o sofre interfer&ecirc;ncias</li>
+                        <li><strong>Seguran&ccedil;a:</strong> Dif&iacute;cil intercepta&ccedil;&atilde;o</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Custo elevado:</strong> Fibra e equipamentos caros</li>
+                        <li><strong>Complexidade:</strong> Instala&ccedil;&atilde;o e manuten&ccedil;&atilde;o</li>
+                        <li><strong>Tecnologia legada:</strong> Substitu&iacute;da por Ethernet</li>
+                        <li><strong>Escalabilidade limitada:</strong> Anel tem limites</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es Hist&oacute;ricas:</h3>
+                    <ul>
+                        <li>Backbone de campus universit&aacute;rios</li>
+                        <li>Redes metropolitanas</li>
+                        <li>Conex&otilde;es entre pr&eacute;dios</li>
+                        <li>Aplica&ccedil;&otilde;es cr&iacute;ticas</li>
+                    </ul>
+                    
+                    <h3>Status Atual:</h3>
+                    <p>Tecnologia legada, substitu&iacute;da por Gigabit Ethernet e tecnologias mais modernas, mas ainda encontrada em algumas instala&ccedil;&otilde;es antigas.</p>
+                `
+            },
+            'largura-banda': {
+                title: 'Largura de Banda',
+                description: 'Capacidade m&aacute;xima de transmiss&atilde;o de dados de um canal de comunica&ccedil;&atilde;o.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Largura de banda refere-se &agrave; capacidade m&aacute;xima de transmiss&atilde;o de dados de um canal de comunica&ccedil;&atilde;o, medida em bits por segundo (bps) ou em frequ&ecirc;ncia (Hz).</p>
+                    
+                    <h3>Tipos de Largura de Banda:</h3>
+                    <ul>
+                        <li><strong>Anal&oacute;gica:</strong> Faixa de frequ&ecirc;ncias (Hz)</li>
+                        <li><strong>Digital:</strong> Taxa de bits (bps)</li>
+                        <li><strong>Te&oacute;rica:</strong> Capacidade m&aacute;xima te&oacute;rica</li>
+                        <li><strong>Efetiva:</strong> Capacidade real utiliz�vel</li>
+                    </ul>
+                    
+                    <h3>Medidas Comuns:</h3>
+                    <ul>
+                        <li><strong>bps:</strong> Bits por segundo</li>
+                        <li><strong>Kbps:</strong> Kilobits por segundo (1.000 bps)</li>
+                        <li><strong>Mbps:</strong> Megabits por segundo (1.000.000 bps)</li>
+                        <li><strong>Gbps:</strong> Gigabits por segundo (1.000.000.000 bps)</li>
+                        <li><strong>Tbps:</strong> Terabits por segundo</li>
+                    </ul>
+                    
+                    <h3>Fatores que Afetam:</h3>
+                    <ul>
+                        <li><strong>Meio f&iacute;sico:</strong> Tipo de cabo ou meio sem fio</li>
+                        <li><strong>Frequ&ecirc;ncia:</strong> Faixa de frequ&ecirc;ncias utilizada</li>
+                        <li><strong>Ru&iacute;do:</strong> Interfer&ecirc;ncias no canal</li>
+                        <li><strong>Dist&acirc;ncia:</strong> Atenua��o com a dist&acirc;ncia</li>
+                        <li><strong>Tecnologia:</strong> Padr&otilde;es e protocolos utilizados</li>
+                    </ul>
+                    
+                    <h3>Teorema de Shannon:</h3>
+                    <ul>
+                        <li><strong>F&oacute;rmula:</strong> C = B � log&#8322;(1 + S/N)</li>
+                        <li><strong>C:</strong> Capacidade do canal (bps)</li>
+                        <li><strong>B:</strong> Largura de banda (Hz)</li>
+                        <li><strong>S/N:</strong> Rela&ccedil;&atilde;o sinal/ru&iacute;do</li>
+                    </ul>
+                    
+                    <h3>Largura de Banda vs Throughput:</h3>
+                    <ul>
+                        <li><strong>Largura de banda:</strong> Capacidade m&aacute;xima te&oacute;rica</li>
+                        <li><strong>Throughput:</strong> Taxa real de transfer&ecirc;ncia</li>
+                        <li><strong>Overhead:</strong> Protocolos reduzem throughput</li>
+                        <li><strong>Congest&atilde;o:</strong> Tr&aacute;fego afeta performance</li>
+                    </ul>
+                    
+                    <h3>Exemplos por Tecnologia:</h3>
+                    <ul>
+                        <li><strong>Dial-up:</strong> 56 Kbps</li>
+                        <li><strong>ADSL:</strong> 1-24 Mbps</li>
+                        <li><strong>Cable modem:</strong> 10-1000 Mbps</li>
+                        <li><strong>Ethernet:</strong> 10 Mbps - 400 Gbps</li>
+                        <li><strong>Wi-Fi:</strong> 11 Mbps - 9.6 Gbps</li>
+                        <li><strong>Fibra &oacute;ptica:</strong> 100 Mbps - 100+ Tbps</li>
+                    </ul>
+                    
+                    <h3>Compartilhamento:</h3>
+                    <ul>
+                        <li><strong>Dedicada:</strong> Largura de banda exclusiva</li>
+                        <li><strong>Compartilhada:</strong> Dividida entre usu&aacute;rios</li>
+                        <li><strong>Oversubscription:</strong> Mais usu&aacute;rios que capacidade</li>
+                        <li><strong>QoS:</strong> Prioriza&ccedil;&atilde;o de tr&aacute;fego</li>
+                    </ul>
+                    
+                    <h3>Gerenciamento:</h3>
+                    <ul>
+                        <li><strong>Monitoramento:</strong> Acompanhar utiliza&ccedil;&atilde;o</li>
+                        <li><strong>Controle:</strong> Limitar uso por usu&aacute;rio/aplica&ccedil;&atilde;o</li>
+                        <li><strong>Otimiza&ccedil;&atilde;o:</strong> Compress&atilde;o e cache</li>
+                        <li><strong>Planejamento:</strong> Dimensionar para crescimento</li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>Determina a velocidade e capacidade de uma rede, sendo fundamental para o desempenho de aplica&ccedil;&otilde;es e satisfa&ccedil;&atilde;o dos usu&aacute;rios.</p>
+                `
+            },
+            'banda-larga': {
+                title: 'Banda Larga',
+                description: 'Conex&atilde;o de internet de alta velocidade e sempre ativa.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Banda larga refere-se a conex&otilde;es de internet de alta velocidade que permanecem sempre ativas, oferecendo capacidade superior &agrave; telefonia discada tradicional.</p>
+                    
+                    <h3>Caracter&iacute;sticas:</h3>
+                    <ul>
+                        <li><strong>Alta velocidade:</strong> Muito superior ao dial-up</li>
+                        <li><strong>Sempre ativa:</strong> Conex&atilde;o permanente</li>
+                        <li><strong>Bidirecional:</strong> Upload e download simult&acirc;neos</li>
+                        <li><strong>M&uacute;ltiplos servi&ccedil;os:</strong> Voz, dados e v&iacute;deo</li>
+                    </ul>
+                    
+                    <h3>Crit&eacute;rios de Velocidade:</h3>
+                    <ul>
+                        <li><strong>Brasil (ANATEL):</strong> M&iacute;nimo 512 Kbps</li>
+                        <li><strong>EUA (FCC):</strong> M&iacute;nimo 25 Mbps download / 3 Mbps upload</li>
+                        <li><strong>Uni&atilde;o Europeia:</strong> M&iacute;nimo 30 Mbps</li>
+                        <li><strong>Tend&ecirc;ncia:</strong> Crit&eacute;rios aumentam com o tempo</li>
+                    </ul>
+                    
+                    <h3>Tecnologias de Banda Larga:</h3>
+                    <ul>
+                        <li><strong>DSL (Digital Subscriber Line):</strong>
+                            <ul>
+                                <li>ADSL, VDSL, SDSL</li>
+                                <li>Usa linha telef&ocirc;nica existente</li>
+                                <li>Velocidades: 1-100 Mbps</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cable Modem:</strong>
+                            <ul>
+                                <li>Usa rede de TV a cabo</li>
+                                <li>DOCSIS 3.0/3.1/4.0</li>
+                                <li>Velocidades: 10-1000+ Mbps</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fibra &Oacute;ptica:</strong>
+                            <ul>
+                                <li>FTTH, FTTB, FTTC</li>
+                                <li>Maior velocidade e confiabilidade</li>
+                                <li>Velocidades: 100 Mbps - 10+ Gbps</li>
+                            </ul>
+                        </li>
+                        <li><strong>Wireless:</strong>
+                            <ul>
+                                <li>Wi-Fi, 4G/5G, WiMAX</li>
+                                <li>Mobilidade</li>
+                                <li>Velocidades vari&aacute;veis</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sat&eacute;lite:</strong>
+                            <ul>
+                                <li>Cobertura global</li>
+                                <li>Alta lat&ecirc;ncia</li>
+                                <li>Velocidades: 10-100+ Mbps</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> Transfer&ecirc;ncias r&aacute;pidas</li>
+                        <li><strong>Produtividade:</strong> Trabalho remoto eficiente</li>
+                        <li><strong>Entretenimento:</strong> Streaming de alta qualidade</li>
+                        <li><strong>Comunica&ccedil;&atilde;o:</strong> Videoconfer&ecirc;ncias fluidas</li>
+                        <li><strong>Inova&ccedil;&atilde;o:</strong> Habilita novas tecnologias</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Streaming:</strong> Netflix, YouTube, Spotify</li>
+                        <li><strong>Jogos online:</strong> Gaming multiplayer</li>
+                        <li><strong>Trabalho remoto:</strong> Home office</li>
+                        <li><strong>Educa&ccedil;&atilde;o:</strong> EAD e aulas online</li>
+                        <li><strong>IoT:</strong> Casa inteligente</li>
+                        <li><strong>Telemedicina:</strong> Consultas remotas</li>
+                    </ul>
+                    
+                    <h3>Fatores de Qualidade:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> Download e upload</li>
+                        <li><strong>Lat&ecirc;ncia:</strong> Tempo de resposta</li>
+                        <li><strong>Estabilidade:</strong> Conex&atilde;o consistente</li>
+                        <li><strong>Disponibilidade:</strong> Uptime alto</li>
+                        <li><strong>Suporte:</strong> Atendimento t&eacute;cnico</li>
+                    </ul>
+                    
+                    <h3>Desafios:</h3>
+                    <ul>
+                        <li><strong>Inclus&atilde;o digital:</strong> Acesso universal</li>
+                        <li><strong>Infraestrutura:</strong> Investimentos em rede</li>
+                        <li><strong>Regula&ccedil;&atilde;o:</strong> Pol&iacute;ticas p&uacute;blicas</li>
+                        <li><strong>Competi&ccedil;&atilde;o:</strong> M&uacute;ltiplos provedores</li>
+                    </ul>
+                    
+                    <h3>Futuro:</h3>
+                    <p>Evolu&ccedil;&atilde;o para velocidades ainda maiores com 5G, fibra &oacute;ptica e tecnologias emergentes para suportar aplica&ccedil;&otilde;es futuras.</p>
+                `
+            },
+            'atenuacao': {
+                title: 'Atenua&ccedil;&atilde;o',
+                description: 'Redu&ccedil;&atilde;o da intensidade do sinal durante a transmiss&atilde;o.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Atenua&ccedil;&atilde;o &eacute; a redu&ccedil;&atilde;o gradual da intensidade ou pot&ecirc;ncia de um sinal &agrave; medida que ele se propaga atrav&eacute;s de um meio de transmiss&atilde;o.</p>
+                    
+                    <h3>Causas da Atenua&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Absor&ccedil;&atilde;o:</strong> Energia convertida em calor no meio</li>
+                        <li><strong>Dispers&atilde;o:</strong> Espalhamento do sinal</li>
+                        <li><strong>Reflex&atilde;o:</strong> Parte do sinal reflete de volta</li>
+                        <li><strong>Refra&ccedil;&atilde;o:</strong> Desvio do caminho do sinal</li>
+                        <li><strong>Resist&ecirc;ncia:</strong> Resist&ecirc;ncia el&eacute;trica do condutor</li>
+                    </ul>
+                    
+                    <h3>Medida:</h3>
+                    <ul>
+                        <li><strong>Unidade:</strong> Decibel (dB)</li>
+                        <li><strong>F&oacute;rmula:</strong> Atenua&ccedil;&atilde;o (dB) = 10 � log&#8321;&#8320;(P&#8321;/P&#8322;)</li>
+                        <li><strong>P&#8321;:</strong> Pot&ecirc;ncia de entrada</li>
+                        <li><strong>P&#8322;:</strong> Pot&ecirc;ncia de sa&iacute;da</li>
+                        <li><strong>Valor positivo:</strong> Indica perda de sinal</li>
+                    </ul>
+                    
+                    <h3>Atenua&ccedil;&atilde;o por Meio:</h3>
+                    <ul>
+                        <li><strong>Cabo UTP:</strong>
+                            <ul>
+                                <li>Cat5e: ~24 dB/100m @ 100 MHz</li>
+                                <li>Cat6: ~19 dB/100m @ 250 MHz</li>
+                                <li>Aumenta com frequ&ecirc;ncia</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cabo Coaxial:</strong>
+                            <ul>
+                                <li>RG-6: ~6 dB/100m @ 1 GHz</li>
+                                <li>Melhor que UTP em altas frequ&ecirc;ncias</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fibra &Oacute;ptica:</strong>
+                            <ul>
+                                <li>Monomodo: ~0,2-0,5 dB/km</li>
+                                <li>Multimodo: ~2-4 dB/km</li>
+                                <li>Muito baixa atenua&ccedil;&atilde;o</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Fatores que Aumentam:</h3>
+                    <ul>
+                        <li><strong>Dist&acirc;ncia:</strong> Maior dist&acirc;ncia = maior atenua&ccedil;&atilde;o</li>
+                        <li><strong>Frequ&ecirc;ncia:</strong> Frequ&ecirc;ncias altas atenuam mais</li>
+                        <li><strong>Temperatura:</strong> Calor aumenta resist&ecirc;ncia</li>
+                        <li><strong>Umidade:</strong> Afeta diel&eacute;tricos</li>
+                        <li><strong>Dobras:</strong> Curvas acentuadas em cabos</li>
+                        <li><strong>Conex&otilde;es:</strong> Cada conex&atilde;o adiciona perda</li>
+                    </ul>
+                    
+                    <h3>Efeitos:</h3>
+                    <ul>
+                        <li><strong>Redu&ccedil;&atilde;o de alcance:</strong> Limita dist&acirc;ncia m&aacute;xima</li>
+                        <li><strong>Degrada&ccedil;&atilde;o do sinal:</strong> Qualidade reduzida</li>
+                        <li><strong>Aumento de erros:</strong> Taxa de erro mais alta</li>
+                        <li><strong>Necessidade de amplifica&ccedil;&atilde;o:</strong> Repetidores necess&aacute;rios</li>
+                    </ul>
+                    
+                    <h3>Compensa&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Amplificadores:</strong> Aumentam pot&ecirc;ncia do sinal</li>
+                        <li><strong>Repetidores:</strong> Regeneram sinal digital</li>
+                        <li><strong>Cabos de melhor qualidade:</strong> Menor atenua&ccedil;&atilde;o</li>
+                        <li><strong>Frequ&ecirc;ncias mais baixas:</strong> Menos atenua&ccedil;&atilde;o</li>
+                        <li><strong>Dist&acirc;ncias menores:</strong> Segmentos mais curtos</li>
+                    </ul>
+                    
+                    <h3>Medi��o:</h3>
+                    <ul>
+                        <li><strong>Certificadores de cabo:</strong> Testam atenua&ccedil;&atilde;o</li>
+                        <li><strong>OTDR:</strong> Para fibra &oacute;ptica</li>
+                        <li><strong>Analisadores de espectro:</strong> Sinais de RF</li>
+                        <li><strong>Mult&iacute;metros:</strong> Medi��es b&aacute;sicas</li>
+                    </ul>
+                    
+                    <h3>Padr&otilde;es:</h3>
+                    <ul>
+                        <li>TIA/EIA-568: Especifica limites para cabeamento</li>
+                        <li>ISO/IEC 11801: Padr&atilde;o internacional</li>
+                        <li>IEEE 802.3: Limites para Ethernet</li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>Compreender e controlar a atenua&ccedil;&atilde;o &eacute; fundamental para projetar redes confi&aacute;veis e de alta performance.</p>
+                `
+            },
+            'interferencia': {
+                title: 'Interfer&ecirc;ncia',
+                description: 'Ru&iacute;do ou sinal indesejado que afeta a qualidade da transmiss&atilde;o.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Interfer&ecirc;ncia &eacute; qualquer sinal indesejado que se sobrep&otilde;e ao sinal &uacute;til, degradando a qualidade da transmiss&atilde;o e podendo causar erros na comunica&ccedil;&atilde;o.</p>
+                    
+                    <h3>Tipos de Interfer&ecirc;ncia:</h3>
+                    <ul>
+                        <li><strong>EMI (Electromagnetic Interference):</strong>
+                            <ul>
+                                <li>Interfer&ecirc;ncia eletromagn&eacute;tica</li>
+                                <li>Fontes: motores, transformadores, l&acirc;mpadas</li>
+                                <li>Afeta cabos met&aacute;licos</li>
+                            </ul>
+                        </li>
+                        <li><strong>RFI (Radio Frequency Interference):</strong>
+                            <ul>
+                                <li>Interfer&ecirc;ncia de radiofrequ&ecirc;ncia</li>
+                                <li>Fontes: transmissores, celulares, micro-ondas</li>
+                                <li>Afeta comunica&ccedil;&otilde;es sem fio</li>
+                            </ul>
+                        </li>
+                        <li><strong>Crosstalk:</strong>
+                            <ul>
+                                <li>Interfer&ecirc;ncia entre cabos pr&oacute;ximos</li>
+                                <li>NEXT (Near End) e FEXT (Far End)</li>
+                                <li>Comum em cabos UTP</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Fontes Comuns:</h3>
+                    <ul>
+                        <li><strong>Equipamentos el&eacute;tricos:</strong>
+                            <ul>
+                                <li>Motores el&eacute;tricos</li>
+                                <li>Transformadores</li>
+                                <li>L&acirc;mpadas fluorescentes</li>
+                                <li>Fontes chaveadas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Dispositivos eletr&ocirc;nicos:</strong>
+                            <ul>
+                                <li>Computadores</li>
+                                <li>Telefones celulares</li>
+                                <li>Fornos micro-ondas</li>
+                                <li>Equipamentos de solda</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fen&ocirc;menos naturais:</strong>
+                            <ul>
+                                <li>Raios e tempestades</li>
+                                <li>Atividade solar</li>
+                                <li>Ru&iacute;do t&eacute;rmico</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Efeitos:</h3>
+                    <ul>
+                        <li><strong>Degrada&ccedil;&atilde;o do sinal:</strong> Redu&ccedil;&atilde;o da qualidade</li>
+                        <li><strong>Aumento de erros:</strong> Bits corrompidos</li>
+                        <li><strong>Redu&ccedil;&atilde;o de velocidade:</strong> Retransmiss&otilde;es</li>
+                        <li><strong>Perda de conex&atilde;o:</strong> Desconex&otilde;es frequentes</li>
+                        <li><strong>Instabilidade:</strong> Performance vari&aacute;vel</li>
+                    </ul>
+                    
+                    <h3>Medi��o:</h3>
+                    <ul>
+                        <li><strong>SNR (Signal-to-Noise Ratio):</strong> Rela&ccedil;&atilde;o sinal/ru&iacute;do</li>
+                        <li><strong>NEXT:</strong> Near End Crosstalk</li>
+                        <li><strong>FEXT:</strong> Far End Crosstalk</li>
+                        <li><strong>ELFEXT:</strong> Equal Level FEXT</li>
+                        <li><strong>Power Sum:</strong> Crosstalk de m&uacute;ltiplos pares</li>
+                    </ul>
+                    
+                    <h3>T&eacute;cnicas de Mitiga&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Blindagem:</strong>
+                            <ul>
+                                <li>Cabos blindados (STP/FTP)</li>
+                                <li>Aterramento adequado</li>
+                                <li>Gaiolas de Faraday</li>
+                            </ul>
+                        </li>
+                        <li><strong>Separa&ccedil;&atilde;o f&iacute;sica:</strong>
+                            <ul>
+                                <li>Dist&acirc;ncia entre cabos</li>
+                                <li>Roteamento adequado</li>
+                                <li>Evitar paralelismo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Filtragem:</strong>
+                            <ul>
+                                <li>Filtros de linha</li>
+                                <li>Supressores de surto</li>
+                                <li>Ferrites</li>
+                            </ul>
+                        </li>
+                        <li><strong>T&eacute;cnicas de cabeamento:</strong>
+                            <ul>
+                                <li>Tran&ccedil;amento adequado</li>
+                                <li>Pares com passos diferentes</li>
+                                <li>Termina&ccedil;&otilde;es corretas</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Preven&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Planejamento:</strong> Projeto considerando fontes de ru&iacute;do</li>
+                        <li><strong>Instala&ccedil;&atilde;o adequada:</strong> Seguir normas e boas pr&aacute;ticas</li>
+                        <li><strong>Testes:</strong> Certifica��o de cabeamento</li>
+                        <li><strong>Manuten&ccedil;&atilde;o:</strong> Monitoramento cont&iacute;nuo</li>
+                    </ul>
+                    
+                    <h3>Normas:</h3>
+                    <ul>
+                        <li>TIA/EIA-568: Padr&otilde;es de cabeamento</li>
+                        <li>FCC Part 15: Regula&ccedil;&atilde;o de EMI</li>
+                        <li>CISPR: Padr&otilde;es internacionais</li>
+                        <li>IEC 61000: Compatibilidade eletromagn&eacute;tica</li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>Controlar interfer&ecirc;ncias &eacute; essencial para manter a qualidade e confiabilidade das comunica&ccedil;&otilde;es em redes.</p>
+                `
+            },
+            'db': {
+                title: 'dB (Decibel)',
+                description: 'Decibel - Unidade de medida para express&atilde;o de pot&ecirc;ncia e atenua��o.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Decibel (dB) &eacute; uma unidade logar&iacute;tmica usada para expressar a rela&ccedil;&atilde;o entre duas grandezas, especialmente pot&ecirc;ncia, voltagem ou intensidade de sinal.</p>
+                    
+                    <h3>F&oacute;rmulas B&aacute;sicas:</h3>
+                    <ul>
+                        <li><strong>Pot&ecirc;ncia:</strong> dB = 10 � log&#8321;&#8320;(P&#8322;/P&#8321;)</li>
+                        <li><strong>Voltagem/Corrente:</strong> dB = 20 � log&#8321;&#8320;(V&#8322;/V&#8321;)</li>
+                        <li><strong>P&#8321;, V&#8321;:</strong> Valor de refer&ecirc;ncia</li>
+                        <li><strong>P&#8322;, V&#8322;:</strong> Valor medido</li>
+                    </ul>
+                    
+                    <h3>Interpreta&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>dB positivo:</strong> Ganho (amplifica&ccedil;&atilde;o)</li>
+                        <li><strong>dB negativo:</strong> Perda (atenua&ccedil;&atilde;o)</li>
+                        <li><strong>0 dB:</strong> Sem ganho nem perda</li>
+                        <li><strong>3 dB:</strong> Dobro da pot&ecirc;ncia</li>
+                        <li><strong>-3 dB:</strong> Metade da pot&ecirc;ncia</li>
+                        <li><strong>10 dB:</strong> 10x a pot&ecirc;ncia</li>
+                        <li><strong>20 dB:</strong> 100x a pot&ecirc;ncia</li>
+                    </ul>
+                    
+                    <h3>Vantagens da Escala Logar&iacute;tmica:</h3>
+                    <ul>
+                        <li><strong>Compacta&ccedil;&atilde;o:</strong> Representa grandes varia&ccedil;&otilde;es</li>
+                        <li><strong>Multiplica&ccedil;&atilde;o &#8594; Soma:</strong> C&aacute;lculos mais simples</li>
+                        <li><strong>Percep&ccedil;&atilde;o humana:</strong> Corresponde &agrave; audi&ccedil;&atilde;o</li>
+                        <li><strong>Lineariza&ccedil;&atilde;o:</strong> Facilita an&aacute;lise</li>
+                    </ul>
+                    
+                    <h3>Variantes do Decibel:</h3>
+                    <ul>
+                        <li><strong>dBm:</strong> Refer&ecirc;ncia 1 mW
+                            <ul>
+                                <li>0 dBm = 1 mW</li>
+                                <li>30 dBm = 1 W</li>
+                                <li>Usado em telecomunica&ccedil;&otilde;es</li>
+                            </ul>
+                        </li>
+                        <li><strong>dBW:</strong> Refer&ecirc;ncia 1 W
+                            <ul>
+                                <li>0 dBW = 1 W</li>
+                                <li>dBW = dBm - 30</li>
+                            </ul>
+                        </li>
+                        <li><strong>dBV:</strong> Refer&ecirc;ncia 1 V
+                            <ul>
+                                <li>0 dBV = 1 V</li>
+                                <li>Usado em &aacute;udio</li>
+                            </ul>
+                        </li>
+                        <li><strong>dB&#956;V:</strong> Refer&ecirc;ncia 1 &#956;V
+                            <ul>
+                                <li>0 dB&#956;V = 1 &#956;V</li>
+                                <li>Sinais fracos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es em Redes:</h3>
+                    <ul>
+                        <li><strong>Atenua&ccedil;&atilde;o de cabos:</strong>
+                            <ul>
+                                <li>UTP: 20-24 dB/100m</li>
+                                <li>Fibra: 0,2-0,5 dB/km</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ganho de antenas:</strong>
+                            <ul>
+                                <li>Dipolo: 2,15 dBi</li>
+                                <li>Yagi: 10-20 dBi</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pot&ecirc;ncia de transmissores:</strong>
+                            <ul>
+                                <li>Wi-Fi: 20 dBm (100 mW)</li>
+                                <li>Celular: 23-33 dBm</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>C&aacute;lculos Pr&aacute;ticos:</h3>
+                    <ul>
+                        <li><strong>Link Budget:</strong> Soma de ganhos e perdas</li>
+                        <li><strong>Margem de desvanecimento:</strong> Reserva de pot&ecirc;ncia</li>
+                        <li><strong>SNR:</strong> Rela&ccedil;&atilde;o sinal/ru&iacute;do</li>
+                        <li><strong>EIRP:</strong> Pot&ecirc;ncia efetiva irradiada</li>
+                    </ul>
+                    
+                    <h3>Exemplos Pr&aacute;ticos:</h3>
+                    <ul>
+                        <li><strong>Cabo de 100m:</strong> -20 dB de atenua&ccedil;&atilde;o</li>
+                        <li><strong>Amplificador:</strong> +30 dB de ganho</li>
+                        <li><strong>Splitter 1:2:</strong> -3 dB por sa&iacute;da</li>
+                        <li><strong>Conector:</strong> -0,1 dB de perda</li>
+                    </ul>
+                    
+                    <h3>Ferramentas de Medi��o:</h3>
+                    <ul>
+                        <li>Power meters</li>
+                        <li>Analisadores de espectro</li>
+                        <li>Certificadores de cabo</li>
+                        <li>OTDR para fibra</li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>O decibel &eacute; fundamental para especificar, medir e calcular performance em sistemas de comunica&ccedil;&atilde;o.</p>
+                `
+            },
+            'potencia': {
+                title: 'Pot&ecirc;ncia',
+                description: 'Energia por unidade de tempo, fundamental em transmiss&otilde;es de RF.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Pot&ecirc;ncia &eacute; a taxa de transfer&ecirc;ncia de energia por unidade de tempo, medida em watts (W). Em telecomunica&ccedil;&otilde;es, determina o alcance e qualidade dos sinais.</p>
+                    
+                    <h3>Unidades de Medida:</h3>
+                    <ul>
+                        <li><strong>Watt (W):</strong> Unidade b&aacute;sica do SI</li>
+                        <li><strong>Miliwatt (mW):</strong> 10&#8315;� W</li>
+                        <li><strong>Microwatt (&#956;W):</strong> 10&#8315;&#8310; W</li>
+                        <li><strong>Nanowatt (nW):</strong> 10&#8315;&#8313; W</li>
+                        <li><strong>Picowatt (pW):</strong> 10&#8315;�� W</li>
+                    </ul>
+                    
+                    <h3>F&oacute;rmulas B&aacute;sicas:</h3>
+                    <ul>
+                        <li><strong>El&eacute;trica:</strong> P = V � I = V�/R = I�R</li>
+                        <li><strong>P:</strong> Pot&ecirc;ncia (W)</li>
+                        <li><strong>V:</strong> Voltagem (V)</li>
+                        <li><strong>I:</strong> Corrente (A)</li>
+                        <li><strong>R:</strong> Resist&ecirc;ncia (&#937;)</li>
+                    </ul>
+                    
+                    <h3>Tipos de Pot&ecirc;ncia:</h3>
+                    <ul>
+                                             <li><strong>Pot&ecirc;ncia de transmiss&atilde;o:</strong> Energia enviada pelo transmissor</li>
+                        <li><strong>Pot&ecirc;ncia de recep&ccedil;&atilde;o:</strong> Energia recebida no receptor</li>
+                        <li><strong>Pot&ecirc;ncia irradiada:</strong> Energia efetivamente transmitida pela antena</li>
+                        <li><strong>EIRP:</strong> Effective Isotropic Radiated Power</li>
+                        <li><strong>Pot&ecirc;ncia de ru&iacute;do:</strong> Energia de sinais indesejados</li>
+                    </ul>
+                    
+                    <h3>Pot&ecirc;ncia em Sistemas de RF:</h3>
+                    <ul>
+                        <li><strong>Transmissores:</strong>
+                            <ul>
+                                <li>Wi-Fi: 100 mW (20 dBm)</li>
+                                <li>Bluetooth: 1-100 mW</li>
+                                <li>Celular: 0,5-2 W</li>
+                                <li>Esta&ccedil;&otilde;es de r&aacute;dio: 1-100 kW</li>
+                            </ul>
+                        </li>
+                        <li><strong>Receptores:</strong>
+                            <ul>
+                                <li>Sensibilidade: -80 a -110 dBm</li>
+                                <li>Sinais muito fracos (picowatts)</li>
+                                <li>Amplifica&ccedil;&atilde;o necess&aacute;ria</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Pot&ecirc;ncia em Fibra &Oacute;ptica:</h3>
+                    <ul>
+                        <li><strong>Transmissores &oacute;pticos:</strong>
+                            <ul>
+                                <li>LED: -20 a -10 dBm</li>
+                                <li>Laser: 0 a +10 dBm</li>
+                                <li>Laser de alta pot&ecirc;ncia: +20 dBm</li>
+                            </ul>
+                        </li>
+                        <li><strong>Receptores &oacute;pticos:</strong>
+                            <ul>
+                                <li>Sensibilidade: -30 a -40 dBm</li>
+                                <li>Sobrecarga: -10 a 0 dBm</li>
+                                <li>Faixa din&acirc;mica limitada</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Fatores que Afetam:</h3>
+                    <ul>
+                        <li><strong>Dist&acirc;ncia:</strong> Lei do inverso do quadrado</li>
+                        <li><strong>Frequ&ecirc;ncia:</strong> Atenua&ccedil;&atilde;o varia com frequ&ecirc;ncia</li>
+                        <li><strong>Meio de transmiss&atilde;o:</strong> Perdas no cabo/fibra</li>
+                        <li><strong>Obst�culos:</strong> Reflex&atilde;o e absor&ccedil;&atilde;o</li>
+                        <li><strong>Condi&ccedil;&otilde;es atmosf&eacute;ricas:</strong> Chuva, neve, umidade</li>
+                    </ul>
+                    
+                    <h3>Gerenciamento de Pot&ecirc;ncia:</h3>
+                    <ul>
+                        <li><strong>Controle autom&aacute;tico:</strong> APC (Automatic Power Control)</li>
+                        <li><strong>Adapta&ccedil;&atilde;o din&acirc;mica:</strong> Ajuste conforme condi&ccedil;&otilde;es</li>
+                        <li><strong>Economia de energia:</strong> Redu&ccedil;&atilde;o quando poss&iacute;vel</li>
+                        <li><strong>Prote&ccedil;&atilde;o:</strong> Limites de seguran&ccedil;a</li>
+                    </ul>
+                    
+                    <h3>Link Budget:</h3>
+                    <ul>
+                        <li><strong>Pot&ecirc;ncia TX:</strong> +20 dBm</li>
+                        <li><strong>Ganho antena TX:</strong> +10 dBi</li>
+                        <li><strong>Perda de espa&ccedil;o livre:</strong> -100 dB</li>
+                        <li><strong>Ganho antena RX:</strong> +10 dBi</li>
+                        <li><strong>Pot&ecirc;ncia RX:</strong> -60 dBm</li>
+                    </ul>
+                    
+                    <h3>Seguran&ccedil;a:</h3>
+                    <ul>
+                        <li><strong>SAR:</strong> Specific Absorption Rate</li>
+                        <li><strong>Limites de exposi&ccedil;&atilde;o:</strong> Normas internacionais</li>
+                        <li><strong>Zonas de exclus&atilde;o:</strong> &Aacute;reas pr&oacute;ximas a antenas</li>
+                        <li><strong>Pot&ecirc;ncia &oacute;ptica:</strong> Riscos para os olhos</li>
+                    </ul>
+                    
+                    <h3>Medi��o:</h3>
+                    <ul>
+                        <li><strong>Power meters:</strong> Medidores de pot&ecirc;ncia</li>
+                        <li><strong>Analisadores de espectro:</strong> Pot&ecirc;ncia por frequ&ecirc;ncia</li>
+                        <li><strong>OTDR:</strong> Pot&ecirc;ncia &oacute;ptica</li>
+                        <li><strong>Watt�metros:</strong> Pot&ecirc;ncia de RF</li>
+                    </ul>
+                    
+                    <h3>Otimiza&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li>Usar pot&ecirc;ncia m&iacute;nima necess&aacute;ria</li>
+                        <li>Maximizar efici&ecirc;ncia de antenas</li>
+                        <li>Minimizar perdas no sistema</li>
+                        <li>Considerar regula&ccedil;&otilde;es locais</li>
+                    </ul>
+                `
+            },
+            'power-meter': {
+                title: 'Power Meter',
+                description: 'Equipamento para medir pot&ecirc;ncia de sinais &oacute;pticos ou el&eacute;tricos.',
+                details: `
+                    <h3>Defini&ccedil;&atilde;o:</h3>
+                    <p>Power meter &eacute; um instrumento de medi��o usado para determinar a pot&ecirc;ncia de sinais el&eacute;tricos ou &oacute;pticos, essencial para instala&ccedil;&atilde;o, manuten&ccedil;&atilde;o e troubleshooting de sistemas de comunica&ccedil;&atilde;o.</p>
+                    
+                    <h3>Tipos Principais:</h3>
+                    <ul>
+                        <li><strong>Power Meter &Oacute;ptico:</strong>
+                            <ul>
+                                <li>Mede pot&ecirc;ncia de luz em fibras &oacute;pticas</li>
+                                <li>Faixa: -70 a +10 dBm</li>
+                                <li>M&uacute;ltiplos comprimentos de onda</li>
+                                <li>Detectores: Si, Ge, InGaAs</li>
+                            </ul>
+                        </li>
+                        <li><strong>Power Meter de RF:</strong>
+                            <ul>
+                                <li>Mede pot&ecirc;ncia de sinais de radiofrequ&ecirc;ncia</li>
+                                <li>Faixa: MHz a GHz</li>
+                                <li>Sensores t&eacute;rmicos ou diodo</li>
+                                <li>Aplica&ccedil;&otilde;es em wireless</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Componentes:</h3>
+                    <ul>
+                        <li><strong>Unidade principal:</strong>
+                            <ul>
+                                <li>Display digital</li>
+                                <li>Processamento de sinal</li>
+                                <li>Interface de usu&aacute;rio</li>
+                                <li>Mem&oacute;ria para dados</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sensor/Detector:</strong>
+                            <ul>
+                                <li>Converte luz/RF em sinal el&eacute;trico</li>
+                                <li>Diferentes tipos para diferentes aplica&ccedil;&otilde;es</li>
+                                <li>Calibra&ccedil;&atilde;o espec&iacute;fica</li>
+                            </ul>
+                        </li>
+                        <li><strong>Conectores:</strong>
+                            <ul>
+                                <li>FC, SC, ST para fibra</li>
+                                <li>N, SMA para RF</li>
+                                <li>Adaptadores universais</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Especifica&ccedil;&otilde;es T&eacute;cnicas:</h3>
+                    <ul>
+                        <li><strong>Faixa de medi��o:</strong> -70 a +30 dBm (&oacute;ptico)</li>
+                        <li><strong>Precis&atilde;o:</strong> �0,05 a �0,5 dB</li>
+                        <li><strong>Resolu&ccedil;&atilde;o:</strong> 0,01 dB</li>
+                        <li><strong>Comprimentos de onda:</strong> 850, 1300, 1310, 1550 nm</li>
+                        <li><strong>Tempo de resposta:</strong> 0,1 a 10 segundos</li>
+                    </ul>
+                    
+                    <h3>Fun&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Medi��o absoluta:</strong> Pot&ecirc;ncia em dBm ou watts</li>
+                        <li><strong>Medi��o relativa:</strong> Diferen&ccedil;a em dB</li>
+                        <li><strong>M&uacute;ltiplos comprimentos de onda:</strong> Sele&ccedil;&atilde;o autom&aacute;tica</li>
+                        <li><strong>Armazenamento:</strong> Mem&oacute;ria de medi��es</li>
+                        <li><strong>Conectividade:</strong> USB, Bluetooth</li>
+                    </ul>
+                    
+                    <h3>Aplica&ccedil;&otilde;es:</h3>
+                    <ul>
+                        <li><strong>Instala&ccedil;&atilde;o de fibra:</strong>
+                            <ul>
+                                <li>Verifica&ccedil;&atilde;o de pot&ecirc;ncia de transmissores</li>
+                                <li>Teste de conectores e emendas</li>
+                                <li>Certifica&ccedil;&atilde;o de links</li>
+                            </ul>
+                        </li>
+                        <li><strong>Manuten&ccedil;&atilde;o:</strong>
+                            <ul>
+                                <li>Diagn&oacute;stico de problemas</li>
+                                <li>Monitoramento de performance</li>
+                                <li>Localiza&ccedil;&atilde;o de falhas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Laborat&oacute;rio:</strong>
+                            <ul>
+                                <li>Caracteriza&ccedil;&atilde;o de componentes</li>
+                                <li>Testes de qualidade</li>
+                                <li>Pesquisa e desenvolvimento</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Uso com Light Source:</h3>
+                    <ul>
+                        <li><strong>Teste de atenua&ccedil;&atilde;o:</strong> Perda de cabos/conectores</li>
+                        <li><strong>M&eacute;todo de refer&ecirc;ncia:</strong> Calibra&ccedil;&atilde;o inicial</li>
+                        <li><strong>Teste fim-a-fim:</strong> Perda total do link</li>
+                        <li><strong>Comprimentos de onda m&uacute;ltiplos:</strong> Caracteriza&ccedil;&atilde;o completa</li>
+                    </ul>
+                    
+                    <h3>Cuidados e Manuten&ccedil;&atilde;o:</h3>
+                    <ul>
+                        <li><strong>Limpeza de conectores:</strong> Evitar contamina&ccedil;&atilde;o</li>
+                        <li><strong>Calibra&ccedil;&atilde;o peri&oacute;dica:</strong> Manter precis&atilde;o</li>
+                        <li><strong>Prote&ccedil;&atilde;o contra sobrecarga:</strong> Evitar danos</li>
+                        <li><strong>Armazenamento adequado:</strong> Ambiente controlado</li>
+                    </ul>
+                    
+                    <h3>Fabricantes Principais:</h3>
+                    <ul>
+                        <li>Fluke Networks</li>
+                        <li>EXFO</li>
+                        <li>Anritsu</li>
+                        <li>Keysight</li>
+                        <li>Thorlabs</li>
+                    </ul>
+                    
+                    <h3>Tend&ecirc;ncias:</h3>
+                    <ul>
+                        <li>Integra&ccedil;&atilde;o com smartphones</li>
+                        <li>Medi��o automatizada</li>
+                        <li>Conectividade em nuvem</li>
+                        <li>Interfaces mais intuitivas</li>
+                    </ul>
+                    
+                    <h3>Import&acirc;ncia:</h3>
+                    <p>Ferramenta essencial para garantir performance e confiabilidade de sistemas &oacute;pticos e de RF, permitindo medi��es precisas e troubleshooting eficiente.</p>
+                `
+            }
+        };
+
+        // Fun��o para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da p�gina
+            }
+        }
+
+        // Fun��o para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da p�gina
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar apar�ncia dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body {
+                padding: 20px;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>
