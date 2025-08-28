@@ -51,6 +51,14 @@ font-size:0.8em;
 <span>Feed de Notícias</span></h1>
 </header>
 
+<!-- Login com Google -->
+<div class="login-area" style="text-align:center; margin:20px;">
+  <p id="userInfo">Você não está logado.</p>
+  <button id="loginBtn">🔑 Entrar com Google</button>
+  <button id="logoutBtn" style="display:none;">🚪 Sair</button>
+</div>
+
+
 
 
 
@@ -490,6 +498,64 @@ onclick="location.href='https://archive.org/download/station-609/Station%20609.a
 <p class="copyright">&copy; Guilherme Carvalho. Desenvolvido com JavaScript e paixão pela música.</p>
 </center>
 </footer>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut }
+  from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyDSOcBRBl3gY5vqZ0knFuIATvic5ez7fzU",
+    authDomain: "authentication609-34460.firebaseapp.com",
+    projectId: "authentication609-34460",
+    storageBucket: "authentication609-34460.firebasestorage.app",
+    messagingSenderId: "399123481606",
+    appId: "1:399123481606:web:ab7ba3e145ed8d2a7aaf87",
+    measurementId: "G-L6S9W74S2B"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  
+  // Auth
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+// Botões e área de usuário
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const userInfo = document.getElementById("userInfo");
+
+// Login
+loginBtn.addEventListener("click", () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+
+      // Mostra o nome do usuário (opcional)
+      userInfo.innerHTML = `Olá, <strong>${user.displayName}</strong> 👋`;
+
+      // Esconde botão login e mostra logout
+      loginBtn.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+
+      // 🔹 Redireciona para a mesma página (página inicial da rádio)
+      window.location.href = "https://3asyice.github.io/Radio";
+    })
+    .catch((error) => {
+      console.error("Erro no login:", error);
+    });
+});
+
+
+// Logout
+logoutBtn.addEventListener("click", () => {
+  signOut(auth).then(() => {
+    userInfo.innerHTML = "Você não está logado.";
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
+  });
+});
+</script>
 
 </body>
 </html>
