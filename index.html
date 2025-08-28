@@ -200,14 +200,22 @@ loginBtn.addEventListener("click", () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
+
+      // Mostra o nome do usuário (opcional)
       userInfo.innerHTML = `Olá, <strong>${user.displayName}</strong> 👋`;
+
+      // Esconde botão login e mostra logout
       loginBtn.style.display = "none";
       logoutBtn.style.display = "inline-block";
+
+      // 🔹 Redireciona para a mesma página (página inicial da rádio)
+      window.location.href = "https://3asyice.github.io/Radio";
     })
     .catch((error) => {
       console.error("Erro no login:", error);
     });
 });
+
 
 // Logout
 logoutBtn.addEventListener("click", () => {
