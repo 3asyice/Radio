@@ -60,6 +60,14 @@ font-size:0.8em;
 <h1 onclick="location.href='https://3asyice.github.io/Radio'" >Rádio FM 609 <br>
 <span>Sua estação de música continua</span></h1>
 </header>
+
+<!-- Login com Google -->
+<div class="login-area" style="text-align:center; margin:20px;">
+  <p id="userInfo">Você não está logado.</p>
+  <button id="loginBtn">🔑 Entrar com Google</button>
+  <button id="logoutBtn" style="display:none;">🚪 Sair</button>
+</div>
+
 <div class="playing_now">
 <p><strong><span>♬ </span>Tocando Agora </strong><br><br><span id="audio_atual">---</span></p>
 <p id="horario_atual">Início: --:--:-- | Fim: --:--:--</p>
@@ -161,27 +169,54 @@ audio::-webkit-media-controls-time-remaining-display {
 </style>
 
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut }
+  from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
   
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyDSOcBRBl3gY5vqZ0knFuIATvic5ez7fzU",
     authDomain: "authentication609-34460.firebaseapp.com",
     projectId: "authentication609-34460",
     storageBucket: "authentication609-34460.firebasestorage.app",
     messagingSenderId: "399123481606",
-    appId: "1:399123481606:web:73d9b3308461420a7aaf87",
-    measurementId: "G-FJVSZ118DW"
+    appId: "1:399123481606:web:ab7ba3e145ed8d2a7aaf87",
+    measurementId: "G-L6S9W74S2B"
   };
   
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+  
+  // Auth
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+// Botões e área de usuário
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const userInfo = document.getElementById("userInfo");
+
+// Login
+loginBtn.addEventListener("click", () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      userInfo.innerHTML = `Olá, <strong>${user.displayName}</strong> 👋`;
+      loginBtn.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+    })
+    .catch((error) => {
+      console.error("Erro no login:", error);
+    });
+});
+
+// Logout
+logoutBtn.addEventListener("click", () => {
+  signOut(auth).then(() => {
+    userInfo.innerHTML = "Você não está logado.";
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
+  });
+});
 </script>
 
 <script>
