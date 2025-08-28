@@ -97,6 +97,81 @@ Você deve conhecer esse nome porque ele pertence a uma mulher advogada que me a
 <p class="news"><a href="https://3asyice.github.io/SixOhNine/script/cv/camila-dalcol-da-silva.html">Camila Dalcol da Silva</a> visite aqui para saber mais.</p>
 </div>
 <div class="feed">
+  <p><span>📹</span> video.mp4</p>
+  <p class="text">
+    Lore (tv series) true stories based on true people and events.
+  </p>
+
+  <!-- Campo de pesquisa -->
+  <input type="text" id="searchLore" placeholder="Pesquisar episódio..." style="width:100%;padding:6px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
+
+  <!-- Lista de episódios -->
+  <ul id="episodeList" style="list-style:none;padding:0;margin:0;"></ul>
+
+  <center>
+    <video id="player_lore" autoplay muted controls
+      disablePictureInPicture
+      controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
+      preload="auto"
+      width="100%">
+    </video>
+  </center>
+</div>
+
+<script>
+  // Lista de episódios
+  const playlistLore = [
+    { title: "S1E1 - They Made a Tonic", url: "https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E1_They_Made_a_Tonic.ia.mp4" },
+    { title: "S1E2 - Echoes", url: "https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E2_Echoes.ia.mp4" },
+    { title: "S1E3 - Black Stockings", url: "https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E3_Black_Stockings.ia.mp4" },
+    { title: "S1E4 - Passing Notes", url: "https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E4_Passing_Notes.ia.mp4" }
+  ];
+
+  let indexLore = 0;
+  const playerLore = document.getElementById("player_lore");
+  const episodeList = document.getElementById("episodeList");
+  const searchInput = document.getElementById("searchLore");
+
+  // Renderiza lista de episódios
+  function renderEpisodes(filter = "") {
+    episodeList.innerHTML = "";
+    playlistLore
+      .filter(ep => ep.title.toLowerCase().includes(filter.toLowerCase()))
+      .forEach((ep, i) => {
+        const li = document.createElement("li");
+        li.textContent = ep.title;
+        li.style.cursor = "pointer";
+        li.style.padding = "5px";
+        li.style.borderBottom = "1px solid #eee";
+        li.onclick = () => {
+          indexLore = i;
+          playerLore.src = ep.url;
+          playerLore.play();
+        };
+        episodeList.appendChild(li);
+      });
+  }
+
+  // Evento de busca
+  searchInput.addEventListener("input", (e) => {
+    renderEpisodes(e.target.value);
+  });
+
+  // Carrega o primeiro vídeo automaticamente
+  playerLore.src = playlistLore[indexLore].url;
+
+  // Quando terminar, troca para o próximo
+  playerLore.addEventListener("ended", () => {
+    indexLore = (indexLore + 1) % playlistLore.length;
+    playerLore.src = playlistLore[indexLore].url;
+    playerLore.play();
+  });
+
+  // Inicializa lista completa
+  renderEpisodes();
+</script>
+
+<div class="feed">
   <p><span>📕</span> Apostila de Redes</p>
   <p class="news">
     <a href="page/redes/index.html">Página de Redes</a> feita pelo professor Evandro.</p>
