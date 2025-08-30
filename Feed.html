@@ -97,7 +97,11 @@ border-bottom-left-radius: 16px;
 }
 </style>
 
-
+<div class="feed">
+  <p><span>🧬</span> Programação 04:00 AM</p>
+  <p class="news">
+    Sabe quando as pessoas dizem que algo não existe. Talvez esse algo exista, mas dificilmente pode ser encontrado.</p>
+</div>
 <div class="feed">
   <p><span>🫵</span> Camila Dalcol da Silva </p>
   <p class="news">
@@ -528,23 +532,16 @@ const userInfo = document.getElementById("userInfo");
 // Login
 loginBtn.addEventListener("click", () => {
   signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
+  .then((result) => {
+    const user = result.user;
+    userInfo.innerHTML = `Olá, <strong>${user.displayName}</strong> 👋`;
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
+  })
+  .catch((error) => {
+    console.error("Erro no login:", error);
+  });
 
-      // Mostra o nome do usuário (opcional)
-      userInfo.innerHTML = `Olá, <strong>${user.displayName}</strong> 👋`;
-
-      // Esconde botão login e mostra logout
-      loginBtn.style.display = "none";
-      logoutBtn.style.display = "inline-block";
-
-      // 🔹 Redireciona para a mesma página (página inicial da rádio)
-      window.location.href = "https://3asyice.github.io/Radio";
-    })
-    .catch((error) => {
-      console.error("Erro no login:", error);
-    });
-});
 
 
 // Logout
