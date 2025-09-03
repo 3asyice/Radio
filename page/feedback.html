@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Feedback</title>
+  <meta name="author" content="anonymous" />
+  <meta name="description" content="Feedback de reclamações, críticas e elogios." />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    * {
+      font-family:Arial, sans-serif;
+      font-style: normal;
+      font-weight: 700;
+    }
+    
+    html,
+    body {
+      margin: 20px;
+      background: #609CAA;
+    }
+    
+    h1 {
+      font-size: 24px;
+      color: #614EEA;
+      font-family: museo-sans, serif;
+      text-shadow: 2px 1px 1px black;
+    }
+    
+    form {
+      max-width: 400px;
+      margin: auto;
+      padding: 10px;
+      border-radius: 15px;
+      justify-items: center;   
+      background: #171717;
+    }
+    
+    label {
+      color: #fff;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    input:focus{
+      outline:none;
+    }
+    textarea:focus{
+      outline:none;
+    }
+    
+    button {
+      border-radius: 15px;
+      background-color: #4CAF50;
+      text-shadow: 2px 1px 1px black;
+      font-weight: 800;
+      color: white;
+      text-transform: uppercase;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+    }
+</style>
+<body>
+  <header>
+    <h1>RECLAMAÇÕES</h1>
+  </header>
+  <main>
+    
+    <form action="https://formspree.io/f/meqyekvp" method="POST">
+      <label>
+        O seu email &downarrow;
+        <input placeholder="Digite seu email..." type="email" name="email" required>
+      </label>
+      <label>
+        Escreva o seu Feedback &downarrow;
+        <textarea placeholder="Digite o seu Feedback..." style="height: 250px;" name="message" required></textarea>
+      </label>
+      
+      <!-- O botão tipo submit envia o feedback para a caixa de emails -->
+      <button type="submit">ENVIAR</button>
+      
+    </form>
+  </main>
+  
+  <!-- Read the Formbutton docs at formspree.io/formbutton/docs. See more examples at codepen.io/formspree -->
+  <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+window.formbutton = window.formbutton || function() {
+      (formbutton.q = formbutton.q || []).push(arguments) };
+
+// Estilizando o formulário
+    formbutton("create", {
+      action: "https://formspree.io/f/meqyekvp",
+      title: "Preencha o formulário",
+      fields: [
+        {
+          type: "email",
+          label: "Email:",
+          name: "email",
+          required: true,
+          placeholder: "Seu email..."
+        },
+        {
+          type: "textarea",
+          label: "Message:",
+          name: "message",
+          required: true,
+          placeholder: "Qual é o seu feedback?",
+        },
+        { type: "submit"
+        }
+      ],
+      styles: {
+        title: {
+          textShadow: '1px 1px 1px black',
+          outline: 'none',
+          border: '2px solid black',
+          backgroundColor: "#CAA906"
+        },
+        button: {
+          backgroundColor: "#832CFF",
+          fontWeight: '700'
+        },
+        label: {
+          color: '#CA5640',
+          textShadow: '2px 1px 1px black',
+          fontWeight: '800',
+          backgroundColor: '#627AE5'
+        },
+        form: {
+          backgroundColor: '#627AE5'
+        },
+        body: {
+          outline: 'none',
+          border: '2px solid black',
+          backgroundColor: '#627AE5'
+        },
+        input: {
+          border: '2px solid black',
+          fontWeight: '700',
+          borderRadius: '5px'
+        }
+        
+      }
+    });
+</script>
+</body>
+
+</html>
