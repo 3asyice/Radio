@@ -452,7 +452,11 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Linkin Park - Burn It Down", arquivo: "assets/16h/LinkinPark_BurnItDown.mp3", inicio: 16, minuto: 10, segundo: 25, fim: 17 },
 // 14:15
 { nome: "Kamaitachi - Bob", arquivo: "assets/16h/kamaitachi_bob.mp3", inicio: 16, minuto: 14, segundo: 15, fim: 17 },
-
+// 18:27
+{ nome: "Dual Core - All The Things", arquivo: "assets/16h/DualCore_All_The_Things.mp3", inicio: 16, minuto: 18, segundo: 27, fim: 17 },
+// 22:38
+{ nome: "Linkin Park - One Step Closer", arquivo: "assets/16h/LinkinPark_One_Step_Closer.mp3", inicio: 16, minuto: 22, segundo: 38, fim: 17 },
+// 25:16
 
 
 

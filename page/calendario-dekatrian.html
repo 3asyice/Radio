@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calendário Dekatrian</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#121923; --muted:#6b7a90; --text:#e6eef7; --accent:#5ee3ff; --accent-2:#a8ff60;
+      --ring: rgba(94,227,255,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Helvetica,Arial,sans-serif;
+      background: linear-gradient(180deg,#0b0f14,#0c121a 40%, #0b0f14); color:var(--text);
+    }
+    .wrap{max-width:1100px; margin:24px auto; padding:16px;}
+    header{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-bottom:16px}
+    .title{display:flex; align-items:center; gap:10px}
+    .dot{width:10px; height:10px; border-radius:50%; background:var(--accent)}
+    h1{font-size:clamp(18px,3vw,28px); margin:0; letter-spacing:.3px}
+
+    .controls{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+    select, button, input[type="number"]{
+      background:var(--panel); color:var(--text); border:1px solid #223043; border-radius:12px;
+      padding:10px 12px; font-size:14px; outline:none; transition:border .2s, box-shadow .2s;
+    }
+    select:focus, button:focus, input[type="number"]:focus{box-shadow:0 0 0 6px var(--ring); border-color:#36506f}
+    button{cursor:pointer}
+    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid #223043}
+    .btn.secondary{background:#0f1620}
+
+    .panel{background:rgba(8,13,20,.7); backdrop-filter: blur(6px); border:1px solid #1b283a; border-radius:18px; padding:16px}
+
+    .badge{display:inline-flex; align-items:center; gap:8px; font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid #274059; color:#b5d9ff; background:#0e1824}
+    .badge .pill{font-weight:700; color:#07131e; background:var(--accent); padding:2px 8px; border-radius:999px}
+    .legend{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 0}
+
+    .grid{display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; margin-top:12px}
+    .weekday{font-size:12px; color:#9fb2c9; text-align:center; padding:6px 0}
+    .day{
+      height:72px; border-radius:14px; border:1px solid #1a2940; background:linear-gradient(180deg,#0d1723,#0b121b);
+      padding:8px; position:relative; overflow:hidden; display:flex; align-items:flex-start; justify-content:flex-end;
+    }
+    .day span{font-size:12px; color:#9fb2c9}
+    .day.today{border-color:#36506f; box-shadow:0 0 0 4px var(--ring)}
+    .day.offtime{outline:2px dashed #3b516e; outline-offset:-6px; background:#0b121b}
+
+    .month-head{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px}
+    .month-name{font-weight:700; letter-spacing:.3px}
+    .sub{color:var(--muted); font-size:12px}
+
+    .footer{display:flex; justify-content:space-between; align-items:center; margin-top:10px; color:#9fb2c9; font-size:12px}
+
+    .yearline{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .chip{padding:6px 10px; border-radius:14px; background:#0e1620; border:1px solid #223043; color:#b9cbe0; font-size:12px}
+
+    @media (max-width:640px){
+      .day{height:58px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title"><div class="dot"></div><h1>Calendário <span style="color:var(--accent)">Dekatrian</span></h1></div>
+      <div class="controls">
+        <button id="prevMonth" class="btn" title="Mês anterior">◀</button>
+        <select id="monthSelect" aria-label="Selecione o mês"></select>
+        <input id="yearInput" type="number" step="1" class="btn" style="width:120px" />
+        <button id="nextMonth" class="btn" title="Próximo mês">▶</button>
+        <button id="todayBtn" class="btn secondary">Hoje</button>
+      </div>
+    </header>
+
+    <section class="panel" id="yearPanel" aria-live="polite">
+      <div class="month-head">
+        <div>
+          <div class="month-name" id="monthTitle">—</div>
+          <div class="sub" id="monthSub">—</div>
+        </div>
+        <div class="legend">
+          <span class="badge"><span class="pill">A</span> Achronian (fora do tempo)</span>
+          <span class="badge"><span class="pill">S</span> Sinchronian (bissexto, fora do tempo)</span>
+        </div>
+      </div>
+
+      <div class="grid" id="weekdayHead"></div>
+      <div class="grid" id="daysGrid" role="grid" aria-label="Dias do mês (4 semanas)"></div>
+
+      <div class="yearline" id="outOfTime">
+        <!-- Dias fora do tempo aparecerão aqui quando o mês visualizado for ‘Auroran’ -->
+      </div>
+
+      <div class="footer" id="footerInfo">
+        <div id="footLeft">—</div>
+        <div id="footRight">—</div>
+      </div>
+    </section>
+  </div>
+
+<script>
+// ==========================
+// Regras do Calendário Dekatrian
+// ==========================
+const D_MONTHS = [
+  'Auroran','Borean','Coronian','Driadan','Electran','Faian','Gaian','Hermetian','Irisian','Kaosian','Lunan','Maian','Nixian'
+];
+// Abreviações para cabeçalho de semana (Dekatrian alinha sempre com a semana)
+const WEEKDAYS_PT = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+
+// Verifica bissexto no sistema Gregoriano
+function isLeapGregorian(y){
+  return (y % 4 === 0 && y % 100 !== 0) || (y % 400 === 0);
+}
+
+// Converte data Gregoriana para Dekatrian
+function gregorianToDekatrian(date){
+  const y = date.getFullYear();
+  const start = new Date(Date.UTC(y,0,1)); // 1 jan (Achronian)
+  const msPerDay = 86400000;
+  const doy = Math.floor((Date.UTC(y, date.getMonth(), date.getDate()) - start.getTime())/msPerDay) + 1; // 1..365/366
+  const leap = isLeapGregorian(y);
+
+  if (doy === 1) return { special: 'Achronian', year: y };
+  if (leap && doy === 2) return { special: 'Sinchronian', year: y };
+
+  const base = doy - 2 - (leap ? 1 : 0); // 0..363
+  const mIdx = Math.floor(base / 28);
+  const day = (base % 28) + 1;
+  return { year: y, monthIndex: mIdx, month: D_MONTHS[mIdx], day };
+}
+
+// Converte data Dekatrian para Gregoriana (retorna Date no fuso local)
+function dekatrianToGregorian(year, monthIndex, day){
+  const leap = isLeapGregorian(year);
+  if (monthIndex == null){
+    // Dias fora do tempo
+    const offset = (day === 'Sinchronian') ? 1 : 0; // 0 = Achronian, 1 = Sinchronian
+    return new Date(year, 0, 1 + offset);
+  }
+  const base = (monthIndex * 28) + (day - 1); // 0..363
+  const doy = base + 2 + (leap ? 1 : 0);      // pula Achronian (+ Sinchronian se leap)
+  return new Date(year, 0, doy);
+}
+
+// Retorna o intervalo aproximado no Gregoriano para um mês Dekatrian
+function dekatrianMonthSpanGregorian(year, monthIndex){
+  const start = dekatrianToGregorian(year, monthIndex, 1);
+  const end = dekatrianToGregorian(year, monthIndex, 28);
+  return { start, end };
+}
+
+// Utilitários de formatação
+const fmt = new Intl.DateTimeFormat('pt-BR', { weekday:'long', day:'2-digit', month:'2-digit', year:'numeric' });
+const fmtShort = new Intl.DateTimeFormat('pt-BR', { day:'2-digit', month:'2-digit' });
+
+// ==========================
+// UI
+// ==========================
+const monthSelect = document.getElementById('monthSelect');
+const yearInput   = document.getElementById('yearInput');
+const monthTitle  = document.getElementById('monthTitle');
+const monthSub    = document.getElementById('monthSub');
+const weekdayHead = document.getElementById('weekdayHead');
+const daysGrid    = document.getElementById('daysGrid');
+const outOfTime   = document.getElementById('outOfTime');
+const footLeft    = document.getElementById('footLeft');
+const footRight   = document.getElementById('footRight');
+
+// Preenche selects
+D_MONTHS.forEach((m,i)=>{
+  const opt = document.createElement('option'); opt.value=i; opt.textContent=`${i+1}. ${m}`; monthSelect.appendChild(opt);
+});
+
+// Cabeçalho dos dias da semana (perene, pois cada mês tem 4 semanas de 7 dias)
+function renderWeekdayHeader(){
+  weekdayHead.innerHTML = '';
+  WEEKDAYS_PT.forEach(w=>{
+    const cell = document.createElement('div');
+    cell.className='weekday';
+    cell.textContent = w;
+    weekdayHead.appendChild(cell);
+  });
+}
+
+function renderMonth(year, monthIndex){
+  // Título e subtítulo
+  const { start, end } = dekatrianMonthSpanGregorian(year, monthIndex);
+  monthTitle.textContent = `${D_MONTHS[monthIndex]} — ${year}`;
+  monthSub.textContent = `${fmt.format(start)} → ${fmt.format(end)} (equivalente Gregoriano)`;
+
+  // Grid de 4 semanas
+  daysGrid.innerHTML='';
+  for(let d=1; d<=28; d++){
+    const cell = document.createElement('div');
+    cell.className='day';
+    const g = dekatrianToGregorian(year, monthIndex, d);
+    const isToday = isSameDate(g, new Date());
+    if (isToday) cell.classList.add('today');
+    cell.title = `Dekatrian: ${d} ${D_MONTHS[monthIndex]} ${year} \nGregoriano: ${fmt.format(g)}`;
+    const label = document.createElement('span');
+    label.textContent = d;
+    cell.appendChild(label);
+    daysGrid.appendChild(cell);
+  }
+
+  // Dias fora do tempo (somente exibidos quando estamos em Auroran)
+  outOfTime.innerHTML='';
+  const leap = isLeapGregorian(year);
+  if (monthIndex === 0){
+    const a = document.createElement('div');
+    a.className='chip';
+    const gA = dekatrianToGregorian(year, null, 'Achronian');
+    a.textContent = `Achronian → ${fmt.format(gA)}`;
+    outOfTime.appendChild(a);
+
+    if (leap){
+      const s = document.createElement('div');
+      s.className='chip';
+      const gS = dekatrianToGregorian(year, null, 'Sinchronian');
+      s.textContent = `Sinchronian → ${fmt.format(gS)}`;
+      outOfTime.appendChild(s);
+    }
+  }
+
+  // Rodapé
+  footLeft.textContent = `Cada mês possui 28 dias (4 semanas). 1 ${D_MONTHS[monthIndex]} é sempre uma segunda-feira.`;
+  footRight.textContent = `Achronian (sempre 01/01) ${leap? 'e Sinchronian (02/01) são':''} é dia(s) fora do tempo.`;
+}
+
+function isSameDate(a,b){
+  return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+}
+
+// Navegação
+function goto(y,m){
+  yearInput.value = y; monthSelect.value = m; renderMonth(y,m);
+}
+
+// Inicialização em "hoje" (convertendo hoje Gregoriano para Dekatrian)
+(function init(){
+  renderWeekdayHeader();
+  const now = new Date();
+  const dek = gregorianToDekatrian(now);
+  if (dek.special){
+    // Se hoje for Achronian/Sinchronian, mostrar Auroran do ano e destacar info
+    const y = dek.year;
+    goto(y, 0);
+  } else {
+    goto(dek.year, dek.monthIndex);
+  }
+})();
+
+// Listeners
+prevMonth.addEventListener('click', ()=>{
+  let y = +yearInput.value, m = +monthSelect.value; m--; if(m<0){m=12; y--; } goto(y,m);
+});
+nextMonth.addEventListener('click', ()=>{
+  let y = +yearInput.value, m = +monthSelect.value; m++; if(m>12){m=0; y++; } goto(y,m);
+});
+monthSelect.addEventListener('change', ()=> goto(+yearInput.value, +monthSelect.value));
+yearInput.addEventListener('change', ()=> goto(+yearInput.value, +monthSelect.value));
+
+todayBtn.addEventListener('click', ()=>{
+  const now = new Date();
+  const dek = gregorianToDekatrian(now);
+  if (dek.special){ goto(dek.year, 0); } else { goto(dek.year, dek.monthIndex); }
+});
+</script>
+</body>
+</html>
