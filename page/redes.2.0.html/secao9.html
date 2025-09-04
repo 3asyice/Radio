@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 9 - Protocolos e Serviços de Aplicação</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🌍 Protocolos e Serviços de Aplicação</h1>
+            <p class="subtitle">Seção 9 - A Interação Direta com o Usuário</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Protocolos e Serviços que Impulsionam a Web</h2>
+            <p>Esta seção explora os protocolos e serviços que operam nas camadas mais altas do modelo OSI, diretamente interagindo com os usuários e as aplicações que utilizamos diariamente para navegar na web, transferir arquivos, enviar e-mails e realizar chamadas de voz.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('http')">
+                <div class="term-name">HTTP</div>
+                <div class="term-description">Protocolo para transferência de hipertexto, base da World Wide Web.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('https')">
+                <div class="term-name">HTTPS</div>
+                <div class="term-description">Versão segura do HTTP, usando criptografia SSL/TLS.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ftp')">
+                <div class="term-name">FTP</div>
+                <div class="term-description">Protocolo para transferência de arquivos entre computadores em uma rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('smtp')">
+                <div class="term-name">SMTP</div>
+                <div class="term-description">Protocolo padrão para envio de e-mails entre servidores.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('telnet')">
+                <div class="term-name">Telnet</div>
+                <div class="term-description">Protocolo de rede para acesso remoto a computadores via linha de comando.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ssh')">
+                <div class="term-name">SSH</div>
+                <div class="term-description">Protocolo criptográfico para operações de rede seguras em redes não seguras.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ppp')">
+                <div class="term-name">PPP</div>
+                <div class="term-description">Protocolo de camada de enlace de dados para comunicação direta entre dois nós.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('pppoe')">
+                <div class="term-name">PPPoE</div>
+                <div class="term-description">Protocolo que encapsula frames PPP dentro de frames Ethernet.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('voip')">
+                <div class="term-name">VoIP</div>
+                <div class="term-description">Tecnologia que permite a transmissão de voz em tempo real sobre redes IP.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('adsl')">
+                <div class="term-name">ADSL</div>
+                <div class="term-description">Tecnologia de linha de assinante digital que permite acesso à internet de alta velocidade sobre linhas telefônicas comuns.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body">
+                <!-- Conteúdo será inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 - Glossário de Redes de Computadores | Seção 9</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'http': {
+                title: 'HTTP (Hypertext Transfer Protocol)',
+                description: 'Protocolo para transferência de hipertexto, base da World Wide Web.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O HTTP é um protocolo de camada de aplicação para sistemas de informação distribuídos e colaborativos. É a base da comunicação de dados para a World Wide Web, onde define como as mensagens são formatadas e transmitidas, e quais ações os servidores web e navegadores devem tomar em resposta a vários comandos.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Modelo Cliente-Servidor:</strong> O navegador (cliente) envia uma requisição HTTP a um servidor web, e o servidor responde com os dados solicitados (ex: página HTML, imagem).</li>
+                        <li><strong>Requisição (Request):</strong> O cliente envia uma requisição, que inclui um método (GET, POST, etc.), o URI do recurso, e cabeçalhos (headers) com informações adicionais.</li>
+                        <li><strong>Resposta (Response):</strong> O servidor responde com um código de status (ex: 200 OK, 404 Not Found), cabeçalhos de resposta e o corpo da resposta (o recurso solicitado).</li>
+                        <li><strong>Stateless:</strong> O HTTP é um protocolo sem estado, o que significa que cada requisição é independente e o servidor não guarda informações sobre requisições anteriores do mesmo cliente. Cookies são usados para gerenciar sessões e manter o estado em nível de aplicação.</li>
+                    </ul>
+                    
+                    <h3>Métodos HTTP Comuns:</h3>
+                    <ul>
+                        <li><strong>GET:</strong> Solicita dados de um recurso especificado. Deve ser usado apenas para recuperar dados.</li>
+                        <li><strong>POST:</strong> Envia dados para processar um recurso especificado. Usado para submeter formulários, enviar arquivos, etc.</li>
+                        <li><strong>HEAD:</strong> Similar ao GET, mas solicita apenas o cabeçalho da resposta, sem o corpo.</li>
+                        <li><strong>PUT:</strong> Envia dados para criar ou atualizar um recurso especificado.</li>
+                        <li><strong>DELETE:</strong> Solicita a remoção de um recurso especificado.</li>
+                    </ul>
+                    
+                    <h3>Porta Padrão:</h3>
+                    <p>A porta TCP padrão para o HTTP é a <strong>80</strong>.</p>
+                    
+                    <h3>Evolução:</h3>
+                    <ul>
+                        <li><strong>HTTP/1.0:</strong> Cada requisição exigia uma nova conexão TCP.</li>
+                        <li><strong>HTTP/1.1:</strong> Introduziu conexões persistentes, pipelining, e novos métodos, melhorando a eficiência.</li>
+                        <li><strong>HTTP/2:</strong> Melhorias de desempenho significativas (multiplexação, cabeçalhos compactados, server push) sobre uma única conexão TCP, sem alterar a semântica HTTP.</li>
+                        <li><strong>HTTP/3:</strong> Baseado no protocolo UDP com QUIC, visando reduzir a latência e melhorar o desempenho em redes com perda de pacotes e conexões móveis.</li>
+                    </ul>
+                `
+            },
+            'https': {
+                title: 'HTTPS (Hypertext Transfer Protocol Secure)',
+                description: 'Versão segura do HTTP, usando criptografia SSL/TLS.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>HTTPS é a versão segura do HTTP, que utiliza um protocolo de criptografia (SSL/TLS - Secure Sockets Layer/Transport Layer Security) para fornecer comunicação segura por uma rede de computadores, especialmente a internet. O HTTPS é amplamente utilizado para transações sensíveis, como compras online e operações bancárias.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Camada de Criptografia:</strong> O HTTPS opera sobre o HTTP, adicionando uma camada de segurança (SSL/TLS) entre a camada de aplicação (HTTP) e a camada de transporte (TCP/IP).</li>
+                        <li><strong>Handshake SSL/TLS:</strong> Quando um cliente (navegador) tenta se conectar a um servidor HTTPS, ocorre um processo de negociação (handshake) para estabelecer uma sessão segura, que envolve:
+                            <ul>
+                                <li>Troca de chaves de criptografia.</li>
+                                <li>Autenticação do servidor (e opcionalmente do cliente) através de certificados digitais.</li>
+                                <li>Definição dos algoritmos de criptografia a serem usados.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Criptografia:</strong> Uma vez estabelecida a sessão, todo o tráfego de dados entre o cliente e o servidor é criptografado e descriptografado usando as chaves negociadas. Isso garante a confidencialidade dos dados.</li>
+                    </ul>
+                    
+                    <h3>Garantias do HTTPS:</h3>
+                    <ul>
+                        <li><strong>Confidencialidade:</strong> Os dados são criptografados, impedindo que terceiros leiam o conteúdo da comunicação.</li>
+                        <li><strong>Integridade:</strong> Garante que os dados não foram alterados durante a transmissão. Qualquer modificação seria detectada.</li>
+                        <li><strong>Autenticação:</strong> Verifica a identidade do servidor, garantindo que o usuário está se comunicando com o servidor legítimo e não com um impostor. Certificados de Validação Estendida (EV SSL) oferecem o mais alto nível de autenticação.</li>
+                    </ul>
+                    
+                    <h3>Porta Padrão:</h3>
+                    <p>A porta TCP padrão para o HTTPS é a <strong>443</strong>.</p>
+                    
+                    <h3>Importância Atual:</h3>
+                    <ul>
+                        <li><strong>Segurança:</strong> Essencial para proteger informações sensíveis (senhas, dados financeiros).</li>
+                        <li><strong>SEO (Search Engine Optimization):</strong> Motores de busca como o Google dão preferência a sites HTTPS, impactando o ranking de busca.</li>
+                        <li><strong>Confiança do Usuário:</strong> Navegadores exibem avisos de "Site não seguro" para sites HTTP, o que pode afastar visitantes.</li>
+                        <li><strong>Funcionalidades Web Modernas:</strong> Muitas APIs e recursos do navegador (ex: geolocalização, service workers) exigem HTTPS.</li>
+                    </ul>
+                `
+            },
+            'ftp': {
+                title: 'FTP (File Transfer Protocol)',
+                description: 'Protocolo para transferência de arquivos entre computadores em uma rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O FTP é um protocolo padrão de rede utilizado para a transferência de arquivos entre um cliente e um servidor em uma rede de computadores, como a internet. Ele permite que usuários enviem (upload) e recebam (download) arquivos, além de gerenciar diretórios e arquivos no servidor.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Diferente de muitos protocolos, o FTP utiliza duas portas TCP separadas para a comunicação:</p>
+                    <ul>
+                        <li><strong>Porta de Controle (Porta 21):</strong> Utilizada para comandos e respostas (autenticação, navegação de diretórios, criação/remoção de arquivos). Esta conexão permanece aberta durante toda a sessão FTP.</li>
+                        <li><strong>Porta de Dados (Porta 20 ou porta dinâmica):</strong> Utilizada para a transferência real dos dados dos arquivos. Uma nova conexão de dados é estabelecida para cada transferência de arquivo ou listagem de diretório.</li>
+                    </ul>
+                    
+                    <h3>Modos de Operação:</h3>
+                    <ul>
+                        <li><strong>Modo Ativo:</strong>
+                            <ul>
+                                <li>O cliente envia um comando (PORT) ao servidor, informando o endereço IP e o número da porta em que está "escutando" para a conexão de dados.</li>
+                                <li>O servidor então inicia a conexão de dados a partir da sua porta 20 para a porta especificada pelo cliente.</li>
+                                <li>Problemas com firewalls: O modo ativo pode ser problemático com firewalls no lado do cliente, pois o firewall pode bloquear a conexão de entrada do servidor para a porta aleatória do cliente.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Modo Passivo:</strong>
+                            <ul>
+                                <li>O cliente envia um comando (PASV) ao servidor, solicitando que o servidor abra uma porta de dados.</li>
+                                <li>O servidor abre uma porta aleatória (>1023) e informa o número dessa porta ao cliente.</li>
+                                <li>O cliente então inicia a conexão de dados para a porta aleatória do servidor.</li>
+                                <li>Melhor para firewalls: Este modo é mais amigável para firewalls, pois o cliente sempre inicia a conexão.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Segurança:</h3>
+                    <p>O FTP original não é seguro, pois todas as informações (incluindo nomes de usuário, senhas e os próprios dados transferidos) são enviadas em texto simples. Para transferências seguras, são utilizadas variações:</p>
+                    <ul>
+                        <li><strong>FTPS (FTP Secure):</strong> Adiciona uma camada SSL/TLS sobre o FTP.</li>
+                        <li><strong>SFTP (SSH File Transfer Protocol):</strong> É um protocolo de transferência de arquivos que roda sobre o SSH, aproveitando sua segurança e criptografia. É tecnicamente diferente do FTPS.</li>
+                    </ul>
+                `
+            },
+            'smtp': {
+                title: 'SMTP (Simple Mail Transfer Protocol)',
+                description: 'Protocolo padrão para envio de e-mails entre servidores.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>SMTP é o protocolo padrão da internet para o envio de e-mails. Ele é utilizado por servidores de e-mail para enviar e receber mensagens entre si e por clientes de e-mail (como Outlook, Thunderbird, Gmail web interface) para enviar mensagens para um servidor de e-mail.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>MTA (Mail Transfer Agent):</strong> Servidores de e-mail que usam SMTP para enviar e-mails de um servidor para outro. Quando você envia um e-mail, seu servidor de e-mail (MTA) usa SMTP para enviá-lo para o servidor de e-mail do destinatário (outro MTA).</li>
+                        <li><strong>MSA (Mail Submission Agent):</strong> Um servidor de e-mail que recebe e-mails de clientes (como seu Outlook) antes de encaminhá-los para um MTA. O MSA é o primeiro ponto de contato para o e-mail enviado por um usuário.</li>
+                        <li><strong>Processo de Envio:</strong>
+                            <ol>
+                                <li>O cliente de e-mail envia a mensagem para o MSA usando SMTP.</li>
+                                <li>O MSA/MTA do remetente consulta o DNS para encontrar o servidor de e-mail (MX record) do domínio do destinatário.</li>
+                                <li>O MSA/MTA do remetente estabelece uma conexão SMTP com o servidor de e-mail do destinatário.</li>
+                                <li>O e-mail é transferido para o servidor do destinatário.</li>
+                                <li>O servidor do destinatário armazena o e-mail na caixa de entrada do destinatário, aguardando que ele seja recuperado usando POP3 ou IMAP.</li>
+                            </ol>
+                        </li>
+                    </ul>
+                    
+                    <h3>Portas SMTP:</h3>
+                    <ul>
+                        <li><strong>Porta 25 (SMTP):</strong> Porta original e padrão para a comunicação entre servidores de e-mail (MTA para MTA). Muitos ISPs bloqueiam esta porta para usuários finais para combater spam.</li>
+                        <li><strong>Porta 465 (SMTPS):</strong> Utilizada para envio de e-mail com criptografia SSL/TLS implícita. Embora tenha sido descontinuada como padrão oficial para o SMTP Submission, ainda é usada por alguns provedores.</li>
+                        <li><strong>Porta 587 (Submission):</strong> Porta recomendada para o envio de e-mails por clientes de e-mail (MSA). Geralmente requer autenticação (usuário e senha) e usa STARTTLS para criptografia explícita.</li>
+                    </ul>
+                    
+                    <h3>Segurança:</h3>
+                    <p>O SMTP por si só não oferece criptografia. A comunicação pode ser protegida usando SSL/TLS (STARTTLS na porta 587 ou SSL/TLS implícito na porta 465) para criptografar o tráfego entre o cliente e o servidor, e entre servidores.</p>
+                    
+                    <h3>Relação com outros protocolos de e-mail:</h3>
+                    <ul>
+                        <li><strong>POP3 (Post Office Protocol version 3):</strong> Usado por clientes de e-mail para baixar mensagens do servidor e geralmente as remove do servidor.</li>
+                        <li><strong>IMAP (Internet Message Access Protocol):</strong> Usado por clientes de e-mail para acessar e gerenciar mensagens diretamente no servidor, mantendo as mensagens sincronizadas entre vários dispositivos.</li>
+                        <li>SMTP é para <strong>enviar</strong>, enquanto POP3 e IMAP são para <strong>receber</strong>.</li>
+                    </ul>
+                `
+            },
+            'telnet': {
+                title: 'Telnet (TELecommunication NETwork)',
+                description: 'Protocolo de rede para acesso remoto a computadores via linha de comando.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Telnet é um protocolo de rede e um utilitário de linha de comando que permite a um usuário acessar um computador remoto (servidor) e controlá-lo como se estivesse sentado em frente a ele. Foi um dos primeiros protocolos a permitir o acesso remoto a terminais de computador.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Modelo Cliente-Servidor:</strong> Um cliente Telnet (software) se conecta a um servidor Telnet em uma máquina remota.</li>
+                        <li><strong>Conexão de Texto Simples:</strong> A comunicação ocorre em texto simples (ASCII), sem criptografia. Os caracteres digitados no cliente são enviados para o servidor, e a resposta do servidor é enviada de volta para o cliente, tudo em texto legível.</li>
+                        <li><strong>Emulação de Terminal:</strong> O Telnet emula um terminal virtual (VT100 é comum), permitindo que o usuário interaja com o sistema operacional remoto via linha de comando.</li>
+                    </ul>
+                    
+                    <h3>Porta Padrão:</h3>
+                    <p>A porta TCP padrão para o Telnet é a <strong>23</strong>.</p>
+                    
+                    <h3>Principais Usos Históricos:</h3>
+                    <ul>
+                        <li>Acesso remoto a servidores e equipamentos de rede (roteadores, switches) para gerenciamento.</li>
+                        <li>Conexão a serviços de e-mail, notícias (Usenet) e outros serviços baseados em texto.</li>
+                        <li>Testes básicos de conectividade a portas de serviços (ex: testar se um servidor web está respondendo na porta 80).</li>
+                    </ul>
+                    
+                    <h3>Problemas de Segurança:</h3>
+                    <ul>
+                        <li><strong>Falta de Criptografia:</strong> Esta é a maior deficiência do Telnet. Todas as informações, incluindo nomes de usuário, senhas e o conteúdo da sessão, são transmitidas em texto simples. Isso as torna vulneráveis a interceptação (sniffing) por qualquer pessoa na rede.</li>
+                        <li><strong>Autenticação Fraca:</strong> Facilita ataques de força bruta ou adivinhação de senha.</li>
+                        <li><strong>Sem Integridade de Dados:</strong> Não há garantia de que os dados não foram alterados em trânsito.</li>
+                    </ul>
+                    
+                    <h3>Substituição por SSH:</h3>
+                    <p>Devido às suas graves falhas de segurança, o Telnet foi amplamente substituído por protocolos mais seguros, principalmente o <strong>SSH (Secure Shell)</strong>. O SSH oferece as mesmas funcionalidades de acesso remoto, mas com criptografia forte, autenticação robusta e proteção da integridade dos dados.</p>
+                `
+            },
+            'ssh': {
+                title: 'SSH (Secure SHell)',
+                description: 'Protocolo criptográfico para operações de rede seguras em redes não seguras.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>SSH (Secure SHell) é um protocolo de rede criptográfico que permite a operação segura de serviços de rede sobre uma rede não segura, como a internet. Ele oferece acesso remoto seguro a servidores, execução de comandos remotos, transferência de arquivos segura (SCP, SFTP) e tunelamento de portas.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Modelo Cliente-Servidor:</strong> Um cliente SSH se conecta a um servidor SSH que está executando na máquina remota.</li>
+                        <li><strong>Handshake e Criptografia:</strong> No início da conexão, ocorre um handshake para estabelecer uma sessão segura, que inclui:
+                            <ul>
+                                <li><strong>Autenticação do Servidor:</strong> O cliente verifica a identidade do servidor para evitar ataques man-in-the-middle, geralmente usando uma chave pública do servidor.</li>
+                                <li><strong>Autenticação do Cliente:</strong> O servidor verifica a identidade do cliente, que pode ser por senha, chave pública (mais segura) ou outros métodos.</li>
+                                <li><strong>Troca de Chaves:</strong> Negociação de chaves de criptografia simétrica que serão usadas para criptografar toda a comunicação durante a sessão.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tunelamento e Criptografia:</strong> Todo o tráfego (comandos, dados, senhas) dentro da sessão SSH é criptografado, garantindo confidencialidade e integridade.</li>
+                    </ul>
+                    
+                    <h3>Porta Padrão:</h3>
+                    <p>A porta TCP padrão para o SSH é a <strong>22</strong>.</p>
+                    
+                    <h3>Principais Funcionalidades:</h3>
+                    <ul>
+                        <li><strong>Login Remoto Seguro:</strong> Permite que administradores e usuários acessem e controlem servidores remotos via linha de comando de forma segura.</li>
+                        <li><strong>Execução Remota de Comandos:</strong> Possibilita a execução de scripts e comandos em servidores remotos sem a necessidade de login interativo.</li>
+                        <li><strong>Transferência Segura de Arquivos:</strong>
+                            <ul>
+                                <li><strong>SCP (Secure Copy Protocol):</strong> Utilizado para transferir arquivos entre sistemas de forma segura.</li>
+                                <li><strong>SFTP (SSH File Transfer Protocol):</strong> Um protocolo de transferência de arquivos mais robusto, que permite navegação de diretórios, renomear arquivos, etc., tudo sobre uma conexão SSH.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tunelamento de Portas (Port Forwarding):</strong>
+                            <ul>
+                                <li><strong>Local Port Forwarding:</strong> Permite acessar serviços de uma máquina remota através da máquina local, atravessando firewalls.</li>
+                                <li><strong>Remote Port Forwarding:</strong> Permite que uma máquina remota acesse serviços da máquina local.</li>
+                                <li><strong>Dynamic Port Forwarding (SOCKS Proxy):</strong> Cria um proxy genérico para navegar na internet de forma segura.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Benefícios:</h3>
+                    <ul>
+                        <li><strong>Segurança Robusta:</strong> Criptografia forte protege contra interceptação e ataques.</li>
+                        <li><strong>Autenticação Flexível:</strong> Suporta senhas, chaves públicas, Kerberos, etc.</li>
+                        <li><strong>Versatilidade:</strong> Além do login remoto, oferece várias ferramentas para gerenciamento de rede seguro.</li>
+                        <li><strong>Substituto para Telnet e FTP:</strong> Devido à sua segurança, é o substituto padrão para protocolos antigos não criptografados.</li>
+                    </ul>
+                `
+            },
+            'ppp': {
+                title: 'PPP (Point-to-Point Protocol)',
+                description: 'Protocolo de camada de enlace de dados para comunicação direta entre dois nós.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O PPP (Point-to-Point Protocol) é um protocolo de camada de enlace de dados (Camada 2 do modelo OSI) usado para estabelecer uma conexão direta ponto a ponto entre dois nós, comumente em links seriais, como linhas discadas (modem dial-up) ou linhas dedicadas. Ele fornece encapsulamento de pacotes, multiplexação de protocolos, autenticação e negociação de configurações.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Framing:</strong> O PPP encapsula pacotes de diferentes protocolos de rede (como IP, IPX, AppleTalk) em frames PPP para transmissão sobre o link ponto a ponto. Ele define um formato de frame que inclui campos para indicar o início e o fim do frame, bem como o tipo de protocolo encapsulado.</li>
+                        <li><strong>LCP (Link Control Protocol):</strong> Componente do PPP que é responsável por estabelecer, configurar, testar, manter e terminar a conexão de enlace. Ele negocia parâmetros como tamanho máximo de pacote (MTU), autenticação e compressão.</li>
+                        <li><strong>NCP (Network Control Protocols):</strong> Componentes do PPP que são responsáveis por configurar protocolos de camada de rede (Camada 3) para operação sobre o link PPP. O mais comum é o IPCP (IP Control Protocol), que configura endereços IP e servidores DNS.</li>
+                    </ul>
+                    
+                    <h3>Fases da Conexão PPP:</h3>
+                    <ol>
+                        <li><strong>Link Dead:</strong> A conexão física não está estabelecida.</li>
+                        <li><strong>Link Establishment:</strong> O LCP é usado para estabelecer e configurar o link de comunicação.</li>
+                        <li><strong>Authentication (Opcional):</strong> Utiliza protocolos como PAP (Password Authentication Protocol) ou CHAP (Challenge Handshake Authentication Protocol) para verificar a identidade do usuário.</li>
+                        <li><strong>Network-Layer Protocol Configuration:</strong> Após a autenticação, os NCPs (como IPCP) configuram os protocolos da camada de rede.</li>
+                        <li><strong>Link Open:</strong> A conexão está totalmente operacional e o tráfego pode ser transmitido.</li>
+                        <li><strong>Link Termination:</strong> A conexão é encerrada pelo LCP.</li>
+                    </ol>
+                    
+                    <h3>Uso Comum:</h3>
+                    <ul>
+                        <li><strong>Conexões Dial-up (Linha Discada):</strong> Foi amplamente utilizado para conectar computadores à internet via modems de linha discada.</li>
+                        <li><strong>Links Seriais Dedicados:</strong> Em redes corporativas para conectar filiais ou roteadores via links seriais.</li>
+                        <li><strong>PPPoE (PPP over Ethernet):</strong> Uma variante que encapsula frames PPP dentro de frames Ethernet, muito comum em conexões DSL.</li>
+                        <li><strong>VPNs:</strong> PPP pode ser usado como um protocolo de tunelamento em algumas implementações de VPN (ex: PPTP).</li>
+                    </ul>
+                    
+                    <h3>Benefícios:</h3>
+                    <ul>
+                        <li><strong>Autenticação:</strong> Oferece métodos para verificar a identidade do usuário.</li>
+                        <li><strong>Flexibilidade de Protocolo:</strong> Suporta múltiplos protocolos de camada de rede.</li>
+                        <li><strong>Compressão e Gerenciamento de Erros:</strong> Pode negociar compressão de dados e detecção de erros para otimizar o desempenho.</li>
+                    </ul>
+                `
+            },
+            'pppoe': {
+                title: 'PPPoE (Point-to-Point Protocol over Ethernet)',
+                description: 'Protocolo que encapsula frames PPP dentro de frames Ethernet.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>PPPoE (Point-to-Point Protocol over Ethernet) é um protocolo de rede que encapsula frames PPP (Point-to-Point Protocol) dentro de frames Ethernet. Ele foi desenvolvido principalmente para fornecer funcionalidade PPP (como autenticação e gerenciamento de sessão) sobre redes Ethernet, sendo amplamente utilizado por provedores de serviço de internet (ISPs) para conexões de banda larga via DSL (Digital Subscriber Line) e, mais recentemente, fibra óptica.</p>
+                    
+                    <h3>Por que PPPoE?</h3>
+                    <ul>
+                        <li><strong>Autenticação:</strong> Permite que os ISPs autentiquem usuários usando nomes de usuário e senhas (através do PPP), o que não é uma função nativa do Ethernet.</li>
+                        <li><strong>Gerenciamento de Sessão:</strong> Permite que os ISPs controlem o tempo de conexão e a largura de banda de cada usuário individualmente.</li>
+                        <li><strong>Atribuição de IP Dinâmica:</strong> Permite que o ISP atribua endereços IP dinamicamente aos usuários, em vez de exigir IPs estáticos.</li>
+                        <li><strong>Contabilidade:</strong> Ajuda os ISPs a registrar o uso do serviço por cada usuário para fins de faturamento.</li>
+                    </ul>
+                    
+                    <h3>Como Funciona (Fases):</h3>
+                    <p>O processo PPPoE envolve duas fases principais:</p>
+                    <ol>
+                        <li><strong>Discovery Stage (Estágio de Descoberta):</strong>
+                            <ul>
+                                <li>O cliente envia um pacote <code>PPPoE Active Discovery Initiation (PADI)</code> em broadcast para encontrar um concentrador de acesso (Access Concentrator - AC) PPPoE.</li>
+                                <li>O AC responde com um pacote <code>PPPoE Active Discovery Offer (PADO)</code>, indicando que pode oferecer serviço.</li>
+                                <li>O cliente escolhe um AC e envia um pacote <code>PPPoE Active Discovery Request (PADR)</code>.</li>
+                                <li>O AC responde com um pacote <code>PPPoE Active Discovery Session-confirmation (PADS)</code>, estabelecendo a sessão PPPoE.</li>
+                            </ul>
+                        </li>
+                        <li><strong>PPP Session Stage (Estágio da Sessão PPP):</strong>
+                            <ul>
+                                <li>Uma vez que a sessão PPPoE é estabelecida, a comunicação PPP normal ocorre.</li>
+                                <li>O LCP (Link Control Protocol) do PPP negocia os parâmetros da conexão (MTU, compressão).</li>
+                                <li>A autenticação (PAP ou CHAP) ocorre usando o nome de usuário e senha fornecidos pelo usuário.</li>
+                                <li>O IPCP (IP Control Protocol) do PPP atribui um endereço IP ao cliente, além de outras configurações de rede (DNS, gateway).</li>
+                                <li>A partir deste ponto, o cliente pode acessar a internet.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>MTU (Maximum Transmission Unit) no PPPoE:</h3>
+                    <p>Um detalhe importante do PPPoE é o overhead de encapsulamento. Enquanto o MTU padrão do Ethernet é de 1500 bytes, o PPPoE adiciona 8 bytes de cabeçalho ao frame PPP, o que significa que o MTU efetivo para os dados transportados via PPPoE é de 1492 bytes. Isso pode causar problemas de fragmentação de pacotes se não for configurado corretamente.</p>
+                `
+            },
+            'voip': {
+                title: 'VoIP (Voice over Internet Protocol)',
+                description: 'Tecnologia que permite a transmissão de voz em tempo real sobre redes IP.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>VoIP (Voice over Internet Protocol), ou Voz sobre Protocolo de Internet, é uma tecnologia que permite que chamadas de voz e outras formas de comunicação multimídia (como vídeo e chat) sejam realizadas pela internet ou por outras redes baseadas em IP, em vez das redes telefônicas tradicionais (PSTN - Public Switched Telephone Network).</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>O processo básico de uma chamada VoIP envolve vários passos:</p>
+                    <ol>
+                        <li><strong>Digitalização e Compressão:</strong> A voz analógica do microfone é convertida em dados digitais e comprimida usando codecs (ex: G.711, G.729).</li>
+                        <li><strong>Pacotização:</strong> Os dados de voz digitais são divididos em pequenos pacotes IP.</li>
+                        <li><strong>Transmissão:</strong> Esses pacotes são enviados pela rede IP (internet).</li>
+                        <li><strong>Reconstrução:</strong> No destino, os pacotes são recebidos, decodificados e convertidos de volta em voz analógica, que é reproduzida pelo alto-falante.</li>
+                    </ol>
+                    
+                    <h3>Protocolos Chave do VoIP:</h3>
+                    <ul>
+                        <li><strong>SIP (Session Initiation Protocol):</strong>
+                            <ul>
+                                <li>O protocolo mais comum para sinalização VoIP.</li>
+                                <li>Utilizado para iniciar, modificar e encerrar sessões de comunicação multimídia (chamadas de voz e vídeo, conferências).</li>
+                            </ul>
+                        </li>
+                        <li><strong>RTP (Real-time Transport Protocol):</strong>
+                            <ul>
+                                <li>Usado para a transmissão real dos pacotes de áudio e vídeo durante uma chamada.</li>
+                                <li>Não garante entrega, mas fornece sequenciamento e timestamping para ajudar na reconstrução da mídia em tempo real.</li>
+                            </ul>
+                        </li>
+                        <li><strong>RTCP (RTP Control Protocol):</strong>
+                            <ul>
+                                <li>Protocolo complementar ao RTP, usado para controlar a qualidade da transmissão de dados em tempo real e fornecer estatísticas sobre a sessão.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Codecs:</strong> Algoritmos de compressão/descompressão de áudio e vídeo (ex: G.711 para alta fidelidade, G.729 para baixa largura de banda).</li>
+                    </ul>
+                    
+                    <h3>Componentes de um Sistema VoIP:</h3>
+                    <ul>
+                        <li><strong>Telefone IP:</strong> Aparelho telefônico que se conecta diretamente à rede IP.</li>
+                        <li><strong>Adaptador de Telefone Analógico (ATA):</strong> Permite conectar telefones analógicos tradicionais a uma rede VoIP.</li>
+                        <li><strong>Softphone:</strong> Software que simula um telefone em um computador ou smartphone.</li>
+                        <li><strong>Servidor SIP (Proxy Server/IP PBX):</strong> Gerencia o registro de usuários, encaminhamento de chamadas e outras funcionalidades de telefonia.</li>
+                        <li><strong>Gateway VoIP:</strong> Conecta a rede VoIP à rede telefônica tradicional (PSTN) para chamadas externas.</li>
+                    </ul>
+                    
+                    <h3>Benefícios do VoIP:</h3>
+                    <ul>
+                        <li><strong>Redução de Custos:</strong> Chamadas mais baratas, especialmente chamadas de longa distância e internacionais.</li>
+                        <li><strong>Flexibilidade e Mobilidade:</strong> Permite fazer e receber chamadas em qualquer lugar com conexão à internet.</li>
+                        <li><strong>Funcionalidades Avançadas:</strong> Integração com e-mail, videoconferência, mensagens instantâneas, correio de voz para e-mail, etc.</li>
+                        <li><strong>Escalabilidade:</strong> Fácil de adicionar ou remover usuários.</li>
+                    </ul>
+                    
+                    <h3>Desafios do VoIP:</h3>
+                    <ul>
+                        <li><strong>Qualidade de Serviço (QoS):</strong> Exige baixa latência, baixo jitter e mínima perda de pacotes para garantir boa qualidade de voz.</li>
+                        <li><strong>Dependência da Rede:</strong> A qualidade da chamada é diretamente afetada pela qualidade da conexão de internet.</li>
+                        <li><strong>Segurança:</strong> Vulnerabilidades se não for devidamente criptografado e protegido.</li>
+                    </ul>
+                `
+            },
+            'adsl': {
+                title: 'ADSL (Asymmetric Digital Subscriber Line)',
+                description: 'Tecnologia de linha de assinante digital que permite acesso à internet de alta velocidade sobre linhas telefônicas comuns.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>ADSL (Asymmetric Digital Subscriber Line) é uma tecnologia de linha de assinante digital que permite a transmissão de dados em alta velocidade sobre linhas telefônicas de cobre tradicionais existentes. É chamada de "assimétrica" porque as velocidades de download (do provedor para o usuário) são significativamente mais rápidas que as velocidades de upload (do usuário para o provedor).</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Linha Telefônica:</strong> O ADSL utiliza as mesmas linhas telefônicas de par trançado que são usadas para chamadas de voz. No entanto, ele opera em frequências mais altas do que as usadas para voz, o que permite que voz e dados sejam transmitidos simultaneamente sem interferência.</li>
+                        <li><strong>Splitter:</strong> Um "splitter" (ou microfiltro) é necessário na casa do usuário para separar os sinais de voz (baixa frequência) dos sinais de dados (alta frequência), garantindo que o telefone e o modem ADSL funcionem corretamente sem interferir um no outro.</li>
+                        <li><strong>Modem ADSL (ATU-R):</strong> Na ponta do cliente, um modem ADSL (Unidade de Terminação de Linha ADSL Remota) converte os sinais digitais do computador em sinais analógicos de alta frequência para transmissão pela linha telefônica, e vice-versa.</li>
+                        <li><strong>DSLAM (DSl Access Multiplexer):</strong> Na central telefônica do provedor, um DSLAM (Multiplexador de Acesso à Linha de Assinante Digital) recebe os sinais de múltiplos usuários ADSL, os converte de volta para o formato digital e os encaminha para a rede de dados do provedor (internet).</li>
+                    </ul>
+                    
+                    <h3>Assimetria:</h3>
+                    <p>A principal característica do ADSL é a assimetria de banda. As velocidades de download são tipicamente muito maiores que as de upload. Isso ocorre porque o tráfego de internet típico (navegação, streaming) envolve muito mais dados sendo baixados do que enviados. A alocação de banda é otimizada para esse padrão de uso.</p>
+                    
+                    <h3>Velocidades Típicas:</h3>
+                    <ul>
+                        <li>As velocidades do ADSL variam significativamente dependendo da qualidade do cabo de cobre e, principalmente, da distância da casa do usuário até a central telefônica (DSLAM). Quanto maior a distância, menor a velocidade e a estabilidade da conexão.</li>
+                        <li>Velocidades comuns: Até 8 Mbps para download e 1 Mbps para upload (ADSL1); até 24 Mbps para download e 3.5 Mbps para upload (ADSL2+).</li>
+                    </ul>
+                    
+                    <h3>Limitações:</h3>
+                    <ul>
+                        <li><strong>Distância:</strong> A qualidade e velocidade da conexão ADSL diminuem drasticamente com a distância do DSLAM.</li>
+                        <li><strong>Qualidade da Fiação:</strong> Linhas antigas ou de baixa qualidade podem limitar o desempenho.</li>
+                        <li><strong>Competição de Frequência:</strong> Embora use frequências diferentes, a linha ainda é um meio compartilhado com a voz, e problemas elétricos podem causar interferência.</li>
+                    </ul>
+                    
+                    <h3>Evolução:</h3>
+                    <p>ADSL foi uma tecnologia revolucionária para fornecer banda larga doméstica. No entanto, foi gradualmente substituída por tecnologias mais rápidas e com maior capacidade, como VDSL (Very-high-bit-rate Digital Subscriber Line), que oferece velocidades simétricas e mais altas sobre distâncias menores, e mais amplamente por fibra óptica (FTTH).</p>
+                `
+            }
+        };
+
+        // Função para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da página
+            }
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da página
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar aparência dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,1167 @@
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 1 - Fundamentos de Redes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🏗 Fundamentos de Redes</h1>
+            <p class="subtitle">Seção 1 - Conceitos Básicos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Conceitos Básicos de Redes de Computadores</h2>
+            <p>Esta seção apresenta os termos fundamentais que formam a base do conhecimento em redes de computadores. São conceitos essenciais que todo profissional da área deve dominar.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('binary')">
+                <div class="term-name">Binary</div>
+                <div class="term-description">Sistema de numeração base 2, usando apenas 0 e 1, fundamental na computação.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('bit')">
+                <div class="term-name">Bit</div>
+                <div class="term-description">Menor unidade de informação em computação, pode ser 0 ou 1.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('byte')">
+                <div class="term-name">Byte</div>
+                <div class="term-description">Conjunto de 8 bits, unidade básica de armazenamento de dados.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('bps')">
+                <div class="term-name">bps</div>
+                <div class="term-description">Bits por segundo, unidade de medida de velocidade de transmissão de dados.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('network')">
+                <div class="term-name">Network</div>
+                <div class="term-description">Conjunto de dispositivos interconectados para compartilhar recursos e informações.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('net')">
+                <div class="term-name">Net</div>
+                <div class="term-description">Abreviação de Network, refere-se a uma rede de computadores.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('rede-local')">
+                <div class="term-name">Rede Local</div>
+                <div class="term-description">Rede de computadores em uma área geográfica limitada, como escritório ou casa.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('lan')">
+                <div class="term-name">LAN</div>
+                <div class="term-description">Local Area Network - Rede de área local, conecta dispositivos próximos geograficamente.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('man')">
+                <div class="term-name">MAN</div>
+                <div class="term-description">Metropolitan Area Network - Rede metropolitana, cobre uma cidade ou região metropolitana.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('wan')">
+                <div class="term-name">WAN</div>
+                <div class="term-description">Wide Area Network - Rede de longa distância, conecta redes em diferentes cidades ou países.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('intranet')">
+                <div class="term-name">Intranet</div>
+                <div class="term-description">Rede privada que usa tecnologias da Internet para uso interno de uma organização.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('internet')">
+                <div class="term-name">Internet</div>
+                <div class="term-description">Rede mundial de computadores interconectados usando protocolos padronizados.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('topologia')">
+                <div class="term-name">Topologia de rede</div>
+                <div class="term-description">Forma como os dispositivos estão fisicamente ou logicamente conectados em uma rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('estrela')">
+                <div class="term-name">Rede em Estrela</div>
+                <div class="term-description">Topologia onde todos os dispositivos se conectam a um ponto central (hub ou switch).</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('anel')">
+                <div class="term-name">Rede em Anel</div>
+                <div class="term-description">Topologia onde os dispositivos formam um círculo fechado de conexões.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ponte')">
+                <div class="term-name">Rede em Ponte</div>
+                <div class="term-description">Topologia que conecta duas ou mais redes diferentes através de um dispositivo ponte.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('bus')">
+                <div class="term-name">Bus</div>
+                <div class="term-description">Topologia linear onde todos os dispositivos compartilham um mesmo meio de transmissão.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('host')">
+                <div class="term-name">Host</div>
+                <div class="term-description">Qualquer dispositivo conectado a uma rede que pode enviar ou receber dados.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('hostnames')">
+                <div class="term-name">Hostnames</div>
+                <div class="term-description">Nomes únicos atribuídos a dispositivos em uma rede para identificação.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cliente')">
+                <div class="term-name">Cliente</div>
+                <div class="term-description">Dispositivo ou software que solicita serviços ou recursos de um servidor.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('servidor')">
+                <div class="term-name">Servidor</div>
+                <div class="term-description">Dispositivo ou software que fornece serviços ou recursos para clientes na rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('p2p')">
+                <div class="term-name">P2P</div>
+                <div class="term-description">Peer-to-Peer - Arquitetura onde dispositivos atuam simultaneamente como cliente e servidor.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body">
+                <!-- Conteúdo será inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 - Glossário de Redes de Computadores | Seção 1</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'binary': {
+                title: 'Binary (Binário)',
+                description: 'Sistema de numeração base 2, usando apenas 0 e 1, fundamental na computação.',
+                details: `
+                    <h3>Definição Completa:</h3>
+                    <p>O sistema binário é a base de toda computação digital. Diferente do sistema decimal que usamos no dia a dia (base 10), o sistema binário utiliza apenas dois dígitos: 0 e 1.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>0</strong> = Ausência de sinal elétrico</li>
+                        <li><strong>1</strong> = Presença de sinal elétrico</li>
+                    </ul>
+                    
+                    <h3>Exemplos de Conversão:</h3>
+                    <ul>
+                        <li>1010 (binário) = 10 (decimal)</li>
+                        <li>1111 (binário) = 15 (decimal)</li>
+                        <li>10000000 (binário) = 128 (decimal)</li>
+                    </ul>
+                    
+                    <h3>Importância nas Redes:</h3>
+                    <p>Todo dado transmitido em redes de computadores é convertido para binário. Textos, imagens, vídeos - tudo vira sequências de 0s e 1s para transmissão.</p>
+                `
+            },
+            'bit': {
+                title: 'Bit',
+                description: 'Menor unidade de informação em computação, pode ser 0 ou 1.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Bit é a abreviação de "Binary Digit" (Dígito Binário). É a menor unidade de informação que um computador pode processar.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li>Pode assumir apenas dois valores: 0 ou 1</li>
+                        <li>Representa o estado de um circuito: ligado (1) ou desligado (0)</li>
+                        <li>Base para todas as operações computacionais</li>
+                        <li>Unidade fundamental para medir velocidade de transmissão</li>
+                    </ul>
+                    
+                    <h3>Aplicações em Redes:</h3>
+                    <ul>
+                        <li>Medição de velocidade: Mbps (Megabits por segundo)</li>
+                        <li>Transmissão de dados entre dispositivos</li>
+                        <li>Codificação de protocolos de rede</li>
+                    </ul>
+                    
+                    <h3>Relação com Bytes:</h3>
+                    <p>8 bits = 1 byte (unidade básica de armazenamento)</p>
+                `
+            },
+            'byte': {
+                title: 'Byte',
+                description: 'Conjunto de 8 bits, unidade básica de armazenamento de dados.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um byte é composto por 8 bits consecutivos e representa a menor unidade endereçável de memória na maioria dos computadores.</p>
+                    
+                    <h3>Capacidade:</h3>
+                    <ul>
+                        <li>1 byte = 8 bits</li>
+                        <li>Pode representar 256 valores diferentes (2^8)</li>
+                        <li>Suficiente para armazenar um caractere ASCII</li>
+                        <li>Base para medir tamanhos de arquivos</li>
+                    </ul>
+                    
+                    <h3>Múltiplos Comuns:</h3>
+                    <ul>
+                        <li><strong>Kilobyte (KB)</strong> = 1.024 bytes</li>
+                        <li><strong>Megabyte (MB)</strong> = 1.024 KB</li>
+                        <li><strong>Gigabyte (GB)</strong> = 1.024 MB</li>
+                        <li><strong>Terabyte (TB)</strong> = 1.024 GB</li>
+                    </ul>
+                    
+                    <h3>Uso em Redes:</h3>
+                    <p>Utilizado para medir tamanhos de pacotes de dados, arquivos transferidos e capacidade de armazenamento em servidores.</p>
+                `
+            },
+            'bps': {
+                title: 'bps (Bits por Segundo)',
+                description: 'Bits por segundo, unidade de medida de velocidade de transmissão de dados.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>bps é a unidade fundamental para medir a velocidade de transmissão de dados em redes de computadores. Indica quantos bits podem ser transmitidos em um segundo.</p>
+                    
+                    <h3>Unidades Derivadas:</h3>
+                    <ul>
+                        <li><strong>Kbps</strong> = 1.000 bps (Kilobits por segundo)</li>
+                        <li><strong>Mbps</strong> = 1.000.000 bps (Megabits por segundo)</li>
+                        <li><strong>Gbps</strong> = 1.000.000.000 bps (Gigabits por segundo)</li>
+                        <li><strong>Tbps</strong> = 1.000.000.000.000 bps (Terabits por segundo)</li>
+                    </ul>
+                    
+                    <h3>Exemplos Práticos:</h3>
+                    <ul>
+                        <li>Internet residencial básica: 10-100 Mbps</li>
+                        <li>Wi-Fi moderno: até 1 Gbps</li>
+                        <li>Ethernet Gigabit: 1 Gbps</li>
+                        <li>Fibra óptica empresarial: 10 Gbps ou mais</li>
+                    </ul>
+                    
+                    <h3>Diferença Importante:</h3>
+                    <p><strong>bps (bits)</strong> vs <strong>Bps (Bytes)</strong><br>
+                    1 Byte = 8 bits, então 8 Mbps = 1 MBps (MegaBytes por segundo)</p>
+                `
+            },
+            'network': {
+                title: 'Network (Rede)',
+                description: 'Conjunto de dispositivos interconectados para compartilhar recursos e informações.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Uma rede é um conjunto de dispositivos (computadores, smartphones, servidores, etc.) conectados entre si para compartilhar recursos, dados e serviços.</p>
+                    
+                    <h3>Componentes Básicos:</h3>
+                    <ul>
+                        <li><strong>Nós:</strong> Dispositivos conectados à rede (computadores, impressoras, etc.)</li>
+                        <li><strong>Links:</strong> Conexões físicas ou sem fio entre os nós</li>
+                        <li><strong>Protocolos:</strong> Regras de comunicação (TCP/IP, HTTP, etc.)</li>
+                        <li><strong>Equipamentos:</strong> Switches, roteadores, hubs, access points</li>
+                    </ul>
+                    
+                    <h3>Benefícios:</h3>
+                    <ul>
+                        <li>Compartilhamento de arquivos e impressoras</li>
+                        <li>Acesso a recursos remotos</li>
+                        <li>Comunicação instantânea (e-mail, chat)</li>
+                        <li>Backup centralizado</li>
+                        <li>Colaboração em tempo real</li>
+                    </ul>
+                    
+                    <h3>Tipos por Tamanho:</h3>
+                    <p>As redes são classificadas por seu alcance: LAN (local), MAN (metropolitana) e WAN (longa distância).</p>
+                `
+            },
+            'net': {
+                title: 'Net',
+                description: 'Abreviação de Network, refere-se a uma rede de computadores.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>"Net" é uma forma abreviada e informal de se referir a uma rede de computadores, especialmente quando se fala da Internet.</p>
+                    
+                    <h3>Uso Comum:</h3>
+                    <ul>
+                        <li><strong>"The Net"</strong> = A Internet</li>
+                        <li><strong>"On the net"</strong> = Na rede/internet</li>
+                        <li><strong>"Net connection"</strong> = Conexão de rede</li>
+                        <li><strong>"Net speed"</strong> = Velocidade da rede</li>
+                    </ul>
+                    
+                    <h3>Contextos de Uso:</h3>
+                    <ul>
+                        <li>Linguagem informal e técnica</li>
+                        <li>Documentação técnica</li>
+                        <li>Comandos de sistema operacional</li>
+                        <li>Nomenclatura de ferramentas e tecnologias</li>
+                    </ul>
+                    
+                    <h3>Exemplos em Tecnologia:</h3>
+                    <ul>
+                        <li>.NET Framework (Microsoft)</li>
+                        <li>netstat (comando de rede)</li>
+                        <li>netconfig (configuração de rede)</li>
+                        <li>subnet (sub-rede)</li>
+                    </ul>
+                `
+            },
+            'rede-local': {
+                title: 'Rede Local',
+                description: 'Rede de computadores em uma área geográfica limitada, como escritório ou casa.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Uma rede local conecta dispositivos em uma área geográfica restrita, como uma casa, escritório, escola ou prédio.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Alcance:</strong> Até alguns quilômetros</li>
+                        <li><strong>Velocidade:</strong> Alta (10 Mbps a 10 Gbps)</li>
+                        <li><strong>Latência:</strong> Muito baixa (menos de 1ms)</li>
+                        <li><strong>Propriedade:</strong> Privada (controlada pelo usuário/empresa)</li>
+                        <li><strong>Custo:</strong> Baixo para implementar e manter</li>
+                    </ul>
+                    
+                    <h3>Tecnologias Comuns:</h3>
+                    <ul>
+                        <li><strong>Ethernet:</strong> Conexão cabeada (mais rápida e estável)</li>
+                        <li><strong>Wi-Fi:</strong> Conexão sem fio (mais conveniente)</li>
+                        <li><strong>Bluetooth:</strong> Curta distância para dispositivos específicos</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li>Alta velocidade de transferência</li>
+                        <li>Baixo custo de implementação</li>
+                        <li>Fácil gerenciamento e manutenção</li>
+                        <li>Maior segurança (controle total)</li>
+                        <li>Baixa latência</li>
+                    </ul>
+                `
+            },
+            'lan': {
+                title: 'LAN (Local Area Network)',
+                description: 'Local Area Network - Rede de área local, conecta dispositivos próximos geograficamente.',
+                details: `
+                    <h3>Definição Técnica:</h3>
+                    <p>LAN é o termo técnico em inglês para Rede Local. É uma rede que conecta computadores e dispositivos em uma área geográfica limitada.</p>
+                    
+                    <h3>Especificações Técnicas:</h3>
+                    <ul>
+                        <li><strong>Padrão:</strong> IEEE 802.3 (Ethernet) e IEEE 802.11 (Wi-Fi)</li>
+                        <li><strong>Velocidades:</strong> 10/100/1000 Mbps, 10 Gbps</li>
+                        <li><strong>Topologias:</strong> Estrela (mais comum), Bus, Anel</li>
+                        <li><strong>Cabos:</strong> UTP Cat5e/Cat6/Cat6a, Fibra Óptica</li>
+                        <li><strong>Alcance:</strong> Até 100 metros por segmento Ethernet</li>
+                    </ul>
+                    
+                    <h3>Componentes Típicos:</h3>
+                    <ul>
+                        <li><strong>Switch:</strong> Dispositivo central para conexões Ethernet</li>
+                        <li><strong>Cabos de rede:</strong> UTP, STP ou fibra óptica</li>
+                        <li><strong>Placas de rede (NICs):</strong> Interface dos dispositivos</li>
+                        <li><strong>Access Points:</strong> Para conexões Wi-Fi</li>
+                        <li><strong>Roteador:</strong> Para acesso à Internet</li>
+                    </ul>
+                    
+                    <h3>Protocolos Utilizados:</h3>
+                    <ul>
+                        <li><strong>TCP/IP:</strong> Protocolo principal de comunicação</li>
+                        <li><strong>DHCP:</strong> Atribuição automática de IPs</li>
+                        <li><strong>DNS:</strong> Resolução de nomes</li>
+                        <li><strong>SNMP:</strong> Gerenciamento de rede</li>
+                    </ul>
+                `
+            },
+            'man': {
+                title: 'MAN (Metropolitan Area Network)',
+                description: 'Metropolitan Area Network - Rede metropolitana, cobre uma cidade ou região metropolitana.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>MAN é uma rede que conecta múltiplas LANs em uma área metropolitana, cobrindo uma cidade ou região urbana extensa.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Alcance:</strong> 5 a 50 km (toda uma cidade)</li>
+                        <li><strong>Velocidade:</strong> 10 Mbps a 10 Gbps</li>
+                        <li><strong>Cobertura:</strong> Cidade ou região metropolitana</li>
+                        <li><strong>Propriedade:</strong> Pública ou privada</li>
+                        <li><strong>Custo:</strong> Moderado a alto</li>
+                    </ul>
+                    
+                    <h3>Tecnologias Utilizadas:</h3>
+                    <ul>
+                        <li><strong>Fibra óptica:</strong> Principal meio de transmissão</li>
+                        <li><strong>Microondas:</strong> Conexões sem fio de longa distância</li>
+                        <li><strong>SONET/SDH:</strong> Padrões de transmissão óptica</li>
+                        <li><strong>Metro Ethernet:</strong> Extensão do Ethernet para MANs</li>
+                        <li><strong>MPLS:</strong> Roteamento eficiente de dados</li>
+                    </ul>
+                    
+                    <h3>Exemplos de Uso:</h3>
+                    <ul>
+                        <li>Rede de uma universidade com múltiplos campus</li>
+                        <li>Sistema de TV a cabo de uma cidade</li>
+                        <li>Rede municipal de órgãos públicos</li>
+                        <li>Interconexão de filiais de uma empresa na mesma cidade</li>
+                        <li>Redes de provedores de Internet regionais</li>
+                    </ul>
+                `
+            },
+            'wan': {
+                title: 'WAN (Wide Area Network)',
+                description: 'Wide Area Network - Rede de longa distância, conecta redes em diferentes cidades ou países.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>WAN é uma rede que conecta dispositivos e LANs separados por grandes distâncias geográficas, podendo abranger países ou continentes inteiros.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Alcance:</strong> Ilimitado (global)</li>
+                        <li><strong>Velocidade:</strong> Variável (56 Kbps a 100 Gbps)</li>
+                        <li><strong>Latência:</strong> Alta devido às longas distâncias</li>
+                        <li><strong>Custo:</strong> Elevado (proporcional à distância)</li>
+                        <li><strong>Complexidade:</strong> Alta (múltiplos provedores)</li>
+                    </ul>
+                    
+                    <h3>Tecnologias de Conexão:</h3>
+                    <ul>
+                        <li><strong>Linhas dedicadas:</strong> T1, T3, E1, E3</li>
+                        <li><strong>MPLS:</strong> Redes privadas virtuais</li>
+                        <li><strong>Satélite:</strong> Cobertura global</li>
+                        <li><strong>Internet VPN:</strong> Solução econômica</li>
+                        <li><strong>Frame Relay:</strong> Tecnologia legada</li>
+                        <li><strong>Cabos submarinos:</strong> Conexões intercontinentais</li>
+                    </ul>
+                    
+                    <h3>Maior Exemplo:</h3>
+                    <p><strong>A Internet</strong> é a maior WAN do mundo, conectando bilhões de dispositivos globalmente através de uma infraestrutura complexa de cabos, satélites e equipamentos.</p>
+                    
+                    <h3>Aplicações Empresariais:</h3>
+                    <ul>
+                        <li>Conexão entre filiais de multinacionais</li>
+                        <li>Backup de dados em localizações remotas</li>
+                        <li>Acesso a sistemas centralizados</li>
+                        <li>Comunicação global</li>
+                    </ul>
+                `
+            },
+            'intranet': {
+                title: 'Intranet',
+                description: 'Rede privada que usa tecnologias da Internet para uso interno de uma organização.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Intranet é uma rede privada que utiliza protocolos e tecnologias da Internet (como HTTP, TCP/IP) para uso exclusivo interno de uma organização.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Acesso:</strong> Restrito a funcionários autorizados</li>
+                        <li><strong>Segurança:</strong> Protegida por firewalls e autenticação</li>
+                        <li><strong>Conteúdo:</strong> Específico da empresa/organização</li>
+                        <li><strong>Interface:</strong> Similar à web (navegadores)</li>
+                        <li><strong>Controle:</strong> Total sobre conteúdo e acesso</li>
+                    </ul>
+                    
+                    <h3>Funcionalidades Comuns:</h3>
+                    <ul>
+                        <li><strong>Portal corporativo:</strong> Página inicial com informações</li>
+                        <li><strong>Sistema de e-mail interno:</strong> Comunicação entre funcionários</li>
+                        <li><strong>Compartilhamento de documentos:</strong> Repositório central</li>
+                        <li><strong>Fóruns de discussão:</strong> Colaboração e ideias</li>
+                        <li><strong>Sistemas de RH:</strong> Folha de pagamento, benefícios</li>
+                        <li><strong>Manuais e políticas:</strong> Documentação interna</li>
+                    </ul>
+                    
+                    <h3>Benefícios:</h3>
+                    <ul>
+                        <li>Melhora a comunicação interna</li>
+                        <li>Centraliza informações importantes</li>
+                        <li>Reduz custos de papel e impressão</li>
+                        <li>Facilita colaboração entre equipes</li>
+                        <li>Agiliza processos internos</li>
+                        <li>Mantém informações atualizadas</li>
+                    </ul>
+                `
+            },
+            'internet': {
+                title: 'Internet',
+                description: 'Rede mundial de computadores interconectados usando protocolos padronizados.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>A Internet é uma rede global de redes interconectadas que utiliza protocolos padronizados (principalmente TCP/IP) para permitir comunicação mundial entre dispositivos.</p>
+                    
+                    <h3>Histórico:</h3>
+                    <ul>
+                        <li><strong>1969:</strong> ARPANET (rede precursora)</li>
+                        <li><strong>1983:</strong> Adoção do protocolo TCP/IP</li>
+                        <li><strong>1991:</strong> Criação da World Wide Web</li>
+                        <li><strong>1995:</strong> Comercialização da Internet</li>
+                        <li><strong>2000s:</strong> Expansão global e banda larga</li>
+                    </ul>
+                    
+                    <h3>Componentes Principais:</h3>
+                    <ul>
+                        <li><strong>ISPs:</strong> Provedores de acesso à Internet</li>
+                        <li><strong>Backbone:</strong> Infraestrutura principal de alta velocidade</li>
+                        <li><strong>Roteadores:</strong> Direcionam tráfego entre redes</li>
+                        <li><strong>DNS:</strong> Sistema de nomes de domínio</li>
+                        <li><strong>Servidores:</strong> Hospedam sites e serviços</li>
+                    </ul>
+                    
+                    <h3>Serviços Principais:</h3>
+                    <ul>
+                        <li><strong>World Wide Web (WWW):</strong> Navegação em sites</li>
+                        <li><strong>E-mail:</strong> Correio eletrônico</li>
+                        <li><strong>FTP:</strong> Transferência de arquivos</li>
+                        <li><strong>Streaming:</strong> Vídeo e áudio online</li>
+                        <li><strong>Redes sociais:</strong> Interação social</li>
+                        <li><strong>Cloud computing:</strong> Serviços na nuvem</li>
+                    </ul>
+                    
+                    <h3>Protocolos Fundamentais:</h3>
+                    <ul>
+                        <li><strong>TCP/IP:</strong> Base da comunicação</li>
+                        <li><strong>HTTP/HTTPS:</strong> Navegação web</li>
+                        <li><strong>SMTP/POP3/IMAP:</strong> E-mail</li>
+                        <li><strong>DNS:</strong> Resolução de nomes</li>
+                    </ul>
+                `
+            },
+            'topologia': {
+                title: 'Topologia de Rede',
+                description: 'Forma como os dispositivos estão fisicamente ou logicamente conectados em uma rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Topologia de rede refere-se à forma como os dispositivos são organizados e conectados em uma rede, definindo a estrutura física e lógica da comunicação.</p>
+                    
+                    <h3>Tipos de Topologia:</h3>
+                    <ul>
+                        <li><strong>Física:</strong> Layout real dos cabos e equipamentos</li>
+                        <li><strong>Lógica:</strong> Caminho que os dados seguem na rede</li>
+                    </ul>
+                    
+                    <h3>Principais Topologias:</h3>
+                    <ul>
+                        <li><strong>Estrela:</strong> Todos conectados a um ponto central</li>
+                        <li><strong>Bus (Barramento):</strong> Todos em uma linha principal</li>
+                        <li><strong>Anel:</strong> Dispositivos conectados em círculo</li>
+                        <li><strong>Malha:</strong> Múltiplas conexões entre nós</li>
+                        <li><strong>Híbrida:</strong> Combinação de várias topologias</li>
+                        <li><strong>Árvore:</strong> Hierarquia de conexões</li>
+                    </ul>
+                    
+                    <h3>Fatores de Escolha:</h3>
+                    <ul>
+                        <li><strong>Custo:</strong> Investimento inicial e manutenção</li>
+                        <li><strong>Facilidade:</strong> Instalação e gerenciamento</li>
+                        <li><strong>Tolerância a falhas:</strong> Resistência a problemas</li>
+                        <li><strong>Escalabilidade:</strong> Capacidade de crescimento</li>
+                        <li><strong>Performance:</strong> Velocidade e eficiência</li>
+                    </ul>
+                    
+                    <h3>Impacto na Performance:</h3>
+                    <p>A escolha da topologia afeta diretamente a velocidade, confiabilidade e custo da rede.</p>
+                `
+            },
+            'estrela': {
+                title: 'Rede em Estrela',
+                description: 'Topologia onde todos os dispositivos se conectam a um ponto central (hub ou switch).',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Na topologia estrela, todos os dispositivos da rede se conectam a um dispositivo central (hub, switch ou roteador), formando um padrão visual similar a uma estrela.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Ponto Central:</strong> Hub, Switch ou Roteador</li>
+                        <li><strong>Conexões:</strong> Cada dispositivo tem um link dedicado</li>
+                        <li><strong>Comunicação:</strong> Sempre passa pelo dispositivo central</li>
+                        <li><strong>Cabos:</strong> Um cabo por dispositivo</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Fácil instalação:</strong> Simples de configurar</li>
+                        <li><strong>Isolamento de falhas:</strong> Problema em um dispositivo não afeta outros</li>
+                        <li><strong>Fácil diagnóstico:</strong> Problemas são fáceis de identificar</li>
+                        <li><strong>Boa performance:</strong> Cada dispositivo tem largura de banda dedicada</li>
+                        <li><strong>Escalabilidade:</strong> Fácil adicionar novos dispositivos</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Ponto único de falha:</strong> Se o dispositivo central falhar, toda rede para</li>
+                        <li><strong>Maior uso de cabos:</strong> Precisa de mais cabeamento</li>
+                        <li><strong>Custo do equipamento central:</strong> Switch/hub pode ser caro</li>
+                        <li><strong>Limitação de portas:</strong> Número de dispositivos limitado pelas portas</li>
+                    </ul>
+                    
+                    <h3>Uso Atual:</h3>
+                    <p>Topologia mais comum em redes modernas, especialmente LANs Ethernet. Praticamente todas as redes domésticas e corporativas usam esta topologia.</p>
+                `
+            },
+            'anel': {
+                title: 'Rede em Anel',
+                description: 'Topologia onde os dispositivos formam um círculo fechado de conexões.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Na topologia em anel, cada dispositivo se conecta a exatamente dois outros dispositivos, formando um círculo fechado onde os dados circulam em uma direção específica.</p>
+                    
+                    <h3>Tipos de Anel:</h3>
+                    <ul>
+                        <li><strong>Anel Simples:</strong> Dados circulam em uma única direção</li>
+                        <li><strong>Anel Duplo:</strong> Duas direções para redundância</li>
+                    </ul>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Circulação:</strong> Dados circulam em uma direção</li>
+                        <li><strong>Regeneração:</strong> Cada nó regenera o sinal</li>
+                        <li><strong>Token passing:</strong> Controle de acesso por token</li>
+                        <li><strong>Ordem:</strong> Dados passam por todos os nós até o destino</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Sem colisões:</strong> Não há conflito
+                        <li><strong>Sem colisões:</strong> Não há conflito de dados</li>
+                        <li><strong>Performance previsível:</strong> Tempo de acesso conhecido</li>
+                        <li><strong>Igual acesso:</strong> Todos os nós têm a mesma prioridade</li>
+                        <li><strong>Eficiente:</strong> Boa utilização da largura de banda</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Falha crítica:</strong> Um nó com problema pode parar toda a rede</li>
+                        <li><strong>Difícil manutenção:</strong> Adicionar/remover dispositivos é complexo</li>
+                        <li><strong>Troubleshooting:</strong> Localizar problemas é difícil</li>
+                        <li><strong>Dependência:</strong> Cada nó depende dos outros</li>
+                    </ul>
+                    
+                    <h3>Exemplos Históricos:</h3>
+                    <ul>
+                        <li><strong>Token Ring (IBM):</strong> Padrão clássico</li>
+                        <li><strong>FDDI:</strong> Fiber Distributed Data Interface</li>
+                    </ul>
+                `
+            },
+            'ponte': {
+                title: 'Rede em Ponte',
+                description: 'Topologia que conecta duas ou mais redes diferentes através de um dispositivo ponte.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>A topologia em ponte utiliza dispositivos especiais (bridges) para conectar e integrar duas ou mais redes diferentes, permitindo comunicação entre segmentos de rede.</p>
+                    
+                    <h3>Componentes:</h3>
+                    <ul>
+                        <li><strong>Bridge (Ponte):</strong> Dispositivo de interconexão</li>
+                        <li><strong>Segmentos:</strong> Redes individuais conectadas</li>
+                        <li><strong>Tabela de Endereços:</strong> Mapeamento de dispositivos por segmento</li>
+                        <li><strong>Filtros:</strong> Controlam o tráfego entre segmentos</li>
+                    </ul>
+                    
+                    <h3>Funcionamento:</h3>
+                    <ul>
+                        <li><strong>Aprendizado:</strong> Aprende endereços MAC dos dispositivos</li>
+                        <li><strong>Filtragem:</strong> Mantém tráfego local no próprio segmento</li>
+                        <li><strong>Encaminhamento:</strong> Envia apenas tráfego necessário</li>
+                        <li><strong>Redução:</strong> Diminui colisões na rede</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Extensão:</strong> Aumenta o alcance da rede</li>
+                        <li><strong>Performance:</strong> Reduz tráfego em cada segmento</li>
+                        <li><strong>Isolamento:</strong> Problemas ficam restritos ao segmento</li>
+                        <li><strong>Compatibilidade:</strong> Conecta redes diferentes</li>
+                    </ul>
+                    
+                    <h3>Evolução:</h3>
+                    <p>O conceito evoluiu para os switches modernos, que são essencialmente bridges multiportas inteligentes.</p>
+                `
+            },
+            'bus': {
+                title: 'Bus (Barramento)',
+                description: 'Topologia linear onde todos os dispositivos compartilham um mesmo meio de transmissão.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Na topologia bus, todos os dispositivos se conectam a um único cabo principal (backbone), compartilhando o mesmo meio de transmissão em uma configuração linear.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Cabo Principal:</strong> Backbone linear único</li>
+                        <li><strong>Terminadores:</strong> Resistores nas extremidades</li>
+                        <li><strong>Conectores T:</strong> Para conexão dos dispositivos</li>
+                        <li><strong>Acesso:</strong> CSMA/CD (Carrier Sense Multiple Access)</li>
+                        <li><strong>Compartilhamento:</strong> Todos dividem a mesma largura de banda</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Baixo custo:</strong> Menos cabos e equipamentos</li>
+                        <li><strong>Fácil instalação:</strong> Simples de implementar inicialmente</li>
+                        <li><strong>Menos cabos:</strong> Economia em cabeamento</li>
+                        <li><strong>Adequada:</strong> Boa para redes pequenas</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Ponto único de falha:</strong> Cabo principal para toda rede</li>
+                        <li><strong>Degradação:</strong> Performance piora com mais dispositivos</li>
+                        <li><strong>Diagnóstico difícil:</strong> Localizar problemas é complexo</li>
+                        <li><strong>Colisões:</strong> Conflitos de dados frequentes</li>
+                        <li><strong>Limitações:</strong> Distância e número de dispositivos limitados</li>
+                    </ul>
+                    
+                    <h3>Uso Histórico:</h3>
+                    <p>Comum em redes Ethernet antigas (10Base2, 10Base5). Hoje foi substituída pela topologia estrela devido às suas limitações.</p>
+                `
+            },
+            'host': {
+                title: 'Host',
+                description: 'Qualquer dispositivo conectado a uma rede que pode enviar ou receber dados.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Host é qualquer dispositivo conectado a uma rede que possui um endereço IP e pode enviar, receber ou processar dados na rede de forma autônoma.</p>
+                    
+                    <h3>Tipos de Hosts:</h3>
+                    <ul>
+                        <li><strong>Computadores:</strong> Desktops, laptops, workstations</li>
+                        <li><strong>Servidores:</strong> Web, email, banco de dados, arquivos</li>
+                        <li><strong>Dispositivos Móveis:</strong> Smartphones, tablets</li>
+                        <li><strong>IoT:</strong> Smart TVs, câmeras, sensores, dispositivos inteligentes</li>
+                        <li><strong>Impressoras:</strong> Com interface de rede</li>
+                        <li><strong>Equipamentos:</strong> Roteadores, switches gerenciáveis</li>
+                    </ul>
+                    
+                    <h3>Características de um Host:</h3>
+                    <ul>
+                        <li><strong>Endereço IP:</strong> Identificação única na rede</li>
+                        <li><strong>Interface de rede:</strong> Placa de rede (NIC)</li>
+                        <li><strong>Protocolos:</strong> Executa protocolos de rede (TCP/IP)</li>
+                        <li><strong>Comunicação:</strong> Pode iniciar ou responder conexões</li>
+                        <li><strong>Processamento:</strong> Capacidade de processar dados</li>
+                    </ul>
+                    
+                    <h3>Funções Principais:</h3>
+                    <ul>
+                        <li><strong>Envio/Recebimento:</strong> Transmissão de dados</li>
+                        <li><strong>Processamento:</strong> Manipulação de informações</li>
+                        <li><strong>Armazenamento:</strong> Guarda arquivos e dados</li>
+                        <li><strong>Aplicações:</strong> Executa programas e serviços</li>
+                        <li><strong>Interface:</strong> Interação com usuários</li>
+                    </ul>
+                    
+                    <h3>Identificação na Rede:</h3>
+                    <p>Cada host é identificado por seu endereço IP e pode ter um hostname para facilitar o acesso.</p>
+                `
+            },
+            'hostnames': {
+                title: 'Hostnames',
+                description: 'Nomes únicos atribuídos a dispositivos em uma rede para identificação.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Hostnames são nomes alfanuméricos únicos atribuídos a dispositivos em uma rede para facilitar sua identificação e localização, substituindo a necessidade de memorizar endereços IP.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Formato:</strong> Letras, números e hífens</li>
+                        <li><strong>Tamanho:</strong> Até 63 caracteres por label</li>
+                        <li><strong>Case-insensitive:</strong> Não diferencia maiúsculas/minúsculas</li>
+                        <li><strong>Unicidade:</strong> Único dentro do domínio</li>
+                        <li><strong>Hierárquico:</strong> Pode ter subdomínios</li>
+                    </ul>
+                    
+                    <h3>Exemplos:</h3>
+                    <ul>
+                        <li><strong>Local:</strong> servidor01, pc-vendas, impressora-rh</li>
+                        <li><strong>Internet:</strong> www.google.com, mail.empresa.com</li>
+                        <li><strong>Interno:</strong> servidor.local, backup.rede.interna</li>
+                        <li><strong>Funcionais:</strong> webserver, database, fileserver</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Fácil memorização:</strong> Nomes são mais fáceis que IPs</li>
+                        <li><strong>Identificação intuitiva:</strong> Nome indica função</li>
+                        <li><strong>Organização:</strong> Estrutura hierárquica</li>
+                        <li><strong>Flexibilidade:</strong> IP pode mudar, nome permanece</li>
+                        <li><strong>Gerenciamento:</strong> Facilita administração</li>
+                    </ul>
+                    
+                    <h3>Resolução:</h3>
+                    <p>Hostnames são convertidos para endereços IP pelo sistema DNS (Domain Name System), permitindo localizar o dispositivo na rede.</p>
+                    
+                    <h3>Configuração:</h3>
+                    <p>Pode ser definido no próprio dispositivo ou gerenciado centralmente via DNS/DHCP.</p>
+                `
+            },
+            'cliente': {
+                title: 'Cliente',
+                description: 'Dispositivo ou software que solicita serviços ou recursos de um servidor.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Cliente é um dispositivo, aplicação ou processo que solicita serviços, recursos ou informações de um servidor em uma arquitetura cliente-servidor.</p>
+                    
+                    <h3>Tipos de Clientes:</h3>
+                    <ul>
+                        <li><strong>Cliente de E-mail:</strong> Outlook, Thunderbird, Apple Mail</li>
+                        <li><strong>Navegador Web:</strong> Chrome, Firefox, Safari, Edge</li>
+                        <li><strong>Cliente FTP:</strong> FileZilla, WinSCP, Cyberduck</li>
+                        <li><strong>Cliente de Banco:</strong> Aplicações que acessam bancos de dados</li>
+                        <li><strong>Cliente de Jogos:</strong> Steam, Epic Games, Origin</li>
+                        <li><strong>Cliente SSH:</strong> PuTTY, Terminal</li>
+                    </ul>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Iniciador:</strong> Sempre inicia a comunicação</li>
+                        <li><strong>Solicitante:</strong> Faz pedidos ao servidor</li>
+                        <li><strong>Processador:</strong> Processa respostas recebidas</li>
+                        <li><strong>Interface:</strong> Fornece interface para o usuário</li>
+                        <li><strong>Dependente:</strong> Depende do servidor para funcionar</li>
+                    </ul>
+                    
+                    <h3>Processo de Comunicação:</h3>
+                    <ol>
+                        <li><strong>Solicitação:</strong> Cliente faz pedido ao servidor</li>
+                        <li><strong>Processamento:</strong> Servidor processa o pedido</li>
+                        <li><strong>Resposta:</strong> Servidor envia resultado</li>
+                        <li><strong>Exibição:</strong> Cliente recebe e exibe para o usuário</li>
+                    </ol>
+                    
+                    <h3>Exemplos Práticos:</h3>
+                    <ul>
+                        <li>Navegador solicitando uma página web</li>
+                        <li>App de e-mail baixando mensagens</li>
+                        <li>Jogo online conectando ao servidor</li>
+                        <li>Software acessando banco de dados</li>
+                    </ul>
+                `
+            },
+            'servidor': {
+                title: 'Servidor',
+                description: 'Dispositivo ou software que fornece serviços ou recursos para clientes na rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Servidor é um sistema computacional (hardware e/ou software) que fornece serviços, recursos ou dados para outros dispositivos (clientes) em uma rede.</p>
+                    
+                    <h3>Tipos de Servidores:</h3>
+                    <ul>
+                        <li><strong>Servidor Web:</strong> Apache, Nginx, IIS - hospedam sites</li>
+                        <li><strong>Servidor de Email:</strong> Exchange, Postfix - gerenciam e-mails</li>
+                        <li><strong>Servidor de Arquivos:</strong> Samba, NFS - compartilham arquivos</li>
+                        <li><strong>Servidor de Banco:</strong> MySQL, PostgreSQL, SQL Server</li>
+                        <li><strong>Servidor DNS:</strong> BIND, Windows DNS - resolvem nomes</li>
+                        <li><strong>Servidor DHCP:</strong> Atribuem IPs automaticamente</li>
+                        <li><strong>Servidor de Impressão:</strong> Gerenciam impressoras</li>
+                    </ul>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Passivo:</strong> Aguarda solicitações dos clientes</li>
+                        <li><strong>Processador:</strong> Processa e responde pedidos</li>
+                        <li><strong>Gerenciador:</strong> Controla recursos compartilhados</li>
+                        <li><strong>Disponível:</strong> Funciona 24/7 (alta disponibilidade)</li>
+                        <li><strong>Robusto:</strong> Hardware confiável e redundante</li>
+                        <li><strong>Seguro:</strong> Controles de acesso e autenticação</li>
+                    </ul>
+                    
+                    <h3>Benefícios:</h3>
+                    <ul>
+                        <li><strong>Centralização:</strong> Recursos em local único</li>
+                        <li><strong>Compartilhamento:</strong> Múltiplos usuários acessam</li>
+                        <li><strong>Controle:</strong> Gerenciamento centralizado de acesso</li>
+                        <li><strong>Backup:</strong> Proteção centralizada de dados</li>
+                        <li><strong>Segurança:</strong> Políticas de segurança unificadas</li>
+                        <li><strong>Economia:</strong> Otimização de recursos</li>
+                    </ul>
+                    
+                    <h3>Hardware Típico:</h3>
+                    <ul>
+                        <li>Processadores múltiplos e potentes</li>
+                        <li>Memória RAM abundante</li>
+                        <li>Armazenamento redundante (RAID)</li>
+                        <li>Múltiplas interfaces de rede</li>
+                        <li>Fonte de alimentação redundante</li>
+                    </ul>
+                `
+            },
+            'p2p': {
+                title: 'P2P (Peer-to-Peer)',
+                description: 'Peer-to-Peer - Arquitetura onde dispositivos atuam simultaneamente como cliente e servidor.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>P2P é uma arquitetura de rede onde cada dispositivo (peer) pode atuar simultaneamente como cliente e servidor, compartilhando recursos diretamente entre si sem necessidade de um servidor central.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Descentralizado:</strong> Não há servidor central dominante</li>
+                        <li><strong>Distribuído:</strong> Recursos espalhados por toda a rede</li>
+                        <li><strong>Autônomo:</strong> Cada peer é independente</li>
+                        <li><strong>Escalável:</strong> Rede cresce com novos peers</li>
+                        <li><strong>Resiliente:</strong> Resistência a falhas</li>
+                    </ul>
+                    
+                    <h3>Tipos de P2P:</h3>
+                    <ul>
+                        <li><strong>P2P Puro:</strong> Totalmente descentralizado, sem servidores</li>
+                        <li><strong>P2P Híbrido:</strong> Com alguns servidores para coordenação</li>
+                        <li><strong>P2P Estruturado:</strong> Organização hierárquica dos peers</li>
+                        <li><strong>P2P Não-estruturado:</strong> Conexões aleatórias</li>
+                    </ul>
+                    
+                    <h3>Exemplos de Uso:</h3>
+                    <ul>
+                        <li><strong>Compartilhamento:</strong> BitTorrent, eMule, Kazaa</li>
+                        <li><strong>Comunicação:</strong> Skype (modelo antigo)</li>
+                        <li><strong>Blockchain:</strong> Bitcoin, Ethereum, criptomoedas</li>
+                        <li><strong>Jogos:</strong> Multiplayer direto</li>
+                        <li><strong>Armazenamento:</strong> IPFS, Freenet</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Sem ponto único de falha:</strong> Maior confiabilidade</li>
+                        <li><strong>Largura de banda agregada:</strong> Soma recursos de todos</li>
+                        <li><strong>Menor custo:</strong> Sem necessidade de infraestrutura central</li>
+                        <li><strong>Resistência à censura:</strong> Difícil de bloquear</li>
+                        <li><strong>Escalabilidade:</strong> Cresce naturalmente</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Controle de qualidade:</strong> Difícil garantir qualidade</li>
+                        <li><strong>Segurança:</strong> Maior risco de malware</li>
+                        <li><strong>Performance variável:</strong> Depende dos peers disponíveis</li>
+                        <li><strong>Complexidade:</strong> Mais difícil de implementar</li>
+                        <li><strong>Questões legais:</strong> Uso para pirataria</li>
+                    </ul>
+                `
+            }
+        };
+
+        // Função para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da página
+            }
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da página
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+               // Lógica para abrir modal a partir do parâmetro URL 'term'
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const termId = urlParams.get('term');
+            if (termId && termData[termId]) { // Verifica se o termo existe no termData da seção
+                openModal(termId);
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar aparência dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body {
+                padding: 20px;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>	

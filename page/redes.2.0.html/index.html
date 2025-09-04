@@ -1,0 +1,839 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Gloss&aacute;rio de Redes de Computadores</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos para o sistema de login */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .login-input {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .login-button {
+            padding: 0.8rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background: #0056b3;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .content-locked {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        .logout-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 999;
+        }
+
+        .logout-button:hover {
+            background: #c82333;
+        }
+
+        .session-info {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 0.5rem 1rem;
+            background: #28a745;
+            color: white;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            z-index: 999;
+        }
+
+        /* Estilos adicionais para o bot�o e busca */
+        .main-action-button {
+            padding: 1rem 2rem;
+            background: #28a745; /* Um verde agrad�vel */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px; /* Espa�amento abaixo do bot�o */
+        }
+
+        .main-action-button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .search-container {
+            background: #f0f0f0;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 40px; /* Espa�amento acima da se��o de busca */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .search-container h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .search-container input[type="text"] {
+            width: 70%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-right: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .search-container input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .search-container button {
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-container button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay de Login -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-container">
+            <h2>&#128274; Acesso ao Gloss&aacute;rio</h2>
+            <p>Digite suas credenciais para acessar o conte&uacute;do:</p>
+            <form class="login-form" onsubmit="return login(event)">
+                <input 
+                    type="text" 
+                    id="username" 
+                    class="login-input" 
+                    placeholder="Usu&aacute;rio" 
+                    required
+                >
+                <input 
+                    type="password" 
+                    id="password" 
+                    class="login-input" 
+                    placeholder="Senha" 
+                    required
+                >
+                <button type="submit" class="login-button">Entrar</button>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </form>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 1rem;">
+                &#9201; Sess&atilde;o expira em 60 minutos
+            </p>
+        </div>
+    </div>
+
+    <!-- Informa��es da Sess�o -->
+    <div id="sessionInfo" class="session-info" style="display: none;">
+        &#9201; Sess&atilde;o: <span id="timeRemaining"></span>
+    </div>
+
+    <!-- Bot�o de Logout -->
+    <button id="logoutButton" class="logout-button" onclick="logout()" style="display: none;">
+        Sair
+    </button>
+
+    <!-- Conte�do Principal -->
+    <div id="mainContent" class="content-locked">
+        <header>
+            <div class="container">
+                <h1>&#128225; Gloss&aacute;rio de Redes de Computadores</h1>
+                <p class="subtitle">Curso T&eacute;cnico em Inform&aacute;tica ETE 25 de Julho</p>
+            </div>
+        </header>
+
+        <!-- NOVO: Bot�o para listar todos os termos -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button id="listAllTermsButton" class="main-action-button">Listar Todos os Termos do Gloss&aacute;rio</button>
+        </div>
+
+        <main class="container">
+            <div class="intro">
+                <h2>&#127919; Bem-vindos ao Start para o Mundo das Redes!</h2>
+                <p><strong>Prof. Evandro Blume</strong></p>
+                <p>Este gloss&aacute;rio cont&eacute;m todos os termos fundamentais que voc&ecirc;s precisam conhecer para dominar as redes de computadores. Cada se&ccedil;&atilde;o foi cuidadosamente organizada para facilitar o aprendizado progressivo.</p>
+            </div>
+
+            <div class="menu-grid">
+                <a href="secao1.html" class="menu-item">
+                    <div class="menu-icon">&#127959;</div>
+                    <h3>1. Fundamentos de Redes</h3>
+                    <p>Conceitos b&aacute;sicos, tipos de rede e topologias</p>
+                    <span class="term-count">22 termos</span>
+                </a>
+
+                <a href="secao2.html" class="menu-item">
+                    <div class="menu-icon">&#127991;</div>
+                    <h3>2. Endere&ccedil;amento e Protocolos</h3>
+                    <p>IP, MAC, protocolos de comunica&ccedil;&atilde;o</p>
+                    <span class="term-count">22 termos</span>
+                </a>
+
+                <a href="secao3.html" class="menu-item">
+                    <div class="menu-icon">&#128295;</div>
+                    <h3>3. Equipamentos de Rede</h3>
+                    <p>Switches, roteadores, access points</p>
+                    <span class="term-count">13 termos</span>
+                </a>
+
+                <a href="secao4.html" class="menu-item">
+                    <div class="menu-icon">&#128268;</div>
+                    <h3>4. Meios de Transmiss&atilde;o</h3>
+                    <p>Cabos, fibras &oacute;pticas, conectores</p>
+                    <span class="term-count">17 termos</span>
+                </a>
+
+                <a href="secao5.html" class="menu-item">
+                    <div class="menu-icon">&#128225;</div>
+                    <h3>5. Comunica&ccedil;&atilde;o e Transmiss&atilde;o</h3>
+                    <p>Tipos de comunica&ccedil;&atilde;o, largura de banda</p>
+                    <span class="term-count">15 termos</span>
+                </a>
+
+                <a href="secao6.html" class="menu-item">
+                    <div class="menu-icon">&#128246;</div>
+                    <h3>6. Tecnologias Wireless</h3>
+                    <p>Wi-Fi, frequ&ecirc;ncias, seguran&ccedil;a wireless</p>
+                    <span class="term-count">12 termos</span>
+                </a>
+
+                <a href="secao7.html" class="menu-item">
+                    <div class="menu-icon">&#127760;</div>
+                    <h3>7. Tecnologias M&oacute;veis e Fibra</h3>
+                    <p>3G, 4G, FTTH, tecnologias PON</p>
+                    <span class="term-count">13 termos</span>
+                </a>
+
+                <a href="secao8.html" class="menu-item">
+                    <div class="menu-icon">&#9881;</div>
+                    <h3>8. Servi&ccedil;os de Rede</h3>
+                    <p>DNS, DHCP, QoS, firewall</p>
+                    <span class="term-count">12 termos</span>
+                </a>
+
+                <a href="secao9.html" class="menu-item">
+                    <div class="menu-icon">&#127757;</div>
+                    <h3>9. Protocolos e Servi&ccedil;os de Aplica&ccedil;&atilde;o</h3>
+                    <p>HTTP, FTP, SMTP, VoIP</p>
+                    <span class="term-count">10 termos</span>
+                </a>
+
+                <a href="secao10.html" class="menu-item">
+                    <div class="menu-icon">&#128187;</div>
+                    <h3>10. Web e Internet</h3>
+                    <p>Navega&ccedil;&atilde;o, sites, cloud computing</p>
+                    <span class="term-count">13 termos</span>
+                </a>
+
+                <a href="secao11.html" class="menu-item">
+                    <div class="menu-icon">&#128506;</div>
+                    <h3>11. Roteamento e Conectividade</h3>
+                    <p>Rotas, backbone, conectividade</p>
+                    <span class="term-count">11 termos</span>
+                </a>
+
+                <a href="secao12.html" class="menu-item">
+                    <div class="menu-icon">&#128269;</div>
+                    <h3>12. Ferramentas e Diagn&oacute;stico</h3>
+                    <p>Ping, tracert, ferramentas de teste</p>
+                    <span class="term-count">8 termos</span>
+                </a>
+
+                <a href="secao13.html" class="menu-item">
+                    <div class="menu-icon">&#127970;</div>
+                    <h3>13. Infraestrutura e Gest&atilde;o</h3>
+                    <p>Datacenter, provedores, gest&atilde;o</p>
+                    <span class="term-count">13 termos</span>
+                </a>
+
+                <a href="secao14.html" class="menu-item">
+                    <div class="menu-icon">&#128203;</div>
+                    <h3>14. Padr&otilde;es e Organiza&ccedil;&otilde;es</h3>
+                    <p>IEEE, modelo OSI, padr&otilde;es</p>
+                    <span class="term-count">3 termos</span>
+                </a>
+
+                <a href="secao15.html" class="menu-item">
+                    <div class="menu-icon">&#128274;</div>
+                    <h3>15. Seguran&ccedil;a e Monitoramento</h3>
+                    <p>Firewall, VPN, protocolos seguros</p>
+                    <span class="term-count">7 termos</span>
+                </a>
+
+                <a href="secao16.html" class="menu-item">
+                    <div class="menu-icon">&#128295;</div>
+                    <h3>16. Termos T&eacute;cnicos Diversos</h3>
+                    <p>Conceitos complementares</p>
+                    <span class="term-count">6 termos</span>
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 - Gloss&aacute;rio de Redes de Computadores | Curso T&eacute;cnico em Inform&aacute;tica ETE 25 de Julho</p>
+                
+                <!-- NOVO: Se��o de busca de termos -->
+                <div class="search-container">
+                    <h2>&#128269; Buscar Termos no Gloss&aacute;rio</h2>
+                    <input type="text" id="searchInput" placeholder="Digite o termo que deseja buscar...">
+                    <button id="searchButton">Buscar</button>
+                    <div id="searchResults" style="margin-top: 15px;"></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Credenciais de acesso
+        const VALID_USERNAME = 'aluno424';
+        const VALID_PASSWORD = '4242025';
+        const SESSION_DURATION = 60 * 60 * 1000; // 60 minutos em millisegundos
+        
+        let sessionTimer;
+        let countdownTimer;
+
+        // Verifica se o usu�rio j� est� logado
+        function checkLoginStatus() {
+            const loginTime = sessionStorage.getItem('loginTime');
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            
+            if (isLoggedIn === 'true' && loginTime) {
+                const currentTime = new Date().getTime();
+                const elapsedTime = currentTime - parseInt(loginTime);
+                
+                if (elapsedTime < SESSION_DURATION) {
+                    showContent();
+                    startSessionTimer(SESSION_DURATION - elapsedTime);
+                } else {
+                    // Sess�o expirada
+                    sessionExpired();
+                }
+            } else {
+                showLogin();
+            }
+        }
+
+        // Fun��o de login
+        function login(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+                const loginTime = new Date().getTime();
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('loginTime', loginTime.toString());
+                showContent();
+                startSessionTimer(SESSION_DURATION);
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.textContent = 'Usuário ou senha incorretos!';
+                errorMessage.style.display = 'block';
+                
+                // Limpa os campos
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            }
+        }
+
+        // Fun��o de logout
+        function logout() {
+            clearTimers();
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('loginTime');
+            showLogin();
+        }
+
+        // Sess�o expirada
+        function sessionExpired() {
+            clearTimers();
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('loginTime');
+            alert('Sua sessão expirou! Faça login novamente.');
+            showLogin();
+        }
+
+        // Inicia o timer da sess�o
+        function startSessionTimer(duration) {
+            clearTimers();
+            
+            // Timer para expirar a sess�o
+            sessionTimer = setTimeout(() => {
+                sessionExpired();
+            }, duration);
+            
+            // Countdown visual
+            startCountdown(duration);
+        }
+
+        // Inicia o countdown visual
+        function startCountdown(duration) {
+            const timeRemainingElement = document.getElementById('timeRemaining');
+            let remainingTime = duration;
+            
+            function updateCountdown() {
+                const minutes = Math.floor(remainingTime / (1000 * 60));
+                const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                
+                timeRemainingElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (remainingTime <= 0) {
+                    clearInterval(countdownTimer);
+                    return;
+                }
+                
+                remainingTime -= 1000;
+            }
+            
+            updateCountdown(); // Atualiza imediatamente
+            countdownTimer = setInterval(updateCountdown, 1000);
+        }
+
+        // Limpa os timers
+        function clearTimers() {
+            if (sessionTimer) {
+                clearTimeout(sessionTimer);
+                sessionTimer = null;
+            }
+            if (countdownTimer) {
+                clearInterval(countdownTimer);
+                countdownTimer = null;
+            }
+        }
+
+        // Mostra o conte�do ap�s login
+        function showContent() {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContent').classList.remove('content-locked');
+            document.getElementById('logoutButton').style.display = 'block';
+            document.getElementById('sessionInfo').style.display = 'block';
+        }
+
+        // Mostra a tela de login
+        function showLogin() {
+            document.getElementById('loginOverlay').style.display = 'flex';
+            document.getElementById('mainContent').classList.add('content-locked');
+            document.getElementById('logoutButton').style.display = 'none';
+            document.getElementById('sessionInfo').style.display = 'none';
+            
+            // Limpa os campos de login
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        // Intercepta cliques nos links para verificar autentica��o
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            
+            // Adiciona evento aos links das se��es
+            const menuLinks = document.querySelectorAll('.menu-item');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+                    const loginTime = sessionStorage.getItem('loginTime');
+                    
+                    if (isLoggedIn !== 'true' || !loginTime) {
+                        event.preventDefault();
+                        alert('Você precisa fazer login para acessar este conteúdo!');
+                        return;
+                    }
+                    
+                    // Verifica se a sess�o ainda � v�lida
+                    const currentTime = new Date().getTime();
+                    const elapsedTime = currentTime - parseInt(loginTime);
+                    
+                    if (elapsedTime >= SESSION_DURATION) {
+                        event.preventDefault();
+                        sessionExpired();
+                    }
+                });
+            });
+        });
+
+        // Permite login com Enter
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' && document.getElementById('loginOverlay').style.display !== 'none') {
+                login(event);
+            }
+        });
+
+        // Limpa timers quando a p�gina � fechada
+        window.addEventListener('beforeunload', function() {
+            clearTimers();
+        });
+
+        /* ----------------------------------------------------------- */
+        /* NOVAS FUNCIONALIDADES: Listar Termos e Busca de Termos */
+        /* ----------------------------------------------------------- */
+
+        // Objeto consolidado de todos os termos para listagem e busca
+        // ATEN��O: Este objeto cont�m dados reais da secao1 e secao16, e PLACEHOLDERS para secoes 2-15.
+        // Em uma aplica��o real, esses dados viriam de uma fonte unificada (e.g., JSON externo).
+        const ALL_TERMS_DATA = {
+            // Termos da Se��o 1 (Fundamentos de Redes) - 22 termos
+            'binary': { title: 'Binary (Bin&aacute;rio)', description: 'Sistema de numera&ccedil;&atilde;o base 2, usando apenas 0 e 1, fundamental na computa&ccedil;&atilde;o.', details: `<h3>Defini&ccedil;&atilde;o Completa:</h3><p>O sistema bin&aacute;rio &eacute; a base de toda computa&ccedil;&atilde;o digital. Diferente do sistema decimal que usamos no dia a dia (base 10), o sistema bin&aacute;rio utiliza apenas dois d&iacute;gitos: 0 e 1.</p><h3>Como Funciona:</h3><ul><li><strong>0</strong> = Aus&ecirc;ncia de sinal el&eacute;trico</li><li><strong>1</strong> = Presen&ccedil;a de sinal el&eacute;trico</li></ul><h3>Exemplos de Convers&atilde;o:</h3><ul><li>1010 (bin&aacute;rio) = 10 (decimal)</li><li>1111 (bin&aacute;rio) = 15 (decimal)</li><li>10000000 (bin&aacute;rio) = 128 (decimal)</li></ul><h3>Import&acirc;ncia nas Redes:</h3><p>Todo dado transmitido em redes de computadores &eacute; convertido para bin&aacute;rio. Textos, imagens, v&iacute;deos - tudo vira sequ&ecirc;ncias de 0s e 1s para transmiss&atilde;o.</p>` },
+            'bit': { title: 'Bit', description: 'Menor unidade de informa&ccedil;&atilde;o em computa&ccedil;&atilde;o, pode ser 0 ou 1.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Bit &eacute; a abrevia&ccedil;&atilde;o de "Binary Digit" (D&iacute;gito Bin&aacute;rio). &Eacute; a menor unidade de informa&ccedil;&atilde;o que um computador pode processar.</p><h3>Caracter&iacute;sticas:</h3><ul><li>Pode assumir apenas dois valores: 0 ou 1</li><li>Representa o estado de um circuito: ligado (1) ou desligado (0)</li><li>Base para todas as opera&ccedil;&otilde;es computacionais</li><li>Unidade fundamental para medir velocidade de transmiss&atilde;o</li></ul><h3>Aplica&ccedil;&otilde;es em Redes:</h3><ul><li>Medi&ccedil;&atilde;o de velocidade: Mbps (Megabits por segundo)</li><li>Transmiss&atilde;o de dados entre dispositivos</li><li>Codifica&ccedil;&atilde;o de protocolos de rede</li></ul><h3>Rela&ccedil;&atilde;o com Bytes:</h3><p>8 bits = 1 byte (unidade b&aacute;sica de armazenamento)</p>` },
+            'byte': { title: 'Byte', description: 'Conjunto de 8 bits, unidade b&aacute;sica de armazenamento de dados.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Um byte &eacute; composto por 8 bits consecutivos e representa a menor unidade endere&ccedil;&aacute;vel de mem&oacute;ria na maioria dos computadores.</p><h3>Capacidade:</h3><ul><li>1 byte = 8 bits</li><li>Pode representar 256 valores diferentes (2^8)</li><li>Suficiente para armazenar um caractere ASCII</li><li>Base para medir tamanhos de arquivos</li></ul><h3>M&uacute;ltiplos Comuns:</h3><ul><li><strong>Kilobyte (KB)</strong> = 1.024 bytes</li><li><strong>Megabyte (MB)</strong> = 1.024 KB</li><li><strong>Gigabyte (GB)</strong> = 1.024 MB</li><li><strong>Terabyte (TB)</strong> = 1.024 GB</li></ul><h3>Uso em Redes:</h3><p>Utilizado para medir tamanhos de pacotes de dados, arquivos transferidos e capacidade de armazenamento em servidores.</p>` },
+            'bps': { title: 'bps (Bits por Segundo)', description: 'Bits por segundo, unidade de medida de velocidade de transmiss&atilde;o de dados.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>bps &eacute; a unidade fundamental para medir a velocidade de transmiss&atilde;o de dados em redes de computadores. Indica quantos bits podem ser transmitidos em um segundo.</p><h3>Unidades Derivadas:</h3><ul><li><strong>Kbps</strong> = 1.000 bps (Kilobits por segundo)</li><li><strong>Mbps</strong> = 1.000.000 bps (Megabits por segundo)</li><li><strong>Gbps</strong> = 1.000.000.000 bps (Gigabits por segundo)</li><li><strong>Tbps</strong> = 1.000.000.000.000 bps (Terabits por segundo)</li></ul><h3>Exemplos Pr&aacute;ticos:</h3><ul><li>Internet residencial b&aacute;sica: 10-100 Mbps</li><li>Wi-Fi moderno: at&eacute; 1 Gbps</li><li>Ethernet Gigabit: 1 Gbps</li><li>Fibra &oacute;ptica empresarial: 10 Gbps ou mais</li></ul><h3>Diferen&ccedil;a Importante:</h3><p><strong>bps (bits)</strong> vs <strong>Bps (Bytes)</strong><br>1 Byte = 8 bits, ent&atilde;o 8 Mbps = 1 MBps (MegaBytes por segundo)</p>` },
+            'network': { title: 'Network (Rede)', description: 'Conjunto de dispositivos interconectados para compartilhar recursos e informa&ccedil;&otilde;es.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Uma rede &eacute; um conjunto de dispositivos (computadores, smartphones, servidores, etc.) conectados entre si para compartilhar recursos, dados e servi&ccedil;os.</p><h3>Componentes B&aacute;sicos:</h3><ul><li><strong>N&oacute;s:</strong> Dispositivos conectados &agrave; rede (computadores, impressoras, etc.)</li><li><strong>Links:</strong> Conex&otilde;es f&iacute;sicas ou sem fio entre os n&oacute;s</li><li><strong>Protocolos:</strong> Regras de comunica&ccedil;&atilde;o (TCP/IP, HTTP, etc.)</li><li><strong>Equipamentos:</strong> Switches, roteadores, hubs, access points</li></ul><h3>Benef&iacute;cios:</h3><ul><li>Compartilhamento de arquivos e impressoras</li><li>Acesso a recursos remotos</li><li>Comunica&ccedil;&atilde;o instant&acirc;nea (e-mail, chat)</li><li>Backup centralizado</li><li>Colabora&ccedil;&atilde;o em tempo real</li></ul><h3>Tipos por Tamanho:</h3><p>As redes s&atilde;o classificadas por seu alcance: LAN (local), MAN (metropolitana) e WAN (longa dist&acirc;ncia).</p>` },
+            'net': { title: 'Net', description: 'Abrevia&ccedil;&atilde;o de Network, refere-se a uma rede de computadores.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>"Net" &eacute; uma forma abreviada e informal de se referir a uma rede de computadores, especialmente quando se fala da Internet.</p><h3>Uso Comum:</h3><ul><li><strong>"The Net"</strong> = A Internet</li><li><strong>"On the net"</strong> = Na rede/internet</li><li><strong>"Net connection"</strong> = Conex&atilde;o de rede</li><li><strong>"Net speed"</strong> = Velocidade da rede</li></ul><h3>Contextos de Uso:</h3><ul><li>Linguagem informal e t&eacute;cnica</li><li>Documenta&ccedil;&atilde;o t&eacute;cnica</li><li>Comandos de sistema operacional</li><li>Nomenclatura de ferramentas e tecnologias</li></ul><h3>Exemplos em Tecnologia:</h3><ul><li>.NET Framework (Microsoft)</li><li>netstat (comando de rede)</li><li>netconfig (configura&ccedil;&atilde;o de rede)</li><li>subnet (sub-rede)</li></ul>` },
+            'rede-local': { title: 'Rede Local', description: 'Rede de computadores em uma &aacute;rea geogr&aacute;fica limitada, como escrit&oacute;rio ou casa.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Uma rede local conecta dispositivos em uma &aacute;rea geogr&aacute;fica restrita, como uma casa, escrit&oacute;rio, escola ou pr&eacute;dio.</p><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Alcance:</strong> At&eacute; alguns quil&ocirc;metros</li><li><strong>Velocidade:</strong> Alta (10 Mbps a 10 Gbps)</li><li><strong>Lat&ecirc;ncia:</strong> Muito baixa (menos de 1ms)</li><li><strong>Propriedade:</strong> Privada (controlada pelo usu&aacute;rio/empresa)</li><li><strong>Custo:</strong> Baixo para implementar e manter</li></ul><h3>Tecnologias Comuns:</h3><ul><li><strong>Ethernet:</strong> Conex&atilde;o cabeada (mais r&aacute;pida e est&aacute;vel)</li><li><strong>Wi-Fi:</strong> Conex&atilde;o sem fio (mais conveniente)</li><li><strong>Bluetooth:</strong> Curta dist&acirc;ncia para dispositivos espec&iacute;ficos</li></ul><h3>Vantagens:</h3><ul><li>Alta velocidade de transfer&ecirc;ncia</li><li>Baixo custo de implementa&ccedil;&atilde;o</li><li>F&aacute;cil gerenciamento e manuten&ccedil;&atilde;o</li><li>Maior seguran&ccedil;a (controle total)</li><li>Baixa lat&ecirc;ncia</li></ul>` },
+            'lan': { title: 'LAN (Local Area Network)', description: 'Local Area Network - Rede de &aacute;rea local, conecta dispositivos pr&oacute;ximos geograficamente.', details: `<h3>Defini&ccedil;&atilde;o T&eacute;cnica:</h3><p>LAN &eacute; o termo t&eacute;cnico em ingl&ecirc;s para Rede Local. &Eacute; uma rede que conecta computadores e dispositivos em uma &aacute;rea geogr&aacute;fica limitada.</p><h3>Especifica&ccedil;&otilde;es T&eacute;cnicas:</h3><ul><li><strong>Padr&atilde;o:</strong> IEEE 802.3 (Ethernet) e IEEE 802.11 (Wi-Fi)</li><li><strong>Velocidades:</strong> 10/100/1000 Mbps, 10 Gbps</li><li><strong>Topologias:</strong> Estrela (mais comum), Bus, Anel</li><li><strong>Cabos:</strong> UTP Cat5e/Cat6/Cat6a, Fibra &Oacute;ptica</li><li><strong>Alcance:</strong> At&eacute; 100 metros por segmento Ethernet</li></ul><h3>Componentes T&iacute;picos:</h3><ul><li><strong>Switch:</strong> Dispositivo central para conex&otilde;es Ethernet</li><li><strong>Cabos de rede:</strong> UTP, STP ou fibra &oacute;ptica</li><li><strong>Placas de rede (NICs):</strong> Interface dos dispositivos</li><li><strong>Access Points:</strong> Para conex&otilde;es Wi-Fi</li><li><strong>Roteador:</strong> Para acesso &agrave; Internet</li></ul><h3>Protocolos Utilizados:</h3><ul><li><strong>TCP/IP:</strong> Protocolo principal de comunica&ccedil;&atilde;o</li><li><strong>DHCP:</strong> Atribui&ccedil;&atilde;o autom&aacute;tica de IPs</li><li><strong>DNS:</strong> Resolu&ccedil;&atilde;o de nomes</li><li><strong>SNMP:</strong> Gerenciamento de rede</li></ul>` },
+            'man': { title: 'MAN (Metropolitan Area Network)', description: 'Metropolitan Area Network - Rede metropolitana, cobre uma cidade ou regi&atilde;o metropolitana.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>MAN &eacute; uma rede que conecta m&uacute;ltiplas LANs em uma &aacute;rea metropolitana, cobrindo uma cidade ou regi&atilde;o urbana extensa.</p><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Alcance:</strong> 5 a 50 km (toda uma cidade)</li><li><strong>Velocidade:</strong> 10 Mbps a 10 Gbps</li><li><strong>Cobertura:</strong> Cidade ou regi&atilde;o metropolitana</li><li><strong>Propriedade:</strong> P&uacute;blica ou privada</li><li><strong>Custo:</strong> Moderado a alto</li></ul><h3>Tecnologias Utilizadas:</h3><ul><li><strong>Fibra &oacute;ptica:</strong> Principal meio de transmiss&atilde;o</li><li><strong>Microondas:</strong> Conex&otilde;es sem fio de longa dist&acirc;ncia</li><li><strong>SONET/SDH:</strong> Padr&otilde;es de transmiss&atilde;o &oacute;ptica</li><li><strong>Metro Ethernet:</strong> Extens&atilde;o do Ethernet para MANs</li><li><strong>MPLS:</strong> Roteamento eficiente de dados</li></ul><h3>Exemplos de Uso:</h3><ul><li>Rede de uma universidade com m&uacute;ltiplos campus</li><li>Sistema de TV a cabo de uma cidade</li><li>Rede municipal de &oacute;rg&atilde;os p&uacute;blicos</li><li>Interconex&atilde;o de filiais de uma empresa na mesma cidade</li><li>Redes de provedores de Internet regionais</li></ul>` },
+            'wan': { title: 'WAN (Wide Area Network)', description: 'Wide Area Network - Rede de longa dist&acirc;ncia, conecta redes em diferentes cidades ou pa&iacute;ses.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>WAN &eacute; uma rede que conecta dispositivos e LANs separados por grandes dist&acirc;ncias geogr&aacute;ficas, podendo abranger pa&iacute;ses ou continentes inteiros.</p><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Alcance:</strong> Ilimitado (global)</li><li><strong>Velocidade:</strong> Vari&aacute;vel (56 Kbps a 100 Gbps)</li><li><strong>Lat&ecirc;ncia:</strong> Alta devido &agrave;s longas dist&acirc;ncias</li><li><strong>Custo:</strong> Elevado (proporcional &agrave; dist&acirc;ncia)</li><li><strong>Complexidade:</strong> Alta (m&uacute;ltiplos provedores)</li></ul><h3>Tecnologias de Conex&atilde;o:</h3><ul><li><strong>Linhas dedicadas:</strong> T1, T3, E1, E3</li><li><strong>MPLS:</strong> Redes privadas virtuais</li><li><strong>Sat&eacute;lite:</strong> Cobertura global</li><li><strong>Internet VPN:</strong> Solu&ccedil;&atilde;o econ&ocirc;mica</li><li><strong>Frame Relay:</strong> Tecnologia legada</li><li><strong>Cabos submarinos:</strong> Conex&otilde;es intercontinentais</li></ul><h3>Maior Exemplo:</h3><p><strong>A Internet</strong> &eacute; a maior WAN do mundo, conectando bilh&otilde;es de dispositivos globalmente atrav&eacute;s de uma infraestrutura complexa de cabos, sat&eacute;lites e equipamentos.</p><h3>Aplica&ccedil;&otilde;es Empresariais:</h3><ul><li>Conex&atilde;o entre filiais de multinacionais</li><li>Backup de dados em localiza&ccedil;&otilde;es remotas</li><li>Acesso a sistemas centralizados</li><li>Comunica&ccedil;&atilde;o global</li></ul>` },
+            'intranet': { title: 'Intranet', description: 'Rede privada que usa tecnologias da Internet para uso interno de uma organiza&ccedil;&atilde;o.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Intranet &eacute; uma rede privada que utiliza protocolos e tecnologias da Internet (como HTTP, TCP/IP) para uso exclusivo interno de uma organiza&ccedil;&atilde;o.</p><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Acesso:</strong> Restrito a funcion&aacute;rios autorizados</li><li><strong>Seguran&ccedil;a:</strong> Protegida por firewalls e autentica&ccedil;&atilde;o</li><li><strong>Conte&uacute;do:</strong> Espec&iacute;fico da empresa/organiza&ccedil;&atilde;o</li><li><strong>Interface:</strong> Similar &agrave; web (navegadores)</li><li><strong>Controle:</strong> Total sobre conte&uacute;do e acesso</li></ul><h3>Funcionalidades Comuns:</h3><ul><li><strong>Portal corporativo:</strong> P&aacute;gina inicial com informa&ccedil;&otilde;es</li><li><strong>Sistema de e-mail interno:</strong> Comunica&ccedil;&atilde;o entre funcion&aacute;rios</li><li><strong>Compartilhamento de documentos:</strong> Reposit&oacute;rio central</li><li><strong>F&oacute;runs de discuss&atilde;o:</strong> Colabora&ccedil;&atilde;o e ideias</li><li><strong>Sistemas de RH:</strong> Folha de pagamento, benef&iacute;cios</li><li><strong>Manuais e pol&iacute;ticas:</strong> Documenta&ccedil;&atilde;o interna</li></ul><h3>Benef&iacute;cios:</h3><ul><li>Melhora a comunica&ccedil;&atilde;o interna</li><li>Centraliza informa&ccedil;&otilde;es importantes</li><li>Reduz custos de papel e impress&atilde;o</li><li>Facilita colabora&ccedil;&atilde;o entre equipes</li><li>Agiliza processos internos</li><li>Mant&eacute;m informa&ccedil;&otilde;es atualizadas</li></ul>` },
+            'internet': { title: 'Internet', description: 'Rede mundial de computadores interconectados usando protocolos padronizados.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>A Internet &eacute; uma rede global de redes interconectadas que utiliza protocolos padronizados (principalmente TCP/IP) para permitir comunica&ccedil;&atilde;o mundial entre dispositivos.</p><h3>Hist&oacute;rico:</h3><ul><li><strong>1969:</strong> ARPANET (rede precursora)</li><li><strong>1983:</strong> Ado&ccedil;&atilde;o do protocolo TCP/IP</li><li><strong>1991:</strong> Cria&ccedil;&atilde;o da World Wide Web</li><li><strong>1995:</strong> Comercializa&ccedil;&atilde;o da Internet</li><li><strong>2000s:</strong> Expans&atilde;o global e banda larga</li></ul><h3>Componentes Principais:</h3><ul><li><strong>ISPs:</strong> Provedores de acesso &agrave; Internet</li><li><strong>Backbone:</strong> Infraestrutura principal de alta velocidade</li><li><strong>Roteadores:</strong> Direcionam tr&aacute;fego entre redes</li><li><strong>DNS:</strong> Sistema de nomes de dom&iacute;nio</li><li><strong>Servidores:</strong> Hospedam sites e servi&ccedil;os</li></ul><h3>Servi&ccedil;os Principais:</h3><ul><li><strong>World Wide Web (WWW):</strong> Navega&ccedil;&atilde;o em sites</li><li><strong>E-mail:</strong> Correio eletr&ocirc;nico</li><li><strong>FTP:</strong> Transfer&ecirc;ncia de arquivos</li><li><strong>Streaming:</strong> V&iacute;deo e &aacute;udio online</li><li><strong>Redes sociais:</strong> Intera&ccedil;&atilde;o social</li><li><strong>Cloud computing:</strong> Servi&ccedil;os na nuvem</li></ul><h3>Protocolos Fundamentais:</h3><ul><li><strong>TCP/IP:</strong> Base da comunica&ccedil;&atilde;o</li><li><strong>HTTP/HTTPS:</strong> Navega&ccedil;&atilde;o web</li><li><strong>SMTP/POP3/IMAP:</strong> E-mail</li><li><strong>DNS:</strong> Resolu&ccedil;&atilde;o de nomes</li></ul>` },
+            'topologia': { title: 'Topologia de Rede', description: 'Forma como os dispositivos est&atilde;o fisicamente ou logicamente conectados em uma rede.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Topologia de rede refere-se &agrave; forma como os dispositivos s&atilde;o organizados e conectados em uma rede, definindo a estrutura f&iacute;sica e l&oacute;gica da comunica&ccedil;&atilde;o.</p><h3>Tipos de Topologia:</h3><ul><li><strong>F&iacute;sica:</strong> Layout real dos cabos e equipamentos</li><li><strong>L&oacute;gica:</strong> Caminho que os dados seguem na rede</li></ul><h3>Principais Topologias:</h3><ul><li><strong>Estrela:</strong> Todos conectados a um ponto central</li><li><strong>Bus (Barramento):</strong> Todos em uma linha principal</li><li><strong>Anel:</strong> Dispositivos conectados em c&iacute;rculo</li><li><strong>Malha:</strong> M&uacute;ltiplas conex&otilde;es entre n&oacute;s</li><li><strong>H&iacute;brida:</strong> Combina&ccedil;&atilde;o de v&aacute;rias topologias</li><li><strong>&Aacute;rvore:</strong> Hierarquia de conex&otilde;es</li></ul><h3>Fatores de Escolha:</h3><ul><li><strong>Custo:</strong> Investimento inicial e manuten&ccedil;&atilde;o</li><li><strong>Facilidade:</strong> Instala&ccedil;&atilde;o e gerenciamento</li><li><strong>Toler&acirc;ncia a falhas:</strong> Resist&ecirc;ncia a problemas</li><li><strong>Escalabilidade:</strong> Capacidade de crescimento</li><li><strong>Performance:</strong> Velocidade e efici&ecirc;ncia</li></ul><h3>Impacto na Performance:</h3><p>A escolha da topologia afeta diretamente a velocidade, confiabilidade e custo da rede.</p>` },
+            'estrela': { title: 'Rede em Estrela', description: 'Topologia onde todos os dispositivos se conectam a um ponto central (hub ou switch).', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Na topologia estrela, todos os dispositivos da rede se conectam a um dispositivo central (hub, switch ou roteador), formando um padr&atilde;o visual similar a uma estrela.</p><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Ponto Central:</strong> Hub, Switch ou Roteador</li><li><strong>Conex&otilde;es:</strong> Cada dispositivo tem um link dedicado</li><li><strong>Comunica&ccedil;&atilde;o:</strong> Sempre passa pelo dispositivo central</li><li><strong>Cabos:</strong> Um cabo por dispositivo</li></ul><h3>Vantagens:</h3><ul><li><strong>F&aacute;cil instala&ccedil;&atilde;o:</strong> Simples de configurar</li><li><strong>Isolamento de falhas:</strong> Problema em um dispositivo n&atilde;o afeta outros</li><li><strong>F&aacute;cil diagn&oacute;stico:</strong> Problemas s&atilde;o f&aacute;ceis de identificar</li><li><strong>Boa performance:</strong> Cada dispositivo tem largura de banda dedicada</li><li><strong>Escalabilidade:</strong> F&aacute;cil adicionar novos dispositivos</li></ul><h3>Desvantagens:</h3><ul><li><strong>Ponto &uacute;nico de falha:</strong> Se o dispositivo central falhar, toda rede para</li><li><strong>Maior uso de cabos:</strong> Precisa de mais cabeamento</li><li><strong>Custo do equipamento central:</strong> Switch/hub pode ser caro</li><li><strong>Limita&ccedil;&atilde;o de portas:</strong> N&uacute;mero de dispositivos limitado pelas portas</li></ul><h3>Uso Atual:</h3><p>Topologia mais comum em redes modernas, especialmente LANs Ethernet. Praticamente todas as redes dom&eacute;sticas e corporativas usam esta topologia.</p>` },
+ 'anel': { 
+title: 'Rede em Anel',
+ description: 'Topologia onde os dispositivos formam um c&iacute;rculo fechado de conex&otilde;es.',
+ details: 
+ `<h3>Defini&ccedil;&atilde;o:</h3><p>Na topologia em anel, cada dispositivo se conecta a exatamente dois outros dispositivos, formando um c&iacute;rculo fechado onde os dados circulam em uma dire&ccedil;&atilde;o espec&iacute;fica.</p><h3>Tipos de Anel:</h3><ul><li><strong>Anel Simples:</strong> Dados circulam em uma &uacute;nica dire&ccedil;&atilde;o</li><li><strong>Anel Duplo:</strong> Duas dire&ccedil;&otilde;es para redund&acirc;ncia</li></ul><h3>Como Funciona:</h3><ul><li><strong>Circula&ccedil;&atilde;o:</strong> Dados circulam em uma dire&ccedil;&atilde;o</li><li><strong>Regenera&ccedil;&atilde;o:</strong> Cada n&oacute; regenera o sinal</li><li><strong>Token passing:</strong> Controle de acesso por token</li><li><strong>Ordem:</strong> Dados passam por todos os n&oacute;s at&eacute; o destino</li></ul><h3>Vantagens:</h3><ul><li><strong>Sem colis&otilde;es:</strong> N&atilde;o h&aacute; conflito de dados</li><li><strong>Performance previs&iacute;vel:</strong> Tempo de acesso conhecido</li><li><strong>Igual acesso:</strong> Todos os n&oacute;s t&ecirc;m a mesma prioridade</li><li><strong>Eficiente:</strong> Boa utiliza&ccedil;&atilde;o da largura de banda</li></ul><h3>Desvantagens:</h3><ul><li><strong>Falha cr&iacute;tica:</strong> Um n&oacute; com problema pode parar toda a rede</li><li><strong>Dif&iacute;cil manuten&ccedil;&atilde;o:</strong> Adicionar/remover dispositivos &eacute; complexo</li><li><strong>Troubleshooting:</strong> Localizar problemas &eacute; dif&iacute;cil</li><li><strong>Depend&ecirc;ncia:</strong> Cada n&oacute; depende dos outros</li></ul><h3>Exemplos Hist&oacute;ricos:</h3><ul><li><strong>Token Ring (IBM):</strong> Padr&atilde;o cl&aacute;ssico</li><li><strong>FDDI:</strong> Fiber Distributed Data Interface</li></ul>` },
+'ponte': { title: 'Rede em Ponte', description: 'Topologia que conecta duas ou mais redes diferentes atrav&eacute;s de um dispositivo ponte.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>A topologia em ponte utiliza dispositivos especiais (bridges) para conectar e integrar duas ou mais redes diferentes, permitindo comunica&ccedil;&atilde;o entre segmentos de rede.</p><h3>Componentes:</h3><ul><li><strong>Bridge (Ponte):</strong> Dispositivo de interconex&atilde;o</li><li><strong>Segmentos:</strong> Redes individuais conectadas</li><li><strong>Tabela de Endere&ccedil;os:</strong> Mapeamento de dispositivos por segmento</li><li><strong>Filtros:</strong> Controlam o tr&aacute;fego entre segmentos</li></ul><h3>Funcionamento:</h3><ul><li><strong>Aprendizado:</strong> Aprende endere&ccedil;os MAC dos dispositivos</li><li><strong>Filtragem:</strong> Mant&eacute;m tr&aacute;fego local no pr&oacute;prio segmento</li><li><strong>Encaminhamento:</strong> Envia apenas tr&aacute;fego necess&aacute;rio</li><li><strong>Redu&ccedil;&atilde;o:</strong> Diminui colis&otilde;es na rede</li></ul><h3>Vantagens:</h3><ul><li><strong>Extens&atilde;o:</strong> Aumenta o alcance da rede</li><li><strong>Performance:</strong> Reduz tr&aacute;fego em cada segmento</li><li><strong>Isolamento:</strong> Problemas ficam restritos ao segmento</li><li><strong>Compatibilidade:</strong> Conecta redes diferentes</li></ul><h3>Evolu&ccedil;&atilde;o:</h3><p>O conceito evoluiu para os switches modernos, que s&atilde;o essencialmente bridges multiportas inteligentes.</p>` },
+            'bus': { title: 'Bus (Barramento)', description: 'Topologia linear onde todos os dispositivos compartilham um mesmo meio de transmiss&atilde;o.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Na topologia bus, todos os dispositivos se conectam a um &uacute;nico cabo principal (backbone), compartilhando o mesmo meio de transmissão em uma configura&ccedil;&atilde;o linear.</p><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Cabo Principal:</strong> Backbone linear &uacute;nico</li><li><strong>Terminadores:</strong> Resistores nas extremidades</li><li><strong>Conectores T:</strong> Para conex&atilde;o dos dispositivos</li><li><strong>Acesso:</strong> CSMA/CD (Carrier Sense Multiple Access)</li><li><strong>Compartilhamento:</strong> Todos dividem a mesma largura de banda</li></ul><h3>Vantagens:</h3><ul><li><strong>Baixo custo:</strong> Menos cabos e equipamentos</li><li><strong>F&aacute;cil instala&ccedil;&atilde;o:</strong> Simples de implementar inicialmente</li><li><strong>Menos cabos:</strong> Economia em cabeamento</li><li><strong>Adequada:</strong> Boa para redes pequenas</li></ul><h3>Desvantagens:</h3><ul><li><strong>Ponto &uacute;nico de falha:</strong> Cabo principal para toda rede</li><li><strong>Degrada&ccedil;&atilde;o:</strong> Performance piora com mais dispositivos</li><li><strong>Diagn&oacute;stico dif&iacute;cil:</strong> Localizar problemas &eacute; complexo</li><li><strong>Colis&otilde;es:</strong> Conflitos de dados frequentes</li><li><strong>Limita&ccedil;&otilde;es:</strong> Dist&acirc;ncia e n&uacute;mero de dispositivos limitados</li></ul><h3>Uso Hist&oacute;rico:</h3><p>Comum em redes Ethernet antigas (10Base2, 10Base5). Hoje foi substitu&iacute;da pela topologia estrela devido &agrave;s suas limita&ccedil;&otilde;es.</p>` },
+            'host': { title: 'Host', description: 'Qualquer dispositivo conectado a uma rede que pode enviar ou receber dados.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Host &eacute; qualquer dispositivo conectado a uma rede que possui um endere&ccedil;o IP e pode enviar, receber ou processar dados na rede de forma aut&ocirc;noma.</p><h3>Tipos de Hosts:</h3><ul><li><strong>Computadores:</strong> Desktops, laptops, workstations</li><li><strong>Servidores:</strong> Web, email, banco de dados, arquivos</li><li><strong>Dispositivos M&oacute;veis:</strong> Smartphones, tablets</li><li><strong>IoT:</strong> Smart TVs, c&acirc;meras, sensores, dispositivos inteligentes</li><li><strong>Impressoras:</strong> Com interface de rede</li><li><strong>Equipamentos:</strong> Roteadores, switches gerenci&aacute;veis</li></ul><h3>Caracter&iacute;sticas de um Host:</h3><ul><li><strong>Endere&ccedil;o IP:</strong> Identifica&ccedil;&atilde;o &uacute;nica na rede</li><li><strong>Interface de rede:</strong> Placa de rede (NIC)</li><li><strong>Protocolos:</strong> Executa protocolos de rede (TCP/IP)</li><li><strong>Comunica&ccedil;&atilde;o:</strong> Pode iniciar ou responder conex&otilde;es</li><li><strong>Processamento:</strong> Capacidade de processar dados</li></ul><h3>Fun&ccedil;&otilde;es Principais:</h3><ul><li><strong>Envio/Recebimento:</strong> Transmiss&atilde;o de dados</li><li><strong>Processamento:</strong> Manipula&ccedil;&atilde;o de informa&ccedil;&otilde;es</li><li><strong>Armazenamento:</strong> Guarda arquivos e dados</li><li><strong>Aplica&ccedil;&otilde;es:</strong> Executa programas e servi&ccedil;os</li><li><strong>Interface:</strong> Intera&ccedil;&atilde;o com usu&aacute;rios</li></ul><h3>Identifica&ccedil;&atilde;o na Rede:</h3><p>Cada host &eacute; identificado por seu endere&ccedil;o IP e pode ter um hostname para facilitar o acesso.</p>` },
+            'hostnames': { title: 'Hostnames', description: 'Nomes &uacute;nicos atribu&iacute;dos a dispositivos em uma rede para identifica&ccedil;&atilde;o.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Hostnames s&atilde;o nomes alfanum&eacute;ricos &uacute;nicos atribu&iacute;dos a dispositivos em uma rede para facilitar sua identifica&ccedil;&atilde;o e localiza&ccedil;&atilde;o, substituindo a necessidade de memorizar endere&ccedil;os IP.</p><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Formato:</strong> Letras, n&uacute;meros e h&iacute;fens</li><li><strong>Tamanho:</strong> At&eacute; 63 caracteres por label</li><li><strong>Case-insensitive:</strong> N&atilde;o diferencia mai&uacute;sculas/min&uacute;sculas</li><li><strong>Unicidade:</strong> &Uacute;nico dentro do dom&iacute;nio</li><li><strong>Hier&aacute;rquico:</strong> Pode ter subdom&iacute;nios</li></ul><h3>Exemplos:</h3><ul><li><strong>Local:</strong> servidor01, pc-vendas, impressora-rh</li><li><strong>Internet:</strong> www.google.com, mail.empresa.com</li><li><strong>Interno:</strong> servidor.local, backup.rede.interna</li><li><strong>Funcionais:</strong> webserver, database, fileserver</li></ul><h3>Vantagens:</h3><ul><li><strong>F&aacute;cil memoriza&ccedil;&atilde;o:</strong> Nomes s&atilde;o mais f&aacute;ceis que IPs</li><li><strong>Identifica&ccedil;&atilde;o intuitiva:</strong> Nome indica fun&ccedil;&atilde;o</li><li><strong>Organiza&ccedil;&atilde;o:</strong> Estrutura hier&aacute;rquica</li><li><strong>Flexibilidade:</strong> IP pode mudar, nome permanece</li><li><strong>Gerenciamento:</strong> Facilita administra&ccedil;&atilde;o</li></ul><h3>Resolu&ccedil;&atilde;o:</h3><p>Hostnames s&atilde;o convertidos para endere&ccedil;os IP pelo sistema DNS (Domain Name System), permitindo localizar o dispositivo na rede.</p><h3>Configura&ccedil;&atilde;o:</h3><p>Pode ser definido no pr&oacute;prio dispositivo ou gerenciado centralmente via DNS/DHCP.</p>` },
+            'cliente': { title: 'Cliente', description: 'Dispositivo ou software que solicita servi&ccedil;os ou recursos de um servidor.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Cliente &eacute; um dispositivo, aplica&ccedil;&atilde;o ou processo que solicita servi&ccedil;os, recursos ou informa&ccedil;&otilde;es de um servidor em uma arquitetura cliente-servidor.</p><h3>Tipos de Clientes:</h3><ul><li><strong>Cliente de E-mail:</strong> Outlook, Thunderbird, Apple Mail</li><li><strong>Navegador Web:</strong> Chrome, Firefox, Safari, Edge</li><li><strong>Cliente FTP:</strong> FileZilla, WinSCP, Cyberduck</li><li><strong>Cliente de Banco:</strong> Aplica&ccedil;&otilde;es que acessam bancos de dados</li><li><strong>Cliente de Jogos:</strong> Steam, Epic Games, Origin</li><li><strong>Cliente SSH:</strong> PuTTY, Terminal</li></ul><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Iniciador:</strong> Sempre inicia a comunica&ccedil;&atilde;o</li><li><strong>Solicitante:</strong> Faz pedidos ao servidor</li><li><strong>Processador:</strong> Processa respostas recebidas</li><li><strong>Interface:</strong> Fornece interface para o usu&aacute;rio</li><li><strong>Dependente:</strong> Depende do servidor para funcionar</li></ul><h3>Processo de Comunica&ccedil;&atilde;o:</h3><ol><li><strong>Solicita&ccedil;&atilde;o:</strong> Cliente faz pedido ao servidor</li><li><strong>Processamento:</strong> Servidor processa o pedido</li><li><strong>Resposta:</strong> Servidor envia resultado</li><li><strong>Exibi&ccedil;&atilde;o:</strong> Cliente recebe e exibe para o usu&aacute;rio</li></ol><h3>Exemplos Pr&aacute;ticos:</h3><ul><li>Navegador solicitando uma p&aacute;gina web</li><li>App de e-mail baixando mensagens</li><li>Jogo online conectando ao servidor</li><li>Software acessando banco de dados</li></ul>` },
+            'servidor': { title: 'Servidor', description: 'Dispositivo ou software que fornece servi&ccedil;os ou recursos para clientes na rede.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>Servidor &eacute; um sistema computacional (hardware e/ou software) que fornece servi&ccedil;os, recursos ou dados para outros dispositivos (clientes) em uma rede.</p><h3>Tipos de Servidores:</h3><ul><li><strong>Servidor Web:</strong> Apache, Nginx, IIS - hospedam sites</li><li><strong>Servidor de Email:</strong> Exchange, Postfix - gerenciam e-mails</li><li><strong>Servidor de Arquivos:</strong> Samba, NFS - compartilham arquivos</li><li><strong>Servidor de Banco:</strong> MySQL, PostgreSQL, SQL Server</li><li><strong>Servidor DNS:</strong> BIND, Windows DNS - resolvem nomes</li><li><strong>Servidor DHCP:</strong> Atribuem IPs automaticamente</li><li><strong>Servidor de Impress&atilde;o:</strong> Gerenciam impressoras</li></ul><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Passivo:</strong> Aguarda solicita&ccedil;&otilde;es dos clientes</li><li><strong>Processador:</strong> Processa e responde pedidos</li><li><strong>Gerenciador:</strong> Controla recursos compartilhados</li><li><strong>Dispon&iacute;vel:</strong> Funciona 24/7 (alta disponibilidade)</li><li><strong>Robusto:</strong> Hardware confi&aacute;vel e redundante</li><li><strong>Seguro:</strong> Controles de acesso e autentica&ccedil;&atilde;o</li></ul><h3>Benef&iacute;cios:</h3><ul><li><strong>Centraliza&ccedil;&atilde;o:</strong> Recursos em local &uacute;nico</li><li><strong>Compartilhamento:</strong> M&uacute;ltiplos usu&aacute;rios acessam</li><li><strong>Controle:</strong> Gerenciamento centralizado de acesso</li><li><strong>Backup:</strong> Prote&ccedil;&atilde;o centralizada de dados</li><li><strong>Seguran&ccedil;a:</strong> Pol&iacute;ticas de seguran&ccedil;a unificadas</li><li><strong>Economia:</strong> Otimiza&ccedil;&atilde;o de recursos</li></ul><h3>Hardware T&iacute;pico:</h3><ul><li>Processadores m&uacute;ltiplos e potentes</li><li>Mem&oacute;ria RAM abundante</li><li>Armazenamento redundante (RAID)</li><li>M&uacute;ltiplas interfaces de rede</li><li>Fonte de alimenta&ccedil;&atilde;o redundante</li></ul>` },
+            'p2p': { title: 'P2P (Peer-to-Peer)', description: 'Peer-to-Peer - Arquitetura onde dispositivos atuam simultaneamente como cliente e servidor.', details: `<h3>Defini&ccedil;&atilde;o:</h3><p>P2P &eacute; uma arquitetura de rede onde cada dispositivo (peer) pode atuar simultaneamente como cliente e servidor, compartilhando recursos diretamente entre si sem necessidade de um servidor central.</p><h3>Caracter&iacute;sticas:</h3><ul><li><strong>Descentralizado:</strong> N&atilde;o h&aacute; servidor central dominante</li><li><strong>Distribu&iacute;do:</strong> Recursos espalhados por toda a rede</li><li><strong>Aut&ocirc;nomo:</strong> Cada peer &eacute; independente</li><li><strong>Escal&aacute;vel:</strong> Rede cresce com novos peers</li><li><strong>Resiliente:</strong> Resist&ecirc;ncia a falhas</li></ul><h3>Tipos de P2P:</h3><ul><li><strong>P2P Puro:</strong> Totalmente descentralizado, sem servidores</li><li><strong>P2P H&iacute;brido:</strong> Com alguns servidores para coordena&ccedil;&atilde;o</li><li><strong>P2P Estruturado:</strong> Organiza&ccedil;&atilde;o hier&aacute;rquica dos peers</li><li><strong>P2P N&atilde;o-estruturado:</strong> Conex&otilde;es aleat&oacute;rias</li></ul><h3>Exemplos de Uso:</h3><ul><li><strong>Compartilhamento:</strong> BitTorrent, eMule, Kazaa</li><li><strong>Comunica&ccedil;&atilde;o:</strong> Skype (modelo antigo)</li><li><strong>Blockchain:</strong> Bitcoin, Ethereum, criptomoedas</li><li><strong>Jogos:</strong> Multiplayer direto</li><li><strong>Armazenamento:</strong> IPFS, Freenet</li></ul><h3>Vantagens:</h3><ul><li><strong>Sem ponto &uacute;nico de falha:</strong> Maior confiabilidade</li><li><strong>Largura de banda agregada:</strong> Soma recursos de todos</li><li><strong>Menor custo:</strong> Sem necessidade de infraestrutura central</li><li><strong>Resist&ecirc;ncia &agrave; censura:</b> Dif&iacute;cil de bloquear</li><li><strong>Escalabilidade:</strong> Cresce naturalmente</li></ul><h3>Desvantagens:</h3><ul><li><strong>Controle de qualidade:</strong> Dif&iacute;cil garantir qualidade</li><li><strong>Seguran&ccedil;a:</strong> Maior risco de malware</li><li><strong>Performance vari&aacute;vel:</strong> Depende dos peers dispon&iacute;veis</li><li><strong>Complexidade:</strong> Mais dif&iacute;cil de implementar</li><li><strong>Quest&otilde;es legais:</strong> Uso para pirataria</li></ul>` },
+            
+            // Termos de placeholder para as Se��es 2 a 15
+            // Se��o 2: Endere�amento e Protocolos (22 termos)
+            'ipv4-ph': { title: 'IPv4', description: 'Placeholder: Protocolo de endereçamento para redes.', details: '[Seção 2 - Endereçamento e Protocolos] Detalhes sobre IPv4 (placeholder).' },
+            'ipv6-ph': { title: 'IPv6', description: 'Placeholder: Nova geração de protocolo de endereçamento.', details: '[Seção 2 - Endereçamento e Protocolos] Detalhes sobre IPv6 (placeholder).' },
+'mac-address-ph': { title: 'MAC Address', description: 'Placeholder: Endereço físico único de um adaptador de rede.', details: '[Seção 2 - Endereçamento e Protocolos] Detalhes sobre MAC Address (placeholder).' },
+'tcpip-ph': { title: 'TCP/IP', description: 'Placeholder: Conjunto de protocolos fundamental da internet.', details: '[Seção 2 - Endereçamento e Protocolos] Detalhes sobre TCP/IP (placeholder).' },
+            // Se��o 3: Equipamentos de Rede (13 termos)
+'switch-ph': { title: 'Switch', description: 'Placeholder: Dispositivo que conecta segmentos de rede.', details: '[Seção 3 - Equipamentos de Rede] Detalhes sobre Switch (placeholder).' },
+'router-ph': { title: 'Roteador', description: 'Placeholder: Encaminha pacotes entre diferentes redes.', details: '[Seção 3 - Equipamentos de Rede] Detalhes sobre Roteador (placeholder).' },
+'access-point-ph': { title: 'Access Point', description: 'Placeholder: Permite conexão sem fio a uma rede.', details: '[Seção 3 - Equipamentos de Rede] Detalhes sobre Access Point (placeholder).' },
+            // Se��o 4: Meios de Transmiss�o (17 termos)
+'ethernet-cable-ph': { title: 'Cabo Ethernet', description: 'Placeholder: Cabo de par trançado para redes cabeadas.', details: '[Seção 4 - Meios de Transmissão] Detalhes sobre Cabo Ethernet (placeholder).' },
+'fiber-optic-ph': { title: 'Fibra óptica', description: 'Placeholder: Meio de transmissão de dados via luz.', details: '[Seção 4 - Meios de Transmissão] Detalhes sobre Fibra óptica (placeholder).' },
+            // Se��o 5: Comunica��o e Transmiss�o (15 termos)
+ 'bandwidth-ph': { title: 'Largura de Banda', description: 'Placeholder: Capacidade máxima de transmissão de dados.', details: '[Seção 5 - Comunicação e Transmissão] Detalhes sobre Largura de Banda (placeholder).' },
+'half-duplex-ph': { title: 'Half-Duplex', description: 'Placeholder: Comunicação em uma direção por vez.', details: '[Seção 5 - Comunicação e Transmissão] Detalhes sobre Half-Duplex (placeholder).' },
+            // Se��o 6: Tecnologias Wireless (12 termos)
+'wifi-ph': { title: 'Wi-Fi', description: 'Placeholder: Tecnologia de rede sem fio.', details: '[Seção 6 - Tecnologias Wireless] Detalhes sobre Wi-Fi (placeholder).' },
+ 'bluetooth-ph': { title: 'Bluetooth', description: 'Placeholder: Comunicação sem fio de curto alcance.', details: '[Seção 6 - Tecnologias Wireless] Detalhes sobre Bluetooth (placeholder).' },
+            // Se��o 7: Tecnologias M�veis e Fibra (13 termos)
+'3g-ph': { title: '3G', description: 'Placeholder: Terceira geração de tecnologia móvel.', details: '[Seção 7 - Tecnologias Móveis e Fibra] Detalhes sobre 3G (placeholder).' },
+'4g-ph': { title: '4G', description: 'Placeholder: Quarta geração de tecnologia móvel.', details: '[Seção 7 - Tecnologias Móveis e Fibra] Detalhes sobre 4G (placeholder).' },
+ 'ftth-ph': { title: 'FTTH', description: 'Placeholder: Fibra ótica até a residência.', details: '[Seção 7 - Tecnologias Móveis e Fibra] Detalhes sobre FTTH (placeholder).' },
+            // Se��o 8: Servi�os de Rede (12 termos)
+'dns-ph': { title: 'DNS', description: 'Placeholder: Sistema de nomes de domínio.', details: '[Seção 8 - Serviços de Rede] Detalhes sobre DNS (placeholder).' },
+'dhcp-ph': { title: 'DHCP', description: 'Placeholder: Protocolo de configuração de host dinâmico.', details: '[Seção 8 - Serviços de Rede] Detalhes sobre DHCP (placeholder).' },
+            // Se��o 9: Protocolos e Servi�os de Aplica��o (10 termos)
+'http-ph': { title: 'HTTP', description: 'Placeholder: Protocolo para transferência de hipertexto.', details: '[Seção 9 - Protocolos e Serviços de Aplicação] Detalhes sobre HTTP (placeholder).' },
+'ftp-ph': { title: 'FTP', description: 'Placeholder: Protocolo para transferência de arquivos.', details: '[Seção 9 - Protocolos e Serviços de Aplicação] Detalhes sobre FTP (placeholder).' },
+            // Se��o 10: Web e Internet (13 termos)
+ 'cloud-computing-ph': { title: 'Cloud Computing', description: 'Placeholder: Recursos de computação entregues pela internet.', details: '[Seção 10 - Web e Internet] Detalhes sobre Cloud Computing (placeholder).' },
+ 'url-ph': { title: 'URL', description: 'Placeholder: Endereço de um recurso na internet.', details: '[Seção 10 - Web e Internet] Detalhes sobre URL (placeholder).' },
+            // Se��o 11: Roteamento e Conectividade (11 termos)
+'routing-table-ph': { title: 'Tabela de Roteamento', description: 'Placeholder: Tabela usada por roteadores para encaminhar pacotes.', details: '[Seção 11 - Roteamento e Conectividade] Detalhes sobre Tabela de Roteamento (placeholder).' },
+ 'backbone-ph': { title: 'Backbone', description: 'Placeholder: Infraestrutura central de alta velocidade de uma rede.', details: '[Seção 11 - Roteamento e Conectividade] Detalhes sobre Backbone (placeholder).' },
+            // Se��o 12: Ferramentas e Diagn�stico (8 termos)
+'ping-ph': { title: 'Ping', description: 'Placeholder: Utilitário para testar a conectividade de rede.', details: '[Seção 12 - Ferramentas e Diagnóstico] Detalhes sobre Ping (placeholder).' },
+ 'traceroute-ph': { title: 'Traceroute', description: 'Placeholder: Rastreia o caminho de pacotes em uma rede.', details: '[Seção 12 - Ferramentas e Diagnóstico] Detalhes sobre Traceroute (placeholder).' },
+            // Se��o 13: Infraestrutura e Gest�o (13 termos)
+ 'datacenter-ph': { title: 'Datacenter', description: 'Placeholder: Instalação que armazena sistemas de computação e equipamentos.', details: '[Seção 13 - Infraestrutura e Gestão] Detalhes sobre Datacenter (placeholder).' },
+'sla-ph': { title: 'SLA', description: 'Placeholder: Acordo de Nível de Serviço.', details: '[Seção 13 - Infraestrutura e Gestão] Detalhes sobre SLA (placeholder).' },
+            // Se��o 14: Padr�es e Organiza��es (3 termos)
+ 'ieee-ph': { title: 'IEEE', description: 'Placeholder: Organização que desenvolve padrões técnicos.', details: '[Seção 14 - Padrões e Organizações] Detalhes sobre IEEE (placeholder).' },
+ 'osi-model-ph': { title: 'Modelo OSI', description: 'Placeholder: Modelo de referência para comunicação de rede.', details: '[Seção 14 - Padrões e Organizações] Detalhes sobre Modelo OSI (placeholder).' },
+            // Se��o 15: Seguran�a e Monitoramento (7 termos)
+'firewall-ph': { title: 'Firewall', description: 'Placeholder: Sistema de segurança de rede.', details: '[Seção 15 - Segurança e Monitoramento] Detalhes sobre Firewall (placeholder).' },
+'ids-ips-ph': { title: 'IDS/IPS', description: 'Placeholder: Sistema de detecção/prevenção de intrusões.', details: '[Seção 15 - Segurança e Monitoramento] Detalhes sobre IDS/IPS (placeholder).' },
+            // Se��o 16 (Termos T�cnicos Diversos) - 6 termos
+ 'latency': { title: 'Lat&ecirc;ncia', description: 'Tempo que um pacote de dados leva para viajar de um ponto a outro na rede.', details: `<h3>Defini&ccedil;&atilde;o Completa:</h3><p>Lat&ecirc;ncia &eacute; a medida do atraso ou tempo que leva para um pacote de dados viajar de um ponto de origem a um ponto de destino em uma rede. &Eacute; um fator cr&iacute;tico na qualidade da experi&ecirc;ncia do usu&aacute;rio, especialmente em aplica&ccedil;&otilde;es em tempo real.</p><h3>Fatores que Afetam a Lat&ecirc;ncia:</h3><ul><li><strong>Dist&acirc;ncia F&iacute;sica:</strong> Quanto maior a dist&acirc;ncia, maior o tempo de propaga&ccedil;&atilde;o.</li><li><strong>M&iacute;dia de Transmiss&atilde;o:</strong> Fibra &oacute;ptica geralmente tem menor lat&ecirc;ncia que cabos de cobre ou wireless.</li><li><strong>Equipamentos de Rede:</strong> Roteadores e switches adicionam pequenos atrasos ao processar pacotes.</li><li><strong>Congestionamento da Rede:</strong> O tr&aacute;fego excessivo pode causar atrasos na fila.</li><li><strong>Servidores:</strong> O tempo de resposta do servidor impacta a lat&ecirc;ncia percebida.</li></ul><h3>Impacto em Aplica&ccedil;&otilde;es:</h3><ul><li><strong>Jogos Online:</strong> Lat&ecirc;ncia alta (ping) causa "lag" e prejudica a jogabilidade.</li><li><strong>Chamadas de V&iacute;deo/Voz:</strong> Atrasos podem resultar em conversa&ccedil;&otilde;es intermitentes e fora de sincronia.</li><li><strong>Transa&ccedil;&otilde;es Financeiras:</strong> Milissegundos de atraso podem ser cr&iacute;ticos em opera&ccedil;&otilde;es de alta frequ&ecirc;ncia.</li><li><strong>Aplica&ccedil;&otilde;es na Nuvem:</strong> Afeta a responsividade de softwares como servi&ccedil;o (SaaS).</li></ul><h3>Medida:</h3><p>A lat&ecirc;ncia &eacute; tipicamente medida em milissegundos (ms). Ferramentas como 'ping' s&atilde;o usadas para medir a lat&ecirc;ncia at&eacute; um host.</p>` },
+            'throughput': { title: 'Throughput', description: 'Taxa real de dados transferidos com sucesso em um per&iacute;odo de tempo.', details: `<h3>Defini&ccedil;&atilde;o Completa:</h3><p>Throughput (taxa de transfer&ecirc;ncia) &eacute; a quantidade de dados que &eacute; transmitida com sucesso de um ponto a outro em uma rede durante um determinado per&iacute;odo de tempo. Diferencia-se de largura de banda, que &eacute; a capacidade m&aacute;xima te&oacute;rica.</p><h3>Diferen&ccedil;a de Largura de Banda:</h3><ul><li><strong>Largura de Banda:</strong> Capacidade m&aacute;xima de um canal de comunica&ccedil;&atilde;o (ex: 100 Mbps).</li><li><strong>Throughput:</strong> A taxa real de dados que efetivamente passam por esse canal (ex: 80 Mbps devido a sobrecarga, colis&otilde;es, etc.).</li></ul><h3>Fatores que Afetam o Throughput:</h3><ul><li>Lat&ecirc;ncia.</li><li>Perda de pacotes.</li><li>Congestionamento da rede.</li><li>Capacidade de processamento dos dispositivos (roteadores, firewalls).</li><li>Tipo de m&iacute;dia de transmiss&atilde;o.</li><li>Protocolos de rede utilizados.</li></ul><h3>Import&acirc;ncia:</h3><p>O throughput &eacute; a m&eacute;trica mais relevante para o usu&aacute;rio final, pois indica a velocidade efetiva de download/upload e a capacidade de suportar aplica&ccedil;&otilde;es exigentes como streaming de v&iacute;deo em alta defini&ccedil;&atilde;o ou transfer&ecirc;ncias de arquivos grandes.</p>` },
+            'packet-loss': { title: 'Perda de Pacotes', description: 'Fen&ocirc;meno onde pacotes de dados n&atilde;o chegam ao seu destino.', details: `<h3>Defini&ccedil;&atilde;o Completa:</h3><p>Perda de pacotes ocorre quando um ou mais pacotes de dados que est&atilde;o sendo transmitidos atrav&eacute;s de uma rede falham em chegar ao seu destino. Isso pode acontecer devido a v&aacute;rias raz&otilde;es e afeta diretamente a qualidade da comunica&ccedil;&atilde;o.</p><h3>Causas Comuns:</h3><ul><li><strong>Congestionamento da Rede:</strong> Ocorre quando a rede est&aacute; sobrecarregada e roteadores ou switches descartam pacotes.</li><li><strong>Hardware Defeituoso:</strong> Equipamentos de rede (cabos, roteadores, placas de rede) com problemas.</li><li><strong>Interfer&ecirc;ncia:</strong> Em redes sem fio (Wi-Fi), outras fontes de sinal podem causar interfer&ecirc;ncia.</li><li><strong>Software Desatualizado ou Conflitos:</strong> Drivers ou firmware antigos, ou configura&ccedil;&otilde;es incorretas.</li><li><strong>Firewalls ou Configura&ccedil;&otilde;es Incorretas:</strong> Regras de seguran&ccedil;a que bloqueiam tr&aacute;fego leg&iacute;timo.</li></ul><h3>Impacto:</h3><ul><li><strong>Qualidade de Voz/V&iacute;deo:</strong> Chamadas e transmiss&otilde;es se tornam picotadas, com falhas ou interrup&ccedil;&otilde;es.</li><li><strong>Jogos Online:</strong> Causa "lag" significativo e desconex&otilde;es.</li><li><strong>Transfer&ecirc;ncia de Arquivos:</strong> Embora protocolos como TCP retransmitam pacotes perdidos, isso aumenta a lat&ecirc;ncia e diminui o throughput.</li><li><strong>Aplica&ccedil;&otilde;es Web:</strong> Pode causar lentid&atilde;o no carregamento de p&aacute;ginas e erros.</li></ul><h3>Solu&ccedil;&atilde;o:</h3><p>Monitoramento da rede, atualiza&ccedil;&atilde;o de hardware/software, otimiza&ccedil;&atilde;o do tr&aacute;fego (QoS) e verifica&ccedil;&atilde;o de interfer&ecirc;ncias s&atilde;o algumas das abordagens para mitigar a perda de pacotes.</p>` },
+            'nat': { title: 'NAT (Network Address Translation)', description: 'T&eacute;cnica que permite a m&uacute;ltiplos dispositivos compartilharem um &uacute;nico endere&ccedil;o IP p&uacute;blico.', details: `<h3>Defini&ccedil;&atilde;o Completa:</h3><p>NAT (Network Address Translation) &eacute; um m&eacute;todo de remapeamento de um espa&ccedil;o de endere&ccedil;os IP para outro, alterando as informa&ccedil;&otilde;es de endere&ccedil;o IP nos cabe&ccedil;alhos dos pacotes conforme eles transitam por um dispositivo de roteamento de tr&aacute;fego. &Eacute; comumente usado em roteadores dom&eacute;sticos para permitir que v&aacute;rios dispositivos em uma rede privada compartilhem um &uacute;nico endere&ccedil;o IP p&uacute;blico para acessar a Internet.</p><h3>Como Funciona:</h3><ol><li>Um dispositivo na rede local (com um IP privado) inicia uma conex&atilde;o para a Internet.</li><li>O roteador intercepta o pacote e substitui o IP de origem privado pelo seu pr&oacute;prio IP p&uacute;blico.</li><li>Ele armazena uma tabela de mapeamento para saber qual IP privado corresponde &agrave;quela conex&atilde;o.</li><li>Quando a resposta da Internet chega, o roteador consulta sua tabela e traduz o IP de destino p&uacute;blico de volta para o IP privado correto, enviando o pacote ao dispositivo original.</li></ol><h3>Vantagens:</h3><ul><li><strong>Economia de IPs p&uacute;blicos:</strong> Permite que muitas redes privadas usem poucos IPs p&uacute;blicos, conservando o endere&ccedil;amento IPv4.</li><li><strong>Seguran&ccedil;a b&aacute;sica:</strong> Oculta a estrutura da rede interna, tornando-a menos acess&iacute;vel diretamente da Internet.</li><li><strong>Flexibilidade:</strong> Facilita a renumera&ccedil;&atilde;o de redes internas sem afetar o endere&ccedil;amento externo.</li></ul><h3>Tipos Comuns:</h3><ul><li><strong>NAT Est&aacute;tico:</strong> Um IP privado mapeado para um IP p&uacute;blico fixo (um para um).</li><li><strong>NAT Din&acirc;mico:</strong> Mapeia IPs privados para um pool de IPs p&uacute;blicos dispon&iacute;veis.</li><li><strong>PAT (Port Address Translation) ou NAT de Sobrecarga:</strong> M&uacute;ltiplos IPs privados compartilhando um &uacute;nico IP p&uacute;blico, diferenciados por n&uacute;meros de porta (o mais comum em resid&ecirc;ncias).</li></ul>` },
+            'vpn': { title: 'VPN (Virtual Private Network)', description: 'Cria uma conex&atilde;o segura sobre uma rede p&uacute;blica, como a Internet.', details: `<h3>Defini&ccedil;&atilde;o Completa:</h3><p>Uma VPN (Virtual Private Network) cria uma conex&atilde;o de rede segura e criptografada sobre uma rede p&uacute;blica (como a Internet). Ela estende uma rede privada por uma rede p&uacute;blica, permitindo que os usu&aacute;rios enviem e recebam dados como se estivessem conectados diretamente &agrave; rede privada, mantendo a seguran&ccedil;a e a funcionalidade.</p><h3>Como Funciona:</h3><ol><li>O cliente VPN no dispositivo do usu&aacute;rio estabelece uma conex&atilde;o com um servidor VPN.</li><li>&Eacute; criado um "t&uacute;nel" criptografado entre o cliente e o servidor.</li><li>Todo o tr&aacute;fego de dados do usu&aacute;rio &eacute; roteado atrav&eacute;s deste t&uacute;nel, sendo criptografado antes de sair do dispositivo do usu&aacute;rio e descriptografado apenas pelo servidor VPN.</li><li>O servidor VPN ent&atilde;o envia o tr&aacute;fego (agora com o seu pr&oacute;prio IP) para o destino final na Internet ou na rede privada &agrave; qual ele d&aacute; acesso.</li></ol><h3>Usos Comuns:</h3><ul><li><strong>Seguran&ccedil;a:</strong> Protege dados em redes Wi-Fi p&uacute;blicas, criptografando o tr&aacute;fego.</li><li><strong>Acesso Remoto:</strong> Permite que funcion&aacute;rios acessem a rede corporativa de forma segura de casa ou de viagem.</li><li><strong>Anonimato e Privacidade:</strong> Mascara o endere&ccedil;o IP real do usu&aacute;rio, dificultando o rastreamento.</li><li><strong>Contornar Restri&ccedil;&otilde;es Geogr&aacute;ficas:</strong> Acessar conte&uacute;do ou servi&ccedil;os que s&atilde;o restritos a certas regi&otilde;es.</li></ul><h3>Protocolos Comuns de VPN:</h3><ul><li>OpenVPN</li><li>IPsec (Internet Protocol Security)</li><li>L2TP (Layer 2 Tunneling Protocol)</li><li>PPTP (Point-to-Point Tunneling Protocol) - considerado menos seguro atualmente</li></ul>` },
+            'qos': { title: 'QoS (Quality of Service)', description: 'Conjunto de t&eacute;cnicas para gerenciar o tr&aacute;fego de rede e garantir desempenho.', details: `<h3>Defini&ccedil;&atilde;o Completa:</h3><p>QoS (Quality of Service - Qualidade de Servi&ccedil;o) &eacute; um conjunto de tecnologias e t&eacute;cnicas utilizadas em redes para gerenciar o tr&aacute;fego de dados e garantir que certos tipos de tr&aacute;fego (como voz e v&iacute;deo) recebam prioridade e tenham o desempenho esperado, mesmo em condi&ccedil;&otilde;es de congestionamento.</p><h3>Problemas que o QoS Endere&ccedil;a:</h3><ul><li><strong>Lat&ecirc;ncia:</strong> Atrasos na entrega de pacotes.</li><li><strong>Jitter:</strong> Varia&ccedil;&atilde;o na lat&ecirc;ncia de pacotes (causa voz rob&oacute;tica ou v&iacute;deo picotado).</li><li><strong>Perda de Pacotes:</strong> Descarte de pacotes devido a congestionamento.</li><li><strong>Throughput:</strong> Garantir uma taxa de transfer&ecirc;ncia m&iacute;nima para aplica&ccedil;&otilde;es cr&iacute;ticas.</li></ul><h3>Mecanismos de QoS:</h3><ul><li><strong>Classifica&ccedil;&atilde;o e Marca&ccedil;&atilde;o:</strong> Identificar e rotular diferentes tipos de tr&aacute;fego (ex: voz, dados, streaming).</li><li><strong>Filas (Queuing):</strong> Gerenciar a ordem e a prioridade de envio de pacotes quando h&aacute; congestionamento.</li><li><strong>Policiamento e Conformidade (Policing & Shaping):</b> Limitar a largura de banda que uma aplica&ccedil;&atilde;o ou usu&aacute;rio pode consumir.</li><li><strong>Gerenciamento de Congestionamento:</strong> T&eacute;cnicas para evitar ou reagir a condi&ccedil;&otilde;es de sobrecarga.</li></ul><h3>Exemplos de Uso:</h3><ul><li>Em redes empresariais, para priorizar chamadas VoIP e videoconfer&ecirc;ncias sobre navega&ccedil;&atilde;o web ou download de arquivos.</li><li>Em provedores de Internet, para garantir servi&ccedil;os de streaming de v&iacute;deo ou jogos online.</li><li>Em redes dom&eacute;sticas, para garantir que o streaming de um filme n&atilde;o seja interrompido por um download em segundo plano.</li></ul><h3>Benef&iacute;cios:</h3><p>Melhora a experi&ecirc;ncia do usu&aacute;rio para aplica&ccedil;&otilde;es sens&iacute;veis ao tempo, otimiza o uso da largura de banda e garante a confiabilidade de servi&ccedil;os essenciais.</p>` }
+        };
+
+        // Mapeia cada termo para o nome do arquivo HTML da sua se��o
+        const TERM_SECTION_MAP = {
+            // Se��o 1 (Fundamentos de Redes)
+            'binary': 'secao1.html', 'bit': 'secao1.html', 'byte': 'secao1.html', 'bps': 'secao1.html',
+            'network': 'secao1.html', 'net': 'secao1.html', 'rede-local': 'secao1.html', 'lan': 'secao1.html',
+            'man': 'secao1.html', 'wan': 'secao1.html', 'intranet': 'secao1.html', 'internet': 'secao1.html',
+            'topologia': 'secao1.html', 'estrela': 'secao1.html', 'anel': 'secao1.html', 'ponte': 'secao1.html',
+            'bus': 'secao1.html', 'host': 'secao1.html', 'hostnames': 'secao1.html', 'cliente': 'secao1.html',
+            'servidor': 'secao1.html', 'p2p': 'secao1.html',
+            // Se��o 2 (Endere�amento e Protocolos)
+            'ipv4-ph': 'secao2.html', 'ipv6-ph': 'secao2.html', 'mac-address-ph': 'secao2.html', 'tcpip-ph': 'secao2.html',
+            // Se��o 3 (Equipamentos de Rede)
+            'switch-ph': 'secao3.html', 'router-ph': 'secao3.html', 'access-point-ph': 'secao3.html',
+            // Se��o 4 (Meios de Transmiss�o)
+            'ethernet-cable-ph': 'secao4.html', 'fiber-optic-ph': 'secao4.html',
+            // Se��o 5 (Comunica��o e Transmiss�o)
+            'bandwidth-ph': 'secao5.html', 'half-duplex-ph': 'secao5.html',
+            // Se��o 6 (Tecnologias Wireless)
+            'wifi-ph': 'secao6.html', 'bluetooth-ph': 'secao6.html',
+            // Se��o 7 (Tecnologias M�veis e Fibra)
+            '3g-ph': 'secao7.html', '4g-ph': 'secao7.html', 'ftth-ph': 'secao7.html',
+            // Se��o 8 (Servi�os de Rede)
+            'dns-ph': 'secao8.html', 'dhcp-ph': 'secao8.html',
+            // Se��o 9 (Protocolos e Servi�os de Aplica��o)
+            'http-ph': 'secao9.html', 'ftp-ph': 'secao9.html',
+            // Se��o 10 (Web e Internet)
+            'cloud-computing-ph': 'secao10.html', 'url-ph': 'secao10.html',
+            // Se��o 11 (Roteamento e Conectividade)
+            'routing-table-ph': 'secao11.html', 'backbone-ph': 'secao11.html',
+            // Se��o 12 (Ferramentas e Diagn�stico)
+            'ping-ph': 'secao12.html', 'traceroute-ph': 'secao12.html',
+            // Se��o 13 (Infraestrutura e Gest�o)
+            'datacenter-ph': 'secao13.html', 'sla-ph': 'secao13.html',
+            // Se��o 14 (Padr�es e Organiza��es)
+            'ieee-ph': 'secao14.html', 'osi-model-ph': 'secao14.html',
+            // Se��o 15 (Seguran�a e Monitoramento)
+            'firewall-ph': 'secao15.html', 'ids-ips-ph': 'secao15.html',
+            // Se��o 16 (Termos T�cnicos Diversos)
+            'latency': 'secao16.html', 'throughput': 'secao16.html', 'packet-loss': 'secao16.html',
+            'nat': 'secao16.html', 'vpn': 'secao16.html', 'qos': 'secao16.html'
+        };
+
+        // L�gica do bot�o "Listar Todos os Termos"
+        document.getElementById('listAllTermsButton').addEventListener('click', function() {
+            // Verifica se o usu�rio est� logado
+            if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+                alert('Você precisa fazer login para acessar este conteúdo!');
+                return;
+            }
+
+            const listWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,location=no');
+            if (!listWindow) {
+                alert('Por favor, permita pop-ups para esta página para listar os termos.');
+                return;
+            }
+
+            let htmlContent = `
+                <!DOCTYPE html>
+                <html lang="pt-BR">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Todos os Termos do Glossário</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; line-height: 1.6; }
+                        h1 { color: #007bff; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-bottom: 20px; }
+                        p { margin-bottom: 15px; }
+                        ul { list-style: none; padding: 0; }
+                        li { background-color: white; margin-bottom: 10px; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer; transition: background-color 0.2s; }
+                        li:hover { background-color: #e9e9e9; }
+                        .term-link { text-decoration: none; color: #333; display: block; }
+                        .term-link strong { color: #007bff; font-size: 1.1em; }
+                        .term-description { font-size: 0.95em; color: #555; margin-top: 5px; }
+                        .term-section { font-size: 0.85em; color: #888; margin-top: 5px; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Lista Completa de Termos do Glossário</h1>
+                    <p>Clique em um termo para ir para a se&ccedil;&atilde;o correspondente e ver seus detalhes.</p>
+                    <ul>
+            `;
+
+            for (const termId in ALL_TERMS_DATA) {
+                const term = ALL_TERMS_DATA[termId];
+                const sectionFile = TERM_SECTION_MAP[termId];
+                const sectionNumber = sectionFile ? sectionFile.replace('secao', '').replace('.html', '') : 'Desconhecida';
+                
+                // ALTERADO AQUI: Agora a janela pop-up instrui a janela que a abriu a navegar
+                htmlContent += `
+                    <li onclick="window.opener.location.href = '${sectionFile}?term=${termId}'; window.close();">
+                        <a href="#" class="term-link">
+                            <strong>${term.title}</strong>
+                            <div class="term-description">${term.description}</div>
+                            <div class="term-section">(Se&ccedil;&atilde;o ${sectionNumber})</div>
+                        </a>
+                    </li>
+                `;
+            }
+
+            htmlContent += `
+                    </ul>
+                </body>
+                </html>
+            `;
+
+            listWindow.document.write(htmlContent);
+            listWindow.document.close();
+        });
+
+        // L�gica do campo de busca
+        document.getElementById('searchButton').addEventListener('click', function() {
+            // Verifica se o usu�rio est� logado
+            if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+                alert('Você precisa fazer login para acessar este conteúdo!');
+                return;
+            }
+
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (searchTerm === '') {
+                alert('Por favor, digite um termo para buscar.');
+                return;
+            }
+
+            const searchResultsWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,location=no');
+            if (!searchResultsWindow) {
+                alert('Por favor, permita pop-ups para esta página para exibir os resultados da busca.');
+                return;
+            }
+
+            let resultHtml = `
+                <!DOCTYPE html>
+                <html lang="pt-BR">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Resultados da Busca para "${searchTerm}"</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; line-height: 1.6; }
+                        h1 { color: #007bff; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-bottom: 20px; }
+                        p { margin-bottom: 15px; }
+                        ul { list-style: none; padding: 0; }
+                        li { background-color: white; margin-bottom: 10px; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer; transition: background-color 0.2s; }
+                        li:hover { background-color: #e9e9e9; }
+                        .term-link { text-decoration: none; color: #333; display: block; }
+                        .term-link strong { color: #007bff; font-size: 1.1em; }
+                        .term-description { font-size: 0.95em; color: #555; margin-top: 5px; }
+                        .term-section { font-size: 0.85em; color: #888; margin-top: 5px; }
+                        .no-results { color: #dc3545; font-weight: bold; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Resultados da Busca para "${searchTerm}"</h1>
+                    <ul>
+            `;
+
+            let foundResults = false;
+            for (const termId in ALL_TERMS_DATA) {
+                const term = ALL_TERMS_DATA[termId];
+                // Concatena t�tulo, descri��o e detalhes para a busca
+                const termText = `${term.title} ${term.description} ${term.details}`.toLowerCase();
+
+                if (termText.includes(searchTerm)) {
+                    foundResults = true;
+                    const sectionFile = TERM_SECTION_MAP[termId];
+                    const sectionNumber = sectionFile ? sectionFile.replace('secao', '').replace('.html', '') : 'Desconhecida';
+
+                    // ALTERADO AQUI: Agora a janela pop-up instrui a janela que a abriu a navegar
+                    resultHtml += `
+                        <li onclick="window.opener.location.href = '${sectionFile}?term=${termId}'; window.close();">
+                            <a href="#" class="term-link">
+                                <strong>${term.title}</strong>
+                                <div class="term-description">${term.description}</div>
+                                <div class="term-section">(Se&ccedil;&atilde;o ${sectionNumber})</div>
+                            </a>
+                        </li>
+                    `;
+                }
+            }
+
+            if (!foundResults) {
+                resultHtml += `<li><p class="no-results">Nenhum termo encontrado que contenha "${searchTerm}".</p></li>`;
+            }
+
+            resultHtml += `
+                    </ul>
+                </body>
+                </html>
+            `;
+
+            searchResultsWindow.document.write(resultHtml);
+            searchResultsWindow.document.close();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 14 - Padrões e Organizações</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📋 Padrões e Organizações</h1>
+            <p class="subtitle">Seção 14 - A Ordem no Mundo das Redes</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Normas e Entidades que Regem as Redes</h2>
+            <p>Esta seção aborda os padrões e as organizações que são cruciais para a interoperabilidade, segurança e evolução das redes de computadores em nível global. Compreender esses elementos é fundamental para o desenvolvimento e a manutenção de sistemas de comunicação eficazes.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('ieee')">
+                <div class="term-name">IEEE</div>
+                <div class="term-description">Institute of Electrical and Electronics Engineers, organização que desenvolve padrões técnicos.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ieee802')">
+                <div class="term-name">IEEE 802</div>
+                <div class="term-description">Família de padrões do IEEE para redes locais (LAN) e metropolitanas (MAN).</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('modelo-osi')">
+                <div class="term-name">Modelo OSI</div>
+                <div class="term-description">Modelo de referência para a comunicação de sistemas abertos, com 7 camadas.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body">
+                <!-- Conteúdo será inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 - Glossário de Redes de Computadores | Seção 14</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'ieee': {
+                title: 'IEEE (Institute of Electrical and Electronics Engineers)',
+                description: 'Institute of Electrical and Electronics Engineers, organização que desenvolve padrões técnicos.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O IEEE (Institute of Electrical and Electronics Engineers) é a maior organização profissional técnica do mundo dedicada ao avanço da tecnologia para o benefício da humanidade. Ele é amplamente conhecido por estabelecer padrões globais em uma vasta gama de áreas relacionadas à engenharia elétrica, eletrônica, ciência da computação e telecomunicações.</p>
+                    
+                    <h3>Atuação do IEEE:</h3>
+                    <ul>
+                        <li><strong>Desenvolvimento de Padrões:</strong> O IEEE é uma das principais organizações responsáveis por desenvolver e manter padrões técnicos que garantem a interoperabilidade e a compatibilidade de equipamentos e sistemas em todo o mundo. Isso é crucial em redes de computadores.</li>
+                        <li><strong>Publicações e Conferências:</strong> Publica uma vasta quantidade de pesquisas científicas, artigos e periódicos técnicos, além de organizar conferências e workshops para a troca de conhecimentos entre profissionais.</li>
+                        <li><strong>Educação:</strong> Oferece recursos educacionais, cursos de desenvolvimento profissional e certificações.</li>
+                        <li><strong>Comunidades Técnicas:</strong> Promove a criação de comunidades e capítulos locais para profissionais e estudantes.</li>
+                    </ul>
+                    
+                    <h3>Importância para Redes:</h3>
+                    <p>No campo das redes de computadores, o IEEE é particularmente relevante por seus padrões da série 802, que regem as redes locais (LANs) e metropolitanas (MANs). Sem esses padrões, a interconexão de equipamentos de diferentes fabricantes seria caótica ou impossível.</p>
+                    
+                    <h3>Exemplos de Padrões IEEE em Redes:</h3>
+                    <ul>
+                        <li><strong>IEEE 802.3:</strong> Padrões para Ethernet (redes cabeadas).</li>
+                        <li><strong>IEEE 802.11:</strong> Padrões para redes locais sem fio (Wi-Fi).</li>
+                        <li><strong>IEEE 802.1Q:</strong> Padrão para VLANs (Virtual Local Area Networks).</li>
+                        <li><strong>IEEE 802.1D:</strong> Padrão para o Spanning Tree Protocol (STP) para prevenir loops em redes Ethernet.</li>
+                    </ul>
+                    <p>Esses padrões são desenvolvidos por comitês técnicos compostos por especialistas da indústria e da academia, garantindo que sejam robustos, eficazes e aceitos globalmente.</p>
+                `
+            },
+            'ieee802': {
+                title: 'IEEE 802',
+                description: 'Família de padrões do IEEE para redes locais (LAN) e metropolitanas (MAN).',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>IEEE 802 é uma família de padrões técnicos do IEEE (Institute of Electrical and Electronics Engineers) que define as especificações para redes locais (LANs) e redes metropolitanas (MANs). Esses padrões são responsáveis por garantir a compatibilidade e a interoperabilidade entre equipamentos de rede de diferentes fabricantes, formando a base de como as redes que usamos no dia a dia operam.</p>
+                    
+                    <h3>Camadas Abrangidas pelo IEEE 802:</h3>
+                    <p>Os padrões IEEE 802 focam nas duas camadas inferiores do Modelo OSI (Open Systems Interconnection):</p>
+                    <ul>
+                        <li><strong>Camada Física (Physical Layer - Camada 1):</strong> Define as características elétricas e mecânicas, o tipo de mídia de transmissão (cabo, fibra, rádio), métodos de sinalização e codificação de dados.</li>
+                        <li><strong>Subcamada de Controle de Acesso ao Meio (MAC - Media Access Control - parte da Camada 2):</strong> Define como os dispositivos compartilham o acesso ao meio físico de transmissão. É responsável pelo endereçamento físico (endereços MAC) e pelo controle de erros no nível do enlace.</li>
+                        <li><strong>Subcamada de Controle de Link Lógico (LLC - Logical Link Control - parte da Camada 2):</strong> Define a interface entre a camada MAC e as camadas superiores da rede.</li>
+                    </ul>
+                    
+                    <h3>Padrões Mais Conhecidos da Família IEEE 802:</h3>
+                    <ul>
+                        <li><strong>IEEE 802.1:</strong> Abrange padrões de alto nível para gerenciamento e interconexão de redes LANs/MANs, como:
+                            <ul>
+                                <li><strong>802.1D:</strong> Spanning Tree Protocol (STP), para prevenir loops em redes comutadas.</li>
+                                <li><strong>802.1Q:</strong> Padrão para VLANs (Virtual Local Area Networks).</li>
+                            </ul>
+                        </li>
+                        <li><strong>IEEE 802.3: Ethernet:</strong>
+                            <ul>
+                                <li>Padrão para redes cabeadas, definindo o acesso ao meio por CSMA/CD (Carrier Sense Multiple Access with Collision Detection).</li>
+                                <li>Abrange todas as variações do Ethernet (10Base-T, 100Base-TX, Gigabit Ethernet, 10 Gigabit Ethernet, etc.) e seus respectivos cabos e velocidades.</li>
+                            </ul>
+                        </li>
+                        <li><strong>IEEE 802.11: Wireless LAN (Wi-Fi):</strong>
+                            <ul>
+                                <li>Padrão para redes locais sem fio, incluindo suas diferentes versões (a, b, g, n, ac, ax - Wi-Fi 6).</li>
+                                <li>Define as frequências de rádio, métodos de acesso ao meio e segurança para redes Wi-Fi.</li>
+                            </ul>
+                        </li>
+                        <li><strong>IEEE 802.15: Wireless Personal Area Networks (WPAN):</strong>
+                            <ul>
+                                <li>Inclui o padrão 802.15.1 para Bluetooth.</li>
+                            </ul>
+                        </li>
+                        <li><strong>IEEE 802.16: Wireless Metropolitan Area Networks (WiMAX):</strong>
+                            <ul>
+                                <li>Padrão para redes de longa distância sem fio, abrangendo cidades.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>A família IEEE 802 é vital para a infraestrutura de rede moderna, garantindo que os equipamentos funcionem juntos de forma eficiente e confiável.</p>
+                `
+            },
+            'modelo-osi': {
+                title: 'Modelo OSI (Open Systems Interconnection)',
+                description: 'Modelo de referência para a comunicação de sistemas abertos, com 7 camadas.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O Modelo OSI (Open Systems Interconnection Model) é um modelo conceitual de referência desenvolvido pela ISO (International Organization for Standardization) que descreve como diferentes sistemas de rede podem se comunicar. Ele divide o processo de comunicação em rede em sete camadas lógicas distintas, cada uma com funções específicas e interfaces bem definidas com as camadas adjacentes.</p>
+                    
+                    <h3>Propósito do Modelo OSI:</h3>
+                    <ul>
+                        <li><strong>Padronização:</strong> Fornecer um quadro padrão para o desenvolvimento de protocolos e tecnologias de rede.</li>
+                        <li><strong>Interoperabilidade:</strong> Permitir que produtos e serviços de diferentes fornecedores funcionem juntos.</li>
+                        <li><strong>Compreensão:</strong> Simplificar a compreensão e o ensino de sistemas de rede complexos, dividindo-os em partes gerenciáveis.</li>
+                        <li><strong>Resolução de Problemas:</strong> Auxiliar no diagnóstico de problemas de rede, pois permite isolar em qual camada o problema pode estar ocorrendo.</li>
+                    </ul>
+                    
+                    <h3>As 7 Camadas do Modelo OSI (de cima para baixo):</h3>
+                    <p>Cada camada serve à camada acima dela e é servida pela camada abaixo dela.</p>
+                    <ol>
+                        <li><strong>Camada 7: Aplicação (Application Layer):</strong>
+                            <ul>
+                                <li>Fornece serviços de rede diretamente aos aplicativos do usuário.</li>
+                                <li>Exemplos: HTTP, FTP, SMTP, DNS.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Camada 6: Apresentação (Presentation Layer):</strong>
+                            <ul>
+                                <li>Responsável pela formatação e codificação dos dados, garantindo que os dados de uma aplicação sejam compreendidos pela outra.</li>
+                                <li>Gerencia criptografia/descriptografia, compressão/descompressão.</li>
+                                <li>Exemplos: JPEG, MPEG, SSL/TLS (embora SSL/TLS seja frequentemente considerado uma camada à parte ou parte da camada de sessão/transporte em outras contexturas).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Camada 5: Sessão (Session Layer):</strong>
+                            <ul>
+                                <li>Estabelece, gerencia e finaliza sessões de comunicação entre aplicações.</li>
+                                <li>Controla o diálogo entre sistemas (full-duplex, half-duplex).</li>
+                                <li>Exemplos: NetBIOS, RPC.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Camada 4: Transporte (Transport Layer):</strong>
+                            <ul>
+                                <li>Responsável pela entrega confiável e transparente dos dados entre hosts finais, incluindo controle de fluxo e detecção/correção de erros.</li>
+                                <li>Exemplos: TCP (Transmission Control Protocol), UDP (User Datagram Protocol).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Camada 3: Rede (Network Layer):</strong>
+                            <ul>
+                                <li>Responsável pelo endereçamento lógico (endereços IP) e roteamento de pacotes entre diferentes redes.</li>
+                                <li>Exemplos: IP (Internet Protocol), ICMP, roteadores.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Camada 2: Enlace de Dados (Data Link Layer):</strong>
+                            <ul>
+                                <li>Fornece transferência de dados confiável entre nós adjacentes, incluindo endereçamento físico (MAC), detecção e (ocasionalmente) correção de erros.</li>
+                                <li>Dividida em LLC (Logical Link Control) e MAC (Media Access Control).</li>
+                                <li>Exemplos: Ethernet, PPP, switches, endereços MAC.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Camada 1: Física (Physical Layer):</strong>
+                            <ul>
+                                <li>Define as especificações elétricas, mecânicas, procedimentais e funcionais para ativar, manter e desativar o link físico.</li>
+                                <li>Trata da transmissão de bits brutos através de um meio de transmissão.</li>
+                                <li>Exemplos: Cabos de rede (par trançado, fibra óptica), conectores (RJ45), sinais elétricos, bits.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Modelo OSI vs. Modelo TCP/IP:</h3>
+                    <p>Embora o Modelo OSI seja um padrão de referência importante, na prática, a Internet é baseada no Modelo TCP/IP (que tem 4 ou 5 camadas, dependendo da interpretação), que é mais conciso e reflete melhor os protocolos realmente implementados.</p>
+                `
+            }
+        };
+
+        // Função para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da página
+            }
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da página
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar aparência dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

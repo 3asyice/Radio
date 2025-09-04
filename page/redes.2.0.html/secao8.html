@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 8 - Serviços de Rede</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔢 Serviços de Rede</h1>
+            <p class="subtitle">Seção 8 - Funções Essenciais para a Operação da Rede</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Serviços Fundamentais para a Conectividade</h2>
+            <p>Esta seção explora os serviços de rede essenciais que permitem a comunicação, o gerenciamento e a segurança em ambientes conectados. São os pilares que garantem o funcionamento eficiente e organizado da infraestrutura de rede.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('dns')">
+                <div class="term-name">DNS</div>
+                <div class="term-description">Sistema de nomes de domínio, traduz nomes em endereços IP.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('dhcp')">
+                <div class="term-name">DHCP</div>
+                <div class="term-description">Protocolo que atribui automaticamente endereços IP e configurações.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('nat')">
+                <div class="term-name">NAT</div>
+                <div class="term-description">Método de reescrever endereços IP de pacotes ao passar por um roteador.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('qos')">
+                <div class="term-name">QoS</div>
+                <div class="term-description">Conjunto de técnicas para garantir a qualidade de serviços de rede críticos.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('load-balancing')">
+                <div class="term-name">Balanceamento de Carga</div>
+                <div class="term-description">Distribui requisições entre múltiplos servidores para otimizar recursos.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('bandwidth-control')">
+                <div class="term-name">Controle de Banda</div>
+                <div class="term-description">Gerenciamento da largura de banda para priorizar ou limitar o tráfego.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('traffic-filtering')">
+                <div class="term-name">Filtragem de tráfego</div>
+                <div class="term-description">Bloqueio ou permissão de pacotes de dados com base em regras predefinidas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('firewall')">
+                <div class="term-name">Firewall</div>
+                <div class="term-description">Sistema de segurança que monitora e controla o tráfego de rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('vpn')">
+                <div class="term-name">VPN</div>
+                <div class="term-description">Rede privada construída sobre uma rede pública para comunicação segura.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('tunneling')">
+                <div class="term-name">Tunneling</div>
+                <div class="term-description">Encapsulamento de pacotes de um protocolo dentro de outro para atravessar uma rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('poe')">
+                <div class="term-name">POE</div>
+                <div class="term-description">Tecnologia que transmite energia elétrica junto com dados pelo cabo Ethernet.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('pir')">
+                <div class="term-name">PIR</div>
+                <div class="term-description">Taxa máxima de informação que pode ser transmitida por um serviço de rede.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body">
+                <!-- Conteúdo será inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 - Glossário de Redes de Computadores | Seção 8</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'dns': {
+                title: 'DNS (Domain Name System)',
+                description: 'Sistema de nomes de domínio, traduz nomes de domínio em endereços IP.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O DNS é um sistema hierárquico e distribuído que traduz nomes de domínio legíveis por humanos (ex: <code>www.google.com</code>) em endereços IP numéricos (ex: <code>172.217.160.142</code>) que os computadores usam para se comunicar. É fundamental para a navegação na internet.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Cliente DNS (Stub Resolver):</strong> Software no dispositivo do usuário que faz a requisição.</li>
+                        <li><strong>Servidor DNS Recursor (Resolver):</strong> Recebe a consulta do cliente e a encaminha pelos diferentes níveis da hierarquia DNS até encontrar o endereço IP correspondente.</li>
+                        <li><strong>Servidores Raiz (Root Servers):</strong> 13 grupos de servidores que mantêm informações sobre os TLDs.</li>
+                        <li><strong>Servidores TLD (Top-Level Domain Servers):</strong> Gerenciam domínios de nível superior (ex: <code>.com</code>, <code>.org</code>, <code>.br</code>).</li>
+                        <li><strong>Servidores Autoritativos:</strong> Armazenam os registros DNS reais para um domínio específico (ex: os registros para <code>google.com</code>).</li>
+                    </ul>
+                    
+                    <h3>Tipos de Registros DNS Comuns:</h3>
+                    <ul>
+                        <li><strong>A (Address Record):</strong> Mapeia um nome de domínio para um endereço IPv4.</li>
+                        <li><strong>AAAA (IPv6 Address Record):</strong> Mapeia um nome de domínio para um endereço IPv6.</li>
+                        <li><strong>CNAME (Canonical Name Record):</strong> Cria um alias de um domínio para outro (ex: <code>www.exemplo.com</code> aponta para <code>exemplo.com</code>).</li>
+                        <li><strong>MX (Mail Exchange Record):</strong> Especifica os servidores de e-mail responsáveis por receber mensagens para um domínio.</li>
+                        <li><strong>TXT (Text Record):</strong> Contém dados de texto arbitrários, usados para verificação de domínio, SPF, DKIM, etc.</li>
+                        <li><strong>PTR (Pointer Record):</strong> Usado para resolução reversa (IP para nome de domínio).</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <ul>
+                        <li><strong>Usabilidade:</strong> Torna a internet amigável, permitindo usar nomes fáceis de lembrar.</li>
+                        <li><strong>Acessibilidade:</strong> Sem DNS, teríamos que memorizar endereços IP numéricos para cada site.</li>
+                        <li><strong>Flexibilidade:</strong> Permite que o endereço IP de um serviço mude sem afetar o nome de domínio.</li>
+                        <li><strong>Balanceamento de Carga:</strong> Pode distribuir tráfego entre múltiplos servidores com o mesmo nome de domínio.</li>
+                    </ul>
+                    
+                    <h3>Aspectos de Segurança (DNSSEC):</h3>
+                    <ul>
+                        <li><strong>DNSSEC (Domain Name System Security Extensions):</strong> Adiciona assinaturas digitais aos registros DNS para autenticar a origem dos dados e garantir sua integridade, protegendo contra ataques de envenenamento de cache e falsificação.</li>
+                    </ul>
+                    
+                    <h3>Cache DNS:</h3>
+                    <p>Para melhorar a velocidade, os servidores DNS e os sistemas operacionais armazenam em cache as respostas DNS por um determinado período (TTL - Time To Live), evitando consultas repetidas.</p>
+                `
+            },
+            'dhcp': {
+                title: 'DHCP (Dynamic Host Configuration Protocol)',
+                description: 'Protocolo que atribui automaticamente endereços IP e outras configurações de rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O DHCP é um protocolo de rede que permite a um servidor atribuir automaticamente um endereço IP dinâmico e outras informações de configuração de rede (como máscara de sub-rede, gateway padrão e servidores DNS) a dispositivos conectados a uma rede.</p>
+                    
+                    <h3>Processo de Operação (DORA):</h3>
+                    <p>O processo de atribuição de endereço IP pelo DHCP geralmente segue quatro etapas:</p>
+                    <ol>
+                        <li><strong>Discovery (Descoberta):</strong> O cliente envia uma mensagem <code>DHCPDISCOVER</code> em broadcast na rede para encontrar um servidor DHCP.</li>
+                        <li><strong>Offer (Oferta):</strong> O servidor DHCP que recebe a mensagem <code>DHCPDISCOVER</code> responde com uma mensagem <code>DHCPOFFER</code>, oferecendo um endereço IP disponível e outras configurações.</li>
+                        <li><strong>Request (Requisição):</strong> O cliente recebe a oferta e envia uma mensagem <code>DHCPREQUEST</code> ao servidor, solicitando formalmente o endereço IP oferecido.</li>
+                        <li><strong>Acknowledge (Reconhecimento):</strong> O servidor DHCP confirma a atribuição do endereço IP com uma mensagem <code>DHCPACK</code>, formalizando o "lease" (empréstimo) do endereço pelo tempo configurado.</li>
+                    </ol>
+                    
+                    <h3>Componentes do DHCP:</h3>
+                    <ul>
+                        <li><strong>Servidor DHCP:</strong> Dispositivo que armazena as informações de configuração de IP e as distribui. Pode ser um roteador, um servidor dedicado ou um switch.</li>
+                        <li><strong>Cliente DHCP:</strong> Dispositivo que solicita e recebe as configurações de IP (computadores, smartphones, impressoras, etc.).</li>
+                        <li><strong>Relay Agent (Agente de Revezamento):</strong> Quando o servidor DHCP está em uma sub-rede diferente do cliente, um roteador pode atuar como relay agent para encaminhar as mensagens DHCP entre eles.</li>
+                    </ul>
+                    
+                    <h3>Tipos de Alocação de Endereços:</h3>
+                    <ul>
+                        <li><strong>Alocação Dinâmica:</strong> O servidor atribui um endereço IP de um pool por um período de tempo ("lease"). Após o término, o endereço pode ser reatribuído a outro cliente.</li>
+                        <li><strong>Alocação Automática:</strong> O servidor atribui um endereço IP de um pool de forma permanente.</li>
+                        <li><strong>Alocação Manual (Reserva):</strong> O servidor atribui um endereço IP específico a um cliente com base em seu endereço MAC, garantindo que o cliente sempre receba o mesmo IP.</li>
+                    </ul>
+                    
+                    <h3>Benefícios do DHCP:</h3>
+                    <ul>
+                        <li><strong>Automação:</strong> Elimina a necessidade de configuração manual de IP em cada dispositivo.</li>
+                        <li><strong>Prevenção de Conflitos:</strong> Evita que dois dispositivos recebam o mesmo endereço IP.</li>
+                        <li><strong>Gerenciamento Centralizado:</strong> Facilita a administração de grandes redes.</li>
+                        <li><strong>Mobilidade:</strong> Permite que dispositivos se conectem facilmente a diferentes redes sem reconfiguração manual.</li>
+                    </ul>
+                `
+            },
+            'nat': {
+                title: 'NAT (Network Address Translation)',
+                description: 'Método de reescrever endereços IP de pacotes ao passar por um roteador.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>NAT (Network Address Translation) é uma técnica utilizada em roteadores de rede IP para remapear um espaço de endereços IP em outro, modificando os endereços IP de origem e/ou destino no cabeçalho dos pacotes IP enquanto eles transitam por um dispositivo de roteamento.</p>
+                    
+                    <h3>Propósito Principal:</h3>
+                    <ul>
+                        <li><strong>Economia de Endereços IPv4 Públicos:</strong> Permite que múltiplos dispositivos em uma rede privada compartilhem um único (ou poucos) endereços IP públicos ao acessar a internet.</li>
+                        <li><strong>Segurança (Secundário):</strong> Ao ocultar os endereços IP internos da rede privada, o NAT adiciona uma camada básica de segurança, tornando mais difícil para atacantes externos mapear diretamente a topologia da rede interna.</li>
+                    </ul>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Quando um pacote de uma rede privada (com endereço IP privado) tenta sair para a internet, o roteador NAT altera o endereço IP de origem do pacote para o seu próprio endereço IP público. Quando um pacote de resposta retorna da internet, o roteador NAT usa uma tabela de mapeamento para traduzir o endereço IP de destino público de volta para o endereço IP privado correto na rede interna.</p>
+                    
+                    <h3>Tipos de NAT:</h3>
+                    <ul>
+                        <li><strong>Static NAT (NAT Estático):</strong>
+                            <ul>
+                                <li>Mapeia um único endereço IP privado para um único endereço IP público dedicado.</li>
+                                <li>Usado para servidores internos que precisam ser acessíveis diretamente da internet (ex: servidor web).</li>
+                                <li>Não economiza endereços públicos.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Dynamic NAT (NAT Dinâmico):</strong>
+                            <ul>
+                                <li>Mapeia um conjunto de endereços IP privados para um pool de endereços IP públicos.</li>
+                                <li>Um endereço público é atribuído a um dispositivo privado quando ele inicia uma conexão, e é liberado quando a conexão termina.</li>
+                                <li>Requer um pool de endereços públicos maior que Static NAT, mas ainda limitado.</li>
+                            </ul>
+                        </li>
+                        <li><strong>PAT (Port Address Translation) ou NAPT (Network Address Port Translation):</strong>
+                            <ul>
+                                <li>Também conhecido como NAT Overload.</li>
+                                <li>Permite que múltiplos endereços IP privados compartilhem um único endereço IP público.</li>
+                                <li>Diferencia as conexões usando números de portas de origem únicos.</li>
+                                <li>É o tipo de NAT mais comum em redes domésticas e pequenas empresas, maximizando a economia de endereços IPv4.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Implicações:</h3>
+                    <ul>
+                        <li><strong>Conectividade P2P:</strong> Pode dificultar conexões iniciadas de fora para dentro da rede privada (ex: alguns jogos online, VoIP), necessitando de configuração de "port forwarding".</li>
+                        <li><strong>Rastreamento:</strong> Dificulta o rastreamento da origem real de um ataque se múltiplos usuários compartilham um IP público.</li>
+                        <li><strong>Fim-a-fim:</strong> Quebra o princípio da conectividade fim-a-fim da internet.</li>
+                    </ul>
+                    
+                    <h3>Contexto IPv6:</h3>
+                    <p>Com o IPv6, a escassez de endereços não é mais uma preocupação, e a necessidade de NAT é significativamente reduzida, promovendo uma conectividade fim-a-fim mais direta.</p>
+                `
+            },
+            'qos': {
+                title: 'QoS (Quality of Service)',
+                description: 'Conjunto de técnicas para garantir a qualidade de serviços de rede críticos.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>QoS (Quality of Service), ou Qualidade de Serviço, refere-se à capacidade de uma rede de fornecer um determinado nível de desempenho a um serviço de rede selecionado, garantindo largura de banda, latência, jitter e perda de pacotes aceitáveis para aplicações críticas.</p>
+                    
+                    <h3>Por que QoS é Necessário?</h3>
+                    <p>Em redes sem QoS, todos os pacotes são tratados igualmente (best-effort). Isso pode levar a problemas para aplicações sensíveis ao atraso (como voz e vídeo) quando a rede está congestionada. O QoS permite que o administrador de rede priorize determinados tipos de tráfego.</p>
+                    
+                    <h3>Parâmetros Principais do QoS:</h3>
+                    <ul>
+                        <li><strong>Largura de Banda (Bandwidth):</strong> A quantidade de dados que pode ser transmitida em um determinado período. O QoS pode garantir uma largura de banda mínima para certas aplicações.</li>
+                        <li><strong>Latência (Latency/Delay):</strong> O tempo que leva para um pacote ir do ponto A ao ponto B. Baixa latência é crítica para VoIP e videoconferência.</li>
+                        <li><strong>Jitter:</strong> A variação na latência dos pacotes. Jitter excessivo degrada a qualidade de áudio e vídeo.</li>
+                        <li><strong>Perda de Pacotes (Packet Loss):</strong> Pacotes que não chegam ao destino. Uma alta taxa de perda de pacotes tem um impacto significativo na qualidade da comunicação.</li>
+                    </ul>
+                    
+                    <h3>Mecanismos de QoS:</h3>
+                    <ul>
+                        <li><strong>Classificação e Marcação (Classification & Marking):</strong>
+                            <ul>
+                                <li>Identifica os diferentes tipos de tráfego (voz, vídeo, dados).</li>
+                                <li>Marca os pacotes com códigos (ex: DSCP - Differentiated Services Code Point) para indicar sua prioridade.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Enfileiramento (Queuing):</strong>
+                            <ul>
+                                <li>Armazena temporariamente pacotes quando há congestionamento.</li>
+                                <li>Diferentes algoritmos de enfileiramento (FIFO, WFQ, LLQ, CBWFQ) garantem que pacotes prioritários sejam processados primeiro.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Agendamento (Scheduling):</strong>
+                            <ul>
+                                <li>Determina a ordem em que os pacotes são enviados da fila para a interface de rede.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Policiamento e Modelagem (Policing & Shaping):</strong>
+                            <ul>
+                                <li><strong>Policing:</strong> Descarta ou remarca pacotes que excedem um limite definido (taxa máxima de tráfego).</li>
+                                <li><strong>Shaping:</strong> Atrasa o tráfego que excede o limite, colocando-o em uma fila para ser enviado mais tarde, suavizando o fluxo de dados.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Prevenção de Congestionamento (Congestion Avoidance):</strong>
+                            <ul>
+                                <li>Monitora o nível de congestionamento na rede e pode sinalizar dispositivos para diminuir a taxa de envio antes que a rede fique sobrecarregada (ex: WRED - Weighted Random Early Detection).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Padrões de QoS:</h3>
+                    <ul>
+                        <li><strong>IntServ (Integrated Services):</strong> Garante uma largura de banda de ponta a ponta, mas não escala bem para grandes redes devido à necessidade de gerenciar o estado para cada fluxo.</li>
+                        <li><strong>DiffServ (Differentiated Services):</strong> Mais escalável, classifica o tráfego em "classes" (ex: Expedited Forwarding para voz, Assured Forwarding para dados de negócios) e aplica políticas diferentes a essas classes.</li>
+                    </ul>
+                    
+                    <h3>Aplicações Críticas que se Beneficiam do QoS:</h3>
+                    <ul>
+                        <li>VoIP (Voz sobre IP)</li>
+                        <li>Videoconferência</li>
+                        <li>Streaming de vídeo em tempo real</li>
+                        <li>Sistemas de automação industrial</li>
+                        <li>Aplicações de missão crítica</li>
+                    </ul>
+                `
+            },
+            'load-balancing': {
+                title: 'Balanceamento de Carga (Load Balancing)',
+                description: 'Distribui requisições de rede entre múltiplos servidores para otimizar recursos.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Balanceamento de Carga (Load Balancing) é o processo de distribuir requisições de tráfego de rede de forma eficiente entre vários servidores ou recursos, a fim de otimizar a utilização dos recursos, maximizar o throughput, minimizar o tempo de resposta e evitar a sobrecarga de qualquer servidor individual.</p>
+                    
+                    <h3>Objetivos do Balanceamento de Carga:</h3>
+                    <ul>
+                        <li><strong>Otimização de Recursos:</strong> Garante que nenhum servidor seja sobrecarregado enquanto outros estão ociosos.</li>
+                        <li><strong>Alta Disponibilidade:</strong> Em caso de falha de um servidor, o tráfego é redirecionado automaticamente para os servidores saudáveis, minimizando o tempo de inatividade.</li>
+                        <li><strong>Escalabilidade:</strong> Permite adicionar ou remover servidores da pool sem interromper o serviço, facilitando a expansão da capacidade.</li>
+                        <li><strong>Melhora do Desempenho:</strong> Reduz o tempo de resposta e aumenta o throughput ao distribuir a carga de trabalho.</li>
+                    </ul>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Um balanceador de carga atua como um "controlador de tráfego" virtual, interceptando as requisições de entrada e decidindo para qual servidor de back-end enviar cada requisição. Ele mantém uma lista de servidores disponíveis e monitora sua saúde para garantir que o tráfego seja enviado apenas para servidores operacionais.</p>
+                    
+                    <h3>Algoritmos de Balanceamento de Carga Comuns:</h3>
+                    <ul>
+                        <li><strong>Round Robin:</strong> Distribui as requisições sequencialmente para cada servidor, um de cada vez. Simples e fácil de implementar.</li>
+                        <li><strong>Weighted Round Robin:</strong> Atribui "pesos" (prioridades) diferentes aos servidores. Servidores com maior capacidade recebem mais requisições.</li>
+                        <li><strong>Least Connections:</strong> Envia a nova requisição para o servidor com o menor número de conexões ativas.</li>
+                        <li><strong>Least Response Time:</strong> Direciona o tráfego para o servidor com o tempo de resposta mais rápido e o menor número de conexões.</li>
+                        <li><strong>IP Hash:</strong> Usa o endereço IP de origem do cliente para determinar para qual servidor a requisição será enviada, garantindo que o mesmo cliente sempre se conecte ao mesmo servidor (útil para sessões).</li>
+                    </ul>
+                    
+                    <h3>Tipos de Balanceadores de Carga:</h3>
+                    <ul>
+                        <li><strong>Hardware-based Load Balancers:</strong> Dispositivos físicos dedicados, oferecendo alto desempenho e recursos avançados. Ex: F5 BIG-IP, Citrix NetScaler.</li>
+                        <li><strong>Software-based Load Balancers:</strong> Softwares que rodam em servidores padrão. Mais flexíveis e econômicos. Ex: Nginx, HAProxy, AWS ELB/ALB.</li>
+                        <li><strong>DNS-based Load Balancing:</strong> Utiliza o DNS para resolver um nome de domínio para diferentes endereços IP de servidores, distribuindo a carga de forma mais básica.</li>
+                    </ul>
+                    
+                    <h3>Recursos Adicionais:</h3>
+                    <ul>
+                        <li><strong>Health Checks:</strong> Monitora a saúde dos servidores para garantir que apenas os operacionais recebam tráfego.</li>
+                        <li><strong>SSL Offloading:</strong> Gerencia a criptografia SSL/TLS, aliviando a carga dos servidores de aplicação.</li>
+                        <li><strong>Session Persistence/Affinity:</strong> Garante que as requisições do mesmo cliente sejam sempre direcionadas ao mesmo servidor.</li>
+                    </ul>
+                    
+                    <h3>Aplicações:</h3>
+                    <ul>
+                        <li>Servidores Web (HTTP/HTTPS)</li>
+                        <li>Servidores de Aplicação</li>
+                        <li>Bancos de Dados</li>
+                        <li>Servidores de E-mail</li>
+                        <li>Serviços de Streaming</li>
+                    </ul>
+                `
+            },
+            'bandwidth-control': {
+                title: 'Controle de Banda (Bandwidth Control)',
+                description: 'Gerenciamento da largura de banda para priorizar ou limitar o tráfego de rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Controle de Banda (Bandwidth Control), também conhecido como Traffic Shaping ou Traffic Policing, é o processo de gerenciar e regular o tráfego de rede para evitar congestionamento, limitar o consumo de banda por certos usuários ou aplicações, e garantir que serviços prioritários recebam a largura de banda necessária.</p>
+                    
+                    <h3>Propósitos do Controle de Banda:</h3>
+                    <ul>
+                        <li><strong>Prevenir Congestionamento:</strong> Evitar que a rede fique sobrecarregada, mantendo o desempenho geral.</li>
+                        <li><strong>Priorização de Serviços:</strong> Garantir que aplicações críticas (ex: VoIP, videoconferência) tenham prioridade sobre tráfegos menos sensíveis (ex: downloads de arquivos).</li>
+                        <li><strong>Limitação de Consumo:</strong> Restringir a largura de banda de usuários ou aplicações que consomem muitos recursos, garantindo justiça no uso da rede.</li>
+                        <li><strong>Garantia de Acordos de Nível de Serviço (SLA):</strong> Assegurar que os clientes recebam a largura de banda contratada.</li>
+                    </ul>
+                    
+                    <h3>Mecanismos de Controle de Banda:</h3>
+                    <ul>
+                        <li><strong>Traffic Shaping (Modelagem de Tráfego):</strong>
+                            <ul>
+                                <li>Atrasa pacotes que excedem um limite definido, armazenando-os em uma fila para serem enviados mais tarde.</li>
+                                <li>Suaviza o fluxo de tráfego, evitando picos repentinos que podem causar congestionamento.</li>
+                                <li>É mais "gentil" pois não descarta pacotes, mas aumenta a latência para o tráfego afetado.</li>
+                                <li>Ideal para controle de tráfego de saída (upload).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Traffic Policing (Policiamento de Tráfego):</strong>
+                            <ul>
+                                <li>Descarta ou remarca pacotes que excedem um limite definido.</li>
+                                <li>É mais "agressivo" que o shaping, pois pode descartar pacotes, o que pode levar a retransmissões.</li>
+                                <li>Utilizado para impor limites rígidos à taxa de tráfego e é comum para controle de tráfego de entrada (download).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Gerenciamento de Fila (Queuing):</strong>
+                            <ul>
+                                <li>Como parte do QoS, diferentes algoritmos de enfileiramento (FIFO, Priority Queuing, Custom Queuing, Weighted Fair Queuing, Low Latency Queuing) são usados para determinar a ordem em que os pacotes são transmitidos quando há congestionamento.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Onde é Implementado:</h3>
+                    <ul>
+                        <li>Roteadores e Firewalls</li>
+                        <li>Switches gerenciáveis</li>
+                        <li>Dispositivos de Borda de Rede</li>
+                        <li>Servidores de Gerenciamento de Banda (em provedores de internet)</li>
+                    </ul>
+                    
+                    <h3>Relação com QoS:</h3>
+                    <p>O controle de banda é um componente essencial das implementações de QoS. Enquanto o QoS é o conceito abrangente de garantir um nível de serviço, o controle de banda são as técnicas e mecanismos específicos usados para manipular a largura de banda disponível.</p>
+                    
+                    <h3>Casos de Uso:</h3>
+                    <ul>
+                        <li><strong>Provedores de Internet (ISPs):</strong> Para garantir que cada cliente receba a velocidade contratada e para gerenciar o tráfego em sua rede principal.</li>
+                        <li><strong>Empresas:</strong> Para priorizar aplicações de negócio (ERP, CRM) sobre tráfego não essencial (redes sociais, streaming pessoal).</li>
+                        <li><strong>Redes Domésticas:</strong> Em roteadores domésticos para priorizar jogos online ou streaming de vídeo.</li>
+                    </ul>
+                `
+            },
+            'traffic-filtering': {
+                title: 'Filtragem de Tráfego (Traffic Filtering)',
+                description: 'Bloqueio ou permissão de pacotes de dados com base em regras predefinidas.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Filtragem de Tráfego (Traffic Filtering) é o processo de inspecionar pacotes de dados que transitam por uma rede e tomar decisões (permitir, bloquear, descartar, modificar) com base em um conjunto de regras predefinidas. É um mecanismo fundamental para segurança, controle de acesso e gerenciamento de rede.</p>
+                    
+                    <h3>Propósitos da Filtragem de Tráfego:</h3>
+                    <ul>
+                        <li><strong>Segurança:</strong> Bloquear acessos não autorizados, ataques maliciosos e tráfego suspeito.</li>
+                        <li><strong>Controle de Acesso:</strong> Restringir quais usuários, dispositivos ou aplicações podem acessar recursos específicos na rede.</li>
+                        <li><strong>Gerenciamento de Rede:</strong> Otimizar o desempenho, controlar o uso de largura de banda e cumprir políticas organizacionais.</li>
+                        <li><strong>Conformidade:</strong> Ajudar a cumprir regulamentações de dados e privacidade.</li>
+                    </ul>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>A filtragem de tráfego opera examinando os cabeçalhos dos pacotes de dados e, em alguns casos, o conteúdo dos pacotes. As regras são configuradas em dispositivos de rede e especificam os critérios para a decisão (ex: endereço IP de origem/destino, número da porta, protocolo, tipo de aplicação).</p>
+                    
+                    <h3>Dispositivos que Realizam Filtragem:</h3>
+                    <ul>
+                        <li><strong>Firewalls:</strong> São os principais dispositivos de filtragem de tráfego, implementando políticas de segurança complexas.</li>
+                        <li><strong>Roteadores:</strong> Podem usar Listas de Controle de Acesso (ACLs) para filtrar tráfego básico.</li>
+                        <li><strong>Switches (Layer 3):</strong> Também podem implementar ACLs.</li>
+                        <li><strong>Sistemas de Prevenção de Intrusão (IPS):</strong> Filtram tráfego com base em padrões de ataques conhecidos.</li>
+                        <li><strong>Proxies:</strong> Interceptam e filtram o tráfego de aplicações (ex: web proxy).</li>
+                    </ul>
+                    
+                    <h3>Critérios Comuns de Filtragem:</h3>
+                    <ul>
+                        <li><strong>Endereço IP de Origem/Destino:</strong> Permite ou bloqueia tráfego de/para IPs específicos.</li>
+                        <li><strong>Número de Porta de Origem/Destino:</strong> Controla o acesso a serviços específicos (ex: porta 80 para HTTP, 443 para HTTPS).</li>
+                        <li><strong>Protocolo:</strong> Filtra com base no protocolo (TCP, UDP, ICMP, etc.).</li>
+                        <li><strong>Endereço MAC:</strong> Em nível de camada 2, para controlar acesso de dispositivos específicos.</li>
+                        <li><strong>Conteúdo do Pacote/Aplicação:</strong> Filtragem mais avançada que inspeciona o payload ou identifica a aplicação (deep packet inspection).</li>
+                        <li><strong>URL/Domínio:</strong> Bloqueia acesso a sites específicos.</li>
+                    </ul>
+                    
+                    <h3>Tipos de Abordagem:</h3>
+                    <ul>
+                        <li><strong>Whitelist (Lista Branca):</strong> Bloqueia tudo por padrão e só permite o que está explicitamente na lista. Mais seguro, mas exige configuração detalhada.</li>
+                        <li><strong>Blacklist (Lista Negra):</strong> Permite tudo por padrão e só bloqueia o que está explicitamente na lista. Mais simples de configurar, mas menos seguro.</li>
+                    </ul>
+                `
+            },
+            'firewall': {
+                title: 'Firewall',
+                description: 'Sistema de segurança que monitora e controla o tráfego de rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um firewall é um sistema de segurança de rede que monitora e controla o tráfego de rede de entrada e saída com base em um conjunto de regras de segurança predeterminadas. Ele estabelece uma barreira entre uma rede interna confiável e redes externas não confiáveis, como a internet.</p>
+                    
+                    <h3>Propósito Principal:</h3>
+                    <ul>
+                        <li>Proteger redes contra acesso não autorizado.</li>
+                        <li>Prevenir ataques cibernéticos e intrusões.</li>
+                        <li>Controlar o tráfego de dados de acordo com as políticas de segurança da organização.</li>
+                        <li>Registrar e auditar tentativas de acesso.</li>
+                    </ul>
+                    
+                    <h3>Tipos de Firewalls:</h3>
+                    <ul>
+                        <li><strong>Packet-Filtering Firewall (Filtro de Pacotes):</strong>
+                            <ul>
+                                <li>É o tipo mais básico.</li>
+                                <li>Inspeciona os cabeçalhos dos pacotes (endereços IP de origem/destino, portas, protocolos).</li>
+                                <li>Toma decisões de permissão/bloqueio pacote a pacote, sem considerar o estado da conexão.</li>
+                                <li>Vulnerável a certos tipos de ataques.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Stateful Inspection Firewall (Firewall com Inspeção de Estado):</strong>
+                            <ul>
+                                <li>Monitora o estado das conexões ativas.</li>
+                                <li>Permite o tráfego de resposta automaticamente, se a conexão foi iniciada internamente.</li>
+                                <li>Oferece muito mais segurança que o filtro de pacotes.</li>
+                                <li>É o tipo mais comum em roteadores domésticos e empresariais.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Proxy Firewall (Application-Level Gateway):</strong>
+                            <ul>
+                                <li>Atua como um intermediário entre a rede interna e a externa.</li>
+                                <li>Inspeciona o tráfego no nível da aplicação (Camada 7 do modelo OSI).</li>
+                                <li>Pode inspecionar o conteúdo do tráfego, não apenas os cabeçalhos.</li>
+                                <li>Oferece alta segurança, mas pode causar latência.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Next-Generation Firewall (NGFW):</strong>
+                            <ul>
+                                <li>Combina as funções de um firewall tradicional com inspeção profunda de pacotes (DPI), controle de aplicações, sistema de prevenção de intrusões (IPS) e inteligncia de ameaças.</li>
+                                <li>Capaz de identificar e controlar aplicações específicas, não apenas portas e protocolos.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Firewall de Host (Software Firewall):</strong>
+                            <ul>
+                                <li>Instalado diretamente em um computador individual (ex: Firewall do Windows, IPTables no Linux).</li>
+                                <li>Protege o próprio dispositivo contra ameaças de rede.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Localização e Implementação:</h3>
+                    <ul>
+                        <li><strong>Hardware Firewall:</strong> Dispositivos físicos dedicados (roteadores, appliances de segurança) que protegem toda a rede.</li>
+                        <li><strong>Software Firewall:</strong> Programas instalados em sistemas operacionais ou servidores.</li>
+                        <li><strong>Cloud Firewall (Firewall como Serviço - FWaaS):</strong> Firewalls implementados na nuvem para proteger ambientes de nuvem ou usuários remotos.</li>
+                    </ul>
+                    
+                    <h3>Regras do Firewall:</h3>
+                    <p>Um firewall opera com um conjunto de regras (Access Control Lists - ACLs) que definem qual tráfego pode passar e qual deve ser bloqueado. As regras são processadas em ordem, e geralmente há uma regra implícita "deny all" no final.</p>
+                `
+            },
+            'vpn': {
+                title: 'VPN (Virtual Private Network)',
+                description: 'Rede privada construída sobre uma rede pública para comunicação segura.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>VPN (Virtual Private Network), ou Rede Virtual Privada, é uma tecnologia que cria uma conexão de rede segura e criptografada sobre uma rede pública menos segura, como a internet. Ela permite que usuários acessem recursos como se estivessem conectados diretamente à rede privada, oferecendo segurança e privacidade.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Uma VPN estabelece um "túnel" criptografado entre o dispositivo do usuário (cliente VPN) e um servidor VPN. Todo o tráfego de dados entre o cliente e o servidor é encapsulado e criptografado dentro deste túnel, protegendo-o de interceptação e monitoramento por terceiros.</p>
+                    
+                    <h3>Componentes Chave:</h3>
+                    <ul>
+                        <li><strong>Cliente VPN:</strong> Software ou hardware no dispositivo do usuário que inicia a conexão VPN.</li>
+                        <li><strong>Servidor VPN:</strong> Servidor que aceita as conexões VPN, autentica os usuários e encaminha o tráfego para a rede privada ou internet.</li>
+                        <li><strong>Túnel:</strong> A conexão lógica e criptografada entre o cliente e o servidor VPN.</li>
+                        <li><strong>Criptografia:</strong> Utiliza algoritmos para embaralhar os dados, tornando-os ilegíveis para não autorizados.</li>
+                        <li><strong>Autenticação:</strong> Verifica a identidade do usuário e/ou do dispositivo para garantir que apenas partes autorizadas possam estabelecer a conexão VPN.</li>
+                    </ul>
+                    
+                    <h3>Tipos de VPN:</h3>
+                    <ul>
+                        <li><strong>Remote Access VPN (VPN de Acesso Remoto):</strong>
+                            <ul>
+                                <li>Permite que usuários individuais se conectem à rede de sua organização de qualquer local com acesso à internet.</li>
+                                <li>Comum para trabalhadores remotos, acesso a serviços empresariais, etc.</li>
+                                <li>Geralmente utiliza cliente VPN (software) no dispositivo do usuário.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Site-to-Site VPN (VPN de Filial a Filial):</strong>
+                            <ul>
+                                <li>Conecta duas ou mais redes locais (LANs) de diferentes locais geográficos (ex: matriz e filial) como se fossem uma única rede.</li>
+                                <li>Geralmente implementada usando roteadores ou firewalls em cada site.</li>
+                                <li>Todo o tráfego entre os sites é criptografado.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Protocolos VPN Comuns:</h3>
+                    <ul>
+                        <li><strong>IPsec (Internet Protocol Security):</strong> Um conjunto de protocolos para segurança da comunicação IP. Amplamente utilizado para Site-to-Site VPNs e algumas Remote Access VPNs.</li>
+                        <li><strong>OpenVPN:</strong> Um protocolo de código aberto que utiliza SSL/TLS para criptografia. Muito flexível, seguro e popular.</li>
+                        <li><strong>L2TP/IPsec (Layer 2 Tunneling Protocol / IPsec):</strong> Uma combinação de dois protocolos, onde L2TP cria o túnel e IPsec fornece a segurança.</li>
+                        <li><strong>SSL/TLS VPN (também conhecido como OpenVPN ou Cisco AnyConnect):</strong> Utiliza o protocolo SSL/TLS para criar conexões seguras, geralmente acessado via navegador web, sem a necessidade de software cliente específico.</li>
+                    </ul>
+                    
+                    <h3>Benefícios da VPN:</h3>
+                    <ul>
+                        <li><strong>Segurança Aprimorada:</strong> Protege os dados de interceptação, falsificação e ataques man-in-the-middle.</li>
+                        <li><strong>Privacidade:</strong> Oculta o endereço IP real do usuário e sua localização geográfica.</li>
+                        <li><strong>Acesso Remoto Seguro:</strong> Permite acesso seguro a recursos da rede corporativa de qualquer lugar.</li>
+                        <li><strong>Contorno de Restrições Geográficas:</strong> Pode ser usado para acessar conteúdo restrito a certas regiões.</li>
+                    </ul>
+                `
+            },
+            'tunneling': {
+                title: 'Tunneling (Tunelamento)',
+                description: 'Encapsulamento de pacotes de um protocolo dentro de outro para atravessar uma rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Tunneling, ou Tunelamento, é uma técnica de rede que consiste em encapsular pacotes de um protocolo de rede (o protocolo "payload") dentro de pacotes de outro protocolo (o protocolo "transportador" ou "carrier"). Isso cria um "túnel" lógico sobre uma rede intermediária, permitindo que o tráfego viaje de um ponto a outro como se houvesse uma conexão direta.</p>
+                    
+                    <h3>Propósito do Tunelamento:</h3>
+                    <ul>
+                        <li><strong>Atravessar Redes Incompatíveis:</strong> Permite que dados de um protocolo sejam transmitidos através de uma rede que não suporta nativamente esse protocolo (ex: enviar tráfego IPv6 sobre uma rede IPv4).</li>
+                        <li><strong>Criar Redes Privadas Virtuais (VPNs):</strong> É a base das VPNs, onde o tráfego de uma rede privada é encapsulado e criptografado para ser transmitido com segurança sobre a internet.</li>
+                        <li><strong>Contornar Firewalls/Restrições:</strong> Pode ser usado para passar por firewalls que bloqueiam certas portas ou protocolos, encapsulando o tráfego bloqueado em um protocolo permitido.</li>
+                        <li><strong>Mobilidade:</strong> Permite que um dispositivo mantenha seu endereço IP e conexões ao se mover entre diferentes redes físicas.</li>
+                    </ul>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Quando um pacote de dados chega ao "ponto de entrada" do túnel, ele é encapsulado. Isso significa que o cabeçalho do pacote original é mantido, mas um novo cabeçalho (do protocolo transportador) é adicionado. Esse novo pacote (o pacote encapsulado) é então enviado pela rede intermediária. Ao chegar ao "ponto de saída" do túnel, o cabeçalho do protocolo transportador é removido (desencapsulamento), e o pacote original é entregue ao seu destino final.</p>
+                    
+                    <h3>Exemplo Simples:</h3>
+                    <p>Imagine que você quer enviar uma carta confidencial (pacote original) de uma cidade para outra. Em vez de enviar a carta sozinha pelo correio público, você a coloca dentro de um envelope maior e mais seguro (o encapsulamento) e escreve um endereço diferente nesse envelope externo. O correio só vê o envelope externo. Ao chegar ao destino intermediário, a carta é retirada do envelope externo e enviada ao destinatário final.</p>
+                    
+                    <h3>Protocolos de Tunelamento Comuns:</h3>
+                    <ul>
+                        <li><strong>GRE (Generic Routing Encapsulation):</strong> Um protocolo de tunelamento simples que pode encapsular uma ampla variedade de protocolos de rede dentro de pacotes IP. Não oferece criptografia própria, sendo frequentemente usado com IPsec.</li>
+                        <li><strong>PPTP (Point-to-Point Tunneling Protocol):</strong> Um dos protocolos VPN mais antigos, menos seguro que os mais modernos devido a falhas de criptografia.</li>
+                        <li><strong>L2TP (Layer 2 Tunneling Protocol):</strong> Combina características de PPTP e L2F. Geralmente usado em conjunto com IPsec para fornecer segurança (L2TP/IPsec).</li>
+                        <li><strong>IPsec (Internet Protocol Security):</strong> Embora seja um conjunto de protocolos de segurança, ele também pode operar em "modo túnel", encapsulando o pacote IP original para adicionar segurança e atravessar redes não confiáveis.</li>
+                        <li><strong>OpenVPN:</strong> Utiliza SSL/TLS para tunelamento e criptografia, oferecendo alta segurança e flexibilidade.</li>
+                        <li><strong>SSH Tunneling:</strong> Permite encaminhar portas de rede e criar túneis seguros através de uma conexão SSH.</li>
+                        <li><strong>IPv6 over IPv4 (6to4, ISATAP, Teredo):</strong> Técnicas de tunelamento para transportar pacotes IPv6 sobre uma infraestrutura IPv4.</li>
+                    </ul>
+                    
+                    <h3>Impacto:</h3>
+                    <p>O tunelamento adiciona overhead (os cabeçalhos extras) aos pacotes, o que pode consumir um pouco mais de largura de banda e adicionar uma pequena latência. No entanto, os benefícios em termos de conectividade e segurança geralmente superam essas desvantagens.</p>
+                `
+            },
+            'poe': {
+                title: 'POE (Power Over Ethernet)',
+                description: 'Tecnologia que transmite energia elétrica junto com dados pelo cabo Ethernet.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>PoE (Power over Ethernet) é uma tecnologia que permite que cabos de rede Ethernet transmitam não apenas dados, mas também energia elétrica para dispositivos conectados. Isso elimina a necessidade de fontes de alimentação separadas e cabos de energia dedicados para dispositivos de rede.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>O sistema PoE consiste em dois tipos de dispositivos:</p>
+                    <ul>
+                        <li><strong>PSE (Power Sourcing Equipment):</strong> É o dispositivo que fornece a energia. Geralmente é um switch PoE (Power over Ethernet switch) ou um injetor PoE (midspan).</li>
+                        <li><strong>PD (Powered Device):</strong> É o dispositivo que recebe a energia e os dados através do cabo Ethernet. Exemplos incluem câmeras IP, telefones VoIP, access points wireless (APs), terminais de ponto de venda (POS), etc.</li>
+                    </ul>
+                    <p>A energia é injetada nos pares de fios não utilizados do cabo Ethernet ou sobre os mesmos pares de fios usados para dados, dependendo do padrão.</p>
+                    
+                    <h3>Padrões PoE:</h3>
+                    <ul>
+                        <li><strong>IEEE 802.3af (PoE):</strong>
+                            <ul>
+                                <li>Lançado em 2003.</li>
+                                <li>Fornece até 15.4 W de energia DC na porta do PSE.</li>
+                                <li>O PD recebe no máximo 12.95 W (devido à perda no cabo).</li>
+                                <li>Opera a 48 V.</li>
+                            </ul>
+                        </li>
+                        <li><strong>IEEE 802.3at (PoE+ ou PoE Plus):</strong>
+                            <ul>
+                                <li>Lançado em 2009.</li>
+                                <li>Fornece até 30 W de energia DC na porta do PSE.</li>
+                                <li>O PD recebe no máximo 25.5 W.</li>
+                                <li>Projetado para dispositivos que exigem mais energia, como câmeras IP PTZ (Pan-Tilt-Zoom) e APs de alto desempenho.</li>
+                            </ul>
+                        </li>
+                        <li><strong>IEEE 802.3bt (PoE++ ou 4PPoE):</strong>
+                            <ul>
+                                <li>Lançado em 2018.</li>
+                                <li>Aplica energia em todos os quatro pares de fios do cabo Ethernet.</li>
+                                <li>Define dois tipos:
+                                    <ul>
+                                        <li><strong>Tipo 3 (PoE++):</strong> Fornece até 60 W no PSE (51 W no PD).</li>
+                                        <li><strong>Tipo 4 (PoE++):</strong> Fornece até 90 W no PSE (71 W no PD).</li>
+                                    </ul>
+                                </li>
+                                <li>Suporta dispositivos como laptops, monitores de vídeo e sistemas de iluminação.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Benefícios do PoE:</h3>
+                    <ul>
+                        <li><strong>Simplificação da Infraestrutura:</strong> Reduz o número de cabos e tomadas elétricas necessárias.</li>
+                        <li><strong>Redução de Custos:</strong> Menos cabos e custos de instalação elétrica.</li>
+                        <li><strong>Flexibilidade:</strong> Permite instalar dispositivos em locais onde não há tomadas elétricas fáceis ou seguras.</li>
+                        <li><strong>Gerenciamento Centralizado:</strong> A energia pode ser gerenciada e monitorada centralmente a partir do switch PoE.</li>
+                        <li><strong>Segurança Aprimorada:</strong> Facilita a implementação de sistemas de segurança com câmeras alimentadas por PoE.</li>
+                        <li><strong>Confiança:</strong> Pode ser alimentado por uma fonte de alimentação ininterrupta (UPS) para garantir operação contínua.</li>
+                    </ul>
+                    
+                    <h3>Aplicações Comuns:</h3>
+                    <ul>
+                        <li>Telefones VoIP (Voz sobre IP)</li>
+                        <li>Câmeras de vigilância IP</li>
+                        <li>Pontos de Acesso Wi-Fi (Access Points)</li>
+                        <li>Terminais de ponto de venda (POS)</li>
+                        <li>Sensores de IoT</li>
+                        <li>Iluminação LED</li>
+                        <li>Thin clients</li>
+                    </ul>
+                `
+            },
+            'pir': {
+                title: 'PIR (Peak Information Rate)',
+                description: 'Taxa máxima de informação que pode ser transmitida por um serviço de rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>PIR (Peak Information Rate), ou Taxa de Informação de Pico, é a taxa máxima de bits por segundo na qual um determinado fluxo de tráfego pode ser transmitido através de uma interface de rede. Ele representa o limite superior da largura de banda que um cliente ou aplicação pode utilizar, mesmo por curtos períodos (rajadas de tráfego).</p>
+                    
+                    <h3>Relação com CIR (Committed Information Rate):</h3>
+                    <ul>
+                        <li><strong>CIR (Committed Information Rate):</strong> É a taxa de bits garantida que o provedor de serviços promete entregar a um cliente ou serviço. O tráfego até o CIR é sempre encaminhado e tem prioridade.</li>
+                        <li><strong>PIR (Peak Information Rate):</strong> É a taxa máxima que o tráfego pode atingir. O tráfego acima do CIR, mas abaixo do PIR, é geralmente marcado como "excedente" (com menor prioridade) e pode ser encaminhado se houver largura de banda disponível. Se o tráfego exceder o PIR, ele é descartado.</li>
+                    </ul>
+                    
+                    <h3>Funcionamento:</h3>
+                    <p>Os provedores de serviço usam o PIR (em conjunto com o CIR) para gerenciar o tráfego em suas redes, especialmente em cenários onde há oversubscription (vender mais largura de banda do que realmente possui, contando que nem todos os usuários usarão o pico ao mesmo tempo). Isso permite que eles ofereçam serviços a um custo mais baixo, mas ainda com uma promessa de desempenho.</p>
+                    
+                    <ul>
+                        <li><strong>Tráfego abaixo do CIR:</strong> É transmitido com total prioridade e garantia.</li>
+                        <li><strong>Tráfego entre CIR e PIR:</strong> É transmitido como "best-effort". Pode sofrer atrasos ou ser descartado em condições de congestionamento.</li>
+                        <li><strong>Tráfego acima do PIR:</strong> É descartado imediatamente.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <ul>
+                        <li><strong>Contratos de Serviço (SLA):</strong> O CIR e o PIR são componentes críticos dos Acordos de Nível de Serviço, definindo claramente as expectativas de desempenho e as penalidades para o provedor em caso de não conformidade.</li>
+                        <li><strong>Gerenciamento de Rede:</strong> Ajuda os provedores a planejar a capacidade de suas redes e a implementar políticas de QoS eficazes.</li>
+                        <li><strong>Controle de Custos:</strong> Permite que os clientes paguem por uma largura de banda garantida (CIR) e tenham a possibilidade de usar mais (até o PIR) quando a rede não está congestionada, evitando ter que contratar uma banda total muito alta.</li>
+                        <li><strong>Evitar Saturação:</strong> Garante que o tráfego de rajada não sature completamente um link, permitindo que outros serviços continuem a funcionar.</li>
+                    </ul>
+                    
+                    <h3>Exemplo:</h3>
+                    <p>Um cliente contrata um serviço de internet com CIR de 100 Mbps e PIR de 300 Mbps. Isso significa que ele terá pelo menos 100 Mbps garantidos. Se a rede não estiver ocupada, ele poderá atingir velocidades de até 300 Mbps. No entanto, qualquer tráfego que exceda 300 Mbps será descartado pelo provedor.</p>
+                `
+            }
+        };
+
+        // Função para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da página
+            }
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da página
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar aparência dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

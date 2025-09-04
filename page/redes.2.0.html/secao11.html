@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 11 - Roteamento e Conectividade</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🗺 Roteamento e Conectividade</h1>
+            <p class="subtitle">Seção 11 - Navegando Pelas Redes Globais</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Como os Dados Encontram o Caminho na Internet</h2>
+            <p>Esta seção explora os princípios e elementos fundamentais que permitem que os pacotes de dados viajem por vastas redes, atravessando fronteiras e alcançando seus destinos em qualquer lugar do mundo. Entenda como o roteamento conecta a todos.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('roteamento')">
+                <div class="term-name">Roteamento</div>
+                <div class="term-description">Processo de seleção de caminho para o tráfego em redes.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('routing')">
+                <div class="term-name">Routing</div>
+                <div class="term-description">Termo em inglês para roteamento, o encaminhamento de pacotes.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('rota')">
+                <div class="term-name">Rota</div>
+                <div class="term-description">Caminho que um pacote de dados segue de um ponto a outro na rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('tabela-roteamento')">
+                <div class="term-name">Tabela de Roteamento</div>
+                <div class="term-description">Base de dados em roteadores com informações de como encaminhar pacotes.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('link')">
+                <div class="term-name">Link</div>
+                <div class="term-description">Conexão física ou lógica entre dois pontos em uma rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('backbone')">
+                <div class="term-name">Backbone</div>
+                <div class="term-description">Infraestrutura principal de alta capacidade de uma rede, conectando grandes áreas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('pop')">
+                <div class="term-name">PoP</div>
+                <div class="term-description">Point of Presence - Ponto de presença onde um ISP conecta-se a outros provedores.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('upstream')">
+                <div class="term-name">Upstream</div>
+                <div class="term-description">Direção do tráfego de dados que sai da rede local para a internet.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('downstream')">
+                <div class="term-name">Downstream</div>
+                <div class="term-description">Direção do tráfego de dados que chega da internet para a rede local.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('gateway')">
+                <div class="term-name">Gateway</div>
+                <div class="term-description">Dispositivo que conecta duas redes com diferentes protocolos.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('default-gateway')">
+                <div class="term-name">Default Gateway</div>
+                <div class="term-description">Dispositivo (geralmente um roteador) para onde o tráfego é enviado quando não há rota específica.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body">
+                <!-- Conteúdo será inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 - Glossário de Redes de Computadores | Seção 11</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'roteamento': {
+                title: 'Roteamento',
+                description: 'Processo de seleção de caminho para o tráfego em redes.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Roteamento é o processo de selecionar o melhor caminho em uma rede para que os pacotes de dados possam viajar de sua origem para seu destino. Esse processo é realizado por dispositivos de rede chamados roteadores, que usam tabelas de roteamento para determinar o próximo salto para cada pacote.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ol>
+                        <li><strong>Endereçamento:</strong> Cada dispositivo na rede possui um endereço lógico (endereço IP) que identifica sua rede e seu host.</li>
+                        <li><strong>Decisão de Encaminhamento:</strong> Quando um pacote chega a um roteador, ele examina o endereço IP de destino no cabeçalho do pacote.</li>
+                        <li><strong>Consulta à Tabela de Roteamento:</strong> O roteador consulta sua tabela de roteamento (routing table) para encontrar uma entrada que corresponda à rede de destino do pacote.</li>
+                        <li><strong>Próximo Salto:</strong> A tabela de roteamento indica o próximo roteador ou interface de saída para onde o pacote deve ser enviado para chegar mais perto de seu destino.</li>
+                        <li><strong>Encaminhamento:</strong> O pacote é enviado para o próximo salto. Esse processo se repete até que o pacote chegue ao seu destino final.</li>
+                    </ol>
+                    
+                    <h3>Tipos de Roteamento:</h3>
+                    <ul>
+                        <li><strong>Roteamento Estático:</strong>
+                            <ul>
+                                <li>As rotas são configuradas manualmente por um administrador de rede.</li>
+                                <li>Simples para redes pequenas, mas não se adapta automaticamente a mudanças na topologia ou falhas de link.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Roteamento Dinâmico:</strong>
+                            <ul>
+                                <li>Os roteadores trocam informações de roteamento automaticamente com outros roteadores vizinhos usando protocolos de roteamento.</li>
+                                <li>Adapta-se automaticamente a mudanças e falhas, mas é mais complexo de configurar e exige mais recursos dos roteadores.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Protocolos de Roteamento Dinâmico (Exemplos):</h3>
+                    <ul>
+                        <li><strong>IGP (Interior Gateway Protocols):</strong> Usados dentro de um único sistema autônomo (rede sob uma única administração).
+                            <ul>
+                                <li><strong>RIP (Routing Information Protocol):</strong> Um dos mais antigos, baseado na contagem de saltos.</li>
+                                <li><strong>OSPF (Open Shortest Path First):</strong> Baseado em estado de link, mais eficiente e escalável para grandes redes.</li>
+                                <li><strong>EIGRP (Enhanced Interior Gateway Routing Protocol):</strong> Protocolo proprietário da Cisco, híbrido.</li>
+                            </ul>
+                        </li>
+                        <li><strong>EGP (Exterior Gateway Protocols):</strong> Usados para trocar informações de roteamento entre sistemas autônomos.
+                            <ul>
+                                <li><strong>BGP (Border Gateway Protocol):</strong> O principal protocolo de roteamento usado na internet para trocar informações entre ISPs.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Métricas de Roteamento:</h3>
+                    <p>Os protocolos de roteamento usam métricas para determinar o "melhor" caminho. Exemplos incluem:</p>
+                    <ul>
+                        <li>Contagem de saltos (hop count)</li>
+                        <li>Largura de banda (bandwidth)</li>
+                        <li>Atraso (delay)</li>
+                        <li>Confiabilidade (reliability)</li>
+                        <li>Carga (load)</li>
+                        <li>Custo (cost)</li>
+                    </ul>
+                `
+            },
+            'routing': {
+                title: 'Routing',
+                description: 'Termo em inglês para roteamento, o encaminhamento de pacotes.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Routing é o termo em inglês para roteamento. Refere-se ao processo de selecionar os caminhos para o tráfego em uma rede. Essencialmente, é a função de encaminhar pacotes de dados de sua origem para seu destino final, através de múltiplos segmentos de rede interconectados. Roteadores são os dispositivos chave que realizam o routing.</p>
+                    
+                    <h3>Componentes-Chave do Routing:</h3>
+                    <ul>
+                        <li><strong>Roteadores (Routers):</strong> Dispositivos de rede que analisam os endereços IP de destino dos pacotes e usam tabelas de roteamento para determinar o próximo "salto" (next hop).</li>
+                        <li><strong>Tabelas de Roteamento (Routing Tables):</strong> Bancos de dados internos nos roteadores que contêm informações sobre as rotas conhecidas para diferentes redes, incluindo o próximo roteador a ser alcançado e a interface de saída.</li>
+                        <li><strong>Protocolos de Roteamento (Routing Protocols):</strong> Regras e algoritmos que os roteadores usam para trocar informações de roteamento entre si, construir e manter suas tabelas de roteamento.</li>
+                    </ul>
+                    
+                    <h3>Objetivo do Routing:</h3>
+                    <ul>
+                        <li><strong>Conectividade:</strong> Permitir a comunicação entre dispositivos localizados em redes diferentes.</li>
+                        <li><strong>Eficiência:</strong> Encontrar o caminho mais eficiente ou "melhor" para os dados (com base em métricas como menor número de saltos, maior largura de banda, menor latência).</li>
+                        <li><strong>Resiliência:</strong> Em caso de falha de um caminho, o routing dinâmico permite que os roteadores encontrem caminhos alternativos para manter a conectividade.</li>
+                    </ul>
+                    
+                    <h3>Tipos de Routing:</h3>
+                    <ul>
+                        <li><strong>Static Routing:</strong> Rotas configuradas manualmente. Útil para redes pequenas ou para caminhos muito específicos.</li>
+                        <li><strong>Dynamic Routing:</strong> Rotas aprendidas automaticamente através da troca de informações com outros roteadores. Essencial para redes grandes e complexas como a Internet.</li>
+                    </ul>
+                    
+                    <h3>Routing na Internet:</h3>
+                    <p>A Internet é uma vasta rede de redes (ou Sistemas Autônomos - AS). O Border Gateway Protocol (BGP) é o protocolo de routing externo (EGP) que permite a troca de informações de rota entre esses diferentes Sistemas Autônomos, formando a espinha dorsal do routing global.</p>
+                `
+            },
+            'rota': {
+                title: 'Rota',
+                description: 'Caminho que um pacote de dados segue de um ponto a outro na rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Em redes de computadores, uma rota é o caminho ou sequência de roteadores e links que um pacote de dados deve seguir para viajar de um dispositivo de origem para um dispositivo de destino, quando eles estão em redes diferentes. A rota é determinada pelo processo de roteamento.</p>
+                    
+                    <h3>Componentes de uma Rota:</h3>
+                    <ul>
+                        <li><strong>Endereço de Destino:</strong> A rede ou host final para onde o pacote se destina.</li>
+                        <li><strong>Próximo Salto (Next Hop):</strong> O endereço IP do próximo roteador na sequência para encaminhar o pacote em direção ao seu destino.</li>
+                        <li><strong>Interface de Saída:</strong> A interface física (porta) do roteador pela qual o pacote deve ser enviado para alcançar o próximo salto.</li>
+                        <li><strong>Métrica:</strong> Um valor associado à rota que indica sua "qualidade" ou "custo", usado para selecionar a melhor rota quando há múltiplos caminhos para o mesmo destino.</li>
+                    </ul>
+                    
+                    <h3>Tipos de Rotas:</h3>
+                    <ul>
+                        <li><strong>Rota Direta (Directly Connected Route):</strong> Uma rede à qual o roteador está diretamente conectado. O roteador sabe como alcançar hosts nessa rede sem a necessidade de um próximo salto.</li>
+                        <li><strong>Rota Estática (Static Route):</strong> Uma rota que é configurada manualmente por um administrador de rede. O roteador não a aprende de outros roteadores e ela não muda a menos que seja manualmente alterada.</li>
+                        <li><strong>Rota Dinâmica (Dynamic Route):</strong> Uma rota que é aprendida automaticamente por um roteador através da troca de informações com outros roteadores usando protocolos de roteamento (ex: OSPF, BGP). Essas rotas podem se ajustar a mudanças na topologia da rede.</li>
+                        <li><strong>Rota Padrão (Default Route):</strong> Uma rota especial usada quando o roteador não tem uma entrada específica em sua tabela de roteamento para a rede de destino. Ela aponta para um "gateway padrão" (default gateway) para o qual todo o tráfego desconhecido deve ser enviado. Frequentemente usada para acessar a Internet.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <p>As rotas são essenciais para o funcionamento de redes interconectadas. Sem rotas, os roteadores não saberiam para onde enviar os pacotes, e a comunicação além da rede local seria impossível.</p>
+                `
+            },
+            'tabela-roteamento': {
+                title: 'Tabela de Roteamento (Routing Table)',
+                description: 'Base de dados em roteadores com informações de como encaminhar pacotes.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>A tabela de roteamento (routing table) é uma base de dados essencial armazenada na memória de um roteador (ou host) que contém informações sobre as rotas conhecidas para diferentes redes. Ela é usada pelo roteador para determinar o melhor caminho para encaminhar pacotes de dados de sua origem para seu destino final.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Quando um pacote IP chega a um roteador, o roteador examina o endereço IP de destino do pacote. Ele então compara esse endereço com as entradas em sua tabela de roteamento para encontrar a rota mais específica (a que tem a máscara de sub-rede mais longa) que corresponde à rede de destino do pacote.</p>
+                    <p>A entrada da tabela de roteamento correspondente fornece o "próximo salto" (next hop) ou a interface de saída pela qual o pacote deve ser encaminhado.</p>
+                    
+                    <h3>Componentes Típicos de uma Entrada de Rota:</h3>
+                    <ul>
+                        <li><strong>Endereço de Rede de Destino:</strong> A rede IP para a qual a rota se aplica (ex: <code>192.168.1.0/24</code>).</li>
+                        <li><strong>Máscara de Sub-rede:</strong> Define o tamanho da rede de destino.</li>
+                        <li><strong>Gateway (Próximo Salto):</strong> O endereço IP do próximo roteador para onde os pacotes devem ser enviados para alcançar a rede de destino. Se a rede de destino é diretamente conectada, este campo pode ser omitido ou indicar a interface.</li>
+                        <li><strong>Interface de Saída:</strong> A interface (porta física ou lógica) do roteador pela qual o pacote deve sair.</li>
+                        <li><strong>Métrica:</strong> Um valor numérico que indica a "distância" ou "custo" da rota. Rotas com métricas mais baixas são geralmente preferidas.</li>
+                        <li><strong>Administrative Distance (AD):</strong> Um valor de confiança (específico da Cisco e outros) usado para preferir rotas aprendidas por certas fontes (ex: rota estática, OSPF, EIGRP).</li>
+                    </ul>
+                    
+                    <h3>Tipos de Entradas na Tabela de Roteamento:</h3>
+                    <ul>
+                        <li><strong>Rotas Diretamente Conectadas:</strong> Redes que estão diretamente conectadas às interfaces do roteador. São adicionadas automaticamente quando uma interface é configurada com um endereço IP e está "up".</li>
+                        <li><strong>Rotas Estáticas:</strong> Rotas configuradas manualmente por um administrador. São fixas e não mudam a menos que o administrador as altere.</li>
+                        <li><strong>Rotas Dinâmicas:</strong> Rotas aprendidas e mantidas automaticamente por protocolos de roteamento (RIP, OSPF, EIGRP, BGP) através da troca de informações com outros roteadores.</li>
+                        <li><strong>Rota Padrão (Default Route):</strong> Uma rota especial (geralmente <code>0.0.0.0/0</code>) que é usada como último recurso quando não há uma correspondência específica para o endereço IP de destino na tabela. Todo o tráfego para redes desconhecidas é enviado para o gateway padrão.</li>
+                    </ul>
+                    
+                    <h3>Visualizando a Tabela de Roteamento:</h3>
+                    <ul>
+                        <li>Em sistemas Unix/Linux: <code>netstat -rn</code> ou <code>ip route show</code></li>
+                        <li>Em Windows: <code>route print</code></li>
+                        <li>Em roteadores Cisco: <code>show ip route</code></li>
+                    </ul>
+                `
+            },
+            'link': {
+                title: 'Link',
+                description: 'Conexão física ou lógica entre dois pontos em uma rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Em redes de computadores, um link refere-se a uma conexão, seja ela física ou lógica, que conecta dois ou mais dispositivos de rede ou nós, permitindo a transmissão de dados entre eles.</p>
+                    
+                    <h3>Tipos de Links:</h3>
+                    <ul>
+                        <li><strong>Links Físicos:</strong>
+                            <ul>
+                                <li><strong>Cabo de Cobre:</strong> Ethernet (par trançado - Cat5e, Cat6), cabo coaxial. Comumente usado em redes locais (LANs) e para conectar dispositivos a roteadores/switches.</li>
+                                <li><strong>Fibra Óptica:</strong> Cabos de fibra óptica para transmissões de alta velocidade e longa distância, usados em backbones, data centers e FTTH.</li>
+                                <li><strong>Wireless (Sem Fio):</strong> Conexões que utilizam ondas de rádio (Wi-Fi, Bluetooth, 4G, 5G, links de rádio ponto a ponto, satélite).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Links Lógicos:</strong>
+                            <ul>
+                                <li><strong>VPN (Virtual Private Network):</strong> Um túnel seguro e criptografado sobre uma rede pública (como a internet), criando um link lógico privado.</li>
+                                <li><strong>VLAN (Virtual Local Area Network):</strong> Um grupo lógico de dispositivos que se comportam como se estivessem na mesma rede LAN, mesmo que estejam fisicamente conectados a diferentes switches.</li>
+                                <li><strong>Agregação de Links (Link Aggregation/EtherChannel):</strong> Múltiplos links físicos combinados para atuar como um único link lógico de maior largura de banda e redundância.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Propósito dos Links:</h3>
+                    <ul>
+                        <li><strong>Conectividade:</strong> Fundamentais para conectar todos os elementos da rede, desde dispositivos de usuário até grandes infraestruturas.</li>
+                        <li><strong>Transmissão de Dados:</strong> Servem como o meio pelo qual os dados são transportados de um ponto a outro.</li>
+                        <li><strong>Capacidade (Largura de Banda):</strong> A capacidade de um link (medida em Mbps ou Gbps) determina a quantidade de dados que pode ser transmitida por segundo.</li>
+                        <li><strong>Confiabilidade:</strong> Links redundantes (múltiplos links ou links de backup) são usados para garantir a continuidade do serviço em caso de falha de um link primário.</li>
+                    </ul>
+                    
+                    <h3>Link vs. Rota:</h3>
+                    <ul>
+                        <li>Um <strong>link</strong> é a conexão direta entre dois nós.</li>
+                        <li>Uma <strong>rota</strong> é uma sequência de links (e roteadores) que um pacote percorre para ir de uma origem a um destino que não está diretamente conectado.</li>
+                    </ul>
+                `
+            },
+            'backbone': {
+                title: 'Backbone',
+                description: 'Infraestrutura principal de alta capacidade de uma rede, conectando grandes áreas.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um backbone de rede é a infraestrutura principal e central de alta capacidade que conecta redes menores ou áreas de rede (como LANs, MANs ou redes de provedores de serviços) entre si. Ele atua como a espinha dorsal de uma rede, gerenciando um grande volume de tráfego de dados entre os diferentes segmentos ou regiões.</p>
+                    
+                    <h3>Características Principais de um Backbone:</h3>
+                    <ul>
+                        <li><strong>Alta Capacidade (High Bandwidth):</strong> Projetação para suportar grandes volumes de tráfego, utilizando tecnologias de alta velocidade como fibra óptica (geralmente 10 Gbps, 40 Gbps, 100 Gbps ou mais).</li>
+                        <li><strong>Baixa Latência:</strong> Projetado para minimizar o atraso na transmissão de dados, crucial para aplicações sensíveis ao tempo.</li>
+                        <li><strong>Redundância e Confiabilidade:</strong> Possui múltiplos caminhos e equipamentos redundantes para garantir alta disponibilidade e resiliência contra falhas.</li>
+                        <li><strong>Roteadores e Switches Poderosos:</strong> Utiliza equipamentos de rede de nível empresarial ou de operadora, capazes de processar grandes volumes de pacotes rapidamente.</li>
+                        <li><strong>Topologia:</strong> Frequentemente implementado em topologias de malha ou anel para prover redundância e múltiplos caminhos.</li>
+                    </ul>
+                    
+                    <h3>Tipos de Backbone:</h3>
+                    <ul>
+                        <li><strong>Backbone Corporativo:</strong> Conecta diferentes departamentos, prédios ou campi de uma grande organização.</li>
+                        <li><strong>Backbone Metropolitano:</strong> Conecta redes em uma área metropolitana (MAN).</li>
+                        <li><strong>Backbone da Internet (Internet Backbone):</strong> A infraestrutura global de alta velocidade que conecta os grandes provedores de serviços de internet (ISPs) e pontos de troca de tráfego (IXPs) ao redor do mundo. É a parte mais crítica da internet.</li>
+                        <li><strong>Backbone de Provedor de Serviços (ISP Backbone):</strong> A rede principal de um provedor de internet que conecta seus pontos de presença (PoPs) e se interconecta com outros ISPs e a Internet global.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <ul>
+                        <li><strong>Interconexão:</strong> Permite que dispositivos em diferentes partes da rede se comuniquem.</li>
+                        <li><strong>Performance:</strong> Garante que o tráfego possa ser transportado de forma rápida e eficiente, evitando gargalos.</li>
+                        <li><strong>Escalabilidade:</strong> Projetado para expandir e lidar com o crescimento contínuo do volume de dados.</li>
+                    </ul>
+                    
+                    <h3>Exemplo:</h3>
+                    <p>Imagine uma cidade com vários bairros. As ruas locais em cada bairro são as LANs. As grandes avenidas que ligam os bairros são os backbones metropolitanos. E as rodovias federais que conectam as cidades são o backbone da Internet.</p>
+                `
+            },
+            'pop': {
+                title: 'PoP (Point of Presence)',
+                description: 'Point of Presence - Ponto de presença onde um ISP conecta-se a outros provedores.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>PoP (Point of Presence), ou Ponto de Presença, é um local físico de acesso ou interconexão de uma rede. É o ponto de fronteira onde um provedor de serviços de internet (ISP) ou uma empresa de telecomunicações se conecta às redes de outros provedores, à internet global, ou aos seus próprios clientes finais. Um PoP contém equipamentos como roteadores, switches, servidores e cabeamento.</p>
+                    
+                    <h3>Características de um PoP:</h3>
+                    <ul>
+                        <li><strong>Localização Estratégica:</strong> Geralmente localizado em grandes centros urbanos, edifícios de escritórios, data centers neutros ou centrais telefônicas, onde há alta densidade de usuários ou outras redes para interconectar.</li>
+                        <li><strong>Equipamentos de Rede:</strong> Abriga roteadores de borda, switches de alta capacidade, servidores de autenticação (RADIUS), servidores DNS, e outros equipamentos necessários para processar o tráfego de rede.</li>
+                        <li><strong>Conectividade:</strong> Um PoP tem múltiplas conexões de alta velocidade (links de fibra óptica) para a rede principal (backbone) do ISP, para outros ISPs (através de peering), para IXPs (Internet Exchange Points), e para as redes de acesso dos usuários finais.</li>
+                        <li><strong>Proximidade ao Cliente:</strong> Quanto mais próximo um PoP está dos usuários finais, menor a latência e melhor a qualidade do serviço oferecido.</li>
+                    </ul>
+                    
+                    <h3>Funções de um PoP:</h3>
+                    <ul>
+                        <li><strong>Interconexão:</strong> Permite que o tráfego de um ISP troque com o tráfego de outros ISPs ou com a Internet global.</li>
+                        <li><strong>Acesso ao Cliente:</strong> Serve como o ponto onde a rede do ISP se estende para fornecer serviços (como internet banda larga, VPNs) a empresas e residências na área local.</li>
+                        <li><strong>Roteamento e Encaminhamento:</strong> Onde as decisões de roteamento são tomadas para direcionar o tráfego para sua melhor rota.</li>
+                        <li><strong>Hospedagem de Serviços:</strong> Alguns PoPs também podem hospedar servidores para serviços como CDN (Content Delivery Network), que armazena conteúdo mais próximo dos usuários para carregamento mais rápido.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <ul>
+                        <li><strong>Qualidade do Serviço:</strong> A quantidade e a distribuição geográfica dos PoPs de um ISP impactam diretamente a latência e a confiabilidade do serviço para os usuários.</li>
+                        <li><strong>Expansão da Rede:</strong> A abertura de novos PoPs é uma etapa chave na expansão da cobertura de um provedor de serviços.</li>
+                        <li><strong>Redução de Custos:</strong> Ao ter PoPs em várias regiões, um ISP pode otimizar seus custos de tráfego e conexão.</li>
+                    </ul>
+                `
+            },
+            'upstream': {
+                title: 'Upstream',
+                description: 'Direção do tráfego de dados que sai da rede local para a internet.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Upstream refere-se à direção do fluxo de dados que parte de um usuário ou rede local e se move em direção a um provedor de serviços de internet (ISP) ou para a internet. É a transmissão de dados "para cima" na hierarquia da rede.</p>
+                    
+                    <h3>Contextos de Uso:</h3>
+                    <ul>
+                        <li><strong>Upstream (Direção do Tráfego):</strong>
+                            <ul>
+                                <li>No contexto de uma conexão de internet residencial ou empresarial, o tráfego upstream é o que você envia: uploads de arquivos, publicações em redes sociais, e-mails enviados, dados de um servidor local para a nuvem, ou sua voz em uma chamada VoIP.</li>
+                                <li>A velocidade de upload da sua conexão de internet é a velocidade máxima de upstream.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Provedores Upstream (Upstream Providers):</strong>
+                            <ul>
+                                <li>Refere-se aos provedores de internet (ISPs) de nível superior ou às redes que fornecem conectividade ao seu ISP. Se o seu ISP é pequeno, ele compra capacidade de um ISP maior, que é seu provedor upstream.</li>
+                                <li>Esses provedores upstream são essenciais para que um ISP menor possa se conectar ao backbone da Internet global.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Importância da Velocidade Upstream:</h3>
+                    <p>Embora a maioria das aplicações de usuários residenciais seja dominada pelo tráfego downstream (download de conteúdo), a velocidade upstream é crítica para:</p>
+                    <ul>
+                        <li><strong>Upload de Arquivos:</strong> Enviar fotos, vídeos e documentos para serviços de nuvem ou redes sociais.</li>
+                        <li><strong>Videoconferências:</strong> Transmitir sua imagem e voz em alta qualidade para outros participantes.</li>
+                        <li><strong>Jogos Online:</strong> Enviar informações sobre suas ações em tempo real para os servidores do jogo.</li>
+                        <li><strong>Transmissões ao Vivo (Streaming):</strong> Para criadores de conteúdo que transmitem vídeo em tempo real.</li>
+                        <li><strong>Servidores Domésticos/PMEs:</strong> Hospedar um servidor web, de e-mail ou de arquivos acessível externamente.</li>
+                    </ul>
+                    
+                    <h3>Assimetria de Banda:</h3>
+                    <p>Muitas tecnologias de banda larga, como ADSL e a maioria das conexões de cabo, são assimétricas, oferecendo velocidades de downstream (download) muito maiores do que de upstream (upload). Isso é otimizado para o consumo de conteúdo. No entanto, as conexões de fibra óptica (FTTH) geralmente oferecem velocidades simétricas (iguais de download e upload), o que é um benefício significativo para aplicações que exigem alto upstream.</p>
+                `
+            },
+            'downstream': {
+                title: 'Downstream',
+                description: 'Direção do tráfego de dados que chega da internet para a rede local.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Downstream refere-se à direção do fluxo de dados que se move de um provedor de serviços de internet (ISP) ou da internet para um usuário ou rede local. É a transmissão de dados "para baixo" na hierarquia da rede.</p>
+                    
+                    <h3>Contextos de Uso:</h3>
+                    <ul>
+                        <li><strong>Downstream (Direção do Tráfego):</strong>
+                            <ul>
+                                <li>No contexto de uma conexão de internet residencial ou empresarial, o tráfego downstream é o que você recebe: downloads de arquivos, carregamento de páginas web, streaming de vídeos e músicas, ou receber voz em uma chamada VoIP.</li>
+                                <li>A velocidade de download da sua conexão de internet é a velocidade máxima de downstream.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Provedores Downstream (Downstream Providers):</strong>
+                            <ul>
+                                <li>Geralmente não é um termo técnico comum para provedores. O termo "downstream" se aplica mais à direção do fluxo de dados em relação a um ponto de referência na rede.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Importância da Velocidade Downstream:</h3>
+                    <p>A velocidade downstream é geralmente a métrica mais destacada pelos ISPs, pois é a mais crítica para as aplicações de consumo de conteúdo mais populares. Ela é crucial para:</p>
+                    <ul>
+                        <li><strong>Navegação Web:</strong> Carregamento rápido de páginas web.</li>
+                        <li><strong>Streaming de Vídeo e Áudio:</strong> Assistir a filmes, séries e ouvir músicas em alta qualidade e sem interrupções (buffering).</li>
+                        <li><strong>Downloads de Arquivos:</strong> Baixar softwares, jogos, documentos e outros arquivos de forma rápida.</li>
+                        <li><strong>Jogos Online:</strong> Receber as informações do ambiente do jogo em tempo real.</li>
+                        <li><strong>Videoconferências:</strong> Receber as imagens e vozes dos outros participantes em alta qualidade.</li>
+                    </ul>
+                    
+                    <h3>Assimetria de Banda:</h3>
+                    <p>Conexões de banda larga como ADSL e cabo são assimétricas, com a velocidade de downstream sendo significativamente maior do que a de upstream. Isso se alinha ao padrão de uso da maioria dos usuários, que consomem mais conteúdo do que produzem ou enviam. Conexões de fibra óptica (FTTH) têm popularizado as velocidades simétricas, oferecendo alto desempenho em ambas as direções.</p>
+                `
+            },
+            'gateway': {
+                title: 'Gateway',
+                description: 'Dispositivo que conecta duas redes com diferentes protocolos.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um gateway é um dispositivo ou software que serve como um ponto de entrada ou saída entre duas redes diferentes, permitindo que elas se comuniquem mesmo que usem protocolos ou arquiteturas distintas. Ele atua como um tradutor ou intérprete, convertendo dados de um formato para outro para que possam ser compreendidos pela rede de destino.</p>
+                    
+                    <h3>Funções de um Gateway:</h3>
+                    <ul>
+                        <li><strong>Tradução de Protocolos:</strong> A função mais fundamental. Um gateway pode converter entre diferentes protocolos em qualquer camada do modelo OSI. Por exemplo, um gateway de e-mail pode converter entre SMTP e outros protocolos de e-mail legados.</li>
+                        <li><strong>Interconexão de Redes Diferentes:</strong> Permite que redes que utilizam tecnologias ou esquemas de endereçamento completamente diferentes se comuniquem.</li>
+                        <li><strong>Roteamento:</strong> Embora nem todo roteador seja um gateway no sentido mais amplo, roteadores atuam como gateways de rede (default gateways) entre sub-redes IP.</li>
+                        <li><strong>Segurança:</strong> Firewalls geralmente atuam como gateways de segurança, controlando o tráfego que entra e sai da rede protegida.</li>
+                        <li><strong>Conectividade Lógica:</strong> Podem criar pontes lógicas entre redes, como em gateways de VoIP que conectam redes IP à rede telefônica tradicional (PSTN).</li>
+                    </ul>
+                    
+                    <h3>Tipos de Gateways (Exemplos):</h3>
+                    <ul>
+                        <li><strong>Gateway de Rede (Default Gateway):</strong> O tipo mais comum. É o roteador que conecta uma rede local (LAN) a outras redes externas, como a internet. Todos os pacotes destinados a redes fora da LAN são enviados para o default gateway.</li>
+                        <li><strong>Gateway de E-mail:</strong> Converte e-mails entre diferentes formatos ou sistemas de e-mail.</li>
+                        <li><strong>Gateway de Voz (VoIP Gateway):</strong> Conecta uma rede de telefonia baseada em IP (VoIP) a uma rede telefônica tradicional (PSTN), permitindo chamadas entre elas.</li>
+                        <li><strong>Gateway de Segurança (Security Gateway):</strong> Implementa políticas de segurança e atua como um firewall entre redes.</li>
+                        <li><strong>Gateway de API:</strong> Um serviço que atua como um ponto de entrada único para clientes acessarem múltiplos serviços de backend.</li>
+                    </ul>
+                    
+                    <h3>Gateway vs. Roteador:</h3>
+                    <ul>
+                        <li>Um <strong>roteador</strong> é um dispositivo que opera na Camada 3 (Rede) do modelo OSI e encaminha pacotes entre redes IP com base em endereços IP.</li>
+                        <li>Um <strong>gateway</strong> é um termo mais amplo que pode operar em qualquer camada do modelo OSI e não apenas roteia, mas também traduz protocolos entre redes dissimilares. Todo roteador que conecta uma LAN à internet é um gateway, mas nem todo gateway é necessariamente um roteador tradicional (pode ser um servidor, um firewall, etc.).</li>
+                    </ul>
+                `
+            },
+            'default-gateway': {
+                title: 'Default Gateway (Gateway Padrão)',
+                description: 'Dispositivo (geralmente um roteador) para onde o tráfego é enviado quando não há rota específica.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O Default Gateway (Gateway Padrão) é o roteador em uma rede local (LAN) para o qual todo o tráfego IP é enviado quando o dispositivo de origem (computador, smartphone, etc.) não tem uma rota específica em sua tabela de roteamento para o endereço IP de destino. Em outras palavras, é a "saída" padrão da sua rede local para redes externas, como a internet.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ol>
+                        <li><strong>Verificação de Destino:</strong> Quando um dispositivo em uma rede local precisa enviar um pacote IP, ele primeiro verifica se o endereço IP de destino está na mesma rede local.</li>
+                        <li><strong>Tráfego Local:</strong> Se o destino estiver na mesma rede local, o pacote é enviado diretamente para o destino (usando o endereço MAC resolvido via ARP).</li>
+                        <li><strong>Tráfego Externo:</strong> Se o destino não estiver na mesma rede local (ou seja, é para uma rede externa, como um site na internet), o dispositivo não sabe a rota exata para aquele destino remoto. Nesses casos, ele envia o pacote para o endereço IP do seu Default Gateway.</li>
+                        <li><strong>Encaminhamento pelo Gateway:</strong> O Default Gateway (que é um roteador) então assume a responsabilidade de encaminhar o pacote para a próxima rede em direção ao seu destino final, usando suas próprias tabelas de roteamento.</li>
+                    </ol>
+                    
+                    <h3>Configuração do Default Gateway:</h3>
+                    <ul>
+                        <li>O endereço IP do Default Gateway deve ser configurado em cada dispositivo na rede local.</li>
+                        <li>Geralmente, ele é o endereço IP da interface LAN do roteador que conecta a rede local à internet.</li>
+                        <li>Em redes domésticas e na maioria das redes corporativas, o endereço do Default Gateway é atribuído automaticamente aos dispositivos pelo servidor DHCP (Dynamic Host Configuration Protocol).</li>
+                        <li>Um dispositivo só pode ter um Default Gateway configurado.</li>
+                    </ul>
+                    
+                    <h3>Exemplo Prático:</h3>
+                    <p>Seu computador está em uma rede local <code>192.168.1.0/24</code>, e o roteador que o conecta à internet tem o endereço IP <code>192.168.1.1</code> na interface LAN. Você configura <code>192.168.1.1</code> como o Default Gateway do seu computador.</p>
+                    <ul>
+                        <li>Se você tentar acessar outro computador na mesma rede <code>192.168.1.50</code>, seu pacote vai diretamente para ele.</li>
+                        <li>Se você tentar acessar um site na internet (ex: <code>www.google.com</code>, que tem um IP público), seu computador envia o pacote para <code>192.168.1.1</code> (o Default Gateway), que então roteia o pacote para a internet.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <p>O Default Gateway é crucial para a comunicação de um dispositivo com redes externas (como a internet). Sem ele, um dispositivo em uma LAN seria incapaz de se comunicar fora da sua própria rede local.</p>
+                `
+            }
+        };
+
+        // Função para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da página
+            }
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da página
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar aparência dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

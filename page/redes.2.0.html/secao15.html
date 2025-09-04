@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 15 - Segurança e Monitoramento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔒 Segurança e Monitoramento</h1>
+            <p class="subtitle">Seção 15 - Protegendo a Informação e a Rede</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Defendendo Ativos Digitais e Mantendo a Vigília</h2>
+            <p>Esta seção explora os conceitos e ferramentas essenciais para proteger redes, dados e sistemas contra ameaças, além de discorrer sobre a importância do monitoramento contínuo para garantir a integridade e a disponibilidade.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('cftv')">
+                <div class="term-name">CFTV</div>
+                <div class="term-description">Circuito Fechado de Televisão, sistema de monitoramento por vídeo.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('firewall')">
+                <div class="term-name">Firewall</div>
+                <div class="term-description">Sistema de segurança que monitora e controla o tráfego de rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('vpn')">
+                <div class="term-name">VPN</div>
+                <div class="term-description">Rede privada construída sobre uma rede pública para comunicação segura.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('wep')">
+                <div class="term-name">WEP</div>
+                <div class="term-description">Padrão de segurança antigo e vulnerável para redes Wi-Fi.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('wpa')">
+                <div class="term-name">WPA</div>
+                <div class="term-description">Wi-Fi Protected Access - Sucessor do WEP com melhorias de segurança.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('wpa2')">
+                <div class="term-name">WPA2</div>
+                <div class="term-description">Padrão de segurança mais robusto para redes Wi-Fi, com AES e CCMP.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ssh')">
+                <div class="term-name">SSH</div>
+                <div class="term-description">Protocolo criptografado para operações de rede seguras.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body">
+                <!-- Conteúdo será inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 - Glossário de Redes de Computadores | Seção 15</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'cftv': {
+                title: 'CFTV (Circuito Fechado de Televisão)',
+                description: 'Circuito Fechado de Televisão, sistema de monitoramento por vídeo.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>CFTV (Circuito Fechado de Televisão) é um sistema de monitoramento por vídeo composto por câmeras de segurança que capturam imagens, as transmitem para um local centralizado (como um DVR, NVR ou software de vigilância), onde são gravadas e podem ser visualizadas. Diferente da televisão aberta, o sinal de CFTV é transmitido para um número limitado e fechado de receptores.</p>
+                    
+                    <h3>Componentes Principais de um Sistema CFTV:</h3>
+                    <ul>
+                        <li><strong>Câmeras de Segurança:</strong> Dispositivos que capturam as imagens. Podem ser analógicas (geralmente conectadas por cabo coaxial) ou IP (digitais, conectadas por cabo de rede Ethernet ou Wi-Fi).</li>
+                        <li><strong>Meio de Transmissão:</strong> Cabos (coaxial para analógicas, UTP para IP) ou Wi-Fi para transmissão sem fio.</li>
+                        <li><strong>Dispositivo de Gravação:</strong>
+                            <ul>
+                                <li><strong>DVR (Digital Video Recorder):</strong> Para câmeras analógicas, converte o sinal analógico em digital, grava e permite visualização.</li>
+                                <li><strong>NVR (Network Video Recorder):</strong> Para câmeras IP, recebe e grava o fluxo de vídeo digital diretamente da rede.</li>
+                                <li><strong>Servidor com Software de VMS (Video Management Software):</strong> Para sistemas maiores, um servidor com software específico gerencia as câmeras IP e a gravação.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Monitores:</strong> Telas para visualização das imagens em tempo real ou gravadas.</li>
+                    </ul>
+                    
+                    <h3>Tipos de CFTV:</h3>
+                    <ul>
+                        <li><strong>CFTV Analógico:</strong> Mais antigo, menor resolução, dependente de cabo coaxial. Inclui tecnologias como HDCVI, HDTVI, AHD que oferecem resoluções HD sobre cabo coaxial.</li>
+                        <li><strong>CFTV IP (ou Câmeras de Rede):</strong> Mais moderno, maior resolução (Full HD, 4K), recursos avançados (análise de vídeo, PoE), conectividade de rede.</li>
+                    </ul>
+                    
+                    <h3>Benefícios do CFTV:</h3>
+                    <ul>
+                        <li><strong>Dissuasão:</strong> A presença de câmeras pode desestimular ações criminosas.</li>
+                        <li><strong>Monitoramento:</strong> Permite a supervisão de áreas em tempo real.</li>
+                        <li><strong>Gravação de Evidências:</strong> Registra eventos que podem ser usados como prova.</li>
+                        <li><strong>Acesso Remoto:</strong> Muitos sistemas modernos permitem a visualização das imagens remotamente via internet.</li>
+                        <li><strong>Análise Inteligente:</strong> Câmeras IP mais avançadas podem ter funções como detecção de movimento, reconhecimento facial, contagem de pessoas, etc.</li>
+                    </ul>
+                    
+                    <h3>Aplicações:</h3>
+                    <p>Utilizado em residências, empresas, condomínios, espaços públicos, transporte e em qualquer local que necessite de vigilância e segurança.</p>
+                `
+            },
+            'firewall': {
+                title: 'Firewall',
+                description: 'Sistema de segurança que monitora e controla o tráfego de rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um firewall é um sistema de segurança de rede que monitora e controla o tráfego de rede de entrada e saída com base em um conjunto de regras de segurança predeterminadas. Ele estabelece uma barreira entre uma rede interna confiável e redes externas não confiáveis, como a internet.</p>
+                    
+                    <h3>Propósito Principal:</h3>
+                    <ul>
+                        <li>Proteger redes contra acesso não autorizado.</li>
+                        <li>Prevenir ataques cibernéticos e intrusões.</li>
+                        <li>Controlar o tráfego de dados de acordo com as políticas de segurança da organização.</li>
+                        <li>Registrar e auditar tentativas de acesso.</li>
+                    </ul>
+                    
+                    <h3>Tipos de Firewalls:</h3>
+                    <ul>
+                        <li><strong>Packet-Filtering Firewall (Filtro de Pacotes):</strong>
+                            <ul>
+                                <li>É o tipo mais básico.</li>
+                                <li>Inspeciona os cabeç&alhos dos pacotes (endereços IP de origem/destino, portas, protocolos).</li>
+                                <li>Toma decisões de permissão/bloqueio pacote a pacote, sem considerar o estado da conexão.</li>
+                                <li>Vulnerável a certos tipos de ataques.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Stateful Inspection Firewall (Firewall com Inspeção de Estado):</strong>
+                            <ul>
+                                <li>Monitora o estado das conexões ativas.</li>
+                                <li>Permite o tráfego de resposta automaticamente, se a conexão foi iniciada internamente.</li>
+                                <li>Oferece muito mais segurança que o filtro de pacotes.</li>
+                                <li>É o tipo mais comum em roteadores domésticos e empresariais.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Proxy Firewall (Application-Level Gateway):</strong>
+                            <ul>
+                                <li>Atua como um intermediário entre a rede interna e a externa.</li>
+                                <li>Inspeciona o tráfego no nível da aplicação (Camada 7 do modelo OSI).</li>
+                                <li>Pode inspecionar o conteúdo do tráfego, não apenas os cabeçalhos.</li>
+                                <li>Oferece alta segurança, mas pode causar latência.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Next-Generation Firewall (NGFW):</strong>
+                            <ul>
+                                <li>Combina as funções de um firewall tradicional com inspeção profunda de pacotes (DPI), controle de aplicações, sistema de prevenção de intrusões (IPS) e inteligncia de ameaças.</li>
+                                <li>Capaz de identificar e controlar aplicações específicas, não apenas portas e protocolos.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Firewall de Host (Software Firewall):</strong>
+                            <ul>
+                                <li>Instalado diretamente em um computador individual (ex: Firewall do Windows, IPTables no Linux).</li>
+                                <li>Protege o próprio dispositivo contra ameaças de rede.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Localização e Implementação:</h3>
+                    <ul>
+                        <li><strong>Hardware Firewall:</strong> Dispositivos físicos dedicados (roteadores, appliances de segurança) que protegem toda a rede.</li>
+                        <li><strong>Software Firewall:</strong> Programas instalados em sistemas operacionais ou servidores.</li>
+                        <li><strong>Cloud Firewall (Firewall como Serviço - FWaaS):</strong> Firewalls implementados na nuvem para proteger ambientes de nuvem ou usuários remotos.</li>
+                    </ul>
+                    
+                    <h3>Regras do Firewall:</h3>
+                    <p>Um firewall opera com um conjunto de regras (Access Control Lists - ACLs) que definem qual tráfego pode passar e qual deve ser bloqueado. As regras são processadas em ordem, e geralmente há uma regra implícita "deny all" no final.</p>
+                `
+            },
+            'vpn': {
+                title: 'VPN (Virtual Private Network)',
+                description: 'Rede privada construída sobre uma rede pública para comunicação segura.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>VPN (Virtual Private Network), ou Rede Virtual Privada, é uma tecnologia que cria uma conexão de rede segura e criptografada sobre uma rede pública menos segura, como a internet. Ela permite que usuários acessem recursos como se estivessem conectados diretamente à rede privada, oferecendo segurança e privacidade.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Uma VPN estabelece um "túnel" criptografado entre o dispositivo do usuário (cliente VPN) e um servidor VPN. Todo o tráfego de dados entre o cliente e o servidor é encapsulado e criptografado dentro deste túnel, protegendo-o de interceptação e monitoramento por terceiros.</p>
+                    
+                    <h3>Componentes Chave:</h3>
+                    <ul>
+                        <li><strong>Cliente VPN:</strong> Software ou hardware no dispositivo do usuário que inicia a conexão VPN.</li>
+                        <li><strong>Servidor VPN:</strong> Servidor que aceita as conexões VPN, autentica os usuários e encaminha o tráfego para a rede privada ou internet.</li>
+                        <li><strong>Túnel:</strong> A conexão lógica e criptografada entre o cliente e o servidor VPN.</li>
+                        <li><strong>Criptografia:</strong> Utiliza algoritmos para embaralhar os dados, tornando-os ilegíveis para não autorizados.</li>
+                        <li><strong>Autenticação:</strong> Verifica a identidade do usuário e/ou do dispositivo para garantir que apenas partes autorizadas possam estabelecer a conexão VPN.</li>
+                    </ul>
+                    
+                    <h3>Tipos de VPN:</h3>
+                    <ul>
+                        <li><strong>Remote Access VPN (VPN de Acesso Remoto):</strong>
+                            <ul>
+                                <li>Permite que usuários individuais se conectem à rede de sua organização de qualquer local com acesso à internet.</li>
+                                <li>Comum para trabalhadores remotos, acesso a serviços empresariais, etc.</li>
+                                <li>Geralmente utiliza cliente VPN (software) no dispositivo do usuário.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Site-to-Site VPN (VPN de Filial a Filial):</strong>
+                            <ul>
+                                <li>Conecta duas ou mais redes locais (LANs) de diferentes locais geográficos (ex: matriz e filial) como se fossem uma única rede.</li>
+                                <li>Geralmente implementada usando roteadores ou firewalls em cada site.</li>
+                                <li>Todo o tráfego entre os sites é criptografado.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Protocolos VPN Comuns:</h3>
+                    <ul>
+                        <li><strong>IPsec (Internet Protocol Security):</strong> Um conjunto de protocolos para segurança da comunicação IP. Amplamente utilizado para Site-to-Site VPNs e algumas Remote Access VPNs.</li>
+                        <li><strong>OpenVPN:</strong> Um protocolo de código aberto que utiliza SSL/TLS para criptografia. Muito flexível, seguro e popular.</li>
+                        <li><strong>L2TP/IPsec (Layer 2 Tunneling Protocol / IPsec):</strong> Uma combinação de dois protocolos, onde L2TP cria o túnel e IPsec fornece a segurança.</li>
+                        <li><strong>SSL/TLS VPN (também conhecido como OpenVPN ou Cisco AnyConnect):</strong> Utiliza o protocolo SSL/TLS para criar conexões seguras, geralmente acessado via navegador web, sem a necessidade de software cliente específico.</li>
+                    </ul>
+                    
+                    <h3>Benefícios da VPN:</h3>
+                    <ul>
+                        <li><strong>Segurança Aprimorada:</strong> Protege os dados de interceptação, falsificação e ataques man-in-the-middle.</li>
+                        <li><strong>Privacidade:</strong> Oculta o endereço IP real do usuário e sua localização geográfica.</li>
+                        <li><strong>Acesso Remoto Seguro:</strong> Permite acesso seguro a recursos da rede corporativa de qualquer lugar.</li>
+                        <li><strong>Contorno de Restrições Geográficas:</strong> Pode ser usado para acessar conteúdo restrito a certas regiões.</li>
+                    </ul>
+                `
+            },
+            'wep': {
+                title: 'WEP (Wired Equivalent Privacy)',
+                description: 'Padrão de segurança antigo e vulnerável para redes Wi-Fi.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>WEP (Wired Equivalent Privacy) foi o primeiro algoritmo de segurança introduzido para redes sem fio (Wi-Fi) no padrão IEEE 802.11 em 1999. Seu objetivo era fornecer um nível de segurança comparable ao de uma rede cabeada, mas logo foi demonstrado que era altamente vulnerável e inseguro.</p>
+                    
+                    <h3>Como Funcionava (e Suas Falhas):</h3>
+                    <p>O WEP utilizava o algoritmo de criptografia RC4 para confidencialidade e um CRC-32 para integridade de dados. A chave de criptografia era uma chave estática compartilhada (PSK - Pre-Shared Key) de 64 bits ou 128 bits. As principais falhas de segurança que levaram à sua obsolescência incluem:</p>
+                    <ul>
+                        <li><strong>Chave Estática:</strong> A mesma chave era usada por todos os clientes da rede e não era alterada. Se a chave fosse comprometida, toda a rede ficava exposta.</li>
+                        <li><strong>Vulnerabilidades do RC4:</strong> O RC4 foi mal implementado no WEP. Em particular, a reutilização de IVs (Initialization Vectors) fracos e de curta duração tornava possível a um atacante coletar dados suficientes para descobrir a chave WEP em poucos minutos, usando ferramentas simples.</li>
+                        <li><strong>Fraqueza do CRC-32:</strong> O algoritmo de verificação de integridade CRC-32 não impedia a adulteráo dos dados em trânsito.</li>
+                        <li><strong>Ausência de Gerenciamento de Chaves:</strong> Não havia um mecanismo robusto para distribuição ou rotação de chaves.</li>
+                    </ul>
+                    
+                    <h3>Status Atual:</h3>
+                    <p>O WEP é considerado completamente obsoleto e inseguro. Seu uso é fortemente desaconselhado em qualquer ambiente. Atualmente, os padrões de segurança recomendados para redes Wi-Fi são WPA2 e WPA3.</p>
+                    
+                    <h3>Sintomas de Redes WEP:</h3>
+                    <ul>
+                        <li>São facilmente identificadas por ferramentas de análise de rede.</li>
+                        <li>Podem ser invadidas por qualquer pessoa com conhecimento básico em segurança de redes sem fio.</li>
+                    </ul>
+                    <p>Apesar de sua insegurança, o WEP foi um primeiro passo importante para a segurança de redes sem fio e motivou o desenvolvimento de padrões mais robustos.</p>
+                `
+            },
+            'wpa': {
+                title: 'WPA (Wi-Fi Protected Access)',
+                description: 'Wi-Fi Protected Access - Sucessor do WEP com melhorias de segurança.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>WPA (Wi-Fi Protected Access) é um padrão de segurança para redes sem fio (Wi-Fi) criado pela Wi-Fi Alliance como uma solução provisória e de rápida implementação para corrigir as graves falhas de segurança do WEP, enquanto um padrão mais robusto (WPA2) estava sendo desenvolvido. Foi lançado em 2003.</p>
+                    
+                    <h3>Melhorias do WPA em Relação ao WEP:</h3>
+                    <ul>
+                        <li><strong>TKIP (Temporal Key Integrity Protocol):</strong> Substituiu o RC4 e o IV estático do WEP. O TKIP usa um algoritmo de chaves por pacote que gera uma chave de criptografia única para cada pacote de dados, e as chaves são alteradas dinamicamente. Isso dificulta muito os ataques baseados na coleta de IVs.</li>
+                        <li><strong>MIC (Message Integrity Check - Código de Integridade da Mensagem):</strong> Adicionou uma verificação de integridade da mensagem muito mais forte para prevenir a adulterção de pacotes em trânsito.</li>
+                        <li><strong>Autenticação 802.1X (para WPA-Enterprise):</strong> Permitiu a integração com servidores RADIUS para autenticação de usuários em ambientes corporativos, eliminando a necessidade de uma única chave compartilhada.</li>
+                    </ul>
+                    
+                    <h3>Versões do WPA:</h3>
+                    <ul>
+                        <li><strong>WPA-Personal (WPA-PSK):</strong> Utiliza uma Chave Pré-Compartilhada (PSK - Pre-Shared Key) para autenticação, tornando-o adequado para redes domésticas e pequenas empresas.</li>
+                        <li><strong>WPA-Enterprise (WPA-802.1X):</strong> Projetado para grandes empresas, utiliza autenticação de usuário via servidor RADIUS (padrão 802.1X), fornecendo chaves de criptografia únicas para cada usuário.</li>
+                    </ul>
+                    
+                    <h3>Status Atual:</h3>
+                    <p>Embora o WPA tenha sido um avanço significativo em relação ao WEP, ele ainda possui vulnerabilidades (notavelmente, o TKIP foi posteriormente considerado não totalmente seguro). Por isso, não é mais o padrão recomendado. O WPA2 e, mais recentemente, o WPA3 são os padrões preferidos para segurança de redes sem fio.</p>
+                `
+            },
+            'wpa2': {
+                title: 'WPA2 (Wi-Fi Protected Access II)',
+                description: 'Padrão de segurança mais robusto para redes Wi-Fi, com AES e CCMP.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>WPA2 (Wi-Fi Protected Access II) é o padrão de segurança para redes sem fio (Wi-Fi) lançado pela Wi-Fi Alliance em 2004, como sucessor do WPA. Ele é baseado no padrão IEEE 802.11i e foi, por muitos anos, o padrão de segurança mais robusto e amplamente adotado para redes Wi-Fi.</p>
+                    
+                    <h3>Principais Características e Melhorias do WPA2:</h3>
+                    <ul>
+                        <li><strong>AES (Advanced Encryption Standard):</strong> O WPA2 obriga o uso do algoritmo de criptografia AES, que é muito mais forte e seguro que o RC4 (usado no WEP e TKIP no WPA).</li>
+                        <li><strong>CCMP (Counter Mode with Cipher Block Chaining Message Authentication Code Protocol):</strong> É o protocolo de encapsulamento e integridade de dados utilizado com o AES. O CCMP oferece confidencialidade dos dados e uma verificação de integridade da mensagem robusta, protegendo contra falsificação e adulterção.</li>
+                        <li><strong>Mecanismo de Autenticação Sólida:</strong>
+                            <ul>
+                                <li><strong>WPA2-Personal (WPA2-PSK):</strong> Utiliza uma Chave Pré-Compartilhada (PSK). Adequado para redes domésticas e pequenas empresas, onde todos os usuários compartilham a mesma senha.</li>
+                                <li><strong>WPA2-Enterprise (WPA2-802.1X):</strong> Projetado para grandes empresas e organizações. Utiliza autenticação de usuário via servidor RADIUS (padrão 802.1X), fornecendo chaves de criptografia únicas para cada usuário e uma segurança muito mais granular.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Vulnerabilidades Conhecidas:</h3>
+                    <p>Apesar de sua força, em 2017, foi descoberta a vulnerabilidade KRACK (Key Reinstallation Attack), que afetava o handshake de quatro vias do WPA2, permitindo que atacantes interceptassem e manipulasssem o tráfego. As atualizações de firmware de dispositivos foram lançadas para mitigar essa falha, mas a descoberta impulsionou o desenvolvimento de um padrão ainda mais seguro: o WPA3.</p>
+                    
+                    <h3>Status Atual:</h3>
+                    <p>O WPA2 ainda é amplamente utilizado e considerado seguro o suficiente para a maioria das aplicações, especialmente quando as atualizações de segurança mais recentes estão aplicadas. No entanto, o WPA3 é o padrão mais recente e recomendado para novas instalações e dispositivos compatíveis.</p>
+                `
+            },
+            'ssh': {
+                title: 'SSH (Secure SHell)',
+                description: 'Protocolo criptografado para operações de rede seguras.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>SSH (Secure SHell) é um protocolo de rede criptográfico que permite a operação segura de serviços de rede sobre uma rede não segura, como a internet. Ele oferece acesso remoto seguro a servidores, execução de comandos remotos, transferência de arquivos segura (SCP, SFTP) e tunelamento de portas.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>O SSH opera no modelo cliente-servidor, usando criptografia para proteger a comunicação. Quando um cliente SSH se conecta a um servidor SSH (daemon SSH):</p>
+                    <ol>
+                        <li><strong>Handshake e Estabelecimento da Conexão Segura:</strong> Ocorre uma negociação para estabelecer um canal criptografado. Chaves públicas são usadas para verificar a identidade do servidor e para troca segura de chaves de sessão.</li>
+                        <li><strong>Autenticação do Usuário:</strong> O cliente autentica-se com o servidor. Isso pode ser feito via senha (menos segura) ou via par de chaves SSH (chave pública/privada, mais segura e comum).</li>
+                        <li><strong>Sessão Segura:</strong> Uma vez autenticado, todo o tráfego entre cliente e servidor é criptografado usando algoritmos de criptografia fortes (como AES, Triple DES).</li>
+                    </ol>
+                    
+                    <h3>Características Principais:</h3>
+                    <ul>
+                        <li><strong>Criptografia Forte:</strong> Protege a confidencialidade e integridade dos dados, impedindo que sejam lidos ou alterados por terceiros.</li>
+                        <li><strong>Autenticação Segura:</strong> Suporta vários métodos de autenticação, sendo a autenticação por chave pública a mais recomendada.</li>
+                        <li><strong>Multiplexação de Canais:</strong> Permite múltiplas sessões de dados (terminal, transferência de arquivos) sobre uma única conexão SSH.</li>
+                        <li><strong>Porta Padrão:</strong> A porta TCP padrão para SSH é a 22.</li>
+                    </ul>
+                    
+                    <h3>Principais Usos do SSH:</h3>
+                    <ul>
+                        <li><strong>Acesso Remoto a Servidores e Dispositivos de Rede:</strong> O uso mais comum, substituindo o inseguro Telnet e Rlogin. Administradores de sistema usam para gerenciar servidores Linux/Unix e equipamentos de rede (roteadores, switches).</li>
+                        <li><strong>Transferência Segura de Arquivos:</strong>
+                            <ul>
+                                <li><strong>SCP (Secure Copy Protocol):</strong> Para copiar arquivos de forma segura entre hosts.</li>
+                                <li><strong>SFTP (SSH File Transfer Protocol):</strong> Protocolo de transferência de arquivos mais robusto, com funcionalidades de FTP, mas sobre SSH.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tunelamento e Encaminhamento de Portas (Port Forwarding):</strong>
+                            <ul>
+                                <li><strong>Local Port Forwarding:</strong> Permite acessar um serviço na rede remota através de uma porta local.</li>
+                                <li><strong>Remote Port Forwarding:</strong> Permite que uma máquina remota acesse um serviço na sua máquina local.</li>
+                                <li><strong>Dynamic Port Forwarding (SOCKS Proxy):</strong> Cria um proxy genérico que pode encaminhar conexões para múltiplos serviços.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Execução Remota de Comandos:</strong> Executar scripts e comandos em máquinas remotas sem a necessidade de uma sessão interativa.</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Segurança:</strong> Protege dados e credenciais contra interceptação e falsificação.</li>
+                        <li><strong>Flexibilidade:</strong> Suporta uma ampla gama de aplicações e métodos de autenticação.</li>
+                        <li><strong>Ubiquidade:</strong> Presente em praticamente todos os sistemas operacionais baseados em Unix/Linux e amplamente disponível para Windows.</li>
+                    </ul>
+                `
+            }
+        };
+
+        // Função para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da página
+            }
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da página
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar aparência dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 13 - Infraestrutura e Gestão</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🏢 Infraestrutura e Gestão</h1>
+            <p class="subtitle">Seção 13 - Construindo e Mantendo Redes Robustas</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Pilares para o Funcionamento Confiável da TI</h2>
+            <p>Esta seção aborda os elementos físicos, lógicos e operacionais necessários para construir, manter e gerenciar eficientemente uma rede de computadores, garantindo sua segurança, disponibilidade e performance.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('datacenter')">
+                <div class="term-name">Datacenter</div>
+                <div class="term-description">Instalação que abriga sistemas de computadores e equipamentos de rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('rack')">
+                <div class="term-name">Rack</div>
+                <div class="term-description">Estrutura metálica para organizar e proteger equipamentos de TI.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cto')">
+                <div class="term-name">CTO</div>
+                <div class="term-description">Caixa de Terminação Óptica, usada em redes de fibra.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('provedor')">
+                <div class="term-name">Provedor</div>
+                <div class="term-description">Empresa que fornece acesso à internet ou outros serviços de rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('isp')">
+                <div class="term-name">ISP</div>
+                <div class="term-description">Internet Service Provider - Provedor de serviços de internet.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('sla')">
+                <div class="term-name">SLA</div>
+                <div class="term-description">Service Level Agreement - Acordo de nível de serviço, garantias de desempenho.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('backup')">
+                <div class="term-name">Backup</div>
+                <div class="term-description">Cópia de segurança de dados para prevenir perdas.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ups')">
+                <div class="term-name">UPS</div>
+                <div class="term-description">Uninterruptible Power Supply - Fonte de energia ininterrupta.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('uptime')">
+                <div class="term-name">Uptime</div>
+                <div class="term-description">Tempo total em que um sistema ou serviço está operacional e disponível.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('downtime')">
+                <div class="term-name">Downtime</div>
+                <div class="term-description">Período em que um sistema ou serviço não está operacional.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('remoto')">
+                <div class="term-name">Remoto</div>
+                <div class="term-description">Acesso ou gerenciamento de um dispositivo ou sistema à distância.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('localhost')">
+                <div class="term-name">LocalHost</div>
+                <div class="term-description">Nome padrão para o computador local, geralmente 127.0.0.1.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('login')">
+                <div class="term-name">Login</div>
+                <div class="term-description">Processo de autenticação para acessar um sistema ou serviço.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body">
+                <!-- Conteúdo será inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 - Glossário de Redes de Computadores | Seção 13</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'datacenter': {
+                title: 'Datacenter',
+                description: 'Instalação que abriga sistemas de computadores e equipamentos de rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um datacenter (ou centro de processamento de dados - CPD) é uma instalação física dedicada que abriga e interconecta sistemas de computadores, equipamentos de rede, sistemas de armazenamento e infraestruturas associadas (como sistemas de energia, refrigeração, controle de umidade e segurança) para organizar, processar, armazenar e disseminar grandes volumes de dados.</p>
+                    
+                    <h3>Componentes Essenciais de um Datacenter:</h3>
+                    <ul>
+                        <li><strong>Infraestrutura de Computação:</strong> Servidores (físicos e virtuais), racks, e equipamentos de processamento.</li>
+                        <li><strong>Infraestrutura de Rede:</strong> Roteadores, switches, firewalls, cabeamento de rede de alta velocidade (geralmente fibra óptica).</li>
+                        <li><strong>Infraestrutura de Armazenamento:</strong> Storages (SAN, NAS, DAS), sistemas de backup e recuperação de desastres.</li>
+                        <li><strong>Sistemas de Energia:</strong> Fontes de alimentação ininterrupta (UPS), geradores de energia, unidades de distribuição de energia (PDUs).</li>
+                        <li><strong>Sistemas de Refrigeração:</strong> Unidades de ar condicionado de precisão (CRAC/CRAH), sistemas de corredor frio/quente, para manter a temperatura e umidade ideais dos equipamentos.</li>
+                        <li><strong>Sistemas de Segurança Física:</strong> Controle de acesso, vigilância por câmeras (CFTV), detecção e combate a incêndios.</li>
+                        <li><strong>Monitoramento e Gerenciamento:</strong> Ferramentas para monitorar o desempenho, a saúde e o consumo de energia dos equipamentos.</li>
+                    </ul>
+                    
+                    <h3>Importância dos Datacenters:</h3>
+                    <ul>
+                        <li><strong>Hospedagem de Serviços Críticos:</strong> Alojamento de aplicações, sites, bancos de dados, serviços de e-mail e sistemas empresariais essenciais.</li>
+                        <li><strong>Disponibilidade:</strong> Projetados para operar 24/7 com alta disponibilidade e redundância para minimizar o tempo de inatividade (downtime).</li>
+                        <li><strong>Confiabilidade:</strong> Oferecem ambientes controlados para garantir o funcionamento estável dos equipamentos.</li>
+                        <li><strong>Segurança:</strong> Proteção física e lógica para os dados e equipamentos.</li>
+                        <li><strong>Escalabilidade:</strong> Capacidade de expandir os recursos de computação e armazenamento conforme a demanda.</li>
+                    </ul>
+                    
+                    <h3>Tipos de Datacenters:</h3>
+                    <ul>
+                        <li><strong>Datacenters Corporativos (On-premise):</strong> Pertencem e são operados por uma única empresa para suas próprias necessidades.</li>
+                        <li><strong>Datacenters de Colocation:</strong> Empresas alugam espaço em um datacenter de terceiros para hospedar seus próprios equipamentos.</li>
+                        <li><strong>Datacenters de Provedores de Nuvem:</strong> Grandes datacenters operados por provedores como AWS, Google Cloud, Microsoft Azure, que oferecem serviços de computação em nuvem.</li>
+                        <li><strong>Edge Datacenters:</strong> Menores e localizados mais próximos dos usuários finais para reduzir a latência.</li>
+                    </ul>
+                `
+            },
+            'rack': {
+                title: 'Rack',
+                description: 'Estrutura metálica para organizar e proteger equipamentos de TI.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um rack de servidor (ou simplesmente rack) é uma estrutura metálica padronizada, geralmente vertical, projetada para montar e organizar equipamentos de tecnologia da informação (TI) como servidores, roteadores, switches, painéis de patch, UPS (Uninterruptible Power Supply) e outros hardwares de rede. Eles são essenciais para otimizar o espaço, facilitar a manutenção e melhorar a organização em datacenters e salas de TI.</p>
+                    
+                    <h3>Características Principais:</h3>
+                    <ul>
+                        <li><strong>Padronização (Unidades de Rack - U):</strong> Os racks são padronizados em larguras (geralmente 19 ou 23 polegadas) e alturas. A altura é medida em Unidades de Rack (U), onde 1U equivale a 1.75 polegadas (44.45 mm). A maioria dos equipamentos de servidor e rede é fabricada para se encaixar nessas unidades (ex: um servidor 1U ocupa uma unidade de rack).</li>
+                        <li><strong>Ventilação e Resfriamento:</strong> Projetados para permitir o fluxo de ar adequado para o resfriamento dos equipamentos, muitas vezes com portas perfuradas e espaços para organização de cabos.</li>
+                        <li><strong>Organização de Cabos:</strong> Possuem calhas e anéis para organizar os cabos de rede e energia, reduzindo a confusão e facilitando a identificação e manutenção.</li>
+                        <li><strong>Segurança Física:</strong> Muitos racks possuem portas com chave para proteger os equipamentos contra acesso não autorizado.</li>
+                        <li><strong>Variedade de Tamanhos:</strong> Disponíveis em vários tamanhos, desde mini-racks de 6U para pequenos escritórios até racks de 42U ou 48U para datacenters.</li>
+                    </ul>
+                    
+                    <h3>Benefícios do Uso de Racks:</h3>
+                    <ul>
+                        <li><strong>Otimização de Espaço:</strong> Permite empilhar equipamentos verticalmente, economizando espaço valioso no chão.</li>
+                        <li><strong>Organização:</strong> Mantém os equipamentos e cabos organizados, o que facilita a instalação, manutenção e solução de problemas.</li>
+                        <li><strong>Resfriamento:</strong> Melhora a eficiência do resfriamento ao direcionar o fluxo de ar para os equipamentos.</li>
+                        <li><strong>Segurança:</strong> Protege os equipamentos contra danos acidentais e acesso não autorizado.</li>
+                        <li><strong>Padronização:</strong> Facilita a substituição e a integração de novos equipamentos.</li>
+                    </ul>
+                    
+                    <h3>Componentes Acessórios de Rack:</h3>
+                    <ul>
+                        <li><strong>Prateleiras (Shelves):</strong> Para equipamentos que não são montáveis em rack.</li>
+                        <li><strong>Painéis Cego (Blanking Panels):</strong> Preenchem espaços vazios, otimizando o fluxo de ar.</li>
+                        <li><strong>Power Distribution Units (PDUs):</strong> Réguas de energia montáveis em rack para distribuir energia aos equipamentos.</li>
+                        <li><strong>Organizadores de Cabos:</strong> Gerenciadores de cabos horizontais e verticais.</li>
+                        <li><strong>Unidades de Ventilação:</strong> Fãs ou ventiladores adicionais para melhorar o resfriamento.</li>
+                    </ul>
+                `
+            },
+            'cto': {
+                title: 'CTO (Caixa de Terminação Óptica)',
+                description: 'Caixa de Terminação Óptica, usada em redes de fibra.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>CTO (Caixa de Terminação Óptica) é um componente essencial em redes de fibra óptica, especialmente em arquiteturas FTTH (Fiber to the Home). Ela serve como um ponto de distribuição e emenda, conectando o cabo de fibra óptica principal (o cabo alimentador ou distribuidor) da provedora aos cabos de fibra óptica que vão para as residências dos usuários (cabos drop).</p>
+                    
+                    <h3>Funções Principais da CTO:</h3>
+                    <ul>
+                        <li><strong>Divisão (Splitter):</strong> Geralmente, as CTOs abrigam splitters ópticos, que são dispositivos passivos que dividem um único sinal de fibra óptica em vários sinais para serem distribuídos para múltiplos assinantes. Por exemplo, um splitter 1:8 ou 1:16.</li>
+                        <li><strong>Emenda:</strong> Permite a emenda (fusão ou conectorização) das fibras do cabo alimentador com as fibras que vão para o splitter, e do splitter com as fibras dos cabos drop que vão para as casas.</li>
+                        <li><strong>Proteção:</strong> Protege as emendas e os splitters ópticos contra intempéries, poeira, umidade e danos físicos, garantindo a integridade e a durabilidade da rede.</li>
+                        <li><strong>Gerenciamento de Cabos:</strong> Oferece um ambiente organizado para o gerenciamento das fibras, garantindo as curvaturas mínimas e o roteamento adequado.</li>
+                        <li><strong>Ponto de Teste e Manutenção:</strong> Facilita a realização de testes e o acesso para manutenção e ativação de novos clientes.</li>
+                    </ul>
+                    
+                    <h3>Tipos e Localização:</h3>
+                    <ul>
+                        <li>As CTOs podem ser instaladas em postes, em fachadas de edifícios, subterraneamente ou até mesmo dentro de edifícios (em ambientes MDU - Multi-Dwelling Units).</li>
+                        <li>Existem diferentes tamanhos e capacidades de CTOs, dependendo do número de portas de saída (para cabos drop) que elas fornecem.</li>
+                    </ul>
+                    
+                    <h3>Importância na Rede FTTH:</h3>
+                    <p>A CTO é um ponto crítico na "última milha" da rede óptica passiva (PON). Sua instalação estratégica e a qualidade de suas emendas são fundamentais para garantir a eficiência e a qualidade do sinal óptico entregue ao usuário final, impactando diretamente na velocidade e estabilidade da conexão de internet.</p>
+                `
+            },
+            'provedor': {
+                title: 'Provedor',
+                description: 'Empresa que fornece acesso à internet ou outros serviços de rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um provedor, no contexto de redes e tecnologia, é uma empresa ou organização que oferece serviços, recursos ou infraestrutura para seus clientes. O termo é frequentemente usado de forma ampla, mas em redes de computadores, geralmente se refere a um provedor de serviços de internet (ISP) ou a um provedor de outros serviços de rede.</p>
+                    
+                    <h3>Tipos Comuns de Provedores:</h3>
+                    <ul>
+                        <li><strong>Provedor de Serviços de Internet (ISP):</strong> O tipo mais comum. Fornece acesso à internet para residências e empresas, usando tecnologias como fibra óptica, DSL, cabo, rádio ou satélite. Além do acesso à internet, muitos ISPs também oferecem serviços como e-mail, hospedagem de sites e telefonia VoIP.</li>
+                        <li><strong>Provedor de Hospedagem (Hosting Provider):</strong> Oferece espaço em servidores para sites, aplicações web e bancos de dados. Pode ser hospedagem compartilhada, VPS (Virtual Private Server), servidores dedicados ou hospedagem em nuvem.</li>
+                        <li><strong>Provedor de Serviços Gerenciados (MSP - Managed Service Provider):</strong> Gerencia a infraestrutura de TI de uma empresa (redes, servidores, segurança, backup) remotamente, geralmente sob um contrato.</li>
+                        <li><strong>Provedor de Serviços de Nuvem (Cloud Service Provider):</strong> Oferece recursos de computação em nuvem, como IaaS, PaaS e SaaS (ex: AWS, Microsoft Azure, Google Cloud).</li>
+                        <li><strong>Provedor de Serviços de Conteúdo (CSP):</strong> Oferece conteúdo digital, como serviços de streaming de vídeo (Netflix, YouTube) ou música (Spotify).</li>
+                    </ul>
+                    
+                    <h3>Funções de um Provedor:</h3>
+                    <ul>
+                        <li><strong>Conectividade:</strong> Estabelecer e manter a infraestrutura de rede necessária para fornecer os serviços.</li>
+                        <li><strong>Suporte Técnico:</strong> Oferecer assistência e solução de problemas para os clientes.</li>
+                        <li><strong>Gerenciamento:</strong> Administrar a complexidade da infraestrutura e garantir a disponibilidade e a qualidade dos serviços.</li>
+                        <li><strong>Segurança:</strong> Implementar medidas de segurança para proteger sua infraestrutura e os dados dos clientes.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <p>Provedores são a espinha dorsal da economia digital, permitindo que indivíduos e empresas se conectem, comuniquem, acessem informações e operem seus negócios online. A qualidade e a confiança nos serviços de um provedor são cruciais para o funcionamento de inúmeras aplicações e sistemas.</p>
+                `
+            },
+            'isp': {
+                title: 'ISP (Internet Service Provider)',
+                description: 'Internet Service Provider - Provedor de serviços de internet.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>ISP é a sigla para Internet Service Provider, que em português significa Provedor de Serviços de Internet. Um ISP é uma organização que fornece uma ampla gama de serviços para acessar, utilizar ou participar da internet. Eles são o principal ponto de contato para a maioria dos usuários (residenciais e empresariais) se conectarem à rede global.</p>
+                    
+                    <h3>Como um ISP Fornece Conectividade:</h3>
+                    <ul>
+                        <li><strong>Infraestrutura:</strong> ISPs possuem e operam uma complexa infraestrutura de rede que inclui cabos (fibra óptica, coaxial, par trançado), roteadores, switches, servidores DNS e equipamentos de acesso (DSLAMs para DSL, CMTS para cabo, OLTs para fibra).</li>
+                        <li><strong>Conectividade Global:</strong> ISPs maiores (Tier 1) possuem ou alugam diretamente a infraestrutura do backbone da internet. ISPs menores (Tier 2 e Tier 3) compram capacidade de ISPs maiores através de acordos de trânsito ou estabelecem acordos de interconexão (peering) em Pontos de Troca de Internet (IXPs).</li>
+                        <li><strong>Acesso ao Cliente:</strong> Eles estendem sua rede até a casa ou empresa do cliente por meio de diferentes tecnologias (fibra óptica, DSL, cabo, rádio, satélite), instalando equipamentos como modems, ONTs/ONUs ou antenas.</li>
+                    </ul>
+                    
+                    <h3>Serviços Comumente Oferecidos por ISPs:</h3>
+                    <ul>
+                        <li><strong>Acesso à Internet:</strong> Banda larga (fixa e móvel), dial-up (obsoleto).</li>
+                        <li><strong>Serviços de E-mail:</strong> Fornecem contas de e-mail (ex: seunome@provedor.com).</li>
+                        <li><strong>Hospedagem Web:</strong> Espaço em seus servidores para hospedar sites.</li>
+                        <li><strong>Registro de Domínios:</strong> Serviço de registro e gerenciamento de nomes de domínio.</li>
+                        <li><strong>Telefonia VoIP:</strong> Serviços de voz sobre IP.</li>
+                        <li><strong>Serviços de Segurança:</strong> Firewall, VPN, proteção contra DDoS.</li>
+                        <li><strong>Serviços de TV por IP (IPTV):</strong> Transmissão de canais de TV via internet.</li>
+                    </ul>
+                    
+                    <h3>Modelos de Negócio:</h3>
+                    <ul>
+                        <li><strong>ISPs de Acesso:</strong> Focados em fornecer conexão para usuários finais.</li>
+                        <li><strong>ISPs de Backbone:</strong> Operam grandes redes que interconectam ISPs menores.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <p>Os ISPs são a ponte essencial entre os usuários e o conteúdo e serviços disponíveis na internet. Sua infraestrutura e capacidade são cruciais para a velocidade, confiabilidade e disponibilidade da experiência online.</p>
+                `
+            },
+            'sla': {
+                title: 'SLA (Service Level Agreement)',
+                description: 'Service Level Agreement - Acordo de nível de serviço, garantias de desempenho.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>SLA (Service Level Agreement), ou Acordo de Nível de Serviço, é um contrato ou parte de um contrato de serviço entre um provedor de serviços (seja ele interno ou externo) e um cliente. Ele define os parâmetros e padrões de qualidade, disponibilidade e desempenho do serviço que será entregue. O SLA é fundamental para estabelecer expectativas claras e fornecer um mecanismo para medir e garantir a qualidade do serviço.</p>
+                    
+                    <h3>Componentes Típicos de um SLA:</h3>
+                    <ul>
+                        <li><strong>Descrição do Serviço:</strong> Detalhamento do serviço que será fornecido.</li>
+                        <li><strong>Métricas de Desempenho (KPIs):</strong> Parâmetros mensuráveis para avaliar a qualidade do serviço. Exemplos:
+                            <ul>
+                                <li><strong>Disponibilidade (Uptime):</strong> Porcentagem de tempo em que o serviço está operacional (ex: 99.9% de uptime).</li>
+                                <li><strong>Latência:</strong> Tempo de resposta para uma transação ou envio de pacote.</li>
+                                <li><strong>Throughput:</strong> Volume de dados processados ou transmitidos por unidade de tempo.</li>
+                                <li><strong>Tempo Médio para Restaurar o Serviço (MTTR - Mean Time To Restore):</strong> Tempo que leva para corrigir um problema e restaurar o serviço.</li>
+                                <li><strong>Tempo de Resposta do Suporte:</strong> Tempo máximo para o provedor responder a uma solicitação de suporte.</li>
+                                <li><strong>Perda de Pacotes:</strong> Porcentagem máxima de pacotes que podem ser perdidos.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Níveis de Prioridade:</strong> Classificação de incidentes e seus respectivos tempos de resolução (ex: Crítico, Alto, Médio, Baixo).</li>
+                        <li><strong>Responsabilidades:</strong> Funções e responsabilidades do provedor e do cliente.</li>
+                        <li><strong>Procedimentos de Relatório:</strong> Como o desempenho do serviço será monitorado e relatado.</li>
+                        <li><strong>Penalidades/Créditos:</strong> Compensações financeiras ou serviços adicionais que o provedor deverá conceder ao cliente em caso de descumprimento do SLA.</li>
+                        <li><strong>Cláusulas de Exceção:</strong> Situações em que o provedor não será responsabilizado (ex: desastres naturais, ações do cliente).</li>
+                    </ul>
+                    
+                    <h3>Importância do SLA:</h3>
+                    <ul>
+                        <li><strong>Clareza e Transparência:</strong> Define claramente o que o cliente pode esperar do serviço.</li>
+                        <li><strong>Gerenciamento de Expectativas:</strong> Ajuda a alinhar as expectativas entre provedor e cliente.</li>
+                        <li><strong>Medida de Desempenho:</strong> Fornece um padrão objetivo para medir a performance do provedor.</li>
+                        <li><strong>Proteção Legal:</strong> Oferece base legal para resolução de disputas em caso de falha na entrega do serviço.</li>
+                        <li><strong>Melhora Contínua:</strong> Incentiva o provedor a monitorar e melhorar constantemente a qualidade de seus serviços.</li>
+                    </ul>
+                `
+            },
+            'backup': {
+                title: 'Backup',
+                description: 'Cópia de segurança de dados para prevenir perdas.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Backup é o processo de criar cópias de dados (arquivos, documentos, bancos de dados, sistemas operacionais, configurações) e armazená-las em um local separado e seguro. O objetivo principal do backup é ter uma cópia de segurança dos dados para que possam ser restaurados em caso de perda, corrupção ou desastre (falha de hardware, erro humano, ataque cibernético, roubo, incêndio, etc.).</p>
+                    
+                    <h3>Importância do Backup:</h3>
+                    <ul>
+                        <li><strong>Proteção contra Perda de Dados:</strong> A principal razão para o backup é a segurança dos dados mais importantes.</li>
+                        <li><strong>Continuidade de Negócios:</strong> Permite que empresas recuperem operações rapidamente após um incidente.</li>
+                        <li><strong>Conformidade Regulatória:</strong> Muitas indústrias e regulamentações exigem que as empresas mantenham cópias de dados por períodos específicos.</li>
+                        <li><strong>Recuperação de Desastres:</strong> Essencial para planos de recuperação de desastres de grande escala.</li>
+                    </ul>
+                    
+                    <h3>Tipos de Backup:</h3>
+                    <ul>
+                        <li><strong>Backup Completo (Full Backup):</strong> Cópia de todos os dados selecionados. É o mais seguro e fácil de restaurar, mas o mais demorado e que ocupa mais espaço.</li>
+                        <li><strong>Backup Incremental:</strong> Cópia apenas dos dados que foram alterados desde o ÚLTIMO backup (seja ele completo ou incremental). É mais rápido e economiza espaço, mas a restauração exige o último backup completo mais todos os incrementais subsequentes.</li>
+                        <li><strong>Backup Diferencial:</strong> Cópia apenas dos dados que foram alterados desde o ÚLTIMO backup COMPLETO. Ocupa mais espaço que o incremental, mas a restauração é mais rápida (precisa apenas do último completo e do último diferencial).</li>
+                    </ul>
+                    
+                    <h3>Estratégias e Melhores Práticas:</h3>
+                    <ul>
+                        <li><strong>Regra 3-2-1:</strong>
+                            <ul>
+                                <li><strong>3 cópias:</strong> Manter pelo menos três cópias dos dados (a original e duas cópias de backup).</li>
+                                <li><strong>2 mídias diferentes:</strong> Armazenar as cópias de backup em pelo menos duas mídias diferentes (ex: disco rígido interno, disco externo, fita, nuvem).</li>
+                                <li><strong>1 cópia offsite:</strong> Manter pelo menos uma cópia fora do local físico (ex: nuvem, outro datacenter) para proteção contra desastres locais.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Teste de Restauração:</strong> É fundamental testar regularmente o processo de restauração para garantir que os backups funcionam conforme o esperado.</li>
+                        <li><strong>Automação:</strong> Automatizar as rotinas de backup para garantir que sejam realizadas consistentemente.</li>
+                        <li><strong>Criptografia:</strong> Criptografar os backups, especialmente se armazenados fora do local ou na nuvem, para proteger a confidencialidade dos dados.</li>
+                    </ul>
+                    
+                    <h3>Destinos de Backup:</h3>
+                    <ul>
+                        <li>Discos rígidos externos</li>
+                        <li>Servidores de rede (NAS, SAN)</li>
+                        <li>Fitas magnéticas</li>
+                        <li>Nuvem (Google Drive, Dropbox, AWS S3, Azure Blob Storage)</li>
+                    </ul>
+                `
+            },
+            'ups': {
+                title: 'UPS (Uninterruptible Power Supply)',
+                description: 'Uninterruptible Power Supply - Fonte de energia ininterrupta.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>UPS (Uninterruptible Power Supply), ou Fonte de Energia Ininterrupta (no Brasil, popularmente conhecido como No-break), é um dispositivo eletrônico que fornece energia elétrica temporária a equipamentos conectados em caso de falha, interrupção ou variação na rede elétrica principal. Ele garante que os equipamentos críticos continuem funcionando por um período, permitindo o desligamento seguro ou a transição para uma fonte de energia alternativa (como um gerador).</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Um UPS contém uma bateria interna (ou um banco de baterias externo) e um circuito eletrônico que monitora a energia da rede. Quando a energia da rede falha ou excede limites seguros de tensão, o UPS automaticamente (e quase instantaneamente) muda para a energia da bateria, fornecendo energia limpa e estável aos equipamentos conectados.</p>
+                    
+                    <h3>Principais Funções:</h3>
+                    <ul>
+                        <li><strong>Proteção contra Falha de Energia (Blackout):</strong> Mantém os equipamentos ligados durante quedas de energia.</li>
+                        <li><strong>Proteção contra Surtos e Picos de Voltagem:</strong> Regula a tensão e protege os equipamentos contra danos causados por flutuações de energia.</li>
+                        <li><strong>Filtragem de Ruído:</strong> Fornece energia mais "limpa" e estável, filtrando ruídos e interferências da rede elétrica.</li>
+                        <li><strong>Desligamento Seguro:</strong> Em caso de falta de energia prolongada, um UPS pode sinalizar aos servidores para que realizem um desligamento controlado, prevenindo perda de dados ou corrupção do sistema operacional.</li>
+                    </ul>
+                    
+                    <h3>Tipos de UPS:</h3>
+                    <ul>
+                        <li><strong>Standby (Offline):</strong> O tipo mais básico e econômico. A bateria é ativada apenas quando a energia da rede falha. Há um pequeno tempo de comutação.</li>
+                        <li><strong>Line-Interactive:</strong> Oferece melhor proteção que o standby, pois possui um transformador que ajusta pequenas variações de voltagem sem usar a bateria, prolongando sua vida útil.</li>
+                        <li><strong>Online (Dupla Conversão):</strong> O tipo mais avançado e caro. A energia CA de entrada é convertida para CC para carregar a bateria e, em seguida, convertida de volta para CA para alimentar os equipamentos. Isso fornece energia contínua, limpa e sem tempo de comutação. Ideal para equipamentos críticos como servidores e datacenters.</li>
+                    </ul>
+                    
+                    <h3>Aplicações Típicas:</h3>
+                    <ul>
+                        <li>Computadores pessoais, estações de trabalho.</li>
+                        <li>Servidores, equipamentos de rede (roteadores, switches, firewalls).</li>
+                        <li>Sistemas de segurança (câmeras, alarmes).</li>
+                        <li>Equipamentos médicos, sistemas de telecomunicações.</li>
+                        <li>Qualquer equipamento que necessite de energia contínua e limpa.</li>
+                    </ul>
+                `
+            },
+            'uptime': {
+                title: 'Uptime',
+                description: 'Tempo total em que um sistema ou serviço está operacional e disponível.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Uptime é um termo em inglês que se refere ao período total de tempo em que um sistema de computador, servidor, equipamento de rede (como um roteador ou switch), ou serviço (como um site ou aplicação web) está operacional e disponível para uso. É uma métrica crítica para medir a confiabilidade e a disponibilidade de sistemas de TI.</p>
+                    
+                    <h3>Como é Medido:</h3>
+                    <p>O Uptime é geralmente expresso como uma porcentagem do tempo total. Por exemplo, 99.9% de uptime em um ano significa que o sistema esteve disponível por aproximadamente 364 dias, 22 horas e 53 minutos, com um tempo de inatividade de apenas cerca de 8 horas e 46 minutos.</p>
+                    
+                    <h3>Tabela de Uptime Anual:</h3>
+                    <table class="data-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Uptime em %</th>
+                          <th scope="col">Downtime Anual</th>
+                          <th scope="col">Downtime Mensal</th>
+                          <th scope="col">Downtime Semanal</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>99%</td>
+                          <td>3 dias, 15 h, 36 min</td>
+                          <td>7 h, 18 min</td>
+                          <td>1 h, 40 min</td>
+                        </tr>
+                        <tr>
+                          <td>99.9%</td>
+                          <td>8 h, 46 min</td>
+                          <td>43 min, 49 s</td>
+                          <td>10 min, 4 s</td>
+                        </tr>
+                        <tr>
+                          <td>99.99%</td>
+                          <td>52 min, 36 s</td>
+                          <td>4 min, 22 s</td>
+                          <td>1 min, 0 s</td>
+                        </tr>
+                        <tr>
+                          <td>99.999%</td>
+                          <td>5 min, 15 s</td>
+                          <td>26 s</td>
+                          <td>6 s</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <h3>Importância do Uptime:</h3>
+                    <ul>
+                        <li><strong>Acordos de Nível de Serviço (SLA):</strong> ISPs, provedores de hospedagem e serviços em nuvem frequentemente incluem garantias de uptime em seus SLAs, com penalidades se não atingirem o nível prometido.</li>
+                        <li><strong>Credibilidade e Confiança:</strong> Um alto uptime é um indicador de que um serviço é confiável e que o provedor tem uma boa infraestrutura e procedimentos de gerenciamento.</li>
+                        <li><strong>Impacto Financeiro:</strong> Para empresas, o downtime pode resultar em perda de vendas, produtividade, dados e reputação.</li>
+                        <li><strong>Monitoramento:</strong> Empresas monitoram constantemente o uptime de seus serviços para identificar problemas e garantir a conformidade com os SLAs.</li>
+                    </ul>
+                    
+                    <h3>Fatores que Afetam o Uptime:</h3>
+                    <ul>
+                        <li>Falhas de hardware ou software.</li>
+                        <li>Problemas na rede elétrica (protegidos por UPS/geradores).</li>
+                        <li>Desastres naturais.</li>
+                        <li>Ataques cibernéticos (DDoS).</li>
+                        <li>Erros humanos (erro de configuração, manutenção inadequada).</li>
+                    </ul>
+                    <p>O objetivo de qualquer operação de TI é maximizar o uptime e minimizar o downtime.</p>
+                `
+            },
+            'downtime': {
+                title: 'Downtime',
+                description: 'Período em que um sistema ou serviço não está operacional.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Downtime é um termo em inglês que se refere ao período de tempo em que um sistema, serviço, equipamento de rede (como um roteador ou switch), ou aplicação não está operacional ou disponível para uso. É o oposto de uptime e representa uma interrupção no serviço que pode variar de minutos a horas ou até dias.</p>
+                    
+                    <h3>Causas Comuns de Downtime:</h3>
+                    <ul>
+                        <li><strong>Falhas de Hardware:</strong> Quebra de servidores, discos rígidos, equipamentos de rede, fontes de alimentação.</li>
+                        <li><strong>Falhas de Software:</strong> Bugs, travamentos de sistema operacional, falhas em aplicações.</li>
+                        <li><strong>Interrupções de Energia:</strong> Quedas de energia elétrica não mitigadas por UPS ou geradores.</li>
+                        <li><strong>Problemas de Rede:</strong> Cortes de cabo, falhas de link, congestionamento severo.</li>
+                        <li><strong>Erros Humanos:</strong> Configurações incorretas, manutenção inadequada, exclusão acidental de dados.</li>
+                        <li><strong>Ataques Cibernéticos:</strong> Ataques de Negação de Serviço Distribuída (DDoS), ransomware, invasões que comprometem a operação.</li>
+                        <li><strong>Desastres Naturais:</strong> Incêndios, inundações, terremotos que afetam a infraestrutura física.</li>
+                        <li><strong>Manutenção Programada:</strong> Períodos de inatividade planejados para atualizações, reparos ou migrações. Embora planejados, ainda são considerados downtime.</li>
+                    </ul>
+                    
+                    <h3>Impacto do Downtime:</h3>
+                    <ul>
+                        <li><strong>Perda Financeira:</strong> Para empresas, o downtime pode significar perda de vendas, transações não realizadas e multa por descumprimento de SLA.</li>
+                        <li><strong>Perda de Produtividade:</strong> Funcionários incapazes de realizar suas tarefas.</li>
+                        <li><strong>Danos à Reputação:</strong> Clientes insatisfeitos e perda de confiança na marca.</li>
+                        <li><strong>Perda de Dados:</strong> Em alguns casos, pode ocorrer perda ou corrupção de dados se não houver sistemas de backup e recuperação eficazes.</li>
+                        <li><strong>Custos de Recuperação:</strong> Despesas com equipes técnicas e recursos para restaurar o serviço.</li>
+                    </ul>
+                    
+                    <h3>Minimizando o Downtime:</h3>
+                    <ul>
+                        <li><strong>Redundância:</strong> Duplicar componentes críticos (servidores, redes, fontes de energia).</li>
+                        <li><strong>Alta Disponibilidade (HA):</strong> Implementar sistemas que garantam a continuidade do serviço mesmo com a falha de um componente.</li>
+                        <li><strong>Monitoramento Proativo:</strong> Usar ferramentas para detectar problemas antes que causem uma interrupção.</li>
+                        <li><strong>Planos de Recuperação de Desastres (DRP):</strong> Documentar e testar procedimentos para restaurar serviços após um grande desastre.</li>
+                        <li><strong>Manutenção Preventiva:</strong> Realizar manutenções e atualizações regularmente e em períodos de baixo impacto.</li>
+                    </ul>
+                    <p>Medir e analisar o downtime é crucial para a melhoria contínua da confiabilidade dos serviços de TI.</p>
+                `
+            },
+            'remoto': {
+                title: 'Remoto (Acesso Remoto)',
+                description: 'Acesso ou gerenciamento de um dispositivo ou sistema à distância.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Acesso remoto (ou gerenciamento remoto) refere-se à capacidade de conectar-se, controlar ou interagir com um computador, servidor, dispositivo de rede ou sistema que não está fisicamente presente no local do usuário. Essa conexão é estabelecida geralmente através de uma rede, como a internet.</p>
+                    
+                    <h3>Propósitos Comuns do Acesso Remoto:</h3>
+                    <ul>
+                        <li><strong>Suporte Técnico:</strong> Técnicos de TI podem solucionar problemas e configurar computadores de usuários sem precisar estar fisicamente presentes.</li>
+                        <li><strong>Trabalho Remoto (Home Office):</strong> Funcionários podem acessar os recursos da empresa (arquivos, aplicações, e-mail) de casa ou de qualquer outro local.</li>
+                        <li><strong>Gerenciamento de Servidores:</strong> Administradores de sistema podem gerenciar servidores em datacenters distantes.</li>
+                        <li><strong>Acesso a Recursos Pessoais:</strong> Acessar arquivos ou aplicativos no seu próprio computador de casa enquanto está em viagem.</li>
+                        <li><strong>Colaboração:</strong> Compartilhar a tela ou controlar o computador de outra pessoa para fins de colaboração.</li>
+                    </ul>
+                    
+                    <h3>Tecnologias e Protocolos de Acesso Remoto:</h3>
+                    <ul>
+                        <li><strong>VPN (Virtual Private Network):</strong> Cria uma conexão segura e criptografada entre o dispositivo do usuário e a rede remota, fazendo com que o usuário se sinta como se estivesse fisicamente conectado à rede.</li>
+                        <li><strong>SSH (Secure Shell):</strong> Para acesso seguro via linha de comando a sistemas Linux/Unix e dispositivos de rede. Permite execução de comandos e transferência de arquivos.</li>
+                        <li><strong>RDP (Remote Desktop Protocol):</strong> Protocolo da Microsoft para acesso remoto à área de trabalho gráfica de sistemas Windows.</li>
+                        <li><strong>VNC (Virtual Network Computing):</strong> Um sistema gráfico de compartilhamento de desktop que permite controlar remotamente outro computador. Multiplataforma.</li>
+                        <li><strong>Ferramentas de Suporte Remoto:</strong> Softwares como TeamViewer, AnyDesk, Chrome Remote Desktop, que fornecem acesso e controle gráfico a computadores.</li>
+                        <li><strong>Web-based Remote Access:</strong> Alguns sistemas permitem acesso remoto através de um navegador web, sem a necessidade de instalar software cliente.</li>
+                    </ul>
+                    
+                    <h3>Segurança no Acesso Remoto:</h3>
+                    <p>A segurança é uma preocupação fundamental no acesso remoto, pois abre a rede a conexões externas. Medidas de segurança incluem:</p>
+                    <ul>
+                        <li>Criptografia forte (usando VPN, SSH, TLS).</li>
+                        <li>Autenticação robusta (senhas fortes, autenticação de dois fatores - 2FA).</li>
+                        <li>Firewalls para controlar o tráfego de acesso remoto.</li>
+                        <li>Auditorias e logs de acesso.</li>
+                        <li>Políticas de segurança claras.</li>
+                    </ul>
+                `
+            },
+            'localhost': {
+                title: 'LocalHost',
+                description: 'Nome padrão para o computador local, geralmente 127.0.0.1.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Localhost é um nome de host que se refere ao computador ou dispositivo local que está em uso. É um nome padrão usado para se referir ao seu próprio computador em uma rede. O endereço IP associado ao localhost é <code>127.0.0.1</code> (no IPv4) ou <code>::1</code> (no IPv6), que é conhecido como endereço de loopback.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Quando você se conecta a <code>localhost</code> ou <code>127.0.0.1</code>, a requisição de rede não sai do seu computador. Em vez disso, ela é redirecionada de volta para o próprio computador, permitindo que um programa cliente se conecte a um programa servidor executando na mesma máquina, sem depender de uma conexão de rede física.</p>
+                    
+                    <h3>Usos Comuns do Localhost:</h3>
+                    <ul>
+                        <li><strong>Desenvolvimento e Teste de Software:</strong> Desenvolvedores usam localhost para testar aplicações web (servidores web, bancos de dados) e serviços de rede localmente antes de implantá-los em um servidor de produção. Isso economiza tempo e largura de banda, e não afeta o serviço ao vivo.</li>
+                        <li><strong>Acesso a Serviços Locais:</strong> Muitos serviços e aplicações que são executadas no seu próprio computador (como servidores de jogos, proxies locais) podem ser acessados via localhost.</li>
+                        <li><strong>Bloqueio de Sites (via arquivo hosts):</strong> O arquivo hosts do sistema operacional pode ser editado para redirecionar nomes de domínio para o localhost (<code>127.0.0.1</code>). Isso é usado para bloquear o acesso a determinados sites ou a servidores de anúncios, pois as requisições para esses domínios são enviadas de volta para o próprio computador e não chegam ao servidor real.</li>
+                        <li><strong>Solução de Problemas de Rede:</strong> Pode-se usar o comando ping para verificar se a pilha de rede TCP/IP do computador está funcionando corretamente (ex: <code>ping localhost</code> ou <code>ping 127.0.0.1</code>).</li>
+                    </ul>
+                    
+                    <h3>Endereço de Loopback (127.0.0.1):</h3>
+                    <p>O endereço <code>127.0.0.1</code> (e todo o bloco <code>127.0.0.0/8</code>) é reservado para o endereço de loopback. Isso significa que qualquer tráfego endereçado a esse intervalo é processado localmente pelo sistema operacional e nunca é enviado para a rede física. Isso garante que a comunicação entre processos no mesmo computador seja rápida e segura, sem depender da conectividade de rede.</p>
+                `
+            },
+            'login': {
+                title: 'Login',
+                description: 'Processo de autenticação para acessar um sistema ou serviço.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Login (também conhecido como logon ou sign-in) é o processo pelo qual um usuário se autentica em um sistema de computador, serviço online, aplicativo ou rede para obter acesso. É a porta de entrada para um ambiente seguro e personalizado, onde o usuário pode interagir com recursos e dados que exigem permissão.</p>
+                    
+                    <h3>Como Funciona o Processo de Login:</h3>
+                    <ol>
+                        <li><strong>Identificação:</strong> O usuário fornece uma credencial de identificação, geralmente um nome de usuário (username) ou endereço de e-mail.</li>
+                        <li><strong>Autenticação:</strong> O usuário fornece uma segunda credencial para provar sua identidade, tipicamente uma senha (password).</li>
+                        <li><strong>Verificação:</strong> O sistema compara as credenciais fornecidas com as armazenadas em seu banco de dados ou diretório de usuários (ex: Active Directory, LDAP).</li>
+                        <li><strong>Autorização:</strong> Se as credenciais forem válidas, o sistema autentica o usuário e concede acesso, aplicando as permissões e privilégios associados àquela conta.</li>
+                        <li><strong>Sessão:</strong> Uma sessão é estabelecida, permitindo que o usuário permaneça logado por um determinado período sem precisar autenticar-se novamente para cada ação.</li>
+                    </ol>
+                    
+                    <h3>Componentes Comuns de Login:</h3>
+                    <ul>
+                        <li><strong>Campo de Usuário/ID:</strong> Onde o usuário insere seu identificador.</li>
+                        <li><strong>Campo de Senha:</strong> Onde a senha é inserida (geralmente mascarada para segurança).</li>
+                        <li><strong>Botão "Entrar" / "Login":</strong> Para submeter as credenciais.</li>
+                        <li><strong>Mecanismos de Recuperação:</strong> Opções como "Esqueceu sua senha?".</li>
+                        <li><strong>Caixas de Seleção:</strong> Ex: "Lembrar-me", "Manter conectado".</li>
+                    </ul>
+                    
+                    <h3>Segurança no Login:</h3>
+                    <ul>
+                        <li><strong>Senhas Fortes:</strong> Incentivar o uso de senhas complexas e únicas.</li>
+                        <li><strong>Autenticação de Dois Fatores (2FA/MFA):</strong> Adiciona uma camada extra de segurança, exigindo um segundo método de verificação (ex: código enviado por SMS, token de aplicativo).</li>
+                        <li><strong>Criptografia (HTTPS/SSL/TLS):</strong> Proteger as credenciais durante a transmissão pela rede.</li>
+                        <li><strong>Políticas de Bloqueio:</strong> Bloquear contas após múltiplas tentativas de login falhas para prevenir ataques de força bruta.</li>
+                        <li><strong>Monitoramento de Atividade:</strong> Detectar e alertar sobre tentativas de login suspeitas.</li>
+                    </ul>
+                    
+                    <h3>Login vs. Logout:</h3>
+                    <p>Logout (ou sign-out) é o processo inverso, onde o usuário encerra sua sessão, desconectando-se do sistema para proteger sua privacidade e segurança, especialmente em computadores públicos ou compartilhados.</p>
+                `
+            }
+        };
+
+        // Função para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da página
+            }
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da página
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar aparência dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 10 - Web e Internet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>💻 Web e Internet</h1>
+            <p class="subtitle">Seção 10 - O Universo Digital e a Conectividade Global</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Explorando a World Wide Web e a Rede Global</h2>
+            <p>Esta seção aborda os conceitos fundamentais da World Wide Web e da Internet, desde sua estrutura e funcionamento até os serviços e ferramentas que utilizamos para interagir com o vasto universo digital.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('web')">
+                <div class="term-name">Web</div>
+                <div class="term-description">A World Wide Web, sistema de documentos interconectados via internet.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('www')">
+                <div class="term-name">WWW</div>
+                <div class="term-description">Abreviação de World Wide Web, o sistema de documentos de hipertexto.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('browser')">
+                <div class="term-name">Browser</div>
+                <div class="term-description">Software para acessar e exibir conteúdo da World Wide Web.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('navegacao')">
+                <div class="term-name">Navegação</div>
+                <div class="term-description">O ato de explorar páginas e conteúdos na internet.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('site')">
+                <div class="term-name">Site</div>
+                <div class="term-description">Conjunto de páginas web e conteúdos relacionados hospedados em um domínio.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('url')">
+                <div class="term-name">URL</div>
+                <div class="term-description">Endereço único de um recurso na internet, como uma página web.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('html')">
+                <div class="term-name">HTML</div>
+                <div class="term-description">Linguagem de marcação para criar e estruturar conteúdo para a web.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('download')">
+                <div class="term-name">Download</div>
+                <div class="term-description">Transferência de dados de um servidor para um dispositivo local.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('upload')">
+                <div class="term-name">Upload</div>
+                <div class="term-description">Transferência de dados de um dispositivo local para um servidor.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('e-mail')">
+                <div class="term-name">E-mail</div>
+                <div class="term-description">Serviço de mensagens eletrônicas trocadas entre usuários.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('cloud-computing')">
+                <div class="term-name">Cloud Computing</div>
+                <div class="term-description">Entrega de serviços de computação pela internet, como servidores, armazenamento e softwares.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('dominio')">
+                <div class="term-name">Domínio</div>
+                <div class="term-description">Nome que identifica um site na internet, como nomedosite.com.br.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('whois')">
+                <div class="term-name">WHOIS</div>
+                <div class="term-description">Serviço de consulta a banco de dados de registro de domínios e IPs.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body">
+                <!-- Conteúdo será inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 - Glossário de Redes de Computadores | Seção 10</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'web': {
+                title: 'Web (World Wide Web)',
+                description: 'A World Wide Web, sistema de documentos interconectados via internet.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>A World Wide Web (WWW), comumente conhecida como a Web, é um sistema de documentos de hipertexto interconectados e outros recursos, acessíveis via Internet. Com um navegador web, os usuários podem visualizar páginas web que podem conter texto, imagens, vídeos e outros conteúdos multimídia, e navegar entre eles usando hiperlinks.</p>
+                    
+                    <h3>Origem:</h3>
+                    <p>A Web foi inventada por Tim Berners-Lee no CERN (Organização Europeia para a Pesquisa Nuclear) em 1989. O objetivo inicial era facilitar o compartilhamento de informações entre pesquisadores de forma mais eficiente.</p>
+                    
+                    <h3>Componentes Fundamentais:</h3>
+                    <ul>
+                        <li><strong>HTTP (Hypertext Transfer Protocol):</strong> O protocolo de comunicação usado para transferir documentos de hipertexto.</li>
+                        <li><strong>HTML (Hypertext Markup Language):</strong> A linguagem de marcação para criar a estrutura e o conteúdo das páginas web.</li>
+                        <li><strong>URL (Uniform Resource Locator):</strong> O sistema de endereçamento para localizar recursos na Web.</li>
+                        <li><strong>Navegador Web (Browser):</strong> Software cliente usado para acessar e exibir conteúdo da Web.</li>
+                        <li><strong>Servidor Web:</strong> Programa de computador que armazena páginas web e responde a requisições de navegadores.</li>
+                    </ul>
+                    
+                    <h3>Diferença entre Web e Internet:</h3>
+                    <p>Muitas vezes usados como sinônimos, Internet e Web são conceitos diferentes:</p>
+                    <ul>
+                        <li><strong>Internet:</strong> É a infraestrutura física e lógica global de redes interconectadas que permite a comunicação de dados. É a "estrada".</li>
+                        <li><strong>Web:</strong> É um dos muitos serviços que funcionam sobre a Internet (assim como e-mail, FTP, VoIP). É um dos "veículos" que trafegam nessa estrada.</li>
+                    </ul>
+                    
+                    <h3>Evolução da Web:</h3>
+                    <ul>
+                        <li><strong>Web 1.0 (Web Estática):</strong> Foco em conteúdo estático, predominantemente de leitura. Sites eram como "folhetos online".</li>
+                        <li><strong>Web 2.0 (Web Social/Interativa):</strong> Ascensão de redes sociais, blogs, wikis e aplicações web interativas. Usuários não são apenas consumidores, mas também produtores de conteúdo.</li>
+                        <li><strong>Web 3.0 (Web Semântica/Descentralizada):</strong> Visando uma web mais inteligente e conectada, onde os dados são compreendidos pelas máquinas, e a descentralização (blockchain, dApps) ganha força.</li>
+                    </ul>
+                `
+            },
+            'www': {
+                title: 'WWW (World Wide Web)',
+                description: 'Abreviação de World Wide Web, o sistema de documentos de hipertexto.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>WWW é a sigla para World Wide Web, o sistema de documentos interconectados e outros recursos web que são acessados via internet. É o conjunto de páginas web, sites e conteúdos multimídia que utilizamos diariamente. Embora a Web seja uma parte da Internet, é frequentemente usada como sinônimo da Internet em conversas do dia a dia.</p>
+                    
+                    <h3>Contexto Histórico:</h3>
+                    <p>O conceito foi proposto por Tim Berners-Lee em 1989 no CERN, com o objetivo de criar um sistema global de informação interconectado que permitiria aos cientistas e pesquisadores compartilhar dados e documentos facilmente. O primeiro navegador e servidor web foram lançados em 1990.</p>
+                    
+                    <h3>Componentes-Chave para o Funcionamento da WWW:</h3>
+                    <ul>
+                        <li><strong>Protocolo HTTP:</strong> O conjunto de regras que permite a troca de documentos de hipertexto.</li>
+                        <li><strong>Linguagem HTML:</strong> A linguagem de marcação usada para estruturar o conteúdo das páginas web.</li>
+                        <li><strong>Identificadores Uniformes de Recurso (URLs):</strong> Os endereços que identificam e localizam recursos na Web.</li>
+                        <li><strong>Navegadores Web:</strong> Softwares que interpretam HTML, exibem o conteúdo e permitem a interação com a Web.</li>
+                        <li><strong>Servidores Web:</strong> Computadores que armazenam páginas web e entregam conteúdo aos navegadores mediante requisição.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <ul>
+                        <li><strong>Acesso à Informação:</strong> Democratizou o acesso a um vasto repositório de conhecimento e dados.</li>
+                        <li><strong>Comunicação e Interação:</strong> Possibilitou novas formas de comunicação, colaboração e entretenimento (redes sociais, fóruns, streaming).</li>
+                        <li><strong>Comércio Eletrônico:</strong> Transformou a forma como pessoas e empresas realizam transações comerciais.</li>
+                        <li><strong>Serviços:</strong> Permitiu o desenvolvimento e a entrega de inúmeros serviços online (bancários, governamentais, educacionais).</li>
+                    </ul>
+                `
+            },
+            'browser': {
+                title: 'Browser (Navegador Web)',
+                description: 'Software para acessar e exibir conteúdo da World Wide Web.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um navegador web (ou browser) é um aplicativo de software para acessar informações na World Wide Web. Quando um usuário digita um URL, o navegador busca o conteúdo da página web no servidor e o exibe de forma legível e interativa.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ol>
+                        <li><strong>Resolução de URL:</strong> O navegador usa o DNS para traduzir o nome de domínio (parte do URL) em um endereço IP.</li>
+                        <li><strong>Requisição HTTP/HTTPS:</strong> O navegador envia uma requisição HTTP (ou HTTPS para conexões seguras) para o servidor web no endereço IP resolvido, solicitando a página.</li>
+                        <li><strong>Recebimento de Conteúdo:</strong> O servidor responde enviando os arquivos da página (HTML, CSS, JavaScript, imagens, etc.).</li>
+                        <li><strong>Renderização:</strong> O navegador processa esses arquivos:
+                            <ul>
+                                <li>Analisa o HTML para criar a estrutura da página (DOM - Document Object Model).</li>
+                                <li>Aplica as regras CSS para estilizar o conteúdo.</li>
+                                <li>Executa o JavaScript para adicionar interatividade.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Exibição:</strong> A página é exibida na janela do navegador para o usuário.</li>
+                    </ol>
+                    
+                    <h3>Principais Funções:</h3>
+                    <ul>
+                        <li><strong>Exibição de Páginas:</strong> Renderiza HTML, CSS, imagens e outros formatos de mídia.</li>
+                        <li><strong>Navegação:</strong> Permite ao usuário navegar entre páginas usando hiperlinks, botões de voltar/avançar, e favoritos.</li>
+                        <li><strong>Preenchimento de Formulários:</strong> Gerencia a entrada de dados em formulários web.</li>
+                        <li><strong>Gerenciamento de Cookies:</strong> Armazena e envia cookies para os sites, permitindo que os sites lembrem o usuário.</li>
+                        <li><strong>Segurança:</strong> Implementa recursos de segurança como alertas de sites perigosos, proteção contra phishing e suporte a HTTPS.</li>
+                        <li><strong>Extensibilidade:</strong> Muitos navegadores suportam extensões (add-ons) que adicionam funcionalidades.</li>
+                    </ul>
+                    
+                    <h3>Exemplos de Navegadores Populares:</h3>
+                    <ul>
+                        <li>Google Chrome</li>
+                        <li>Mozilla Firefox</li>
+                        <li>Microsoft Edge</li>
+                        <li>Apple Safari</li>
+                        <li>Opera</li>
+                    </ul>
+                `
+            },
+            'navegacao': {
+                title: 'Navegação (Web)',
+                description: 'O ato de explorar páginas e conteúdos na internet.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Em um contexto de internet, "navegação" refere-se ao ato de explorar e interagir com páginas, sites e outros conteúdos disponíveis na World Wide Web. O usuário "navega" entre diferentes recursos utilizando um navegador web, geralmente clicando em hiperlinks ou digitando URLs.</p>
+                    
+                    <h3>Como Ocorre a Navegação:</h3>
+                    <ul>
+                        <li><strong>Hiperlinks:</strong> A forma mais comum de navegação. Ao clicar em um texto, imagem ou ícone que é um hiperlink, o navegador carrega a página ou recurso associado a esse link.</li>
+                        <li><strong>URLs Diretas:</strong> Digitar o endereço completo (URL) de uma página web diretamente na barra de endereços do navegador.</li>
+                        <li><strong>Busca:</strong> Utilizar motores de busca (como Google, Bing) para encontrar informações e, a partir dos resultados, acessar os sites desejados.</li>
+                        <li><strong>Histórico e Favoritos:</strong> Reacessar páginas visitadas anteriormente através do histórico do navegador ou de links salvos como favoritos/marcadores.</li>
+                        <li><strong>Botões de Navegação:</strong> Utilizar os botões "Voltar", "Avançar", "Atualizar" e "Página Inicial" do navegador.</li>
+                    </ul>
+                    
+                    <h3>Elementos Importantes na Navegação:</h3>
+                    <ul>
+                        <li><strong>Usabilidade:</strong> Um bom design de navegação em um site torna fácil para o usuário encontrar o que procura.</li>
+                        <li><strong>Acessibilidade:</strong> Garantir que a navegação seja possível para todos os usuários, incluindo aqueles com deficiências.</li>
+                        <li><strong>Segurança:</strong> O navegador exibe avisos para sites não seguros (HTTP) ou com certificados inválidos, protegendo o usuário durante a navegação.</li>
+                        <li><strong>Cookies:</strong> Pequenos arquivos que os sites armazenam no navegador para lembrar informações sobre a sessão do usuário, melhorando a experiência de navegação.</li>
+                    </ul>
+                    
+                    <h3>Impacto da Navegação:</h3>
+                    <p>A navegação é a ação fundamental que permite a interação com a Web. Ela impulsiona o consumo de conteúdo, o comércio eletrônico, a comunicação social e o acesso a serviços online, tornando a Internet uma ferramenta indispensável no dia a dia.</p>
+                `
+            },
+            'site': {
+                title: 'Site (Website)',
+                description: 'Conjunto de páginas web e conteúdos relacionados hospedados em um domínio.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um site (ou website) é um conjunto de páginas web inter-relacionadas, conteúdos multimídia (imagens, vídeos, áudios) e outros recursos digitais que são hospedados em um servidor web e acessíveis via internet. Cada site é identificado por um nome de domínio único (ex: google.com, wikipedia.org).</p>
+                    
+                    <h3>Estrutura Básica de um Site:</h3>
+                    <ul>
+                        <li><strong>Páginas Web:</strong> Arquivos HTML que contêm o conteúdo principal do site.</li>
+                        <li><strong>Folhas de Estilo (CSS):</strong> Arquivos que definem o design e a apresentação visual das páginas.</li>
+                        <li><strong>Scripts (JavaScript):</strong> Arquivos que adicionam interatividade e funcionalidade dinâmica às páginas.</li>
+                        <li><strong>Recursos Multimídia:</strong> Imagens, vídeos, áudios e outros arquivos incorporados.</li>
+                        <li><strong>Hiperlinks:</strong> Conexões que permitem aos usuários navegar entre as páginas do site e para outros sites.</li>
+                    </ul>
+                    
+                    <h3>Como um Site se Torna Acessível:</h3>
+                    <ol>
+                        <li><strong>Criação:</strong> Desenvolver as páginas e recursos do site.</li>
+                        <li><strong>Hospedagem:</strong> Publicar os arquivos do site em um servidor web conectado à internet. Este servidor é mantido por um provedor de hospedagem.</li>
+                        <li><strong>Registro de Domínio:</strong> Registrar um nome de domínio único (ex: meuempresa.com.br) para que o site possa ser encontrado facilmente.</li>
+                        <li><strong>Configuração de DNS:</strong> Apontar o nome de domínio para o endereço IP do servidor onde o site está hospedado.</li>
+                    </ol>
+                    
+                    <h3>Tipos Comuns de Sites:</h3>
+                    <ul>
+                        <li><strong>Sites Corporativos/Empresariais:</strong> Para promover empresas, produtos e serviços.</li>
+                        <li><strong>Lojas Virtuais (e-commerce):</strong> Para venda de produtos e serviços online.</li>
+                        <li><strong>Blogs:</strong> Páginas pessoais ou temáticas com artigos, notícias e opiniões.</li>
+                        <li><strong>Portais de Notícias:</strong> Publicam notícias e informações atualizadas.</li>
+                        <li><strong>Redes Sociais:</strong> Plataformas para interação social e compartilhamento de conteúdo.</li>
+                        <li><strong>Sites Educacionais:</strong> Oferecem cursos, materiais de estudo e informações acadêmicas.</li>
+                        <li><strong>Sites Governamentais:</strong> Fornecem informações e serviços públicos.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <p>Sites são a presença digital fundamental para indivíduos, empresas, organizações e governos, servindo como canal de comunicação, vendas, informação e interação com o público global.</p>
+                `
+            },
+            'url': {
+                title: 'URL (Uniform Resource Locator)',
+                description: 'Endereço único de um recurso na internet, como uma página web.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>URL (Uniform Resource Locator), ou Localizador Uniforme de Recursos, é uma sequência de caracteres que serve como um endereço único para identificar a localização de um recurso na internet e o método de acesso a ele. É a forma como os navegadores web sabem onde encontrar as páginas web, imagens, vídeos e outros arquivos.</p>
+                    
+                    <h3>Estrutura Básica de uma URL:</h3>
+                    <p>Uma URL típica segue o formato:</p>
+                    <p><code>protocolo://domínio:porta/caminho/arquivo?parâmetros#fragmento</code></p>
+                    <ul>
+                        <li><strong>Protocolo:</strong> (ex: <code>http://</code>, <code>https://</code>, <code>ftp://</code>, <code>mailto:</code>) Indica o método que o navegador deve usar para acessar o recurso.</li>
+                        <li><strong>Domínio:</strong> (ex: <code>www.exemplo.com.br</code>) O nome de domínio do servidor onde o recurso está localizado. É traduzido para um endereço IP pelo DNS.</li>
+                        <li><strong>Porta:</strong> (ex: <code>:8080</code>) Opcional. Especifica a porta TCP/UDP no servidor à qual se conectar. Se não especificado, a porta padrão do protocolo é usada (ex: 80 para HTTP, 443 para HTTPS).</li>
+                        <li><strong>Caminho:</strong> (ex: <code>/caminho/para/</code>) A hierarquia de diretórios no servidor onde o recurso está localizado.</li>
+                        <li><strong>Arquivo:</strong> (ex: <code>pagina.html</code>) O nome do arquivo específico do recurso.</li>
+                        <li><strong>Parâmetros (Query String):</strong> (ex: <code>?id=123&categoria=noticias</code>) Opcional. Informações adicionais enviadas ao servidor para processar a requisição, geralmente usadas em bancos de dados ou pesquisas.</li>
+                        <li><strong>Fragmento:</strong> (ex: <code>#secao-contato</code>) Opcional. Identifica uma porção específica dentro do recurso, útil para navegar diretamente para uma seção em uma página longa.</li>
+                    </ul>
+                    
+                    <h3>Importância da URL:</h3>
+                    <ul>
+                        <li><strong>Localização de Recursos:</strong> Permite que qualquer recurso na Web seja unicamente endereçável.</li>
+                        <li><strong>Navegação:</strong> Fundamental para a navegação entre páginas e sites.</li>
+                        <li><strong>Compartilhamento:</strong> Permite o compartilhamento fácil de conteúdo através de links.</li>
+                        <li><strong>SEO:</strong> URLs bem estruturadas são importantes para o ranqueamento em motores de busca.</li>
+                    </ul>
+                `
+            },
+            'html': {
+                title: 'HTML (Hypertext Markup Language)',
+                description: 'Linguagem de marcação para criar e estruturar conteúdo para a web.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>HTML (Hypertext Markup Language) é a linguagem de marcação padrão para criar páginas web e aplicações web. Ela fornece a estrutura básica de uma página, organizando o conteúdo (texto, imagens, links) de forma hierárquica usando um sistema de "tags" (etiquetas).</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Documentos HTML são arquivos de texto simples que contêm tags que descrevem o conteúdo. Um navegador web lê esses arquivos e interpreta as tags para renderizar a página visualmente. Por exemplo, a tag <code><p></code> define um parágrafo, <code><h1></code> define um título de nível 1, e <code><a></code> define um hiperlink.</p>
+                    
+                    <h3>Estrutura Básica de um Documento HTML:</h3>
+                    <pre><code>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Título da Página</title>
+</head>
+<body>
+    <h1>Bem-vindo!</h1>
+    <p>Este é um parágrafo de exemplo.</p>
+    <a href="https://www.exemplo.com">Clique aqui</a>
+</body>
+</html>
+                    </code></pre>
+                    <ul>
+                        <li><code><!DOCTYPE html></code>: Declara o tipo de documento, indicando que é HTML5.</li>
+                        <li><code><html></code>: O elemento raiz que envolve todo o conteúdo da página.</li>
+                        <li><code><head></code>: Contém metadados sobre a página (título, codificação de caracteres, links para CSS, scripts). Não é exibido diretamente no navegador.</li>
+                        <li><code><body></code>: Contém todo o conteúdo visível da página.</li>
+                    </ul>
+                    
+                    <h3>Principais Funções das Tags:</h3>
+                    <ul>
+                        <li><strong>Estruturação de Texto:</strong> Títulos (<code><h1></code> a <code><h6></code>), parágrafos (<code><p></code>), listas (<code><ul></code>, <code><ol></code>, <code><li></code>), formatação de texto (<code><strong></code>, <code><em></code>).</li>
+                        <li><strong>Links (Hiperlinks):</strong> A tag <code><a></code> permite criar links para outras páginas ou seções.</li>
+                        <li><strong>Mídia:</strong> Inserir imagens (<code><img></code>), áudio (<code><audio></code>) e vídeo (<code><video></code>).</li>
+                        <li><strong>Tabelas:</strong> Organizar dados em linhas e colunas (<code><table></code>, <code><tr></code>, <code><td></code>).</li>
+                        <li><strong>Formulários:</strong> Coletar entrada de dados do usuário (<code><form></code>, <code><input></code>, <code><button></code>).</li>
+                    </ul>
+                    
+                    <h3>Relação com CSS e JavaScript:</h3>
+                    <ul>
+                        <li><strong>CSS (Cascading Style Sheets):</strong> Responsável pela apresentação visual do HTML (cores, fontes, layout).</li>
+                        <li><strong>JavaScript:</strong> Adiciona interatividade e comportamento dinâmico às páginas HTML.</li>
+                    </ul>
+                    <p>Juntos, HTML, CSS e JavaScript formam o tripé fundamental para o desenvolvimento web.</p>
+                `
+            },
+            'download': {
+                title: 'Download',
+                description: 'Transferência de dados de um servidor para um dispositivo local.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Download (termo em inglês que significa "baixar") é o processo de transferência de dados ou arquivos de um servidor (ou outro computador remoto) para um dispositivo local, como um computador pessoal, smartphone ou tablet. Quando você acessa uma página web, um arquivo é implicitamente "baixado" para seu navegador para ser exibido.</p>
+                    
+                    <h3>Tipos de Download:</h3>
+                    <ul>
+                        <li><strong>Download Direto:</strong> Ocorre quando um usuário clica em um link e o arquivo começa a ser transferido diretamente para o dispositivo.</li>
+                        <li><strong>Streaming:</strong> Um tipo de download onde o conteúdo (vídeo, áudio) é reproduzido à medida que é baixado, sem a necessidade de esperar que o arquivo inteiro seja transferido primeiro. Ex: Netflix, Spotify.</li>
+                        <li><strong>Download por Cliente de Software:</strong> Utiliza software específico (ex: clientes BitTorrent, gerenciadores de download) para gerenciar e otimizar a transferência de arquivos, especialmente grandes volumes.</li>
+                    </ul>
+                    
+                    <h3>Fatores que Afetam a Velocidade do Download:</h3>
+                    <ul>
+                        <li><strong>Velocidade da Conexão com a Internet:</strong> A largura de banda da conexão do usuário (plano de internet).</li>
+                        <li><strong>Velocidade do Servidor de Origem:</strong> A capacidade de upload do servidor onde o arquivo está hospedado.</li>
+                        <li><strong>Congestionamento da Rede:</strong> O volume de tráfego na rota entre o servidor e o usuário.</li>
+                        <li><strong>Distância:</strong> A distância geográfica entre o usuário e o servidor.</li>
+                        <li><strong>Quantidade de Usuários:</strong> Muitos usuários baixando do mesmo servidor podem reduzir a velocidade para todos.</li>
+                    </ul>
+                    
+                    <h3>Segurança do Download:</h3>
+                    <ul>
+                        <li>É importante baixar arquivos de fontes confiáveis para evitar vírus, malware e outros softwares maliciosos.</li>
+                        <li>Sempre verifique a extensão do arquivo e, se possível, use um software antivírus para escanear arquivos baixados antes de abri-los.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <p>O download é uma operação fundamental na Internet, permitindo o acesso a uma vasta gama de conteúdos digitais, como softwares, documentos, músicas, filmes, e a própria navegação web.</p>
+                `
+            },
+            'upload': {
+                title: 'Upload',
+                description: 'Transferência de dados de um dispositivo local para um servidor.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Upload (termo em inglês que significa "carregar" ou "enviar") é o processo de transferência de dados ou arquivos de um dispositivo local (como um computador pessoal, smartphone ou tablet) para um servidor ou outro computador remoto. É o oposto do download.</p>
+                    
+                    <h3>Como Ocorre o Upload:</h3>
+                    <ul>
+                        <li><strong>Formulários Web:</strong> Envio de fotos para redes sociais, anexo de arquivos em e-mails web, upload de documentos para plataformas de armazenamento em nuvem (ex: Google Drive, Dropbox).</li>
+                        <li><strong>Clientes FTP/SFTP:</strong> Utilização de software específico (ex: FileZilla) para enviar arquivos para um servidor web ou de arquivos.</li>
+                        <li><strong>Serviços de Streaming/Criação de Conteúdo:</strong> Upload de vídeos para plataformas como YouTube, TikTok ou vídeos para serviços de transmissão ao vivo.</li>
+                        <li><strong>Backup em Nuvem:</strong> Cópia de segurança de dados do dispositivo local para um servidor remoto.</li>
+                    </ul>
+                    
+                    <h3>Fatores que Afetam a Velocidade do Upload:</h3>
+                    <ul>
+                        <li><strong>Velocidade da Conexão com a Internet:</strong> A largura de banda de upload do plano de internet do usuário. Em muitas conexões (como ADSL), a velocidade de upload é significativamente menor que a de download.</li>
+                        <li><strong>Velocidade do Servidor de Destino:</strong> A capacidade de recepção do servidor.</li>
+                        <li><strong>Congestionamento da Rede:</strong> O volume de tráfego na rota entre o usuário e o servidor.</li>
+                        <li><strong>Distância:</strong> A distância geográfica entre o usuário e o servidor.</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <p>O upload é essencial para a participação e criação de conteúdo na internet. Sem ele, a Web seria predominantemente um ambiente de consumo de informação, sem a contribuição dos usuários. É fundamental para redes sociais, compartilhamento de arquivos, serviços em nuvem e comunicação interativa.</p>
+                `
+            },
+            'e-mail': {
+                title: 'E-mail (Correio Eletrônico)',
+                description: 'Serviço de mensagens eletrônicas trocadas entre usuários.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>E-mail, ou correio eletrônico, é um método de troca de mensagens digitais entre usuários da internet. Ele permite que um usuário envie uma mensagem para um ou mais destinatários em qualquer lugar do mundo, desde que ambos tenham uma conta de e-mail e acesso à internet.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ol>
+                        <li><strong>Escrita e Envio:</strong> Um usuário escreve uma mensagem usando um cliente de e-mail (software como Outlook, Thunderbird) ou um serviço webmail (Gmail, Hotmail). A mensagem é então enviada para o servidor de e-mail do remetente.</li>
+                        <li><strong>Transferência:</strong> O servidor de e-mail do remetente usa o protocolo SMTP (Simple Mail Transfer Protocol) para enviar a mensagem ao servidor de e-mail do destinatário, consultando o DNS (MX record) para localizar o servidor correto.</li>
+                        <li><strong>Armazenamento:</strong> O servidor de e-mail do destinatário recebe a mensagem e a armazena na caixa de entrada do destinatário.</li>
+                        <li><strong>Recebimento:</strong> O destinatário usa seu cliente de e-mail ou webmail para acessar sua caixa de entrada, utilizando os protocolos POP3 (Post Office Protocol 3) ou IMAP (Internet Message Access Protocol) para baixar ou sincronizar as mensagens.</li>
+                    </ol>
+                    
+                    <h3>Componentes de um Endereço de E-mail:</h3>
+                    <p>Um endereço de e-mail típico é <code>nome.do.usuario@dominio.com</code></p>
+                    <ul>
+                        <li><strong>Nome de Usuário:</strong> A parte que identifica a caixa de entrada específica no servidor de e-mail.</li>
+                        <li><strong>@ (arroba):</strong> O símbolo que separa o nome de usuário do domínio.</li>
+                        <li><strong>Domínio:</strong> O nome de domínio do servidor de e-mail que hospeda a conta.</li>
+                    </ul>
+                    
+                    <h3>Principais Protocolos de E-mail:</h3>
+                    <ul>
+                        <li><strong>SMTP:</strong> Para envio de e-mails.</li>
+                        <li><strong>POP3:</strong> Para baixar e-mails do servidor para o dispositivo local, geralmente removendo-os do servidor.</li>
+                        <li><strong>IMAP:</strong> Para acessar e-mails diretamente no servidor, mantendo-os sincronizados entre vários dispositivos.</li>
+                    </ul>
+                    
+                    <h3>Benefícios:</h3>
+                    <ul>
+                        <li><strong>Rapidez e Eficiência:</strong> Mensagens são entregues em segundos ou minutos em qualquer lugar do mundo.</li>
+                        <li><strong>Armazenamento:</strong> Permite armazenar mensagens para referência futura.</li>
+                        <li><strong>Custo:</strong> Geralmente gratuito para uso pessoal e baixo custo para uso comercial.</li>
+                        <li><strong>Versatilidade:</strong> Suporta anexos de arquivos, formatação de texto, e integração com outros serviços.</li>
+                    </ul>
+                    
+                    <h3>Desafios:</h3>
+                    <ul>
+                        <li><strong>Spam:</strong> Mensagens indesejadas.</li>
+                        <li><strong>Phishing:</strong> Tentativas de fraude para roubar informações pessoais.</li>
+                        <li><strong>Vírus e Malware:</strong> Anexos maliciosos.</li>
+                    </ul>
+                `
+            },
+            'cloud-computing': {
+                title: 'Cloud Computing (Computação em Nuvem)',
+                description: 'Entrega de serviços de computação pela internet, como servidores, armazenamento e softwares.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Cloud Computing, ou Computação em Nuvem, é um modelo de entrega de serviços de computação onde recursos (como servidores, armazenamento, bancos de dados, redes, software, análise e inteligência) são disponibilizados sob demanda pela internet (a "nuvem"). Em vez de possuir e manter sua própria infraestrutura de TI, os usuários podem acessá-los de um provedor de serviços de nuvem.</p>
+                    
+                    <h3>Características Essenciais:</h3>
+                    <ul>
+                        <li><strong>Autoatendimento sob Demanda:</strong> Os usuários podem provisionar e gerenciar recursos de computação sem intervenção humana do provedor.</li>
+                        <li><strong>Amplo Acesso à Rede:</strong> Os recursos são acessíveis via rede padrão (internet) por meio de mecanismos que promovem o uso por plataformas heterogêneas.</li>
+                        <li><strong>Pooling de Recursos:</strong> Os recursos de computação do provedor são agrupados para atender a múltiplos consumidores usando um modelo de múltiplos locatários (multi-tenancy), com recursos físicos e virtuais alocados e realocados dinamicamente.</li>
+                        <li><strong>Elasticidade Rápida:</strong> Os recursos podem ser provisionados e liberados de forma rápida e elástica, permitindo escalar verticalmente ou horizontalmente de acordo com a demanda.</li>
+                        <li><strong>Serviço Medido:</strong> O uso dos recursos é monitorado e medido, com o pagamento baseado no consumo (pay-as-you-go).</li>
+                    </ul>
+                    
+                    <h3>Modelos de Serviço da Nuvem:</h3>
+                    <ul>
+                        <li><strong>IaaS (Infrastructure as a Service):</strong> Fornece a infraestrutura básica de computação, como máquinas virtuais, armazenamento, redes e sistemas operacionais. O usuário gerencia as aplicações e os dados. (Ex: AWS EC2, Google Compute Engine, Azure Virtual Machines).</li>
+                        <li><strong>PaaS (Platform as a Service):</strong> Oferece um ambiente de desenvolvimento e implantação completo na nuvem, incluindo ferramentas de desenvolvimento, sistemas de banco de dados e servidores web. O usuário foca no desenvolvimento da aplicação, sem se preocupar com a infraestrutura subjacente. (Ex: AWS Elastic Beanstalk, Google App Engine, Azure App Service).</li>
+                        <li><strong>SaaS (Software as a Service):</strong> Fornece aplicações de software prontas para uso via internet, geralmente baseadas em assinatura. O usuário não gerencia a infraestrutura nem o desenvolvimento. (Ex: Gmail, Salesforce, Dropbox, Office 365).</li>
+                    </ul>
+                    
+                    <h3>Modelos de Implantação da Nuvem:</h3>
+                    <ul>
+                        <li><strong>Nuvem Pública:</strong> Recursos de computação operados por um provedor terceirizado e disponíveis para o público em geral pela internet. (Ex: AWS, Google Cloud, Microsoft Azure).</li>
+                        <li><strong>Nuvem Privada:</strong> Recursos de computação usados exclusivamente por uma única organização, podendo ser hospedados internamente ou por um provedor terceirizado.</li>
+                        <li><strong>Nuvem Híbrida:</strong> Combina nuvens públicas e privadas, permitindo que dados e aplicações se movam entre elas.</li>
+                        <li><strong>Nuvem Comunitária:</strong> Compartilhada por várias organizações com interesses comuns.</li>
+                    </ul>
+                    
+                    <h3>Benefícios da Computação em Nuvem:</h3>
+                    <ul>
+                        <li><strong>Flexibilidade e Escalabilidade:</strong> Ajuste fácil de recursos conforme a demanda.</li>
+                        <li><strong>Redução de Custos:</strong> Elimina a necessidade de grandes investimentos iniciais em hardware e software.</li>
+                        <li><strong>Acessibilidade:</strong> Acesso a recursos de qualquer lugar com conexão à internet.</li>
+                        <li><strong>Confiabilidade:</strong> Provedores oferecem alta disponibilidade e redundância.</li>
+                        <li><strong>Segurança:</strong> Provedores investem pesadamente em segurança física e lógica.</li>
+                    </ul>
+                `
+            },
+            'dominio': {
+                title: 'Domínio (Nome de Domínio)',
+                description: 'Nome que identifica um site na internet, como nomedosite.com.br.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Um nome de domínio é um endereço alfanumérico único e fácil de lembrar que é usado para identificar um site ou serviço na internet (ex: <code>google.com</code>, <code>wikipedia.org</code>). Ele é a representação legível por humanos dos endereços IP numéricos que os computadores usam para se comunicar.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>O Sistema de Nomes de Domínio (DNS) atua como um "catálogo de telefones" da internet. Quando um usuário digita um nome de domínio em um navegador, o DNS traduz esse nome em um endereço IP numérico (ex: <code>172.217.160.142</code>). É esse endereço IP que o navegador usa para se conectar ao servidor web onde o site está hospedado.</p>
+                    
+                    <h3>Estrutura de um Nome de Domínio:</h3>
+                    <p>Os nomes de domínio são hierárquicos e lidos da direita para a esquerda:</p>
+                    <ul>
+                        <li><strong>Domínio de Nível Superior (TLD - Top-Level Domain):</strong> A última parte do nome (ex: <code>.com</code>, <code>.org</code>, <code>.br</code>, <code>.net</code>). Existem TLDs genéricos (gTLDs) e TLDs de código de país (ccTLDs).</li>
+                        <li><strong>Domínio de Segundo Nível:</strong> A parte imediatamente à esquerda do TLD (ex: <code>google</code> em <code>google.com</code>, <code>wikipedia</code> em <code>wikipedia.org</code>).</li>
+                        <li><strong>Subdomínio:</strong> (Opcional) Uma subdivisão do domínio de segundo nível (ex: <code>www</code>, <code>blog</code>, <code>mail</code> em <code>www.exemplo.com</code>).</li>
+                    </ul>
+                    
+                    <h3>Registro de Domínios:</h3>
+                    <p>Nomes de domínio são registrados por indivíduos ou organizações através de registradores de domínio (empresas credenciadas), que trabalham em conjunto com registradores de TLDs (como a ICANN - Internet Corporation for Assigned Names and Numbers, para gTLDs, ou o NIC.br para o .br).</p>
+                    
+                    <h3>Importância do Nome de Domínio:</h3>
+                    <ul>
+                        <li><strong>Identidade Online:</strong> Serve como a identidade única de uma empresa, marca ou pessoa na internet.</li>
+                        <li><strong>Facilidade de Acesso:</strong> Torna o acesso a sites muito mais fácil do que memorizar endereços IP.</li>
+                        <li><strong>Credibilidade:</strong> Um domínio próprio transmite profissionalismo e credibilidade.</li>
+                        <li><strong>Marca:</strong> Um nome de domínio relevante e memorável é crucial para a estratégia de marketing e branding.</li>
+                        <li><strong>SEO:</strong> Nomes de domínio podem influenciar o ranqueamento em motores de busca.</li>
+                    </ul>
+                `
+            },
+            'whois': {
+                title: 'WHOIS',
+                description: 'Serviço de consulta a banco de dados de registro de domínios e IPs.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>WHOIS é um protocolo de consulta e um serviço de banco de dados que permite aos usuários encontrar informações sobre o registro de um nome de domínio ou de um bloco de endereços IP. Ele fornece detalhes sobre quem é o proprietário do domínio/IP, quando foi registrado, e informações de contato do registrante, contato administrativo e contato técnico.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <p>Quando um nome de domínio é registrado, as informações do registrante são armazenadas em um banco de dados público. O serviço WHOIS permite que qualquer pessoa faça uma consulta a esse banco de dados. Existem vários servidores WHOIS ao redor do mundo, e a informação é mantida pela ICANN (Internet Corporation for Assigned Names and Numbers) para domínios genéricos (gTLDs) e por registradores nacionais para domínios de código de país (ccTLDs).</p>
+                    
+                    <h3>Informações Comuns Encontradas no WHOIS:</h3>
+                    <ul>
+                        <li>Nome do Domínio ou Endereço IP.</li>
+                        <li>Registrar (a empresa que vendeu o domínio).</li>
+                        <li>Datas de criação, atualização e expiração do registro.</li>
+                        <li>Status do domínio (ativo, expirado, em disputa).</li>
+                        <li>Servidores de nome (DNS) associados ao domínio.</li>
+                        <li>Informações de contato:
+                            <ul>
+                                <li>Registrante (proprietário do domínio): Nome, organização, endereço, telefone, e-mail.</li>
+                                <li>Contato Administrativo: Responsável pela administração do domínio.</li>
+                                <li>Contato Técnico: Responsável por questões técnicas do domínio.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Usos do WHOIS:</h3>
+                    <ul>
+                        <li><strong>Verificação de Disponibilidade:</strong> Verificar se um nome de domínio está disponível para registro.</li>
+                        <li><strong>Identificação de Proprietário:</strong> Descobrir quem é o proprietário de um domínio.</li>
+                        <li><strong>Investigação de Abusos:</strong> Para relatar atividades ilegais ou abusivas associadas a um domínio (spam, phishing, malware).</li>
+                        <li><strong>Solução de Problemas:</strong> Para diagnosticar problemas de DNS ou verificar a configuração de um domínio.</li>
+                        <li><strong>Transações de Domínio:</strong> Para contatar o proprietário de um domínio para fins de compra.</li>
+                    </ul>
+                    
+                    <h3>Privacidade e WHOIS:</h3>
+                    <p>Devido a preocupações com privacidade, muitos registradores oferecem serviços de "Privacidade WHOIS" ou "Proteção de ID", que substituem os dados pessoais do registrante por informações do próprio registrador ou de um serviço de proxy, ocultando as informações reais do público.</p>
+                `
+            }
+        };
+
+        // Função para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da página
+            }
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da página
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar aparência dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

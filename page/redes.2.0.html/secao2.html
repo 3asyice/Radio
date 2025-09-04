@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 2 - Endereçamento e Protocolos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🌐 Endereçamento e Protocolos</h1>
+            <p class="subtitle">Seção 2 - Identificação e Comunicação</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Voltar ao Menu Principal</a>
+        
+        <div class="section-header">
+            <h2>Endereçamento e Protocolos de Rede</h2>
+            <p>Esta seção aborda os conceitos fundamentais de endereçamento de rede e protocolos de comunicação. São elementos essenciais que permitem a identificação e comunicação entre dispositivos em redes.</p>
+            <p><em>Clique em qualquer termo para ver mais detalhes!</em></p>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card" onclick="openModal('address')">
+                <div class="term-name">Address</div>
+                <div class="term-description">Identificação única de um dispositivo ou localização em uma rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('endereco-ip')">
+                <div class="term-name">Endereço IP</div>
+                <div class="term-description">Identificação numérica única de um dispositivo na rede usando protocolo IP.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('endereco-mac')">
+                <div class="term-name">Endereço MAC</div>
+                <div class="term-description">Identificação física única e permanente de uma interface de rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('endereco-rede')">
+                <div class="term-name">Endereço de rede</div>
+                <div class="term-description">Identifica a rede à qual um dispositivo pertence, parte do endereço IP.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('endereco-sub-rede')">
+                <div class="term-name">Endereço de sub-rede</div>
+                <div class="term-description">Identifica uma subdivisão lógica de uma rede maior.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('endereco-broadcast')">
+                <div class="term-name">Endereço de broadcast</div>
+                <div class="term-description">Endereço especial usado para enviar dados a todos os dispositivos da rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('endereco-multicast')">
+                <div class="term-name">Endereço de multicast</div>
+                <div class="term-description">Endereço usado para enviar dados a um grupo específico de dispositivos.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('mascara-endereco')">
+                <div class="term-name">Máscara de endereço</div>
+                <div class="term-description">Define quais bits do endereço IP representam a rede e quais representam o host.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('mascara-sub-rede')">
+                <div class="term-name">Máscara sub-rede</div>
+                <div class="term-description">Máscara que define os limites de uma sub-rede dentro de uma rede maior.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ipv4')">
+                <div class="term-name">IPv4</div>
+                <div class="term-description">Versão 4 do protocolo IP, usa endereços de 32 bits (4 octetos).</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('ipv6')">
+                <div class="term-name">IPv6</div>
+                <div class="term-description">Versão 6 do protocolo IP, usa endereços de 128 bits para resolver limitações do IPv4.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('tcp-ip')">
+                <div class="term-name">TCP/IP</div>
+                <div class="term-description">Suíte de protocolos base da Internet, combina TCP e IP para comunicação confiável.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('udp')">
+                <div class="term-name">UDP</div>
+                <div class="term-description">User Datagram Protocol - Protocolo de transporte rápido sem garantia de entrega.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('arp')">
+                <div class="term-name">ARP</div>
+                <div class="term-description">Address Resolution Protocol - Resolve endereços IP em endereços MAC.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('protocolo')">
+                <div class="term-name">Protocolo</div>
+                <div class="term-description">Conjunto de regras que governam a comunicação entre dispositivos em rede.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('pacote')">
+                <div class="term-name">Pacote (TCP)</div>
+                <div class="term-description">Unidade de dados formatada para transmissão usando protocolo TCP.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('datagrama')">
+                <div class="term-name">Datagrama</div>
+                <div class="term-description">Unidade de dados independente transmitida via UDP ou IP sem garantia de entrega.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('frame')">
+                <div class="term-name">Frame</div>
+                <div class="term-description">Unidade de dados na camada de enlace, inclui cabeçalho e dados.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('mtu')">
+                <div class="term-name">MTU</div>
+                <div class="term-description">Maximum Transmission Unit - Tamanho máximo de dados que pode ser transmitido.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('unicast')">
+                <div class="term-name">Unicast</div>
+                <div class="term-description">Comunicação ponto-a-ponto entre dois dispositivos específicos.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('multicast')">
+                <div class="term-name">Multicast</div>
+                <div class="term-description">Comunicação de um para muitos dispositivos selecionados.</div>
+            </div>
+
+            <div class="term-card" onclick="openModal('broadcast')">
+                <div class="term-name">Broadcast</div>
+                <div class="term-description">Comunicação de um para todos os dispositivos da rede local.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body">
+                <!-- Conteúdo será inserido aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 - Glossário de Redes de Computadores | Seção 2</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados detalhados dos termos
+        const termData = {
+            'address': {
+                title: 'Address (Endereço)',
+                description: 'Identificação única de um dispositivo ou localização em uma rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Address (endereço) é uma identificação única atribuída a dispositivos, interfaces ou localizações em uma rede para permitir comunicação e roteamento de dados.</p>
+                    
+                    <h3>Tipos de Endereços:</h3>
+                    <ul>
+                        <li><strong>Endereço IP:</strong> Identificação lógica na camada de rede</li>
+                        <li><strong>Endereço MAC:</strong> Identificação física da interface</li>
+                        <li><strong>Endereço de Porta:</strong> Identifica aplicações específicas</li>
+                        <li><strong>Endereço de E-mail:</strong> Identificação para correio eletrônico</li>
+                        <li><strong>URL:</strong> Endereço de recursos na web</li>
+                    </ul>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Unicidade:</strong> Cada endereço deve ser único em seu escopo</li>
+                        <li><strong>Estrutura:</strong> Formato padronizado para facilitar processamento</li>
+                        <li><strong>Hierarquia:</strong> Pode ter níveis (rede, sub-rede, host)</li>
+                        <li><strong>Roteabilidade:</strong> Permite localizar e alcançar o destino</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <p>Os endereços são fundamentais para qualquer comunicação em rede, permitindo que dados sejam enviados do origem ao destino correto.</p>
+                    
+                    <h3>Exemplos:</h3>
+                    <ul>
+                        <li>IP: 192.168.1.100</li>
+                        <li>MAC: 00:1B:44:11:3A:B7</li>
+                        <li>E-mail: usuario@empresa.com</li>
+                        <li>URL: https://www.exemplo.com</li>
+                    </ul>
+                `
+            },
+            'endereco-ip': {
+                title: 'Endereço IP',
+                description: 'Identificação numérica única de um dispositivo na rede usando protocolo IP.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O endereço IP (Internet Protocol) é um identificador numérico único atribuído a cada dispositivo conectado a uma rede que utiliza o protocolo IP para comunicação.</p>
+                    
+                    <h3>Versões:</h3>
+                    <ul>
+                        <li><strong>IPv4:</strong> 32 bits (4 octetos) - Ex: 192.168.1.100</li>
+                        <li><strong>IPv6:</strong> 128 bits (8 grupos hexadecimais) - Ex: 2001:db8::1</li>
+                    </ul>
+                    
+                    <h3>Componentes do IPv4:</h3>
+                    <ul>
+                        <li><strong>Parte da Rede:</strong> Identifica a rede</li>
+                        <li><strong>Parte do Host:</strong> Identifica o dispositivo na rede</li>
+                        <li><strong>Máscara de Sub-rede:</strong> Define a divisão entre rede e host</li>
+                    </ul>
+                    
+                    <h3>Classes de IPv4:</h3>
+                    <ul>
+                        <li><strong>Classe A:</strong> 1.0.0.0 a 126.255.255.255 (/8)</li>
+                        <li><strong>Classe B:</strong> 128.0.0.0 a 191.255.255.255 (/16)</li>
+                        <li><strong>Classe C:</strong> 192.0.0.0 a 223.255.255.255 (/24)</li>
+                    </ul>
+                    
+                    <h3>Tipos de Endereços:</h3>
+                    <ul>
+                        <li><strong>Públicos:</strong> Roteáveis na Internet</li>
+                        <li><strong>Privados:</strong> Uso interno (RFC 1918)</li>
+                        <li><strong>Estáticos:</strong> Configurados manualmente</li>
+                        <li><strong>Dinâmicos:</strong> Atribuídos automaticamente (DHCP)</li>
+                    </ul>
+                    
+                    <h3>Endereços Privados (RFC 1918):</h3>
+                    <ul>
+                        <li>10.0.0.0/8 (10.0.0.0 a 10.255.255.255)</li>
+                        <li>172.16.0.0/12 (172.16.0.0 a 172.31.255.255)</li>
+                        <li>192.168.0.0/16 (192.168.0.0 a 192.168.255.255)</li>
+                    </ul>
+                `
+            },
+            'endereco-mac': {
+                title: 'Endereço MAC',
+                description: 'Identificação física única e permanente de uma interface de rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>MAC (Media Access Control) é um identificador único de 48 bits (6 bytes) atribuído pelo fabricante a cada interface de rede, funcionando como uma "impressão digital" do hardware.</p>
+                    
+                    <h3>Formato:</h3>
+                    <ul>
+                        <li><strong>Hexadecimal:</strong> 00:1B:44:11:3A:B7</li>
+                        <li><strong>Alternativo:</strong> 00-1B-44-11-3A-B7</li>
+                        <li><strong>Cisco:</strong> 001b.4411.3ab7</li>
+                        <li><strong>Sem separadores:</strong> 001B44113AB7</li>
+                    </ul>
+                    
+                    <h3>Estrutura:</h3>
+                    <ul>
+                        <li><strong>OUI (3 primeiros bytes):</strong> Organizationally Unique Identifier - identifica o fabricante</li>
+                        <li><strong>NIC (3 últimos bytes):</strong> Network Interface Controller - número serial único</li>
+                    </ul>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Unicidade Global:</strong> Cada MAC é único no mundo</li>
+                        <li><strong>Camada Física:</strong> Opera na camada 2 (Data Link)</li>
+                        <li><strong>Imutável:</strong> Gravado permanentemente no hardware</li>
+                        <li><strong>Local:</strong> Usado apenas na rede local (LAN)</li>
+                        <li><strong>Não-roteável:</strong> Não atravessa roteadores</li>
+                    </ul>
+                    
+                    <h3>Funções:</h3>
+                    <ul>
+                        <li><strong>Identificação:</strong> Identifica dispositivos na rede local</li>
+                        <li><strong>Switching:</strong> Switches usam para encaminhar frames</li>
+                        <li><strong>ARP:</strong> Mapeia IPs para MACs</li>
+                        <li><strong>Wake-on-LAN:</strong> Acordar dispositivos remotamente</li>
+                        <li><strong>Segurança:</strong> Filtros MAC em redes Wi-Fi</li>
+                    </ul>
+                    
+                    <h3>Exemplos de Fabricantes:</h3>
+                    <ul>
+                        <li><strong>00:50:56:</strong> VMware</li>
+                        <li><strong>00:1B:21:</strong> Intel</li>
+                        <li><strong>00:26:BB:</strong> Apple</li>
+                        <li><strong>B8:27:EB:</strong> Raspberry Pi Foundation</li>
+                    </ul>
+                `
+            },
+            'endereco-rede': {
+                title: 'Endereço de Rede',
+                description: 'Identifica a rede à qual um dispositivo pertence, parte do endereço IP.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>O endereço de rede é a porção do endereço IP que identifica a rede específica à qual um dispositivo pertence, obtido aplicando a máscara de sub-rede ao endereço IP.</p>
+                    
+                    <h3>Como Calcular:</h3>
+                    <ul>
+                        <li><strong>Operação AND:</strong> IP AND Máscara = Endereço de Rede</li>
+                        <li><strong>Exemplo:</strong> 192.168.1.100 AND 255.255.255.0 = 192.168.1.0</li>
+                    </ul>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Identificação:</strong> Representa toda a rede</li>
+                        <li><strong>Primeiro endereço:</strong> Menor endereço possível na rede</li>
+                        <li><strong>Não atribuível:</strong> Não pode ser usado por dispositivos</li>
+                        <li><strong>Roteamento:</strong> Usado em tabelas de roteamento</li>
+                    </ul>
+                    
+                    <h3>Exemplos Práticos:</h3>
+                    <ul>
+                        <li><strong>Rede Classe C:</strong> 192.168.1.0/24 (hosts: .1 a .254)</li>
+                        <li><strong>Rede Classe B:</strong> 172.16.0.0/16 (hosts: .0.1 a .255.254)</li>
+                        <li><strong>Rede Classe A:</strong> 10.0.0.0/8 (hosts: .0.0.1 a .255.255.254)</li>
+                    </ul>
+                    
+                    <h3>Notação CIDR:</h3>
+                    <ul>
+                        <li><strong>/24:</strong> Máscara 255.255.255.0 (256 endereços)</li>
+                        <li><strong>/16:</strong> Máscara 255.255.0.0 (65.536 endereços)</li>
+                        <li><strong>/8:</strong> Máscara 255.0.0.0 (16.777.216 endereços)</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <ul>
+                        <li><strong>Roteamento:</strong> Roteadores usam para decidir caminhos</li>
+                        <li><strong>Organização:</strong> Agrupa dispositivos logicamente</li>
+                        <li><strong>Segurança:</strong> Base para regras de firewall</li>
+                        <li><strong>Gerenciamento:</strong> Facilita administração de rede</li>
+                    </ul>
+                `
+            },
+            'endereco-sub-rede': {
+                title: 'Endereço de Sub-rede',
+                description: 'Identifica uma subdivisão lógica de uma rede maior.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Endereço de sub-rede identifica uma subdivisão lógica de uma rede maior, criada através do processo de subnetting para melhor organização e eficiência.</p>
+                    
+                    <h3>Conceito de Subnetting:</h3>
+                    <ul>
+                        <li><strong>Divisão:</strong> Uma rede grande é dividida em redes menores</li>
+                        <li><strong>Eficiência:</strong> Melhor utilização de endereços IP</li>
+                        <li><strong>Organização:</strong> Segmentação lógica da rede</li>
+                        <li><strong>Performance:</strong> Reduz domínios de broadcast</li>
+                    </ul>
+                    
+                    <h3>Exemplo de Subnetting:</h3>
+                    <ul>
+                        <li><strong>Rede Original:</strong> 192.168.1.0/24 (254 hosts)</li>
+                        <li><strong>Sub-rede 1:</strong> 192.168.1.0/26 (62 hosts)</li>
+                        <li><strong>Sub-rede 2:</strong> 192.168.1.64/26 (62 hosts)</li>
+                        <li><strong>Sub-rede 3:</strong> 192.168.1.128/26 (62 hosts)</li>
+                        <li><strong>Sub-rede 4:</strong> 192.168.1.192/26 (62 hosts)</li>
+                    </ul>
+                    
+                    <h3>Cálculo de Sub-redes:</h3>
+                    <ul>
+                        <li><strong>Bits emprestados:</strong> Bits do host usados para sub-rede</li>
+                        <li><strong>Número de sub-redes:</strong> 2^bits_emprestados</li>
+                        <li><strong>Hosts por sub-rede:</strong> 2^bits_host - 2</li>
+                        <li><strong>Incremento:</strong> Valor do último bit de sub-rede</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Organização:</strong> Separa departamentos/funções</li>
+                        <li><strong>Segurança:</strong> Isola tráfego entre segmentos</li>
+                        <li><strong>Performance:</strong> Reduz colisões e broadcasts</li>
+                        <li><strong>Gerenciamento:</strong> Facilita administração</li>
+                        <li><strong>Escalabilidade:</strong> Permite crescimento organizado</li>
+                    </ul>
+                    
+                    <h3>Aplicações:</h3>
+                    <ul>
+                        <li>Separação de departamentos</li>
+                        <li>Isolação de servidores</li>
+                        <li>Segmentação de segurança</li>
+                        <li>Otimização de tráfego</li>
+                    </ul>
+                `
+            },
+            'endereco-broadcast': {
+                title: 'Endereço de Broadcast',
+                description: 'Endereço especial usado para enviar dados a todos os dispositivos da rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Endereço de broadcast é um endereço especial usado para enviar dados simultaneamente a todos os dispositivos em uma rede ou sub-rede específica.</p>
+                    
+                    <h3>Tipos de Broadcast:</h3>
+                    <ul>
+                        <li><strong>Broadcast Direto:</strong> Para uma rede específica</li>
+                        <li><strong>Broadcast Limitado:</strong> 255.255.255.255 (rede local apenas)</li>
+                        <li><strong>Broadcast de Sub-rede:</strong> Último endereço da sub-rede</li>
+                    </ul>
+                    
+                    <h3>Como Calcular:</h3>
+                    <ul>
+                        <li><strong>Método:</strong> Todos os bits de host = 1</li>
+                        <li><strong>Exemplo 1:</strong> Rede 192.168.1.0/24 → Broadcast 192.168.1.255</li>
+                        <li><strong>Exemplo 2:</strong> Rede 10.0.0.0/8 → Broadcast 10.255.255.255</li>
+                        <li><strong>Exemplo 3:</strong> Sub-rede 192.168.1.64/26 → Broadcast 192.168.1.127</li>
+                    </ul>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Não atribuível:</strong> Não pode ser usado por dispositivos</li>
+                        <li><strong>Local:</strong> Não atravessa roteadores (por padrão)</li>
+                        <li><strong>Camada 2:</strong> Usa MAC FF:FF:FF:FF:FF:FF</li>
+                        <li><strong>Eficiente:</strong> Uma transmissão alcança todos</li>
+                    </ul>
+                    
+                    <h3>Usos Comuns:</h3>
+                    <ul>
+                        <li><strong>DHCP:</strong> Descoberta de servidores DHCP</li>
+                        <li><strong>ARP:</strong> Resolução de endereços</li>
+                        <li><strong>Wake-on-LAN:</strong> Acordar dispositivos</li>
+                        <li><strong>Descoberta:</strong> Localizar serviços na rede</li>
+                        <li><strong>Atualizações:</strong> Distribuição de informações</li>
+                    </ul>
+                    
+                    <h3>Limitações:</h3>
+                    <ul>
+                        <li><strong>Tráfego:</strong> Pode gerar congestionamento</li>
+                        <li><strong>Processamento:</strong> Todos os dispositivos processam</li>
+                        <li><strong>Segurança:</strong> Pode ser usado em ataques</li>
+                        <li><strong>Roteamento:</strong> Geralmente não é roteado</li>
+                    </ul>
+                    
+                    <h3>Domínio de Broadcast:</h3>
+                    <p>Conjunto de todos os dispositivos que recebem broadcasts uns dos outros. Limitado por roteadores.</p>
+                `
+            },
+            'endereco-multicast': {
+                title: 'Endereço de Multicast',
+                description: 'Endereço usado para enviar dados a um grupo específico de dispositivos.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Endereço de multicast permite enviar dados de um remetente para múltiplos destinatários específicos que fazem parte de um grupo, sem precisar enviar cópias individuais.</p>
+                    
+                    <h3>Faixas de Multicast IPv4:</h3>
+                    <ul>
+                        <li><strong>Classe D:</strong> 224.0.0.0 a 239.255.255.255</li>
+                        <li><strong>Link-Local:</strong> 224.0.0.0 a 224.0.0.255</li>
+                        <li><strong>Internetwork:</strong> 224.0.1.0 a 238.255.255.255</li>
+                        <li><strong>Administrativo:</strong> 239.0.0.0 a 239.255.255.255</li>
+                    </ul>
+                    
+                    <h3>Endereços Reservados:</h3>
+                    <ul>
+                        <li><strong>224.0.0.1:</strong> Todos os hosts na sub-rede</li>
+                        <li><strong>224.0.0.2:</strong> Todos os roteadores na sub-rede</li>
+                        <li><strong>224.0.0.5:</strong> Todos os roteadores OSPF</li>
+                        <li><strong>224.0.0.6:</strong> Roteadores OSPF designados</li>
+                        <li><strong>224.0.0.9:</strong> Roteadores RIP v2</li>
+                    </ul>
+                    
+                    <h3>Multicast IPv6:</h3>
+                    <ul>
+                        <li><strong>Prefixo:</strong> FF00::/8</li>
+                        <li><strong>Formato:</strong> FF[flags][scope]::[group-id]</li>
+                        <li><strong>Exemplo:</strong> FF02::1 (todos os nós link-local)</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Eficiência:</strong> Uma transmissão para múltiplos receptores</li>
+                        <li><strong>Largura de banda:</strong> Economia significativa</li>
+                        <li><strong>Escalabilidade:</strong> Não aumenta com número de receptores</li>
+                        <li><strong>Seletividade:</strong> Apenas interessados recebem</li>
+                    </ul>
+                    
+                    <h3>Aplicações:</h3>
+                    <ul>
+                        <li><strong>IPTV:</strong> Transmissão de vídeo</li>
+                        <li><strong>Videoconferência:</strong> Reuniões múltiplas</li>
+                        <li><strong>Jogos online:</strong> Atualizações de estado</li>
+                        <li><strong>Distribuição de software:</strong> Updates</li>
+                        <li><strong>Protocolos de roteamento:</strong> OSPF, RIP</li>
+                        <li><strong>Descoberta de serviços:</strong> mDNS, SSDP</li>
+                    </ul>
+                    
+                    <h3>Protocolos Relacionados:</h3>
+                    <ul>
+                        <li><strong>IGMP:</strong> Internet Group Management Protocol</li>
+                        <li><strong>PIM:</strong> Protocol Independent Multicast</li>
+                        <li><strong>MSDP:</strong> Multicast Source Discovery Protocol</li>
+                    </ul>
+                `
+            },
+            'mascara-endereco': {
+                title: 'Máscara de Endereço',
+                description: 'Define quais bits do endereço IP representam a rede e quais representam o host.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Máscara de endereço é um valor de 32 bits usado para determinar qual porção de um endereço IP identifica a rede e qual porção identifica o host dentro dessa rede.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ul>
+                        <li><strong>Bits 1:</strong> Representam a porção da rede</li>
+                        <li><strong>Bits 0:</strong> Representam a porção do host</li>
+                        <li><strong>Operação AND:</strong> IP AND Máscara = Endereço de rede</li>
+                        <li><strong>Sequência:</strong> Sempre bits 1 seguidos de bits 0</li>
+                    </ul>
+                    
+                    <h3>Máscaras Padrão:</h3>
+                    <ul>
+                        <li><strong>Classe A:</strong> 255.0.0.0 (/8) - 16.777.214 hosts</li>
+                        <li><strong>Classe B:</strong> 255.255.0.0 (/16) - 65.534 hosts</li>
+                        <li><strong>Classe C:</strong> 255.255.255.0 (/24) - 254 hosts</li>
+                    </ul>
+                    
+                    <h3>Notação CIDR:</h3>
+                    <ul>
+                        <li><strong>/8:</strong> 255.0.0.0 (8 bits de rede)</li>
+                        <li><strong>/16:</strong> 255.255.0.0 (16 bits de rede)</li>
+                        <li><strong>/24:</strong> 255.255.255.0 (24 bits de rede)</li>
+                        <li><strong>/30:</strong> 255.255.255.252 (30 bits de rede)</li>
+                    </ul>
+                    
+                    <h3>Exemplo Prático:</h3>
+                    <ul>
+                        <li><strong>IP:</strong> 192.168.1.100</li>
+                        <li><strong>Máscara:</strong> 255.255.255.0</li>
+                        <li><strong>Rede:</strong> 192.168.1.0</li>
+                        <li><strong>Host:</strong> 100</li>
+                        <li><strong>Broadcast:</strong> 192.168.1.255</li>
+                    </ul>
+                    
+                    <h3>Máscaras Personalizadas:</h3>
+                    <ul>
+                        <li><strong>/25:</strong> 255.255.255.128 (126 hosts)</li>
+                        <li><strong>/26:</strong> 255.255.255.192 (62 hosts)</li>
+                        <li><strong>/27:</strong> 255.255.255.224 (30 hosts)</li>
+                        <li><strong>/28:</strong> 255.255.255.240 (14 hosts)</li>
+                    </ul>
+                    
+                    <h3>Importância:</h3>
+                    <p>Fundamental para roteamento, subnetting e determinação de limites de rede.</p>
+                `
+            },
+            'mascara-sub-rede': {
+                title: 'Máscara Sub-rede',
+                description: 'Máscara que define os limites de uma sub-rede dentro de uma rede maior.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Máscara de sub-rede é uma extensão da máscara de rede padrão, usada para criar subdivisões lógicas (sub-redes) dentro de uma rede maior.</p>
+                    
+                    <h3>Processo de Subnetting:</h3>
+                    <ul>
+                        <li><strong>Empréstimo de bits:</strong> Bits do host são "emprestados" para criar sub-redes</li>
+                        <li><strong>Nova máscara:</strong> Mais bits 1 que a máscara original</li>
+                        <li><strong>Sub-redes:</strong> 2^bits_emprestados sub-redes</li>
+                        <li><strong>Hosts:</strong> 2^bits_restantes - 2 hosts por sub-rede</li>
+                    </ul>
+                    
+                    <h3>Exemplo de Subnetting:</h3>
+                    <ul>
+                        <li><strong>Rede original:</strong> 192.168.1.0/24 (255.255.255.0)</li>
+                        <li><strong>Objetivo:</strong> 4 sub-redes</li>
+                        <li><strong>Bits necessários:</strong> 2 bits (2² = 4 sub-redes)</li>
+                        <li><strong>Nova máscara:</strong> /26 (255.255.255.192)</li>
+                    </ul>
+                    
+                    <h3>Sub-redes Resultantes:</h3>
+                    <ul>
+                        <li><strong>Sub-rede 1:</strong> 192.168.1.0/26 (hosts .1 a .62)</li>
+                        <li><strong>Sub-rede 2:</strong> 192.168.1.64/26 (hosts .65 a .126)</li>
+                        <li><strong>Sub-rede 3:</strong> 192.168.1.128/26 (hosts .129 a .190)</li>
+                        <li><strong>Sub-rede 4:</strong> 192.168.1.192/26 (hosts .193 a .254)</li>
+                    </ul>
+                    
+                    <h3>Cálculo Rápido:</h3>
+                    <ul>
+                        <li><strong>Incremento:</strong> 256 - valor do octeto da máscara</li>
+                        <li><strong>Exemplo:</strong> 256 - 192 = 64 (incremento)</li>
+                        <li><strong>Sub-redes:</strong> 0, 64, 128, 192</li>
+                    </ul>
+                    
+                    <h3>Vantagens do Subnetting:</h3>
+                    <ul>
+                        <li><strong>Organização:</strong> Separa logicamente diferentes grupos</li>
+                        <li><strong>Segurança:</strong> Isola tráfego entre departamentos</li>
+                        <li><strong>Performance:</strong> Reduz domínios de broadcast</li>
+                        <li><strong>Eficiência:</strong> Melhor uso de endereços IP</li>
+                        <li><strong>Gerenciamento:</strong> Facilita administração</li>
+                    </ul>
+                    
+                    <h3>VLSM (Variable Length Subnet Mask):</h3>
+                    <p>Permite usar diferentes tamanhos de máscara em sub-redes da mesma rede, otimizando o uso de endereços.</p>
+                `
+            },
+            'ipv4': {
+                title: 'IPv4 (Internet Protocol version 4)',
+                description: 'Versão 4 do protocolo IP, usa endereços de 32 bits (4 octetos).',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>IPv4 é a quarta versão do Internet Protocol, o protocolo principal da suíte TCP/IP, responsável pelo endereçamento e roteamento de pacotes na Internet.</p>
+                    
+                    <h3>Caracterí
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Tamanho:</strong> 32 bits (4 bytes)</li>
+                        <li><strong>Formato:</strong> 4 octetos separados por pontos</li>
+                        <li><strong>Exemplo:</strong> 192.168.1.100</li>
+                        <li><strong>Espaço:</strong> 4.294.967.296 endereços possíveis</li>
+                        <li><strong>Esgotamento:</strong> Endereços públicos praticamente esgotados</li>
+                    </ul>
+                    
+                    <h3>Estrutura do Cabeçalho:</h3>
+                    <ul>
+                        <li><strong>Version:</strong> Versão do IP (4)</li>
+                        <li><strong>Header Length:</strong> Tamanho do cabeçalho</li>
+                        <li><strong>Type of Service:</strong> Qualidade de serviço</li>
+                        <li><strong>Total Length:</strong> Tamanho total do pacote</li>
+                        <li><strong>TTL:</strong> Time to Live</li>
+                        <li><strong>Protocol:</strong> Protocolo da camada superior</li>
+                        <li><strong>Source/Destination:</strong> Endereços origem e destino</li>
+                    </ul>
+                    
+                    <h3>Classes de Endereços:</h3>
+                    <ul>
+                        <li><strong>Classe A:</strong> 1.0.0.0 a 126.255.255.255 (/8)</li>
+                        <li><strong>Classe B:</strong> 128.0.0.0 a 191.255.255.255 (/16)</li>
+                        <li><strong>Classe C:</strong> 192.0.0.0 a 223.255.255.255 (/24)</li>
+                        <li><strong>Classe D:</strong> 224.0.0.0 a 239.255.255.255 (Multicast)</li>
+                        <li><strong>Classe E:</strong> 240.0.0.0 a 255.255.255.255 (Experimental)</li>
+                    </ul>
+                    
+                    <h3>Endereços Especiais:</h3>
+                    <ul>
+                        <li><strong>0.0.0.0:</strong> Rede atual</li>
+                        <li><strong>127.0.0.1:</strong> Loopback (localhost)</li>
+                        <li><strong>255.255.255.255:</strong> Broadcast limitado</li>
+                        <li><strong>169.254.x.x:</strong> APIPA (link-local)</li>
+                    </ul>
+                    
+                    <h3>Limitações:</h3>
+                    <ul>
+                        <li>Esgotamento de endereços públicos</li>
+                        <li>Necessidade de NAT para redes privadas</li>
+                        <li>Fragmentação de redes</li>
+                        <li>Complexidade de roteamento</li>
+                    </ul>
+                `
+            },
+            'ipv6': {
+                title: 'IPv6 (Internet Protocol version 6)',
+                description: 'Versão 6 do protocolo IP, usa endereços de 128 bits para resolver limitações do IPv4.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>IPv6 é a sexta versão do Internet Protocol, desenvolvido para substituir o IPv4 e resolver o problema de esgotamento de endereços, oferecendo um espaço de endereçamento muito maior.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Tamanho:</strong> 128 bits (16 bytes)</li>
+                        <li><strong>Formato:</strong> 8 grupos de 4 dígitos hexadecimais</li>
+                        <li><strong>Exemplo:</strong> 2001:0db8:85a3:0000:0000:8a2e:0370:7334</li>
+                        <li><strong>Espaço:</strong> 340 undecilhões de endereços</li>
+                        <li><strong>Hierarquia:</strong> Estrutura hierárquica melhorada</li>
+                    </ul>
+                    
+                    <h3>Notação Compacta:</h3>
+                    <ul>
+                        <li><strong>Zeros à esquerda:</strong> Podem ser omitidos</li>
+                        <li><strong>Exemplo:</strong> 2001:db8:85a3::8a2e:370:7334</li>
+                        <li><strong>Zero duplo:</strong> :: representa grupos consecutivos de zeros</li>
+                        <li><strong>Uso único:</strong> :: pode ser usado apenas uma vez</li>
+                    </ul>
+                    
+                    <h3>Tipos de Endereços:</h3>
+                    <ul>
+                        <li><strong>Unicast:</strong> Um para um (Global, Link-local, Unique-local)</li>
+                        <li><strong>Multicast:</strong> Um para muitos (FF00::/8)</li>
+                        <li><strong>Anycast:</strong> Um para o mais próximo</li>
+                        <li><strong>Não há broadcast:</strong> Substituído por multicast</li>
+                    </ul>
+                    
+                    <h3>Prefixos Importantes:</h3>
+                    <ul>
+                        <li><strong>::1/128:</strong> Loopback</li>
+                        <li><strong>fe80::/10:</strong> Link-local</li>
+                        <li><strong>fc00::/7:</strong> Unique Local (ULA)</li>
+                        <li><strong>2000::/3:</strong> Global Unicast</li>
+                        <li><strong>ff00::/8:</strong> Multicast</li>
+                    </ul>
+                    
+                    <h3>Vantagens sobre IPv4:</h3>
+                    <ul>
+                        <li><strong>Espaço ilimitado:</strong> Praticamente infinitos endereços</li>
+                        <li><strong>Autoconfiguração:</strong> SLAAC (Stateless Address Autoconfiguration)</li>
+                        <li><strong>Segurança:</strong> IPSec integrado</li>
+                        <li><strong>Mobilidade:</strong> Suporte nativo para dispositivos móveis</li>
+                        <li><strong>QoS:</strong> Melhor suporte para qualidade de serviço</li>
+                        <li><strong>Simplicidade:</strong> Cabeçalho mais simples</li>
+                    </ul>
+                    
+                    <h3>Transição do IPv4:</h3>
+                    <ul>
+                        <li><strong>Dual Stack:</strong> IPv4 e IPv6 simultaneamente</li>
+                        <li><strong>Tunneling:</strong> IPv6 sobre IPv4</li>
+                        <li><strong>Translation:</strong> Conversão entre protocolos</li>
+                    </ul>
+                `
+            },
+            'tcp-ip': {
+                title: 'TCP/IP (Transmission Control Protocol/Internet Protocol)',
+                description: 'Suíte de protocolos base da Internet, combina TCP e IP para comunicação confiável.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>TCP/IP é uma suíte de protocolos de comunicação que forma a base da Internet e da maioria das redes modernas, combinando o TCP (confiabilidade) com o IP (roteamento).</p>
+                    
+                    <h3>Modelo TCP/IP (4 Camadas):</h3>
+                    <ul>
+                        <li><strong>Aplicação:</strong> HTTP, FTP, SMTP, DNS</li>
+                        <li><strong>Transporte:</strong> TCP, UDP</li>
+                        <li><strong>Internet:</strong> IP, ICMP, ARP</li>
+                        <li><strong>Acesso à Rede:</strong> Ethernet, Wi-Fi</li>
+                    </ul>
+                    
+                    <h3>TCP (Transmission Control Protocol):</h3>
+                    <ul>
+                        <li><strong>Confiável:</strong> Garante entrega dos dados</li>
+                        <li><strong>Orientado à conexão:</strong> Estabelece conexão antes</li>
+                        <li><strong>Controle de fluxo:</strong> Gerencia velocidade de envio</li>
+                        <li><strong>Controle de erro:</strong> Detecta e corrige erros</li>
+                        <li><strong>Sequenciamento:</strong> Ordena dados corretamente</li>
+                    </ul>
+                    
+                    <h3>IP (Internet Protocol):</h3>
+                    <ul>
+                        <li><strong>Roteamento:</strong> Encontra caminho entre redes</li>
+                        <li><strong>Endereçamento:</strong> Identifica origem e destino</li>
+                        <li><strong>Fragmentação:</strong> Divide pacotes grandes</li>
+                        <li><strong>Best effort:</strong> Não garante entrega</li>
+                    </ul>
+                    
+                    <h3>Processo de Comunicação:</h3>
+                    <ol>
+                        <li><strong>Estabelecimento:</strong> Three-way handshake (SYN, SYN-ACK, ACK)</li>
+                        <li><strong>Transferência:</strong> Envio de dados com confirmação</li>
+                        <li><strong>Encerramento:</strong> Four-way handshake (FIN, ACK, FIN, ACK)</li>
+                    </ol>
+                    
+                    <h3>Protocolos Relacionados:</h3>
+                    <ul>
+                        <li><strong>ICMP:</strong> Mensagens de controle e erro</li>
+                        <li><strong>ARP:</strong> Resolução de endereços</li>
+                        <li><strong>DHCP:</strong> Configuração automática</li>
+                        <li><strong>DNS:</strong> Resolução de nomes</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li>Padrão universal da Internet</li>
+                        <li>Interoperabilidade entre sistemas</li>
+                        <li>Escalabilidade global</li>
+                        <li>Flexibilidade e robustez</li>
+                        <li>Suporte a diferentes tecnologias</li>
+                    </ul>
+                `
+            },
+            'udp': {
+                title: 'UDP (User Datagram Protocol)',
+                description: 'User Datagram Protocol - Protocolo de transporte rápido sem garantia de entrega.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>UDP é um protocolo de transporte simples e rápido que oferece comunicação sem conexão, priorizando velocidade sobre confiabilidade.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Sem conexão:</strong> Não estabelece conexão prévia</li>
+                        <li><strong>Não confiável:</strong> Não garante entrega</li>
+                        <li><strong>Sem ordem:</strong> Não garante sequência</li>
+                        <li><strong>Rápido:</strong> Menor overhead que TCP</li>
+                        <li><strong>Simples:</strong> Cabeçalho mínimo (8 bytes)</li>
+                    </ul>
+                    
+                    <h3>Cabeçalho UDP:</h3>
+                    <ul>
+                        <li><strong>Source Port:</strong> Porta de origem (16 bits)</li>
+                        <li><strong>Destination Port:</strong> Porta de destino (16 bits)</li>
+                        <li><strong>Length:</strong> Tamanho do datagrama (16 bits)</li>
+                        <li><strong>Checksum:</strong> Verificação de integridade (16 bits)</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> Transmissão mais rápida</li>
+                        <li><strong>Simplicidade:</strong> Implementação mais simples</li>
+                        <li><strong>Baixo overhead:</strong> Menos dados de controle</li>
+                        <li><strong>Broadcast/Multicast:</strong> Suporte nativo</li>
+                        <li><strong>Tempo real:</strong> Ideal para aplicações em tempo real</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Perda de dados:</strong> Pode perder pacotes</li>
+                        <li><strong>Duplicação:</strong> Pode duplicar dados</li>
+                        <li><strong>Desordem:</strong> Dados podem chegar fora de ordem</li>
+                        <li><strong>Sem controle:</strong> Não controla fluxo ou congestionamento</li>
+                    </ul>
+                    
+                    <h3>Aplicações Típicas:</h3>
+                    <ul>
+                        <li><strong>DNS:</strong> Consultas de nomes</li>
+                        <li><strong>DHCP:</strong> Configuração de rede</li>
+                        <li><strong>Streaming:</strong> Vídeo e áudio ao vivo</li>
+                        <li><strong>Jogos online:</strong> Atualizações rápidas</li>
+                        <li><strong>SNMP:</strong> Gerenciamento de rede</li>
+                        <li><strong>TFTP:</strong> Transferência simples de arquivos</li>
+                        <li><strong>VoIP:</strong> Voz sobre IP</li>
+                    </ul>
+                    
+                    <h3>Quando Usar:</h3>
+                    <p>UDP é ideal quando velocidade é mais importante que confiabilidade, ou quando a aplicação pode lidar com perdas ocasionais.</p>
+                `
+            },
+            'arp': {
+                title: 'ARP (Address Resolution Protocol)',
+                description: 'Address Resolution Protocol - Resolve endereços IP em endereços MAC.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>ARP é um protocolo usado para mapear endereços IP (camada 3) para endereços MAC (camada 2) em redes locais, permitindo a entrega física de frames.</p>
+                    
+                    <h3>Como Funciona:</h3>
+                    <ol>
+                        <li><strong>ARP Request:</strong> Broadcast perguntando "Quem tem IP X?"</li>
+                        <li><strong>ARP Reply:</strong> Dispositivo com IP X responde com seu MAC</li>
+                        <li><strong>Cache ARP:</strong> Mapeamento é armazenado temporariamente</li>
+                        <li><strong>Comunicação:</strong> Frames são enviados usando MAC descoberto</li>
+                    </ol>
+                    
+                    <h3>Tipos de ARP:</h3>
+                    <ul>
+                        <li><strong>ARP Request:</strong> Solicitação de endereço MAC</li>
+                        <li><strong>ARP Reply:</strong> Resposta com endereço MAC</li>
+                        <li><strong>Gratuitous ARP:</strong> Anuncia próprio IP/MAC</li>
+                        <li><strong>Proxy ARP:</strong> Roteador responde por outros dispositivos</li>
+                    </ul>
+                    
+                    <h3>Estrutura do Pacote ARP:</h3>
+                    <ul>
+                        <li><strong>Hardware Type:</strong> Tipo de hardware (Ethernet = 1)</li>
+                        <li><strong>Protocol Type:</strong> Tipo de protocolo (IP = 0x0800)</li>
+                        <li><strong>Hardware Length:</strong> Tamanho do endereço MAC (6)</li>
+                        <li><strong>Protocol Length:</strong> Tamanho do endereço IP (4)</li>
+                        <li><strong>Operation:</strong> Request (1) ou Reply (2)</li>
+                        <li><strong>Addresses:</strong> MACs e IPs origem/destino</li>
+                    </ul>
+                    
+                    <h3>Cache ARP:</h3>
+                    <ul>
+                        <li><strong>Armazenamento:</strong> Tabela temporária IP→MAC</li>
+                        <li><strong>TTL:</strong> Entradas expiram (tipicamente 2-20 minutos)</li>
+                        <li><strong>Atualização:</strong> Renovado a cada uso</li>
+                        <li><strong>Comando:</strong> "arp -a" para visualizar</li>
+                    </ul>
+                    
+                    <h3>Problemas de Segurança:</h3>
+                    <ul>
+                        <li><strong>ARP Spoofing:</strong> Falsificação de respostas ARP</li>
+                        <li><strong>Man-in-the-Middle:</strong> Interceptação de tráfego</li>
+                        <li><strong>ARP Poisoning:</strong> Contaminação do cache ARP</li>
+                    </ul>
+                    
+                    <h3>Limitações:</h3>
+                    <ul>
+                        <li>Funciona apenas em redes locais</li>
+                        <li>Não atravessa roteadores</li>
+                        <li>Vulnerável a ataques</li>
+                        <li>Gera tráfego de broadcast</li>
+                    </ul>
+                    
+                    <h3>Protocolos Relacionados:</h3>
+                    <ul>
+                        <li><strong>RARP:</strong> Reverse ARP (MAC → IP)</li>
+                        <li><strong>NDP:</strong> Neighbor Discovery (IPv6)</li>
+                    </ul>
+                `
+            },
+            'protocolo': {
+                title: 'Protocolo',
+                description: 'Conjunto de regras que governam a comunicação entre dispositivos em rede.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Protocolo é um conjunto padronizado de regras, convenções e formatos que governam como dispositivos se comunicam em uma rede, garantindo interoperabilidade.</p>
+                    
+                    <h3>Elementos de um Protocolo:</h3>
+                    <ul>
+                        <li><strong>Sintaxe:</strong> Formato e estrutura dos dados</li>
+                        <li><strong>Semântica:</strong> Significado de cada campo</li>
+                        <li><strong>Temporização:</strong> Quando e quão rápido enviar</li>
+                        <li><strong>Sequenciamento:</strong> Ordem das operações</li>
+                        <li><strong>Tratamento de erros:</strong> Como lidar com problemas</li>
+                    </ul>
+                    
+                    <h3>Classificação por Camada:</h3>
+                    <ul>
+                        <li><strong>Camada Física:</strong> Ethernet, Wi-Fi, Bluetooth</li>
+                        <li><strong>Camada de Enlace:</strong> PPP, HDLC, Frame Relay</li>
+                        <li><strong>Camada de Rede:</strong> IP, ICMP, OSPF, BGP</li>
+                        <li><strong>Camada de Transporte:</strong> TCP, UDP, SCTP</li>
+                        <li><strong>Camada de Aplicação:</strong> HTTP, FTP, SMTP, DNS</li>
+                    </ul>
+                    
+                    <h3>Protocolos por Função:</h3>
+                    <ul>
+                        <li><strong>Roteamento:</strong> OSPF, BGP, RIP, EIGRP</li>
+                        <li><strong>Resolução:</strong> DNS, ARP, DHCP</li>
+                        <li><strong>Gerenciamento:</strong> SNMP, ICMP, NTP</li>
+                        <li><strong>Segurança:</strong> IPSec, SSL/TLS, SSH</li>
+                        <li><strong>Aplicação:</strong> HTTP, FTP, SMTP, POP3</li>
+                    </ul>
+                    
+                    <h3>Características Importantes:</h3>
+                    <ul>
+                        <li><strong>Padronização:</strong> Definidos por organizações (IEEE, IETF)</li>
+                        <li><strong>Interoperabilidade:</strong> Diferentes fabricantes podem comunicar</li>
+                        <li><strong>Modularidade:</strong> Cada protocolo tem função específica</li>
+                        <li><strong>Evolução:</strong> Versões melhoradas ao longo do tempo</li>
+                    </ul>
+                    
+                    <h3>Exemplos de Interação:</h3>
+                    <ul>
+                        <li><strong>Navegação Web:</strong> HTTP sobre TCP sobre IP sobre Ethernet</li>
+                        <li><strong>E-mail:</strong> SMTP sobre TCP sobre IP</li>
+                        <li><strong>Transferência:</strong> FTP sobre TCP sobre IP</li>
+                        <li><strong>Consulta DNS:</strong> DNS sobre UDP sobre IP</li>
+                    </ul>
+                    
+                    <h3>Organizações de Padronização:</h3>
+                    <ul>
+                        <li><strong>IETF:</strong> Internet Engineering Task Force</li>
+                        <li><strong>IEEE:</strong> Institute of Electrical and Electronics Engineers</li>
+                        <li><strong>ISO:</strong> International Organization for Standardization</li>
+                        <li><strong>ITU:</strong> International Telecommunication Union</li>
+                    </ul>
+                `
+            },
+            'pacote': {
+                title: 'Pacote (TCP)',
+                description: 'Unidade de dados formatada para transmissão usando protocolo TCP.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Pacote TCP é uma unidade de dados estruturada que contém informações de controle e dados do usuário, formatada segundo o protocolo TCP para transmissão confiável.</p>
+                    
+                    <h3>Estrutura do Cabeçalho TCP:</h3>
+                    <ul>
+                        <li><strong>Source Port:</strong> Porta de origem (16 bits)</li>
+                        <li><strong>Destination Port:</strong> Porta de destino (16 bits)</li>
+                        <li><strong>Sequence Number:</strong> Número de sequência (32 bits)</li>
+                        <li><strong>Acknowledgment:</strong> Número de confirmação (32 bits)</li>
+                        <li><strong>Flags:</strong> Controle (SYN, ACK, FIN, RST, etc.)</li>
+                        <li><strong>Window Size:</strong> Tamanho da janela (16 bits)</li>
+                        <li><strong>Checksum:</strong> Verificação de integridade (16 bits)</li>
+                    </ul>
+                    
+                    <h3>Flags de Controle:</h3>
+                    <ul>
+                        <li><strong>SYN:</strong> Sincronização (estabelecer conexão)</li>
+                        <li><strong>ACK:</strong> Confirmação (dados recebidos)</li>
+                        <li><strong>FIN:</strong> Finalização (encerrar conexão)</li>
+                        <li><strong>RST:</strong> Reset (forçar encerramento)</li>
+                        <li><strong>PSH:</strong> Push (entregar imediatamente)</li>
+                        <li><strong>URG:</strong> Urgente (dados prioritários)</li>
+                    </ul>
+                    
+                    <h3>Processo de Entrega:</h3>
+                    <ol>
+                        <li><strong>Segmentação:</strong> Dados divididos em segmentos</li>
+                        <li><strong>Numeração:</strong> Cada segmento recebe número</li>
+                        <li><strong>Transmissão:</strong> Envio com controle de fluxo</li>
+                        <li><strong>Confirmação:</strong> Receptor confirma recebimento</li>
+                        <li><strong>Retransmissão:</strong> Reenvia se necessário</li>
+                    </ol>
+                    
+                    <h3>Controle de Fluxo:</h3>
+                    <ul>
+                        <li><strong>Janela deslizante:</strong> Controla quantidade enviada</li>
+                        <li><strong>Window Size:</strong> Informa espaço disponível</li>
+                        <li><strong>Ajuste dinâmico:</strong> Adapta à capacidade do receptor</li>
+                    </ul>
+                    
+                    <h3>Controle de Congestionamento:</h3>
+                    <ul>
+                        <li><strong>Slow Start:</strong> Começa devagar e acelera</li>
+                        <li><strong>Congestion Avoidance:</strong> Evita sobrecarga</li>
+                        <li><strong>Fast Recovery:</strong> Recuperação rápida</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li>Entrega garantida e ordenada</li>
+                        <li>Controle de fluxo e congestionamento</li>
+                        <li>Detecção e correção de erros</li>
+                        <li>Conexão confiável</li>
+                    </ul>
+                    
+                    <h3>Overhead:</h3>
+                    <p>Cabeçalho mínimo de 20 bytes, podendo chegar a 60 bytes com opções.</p>
+                `
+            },
+            'datagrama': {
+                title: 'Datagrama',
+                description: 'Unidade de dados independente transmitida via UDP ou IP sem garantia de entrega.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Datagrama é uma unidade de dados autocontida e independente que é transmitida pela rede sem estabelecer conexão prévia, tipicamente usado em protocolos UDP e IP.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Independente:</strong> Cada datagrama é tratado separadamente</li>
+                        <li><strong>Sem conexão:</strong> Não requer estabelecimento de sessão</li>
+                        <li><strong>Sem garantia:</strong> Não garante entrega ou ordem</li>
+                        <li><strong>Autocontido:</strong> Contém todas as informações necessárias</li>
+                        <li><strong>Rápido:</strong> Menor overhead de processamento</li>
+                    </ul>
+                    
+                    <h3>Datagrama IP:</h3>
+                    <ul>
+                        <li><strong>Cabeçalho:</strong> 20-60 bytes de informações de controle</li>
+                        <li><strong>Dados:</strong> Até 65.535 bytes total</li>
+                        <li><strong>TTL:</strong> Time to Live para evitar loops</li>
+                        <li><strong>Fragmentação:</strong> Pode ser dividido se necessário</li>
+                    </ul>
+                    
+                    <h3>Datagrama UDP:</h3>
+                    <ul>
+                        <li><strong>Cabeçalho:</strong> Apenas 8 bytes</li>
+                        <li><strong>Simplicidade:</strong> Mínimo de informações de controle</li>
+                        <li><strong>Portas:</strong> Identifica aplicações origem/destino</li>
+                        <li><strong>Checksum:</strong> Verificação opcional de integridade</li>
+                    </ul>
+                    
+                    <h3>Roteamento de Datagramas:</h3>
+                    <ul>
+                        <li><strong>Hop-by-hop:</strong> Cada roteador decide próximo salto</li>
+                        <li><strong>Tabela de roteamento:</strong> Consulta para cada datagrama</li>
+                        <li><strong>Caminhos diferentes:</strong> Datagramas podem seguir rotas distintas</li>
+                        <li><strong>Chegada desordenada:</strong> Podem chegar fora de sequência</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Velocidade:</strong> Transmissão mais rápida</li>
+                        <li><strong>Simplicidade:</strong> Implementação mais simples</li>
+                        <li><strong>Flexibilidade:</strong> Cada datagrama é independente</li>
+                        <li><strong>Resistência:</strong> Falhas não afetam outros datagramas</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Confiabilidade:</strong> Pode haver perda de dados</li>
+                        <li><strong>Ordem:</strong> Não garante sequência</li>
+                        <li><strong>Duplicação:</strong> Podem chegar cópias</li>
+                        <li><strong>Overhead:</strong> Cada datagrama tem cabeçalho completo</li>
+                    </ul>
+                    
+                    <h3>Aplicações Típicas:</h3>
+                    <ul>
+                        <li>Consultas DNS</li>
+                        <li>Streaming de vídeo/áudio</li>
+                        <li>Jogos online</li>
+                        <li>Protocolos de descoberta</li>
+                        <li>Monitoramento de rede (SNMP)</li>
+                    </ul>
+                `
+            },
+            'frame': {
+                title: 'Frame',
+                description: 'Unidade de dados na camada de enlace, inclui cabeçalho e dados.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Frame é a unidade de dados da camada de enlace (Layer 2) que encapsula pacotes da camada de rede, adicionando informações para transmissão no meio físico local.</p>
+                    
+                    <h3>Estrutura Geral:</h3>
+                    <ul>
+                        <li><strong>Preâmbulo:</strong> Sincronização de bits</li>
+                        <li><strong>Cabeçalho:</strong> Endereços MAC e tipo</li>
+                        <li><strong>Dados:</strong> Pacote da camada superior</li>
+                        <li><strong>FCS:</strong> Frame Check Sequence (detecção de erros)</li>
+                    </ul>
+                    
+                    <h3>Frame Ethernet:</h3>
+                    <ul>
+                        <li><strong>Preâmbulo:</strong> 7 bytes (10101010...)</li>
+                        <li><strong>SFD:</strong> Start Frame Delimiter (10101011)</li>
+                        <li><strong>MAC Destino:</strong> 6 bytes</li>
+                        <li><strong>MAC Origem:</strong> 6 bytes</li>
+                        <li><strong>EtherType/Length:</strong> 2 bytes</li>
+                        <li><strong>Dados:</strong> 46-1500 bytes</li>
+                        <li><strong>FCS:</strong> 4 bytes (CRC32)</li>
+                    </ul>
+                    
+                    <h3>Tipos de Frames:</h3>
+                    <ul>
+                        <li><strong>Ethernet:</strong> Mais comum em LANs</li>
+                        <li><strong>Wi-Fi (802.11):</strong> Redes sem fio</li>
+                        <li><strong>PPP:</strong> Conexões ponto-a-ponto</li>
+                        <li><strong>Frame Relay:</strong> WANs (legado)</li>
+                        <li><strong>ATM:</strong> Cells de tamanho fixo</li>
+                    </ul>
+                    
+                    <h3>Endereçamento MAC:</h3>
+                    <ul>
+                        <li><strong>Origem:</strong> MAC do dispositivo que envia</li>
+                        <li><strong>Destino:</strong> MAC do dispositivo receptor</li>
+                        <li><strong>Unicast:</strong> Para um dispositivo específico</li>
+                        <li><strong>Broadcast:</strong> FF:FF:FF:FF:FF:FF</li>
+                        <li><strong>Multicast:</strong> Primeiro bit = 1</li>
+                    </ul>
+                    
+                    <h3>Detecção de Erros:</h3>
+                    <ul>
+                        <li><strong>FCS:</strong> Cálculo CRC32 sobre todo o frame</li>
+                        <li><strong>Verificação:</strong> Receptor recalcula e compara</li>
+                        <li><strong>Descarte:</strong> Frames com erro são descartados</li>
+                        <li><strong>Não corrige:</strong> Apenas detecta, não corrige erros</li>
+                    </ul>
+                    
+                    <h3>Tamanho do Frame:</h3>
+                    <ul>
+                        <li><strong>Mínimo:</strong> 64 bytes (Ethernet)</li>
+                        <li><strong>Máximo:</strong> 1518 bytes (Ethernet padrão)</li>
+                        <li><strong>Jumbo Frames:</strong> Até 9000 bytes (redes especiais)</li>
+                        <li><strong>Padding:</strong> Preenchimento se dados < 46 bytes</li>
+                    </ul>
+                    
+                    <h3>Processamento:</h3>
+                    <ul>
+                        <li><strong>Encapsulamento:</strong> Adiciona cabeçalho Layer 2</li>
+                        <li><strong>Transmissão:</strong> Enviado pelo meio físico</li>
+                        <li><strong>Recepção:</strong> Verificado e desencapsulado</li>
+                        <li><strong>Entrega:</strong> Dados passados para camada superior</li>
+                    </ul>
+                `
+            },
+            'mtu': {
+                title: 'MTU (Maximum Transmission Unit)',
+                description: 'Maximum Transmission Unit - Tamanho máximo de dados que pode ser transmitido.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>MTU é o tamanho máximo de dados que pode ser transmitido em uma única unidade de protocolo sem necessidade de fragmentação, medido em bytes.</p>
+                    
+                    <h3>MTU por Tecnologia:</h3>
+                    <ul>
+                        <li><strong>Ethernet:</strong> 1500 bytes</li>
+                        <li><strong>Jumbo Frames:</strong> 9000 bytes</li>
+                        <li><strong>PPPoE:</strong> 1492 bytes</li>
+                        <li><strong>Wi-Fi:</strong> 1500 bytes</li>
+                        <li><strong>Token Ring:</strong> 4464 bytes</li>
+                        <li><strong>FDDI:</strong> 4352 bytes</li>
+                        <li><strong>ATM:</strong> 53 bytes (cells)</li>
+                    </ul>
+                    
+                    <h3>Path MTU Discovery:</h3>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Descobrir menor MTU no caminho</li>
+                        <li><strong>Método:</strong> Envia pacotes com DF (Don't Fragment)</li>
+                        <li><strong>ICMP:</strong> Recebe mensagens de "fragmentation needed"</li>
+                        <li><strong>Ajuste:</strong> Reduz tamanho até encontrar MTU adequado</li>
+                    </ul>
+                    
+                    <h3>Fragmentação IP:</h3>
+                    <ul>
+                        <li><strong>Quando:</strong> Pacote > MTU da interface</li>
+                        <li><strong>Onde:</strong> Roteadores ou host origem</li>
+                        <li><strong>Campos:</strong> Identification, Flags, Fragment Offset</li>
+                        <li><strong>Remontagem:</strong> Apenas no destino final</li>
+                    </ul>
+                    
+                    <h3>Problemas da Fragmentação:</h3>
+                    <ul>
+                        <li><strong>Performance:</strong> Overhead de processamento</li>
+                        <li><strong>Perda:</strong> Um fragmento perdido = pacote inteiro perdido</li>
+                        <li><strong>Firewall:</strong> Dificuldade para filtrar fragmentos</li>
+                        <li><strong>NAT:</strong> Problemas com tradução de endereços</li>
+                    </ul>
+                    
+                    <h3>Otimização de MTU:</h3>
+                    <ul>
+                        <li><strong>Maior MTU:</strong> Menos overhead de cabeçalhos</li>
+                        <li><strong>Jumbo Frames:</strong> Melhora performance em LANs</li>
+                        <li><strong>Consistência:</strong> Mesmo MTU em toda a rede</li>
+                        <li><strong>Testes:</strong> Ping com tamanhos diferentes</li>
+                    </ul>
+                    
+                    <h3>Comandos Úteis:</h3>
+                    <ul>
+                        <li><strong>Windows:</strong> netsh interface ipv4 show subinterfaces</li>
+                        <li><strong>Linux:</strong> ip link show ou ifconfig</li>
+                        <li><strong>Ping test:</strong> ping -f -l 1472 destino</li>
+                        <li><strong>Tracepath:</strong> Mostra MTU do caminho</li>
+                    </ul>
+                    
+                    <h3>Considerações:</h3>
+                    <ul>
+                        <li>MTU afeta diretamente a performance</li>
+                        <li>Deve ser configurado adequadamente
+                        <li>MTU afeta diretamente a performance</li>
+                        <li>Deve ser configurado adequadamente para cada rede</li>
+                        <li>Importante para aplicações que enviam dados grandes</li>
+                        <li>Consideração crucial em VPNs e túneis</li>
+                    </ul>
+                `
+            },
+            'unicast': {
+                title: 'Unicast',
+                description: 'Comunicação ponto-a-ponto entre dois dispositivos específicos.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Unicast é um tipo de comunicação de rede onde os dados são enviados de um remetente para um único destinatário específico, estabelecendo uma comunicação ponto-a-ponto.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Um para um:</strong> Comunicação entre dois dispositivos</li>
+                        <li><strong>Endereço específico:</strong> Destinatário bem definido</li>
+                        <li><strong>Privacidade:</strong> Apenas o destinatário recebe</li>
+                        <li><strong>Eficiência:</strong> Dados não são desperdiçados</li>
+                        <li><strong>Escalabilidade:</strong> Cada conexão é independente</li>
+                    </ul>
+                    
+                    <h3>Exemplos de Unicast:</h3>
+                    <ul>
+                        <li><strong>Navegação web:</strong> Cliente solicita página de servidor específico</li>
+                        <li><strong>E-mail:</strong> Mensagem enviada para um destinatário</li>
+                        <li><strong>Transferência de arquivos:</strong> FTP entre dois hosts</li>
+                        <li><strong>SSH:</strong> Conexão segura remota</li>
+                        <li><strong>Telnet:</strong> Acesso remoto a terminal</li>
+                    </ul>
+                    
+                    <h3>Endereçamento Unicast:</h3>
+                    <ul>
+                        <li><strong>IPv4:</strong> Endereços das classes A, B, C</li>
+                        <li><strong>IPv6:</strong> Prefixos 2000::/3 (global), fe80::/10 (link-local)</li>
+                        <li><strong>MAC:</strong> Endereços com primeiro bit = 0</li>
+                        <li><strong>Único:</strong> Cada interface tem endereço único</li>
+                    </ul>
+                    
+                    <h3>Roteamento Unicast:</h3>
+                    <ul>
+                        <li><strong>Tabelas de roteamento:</strong> Caminho para cada destino</li>
+                        <li><strong>Longest prefix match:</strong> Melhor correspondência</li>
+                        <li><strong>Hop-by-hop:</strong> Decisão em cada roteador</li>
+                        <li><strong>Protocolos:</strong> OSPF, BGP, RIP para descobrir rotas</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Segurança:</strong> Comunicação privada</li>
+                        <li><strong>Controle:</strong> Gerenciamento individual de conexões</li>
+                        <li><strong>Qualidade:</strong> QoS pode ser aplicado por fluxo</li>
+                        <li><strong>Confiabilidade:</strong> Protocolos como TCP garantem entrega</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Escalabilidade:</strong> Uma conexão por destinatário</li>
+                        <li><strong>Largura de banda:</strong> Duplicação para múltiplos destinos</li>
+                        <li><strong>Recursos:</strong> Mais processamento no servidor</li>
+                    </ul>
+                    
+                    <h3>Contraste com Outros Tipos:</h3>
+                    <ul>
+                        <li><strong>vs Broadcast:</strong> Não envia para todos</li>
+                        <li><strong>vs Multicast:</strong> Não envia para grupos</li>
+                        <li><strong>vs Anycast:</strong> Destino específico, não o mais próximo</li>
+                    </ul>
+                `
+            },
+            'multicast': {
+                title: 'Multicast',
+                description: 'Comunicação de um para muitos dispositivos selecionados.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Multicast é um tipo de comunicação onde dados são enviados de um remetente para múltiplos destinatários que pertencem a um grupo específico, otimizando o uso da largura de banda.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Um para muitos:</strong> Um remetente, múltiplos receptores</li>
+                        <li><strong>Grupo seletivo:</strong> Apenas membros do grupo recebem</li>
+                        <li><strong>Eficiência:</strong> Uma transmissão para todos</li>
+                        <li><strong>Escalabilidade:</strong> Não aumenta com número de receptores</li>
+                        <li><strong>Dinâmico:</strong> Dispositivos podem entrar/sair do grupo</li>
+                    </ul>
+                    
+                    <h3>Endereços Multicast IPv4:</h3>
+                    <ul>
+                        <li><strong>Faixa:</strong> 224.0.0.0 a 239.255.255.255 (Classe D)</li>
+                        <li><strong>Link-local:</strong> 224.0.0.0/24 (não roteado)</li>
+                        <li><strong>Internetwork:</strong> 224.0.1.0 a 238.255.255.255</li>
+                        <li><strong>Administrativo:</strong> 239.0.0.0/8 (uso local)</li>
+                    </ul>
+                    
+                    <h3>Endereços Reservados:</h3>
+                    <ul>
+                        <li><strong>224.0.0.1:</strong> Todos os hosts</li>
+                        <li><strong>224.0.0.2:</strong> Todos os roteadores</li>
+                        <li><strong>224.0.0.5:</strong> Roteadores OSPF</li>
+                        <li><strong>224.0.0.9:</strong> Roteadores RIP v2</li>
+                        <li><strong>224.0.0.22:</strong> Roteadores IGMP</li>
+                    </ul>
+                    
+                    <h3>Protocolos de Gerenciamento:</h3>
+                    <ul>
+                        <li><strong>IGMP:</strong> Internet Group Management Protocol</li>
+                        <li><strong>PIM:</strong> Protocol Independent Multicast</li>
+                        <li><strong>MSDP:</strong> Multicast Source Discovery Protocol</li>
+                        <li><strong>MBGP:</strong> Multicast Border Gateway Protocol</li>
+                    </ul>
+                    
+                    <h3>Aplicações Típicas:</h3>
+                    <ul>
+                        <li><strong>IPTV:</strong> Transmissão de canais de TV</li>
+                        <li><strong>Videoconferência:</strong> Reuniões com múltiplos participantes</li>
+                        <li><strong>Streaming ao vivo:</strong> Eventos em tempo real</li>
+                        <li><strong>Jogos online:</strong> Atualizações de estado</li>
+                        <li><strong>Distribuição de software:</strong> Updates para múltiplos sistemas</li>
+                        <li><strong>Cotações financeiras:</strong> Dados de mercado</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Eficiência de banda:</strong> Uma transmissão serve todos</li>
+                        <li><strong>Escalabilidade:</strong> Custo não aumenta com receptores</li>
+                        <li><strong>Sincronização:</strong> Todos recebem simultaneamente</li>
+                        <li><strong>Economia de recursos:</strong> Menos carga no servidor</li>
+                    </ul>
+                    
+                    <h3>Desafios:</h3>
+                    <ul>
+                        <li><strong>Complexidade:</strong> Configuração mais complexa</li>
+                        <li><strong>Confiabilidade:</strong> Difícil garantir entrega para todos</li>
+                        <li><strong>Firewall:</strong> Problemas com segurança</li>
+                        <li><strong>NAT:</strong> Dificuldades com tradução de endereços</li>
+                    </ul>
+                `
+            },
+            'broadcast': {
+                title: 'Broadcast',
+                description: 'Comunicação de um para todos os dispositivos da rede local.',
+                details: `
+                    <h3>Definição:</h3>
+                    <p>Broadcast é um tipo de comunicação onde dados são enviados de um remetente para todos os dispositivos em uma rede ou segmento de rede específico.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li><strong>Um para todos:</strong> Todos os dispositivos recebem</li>
+                        <li><strong>Domínio limitado:</strong> Restrito ao segmento de rede</li>
+                        <li><strong>Não roteado:</strong> Não atravessa roteadores (por padrão)</li>
+                        <li><strong>Processamento obrigatório:</strong> Todos devem processar</li>
+                        <li><strong>Simples:</strong> Não requer inscrição em grupos</li>
+                    </ul>
+                    
+                    <h3>Tipos de Broadcast:</h3>
+                    <ul>
+                        <li><strong>Limited Broadcast:</strong> 255.255.255.255 (rede local)</li>
+                        <li><strong>Directed Broadcast:</strong> Para rede específica</li>
+                        <li><strong>Subnet Broadcast:</strong> Último endereço da sub-rede</li>
+                    </ul>
+                    
+                    <h3>Endereços de Broadcast:</h3>
+                    <ul>
+                        <li><strong>IPv4 Geral:</strong> 255.255.255.255</li>
+                        <li><strong>Rede 192.168.1.0/24:</strong> 192.168.1.255</li>
+                        <li><strong>Rede 10.0.0.0/8:</strong> 10.255.255.255</li>
+                        <li><strong>MAC Broadcast:</strong> FF:FF:FF:FF:FF:FF</li>
+                    </ul>
+                    
+                    <h3>Usos Comuns:</h3>
+                    <ul>
+                        <li><strong>ARP:</strong> Descobrir endereço MAC</li>
+                        <li><strong>DHCP Discover:</strong> Encontrar servidor DHCP</li>
+                        <li><strong>Wake-on-LAN:</strong> Acordar dispositivos</li>
+                        <li><strong>NetBIOS:</strong> Resolução de nomes</li>
+                        <li><strong>RIP:</strong> Atualizações de roteamento</li>
+                        <li><strong>Descoberta de serviços:</strong> Localizar recursos na rede</li>
+                    </ul>
+                    
+                    <h3>Domínio de Broadcast:</h3>
+                    <ul>
+                        <li><strong>Definição:</strong> Conjunto de dispositivos que recebem broadcasts</li>
+                        <li><strong>Limite:</strong> Roteadores não encaminham broadcasts</li>
+                        <li><strong>Switches:</strong> Encaminham broadcasts para todas as portas</li>
+                        <li><strong>VLANs:</strong> Criam domínios separados</li>
+                    </ul>
+                    
+                    <h3>Vantagens:</h3>
+                    <ul>
+                        <li><strong>Simplicidade:</strong> Não precisa conhecer destinatários</li>
+                        <li><strong>Descoberta:</strong> Útil para localizar recursos</li>
+                        <li><strong>Configuração:</strong> Facilita setup automático</li>
+                        <li><strong>Anúncios:</strong> Divulgação de serviços</li>
+                    </ul>
+                    
+                    <h3>Desvantagens:</h3>
+                    <ul>
+                        <li><strong>Desperdício:</strong> Dispositivos desinteressados processam</li>
+                        <li><strong>Congestionamento:</strong> Pode sobrecarregar a rede</li>
+                        <li><strong>Segurança:</strong> Informações visíveis para todos</li>
+                        <li><strong>Broadcast storms:</strong> Loops podem causar tempestades</li>
+                    </ul>
+                    
+                    <h3>Controle de Broadcast:</h3>
+                    <ul>
+                        <li><strong>VLANs:</strong> Segmentam domínios</li>
+                        <li><strong>Switches inteligentes:</strong> Filtram broadcasts desnecessários</li>
+                        <li><strong>Rate limiting:</strong> Limitam taxa de broadcasts</li>
+                        <li><strong>Subnetting:</strong> Reduz tamanho dos domínios</li>
+                    </ul>
+                    
+                    <h3>IPv6:</h3>
+                    <p>IPv6 não possui broadcast tradicional, sendo substituído por multicast link-local (FF02::1 para todos os nós).</p>
+                `
+            }
+        };
+
+        // Função para abrir o modal
+        function openModal(termId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const term = termData[termId];
+            
+            if (term) {
+                modalBody.innerHTML = `
+                    <h2>${term.title}</h2>
+                    <p class="modal-description"><strong>${term.description}</strong></p>
+                    <div class="modal-details">
+                        ${term.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede scroll da página
+            }
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll da página
+        }
+
+        // Fechar modal clicando fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+        // Lógica para abrir modal a partir do parâmetro URL 'term'
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const termId = urlParams.get('term');
+            if (termId && termData[termId]) { // Verifica se o termo existe no termData da seção
+                openModal(termId);
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            z-index: 1001;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #667eea;
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+
+        #modal-body {
+            padding: 30px;
+        }
+
+        #modal-body h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .modal-details h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-details ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-details p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-details strong {
+            color: #667eea;
+        }
+
+        .modal-details ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details ol li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Melhorar aparência dos cards */
+        .term-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .term-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade do modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+            
+            #modal-body {
+                padding: 20px;
+            }
+            
+            #modal-body h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>
