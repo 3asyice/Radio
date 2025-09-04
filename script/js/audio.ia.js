@@ -440,7 +440,14 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 55:14 +1min
 { nome: "All the Pretty Girls- Kaleo", arquivo: "assets/15h/AllthePrettyGirls_Kaleo.mp3", inicio: 15, minuto: 55, segundo: 14, fim: 16 },
 // 59:44
-{ nome: "Ludlow Expectations- Butch Walker", arquivo: "assets/15h/LudlowExpectations_ButchWalker.mp3", inicio: 16, minuto: 55, segundo: 14, fim: 17 },
+{ nome: "Ludlow Expectations- Butch Walker", arquivo: "assets/15h/LudlowExpectations_ButchWalker.mp3", inicio: 15, minuto: 59, segundo: 44, fim: 17 },
+
+// 16h
+{ nome: "Renato Russo - Boomerang", arquivo: "assets/16h/renato_russo_-_boomerang.mp3", inicio: 16, minuto: 00, segundo: 00, fim: 17 },
+// 03:30
+{ nome: "Teufelslied", arquivo: "assets/16h/teufelslied.mp3", inicio: 16, minuto: 3, segundo: 30, fim: 17 },
+// 06:13
+{ nome: "Teufelslied", arquivo: "assets/16h/Starman.mp3", inicio: 16, minuto: 6, segundo: 13, fim: 17 },
 
 
 
