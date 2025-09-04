@@ -447,7 +447,12 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 03:30
 { nome: "Teufelslied", arquivo: "assets/16h/teufelslied.mp3", inicio: 16, minuto: 3, segundo: 30, fim: 17 },
 // 06:13
-{ nome: "Teufelslied", arquivo: "assets/16h/Starman.mp3", inicio: 16, minuto: 6, segundo: 13, fim: 17 },
+{ nome: "David Bowie - Starman", arquivo: "assets/16h/DavidBowie_Starman.mp3", inicio: 16, minuto: 6, segundo: 13, fim: 17 },
+// 10:25
+{ nome: "Linkin Park - Burn It Down", arquivo: "assets/16h/LinkinPark_BurnItDown.mp3", inicio: 16, minuto: 10, segundo: 25, fim: 17 },
+// 14:15
+{ nome: "Kamaitachi - Bob", arquivo: "assets/16h/kamaitachi_bob.mp3", inicio: 16, minuto: 14, segundo: 15, fim: 17 },
+
 
 
 
