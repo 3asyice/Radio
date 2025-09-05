@@ -58,6 +58,14 @@ font-size:0.8em;
   <button id="logoutBtn" style="display:none;">🚪 Sair</button>
 </div>
 
+<!-- Campo de pesquisa do feed -->
+<div style="margin:20px; text-align:center;">
+  <input 
+    type="text" 
+    id="searchFeed" 
+    placeholder="🔍 Pesquisar no feed..." 
+    style="width:95%;padding:10px;border-radius:8px;border:1px solid #ccc;">
+</div>
 
 
 
@@ -571,6 +579,19 @@ logoutBtn.addEventListener("click", () => {
     logoutBtn.style.display = "none";
   });
 });
+</script>
+<script>
+  const searchFeed = document.getElementById("searchFeed");
+  const feeds = document.querySelectorAll(".feed");
+
+  searchFeed.addEventListener("input", () => {
+    const term = searchFeed.value.toLowerCase();
+
+    feeds.forEach(feed => {
+      const text = feed.innerText.toLowerCase();
+      feed.style.display = text.includes(term) ? "block" : "none";
+    });
+  });
 </script>
 
 </body>
