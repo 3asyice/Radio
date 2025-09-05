@@ -1,0 +1,293 @@
+<div class="feed">
+  <p><span>📹</span> video.mp4</p>
+  <p class="text">
+    Lore (tv series) chronological order.
+  </p>
+
+  <!-- Campo de pesquisa -->
+  <input type="text" id="searchLore" placeholder="Pesquisar episódio..." style="width:100%;padding:6px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
+
+  <!-- Lista de episódios -->
+  <ul id="episodeList" style="list-style:none;padding:0;margin:0;"></ul>
+
+  <center>
+    <video id="player_lore" autoplay muted controls
+      disablePictureInPicture
+      controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
+      preload="auto"
+      width="100%">
+    </video>
+  </center>
+</div>
+
+<script>
+  // Lista de episódios
+  const playlistLore = [
+    { title: "S1E1 - They Made a Tonic", url: "https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E1_They_Made_a_Tonic.ia.mp4" },
+    { title: "S1E2 - Echoes", url: "https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E2_Echoes.ia.mp4" },
+    { title: "S1E3 - Black Stockings", url: "https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E3_Black_Stockings.ia.mp4" },
+    { title: "S1E4 - Passing Notes", url: "https://archive.org/download/lore-s-1-e-1-they-made-a-tonic.ia/Lore_S1E4_Passing_Notes.ia.mp4" }
+  ];
+
+  let indexLore = 0;
+  const playerLore = document.getElementById("player_lore");
+  const episodeList = document.getElementById("episodeList");
+  const searchInput = document.getElementById("searchLore");
+
+  // Renderiza lista de episódios
+  function renderEpisodes(filter = "") {
+    episodeList.innerHTML = "";
+    playlistLore
+      .filter(ep => ep.title.toLowerCase().includes(filter.toLowerCase()))
+      .forEach((ep, i) => {
+        const li = document.createElement("li");
+        li.textContent = ep.title;
+        li.style.cursor = "pointer";
+        li.style.padding = "5px";
+        li.style.borderBottom = "1px solid #eee";
+        li.onclick = () => {
+          indexLore = i;
+          playerLore.src = ep.url;
+          playerLore.play();
+        };
+        episodeList.appendChild(li);
+      });
+  }
+
+  // Evento de busca
+  searchInput.addEventListener("input", (e) => {
+    renderEpisodes(e.target.value);
+  });
+
+  // Carrega o primeiro vídeo automaticamente
+  playerLore.src = playlistLore[indexLore].url;
+  
+  // Quando terminar, troca para o próximo
+  playerLore.addEventListener("ended", () => {
+    indexLore = (indexLore + 1) % playlistLore.length;
+    playerLore.src = playlistLore[indexLore].url;
+    playerLore.play();
+  });
+
+  // Inicializa lista completa
+  renderEpisodes();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="feed">
+  <p><span>📹</span> video.mp4</p>
+  <p class="text">
+    Black Mirror (tv series) chronological order.
+  </p>
+
+  <!-- Campo de pesquisa -->
+  <input type="text" id="searchMirror" placeholder="Pesquisar episódio..." style="width:100%;padding:6px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
+
+  <!-- Container dos episódios -->
+<div id="episodeContainer" style="display:flex; gap:10px; overflow-x:auto; padding:5px;"></div>
+
+  <center>
+    <video id="player_lore" autoplay muted controls
+      disablePictureInPicture
+      controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
+      preload="auto"
+      width="100%">
+    </video>
+  </center>
+</div>
+
+<script>
+
+
+  const playlistLore = [
+   {
+  title: "Beyond The Sea",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S6E3_Beyond_the_Sea.ia.mp4"
+},
+{
+  title: "Demon 79",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S6E5_Demon_79.ia.mp4"
+},
+{
+  title: "Plaything",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S7E4_Plaything.ia.mp4"
+},
+{
+  title: "San Junipero",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S03.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S03E04.San.Junipero.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "Mazey Day",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S6E4_Mazey_Day.ia.mp4"
+},
+{
+  title: "The National Anthem",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S01.1080p.NF.WEB-DL.DDP2.0.x264-TSRG/Black.Mirror.S01E01.the.National.Anthem.1080p.NF.WEB-DL.DDP2.0.x264-TSRG.mp4"
+},
+{
+  title: "Smithereens",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S05.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S05E02.Smithereens.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "15 Million Merits",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S01.1080p.NF.WEB-DL.DDP2.0.x264-TSRG/Black.Mirror.S01E02.Fifteen.Million.Merits.1080p.NF.WEB-DL.DDP2.0.x264-TSRG.mp4"
+},
+{
+  title: "The Waldo Moment",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S02.1080p.NF.WEB-DL.DDP2.0.x264-TSRG/Black.Mirror.S02E03.the.Waldo.Moment.1080p.NF.WEB-DL.DDP2.0.x264-TSRG.mp4"
+},
+{
+  title: "Be Right Back",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S02.1080p.NF.WEB-DL.DDP2.0.x264-TSRG/Black.Mirror.S02E01.Be.Right.Back.1080p.NF.WEB-DL.DDP2.0.x264-TSRG.mp4"
+},
+{
+  title: "Shut Up and Dance",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S03.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S03E03.Shut.Up.and.Dance.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "White Bear",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S02.1080p.NF.WEB-DL.DDP2.0.x264-TSRG/Black.Mirror.S02E02.White.Bear.1080p.NF.WEB-DL.DDP2.0.x264-TSRG.mp4"
+},
+{
+  title: "Common People",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S7E1_Common_People.ia.mp4"
+},
+{
+  title: "Playtest",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S03.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S03E02.Playtest.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "Hated in the Nation",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S03.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S03E06.Hated.in.the.Nation.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "Loch Henry",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S6E2_Loch_Henry.ia.mp4"
+},
+{
+  title: "Joan is Awful",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S6E1_Joan_is_Awful.ia.mp4"
+},
+{
+  title: "Bête Noire",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S7E2_Bete_Noire.ia.mp4"
+},
+{
+  title: "Crododile",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S04.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S04E03.Crocodile.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "Hotel Reverie",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S7E3_Hotel_Reverie.ia.mp4"
+},
+{
+  title: "Eulogy",
+  url: "https://archive.org/download/a-historia-de-um-recruta-o-filme/Black_Mirror_S7E5_Eulogy.ia.mp4"
+},
+{
+  title: "Nosedive",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S03.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S03E01.Nosedive.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "Men Against Fire",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S03.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S03E05.Men.Against.Fire.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "Arkangel",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S04.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S04E02.Arkangel.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "The Entire History of You",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S01.1080p.NF.WEB-DL.DDP2.0.x264-TSRG/Black.Mirror.S01E03.the.Entire.History.of.You.1080p.NF.WEB-DL.DDP2.0.x264-TSRG.mp4"
+},
+{
+  title: "White Christmas",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S02.1080p.NF.WEB-DL.DDP2.0.x264-TSRG/Black.Mirror.S02E04.White.Christmas.1080p.NF.WEB-DL.DDP2.0.x264-TSRG.mp4"
+},
+{
+  title: "Hang the DJ",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S04.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S04E04.Hang.the.DJ.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "USS Callister",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S04.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S04E01.USS.Callister.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+  title: "USS Callister: Into the Infinity",
+  url: "https://ia800908.us.archive.org/34/items/a-historia-de-um-recruta-o-filme/Black_Mirror_S7E6_USS_Callister.ia.mp4"
+},
+{
+  title: "striking Vipers",
+  url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S05.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S05E01.Striking.Vipers.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+title: "Black Museum",
+url: "https: //archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S04.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S04E06.Black.Museum.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+title: "Rachel, Jack and Ashley Too",
+url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S05.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S05E03.Rachel.Jack.and.Ashley.Too.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+},
+{
+title: "Metalhead",
+url: "https://archive.org/download/black-mirror-s-1-s-2-s-3-s-4-s-5-1080p-nf-web-dl-ddp-5-1-x-264-dual-tr-en-tsrg.t/Black.Mirror.S04.1080p.NF.WEB-DL.DDP5.1.x264-TSRG/Black.Mirror.S04E05.Metalhead.1080p.NF.WEB-DL.DDP5.1.x264-TSRG.mp4"
+}
+  ];
+
+
+  let indexLore = 0;
+  const playerLore = document.getElementById("player_lore");
+  const episodeContainer = document.getElementById("episodeContainer");
+  const searchInput = document.getElementById("searchMirror");
+
+  function renderEpisodes(filter = "") {
+    episodeContainer.innerHTML = "";
+    playlistLore
+      .filter(ep => ep.title.toLowerCase().includes(filter.toLowerCase()))
+      .forEach((ep, i) => {
+        const epDiv = document.createElement("div");
+        epDiv.textContent = ep.title;
+        epDiv.style.cursor = "pointer";
+        epDiv.style.padding = "10px";
+        epDiv.style.border = "1px solid #ccc";
+        epDiv.style.borderRadius = "6px";
+        epDiv.style.minWidth = "150px";
+        epDiv.style.textAlign = "center";
+        epDiv.style.background = "#f9f9f9";
+        epDiv.style.flexShrink = "0"; // não encolhe no flex
+        epDiv.onclick = () => {
+          indexLore = i;
+          playerLore.src = ep.url;
+          playerLore.play();
+        };
+        episodeContainer.appendChild(epDiv);
+      });
+  }
+
+  searchInput.addEventListener("input", (e) => {
+    renderEpisodes(e.target.value);
+  });
+
+  playerLore.src = playlistLore[indexLore].url;
+
+  playerLore.addEventListener("ended", () => {
+    indexLore = (indexLore + 1) % playlistLore.length;
+    playerLore.src = playlistLore[indexLore].url;
+    playerLore.play();
+  });
+
+  renderEpisodes();
+</script>
