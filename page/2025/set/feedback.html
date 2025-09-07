@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Feedback</title>
-  <meta name="author" content="anonymous">
-  <meta name="description" content="Feedback de reclamações, críticas e elogios.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
@@ -20,7 +19,7 @@
       padding: 0;
       background: radial-gradient(circle at center, #000 70%, #0f0f0f 100%);
       color: #eee;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -38,15 +37,19 @@
       0% {
         text-shadow: 2px 2px #ff0033, -2px -2px #00ffe7;
       }
+
       25% {
         text-shadow: -2px 2px #ff0033, 2px -2px #00ffe7;
       }
+
       50% {
         text-shadow: 2px -2px #ff0033, -2px 2px #00ffe7;
       }
+
       75% {
         text-shadow: -2px -2px #ff0033, 2px 2px #00ffe7;
       }
+
       100% {
         text-shadow: 2px 2px #ff0033, -2px -2px #00ffe7;
       }
@@ -64,8 +67,13 @@
     }
 
     @keyframes flicker {
-      0%, 100% { box-shadow: 0 0 25px rgba(255, 0, 51, 0.7); }
-      50% { box-shadow: 0 0 5px rgba(255, 0, 51, 0.2); }
+      0%, 100% {
+        box-shadow: 0 0 25px rgba(255, 0, 51, 0.7);
+      }
+
+      50% {
+        box-shadow: 0 0 5px rgba(255, 0, 51, 0.2);
+      }
     }
 
     label {
@@ -117,7 +125,7 @@
       box-shadow: 0 0 20px #ff0033, 0 0 30px #5d00ff;
     }
 
-    /* Fundo com efeito scanline */
+    /* Scanline effect */
     body::after {
       content: "";
       position: fixed;
@@ -127,8 +135,8 @@
       height: 100%;
       background: repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.02),
-        rgba(255,255,255,0.02) 1px,
+        rgba(255, 255, 255, 0.02),
+        rgba(255, 255, 255, 0.02) 1px,
         transparent 1px,
         transparent 2px
       );
@@ -136,7 +144,7 @@
       z-index: 999;
     }
 
-    /* Mensagem de confirmação */
+    /* Confirmação */
     #confirmation {
       display: none;
       position: fixed;
@@ -149,66 +157,145 @@
       color: #fff;
       font-weight: bold;
       text-shadow: 0 0 6px #ff0033;
-      box-shadow: 0 0 15px rgba(255,0,51,0.6);
+      box-shadow: 0 0 15px rgba(255, 0, 51, 0.6);
       z-index: 1000;
       animation: fadeIn 0.5s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Feedbacks recentes */
+    #recentFeedbacks {
+      margin: 30px auto;
+      max-width: 500px;
+      background: rgba(20, 20, 20, 0.9);
+      border: 1px solid #ff0033;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 15px rgba(255, 0, 51, 0.6);
+    }
+
+    #recentFeedbacks h2 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #ff0033;
+      text-shadow: 0 0 6px #ff0033;
+    }
+
+    .feedback-item {
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #ff0033;
+    }
+
+    .feedback-item p {
+      margin: 0;
+      color: #eee;
+    }
+
+    .feedback-item span {
+      font-size: 0.75rem;
+      color: #ff0033;
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>RECLAMAÇÕES</h1>
+    <h1>FEEDBACK</h1>
   </header>
+
   <main>
     <form id="feedbackForm">
       <label>
         Seu Email:
-        <input placeholder="Digite seu email..." type="email" name="email" required>
+        <input type="email" name="email" required placeholder="Digite seu email...">
       </label>
       <label>
         Seu Feedback:
-        <textarea placeholder="Digite o seu Feedback..." style="height: 200px;" name="message" required></textarea>
+        <textarea name="message" required placeholder="Digite o seu Feedback..." style="height:200px;"></textarea>
       </label>
       <button type="submit">ENVIAR</button>
     </form>
+
+    <!-- Feedbacks recentes -->
+    <section id="recentFeedbacks">
+      <h2>📡 Feedbacks Recentes</h2>
+      <div id="feedbackList"></div>
+    </section>
   </main>
 
-  <!-- Mensagem de confirmação -->
+  <!-- Confirmação -->
   <div id="confirmation">✔ Formulário enviado</div>
 
   <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxbYwZ3qZ9sg70DE3hxuzBhFa-v-TvjhwAF3TG6bylvveFoH_3OSd_B-646VmYFunRLCw/exec";
+
     const form = document.getElementById("feedbackForm");
     const confirmation = document.getElementById("confirmation");
+    const feedbackList = document.getElementById("feedbackList");
 
-    form.addEventListener("submit", async function(e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
-      const formData = new FormData(form);
-      
+      const data = {
+        email: form.email.value,
+        message: form.message.value
+      };
+
       try {
-        await fetch("https://formspree.io/f/meqyekvp", {
+        await fetch(SCRIPT_URL, {
           method: "POST",
-          body: formData,
-          headers: { 'Accept': 'application/json' }
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" }
         });
 
-        // Mostrar confirmação por 5s
+        // Mostrar confirmação
         confirmation.style.display = "block";
         setTimeout(() => {
           confirmation.style.display = "none";
           form.reset();
-        }, 5000);
+          loadFeedbacks(); // atualiza lista
+        }, 3000);
 
-      } catch (error) {
-        alert("Erro ao enviar. Tente novamente.");
+      } catch (err) {
+        alert("Erro ao enviar feedback 😢");
       }
     });
+
+    // Carregar feedbacks
+    async function loadFeedbacks() {
+      try {
+        const res = await fetch(SCRIPT_URL);
+        const feedbacks = await res.json();
+
+        feedbackList.innerHTML = "";
+        feedbacks.slice(-5).reverse().forEach(fb => {
+          const div = document.createElement("div");
+          div.className = "feedback-item";
+          div.innerHTML = `
+            <p><strong>${fb.email}</strong> → ${fb.message}</p>
+            <span>${new Date(fb.timestamp).toLocaleString()}</span>
+          `;
+          feedbackList.appendChild(div);
+        });
+      } catch (err) {
+        console.error("Erro ao carregar feedbacks", err);
+      }
+    }
+
+    // Carregar na abertura da página
+    loadFeedbacks();
   </script>
 </body>
 </html>
