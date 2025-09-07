@@ -2,160 +2,213 @@
 <html lang="pt-BR">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="UTF-8">
   <title>Feedback</title>
-  <meta name="author" content="anonymous" />
-  <meta name="description" content="Feedback de reclamações, críticas e elogios." />
+  <meta name="author" content="anonymous">
+  <meta name="description" content="Feedback de reclamações, críticas e elogios.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
     * {
-      font-family:Arial, sans-serif;
-      font-style: normal;
-      font-weight: 700;
+      font-family: 'Share Tech Mono', monospace;
+      box-sizing: border-box;
     }
-    
-    html,
+
     body {
-      margin: 20px;
-      background: #609CAA;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #000 70%, #0f0f0f 100%);
+      color: #eee;
+      overflow: hidden;
     }
-    
+
     h1 {
-      font-size: 24px;
-      color: #614EEA;
-      font-family: museo-sans, serif;
-      text-shadow: 2px 1px 1px black;
+      text-align: center;
+      font-size: 2rem;
+      color: #ff0033;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 0 0 8px #ff0033, 0 0 20px #ff0033;
+      margin: 20px 0;
+      animation: glitch 2s infinite;
     }
-    
+
+    @keyframes glitch {
+      0% {
+        text-shadow: 2px 2px #ff0033, -2px -2px #00ffe7;
+      }
+      25% {
+        text-shadow: -2px 2px #ff0033, 2px -2px #00ffe7;
+      }
+      50% {
+        text-shadow: 2px -2px #ff0033, -2px 2px #00ffe7;
+      }
+      75% {
+        text-shadow: -2px -2px #ff0033, 2px 2px #00ffe7;
+      }
+      100% {
+        text-shadow: 2px 2px #ff0033, -2px -2px #00ffe7;
+      }
+    }
+
     form {
-      max-width: 400px;
+      max-width: 420px;
       margin: auto;
-      padding: 10px;
-      border-radius: 15px;
-      justify-items: center;   
-      background: #171717;
+      padding: 20px;
+      background: rgba(20, 20, 20, 0.85);
+      border: 1px solid #ff0033;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
+      animation: flicker 3s infinite;
     }
-    
+
+    @keyframes flicker {
+      0%, 100% { box-shadow: 0 0 25px rgba(255, 0, 51, 0.7); }
+      50% { box-shadow: 0 0 5px rgba(255, 0, 51, 0.2); }
+    }
+
     label {
-      color: #fff;
-      font-weight: 700;
+      color: #bbb;
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    
+
     input,
     textarea {
       width: 100%;
-      border-radius: 10px;
-      display: block;
-      padding: 8px;
-      margin-bottom: 10px;
-      box-sizing: border-box;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background: #0f0f0f;
+      color: #fff;
+      font-size: 0.95rem;
+      transition: all 0.2s ease-in-out;
     }
-    input:focus{
-      outline:none;
+
+    input:focus,
+    textarea:focus {
+      border: 1px solid #ff0033;
+      box-shadow: 0 0 10px #ff0033;
+      outline: none;
     }
-    textarea:focus{
-      outline:none;
-    }
-    
+
     button {
-      border-radius: 15px;
-      background-color: #4CAF50;
-      text-shadow: 2px 1px 1px black;
-      font-weight: 800;
-      color: white;
-      text-transform: uppercase;
-      padding: 10px 15px;
+      width: 100%;
+      padding: 12px;
       border: none;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #ff0033, #5d00ff);
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
       cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 12px #5d00ff;
     }
-</style>
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff0033, 0 0 30px #5d00ff;
+    }
+
+    /* Fundo com efeito scanline */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Mensagem de confirmação */
+    #confirmation {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid #ff0033;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 0 0 6px #ff0033;
+      box-shadow: 0 0 15px rgba(255,0,51,0.6);
+      z-index: 1000;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
 <body>
   <header>
     <h1>RECLAMAÇÕES</h1>
   </header>
   <main>
-    
-    <form action="https://formspree.io/f/meqyekvp" method="POST">
+    <form id="feedbackForm">
       <label>
-        O seu email &downarrow;
+        Seu Email:
         <input placeholder="Digite seu email..." type="email" name="email" required>
       </label>
       <label>
-        Escreva o seu Feedback &downarrow;
-        <textarea placeholder="Digite o seu Feedback..." style="height: 250px;" name="message" required></textarea>
+        Seu Feedback:
+        <textarea placeholder="Digite o seu Feedback..." style="height: 200px;" name="message" required></textarea>
       </label>
-      
-      <!-- O botão tipo submit envia o feedback para a caixa de emails -->
       <button type="submit">ENVIAR</button>
-      
     </form>
   </main>
-  
-  <!-- Read the Formbutton docs at formspree.io/formbutton/docs. See more examples at codepen.io/formspree -->
-  <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
-<script>
-window.formbutton = window.formbutton || function() {
-      (formbutton.q = formbutton.q || []).push(arguments) };
 
-// Estilizando o formulário
-    formbutton("create", {
-      action: "https://formspree.io/f/meqyekvp",
-      title: "Preencha o formulário",
-      fields: [
-        {
-          type: "email",
-          label: "Email:",
-          name: "email",
-          required: true,
-          placeholder: "Seu email..."
-        },
-        {
-          type: "textarea",
-          label: "Message:",
-          name: "message",
-          required: true,
-          placeholder: "Qual é o seu feedback?",
-        },
-        { type: "submit"
-        }
-      ],
-      styles: {
-        title: {
-          textShadow: '1px 1px 1px black',
-          outline: 'none',
-          border: '2px solid black',
-          backgroundColor: "#CAA906"
-        },
-        button: {
-          backgroundColor: "#832CFF",
-          fontWeight: '700'
-        },
-        label: {
-          color: '#CA5640',
-          textShadow: '2px 1px 1px black',
-          fontWeight: '800',
-          backgroundColor: '#627AE5'
-        },
-        form: {
-          backgroundColor: '#627AE5'
-        },
-        body: {
-          outline: 'none',
-          border: '2px solid black',
-          backgroundColor: '#627AE5'
-        },
-        input: {
-          border: '2px solid black',
-          fontWeight: '700',
-          borderRadius: '5px'
-        }
-        
+  <!-- Mensagem de confirmação -->
+  <div id="confirmation">✔ Formulário enviado</div>
+
+  <script>
+    const form = document.getElementById("feedbackForm");
+    const confirmation = document.getElementById("confirmation");
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      
+      try {
+        await fetch("https://formspree.io/f/meqyekvp", {
+          method: "POST",
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        // Mostrar confirmação por 5s
+        confirmation.style.display = "block";
+        setTimeout(() => {
+          confirmation.style.display = "none";
+          form.reset();
+        }, 5000);
+
+      } catch (error) {
+        alert("Erro ao enviar. Tente novamente.");
       }
     });
-</script>
+  </script>
 </body>
-
 </html>
