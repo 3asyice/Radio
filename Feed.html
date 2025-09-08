@@ -106,6 +106,91 @@ border-bottom-left-radius: 16px;
 </style>
 
 
+<div class="feed">
+  <p><span>📹</span> video.mp4</p>
+  <p class="text">
+    Vídeos produtivos da plataforma [YouTube]
+  </p>
+
+  <!-- Campo de pesquisa -->
+  <input type="text" id="searchytVideo" placeholder="Pesquisar vídeo..." style="width:100%;padding:6px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
+
+  <!-- Container dos episódios -->
+  <div id="episodeYt" style="display:flex; gap:10px; overflow-x:auto; padding:5px;"></div>
+
+  <center>
+    <video id="player_ytvideo" autoplay muted controls
+      disablePictureInPicture
+      controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
+      preload="auto"
+      width="100%">
+    </video>
+  </center>
+</div>
+
+<script>
+  // Lista de vídeos
+  let ytPlaylist = [
+    {
+      title: "Copini - O Poder do Egoísmo",
+      url: "https://ia600106.us.archive.org/8/items/vid-20240825-wa-0000/Copini%20%20-%20O%20PODER%20DO%20EGOISMO%20%EF%BD%9C%20Viva%20Sua%20Vida%20Como%20Se%20Ela%20Fosse%20Sua%20%23ep34.mp4"
+    },
+    {
+      title: "Paiva - Como Deixar o Vício nas Redes Sociais",
+      url: "https://ia600106.us.archive.org/8/items/vid-20240825-wa-0000/Paiva%20-%20Como%20Deixar%20o%20V%C3%ADcio%20nas%20Redes%20Sociais%20%28DICA%20PR%C3%81TICA%29.mp4"
+    }
+  ];
+
+  let indexYtvd = 0;
+  let episodeYt = document.getElementById("episodeYt");
+  let searchInpt = document.getElementById("searchytVideo");
+  let player = document.getElementById("player_ytvideo");
+
+  // Renderiza os episódios
+  function renderYtvd(filter = "") {
+    episodeYt.innerHTML = "";
+    ytPlaylist
+      .filter(ep => ep.title.toLowerCase().includes(filter.toLowerCase()))
+      .forEach((ep, i) => {
+        let epYt = document.createElement("div");
+        epYt.textContent = ep.title;
+        epYt.style.cursor = "pointer";
+        epYt.style.padding = "10px";
+        epYt.style.border = "1px solid #ccc";
+        epYt.style.borderRadius = "6px";
+        epYt.style.minWidth = "150px";
+        epYt.style.textAlign = "center";
+        epYt.style.background = "#f9f9f9";
+        epYt.style.flexShrink = "0"; // não encolhe no flex
+        epYt.onclick = () => {
+          indexYtvd = i;
+          playVideo();
+        };
+        episodeYt.appendChild(epYt);
+      });
+  }
+
+  // Função para tocar vídeo atual
+  function playVideo() {
+    player.src = ytPlaylist[indexYtvd].url;
+    player.play();
+  }
+
+  // Filtro de pesquisa
+  searchInpt.addEventListener("input", (e) => {
+    renderYtvd(e.target.value);
+  });
+
+  // Quando o vídeo terminar, avança
+  player.addEventListener("ended", () => {
+    indexYtvd = (indexYtvd + 1) % ytPlaylist.length;
+    playVideo();
+  });
+
+  // Inicialização
+  renderYtvd();
+  playVideo();
+</script>
 
 <div class="feed">
   <p><span>🐝</span> Artigo: Abelhas em Extinção</p>

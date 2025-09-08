@@ -1,14 +1,80 @@
-<!DOCTYPE html>
-<html>
+<div class="feed">
+  <p><span>📹</span> video.mp4</p>
+  <p class="text">
+    Vídeos produtivos da plataforma [YouTube]
+  </p>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-</head>
+  <!-- Campo de pesquisa -->
+  <input type="text" id="searchytVideo" placeholder="Pesquisar vídeo..." style="width:100%;padding:6px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
 
-<body>
-  
-</body>
+  <!-- Container dos episódios -->
+<div id="episodeYt" style="display:flex; gap:10px; overflow-x:auto; padding:5px;"></div>
 
-</html>
+  <center>
+    <video id="player_ytvideo" autoplay muted controls
+      disablePictureInPicture
+      controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
+      preload="auto"
+      width="100%">
+    </video>
+  </center>
+</div>
+
+<script>
+
+
+  let playlistYtvideo = [
+{
+  title: "Copini - O Poder do Egoísmo",
+  url: "https://files.catbox.moe/5xdcq5.mp4"
+},
+{
+title: "Paiva - Como Deixar o Vício nas Redes Sociais",
+url: "https://files.catbox.moe/jec63d.mp4"
+}
+  ];
+
+
+  let indexYtvd = 0;
+  let playlistYtvideo = document.getElementById("episodeYt");
+  let episodeYt = document.getElementById("episodeYt");
+  let searchInpt = document.getElementById("searchytVideo");
+
+  function renderYtvd(filter = "") {
+    episodeYt.innerHTML = "";
+    playlistYtvideo
+      .filter(ep => ep.title.toLowerCase().includes(filter.toLowerCase()))
+      .forEach((ep, i) => {
+        let epYt = document.createElement("div");
+        epYt.textContent = ep.title;
+        epYt.style.cursor = "pointer";
+        epYt.style.padding = "10px";
+        epYt.style.border = "1px solid #ccc";
+        epYt.style.borderRadius = "6px";
+        epYt.style.minWidth = "150px";
+        epYt.style.textAlign = "center";
+        epYt.style.background = "#f9f9f9";
+        epYt.style.flexShrink = "0"; // não encolhe no flex
+        epYt.onclick = () => {
+          indexYtvd = i;
+          playlistYtvideo.src = ep.url;
+          playlistYtvideo.play();
+        };
+        episodeYt.appendChild(epYt);
+      });
+  }
+
+  searchInpt.addEventListener("input", (e) => {
+    renderYtvd(e.target.value);
+  });
+
+  playlistYtvideo.src = playlistYtvideo[indexYtvd].url;
+
+  playlistYtvideo.addEventListener("ended", () => {
+    indexYtvd = (indexYtvd + 1) % playlistYtvideo.length;
+    playlistYtvideo.src = playlistYtvideo[indexYtvd].url;
+    playlistYtvideo.play();
+  });
+
+  renderYtvd();
+</script>
