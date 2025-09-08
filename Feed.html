@@ -108,17 +108,17 @@ border-bottom-left-radius: 16px;
 <div class="feed">
   <p><span>📹</span> video.mp4</p>
   <p class="text">
-    Vídeos produtivos da plataforma [YouTube]
+    Black Mirror (tv series) chronological order.
   </p>
 
   <!-- Campo de pesquisa -->
-  <input type="text" id="searchytVideo" placeholder="Pesquisar vídeo..." style="width:100%;padding:6px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
+  <input type="text" id="searchVideo" placeholder="Pesquisar episódio..." style="width:100%;padding:6px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
 
   <!-- Container dos episódios -->
-  <div id="episodeYt" style="display:flex; gap:10px; overflow-x:auto; padding:5px;"></div>
+<div id="episodeVideo" style="display:flex; gap:10px; overflow-x:auto; padding:5px;"></div>
 
   <center>
-    <video id="player_ytvideo" autoplay muted controls
+    <video id="player_video" autoplay muted controls
       disablePictureInPicture
       controlsList="nodownload noremoteplayback noplaybackrate nopictureinpicture"
       preload="auto"
@@ -128,8 +128,9 @@ border-bottom-left-radius: 16px;
 </div>
 
 <script>
-  // Lista de vídeos
-  let ytPlaylist = [
+
+
+  const playlistVideo = [
 {
   title: "Copini - O Poder do Egoísmo",
   url: "https://ia600106.us.archive.org/8/items/vid-20240825-wa-0000/Copini%20%20-%20O%20PODER%20DO%20EGOISMO%20%EF%BD%9C%20Viva%20Sua%20Vida%20Como%20Se%20Ela%20Fosse%20Sua%20%23ep34.mp4"
@@ -172,59 +173,50 @@ border-bottom-left-radius: 16px;
 }
   ];
 
-  let indexYtvd = 0;
-  const episodeYt = document.getElementById("episodeYt");
-  const searchInpt = document.getElementById("searchytVideo");
-  const playerYt = document.getElementById("player_ytvideo");
 
-  // Renderiza os episódios
-  function renderYtvd(filter = "") {
-    episodeYt.innerHTML = "";
-    ytPlaylist
-      .filter(ep => ep.title.toLowerCase().includes(filter.toLowerCase()))
-      .forEach((ep, i) => {
-        let epYt = document.createElement("div");
-        epYt.textContent = ep.title;
-        epYt.style.cursor = "pointer";
-        epYt.style.padding = "10px";
-        epYt.style.border = "1px solid #ccc";
-        epYt.style.borderRadius = "6px";
-        epYt.style.minWidth = "180px";
-        epYt.style.textAlign = "center";
-        epYt.style.background = "#f9f9f9";
-        epYt.style.flexShrink = "0";
-        epYt.style.transition = "all 0.3s ease";
-        epYt.onmouseover = () => epYt.style.background = "#eee";
-        epYt.onmouseout = () => epYt.style.background = "#f9f9f9";
+  let indexVideo = 0;
+  const playerVideo = document.getElementById("player_video");
+  const episodeVideo = document.getElementById("episodeVideo");
+  const searchinput = document.getElementById("searchVideo");
 
-        epYt.onclick = () => {
-          indexYtvd = i;
-          playVideo();
+  function renderVideos(filter = "") {
+    episodeVideo.innerHTML = "";
+    playlistVideo
+      .filter(eps => eps.title.toLowerCase().includes(filter.toLowerCase()))
+      .forEach((eps, ia) => {
+        const epDivi = document.createElement("div");
+        epDivi.textContent = eps.title;
+        epDivi.style.cursor = "pointer";
+        epDivi.style.padding = "10px";
+        epDivi.style.border = "1px solid #ccc";
+        epDivi.style.borderRadius = "6px";
+        epDivi.style.minWidth = "150px";
+        epDivi.style.textAlign = "center";
+        epDivi.style.background = "#f9f9f9";
+        epDivi.style.flexShrink = "0"; // não encolhe no flex
+        epDivi.onclick = () => {
+          indexVideo = ia;
+          playerVideo.src = eps.url;
+          playerVideo.play();
         };
-        episodeYt.appendChild(epYt);
+        episodeVideo.appendChild(epDivi);
       });
   }
 
-  // Função para tocar vídeo atual
-  function playVideo() {
-    playerYt.src = ytPlaylist[indexYtvd].url;
-    playerYt.play();
-  }
-
-  // Filtro de pesquisa
-  searchInpt.addEventListener("input", (e) => {
-    renderYtvd(e.target.value);
+  searchinput.addEventListener("input", (f) => {
+    renderVideos(f.target.value);
   });
 
-  // Quando o vídeo terminar, avança
-  playerYt.addEventListener("ended", () => {
-    indexYtvd = (indexYtvd + 1) % ytPlaylist.length;
-    playVideo();
+  playerVideo.src = playlistVideo[indexVideo].url;
+
+  playerVideo.addEventListener("ended", () => {
+    indexVideo = (indexVideo + 1) % playlistVideo.length;
+    playerVideo.src = 
+    playlistVideo[indexVideo].url;
+    playerVideo.play();
   });
 
-  // Inicialização
-  renderYtvd();
-  playVideo();
+  renderVideos();
 </script>
 
 

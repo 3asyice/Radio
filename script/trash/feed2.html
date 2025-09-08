@@ -1,15 +1,14 @@
-
 <div class="feed">
   <p><span>📹</span> video.mp4</p>
   <p class="text">
-    Vídeos produtivos da plataforma [YouTube]
+    Black Mirror (tv series) chronological order.
   </p>
 
   <!-- Campo de pesquisa -->
-  <input type="text" id="searchVideo" placeholder="Pesquisar vídeo..." style="width:100%;padding:6px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
+  <input type="text" id="searchVideo" placeholder="Pesquisar episódio..." style="width:100%;padding:6px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
 
   <!-- Container dos episódios -->
-  <div id="episodeBorda" style="display:flex; gap:10px; overflow-x:auto; padding:5px;"></div>
+<div id="episodeVideo" style="display:flex; gap:10px; overflow-x:auto; padding:5px;"></div>
 
   <center>
     <video id="player_video" autoplay muted controls
@@ -22,7 +21,8 @@
 </div>
 
 <script>
-  // Lista de vídeos
+
+
   const playlistVideo = [
 {
   title: "Copini - O Poder do Egoísmo",
@@ -66,46 +66,48 @@
 }
   ];
 
-let indexVideo = 0;
-const playerVideo = document.getElementById("player_video");
-const episodeBorda = document.getElementById("episodeBorda");
-const searchinp = document.getElementById("searchVideo");
 
-function renderVideos(filter = "") {
-episodeBorda.innerHTML = "";
-playlistVideo
-.filter(ep => ep.title.toLowerCase().includes(filter.toLowerCase()))
-.forEach((ep, ia) => {
-const epDivi = document.createElement("div");
-epDivi.textContent = ep.title;
-epDivi.style.cursor = "pointer";
-epDivi.style.padding = "10px";
-epDivi.style.border = "1px solid #ccc";
-epDivi.style.borderRadius = "6px";
-epDivi.style.minWidth = "150px";
-epDivi.style.textAlign = "center";
-epDivi.style.background = "#f9f9f9";
-epDivi.style.flexShrink = "0"; // não encolhe no flex
-epDivi.onclick = () => {
-indexVideo = ia;
-playerVideo.src = ep.url;
-playerVideo.play();
-};
-episodeBorda.appendChild(epDivi);
-});
-}
+  let indexVideo = 0;
+  const playerLore = document.getElementById("player_video");
+  const episodeVideo = document.getElementById("episodeVideo");
+  const searchInput = document.getElementById("searchVideo");
 
-searchinp.addEventListener("input", (f) => {
-renderVideos(f.target.value);
-});
+  function renderVideos(filter = "") {
+    episodeVideo.innerHTML = "";
+    playlistVideo
+      .filter(ep => ep.title.toLowerCase().includes(filter.toLowerCase()))
+      .forEach((ep, i) => {
+        const epDiv = document.createElement("div");
+        epDiv.textContent = ep.title;
+        epDiv.style.cursor = "pointer";
+        epDiv.style.padding = "10px";
+        epDiv.style.border = "1px solid #ccc";
+        epDiv.style.borderRadius = "6px";
+        epDiv.style.minWidth = "150px";
+        epDiv.style.textAlign = "center";
+        epDiv.style.background = "#f9f9f9";
+        epDiv.style.flexShrink = "0"; // não encolhe no flex
+        epDiv.onclick = () => {
+          indexVideo = i;
+          playerLore.src = ep.url;
+          playerLore.play();
+        };
+        episodeVideo.appendChild(epDiv);
+      });
+  }
 
-playerVideo.src = playlistVideo[indexVideo].url;
+  searchInput.addEventListener("input", (e) => {
+    renderVideos(e.target.value);
+  });
 
-playerVideo.addEventListener("ended", () => {
-indexVideo = (indexVideo + 1) % playlistVideo.length;
-playerVideo.src = playlistVideo[indexVideo].url;
-playerVideo.play();
-});
+  playerLore.src = playlistVideo[indexVideo].url;
 
-renderVideoz();
+  playerLore.addEventListener("ended", () => {
+    indexVideo = (indexVideo + 1) % playlistVideo.length;
+    playerLore.src = 
+    playlistVideo[indexVideo].url;
+    playerLore.play();
+  });
+
+  renderVideos();
 </script>
