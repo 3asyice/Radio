@@ -23,10 +23,23 @@ div.feed p.text{
 font-size: 1.0em;
 font-weight: 400;
 }
-div.feed video, div.feed img{
+div.feed video{
 width: 400px;
 position: relative;
 height: auto;
 border-bottom-right-radius: 16px;
 border-bottom-left-radius: 16px;
+}
+div.feed img{
+width: 375px;
+position: relative;
+height: auto;
+border-bottom-right-radius: 16px;
+border-bottom-left-radius: 16px;
+}
+@media (min-width: 1024px) {
+div.feed img{
+width: 512px;
+height: auto;
+}
 }
