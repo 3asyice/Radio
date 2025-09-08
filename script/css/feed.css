@@ -42,4 +42,7 @@ div.feed img{
 width: 512px;
 height: auto;
 }
+div.feed {
+margin: 50px 8% 0 8%;
+}
 }
