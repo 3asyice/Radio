@@ -97,7 +97,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 
 // 03h
 
-{ nome: "Kavinsky - Nightcall", arquivo: "assets/03h/Kavinsky_Nightcall.mp3", inicio: 3, minuto: 1, segundo: 49,  fim: 4 },
+{ nome: "Kavinsky - Nightcall", arquivo: "assets/03h/Kavinsky_Nightcall.mp3", inicio: 3, minuto: 0, segundo: 0,  fim: 4 },
 // 06:06 +1min
 { nome: "Kavinsky - Video Game", arquivo: "assets/03h/KAVINSKY_VideoGame.mp3", inicio: 3, minuto: 6, segundo: 6,  fim: 4 },
 // 07:36
@@ -140,7 +140,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "A Mensagem", arquivo: "assets/tape/F6LA.mp3", inicio: 4, minuto: 42, segundo: 12, fim: 5 },
 // 5:03:18
 
-// 5h
+// 05h
 { nome: "A Dor do Luto", arquivo: "assets/tape/F1LA.mp3", inicio: 5, minuto: 0, segundo: 0, fim: 6 },
 // 09:24
 { nome: "Bergmann", arquivo: "assets/tape/F8LA.mp3", inicio: 5, minuto: 09, segundo: 24, fim: 6 },
@@ -160,7 +160,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "A Alteração", arquivo: "assets/tape/F10LA.mp3", inicio: 5, minuto: 38, segundo: 50, fim: 6 },
 // 59:07 +1min
 
-// 6h
+// 06h
 { nome: "O 2º Quarto de Hora", arquivo: "assets/tape/F5LB.mp3", inicio: 6, minuto: 0, segundo: 0, fim: 7 },
 // 15:03
 { nome: "Capisani", arquivo: "assets/tape/F8LB.mp3", inicio: 6, minuto: 15, segundo: 3, fim: 7 },
@@ -175,7 +175,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 6:02:45
 
 // 7h
-{ nome: "A Fita de Lemos", arquivo: "assets/tape/F27LA.mp3", inicio: 7, minuto: 2, segundo: 45, fim: 8 },
+{ nome: "A Fita de Lemos", arquivo: "assets/tape/F27LA.mp3", inicio: 7, minuto: 0, segundo: 0, fim: 8 },
 // 08:34 +1min
 { nome: "Entrevista no Stok Center", arquivo: "assets/tape/Entrevista_no_STOK_CENTER.mp3", inicio: 7, minuto: 8, segundo: 34, fim: 8 },
 // 38:41
@@ -188,7 +188,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 
 
 // 08 horas
-{ nome: "The Weekend - The Hills", arquivo: "assets/08h/TheWeeknd_TheHills.mp3", inicio: 8, minuto: 2, segundo: 11, fim: 9 },
+{ nome: "The Weekend - The Hills", arquivo: "assets/08h/TheWeeknd_TheHills.mp3", inicio: 8, minuto: 0, segundo: 0, fim: 9 },
 // 06:06 +1min
 { nome: "Luis Fonsi - Despacito ft. Daddy Yankee", arquivo: "assets/08h/LuisFonsi_Despacito_ftDaddyYankee.mp3", inicio: 8, minuto: 6, segundo: 6, fim: 9 },
 // 09:53
@@ -220,6 +220,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 59:43
 //{ nome: "Avicci - Waiting For Love", arquivo: "assets/08h/Avicii_WaitingForLove.mp3", inicio: 8, minuto: 59, segundo: 43, fim: 10 },
 // 9:03:34 +1min
+// 09h
 { nome: "Avicci - Waiting For Love", arquivo: "assets/08h/Avicii_WaitingForLove.mp3", inicio: 9, minuto: 0, segundo: 0, fim: 10 },
 // 09h
 { nome: "Tove Lo - Habits (Stay High) Hippie Sabotage Remix", arquivo: "assets/09h/ToveLo_Habits_Stay High_Hippie_Sabotage_Remix.mp3", inicio: 9, minuto: 3, segundo: 34, fim: 10 },
@@ -254,7 +255,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 10:02:16 +1min
 
 // 10h
-{ nome: "I Follow Rivers - Lykke Li", arquivo: "assets/10h/IFollowRivers_LykkeLi.mp3", inicio: 10, minuto: 2, segundo: 16, fim: 11 },
+{ nome: "I Follow Rivers - Lykke Li", arquivo: "assets/10h/IFollowRivers_LykkeLi.mp3", inicio: 10, minuto: 0, segundo: 0, fim: 11 },
 // 06:56
 { nome: "Lil Waybe, Wiz Khalifa & Imagine Dragons, Logic Ty Dolla $ign ft. X Ambassadors - Sucker For Pain", arquivo: "assets/10h/LilWayne_WizKhalifa_ImagineDragons_Logic_TyDollaSign_ftXAmbassadors_SuckerforPain.mp3", inicio: 10, minuto: 6, segundo: 56, fim: 11 },
 // 10:58
@@ -288,7 +289,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // next hour 01:22 +1min
 
 // 11h
-{ nome: "AC/DC - Back In Black", arquivo: "assets/11h/ACDC_BackInBlack.mp3", inicio: 11, minuto: 1, segundo: 22, fim: 12 },
+{ nome: "AC/DC - Back In Black", arquivo: "assets/11h/ACDC_BackInBlack.mp3", inicio: 11, minuto: 0, segundo: 0, fim: 12 },
 // 5:35
 { nome: "Creedence Clearwater Revival - Have You Ever Seen The Rain", arquivo: "assets/11h/CreedenceClearwaterRevival_HaveYouEverSeenTheRain.mp3", inicio: 11, minuto: 5, segundo: 35, fim: 12 },
 // 8:14 +1min
@@ -322,7 +323,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 12:02:26
 
 // 12h
-{ nome: "Johann Debussy - Clair de Lune (Studio Version)", arquivo: "assets/11h/JohannDebussy_ClairdeLune.mp3", inicio: 12, minuto: 2, segundo: 26, fim: 13 },
+{ nome: "Johann Debussy - Clair de Lune (Studio Version)", arquivo: "assets/11h/JohannDebussy_ClairdeLune.mp3", inicio: 12, minuto: 0, segundo: 0, fim: 13 },
 // 07:27
 { nome: "Dance of the Sugar-Plum Fairy - Tchaikovsky  (O Quebra-Nozes)", arquivo: "assets/12h/DanceoftheSugar-PlumFairy_Tchaikovsky_OQuebra-Nozes.mp3", inicio: 12, minuto: 7, segundo: 27, fim: 13 },
 // 10:09 +1min
