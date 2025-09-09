@@ -350,7 +350,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 13:01:16 +1min
 
 // 13h
-{ nome: "Pavarotti - Vesti La Giubba", arquivo: "assets/12h/Pavarotti_VestiLaGiubba.mp3", inicio: 13, minuto: 1, segundo: 16, fim: 14 },
+{ nome: "Pavarotti - Vesti La Giubba", arquivo: "assets/12h/Pavarotti_VestiLaGiubba.mp3", inicio: 13, minuto: 0, segundo: 0, fim: 14 },
 // 5:15 +1min
 { nome: "The Sounds - Rock N' Roll", arquivo: "assets/13h/TheSoundsRockRoll.mp3", inicio: 13, minuto: 5, segundo: 15, fim: 14 },
 // 9:12 +1min
