@@ -127,7 +127,9 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Jacob's Piano - Interstellar Variations - No Time for Caution & Cornfield Chase", arquivo: "assets/03h/JacobsPiano_Interstellar.mp3", inicio: 3, minuto: 55, segundo: 49,  fim: 4 },
 
 // 04h
-{ nome: "Aviso", arquivo: "assets/tape/The_Disclaimer.mp3", inicio: 4, minuto: 0, segundo: 0,  fim: 5 },
+{ nome: "Start The Show", arquivo: "https://ia600206.us.archive.org/22/items/tvtunes_26707/Black%20Mirror.mp3", inicio: 4, minuto: 0, segundo: 0,  fim: 5 },
+// 04:17
+{ nome: "Aviso", arquivo: "assets/tape/The_Disclaimer.mp3", inicio: 4, minuto: 0, segundo: 17,  fim: 5 },
 // 01:01
 { nome: "A Decisão Errada", arquivo: "assets/tape/F4LB.mp3", inicio: 4, minuto: 1, segundo: 1, fim: 5 },
 // 08:57
