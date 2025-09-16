@@ -141,9 +141,26 @@ Com faixas como <cite>In The End</cite>, Crawling e One Step Closer, o primeiro 
 </p>
 <p>
 Meteora consolidou o Linkin Park não apenas como uma das maiores bandas do rock 2000, mas também como uma grande representante do nu metal. Em seus dois primeiros projetos, a banda mostrou sua forte capacidade em mesclar letras introspectivas com arranjos enérgicos, algo que acabou se tornando um de seus maiores trunfos.</p>
+<h2>O crescimento da banda</h2>
+<p>
+Embora tenha conquistado sucesso quando o rock era tomado pelo nu metal, a banda não restringiu suas criações ao gênero. Tanto que os integrantes abraçaram a evolução musical em álbuns como Minutes to Midnight, lançado em 2007, disco que trouxe uma sonoridade mais melódica e letras políticas.
+</p>
+<p>
+Além disso, em A Thousand Suns, de 2010, ficou conhecido pelas experimentações eletrônicas. Já em Living Things, lançado em 2012, o Linkin Park conseguiu equilibrar suas raízes com a inovação, mantendo a relevância em um cenário musical em constante mudança.
+</p>
+<p>
+Compõem ainda a discografia do Linkin Park os álbuns: The Hunting Party, de 2014; One More Light, 2017; e o mais recente, From Zero, que marca a entrada da vocalista Emily Armstrong.
+</p>
+<h2>Impacto e perda de Chester Bennington</h2>
+<p>
+O último álbum com Chester Bennington nos vocais, One More Light, não obteve o mesmo êxito dos anteriores. Críticos consideraram o disco muito comercial e com pegada mais pop, o que destoava do estilo da banda.
+</p>
+<p>
+Dois meses após o lançamento, Chester Bennington foi encontrado morto em sua casa, na Califórnia, em 20 de julho de 2017. A morte trágica e precoce do vocalista deixou uma lacuna irreparável não apenas na biografia do Linkin Park, mas também na história do rock como um todo.
+</p>
 </section>
 <section class="membros">
-  
+
 </section>
 <section class="albuns">
   
@@ -184,15 +201,23 @@ inputSearch.addEventListener("keydown", (e) => {
     if (termo === "") return;
 
     // Abre popup
-    const popup = window.open("", "popupBusca", "width=600,height=400,scrollbars=yes,resizable=yes");
+    const popup = window.open("", "popupBusca", "width=600, height=400,scrollbars=yes,resizable=yes")
+    ;
 
     // Escreve cabeçalho e botão de fechar
     popup.document.write(`
-      <h1>Resultados da busca</h1>
+      <h1 style="font-family:'LinkinPark', impact;">Resultados da busca</h1>
       <p>Você buscou por: <b>${termo}</b></p>
       <button id="fecharBtn" style="padding:6px 12px;margin:8px 0;cursor:pointer;">Fechar</button>
       <hr>
     `);
+  popup.document.body.style.backgroundColor = "#ccc";
+popup.document.body.style.color = "#333";
+popup.document.body.style.fontWeight = "432";
+popup.document.body.style.margin = "16px 32px 0 32px";
+popup.document.body.style.fontFamily = "Arial, Helvetica, sans-serif;";
+
+
 
     // Filtra títulos e parágrafos do site principal
     const elementos = Array.from(document.querySelectorAll("h2, p"));
