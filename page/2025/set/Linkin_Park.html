@@ -206,30 +206,30 @@ inputSearch.addEventListener("keydown", (e) => {
 
     // Escreve cabeçalho e botão de fechar
     popup.document.write(`
-      <h1 style="font-family:'LinkinPark', impact;">Resultados da busca</h1>
-      <p>Você buscou por: <b>${termo}</b></p>
-      <button id="fecharBtn" style="padding:6px 12px;margin:8px 0;cursor:pointer;">Fechar</button>
+      <h1 style="font-family:Arial, Helvetica, sans-serif;">Resultados da busca</h1>
+      <p style="font-family:Arial, Helvetica, sans-serif;">Você buscou por: <b>${termo}</b></p>
+      <button style="padding:8px, border-radius:4px; font-size:0.8em;" id="fecharBtn" style="padding:6px 12px;margin:8px 0;cursor:pointer;">Fechar</button>
       <hr>
     `);
-  popup.document.body.style.backgroundColor = "#ccc";
+popup.document.body.style.backgroundColor = "#ccc";
 popup.document.body.style.color = "#333";
 popup.document.body.style.fontWeight = "432";
 popup.document.body.style.margin = "16px 32px 0 32px";
-popup.document.body.style.fontFamily = "Arial, Helvetica, sans-serif;";
+popup.document.body.style.fontFamily = "Arial, Helvetica, sans-serif"
 popup.document.body.style.fontSize = "0.8em";
-
 
 
     // Filtra títulos e parágrafos do site principal
     const elementos = Array.from(document.querySelectorAll("h2, p"));
+    
     const encontrados = elementos.filter(el => el.textContent.toLowerCase().includes(termo));
 
     if (encontrados.length > 0) {
       encontrados.forEach(el => {
-        popup.document.write(`<p>${el.textContent}</p>`);
+        popup.document.write(`<p style="font-family:Arial, Helvetica, sans-serif;">${el.textContent}</p>`);
       });
     } else {
-      popup.document.write("<p>Nenhum resultado encontrado.</p>");
+      popup.document.write("<p style='font-family:Arial, Helvetica, sans-serif;'>Nenhum resultado encontrado.</p>");
     }
 
     // Finaliza escrita do documento
