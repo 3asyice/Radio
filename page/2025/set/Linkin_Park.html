@@ -53,6 +53,7 @@ margin:0 32px 8px 32px;
 }
 section.historia{
 margin:0;
+padding-bottom: 32px;
 background: url('https://files.catbox.moe/lpn4nx.jpg');
 background-color: #000;
 background-position: center;
@@ -73,9 +74,24 @@ nav input:focus{
 border:none;
 outline: none;
 }
+section.membros{
+  padding-top: 32px;
+background: url('https://files.catbox.moe/ofggee.jpg');
+background-color: #000;
+background-position: center;
+background-repeat: no-repeat;
+background-size: center;
+}
+section.membros h2{
+color:#53C5FF;
+text-shadow:0.7px 0.7px 0.7px #000;
+
+}
 section.membros p{
 text-indent: 8px;
-color:#ccc;
+color:#5ff;
+border-radius: 4px;
+backdrop-filter: blur(4px);
 text-shadow:0.7px 0.7px 0.7px #000;
 }
 section.membros img{
@@ -204,6 +220,8 @@ Com esse retorno de cabeça erguida, o Linkin Park conseguiu demonstrar que mesm
 <h2>Membros Originais</h2>
 <center><img src="https://files.catbox.moe/ksy4sq.jpeg" alt="Mike"></center>
 <p>Mike Shinoda: Vocalista, rapper e multi-instrumentista. Também produzia as primeiras demos no estúdio caseiro da banda.</p>
+<center><img src="https://files.catbox.moe/z66zms.jpeg" alt="Brad"></center>
+
 <p>
 Brad Delson: Guitarrista, conhecido por seu estilo criativo e uso de pedais de efeitos.</p>
 <p>
@@ -276,17 +294,27 @@ popup.document.body.style.fontSize = "auto";
 
 
     // Filtra títulos e parágrafos do site principal
-    const elementos = Array.from(document.querySelectorAll("h2, p"));
+    const elementos = Array.from(document.querySelectorAll("h2, p, img"));
     
-    const encontrados = elementos.filter(el => el.textContent.toLowerCase().includes(termo));
+    // Filtra se o texto OU o alt da imagem contém o termo
+const encontrados = elementos.filter(el => {
+  if (el.tagName === "IMG") {
+    return el.alt.toLowerCase().includes(termo);
+  }
+  return el.textContent.toLowerCase().includes(termo);
+});
 
-    if (encontrados.length > 0) {
-      encontrados.forEach(el => {
-        popup.document.write(`<p style="font-family:Arial, Helvetica, sans-serif;">${el.textContent}</p>`);
-      });
-    } else {
-      popup.document.write("<p style='font-family:Arial, Helvetica, sans-serif;'>Nenhum resultado encontrado.</p>");
-    }
+if (encontrados.length > 0) {
+  encontrados.forEach(el => {
+if (el.tagName === "IMG") {
+      popup.document.write(`<div style="margin:8px 0;"><img src="${el.src}" alt="${el.alt}" style="max-width:150px; border-radius:8px;"/></div>`);
+} else {
+popup.document.write(`<p style="font-family:Arial, Helvetica, sans-serif;">${el.textContent}</p>`);
+}
+});
+} else {
+popup.document.write("<p style='font-family:Arial, Helvetica, sans-serif;'>Nenhum resultado encontrado.</p>");
+}
 
     // Finaliza escrita do documento
     popup.document.close();
