@@ -208,7 +208,7 @@ const encontrados = elementos.filter(el => {
 if (encontrados.length > 0) {
   encontrados.forEach(el => {
 if (el.tagName === "IMG") {
-      popup.document.write(`<div style="margin:8px 0;"><img src="${el.src}" alt="${el.alt}" style="max-width:150px; border-radius:8px;"/></div>`);
+      popup.document.write(`<div style="margin:8px 0;"><img src="${el.src}" alt="${el.alt}" style="max-width:400px; border-radius:8px;"/></div>`);
 } else {
 popup.document.write(`<p style="font-family:Arial, Helvetica, sans-serif;">${el.textContent}</p>`);
 }
