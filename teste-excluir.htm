@@ -25,6 +25,7 @@
 <meta name="google-site-verification" content="mEf6_7ar85V4SaQ4HtKo9P8wKU3TVOoxmswvNHFv-GQ" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7LFDVTEVK"></script>
+<link rel="stylesheet" href="">
 <script type="text/javascript" src="cdn_modules/bootstrap@5.3.8/css/bootstrap.css"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -33,32 +34,15 @@
 
   gtag('config', 'G-H7LFDVTEVK');
 </script>
- <link rel="stylesheet" href="script/css/main.css"/> 
+ <link rel="stylesheet" href="script/css/boots.css"/> 
 <link rel="manifest" href="manifest.json"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <title>Rádio FM609</title>
-<style>
-header{
-padding: 10px 20px 10px 20px;
-}
-header img{
-margin-top:10px;
-margin-left: 20px;
-} 
-header  h1{
-font-size:1.2em;
-font-weight:900;
-}
-header h1 span{
-font-weight: 400;
-font-size:0.8em;
-}
-</style>
 </head>
 <body>
-<header>
+<header class="offcanvas-header card-header">
 <img onclick="location.href='https://3asyice.github.io/Radio'" width="60px" height="60px" src="assets/00_img/radio_icon.png" alt="icon">
-<h1 onclick="location.href='https://3asyice.github.io/Radio'" >Rádio FM 609 <br>
+<h1 class="display-1" onclick="location.href='https://3asyice.github.io/Radio'" >Rádio FM 609 <br>
 <span>Sua estação de música continua</span></h1>
 </header>
 
@@ -76,7 +60,7 @@ font-size:0.8em;
 <div class="btn_play">
   <br>
 <center>
-  <button id="startBtn">▶ Iniciar Rádio</button>
+  <button class="btn" id="startBtn">▶ Iniciar Rádio</button>
 </center>
 <center>
 <audio
@@ -95,7 +79,7 @@ font-size:0.8em;
   <p><strong><span>⏲</span> Próxima Música </strong><br><br><span id="proximo_audio">---</span></p>
 </div>
 
-<div class="station_message">
+<div class="offset-md-3 station_message">
 <p><span>‪‪♥️</span> Mensagens da Estação</p>
 <div class="a">
 <p>Seja bem-vinda prima Gabi.❤️</p>
@@ -109,9 +93,9 @@ font-size:0.8em;
 </div>
 
 <div class="info">
-<p class="sobre"><span>&lt;/&gt;</span> Sobre a Rádio FM 609</p>
-<p style="text-align: left;">A rádio FM 609 foi fundado por <strong>Guilherme Carvalho</strong> em <strong>15 de julho de 2025</strong> usando a linguagem de programação javascript.</p>
-<p style="font-size: 1.0em;">Uma experiência única de rádio online com programação automática e músicas cuidadosamente selecionadas.</p>
+<p class="offset-md-3 sobre"><span>&lt;/&gt;</span> Sobre a Rádio FM 609</p>
+<p class="offset-md-3" style="text-align: left;">A rádio FM 609 foi fundado por <strong>Guilherme Carvalho</strong> em <strong>15 de julho de 2025</strong> usando a linguagem de programação javascript.</p>
+<p class="offset-md-3"style="font-size: 1.0em;">Uma experiência única de rádio online com programação automática e músicas cuidadosamente selecionadas.</p>
 </div>
 <style>
 div.feed{
@@ -148,7 +132,7 @@ font-weight: 900;
 <p>Leve a FM 609 para onde você for</p>
 </center>
 <center>
-  <button
+  <button  class="btn"
 onclick="location.href='https://archive.org/download/station-609/Station%20609.apk'"><img width="24px" height="24px" src="assets/00_img/download.png" alt="download">Baixar App</a></button>
 </center>
 </div>
