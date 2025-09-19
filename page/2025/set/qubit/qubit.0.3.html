@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Conversor + Experimento Qubit (HTML/JS)</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#0b1020;color:#e6eef8;padding:16px}
+  h1{font-size:20px;margin:0 0 12px}
+  .card{background:#0f1724;border-radius:8px;padding:12px;margin-bottom:12px;box-shadow:0 6px 18px rgba(0,0,0,0.6)}
+  label{display:block;font-size:13px;color:#9fb0d7;margin-bottom:6px}
+  input[type="number"], input[type="text"], select{padding:8px;border-radius:6px;border:1px solid #22324a;background:#071023;color:#e6eef8;width:100%}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .col{flex:1;min-width:220px}
+  button{margin-top:8px;padding:8px 12px;border-radius:6px;border:none;background:#1f6feb;color:white;cursor:pointer}
+  button.secondary{background:#2b7a3a}
+  pre{background:#071428;padding:10px;border-radius:6px;color:#cfe8ff;white-space:pre-wrap;word-break:break-word}
+  .small{font-size:13px;color:#9fb0d7}
+</style>
+</head>
+<body>
+  <h1>Conversor de Números + Experimento Qubit</h1>
+
+  <div class="card">
+    <label for="decimal">Decimal (inteiro ≥ 0)</label>
+    <input id="decimal" type="number" min="0" value="13">
+    <div class="row" style="margin-top:8px">
+      <div class="col">
+        <label for="bits">Largura (nº de bits) — opcional (0 = auto)</label>
+        <input id="bits" type="number" min="0" value="0">
+      </div>
+      <div class="col">
+        <label>&nbsp;</label>
+        <button id="convertBtn">Converter</button>
+      </div>
+    </div>
+
+    <div style="margin-top:10px">
+      <div class="small">Resultados:</div>
+      <pre id="results">-</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <div class="col">
+        <label>Estado de base (registro de qubits)</label>
+        <pre id="basis">-</pre>
+      </div>
+      <div class="col">
+        <label>Operações / Experimento</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button id="applyH">Aplicar H em todos (superposição)</button>
+          <button id="applyX">Aplicar X no bit (flip)</button>
+          <button id="measure">Medir (base computacional)</button>
+          <button id="reset" class="secondary">Reset</button>
+        </div>
+        <div style="margin-top:8px">
+          <label for="xindex" class="small">Índice para X (0 = bit mais significativo)</label>
+          <input id="xindex" type="number" min="0" value="0">
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px">
+      <div class="small">Estado atual (amplitudes):</div>
+      <pre id="state">-</pre>
+    </div>
+
+    <div style="margin-top:6px">
+      <div class="small">Medição / Histórico:</div>
+      <pre id="history">nenhuma medição</pre>
+    </div>
+  </div>
+
+<script>
+/*
+  Ferramenta:
+  - converte decimal -> binário/hex/octal
+  - representa base state |...>
+  - simula circuito simples: H em todos (gera superposição igualitária),
+    X em um bit (permuta índices), medida na base computacional.
+  - trabalha com registro de n qubits (n = bits ou auto).
+*/
+
+// utilitários
+const el = id => document.getElementById(id);
+const decimalEl = el('decimal'), bitsEl = el('bits');
+const convertBtn = el('convertBtn'), resultsEl = el('results');
+const basisEl = el('basis'), stateEl = el('state'), historyEl = el('history');
+const applyHBtn = el('applyH'), applyXBtn = el('applyX'), measureBtn = el('measure'), resetBtn = el('reset');
+const xindexEl = el('xindex');
+
+let nQubits = 0;
+let basisBits = ""; // string "0101"
+let amplitudes = null; // array of complex numbers {re,im} length 2^n
+let history = [];
+
+// complex helpers
+function c(re, im=0){ return {re, im}; }
+function cAdd(a,b){ return {re:a.re+b.re, im:a.im+b.im}; }
+function cMul(a,b){ // complex * complex
+  return { re: a.re*b.re - a.im*b.im, im: a.re*b.im + a.im*b.re };
+}
+function cScale(a, s){ return {re: a.re*s, im: a.im*s}; }
+function cAbs2(a){ return a.re*a.re + a.im*a.im; }
+function sqrt(x){ return Math.sqrt(x); }
+
+// conversões
+function toBinary(num, width){
+  let s = num.toString(2);
+  if(width && width>0){
+    s = s.padStart(width, '0');
+  }
+  return s;
+}
+function toHex(num){ return num.toString(16).toUpperCase(); }
+function toOct(num){ return num.toString(8); }
+
+// inicializar estado de base correspondente ao número
+function initFromDecimal(num, width){
+  // decide largura mínima necessária se width==0
+  let minBits = num===0 ? 1 : Math.floor(Math.log2(num)) + 1;
+  nQubits = (width && width>minBits) ? width : minBits;
+  basisBits = toBinary(num, nQubits);
+  // amplitudes: 1 for basis index, 0 otherwise
+  const dim = 1<<nQubits;
+  amplitudes = new Array(dim).fill(null).map(()=>c(0,0));
+  const index = parseInt(basisBits,2);
+  amplitudes[index] = c(1,0);
+  renderAll(num);
+}
+
+function renderAll(num){
+  // conversions
+  const width = nQubits;
+  const bin = toBinary(num, width);
+  const hex = toHex(num);
+  const oct = toOct(num);
+  resultsEl.textContent = `Decimal: ${num}\nBinário: ${bin} (bits: ${width})\nHexadecimal: 0x${hex}\nOctal: 0o${oct}\nQubits necessários: ${width}\nEstado de base mostrado como |${bin}⟩`;
+  basisEl.textContent = `|${basisBits}⟩ (índice ${parseInt(basisBits,2)})`;
+  renderState();
+  renderHistory();
+}
+
+function renderState(){
+  // imprime amplitudes com probabilidade
+  const dim = amplitudes.length;
+  let out = "";
+  for(let i=0;i<dim;i++){
+    const amp = amplitudes[i];
+    const prob = cAbs2(amp);
+    const bits = i.toString(2).padStart(nQubits,'0');
+    out += `|${bits}⟩ : amplitude = ${amp.re.toFixed(3)} ${amp.im>=0?'+':'-'} ${Math.abs(amp.im).toFixed(3)}i  → prob = ${prob.toFixed(4)}\n`;
+  }
+  stateEl.textContent = out;
+}
+
+// operação H em todos os qubits = H^{⊗n}
+// aplicar Hadamard em cada qubit transforms basis state into superposition
+function applyHadamardAll(){
+  const dim = amplitudes.length;
+  // Formula: result[k] = sum_j (1/sqrt(2)^n) * (-1)^{j·k} * amplitude[j]
+  // but easier: if starting from basis |b> (amplitudes one-hot), result is equal superposition with phases.
+  // We'll implement general transform via Walsh-Hadamard (fast)
+  // Build real amplitudes (complex allowed) — use in-place fast Walsh-Hadamard on real+imag separately
+  let re = amplitudes.map(a=>a.re);
+  let im = amplitudes.map(a=>a.im);
+  // fast hadamard (unnormalized)
+  for(let len=1; len<dim; len<<=1){
+    for(let i=0;i<dim;i += (len<<1)){
+      for(let j=0;j<len;j++){
+        const u_re = re[i+j];
+        const u_im = im[i+j];
+        const v_re = re[i+j+len];
+        const v_im = im[i+j+len];
+        re[i+j] = u_re + v_re;
+        im[i+j] = u_im + v_im;
+        re[i+j+len] = u_re - v_re;
+        im[i+j+len] = u_im - v_im;
+      }
+    }
+  }
+  // normalize by 1/√(2^n)
+  const norm = 1 / Math.sqrt(dim);
+  amplitudes = re.map((r, idx)=> c(r*norm, im[idx]*norm) );
+  renderState();
+}
+
+// aplicar X (NOT) no bit k (0 = MSB)
+// X atua trocando índices que diferem no bit k
+function applyXOnBit(k){
+  if(k < 0 || k >= nQubits) { alert('Índice fora do intervalo'); return; }
+  const dim = amplitudes.length;
+  const out = new Array(dim).fill(null).map(()=>c(0,0));
+  for(let i=0;i<dim;i++){
+    // bit position from MSB: bitIndex = nQubits-1-k in LSB indexing
+    const lsbIndex = nQubits-1-k;
+    const mask = 1<<lsbIndex;
+    const j = i ^ mask;
+    out[j] = amplitudes[i];
+  }
+  amplitudes = out;
+  renderState();
+}
+
+// medir: escolhe um índice com probabilidade p = |amp|^2 e colapsa estado
+function measure(){
+  const dim = amplitudes.length;
+  const probs = amplitudes.map(a=>cAbs2(a));
+  // random sample
+  const r = Math.random();
+  let acc = 0, chosen = 0;
+  for(let i=0;i<dim;i++){
+    acc += probs[i];
+    if(r <= acc){ chosen = i; break; }
+  }
+  // colapso: new state = basis |chosen>
+  const out = new Array(dim).fill(null).map(()=>c(0,0));
+  out[chosen] = c(1,0);
+  amplitudes = out;
+  const bits = chosen.toString(2).padStart(nQubits,'0');
+  history.push(bits);
+  if(history.length > 20) history.shift();
+  renderState();
+  renderHistory();
+}
+
+function renderHistory(){
+  if(history.length === 0) historyEl.textContent = "nenhuma medição";
+  else historyEl.textContent = history.join(", ");
+}
+
+// handlers
+convertBtn.addEventListener('click', ()=>{
+  const num = Math.max(0, Math.floor(Number(decimalEl.value) || 0));
+  const width = Math.max(0, Math.floor(Number(bitsEl.value) || 0));
+  initFromDecimal(num, width);
+});
+
+applyHBtn.addEventListener('click', ()=> {
+  applyHadamardAll();
+});
+
+applyXBtn.addEventListener('click', ()=>{
+  const k = Math.floor(Number(xindexEl.value) || 0);
+  applyXOnBit(k);
+});
+
+measureBtn.addEventListener('click', ()=>{
+  measure();
+});
+
+resetBtn.addEventListener('click', ()=>{
+  history = [];
+  const num = Math.max(0, Math.floor(Number(decimalEl.value) || 0));
+  const width = Math.max(0, Math.floor(Number(bitsEl.value) || 0));
+  initFromDecimal(num, width);
+});
+
+// inicial
+initFromDecimal( Number(decimalEl.value || 0), Number(bitsEl.value || 0) );
+
+</script>
+</body>
+</html>

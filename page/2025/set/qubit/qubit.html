@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Qubit na Esfera de Bloch</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#111; color:#eee; text-align:center; }
+  h1 { font-size:18px; margin:10px 0; }
+  canvas { background:#000; border-radius:8px; margin-top:10px; }
+  .controls { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:12px 0; }
+  .control { display:flex; flex-direction:column; font-size:13px; }
+  label { margin-bottom:4px; }
+  input[type=range] { width:180px; }
+</style>
+</head>
+<body>
+  <h1>Visualização de um Qubit na Esfera de Bloch</h1>
+
+  <div class="controls">
+    <div class="control">
+      <label>Ângulo θ (0–π)</label>
+      <input type="range" id="theta" min="0" max="314" value="157">
+      <span id="thetaVal">1.57</span>
+    </div>
+    <div class="control">
+      <label>Ângulo φ (0–2π)</label>
+      <input type="range" id="phi" min="0" max="628" value="0">
+      <span id="phiVal">0</span>
+    </div>
+  </div>
+
+  <canvas id="canvas" width="500" height="500"></canvas>
+
+  <p>Estado: |ψ⟩ = cos(θ/2)|0⟩ + e<sup>iφ</sup> sin(θ/2)|1⟩</p>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const W = canvas.width, H = canvas.height;
+const cx = W/2, cy = H/2, R = 180;
+
+// sliders
+const thetaEl = document.getElementById("theta");
+const phiEl = document.getElementById("phi");
+const thetaVal = document.getElementById("thetaVal");
+const phiVal = document.getElementById("phiVal");
+
+function getAngles(){
+  const theta = Number(thetaEl.value)/100; // 0..π
+  const phi = Number(phiEl.value)/100;     // 0..2π
+  return {theta, phi};
+}
+
+// converte (θ,φ) para coordenadas 3D
+function qubitVector(theta, phi){
+  return {
+    x: Math.sin(theta)*Math.cos(phi),
+    y: Math.sin(theta)*Math.sin(phi),
+    z: Math.cos(theta)
+  };
+}
+
+// projeção 3D simples (sem perspectiva)
+function project3D(x,y,z){
+  const scale = 1; // ortográfico
+  return {
+    x: cx + x*R*scale,
+    y: cy - y*R*scale
+  };
+}
+
+// desenha esfera e vetor
+function render(){
+  ctx.clearRect(0,0,W,H);
+
+  // esfera (círculo base)
+  ctx.strokeStyle="#555";
+  ctx.lineWidth=2;
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, 2*Math.PI);
+  ctx.stroke();
+
+  // eixos
+  ctx.strokeStyle="#333";
+  ctx.beginPath(); ctx.moveTo(cx-R,cy); ctx.lineTo(cx+R,cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx,cy-R); ctx.lineTo(cx,cy+R); ctx.stroke();
+
+  // vetor do qubit
+  const {theta,phi} = getAngles();
+  const v = qubitVector(theta,phi);
+  const p = project3D(v.x,v.y,v.z);
+
+  ctx.strokeStyle="#0f0";
+  ctx.fillStyle="#0f0";
+  ctx.lineWidth=3;
+  ctx.beginPath();
+  ctx.moveTo(cx,cy);
+  ctx.lineTo(p.x,p.y);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(p.x,p.y,6,0,2*Math.PI);
+  ctx.fill();
+
+  // atualizar texto dos sliders
+  thetaVal.textContent = theta.toFixed(2);
+  phiVal.textContent = phi.toFixed(2);
+}
+
+thetaEl.addEventListener("input", render);
+phiEl.addEventListener("input", render);
+
+render();
+</script>
+</body>
+</html>

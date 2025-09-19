@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Simulação de Medida em Qubit</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#111; color:#eee; text-align:center; }
+  h1 { font-size:20px; margin:10px 0; }
+  .controls { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:12px 0; }
+  .control { display:flex; flex-direction:column; font-size:13px; }
+  label { margin-bottom:4px; }
+  input[type=range] { width:180px; }
+  button { padding:10px 18px; margin-top:12px; background:#0a0; border:none; border-radius:6px; color:white; font-size:14px; cursor:pointer; }
+  button:hover { background:#0c0; }
+  #result { font-size:22px; margin-top:20px; }
+  #history { margin-top:10px; font-size:14px; color:#ccc; }
+</style>
+</head>
+<body>
+  <h1>Experimento de Medição de Qubit</h1>
+
+  <div class="controls">
+    <div class="control">
+      <label>Ângulo θ (0–π)</label>
+      <input type="range" id="theta" min="0" max="314" value="157">
+      <span id="thetaVal">1.57</span>
+    </div>
+    <div class="control">
+      <label>Ângulo φ (0–2π)</label>
+      <input type="range" id="phi" min="0" max="628" value="0">
+      <span id="phiVal">0</span>
+    </div>
+  </div>
+
+  <p>Estado: |ψ⟩ = cos(θ/2)|0⟩ + e<sup>iφ</sup> sin(θ/2)|1⟩</p>
+  <p>Probabilidades: P(0) = cos²(θ/2), P(1) = sin²(θ/2)</p>
+
+  <button id="measure">Medir Qubit</button>
+
+  <div id="result">Resultado: –</div>
+  <div id="history">Histórico: nenhum</div>
+
+<script>
+const thetaEl = document.getElementById("theta");
+const phiEl = document.getElementById("phi");
+const thetaVal = document.getElementById("thetaVal");
+const phiVal = document.getElementById("phiVal");
+const resultEl = document.getElementById("result");
+const historyEl = document.getElementById("history");
+
+let history = [];
+
+function getAngles(){
+  const theta = Number(thetaEl.value)/100; // 0..π
+  const phi = Number(phiEl.value)/100;     // 0..2π
+  return {theta, phi};
+}
+
+function updateLabels(){
+  const {theta, phi} = getAngles();
+  thetaVal.textContent = theta.toFixed(2);
+  phiVal.textContent = phi.toFixed(2);
+}
+thetaEl.addEventListener("input", updateLabels);
+phiEl.addEventListener("input", updateLabels);
+updateLabels();
+
+document.getElementById("measure").addEventListener("click", ()=>{
+  const {theta} = getAngles();
+  const p0 = Math.pow(Math.cos(theta/2),2);
+  const p1 = 1 - p0;
+  const r = Math.random();
+  const outcome = (r < p0) ? "0" : "1";
+
+  resultEl.textContent = `Resultado: ${outcome}`;
+  history.push(outcome);
+  if(history.length > 20) history.shift();
+  historyEl.textContent = "Histórico: " + history.join(", ");
+});
+</script>
+</body>
+</html>

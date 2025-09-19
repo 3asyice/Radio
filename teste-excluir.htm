@@ -1,282 +1,198 @@
-<!DOCTYPE html>
-<html oncontextmenu="return false;"
- lang="pt-BR">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta http-equiv="Content-Type" content="text/html;charset=windows-1251"/>
-<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-<meta name="description" content="Rádio 📻 FM 609"/>
-<link rel="canonical" href="https://3asyice.github.io/Radio"/>
-<meta name="robots" content="index, follow"/>
-<meta name="author" content="Guilherme Carvalho"/>
-<meta name="copyright" content="Radio&copy;FM 609"/>
-<meta property="og:locale" content="pt_BR"/>
-<meta property="og:image" content="assets/00_img/logo.png"/>
-<meta property="og:image:secure" content="https://3asyice.github.io/Radio/assets/00_img/logo.png"/>
-<meta property="og:image:type" content="image/png"/>
-<meta property="og:image:width" content="400"/>
-<meta property="og:image:height" content="400"/>
-<meta property="og:url" content="https://www.facebook.com/gui.abreu.313"/>
-<meta property="og:url" content="https://www.instagram.com/guilherme_2k5"/>
-<meta property="og:description" content="A rádio FM 609 foi fundado por Guilherme Carvalho em 15 de Julho de 2025 usando somente javascript."/>
-<link rel="icon" type="image/png" href="assets/00_img/logo.png" sizes="16x16"/>
-<!-- <link rel="icon" href="https://cdn.icon-icons.com/icons2/966/PNG/128/News_icon-icons.com_74697.png" sizes="192x192"> -->
-<meta name="google-site-verification" content="mEf6_7ar85V4SaQ4HtKo9P8wKU3TVOoxmswvNHFv-GQ" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H7LFDVTEVK"></script>
-<link rel="stylesheet" href="">
-<script type="text/javascript" src="cdn_modules/bootstrap@5.3.8/css/bootstrap.css"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-H7LFDVTEVK');
-</script>
- <link rel="stylesheet" href="script/css/boots.css"/> 
-<link rel="manifest" href="manifest.json"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<title>Rádio FM609</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Simulação: Interferência de Dupla Fenda (HTML + JS)</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 12px; background:#111; color:#eee; }
+  h1 { font-size:18px; margin:0 0 8px 0; }
+  .controls { display:flex; gap:12px; flex-wrap:wrap; margin:8px 0 12px 0; }
+  .control { display:flex; flex-direction:column; font-size:13px; }
+  label { font-size:12px; color:#ccc; margin-bottom:4px; }
+  input[type="range"] { width:200px; }
+  canvas { border-radius:6px; display:block; background:#000; box-shadow:0 6px 18px rgba(0,0,0,0.6); }
+  .footer { margin-top:10px; font-size:12px; color:#aaa; }
+  .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  button { padding:6px 10px; border-radius:6px; background:#2a2a2a; color:#fff; border:1px solid #333; cursor:pointer; }
+  button:hover { filter:brightness(1.2); }
+</style>
 </head>
 <body>
-<header class="offcanvas-header card-header">
-<img onclick="location.href='https://3asyice.github.io/Radio'" width="60px" height="60px" src="assets/00_img/radio_icon.png" alt="icon">
-<h1 class="display-1" onclick="location.href='https://3asyice.github.io/Radio'" >Rádio FM 609 <br>
-<span>Sua estação de música continua</span></h1>
-</header>
+  <h1>Simulação: Interferência de Dupla Fenda (HTML + JS)</h1>
 
-<!-- Login com Google -->
-<div class="login-area" style="text-align:center; margin:20px;">
-  <p id="userInfo">Você não está logado.</p>
-  <button id="loginBtn">🔑 Entrar com Google</button>
-  <button id="logoutBtn" style="display:none;">🚪 Sair</button>
-</div>
+  <div class="controls">
+    <div class="control">
+      <label>Comprimento de onda λ (pixels)</label>
+      <input id="lambda" type="range" min="10" max="200" value="80">
+      <div class="row"><span id="lambdaVal">80</span></div>
+    </div>
 
-<div class="playing_now">
-<p><strong><span>♬ </span>Tocando Agora </strong><br><br><span id="audio_atual">---</span></p>
-<p id="horario_atual">Início: --:--:-- | Fim: --:--:--</p>
-</div>
-<div class="btn_play">
-  <br>
-<center>
-  <button class="btn" id="startBtn">▶ Iniciar Rádio</button>
-</center>
-<center>
-<audio
-  id="audioPlayer"
-  controls
-  controlsList="nodownload noplaybackrate"
-  oncontextmenu="return false;"
-  style="display:none;" preload="auto">
-  <source id="audioSource" src="" type="audio/mp3">
-  Not Supported 
-</audio>
-</center>
-<br>
-</div>
-<div class="next">
-  <p><strong><span>⏲</span> Próxima Música </strong><br><br><span id="proximo_audio">---</span></p>
-</div>
+    <div class="control">
+      <label>Separação entre fendas (pixels)</label>
+      <input id="sep" type="range" min="10" max="300" value="120">
+      <div class="row"><span id="sepVal">120</span></div>
+    </div>
 
-<div class="offset-md-3 station_message">
-<p><span>‪‪♥️</span> Mensagens da Estação</p>
-<div class="a">
-<p>Seja bem-vinda prima Gabi.❤️</p>
-</div>
-<div class="b">
-<p>Prepare um café e relaxe.☕</p>
-</div>
-<div class="c">
-<p>Bem-vindo meu criador, Guilherme <br>Carvalho.🎤🎧</p>
-</div>
-</div>
+    <div class="control">
+      <label>Largura da fenda σ (pixels)</label>
+      <input id="sigma" type="range" min="5" max="80" value="12">
+      <div class="row"><span id="sigmaVal">12</span></div>
+    </div>
 
-<div class="info">
-<p class="offset-md-3 sobre"><span>&lt;/&gt;</span> Sobre a Rádio FM 609</p>
-<p class="offset-md-3" style="text-align: left;">A rádio FM 609 foi fundado por <strong>Guilherme Carvalho</strong> em <strong>15 de julho de 2025</strong> usando a linguagem de programação javascript.</p>
-<p class="offset-md-3"style="font-size: 1.0em;">Uma experiência única de rádio online com programação automática e músicas cuidadosamente selecionadas.</p>
-</div>
-<style>
-div.feed{
-margin:50px 25px 0 25px;
-border:1px solid #B2B2B2;
-background: #F3F4F6;
-border-radius:16px;
-box-shadow: 3px 3px 15px #ABABAB;
-}
-div.feed p{
-margin:30px 25px 30px 25px;
-font-weight:900;
-}
-div.feed p span{
-font-size: 1.2em;
-}
-div.feed p.news{
-font-weight: 400;
-}
-div.feed p.news a{
-color:#6C77F4;
-font-weight: 900;
-}
-</style>
-<div class="feed">
-<p><span>📰</span> Feed de Notícias</p>
-<p class="news">Visualize novidades no <strong>Feed de Notícias </strong><a target="_blank" href="Feed.html">Clique aqui...</a></p>
-</div>
-<div class="download">
-<br>
-<center>
-<img width="32px" height="32px" src="assets/00_img/mobile.png" alt="mobile">
-<p class="app">Aplicativo Móvel</p>
-<p>Leve a FM 609 para onde você for</p>
-</center>
-<center>
-  <button  class="btn"
-onclick="location.href='https://archive.org/download/station-609/Station%20609.apk'"><img width="24px" height="24px" src="assets/00_img/download.png" alt="download">Baixar App</a></button>
-</center>
-</div>
+    <div class="control">
+      <label>Velocidade animação (ms por frame)</label>
+      <input id="fps" type="range" min="10" max="200" value="40">
+      <div class="row"><span id="fpsVal">40</span></div>
+    </div>
 
+    <div style="align-self:flex-end;">
+      <button id="toggle">Pausar</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
 
-<footer>
-<center>
-<p onclick="location.href='https://3asyice.github.io/Radio'"><img width="39px" height="39px" src="assets/00_img/radio_icon_white.png" alt="radio icon white">&nbsp;&nbsp;Rádio FM 609 </p>
-<p class="contact">Entre em contato pelo e-mail guilhermekarvalho294@gmail.com para pedir música ou sugestões</p>
-<p class="copyright">&copy; Guilherme Carvalho. Desenvolvido com JavaScript e paixão pela música.</p>
-</center>
-</footer>
+  <canvas id="canvas" width="900" height="320"></canvas>
 
-
-<style>
-audio::-webkit-media-controls-time-remaining-display {
-  display: none !important;
-}
-</style>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut }
-  from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-  
-  const firebaseConfig = {
-    apiKey: "AIzaSyDSOcBRBl3gY5vqZ0knFuIATvic5ez7fzU",
-    authDomain: "authentication609-34460.firebaseapp.com",
-    projectId: "authentication609-34460",
-    storageBucket: "authentication609-34460.firebasestorage.app",
-    messagingSenderId: "399123481606",
-    appId: "1:399123481606:web:ab7ba3e145ed8d2a7aaf87",
-    measurementId: "G-L6S9W74S2B"
-  };
-  
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  
-  // Auth
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-// Botões e área de usuário
-const loginBtn = document.getElementById("loginBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-const userInfo = document.getElementById("userInfo");
-
-// Login
-loginBtn.addEventListener("click", () => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
-
-      // Mostra o nome do usuário (opcional)
-      userInfo.innerHTML = `Olá, <strong>${user.displayName}</strong> 👋`;
-
-      // Esconde botão login e mostra logout
-      loginBtn.style.display = "none";
-      logoutBtn.style.display = "inline-block";
-
-      // 🔹 Redireciona para a mesma página (página inicial da rádio)
-      window.location.href = "https://3asyice.github.io/Radio";
-    })
-    .catch((error) => {
-      console.error("Erro no login:", error);
-    });
-});
-
-
-// Logout
-logoutBtn.addEventListener("click", () => {
-  signOut(auth).then(() => {
-    userInfo.innerHTML = "Você não está logado.";
-    loginBtn.style.display = "inline-block";
-    logoutBtn.style.display = "none";
-  });
-});
-</script>
+  <div class="footer">
+    Observação: isto é uma <strong>simulação numérica aproximada</strong> — não é um experimento de laboratório. Para experimentos reais é preciso equipamento, segurança e conhecimento.
+  </div>
 
 <script>
+/* --- Parâmetros e utilitários --- */
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+const screenY = Math.floor(H*0.65); // posição da "tela" vertical (apenas visual)
+let time = 0;
+let running = true;
 
-  const audioc = document.getElementById("audioPlayer");
+const el = id => document.getElementById(id);
+const lambdaEl = el('lambda'), sepEl = el('sep'), sigmaEl = el('sigma'), fpsEl = el('fps');
+const lambdaVal = el('lambdaVal'), sepVal = el('sepVal'), sigmaVal = el('sigmaVal'), fpsVal = el('fpsVal');
+const toggleBtn = el('toggle'), resetBtn = el('reset');
 
-  // Bloqueia tentativas de alterar a velocidade
-  audioc.playbackRate = 1.0;
-  audioc.addEventListener("ratechange", () => {
-    if (audioc.playbackRate !== 1.0) {
-      audioc.playbackRate = 1.0;
-    }
-  });
+function updateLabels(){
+  lambdaVal.textContent = lambdaEl.value;
+  sepVal.textContent = sepEl.value;
+  sigmaVal.textContent = sigmaEl.value;
+  fpsVal.textContent = fpsEl.value;
+}
+updateLabels();
 
-  // Impede o usuário de avançar ou retroceder
-  let ultimaPosicao = 0;
-  setInterval(() => {
-  if (audioc.currentTime > 2 && Math.abs(audioc.currentTime - ultimaPosicao) >= 1) {
-    audioc.currentTime = ultimaPosicao;
-  } else {
-    ultimaPosicao = audioc.currentTime;
+[lambdaEl, sepEl, sigmaEl, fpsEl].forEach(input=>{
+  input.addEventListener('input', ()=> { updateLabels(); });
+});
+
+/* --- Física simplificada --- */
+/*
+ We'll compute psi(x) = psi1 + psi2 on an x-grid.
+ psi_j(x) = A * exp(i * k * r_j) * exp( - (x - xj)^2 / (2*sigma^2) )
+ We'll vary phase with time to animate (global oscillation).
+*/
+
+function complexAdd(a, b){ return {r: a.r + b.r, i: a.i + b.i}; }
+function complexAbs2(c){ return c.r*c.r + c.i*c.i; }
+function complexExpPhase(phase){ return {r: Math.cos(phase), i: Math.sin(phase)}; }
+
+function computeIntensityArray(){
+  const N = W; // points across width
+  const intens = new Float32Array(N);
+  const lam = Number(lambdaEl.value);
+  const k = 2 * Math.PI / lam; // wave number (pixels^-1)
+  const sep = Number(sepEl.value);
+  const sigma = Number(sigmaEl.value);
+  const x1 = W/2 - sep/2, x2 = W/2 + sep/2;
+  const A = 1.0;
+  const globalPhase = time * 0.03; // animate slowly
+
+  for(let xi=0; xi<N; xi++){
+    const x = xi + 0.5;
+    // distance approximation 1D (we're not doing radial falloff)
+    // phase from propagation: k * (x - xj)
+    const phase1 = k * (x - x1) + globalPhase;
+    const phase2 = k * (x - x2) + globalPhase;
+    const env1 = Math.exp( - ((x - x1)*(x - x1)) / (2 * sigma * sigma) );
+    const env2 = Math.exp( - ((x - x2)*(x - x2)) / (2 * sigma * sigma) );
+    const psi1 = { r: A * env1 * Math.cos(phase1), i: A * env1 * Math.sin(phase1) };
+    const psi2 = { r: A * env2 * Math.cos(phase2), i: A * env2 * Math.sin(phase2) };
+    const psi = complexAdd(psi1, psi2);
+    intens[xi] = complexAbs2(psi);
   }
-}, 500);
-
-</script>
-
-</center>
-<script defer asynccrossorigin="anonymous" src="script/js/audio.ia.js">
-</script>
-<script>
-let deferredPrompt;
-const installBtn = document.getElementById("add-button");
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = "block";
-});
-
-installBtn.addEventListener("click", () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        console.log("Usuário aceitou instalar");
-      } else {
-        console.log("Usuário recusou");
-      }
-      deferredPrompt = null;
-    });
-  }
-});
-
-</script>
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('script/js/sw.js', { scope: 'https://3asyice.github.io/Radio/' }) // arquivo dentro de /Radio/
-      .then(reg => console.log('SW registrado em:', reg.scope))
-      .catch(err => console.error('Falha ao registrar SW:', err));
-  });
+  return intens;
 }
+
+/* --- Renderizar --- */
+function render(){
+  // clear
+  ctx.clearRect(0,0,W,H);
+
+  // background
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0,0,W,H);
+
+  // draw slits (top)
+  const sep = Number(sepEl.value);
+  const slitY = Math.floor(H*0.18);
+  const x1 = W/2 - sep/2, x2 = W/2 + sep/2;
+  ctx.fillStyle = '#444';
+  ctx.fillRect(0, slitY-8, W, 16);
+  // slits (holes)
+  ctx.fillStyle = '#111';
+  ctx.fillRect(x1-8, slitY-60, 16, 60);
+  ctx.fillRect(x2-8, slitY-60, 16, 60);
+
+  // compute intensities
+  const intens = computeIntensityArray();
+
+  // normalize intensity for display
+  let maxI = 0;
+  for(let i=0;i<intens.length;i++) if(intens[i] > maxI) maxI = intens[i];
+  const norm = maxI > 0 ? 1.0 / maxI : 1.0;
+
+  // draw intensity as vertical "screen" pattern below slits
+  for(let x=0;x<W;x++){
+    const val = intens[x] * norm;
+    // map val to brightness (0..255)
+    let bright = Math.pow(val, 0.6) * 255; // gamma adjust for nicer contrast
+    if(bright > 255) bright = 255;
+    const y0 = screenY;
+    // draw a vertical column: brighter = taller white column up from y0
+    const h = Math.floor(bright / 255 * (H - y0 - 10));
+    ctx.fillStyle = `rgb(${Math.floor(bright)},${Math.floor(bright)},${Math.floor(bright)})`;
+    ctx.fillRect(x, y0, 1, h);
+  }
+
+  // labels
+  ctx.fillStyle = '#bbb';
+  ctx.font = '12px Arial';
+  ctx.fillText('Fendas', 10, slitY-12);
+  ctx.fillText('Tela (intensidade = |ψ|²)', 10, screenY - 6);
+}
+
+/* --- Loop de animação --- */
+function step(){
+  if(running){
+    time++;
+    render();
+  }
+  const delay = Number(fpsEl.value);
+  setTimeout(step, delay);
+}
+step();
+
+/* --- Botões --- */
+toggleBtn.addEventListener('click', ()=>{
+  running = !running;
+  toggleBtn.textContent = running ? 'Pausar' : 'Continuar';
+});
+resetBtn.addEventListener('click', ()=>{
+  lambdaEl.value = 80; sepEl.value = 120; sigmaEl.value = 12; fpsEl.value = 40;
+  updateLabels();
+});
+
+/* Inicial render */
+render();
 </script>
-
-<script src="script/js/sw.js" type="text/javascript" charset="utf-8"></script>
-
-<script type="text/javascript" charset="utf-8" crossorigin="anonymous" defer async src="service-worker.js"></script>
 </body>
 </html>
