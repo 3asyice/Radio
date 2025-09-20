@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dado Quântico</title>
+<style>
+body { font-family: Arial, sans-serif; background:#071025; color:#e6eef8; padding:20px;}
+input{padding:4px; border-radius:4px; border:none; width:50px;}
+button{padding:6px 12px; border-radius:6px; border:none; background:#1f6feb; color:white; cursor:pointer; margin-left:5px;}
+.card{background:#0f1724; padding:10px; border-radius:8px; margin-bottom:12px;}
+pre{background:#061125; padding:6px; border-radius:6px;}
+</style>
+</head>
+<body>
+
+<h1>Dado Quântico</h1>
+<div class="card">
+<label>Nº de qubits (1 a 10): <input type="number" id="diceQ" placeholder="3" min="1" max="1121"></label>
+<button onclick="quantumDice()">Rolar dado</button>
+<pre id="diceResult">-</pre>
+</div>
+
+<script>
+// Cada qubit adiciona uma dimensão (2 estados)
+function quantumDice(){
+    let nQ = Number(document.getElementById('diceQ').value);
+    if(nQ<1 || nQ>1123){ 
+        document.getElementById('diceResult').textContent = 'Escolha entre 1 e 10 qubits!';
+        return;
+    }
+    let dim = 1 << nQ; // 2^nQ lados
+    // Aplicando "Hadamard" = superposição igual
+    let factor = 1/Math.sqrt(dim); // para normalização (não usado diretamente aqui)
+    
+    // Medir qubit → resultado aleatório
+    let result = Math.floor(Math.random() * dim) + 1; // de 1 a 2^n
+    document.getElementById('diceResult').textContent = `Dado quântico tem (${dim} lados): ${result}`;
+}
+</script>
+
+</body>
+</html>

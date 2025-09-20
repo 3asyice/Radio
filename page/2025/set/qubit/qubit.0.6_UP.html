@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratório Quântico Interativo</title>
+<style>
+body { font-family: Arial, sans-serif; background:#071025; color:#e6eef8; margin:0; padding:10px;}
+h1,h2,h3{margin:4px 0;}
+.card{background:#0f1724; padding:10px; border-radius:8px; margin-bottom:12px;}
+input, select, button{font-size:14px; padding:6px; border-radius:6px; border:none;}
+button{background:#1f6feb; color:white; cursor:pointer;}
+button.warn{background:#b04b3b;}
+canvas{background:#061125; border-radius:6px; display:block; margin:6px 0;}
+pre{background:#071428; padding:6px; border-radius:6px; overflow:auto; max-height:200px;}
+#barsWrapper{overflow-x:auto; border-radius:6px; background:#061125;}
+#bars{height:240px; display:block;}
+</style>
+</head>
+<body>
+
+<h1>Laboratório Quântico Interativo</h1>
+
+<div class="card">
+<h3>Conversor de números e estado inicial</h3>
+<label>Decimal: <input type="number" id="decimal" value="5"></label>
+<label>Nº de qubits (0 = auto, máx 10): <input type="number" id="nQ" value="0" min="0" max="10"></label>
+<button id="setBtn">Set</button>
+<pre id="results">-</pre>
+</div>
+
+<div class="card">
+<h3>Circuito Quântico</h3>
+<label>Porta:
+<select id="gateSelect">
+<option value="H">H</option>
+<option value="X">X</option>
+<option value="Y">Y</option>
+<option value="Z">Z</option>
+<option value="S">S</option>
+<option value="T">T</option>
+<option value="Rx">Rx(θ)</option>
+<option value="Ry">Ry(θ)</option>
+<option value="Rz">Rz(θ)</option>
+<option value="CNOT">CNOT</option>
+</select>
+</label>
+<label>Alvo(s): <input type="text" id="targetInput" placeholder="ex:0 ou 0,1"></label>
+<label>θ (rad): <input type="text" id="angleInput" value="1.5708"></label>
+<button id="addGate">Adicionar</button>
+<button id="clearCircuit" class="warn">Limpar</button>
+<pre id="circuit">Circuito vazio</pre>
+<button id="runCircuit">Rodar circuito</button>
+<button id="resetAll">Reset</button>
+<pre id="state">Estado inicial</pre>
+</div>
+
+<div class="card">
+<h3>Visualizações</h3>
+<div id="barsWrapper"><canvas id="bars" width="1024"></canvas></div>
+<label>Nº de repetições (shots): <input type="number" id="shots" value="256" min="1"></label>
+<button id="measureMany">Medir</button>
+<pre id="history">Histórico de medições</pre>
+</div>
+
+<div class="card">
+<h3>Previsão de medida</h3>
+<label>Previsão (bitstring): <input type="text" id="predictInput" placeholder="ex: 01"></label>
+<button id="predictBtn">Testar</button>
+<div id="predictResult"></div>
+</div>
+
+<script>
+/* ---------- Complex numbers ---------- */
+function c(re, im=0){ return {re,im}; }
+function cAdd(a,b){ return {re:a.re+b.re, im:a.im+b.im}; }
+function cMul(a,b){ return {re:a.re*b.re - a.im*b.im, im:a.re*b.im + a.im*b.re}; }
+function cScale(a,s){ return {re:a.re*s, im:a.im*s}; }
+function cAbs2(a){ return a.re*a.re + a.im*a.im; }
+function normalizeState(state){ 
+  let sum=0; state.forEach(a=>sum+=cAbs2(a));
+  if(sum===0) return state;
+  return state.map(a=>cScale(a,1/Math.sqrt(sum)));
+}
+
+/* ---------- Variáveis ---------- */
+let nQubits=2, amplitudes=[], circuit=[], history=[];
+
+/* ---------- Inicialização ---------- */
+function initFromDecimal(num,widthPref=0){
+  const minBits=(num===0)?1:Math.floor(Math.log2(num))+1;
+  nQubits=(widthPref && widthPref>minBits)?widthPref:minBits;
+  if(nQubits>10) nQubits=10;
+  const dim=1<<nQubits;
+  amplitudes=new Array(dim).fill(null).map(()=>c(0,0));
+  amplitudes[num]=c(1,0);
+  renderAll(num);
+}
+
+/* ---------- Renderizar ---------- */
+function renderAll(num){
+  const bin=num.toString(2).padStart(nQubits,'0');
+  const hexDigits=Math.ceil(nQubits/4);
+  const octDigits=Math.ceil(nQubits/3);
+  const hex=num.toString(16).toUpperCase().padStart(hexDigits,'0');
+  const oct=num.toString(8).padStart(octDigits,'0');
+  document.getElementById('results').textContent=
+    `Decimal: ${num}\nBinário: ${bin}\nHex: ${hex}\nOct: ${oct}\nQubits: ${nQubits}\nEstado: |${bin}⟩`;
+  renderState(); renderBars(); renderHistory();
+}
+
+function renderState(){
+  let out="";
+  for(let i=0;i<amplitudes.length;i++){
+    const amp=amplitudes[i];
+    const prob=cAbs2(amp);
+    out+=`|${i.toString(2).padStart(nQubits,'0')}⟩ : ${amp.re.toFixed(4)} + ${amp.im.toFixed(4)}i → p=${prob.toFixed(4)}\n`;
+  }
+  document.getElementById('state').textContent=out;
+}
+
+/* ---------- Gráfico ---------- */
+const barsCanvas=document.getElementById('bars'), barsCtx=barsCanvas.getContext('2d');
+function renderBars(counts=null,shots=null){
+  const ctx=barsCtx, dim=amplitudes.length, w=Math.max(dim*6,520), h=barsCanvas.height;
+  barsCanvas.width=w;
+  ctx.clearRect(0,0,w,h);
+  let heights=new Array(dim).fill(0);
+  if(counts&&shots){ for(let i=0;i<dim;i++) heights[i]=counts[i]/shots; }
+  else for(let i=0;i<dim;i++) heights[i]=cAbs2(amplitudes[i]);
+  let max=Math.max(...heights); if(max<=0) max=1;
+  const margin=8, bw=4;
+  for(let i=0;i<dim;i++){
+    const x=margin+i*(bw+2), hh=Math.floor((heights[i]/max)*(h-36));
+    ctx.fillStyle='#0f9'; ctx.fillRect(x,h-hh-20,bw,hh);
+    ctx.fillStyle='#9fb0d7'; ctx.font='10px monospace';
+    ctx.fillText(i.toString(2).padStart(nQubits,'0'), x, h-4);
+  }
+}
+
+/* ---------- Medição ---------- */
+function measureMany(){
+  const shots=Math.max(1,Number(document.getElementById('shots').value)||1);
+  const probs=amplitudes.map(a=>cAbs2(a));
+  const counts=new Array(probs.length).fill(0);
+  for(let s=0;s<shots;s++){
+    let r=Math.random(),acc=0;
+    for(let i=0;i<probs.length;i++){ acc+=probs[i]; if(r<=acc){ counts[i]++; break; } }
+  }
+  const collapseIdx=Math.floor(Math.random()*probs.length);
+  amplitudes=new Array(probs.length).fill(c(0,0)); amplitudes[collapseIdx]=c(1,0);
+  history.push(collapseIdx.toString(2).padStart(nQubits,'0')); if(history.length>50) history.shift();
+  renderBars(counts,shots); renderHistory();
+}
+
+/* ---------- Histórico ---------- */
+function renderHistory(){ document.getElementById('history').textContent=history.join('\n')||'nenhuma'; }
+
+/* ---------- Previsão ---------- */
+document.getElementById('predictBtn').addEventListener('click',()=>{
+  const pred=document.getElementById('predictInput').value.trim().padStart(nQubits,'0');
+  const idx=parseInt(pred,2);
+  const prob=cAbs2(amplitudes[idx]);
+  document.getElementById('predictResult').textContent=`Probabilidade de ${pred}: ${(prob*100).toFixed(2)}%`;
+});
+
+/* ---------- Eventos ---------- */
+document.getElementById('setBtn').addEventListener('click',()=>initFromDecimal(Number(document.getElementById('decimal').value)||0,Number(document.getElementById('nQ').value)||0));
+
+/* ---------- Inicial ---------- */
+initFromDecimal(5);
+</script>
+
+</body>
+</html>

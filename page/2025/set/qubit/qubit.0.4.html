@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ferramenta Qubit — Conversor + Circuito + Visual</title>
+<style>
+  :root{--bg:#071025;--card:#0f1724;--accent:#1f6feb;--ok:#2b7a3a;--text:#e6eef8}
+  body{font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);margin:12px;padding-bottom:40px}
+  h1{margin:6px 0 12px;font-size:18px}
+  .wrap{display:grid;grid-template-columns:1fr 520px;gap:12px}
+  .card{background:var(--card);padding:12px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.6)}
+  label{font-size:13px;color:#9fb0d7;display:block;margin-bottom:6px}
+  input, select, button{font-size:14px}
+  input[type="number"], input[type="text"], select{padding:8px;border-radius:6px;border:1px solid #22324a;background:#071428;color:var(--text);width:100%}
+  .row{display:flex;gap:8px;align-items:center}
+  .row .col{flex:1}
+  button{padding:8px 10px;border-radius:6px;border:none;background:var(--accent);color:white;cursor:pointer}
+  button.ghost{background:transparent;border:1px solid #22324a}
+  button.warn{background:#b04b3b}
+  .small{font-size:13px;color:#9fb0d7}
+  pre{background:#071428;padding:8px;border-radius:6px;color:#cfe8ff;white-space:pre-wrap}
+  #bars{width:100%;height:240px;background:#000;border-radius:6px;display:block}
+  .circuit-list{max-height:220px;overflow:auto;padding:6px;border-radius:6px;background:#061125}
+  .circuit-item{display:flex;justify-content:space-between;padding:6px;border-bottom:1px solid #0b1a2a}
+  .muted{color:#8aa3d1;font-size:13px}
+  footer{margin-top:12px;color:#98aecd;font-size:13px}
+  @media(max-width:980px){ .wrap{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+  <h1>Ferramenta Qubit — Conversor • Circuito • Visualizador</h1>
+
+  <div class="wrap">
+    <div class="card">
+      <label>Decimal (inteiro ≥ 0)</label>
+      <div class="row">
+        <input id="decimal" type="number" min="0" value="13">
+        <div style="width:120px">
+          <input id="setBtn" type="button" value="Set" style="width:100%;background:var(--ok)">
+        </div>
+      </div>
+
+      <div style="margin-top:8px" class="row">
+        <div class="col">
+          <label>Nº de qubits (1–6) — 0 = auto</label>
+          <input id="nQ" type="number" min="0" max="6" value="0">
+        </div>
+        <div style="width:140px">
+          <label>&nbsp;</label>
+          <button id="convert">Converter</button>
+        </div>
+      </div>
+
+      <div style="margin-top:10px">
+        <div class="small">Resultados:</div>
+        <pre id="results">-</pre>
+      </div>
+
+      <hr style="border:none;height:8px">
+
+      <div class="row">
+        <div class="col">
+          <label>Construir porta</label>
+          <select id="gateSelect">
+            <option value="H">H (Hadamard)</option>
+            <option value="X">X (NOT)</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="Rx">Rx(θ)</option>
+            <option value="Ry">Ry(θ)</option>
+            <option value="Rz">Rz(θ)</option>
+            <option value="CNOT">CNOT (control,target)</option>
+          </select>
+        </div>
+        <div style="width:160px">
+          <label>Alvo(s)</label>
+          <input id="targetInput" type="text" placeholder="ex: 0 or 1,2" />
+        </div>
+        <div style="width:120px">
+          <label>θ (rad)</label>
+          <input id="angleInput" type="text" value="1.5708"/>
+        </div>
+      </div>
+
+      <div style="margin-top:8px" class="row">
+        <div class="col"><button id="addGate">Adicionar ao circuito</button></div>
+        <div style="width:120px"><button id="clearCircuit" class="ghost">Limpar</button></div>
+      </div>
+
+      <div style="margin-top:10px">
+        <div class="small">Circuito (sequência):</div>
+        <div id="circuit" class="circuit-list"></div>
+      </div>
+
+      <div style="margin-top:10px" class="row">
+        <div class="col"><button id="runCircuit">Rodar circuito</button></div>
+        <div style="width:120px"><button id="resetAll" class="ghost">Reset</button></div>
+      </div>
+
+      <div style="margin-top:8px">
+        <div class="small">Estado atual (amplitudes):</div>
+        <pre id="state">-</pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="align-items:flex-start">
+        <div style="flex:1">
+          <div class="small">Visualização de probabilidades</div>
+          <canvas id="bars" width="520" height="240"></canvas>
+        </div>
+
+        <div style="width:240px;margin-left:12px">
+          <div class="small">Medição</div>
+          <label>Nº de repetições</label>
+          <input id="shots" type="number" min="1" max="10000" value="256">
+          <div style="margin-top:8px" class="row">
+            <div class="col"><button id="measure">Medir</button></div>
+            <div style="width:120px"><button id="measureMany" class="ghost">Medições múltiplas</button></div>
+          </div>
+
+          <div style="margin-top:10px">
+            <div class="small">Histórico (últimos):</div>
+            <pre id="history">nenhuma</pre>
+          </div>
+
+          <div style="margin-top:10px">
+            <div class="small">Opções</div>
+            <label><input id="autoNormalize" type="checkbox" checked/> Normalizar amplitudes após operações</label>
+            <label><input id="showAmps" type="checkbox" checked/> Mostrar amplitudes textuais</label>
+            <div style="margin-top:8px"><button id="exportState" class="ghost">Exportar estado (JSON)</button></div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="muted">Observações: bit índice 0 = bit mais significativo (MSB). Máx 6 qubits para desempenho. Ferramenta é simulador numérico — não controla hardware real.</div>
+      </footer>
+    </div>
+  </div>
+
+<script>
+/* ---------- Utilitários complexos ---------- */
+function c(re, im=0){ return {re:re, im:im}; }
+function cAdd(a,b){ return {re: a.re + b.re, im: a.im + b.im}; }
+function cSub(a,b){ return {re: a.re - b.re, im: a.im - b.im}; }
+function cMul(a,b){ return { re: a.re*b.re - a.im*b.im, im: a.re*b.im + a.im*b.re }; }
+function cScale(a,s){ return { re: a.re*s, im: a.im*s }; }
+function cAbs2(a){ return a.re*a.re + a.im*a.im; }
+function cConj(a){ return {re:a.re, im:-a.im}; }
+function cFromPolar(r,phi){ return {re: r*Math.cos(phi), im: r*Math.sin(phi)}; }
+function approxEq(x,y,eps=1e-9){ return Math.abs(x-y) < eps; }
+
+/* ---------- UI refs ---------- */
+const decimalEl = document.getElementById('decimal'), nQEl = document.getElementById('nQ');
+const setBtn = document.getElementById('setBtn'), convertBtn = document.getElementById('convert');
+const resultsEl = document.getElementById('results'), basisEl = null;
+const statePre = document.getElementById('state');
+const gateSelect = document.getElementById('gateSelect'), targetInput = document.getElementById('targetInput'), angleInput = document.getElementById('angleInput');
+const addGateBtn = document.getElementById('addGate'), circuitDiv = document.getElementById('circuit'), clearCircuitBtn = document.getElementById('clearCircuit');
+const runBtn = document.getElementById('runCircuit'), resetBtn = document.getElementById('resetAll');
+const barsCanvas = document.getElementById('bars'), barsCtx = barsCanvas.getContext('2d');
+const measureBtn = document.getElementById('measure'), measureManyBtn = document.getElementById('measureMany'), shotsEl = document.getElementById('shots');
+const historyPre = document.getElementById('history'), autoNormalizeEl = document.getElementById('autoNormalize'), showAmpsEl = document.getElementById('showAmps');
+const exportBtn = document.getElementById('exportState');
+
+/* ---------- Internal state ---------- */
+let nQubits = 3;
+let basisBits = "";
+let amplitudes = []; // array of complex length 2^n
+let circuit = []; // list of gate objects
+let history = [];
+
+/* ---------- Helpers: bit ordering ----------
+ We'll use: qubit index 0 = MSB (most significant).
+ LSB index = nQubits -1 - k
+ ---------- */
+
+function toBinary(num, width){
+  let s = num.toString(2);
+  if(width && width>0) s = s.padStart(width,'0');
+  return s;
+}
+function toHex(num){ return num.toString(16).toUpperCase(); }
+function toOct(num){ return num.toString(8); }
+
+/* ---------- Initialize from decimal ---------- */
+function initFromDecimal(num, widthPref=0){
+  const minBits = (num===0)?1:Math.floor(Math.log2(num))+1;
+  const width = (widthPref && widthPref>minBits)? widthPref : minBits;
+  if(width > 6){
+    alert("Limite: máximo 6 qubits para performance (edite o código se quiser mais).");
+    nQubits = 6;
+  } else nQubits = width;
+  basisBits = toBinary(num, nQubits);
+  const dim = 1<<nQubits;
+  amplitudes = new Array(dim).fill(null).map(()=>c(0,0));
+  const idx = parseInt(basisBits,2);
+  amplitudes[idx] = c(1,0);
+  renderAll(num);
+}
+
+/* ---------- Render outputs ---------- */
+function renderAll(num){
+  const width = nQubits;
+  const bin = toBinary(num, width);
+  const hex = toHex(num);
+  const oct = toOct(num);
+  resultsEl.textContent = `Decimal: ${num}\nBinário: ${bin} (bits: ${width})\nHexadecimal: 0x${hex}\nOctal: 0o${oct}\nQubits usados: ${width}\nEstado de base: |${bin}⟩`;
+  renderState();
+  renderCircuit();
+  renderBars();
+  renderHistory();
+}
+
+function renderState(){
+  if(!showAmpsEl.checked){ statePre.textContent = "(amplitudes ocultas)"; return; }
+  const dim = amplitudes.length;
+  let out = "";
+  for(let i=0;i<dim;i++){
+    const amp = amplitudes[i];
+    const prob = cAbs2(amp);
+    const bits = i.toString(2).padStart(nQubits,'0');
+    out += `|${bits}⟩ : ${amp.re.toFixed(4)} ${amp.im>=0?'+':'-'} ${Math.abs(amp.im).toFixed(4)}i  → p=${prob.toFixed(4)}\n`;
+  }
+  statePre.textContent = out;
+}
+
+/* ---------- Circuit UI ---------- */
+function parseTargets(text){
+  // text like "0" or "1,2" -> array ints
+  if(!text) return [];
+  return text.split(',').map(s=>parseInt(s.trim())).filter(x=>!isNaN(x));
+}
+function addGateToCircuit(){
+  const type = gateSelect.value;
+  const targets = parseTargets(targetInput.value);
+  const theta = parseFloat(angleInput.value) || 0;
+  // validation simple
+  if(type === 'CNOT'){
+    if(targets.length < 2){ alert("CNOT precisa de dois índices: control,target (ex: 0,2)"); return; }
+  } else {
+    if(targets.length < 1){ alert("Escolha pelo menos um alvo (ex: 0)"); return; }
+  }
+  circuit.push({type, targets, theta});
+  renderCircuit();
+}
+function renderCircuit(){
+  circuitDiv.innerHTML = "";
+  circuit.forEach((g,i)=>{
+    const div = document.createElement('div'); div.className='circuit-item';
+    const left = document.createElement('div'); left.textContent = `${i+1}. ${g.type} ${g.type==='CNOT'? '('+g.targets.join(',')+')' : 'target: '+g.targets.join(',') + (g.theta?(' θ='+g.theta.toFixed(3)):'')}`;
+    const right = document.createElement('div');
+    const btnDel = document.createElement('button'); btnDel.textContent='X'; btnDel.className='warn';
+    btnDel.onclick = ()=>{ circuit.splice(i,1); renderCircuit(); };
+    right.appendChild(btnDel);
+    div.appendChild(left); div.appendChild(right);
+    circuitDiv.appendChild(div);
+  });
+}
+
+/* ---------- Gate matrices (2x2 complex) ---------- */
+const SQRT1_2 = Math.SQRT1_2;
+function gateMatrix(name, theta=0){
+  if(name === 'H') return [[c(SQRT1_2,0), c(SQRT1_2,0)],[c(SQRT1_2,0), c(-SQRT1_2,0)]];
+  if(name === 'X') return [[c(0,0), c(1,0)],[c(1,0), c(0,0)]];
+  if(name === 'Y') return [[c(0,0), c(0,-1)],[c(0,1), c(0,0)]];
+  if(name === 'Z') return [[c(1,0), c(0,0)],[c(0,0), c(-1,0)]];
+  if(name === 'S') return [[c(1,0), c(0,0)],[c(0,0), c(0,1)]];
+  if(name === 'T') return [[c(1,0), c(0,0)],[c(0,0), cFromPolar(1, Math.PI/4)]];
+  if(name === 'Rx'){
+    const th = theta;
+    return [[c(Math.cos(th/2),0), c(0,-Math.sin(th/2))],[c(0,-Math.sin(th/2)), c(Math.cos(th/2),0)]];
+  }
+  if(name === 'Ry'){
+    const th = theta;
+    return [[c(Math.cos(th/2),0), c(-Math.sin(th/2),0)],[c(Math.sin(th/2),0), c(Math.cos(th/2),0)]];
+  }
+  if(name === 'Rz'){
+    const th = theta;
+    return [[cFromPolar(Math.cos(th/2), -th/2), c(0,0)],[c(0,0), cFromPolar(Math.cos(th/2), th/2)]]; // alternative phase-split
+  }
+  return null;
+}
+
+/* ---------- Apply single-qubit gate to full state ----------
+  Use pairwise update: for each block swapping indices that differ at that bit.
+  bit k is MSB index (0..nQubits-1).
+*/
+function applySingleQubitGate(state, k, matrix){
+  const dim = state.length;
+  const out = new Array(dim).fill(null).map(()=>c(0,0));
+  const lsbIndex = nQubits - 1 - k;
+  const step = 1<<lsbIndex;
+  for(let i=0;i<dim;i += step<<1){
+    for(let j=0;j<step;j++){
+      const idx0 = i + j;
+      const idx1 = idx0 + step;
+      const a0 = state[idx0], a1 = state[idx1];
+      // out[idx0] = m00*a0 + m01*a1
+      out[idx0] = cAdd( cMul(matrix[0][0], a0), cMul(matrix[0][1], a1) );
+      out[idx1] = cAdd( cMul(matrix[1][0], a0), cMul(matrix[1][1], a1) );
+    }
+  }
+  return out;
+}
+
+/* ---------- Apply CNOT ----------
+ control kC, target kT (MSB indices)
+*/
+function applyCNOT(state, kC, kT){
+  const dim = state.length;
+  const out = new Array(dim).fill(null).map(()=>c(0,0));
+  const cLsb = nQubits - 1 - kC;
+  const tLsb = nQubits - 1 - kT;
+  const maskC = 1<<cLsb, maskT = 1<<tLsb;
+  for(let i=0;i<dim;i++){
+    if((i & maskC) !== 0){
+      const j = i ^ maskT;
+      out[j] = state[i];
+    } else {
+      out[i] = state[i];
+    }
+  }
+  return out;
+}
+
+/* ---------- Normalização ---------- */
+function normalizeState(state){
+  const dim = state.length;
+  let sum = 0;
+  for(let i=0;i<dim;i++) sum += cAbs2(state[i]);
+  if(sum <= 0) return state;
+  const inv = 1/Math.sqrt(sum);
+  return state.map(a=>cScale(a, inv));
+}
+
+/* ---------- Run circuit ---------- */
+function runCircuit(){
+  if(circuit.length === 0){ alert("Circuito vazio."); return; }
+  let st = amplitudes.slice(); // copy
+  circuit.forEach(g=>{
+    if(g.type === 'CNOT'){
+      const [control, target] = g.targets;
+      st = applyCNOT(st, control, target);
+    } else {
+      // support multi-target applying same gate to each target sequentially
+      const mat = gateMatrix(g.type, g.theta);
+      g.targets.forEach(t=>{
+        st = applySingleQubitGate(st, t, mat);
+      });
+    }
+    if(autoNormalizeEl.checked) st = normalizeState(st);
+  });
+  amplitudes = st;
+  renderState();
+  renderBars();
+}
+
+/* ---------- Measurement ---------- */
+function sampleIndex(probs){
+  const r = Math.random();
+  let acc = 0;
+  for(let i=0;i<probs.length;i++){
+    acc += probs[i];
+    if(r <= acc) return i;
+  }
+  return probs.length-1;
+}
+
+function measureOne(){
+  const probs = amplitudes.map(a=>cAbs2(a));
+  const idx = sampleIndex(probs);
+  // collapse
+  const dim = amplitudes.length;
+  amplitudes = new Array(dim).fill(null).map(()=>c(0,0));
+  amplitudes[idx] = c(1,0);
+  const bits = idx.toString(2).padStart(nQubits,'0');
+  history.push(bits);
+  if(history.length>40) history.shift();
+  renderState();
+  renderBars();
+  renderHistory();
+  return bits;
+}
+
+function measureMany(){
+  const shots = Math.max(1, Math.floor(Number(shotsEl.value)||1));
+  const probs = amplitudes.map(a=>cAbs2(a));
+  // sample counts
+  const counts = new Array(probs.length).fill(0);
+  for(let s=0;s<shots;s++){
+    // sample
+    let r = Math.random(), acc=0;
+    for(let i=0;i<probs.length;i++){
+      acc += probs[i];
+      if(r <= acc){ counts[i]++; break; }
+    }
+  }
+  // show counts and collapse to one sampled result (simulate one run)
+  // but we will collapse to distribution's sampled index (single draw)
+  const collapseIdx = sampleIndex(probs);
+  amplitudes = new Array(probs.length).fill(null).map(()=>c(0,0));
+  amplitudes[collapseIdx] = c(1,0);
+  // produce nice text of frequencies
+  let out = "Counts:\n";
+  for(let i=0;i<counts.length;i++){
+    const bits = i.toString(2).padStart(nQubits,'0');
+    if(counts[i]>0) out += `|${bits}⟩ : ${counts[i]}\n`;
+  }
+  history.push(collapseIdx.toString(2).padStart(nQubits,'0'));
+  if(history.length>40) history.shift();
+  renderState();
+  renderBars(counts, shots);
+  renderHistory();
+  alert(out);
+}
+
+/* ---------- Bars drawing ---------- */
+function renderBars(counts=null, shots=null){
+  const ctx = barsCtx;
+  const dim = amplitudes.length;
+  const w = barsCanvas.width, h = barsCanvas.height;
+  ctx.clearRect(0,0,w,h);
+  // compute probs
+  const probs = amplitudes.map(a=>cAbs2(a));
+  // if counts provided, use normalized counts for heights (to show histogram)
+  let heights = new Array(dim).fill(0);
+  if(counts && shots){
+    for(let i=0;i<dim;i++) heights[i] = counts[i] / shots;
+  } else {
+    for(let i=0;i<dim;i++) heights[i] = probs[i];
+  }
+  // find max for scaling
+  let max = 0;
+  for(let i=0;i<dim;i++) if(heights[i] > max) max = heights[i];
+  if(max <= 0) max = 1;
+  const margin = 8;
+  const availW = w - margin*2;
+  const bw = Math.max(2, Math.floor(availW / dim) - 2);
+  for(let i=0;i<dim;i++){
+    const x = margin + i*(bw+2);
+    const hh = Math.floor( (heights[i]/max) * (h - 36) );
+    ctx.fillStyle = '#0f9';
+    ctx.fillRect(x, h - hh - 20, bw, hh);
+    ctx.fillStyle = '#9fb0d7';
+    ctx.font = '11px Arial';
+    const bits = i.toString(2).padStart(nQubits,'0');
+    // label under bar (possibly rotate)
+    ctx.fillText(bits, x, h-6);
+  }
+  // top label
+  ctx.fillStyle = '#cfe8ff';
+  ctx.font = '12px Arial';
+  ctx.fillText('Probabilidades (ou histograma de medidas)', 10, 14);
+}
+
+/* ---------- History ---------- */
+function renderHistory(){
+  if(history.length === 0) historyPre.textContent = "nenhuma";
+  else historyPre.textContent = history.slice(-20).join(", ");
+}
+
+/* ---------- Export ---------- */
+function exportState(){
+  const exportObj = { nQubits, amplitudes: amplitudes.map(a=>({re:a.re,im:a.im})), circuit };
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
+  const a = document.createElement('a'); a.href = dataStr; a.download = 'quantum_state.json'; a.click();
+}
+
+/* ---------- Wire up UI ---------- */
+convertBtn.addEventListener('click', ()=> {
+  const num = Math.max(0, Math.floor(Number(decimalEl.value) || 0));
+  const pref = Math.max(0, Math.floor(Number(nQEl.value) || 0));
+  initFromDecimal(num, pref);
+});
+
+setBtn.addEventListener('click', ()=> {
+  const num = Math.max(0, Math.floor(Number(decimalEl.value) || 0));
+  const pref = Math.max(0, Math.floor(Number(nQEl.value) || 0));
+  initFromDecimal(num, pref);
+});
+
+addGateBtn.addEventListener('click', addGateToCircuit);
+clearCircuitBtn.addEventListener('click', ()=>{ circuit = []; renderCircuit(); });
+runBtn.addEventListener('click', runCircuit);
+resetBtn.addEventListener('click', ()=>{ circuit = []; history=[]; initFromDecimal(Number(decimalEl.value)||0, Number(nQEl.value)||0); });
+
+measureBtn.addEventListener('click', measureOne);
+measureManyBtn.addEventListener('click', measureMany);
+exportBtn.addEventListener('click', exportState);
+
+/* ---------- Initial state ---------- */
+initFromDecimal(Number(decimalEl.value)||0, Number(nQEl.value)||0);
+
+</script>
+</body>
+</html>
