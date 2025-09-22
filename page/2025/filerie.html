@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+<p>filme abaixo</p>
+<div id="embedWarezCdn"></div>
+  
+<script>
+//https://www.imdb.com/title/tt2085059/?ref_=ext_shr
+//black mirror
+
+//https://www.imdb.com/title/tt8291284/?ref_=ext_shr
+//peripheral
+
+
+https://embed.warezcdn.link/serie/tt8291284/1
+//https://embed.warezcdn.com/serie/tt8291284/1
+var type = "serie";
+var imdb = "tt5497778";
+var season = "3";
+var episode = "1";
+warezPlugin(type, imdb, season, episode);
+function warezPlugin(type, imdb, season, episode){
+if (type == "filme") { season="";episode="";}else{if (season !== "") { season = "/"+season; }if (episode !== "") { episode = "/"+episode; }}
+var frame = document.getElementById(\'embedWarezCdn\');
+// https://embed.warezcdn.link/serie/tt8291284/1
+frame.innerHTML += \'<iframe src="https://embed.warezcdn.link/\'+type+\'/\'+imdb+season+episode+\'" scrolling="no" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe>\';
+}
+</script>
+</body>
+
+</html>
