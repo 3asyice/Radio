@@ -304,17 +304,13 @@ function aplicarTema() {
   const minuto = new Date().getMinutes();
   
   // Ativa tema sombrio das 04h às 08h
-  if ((hora >= 2 && minuto >= 45) ||(hora >= 3 && minuto >= 8 ) || (hora >= 4 && hora < 8)) {
-    document.body.classList.add("dark-mode");
-  } else (hora >= 8 && hora < 4) {
+if ((hora >= 4 && minuto >= 1) || (hora >= 3 && minuto >= 1 ) || (hora >= 4 && hora < 8)) {
+document.body.classList.add("dark-mode");
+} else (hora >= 8 && hora < 4) {
     document.body.classList.remove("dark-mode");
   }
 }
-
-// Executa ao carregar a página
 aplicarTema();
-
-// Atualiza a cada minuto para trocar sem precisar recarregar
 setInterval(aplicarTema, 60000);
 </script>
 
