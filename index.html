@@ -297,5 +297,26 @@ if ('serviceWorker' in navigator) {
 <script src="script/js/sw.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript" charset="utf-8" crossorigin="anonymous" defer async src="service-worker.js"></script>
+
+<script>
+function aplicarTema() {
+  const hora = new Date().getHours();
+  const minuto = new Date().getMinutes();
+  
+  // Ativa tema sombrio das 04h às 08h
+  if (hora >= 3 && minuto === 35) || (hora >= 4 && hora < 8) {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
+}
+
+// Executa ao carregar a página
+aplicarTema();
+
+// Atualiza a cada minuto para trocar sem precisar recarregar
+setInterval(aplicarTema, 60000);
+</script>
+
 </body>
 </html>

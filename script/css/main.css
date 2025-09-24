@@ -1,6 +1,28 @@
+/* dark-mode */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3 {
+  color:#FF9500;
+}
+
+body.dark-mode header {
+  background:#393939;
+}
+
+body.dark-mode p {
+  color:#FFB200;
+}
+
+body.dark-mode #horario_atual {
+  color:#34B317;
+  text-shadow: 0 0 4px #34B317;
+}
+
+
 html, body {
 background: #F3F4F6;
 }
+ 
 
 h1, h2, h3 {
 color: #fff;
@@ -12,7 +34,7 @@ background: #DE2432;
 display: flex;
 }
 button {
-
+  
 }
 button:hover {
 background-color: #00ff8840;
