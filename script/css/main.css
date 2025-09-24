@@ -1,8 +1,18 @@
 /* dark-mode */
+body.dark-mode{
+background: #000;
+}
 body.dark-mode h1, 
 body.dark-mode h2, 
 body.dark-mode h3 {
-  color:#FF9500;
+  color:#FFDCAB;
+  background:none;
+}
+body.dark-mode div.next p{
+color:#FFDCAB;
+}
+body.dark-mode button#loginBtn {
+  color: #FFDCAB;
 }
 
 body.dark-mode header {
@@ -10,12 +20,30 @@ body.dark-mode header {
 }
 
 body.dark-mode p {
-  color:#FFB200;
+  color:#FFDCAB;
 }
 
 body.dark-mode #horario_atual {
-  color:#34B317;
-  text-shadow: 0 0 4px #34B317;
+  color:#F8F148;
+  text-shadow: 0 0 4px #F8F148;
+}
+body.dark-mode div.playing_now{
+  background: #470D0D;
+}
+body.dark-mode #startBtn{
+background: #470D0D;
+}
+body.dark-mode div.btn_play{
+background: #2C2C2C;
+}
+body.dark-mode div.station_message, body.dark-mode div.btn_play,
+body.dark-mode div.next,
+body.dark-mode div.info, 
+body.dark-mode div.feed{
+background: #2C2C2C;
+}
+body.dark-mode div.download{
+background: #2C2C2C;
 }
 
 
