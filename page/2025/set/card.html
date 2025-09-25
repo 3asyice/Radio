@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Locutor - Guilherme Carvalho (1999 style)</title>
+<style>
+  /* Fundo com padrão bem "90s" - repetição, cores fortes */
+  body {
+    background: repeating-linear-gradient(45deg, #001133 0 8px, #003366 8px 16px);
+    color: #fff;
+    font-family: "Arial", "Verdana", sans-serif;
+    margin: 0;
+    padding: 12px;
+    text-align: center;
+  }
+
+  /* Caixa central estilo tabela antiga */
+  .page {
+    width: 760px;           /* largura típica de 90s */
+    margin: 18px auto;
+    border: 4px double #FFD700;
+    background: #000011 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAEElEQVR42mP8z/C/HgAGgwJ/l0j6zwAAAABJRU5ErkJggg==') repeat;
+    padding: 8px;
+    box-shadow: 6px 6px 0 #333;
+    text-align: left;
+  }
+
+  /* Banner grande com borda em 3D */
+  .banner {
+    background: linear-gradient(90deg,#660000,#220066);
+    padding: 12px;
+    color: #FFFF99;
+    text-align: center;
+    border: 3px outset #fff;
+    margin-bottom: 12px;
+  }
+  .banner h1 { margin: 0; font-size: 28px; letter-spacing: 1px; }
+  .banner p { margin: 4px 0 0; font-style: italic; color:#FFD700; }
+
+  /* Tabela de conteúdo ao estilo 1999 */
+  table.layout { width: 100%; border-collapse: collapse; }
+  td.col-left { width: 240px; vertical-align: top; padding: 8px; background:#111; border-right: 3px solid #333; }
+  td.col-right { padding: 8px; vertical-align: top; color:#FFFFCC; }
+
+  /* Card do locutor com borda simulando botão */
+  .locutor-photo {
+    width: 200px; height: 200px; display:block;
+    border: 4px ridge #FFD700; margin-bottom: 8px;
+  }
+  .box {
+    background: linear-gradient(#111,#222); 
+    padding: 8px; border: 2px solid #444;
+    margin-bottom: 10px;
+  }
+
+  /* Marquee clássico */
+  .marquee { background:#222; color:#00FFEE; padding:4px; border-top:2px inset #333; border-bottom:2px inset #333; }
+
+  /* Botões com aspecto bevel */
+  .retro-btn {
+    display:inline-block; padding:6px 10px; margin:6px 4px;
+    border:2px outset #fff; background:#222; color:#FFD700; text-decoration:none; font-weight:bold;
+  }
+
+  /* Hit counter look */
+  .counter { font-family: "Courier New", monospace; color:#00FF00; background:#000; padding:6px; display:inline-block; border:2px solid #004400; }
+
+  /* Links estilo 90s */
+  a { color:#99CCFF; text-decoration: underline; }
+  .slogan { color:#FFCC33; font-weight:700; font-size:0.95em; }
+
+  /* Footer com guestbook e gif */
+  .footer { margin-top: 12px; padding:8px; background:#000; border-top:3px groove #333; color:#DDD; text-align:center; }
+  img.gif-small { width: 48px; height: 48px; vertical-align: middle; }
+
+  /* Responsividade simples para celular (mantém vibe) */
+  @media(max-width:820px){
+    .page{ width:96%; }
+    table.layout, td.col-left, td.col-right{ display:block; width:100%; }
+    .locutor-photo{ width:140px; height:140px; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="banner">
+      <h1>RÁDIO FM 609 - LOCUTOR</h1>
+      <p class="slogan">A História de um Recruta — Das 04h às 08h</p>
+    </div>
+
+    <!-- texto rolante típico -->
+    <div class="marquee"><marquee behavior="scroll" direction="left">AO VIVO — A História de um Recruta com Guilherme Carvalho — Das 04:00 às 08:00 — Peça sua história via WhatsApp!</marquee></div>
+
+    <!-- layout em tabela como antigamente -->
+    <table class="layout" role="presentation">
+      <tr>
+        <td class="col-left">
+          <div class="box" style="text-align:center;">
+            <!-- sua foto -->
+            <img class="locutor-photo" src="https://web.archive.org/web/20241230171106im_/https://raw.githubusercontent.com/3asyice/Noticias/main/Caso/aeropass/guilherme.jpg" alt="Guilherme Carvalho">
+
+            <div style="text-align:center;">
+              <div style="font-weight:900; color:#FFD700; font-size:18px;">Guilherme Carvalho</div>
+              <div style="color:#FFB200; margin-top:6px; font-size:14px;">"Vocês tentaram me apagar da história, mas agora estão presos na minha história."</div>
+            </div>
+          </div>
+
+          <div class="box">
+            <strong>Programação</strong><br>
+            <small>Das 04:00 às 08:00 — <em>A História de um Recruta</em></small>
+            <hr>
+            <strong>Estilo</strong><br>
+            <small>Todos os tipos de música</small>
+            <hr>
+            <strong>Contatos</strong><br>
+            <small>Facebook: <a href="https://www.facebook.com/gui.abreu.313" target="_blank">gui.abreu.313</a><br>
+            WhatsApp: <a href="https://wa.me/55991639092" target="_blank">+55 99 1639-092</a><br>
+            Instagram: <a href="https://www.instagram.com/guilherme_2k5" target="_blank">@guilherme_2k5</a></small>
+          </div>
+
+          <!-- Hit counter simulado -->
+          <div class="box" style="text-align:center;">
+            <div>VISITANTES:</div>
+            <div id="hitCounter" class="counter">0000</div>
+            <div style="margin-top:6px;"><img class="gif-small" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="gif"></div>
+          </div>
+        </td>
+
+        <td class="col-right">
+          <div class="box">
+            <h2 style="margin:0 0 8px 0; color:#FFCC33;">Sobre Guilherme</h2>
+            <p>Sou alguém mais reservado e sem muitos amigos. A fundação da rádio foi uma tentativa criativa de me conectar com o mundo e partilhar histórias reais, com minha voz levando o ouvinte para dentro da narrativa.</p>
+            <p><strong>Programa:</strong> A História de um Recruta — narração real e verdadeira, da madrugada para quem está acordado.</p>
+          </div>
+
+          <div class="box">
+            <h3 style="margin:0 0 8px 0; color:#99FF99;">Pedidos & Guestbook</h3>
+            <p>Peça uma música ou deixe uma mensagem:</p>
+            <p>
+              <a class="retro-btn" href="https://wa.me/55991639092" target="_blank">📱 Pedir via WhatsApp</a>
+              <a class="retro-btn" href="#" onclick="alert('Guestbook vindo em breve!')">✍️ Deixe uma mensagem</a>
+            </p>
+          </div>
+
+          <div class="box">
+            <h3 style="margin:0 0 8px 0; color:#FF99FF;">Extras Retrô</h3>
+            <ul style="margin:0 0 0 18px; padding:0; color:#CCC;">
+              <li>Marquee com última notícia</li>
+              <li>GIFs animados</li>
+              <li>Contador de visitas (simulado local)</li>
+              <li>Layout em tabela estilo 1999</li>
+            </ul>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+
+    <div class="footer">
+      <img src="https://i.imgur.com/8Km9tLL.gif" alt="under construction" class="gif-small">
+      &nbsp; Esta página foi estilizada para parecer com a web de 1999 • <a href="#">Guestbook</a> • <a href="#">Versão limpa (moderna)</a>
+    </div>
+  </div>
+
+<script>
+  // Simula um hit counter local (armazena no localStorage)
+  const key = 'fm609_hits';
+  let hits = Number(localStorage.getItem(key) || 0);
+  // incrementa apenas uma vez por sessão
+  if (!sessionStorage.getItem('counted')) {
+    hits += 1;
+    localStorage.setItem(key, hits);
+    sessionStorage.setItem('counted', '1');
+  }
+  document.getElementById('hitCounter').textContent = String(hits).padStart(4,'0');
+</script>
+</body>
+</html>
