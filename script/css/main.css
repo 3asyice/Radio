@@ -1,49 +1,92 @@
 /* dark-mode */
-body.dark-mode{
-background: #000;
+body.dark-mode {
+  background: black url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  /* textura estilo anos 90 */
+  font-family: "Comic Sans MS", "Courier New", Verdana, sans-serif;
+  color: #00FF00;
+  text-align: center;
+  cursor: crosshair;
 }
-body.dark-mode h1, 
-body.dark-mode h2, 
+
+body.dark-mode h1,
+body.dark-mode h2,
 body.dark-mode h3 {
-  color:#FFDCAB;
-  background:none;
-}
-body.dark-mode div.next p{
-color:#FFDCAB;
-}
-body.dark-mode button#loginBtn {
   color: #FFDCAB;
+  background: linear-gradient(to right, #660000, #000000);
+  border: 2px outset #FFDCAB;
+  padding: 4px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 3px #FF00FF;
+}
+
+body.dark-mode div.next p {
+  color: #00FFFF;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+body.dark-mode button#loginBtn {
+  color: #FFFF00;
+  background: linear-gradient(to bottom, #444, #000);
+  border: 3px outset #888;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 body.dark-mode header {
-  background:#393939;
+  background: #393939;
+  border-bottom: 4px ridge #FF00FF;
 }
 
 body.dark-mode p {
-  color:#FFDCAB;
+  color: #FFDCAB;
+  font-size: 14px;
 }
 
 body.dark-mode #horario_atual {
-  color:#F8F148;
-  text-shadow: 0 0 4px #F8F148;
+  color: #F8F148;
+  text-shadow: 0 0 5px #FF0000, 0 0 10px #00FF00;
+  font-weight: bold;
+  font-size: 16px;
 }
-body.dark-mode div.playing_now{
+
+body.dark-mode div.playing_now {
   background: #470D0D;
+  border: 2px inset #FFDCAB;
 }
-body.dark-mode #startBtn{
-background: #470D0D;
+
+body.dark-mode #startBtn {
+  background: #470D0D;
+  border: 3px outset #FFD700;
+  color: #00FF00;
+  text-transform: uppercase;
 }
-body.dark-mode div.btn_play{
-background: #2C2C2C;
+
+body.dark-mode div.btn_play {
+  background: #2C2C2C;
+  border: 2px inset #00FFFF;
 }
-body.dark-mode div.station_message, body.dark-mode div.btn_play,
+
+body.dark-mode div.station_message,
+body.dark-mode div.btn_play,
 body.dark-mode div.next,
-body.dark-mode div.info, 
-body.dark-mode div.feed{
-background: #2C2C2C;
+body.dark-mode div.info,
+body.dark-mode div.feed,
+body.dark-mode div.download {
+  background: #2C2C2C;
+  border: 2px ridge #FF00FF;
+  margin: 5px;
+  padding: 5px;
 }
-body.dark-mode div.download{
-background: #2C2C2C;
+.blink {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 
