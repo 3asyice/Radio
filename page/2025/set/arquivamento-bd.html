@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Arquivar no Internet Archive</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #111; color: #eee; padding: 20px; }
+    button { padding: 10px 20px; margin: 10px 0; cursor: pointer; }
+    #log { white-space: pre-wrap; background: #222; padding: 10px; max-height: 400px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <h1>Arquivamento Automático</h1>
+  <p>Gerar links de soldados de 21 até 6000 e arquivar no Internet Archive.</p>
+  <button onclick="startArchive()">Iniciar Arquivamento</button>
+  <div id="log"></div>
+
+  <script>
+    function startArchive() {
+      let start = 200;
+      let end = 300;
+      let delay = 5000; // 3s entre cada pedido para não sobrecarregar
+      let i = start;
+      let logBox = document.getElementById("log");
+
+      function next() {
+        if (i > end) {
+          logBox.innerHTML += "\n✅ Arquivamento concluído!";
+          return;
+        }
+        let url = "https://bancodedadosfeb.com.br/?soldiers=" + i;
+        let saveUrl = "https://web.archive.org/save/" + encodeURIComponent(url);
+
+        // Abrir em iframe invisível (pode usar window.open se preferir)
+        let iframe = document.createElement("iframe");
+        iframe.style.display = "none";
+        iframe.src = saveUrl;
+        document.body.appendChild(iframe);
+
+        logBox.innerHTML += "\nArquivando: " + url;
+        logBox.scrollTop = logBox.scrollHeight;
+
+        i++;
+        setTimeout(next, delay);
+      }
+      next();
+    }
+  </script>
+</body>
+</html>
