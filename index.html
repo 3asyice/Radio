@@ -312,9 +312,10 @@ function aplicarTema() {
 if ((hora >= 4 && minuto >= 0) || 
 (hora >= 5 && minuto >= 0 ) || 
 (hora >= 6 && minuto >= 0 ) || 
-(hora <= 7 && minuto >= 0 )) {
+(hora < 8) || (hora = 20)
+) {
 document.body.classList.add("dark-mode");
-} else (hora >= 8 && hora < 4) {
+} else  {
     document.body.classList.remove("dark-mode");
   }
 }
