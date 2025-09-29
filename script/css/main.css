@@ -1,71 +1,82 @@
 /* dark-mode */
 body.dark-mode {
-  background: black url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-  /* textura estilo anos 90 */
-  font-family: "Comic Sans MS", "Courier New", Verdana, sans-serif;
-  color: #00FF00;
+  background: #0a001f url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  font-family: 'Orbitron', sans-serif; /* fonte futurista sugerida */
+  color: #00ffaa;
   text-align: center;
   cursor: crosshair;
+  transition: background 0.4s ease, color 0.3s ease;
 }
 
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3 {
-  color: #FFDCAB;
-  background: linear-gradient(to right, #660000, #000000);
-  border: 2px outset #FFDCAB;
-  padding: 4px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 3px #FF00FF;
+  color: #ff00cc;
+  background: linear-gradient(to right, #711D9A, #0a001f);
+  text-shadow: 0 0 6px #ff00cc, 0 0 12px #00ffff;
 }
 
 body.dark-mode div.next p {
-  color: #00FFFF;
+  color: #00ffff;
   font-weight: bold;
   text-decoration: underline;
+  text-shadow: 0 0 6px #00ffff;
 }
 
 body.dark-mode button#loginBtn {
-  color: #FFFF00;
-  background: linear-gradient(to bottom, #444, #000);
-  border: 3px outset #888;
+  color: #ffcc00;
+  background: linear-gradient(to bottom, #222, #000);
+  border: 3px outset #ff00cc;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 0 6px #ffcc00, 0 0 12px #ff00cc;
+  transition: transform 0.2s ease;
+}
+body.dark-mode button#loginBtn:hover {
+  transform: scale(1.05);
 }
 
 body.dark-mode header {
-  background: #393939;
-  border-bottom: 4px ridge #FF00FF;
+  background: #111;
+  border-bottom: 4px ridge #ff00cc;
+  box-shadow: 0 0 10px #ff00cc;
 }
 
 body.dark-mode p {
-  color: #FFDCAB;
-  font-size: 14px;
+  color: #efefef;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  text-shadow: 0 0 6px #711D9A;
 }
 
 body.dark-mode #horario_atual {
-  color: #F8F148;
-  text-shadow: 0 0 5px #FF0000, 0 0 10px #00FF00;
+  color: #ffcc00;
+  text-shadow: 0 0 6px #ff0000, 0 0 12px #00ffaa;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 1.1rem;
 }
 
 body.dark-mode div.playing_now {
-  background: #470D0D;
-  border: 2px inset #FFDCAB;
+  background: #22001a;
+  border: 2px inset #00ffff;
+  box-shadow: 0 0 8px #00ffff;
 }
 
 body.dark-mode #startBtn {
-  background: #470D0D;
-  border: 3px outset #FFD700;
-  color: #00FF00;
+  background: #22001a;
+  border: 3px outset #ffcc00;
+  color: #00ffaa;
   text-transform: uppercase;
+  box-shadow: 0 0 6px #ffcc00, 0 0 12px #ff00cc;
+  transition: transform 0.2s ease;
+}
+body.dark-mode #startBtn:hover {
+  transform: scale(1.05);
 }
 
 body.dark-mode div.btn_play {
-  background: #2C2C2C;
-  border: 2px inset #00FFFF;
+  background: #2c2c2c;
+  border: 2px inset #00ffff;
+  box-shadow: 0 0 6px #00ffff;
 }
 
 body.dark-mode div.station_message,
@@ -74,20 +85,13 @@ body.dark-mode div.next,
 body.dark-mode div.info,
 body.dark-mode div.feed,
 body.dark-mode div.download {
-  background: #2C2C2C;
-  border: 2px ridge #FF00FF;
-  margin: 5px;
-  padding: 5px;
-}
-.blink {
-  animation: blink 1s step-start infinite;
+  background: #111;
+  border: 2px ridge #ff00cc;
+  margin: 6px;
+  padding: 10px;
+  box-shadow: 0 0 8px #ff00cc;
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
 
 
 html, body {

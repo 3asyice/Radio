@@ -309,10 +309,10 @@ function aplicarTema() {
   const minuto = new Date().getMinutes();
   
   // Ativa tema sombrio das 04h às 08h
-if ((hora >= 4 && minuto >= 0) || 
-(hora >= 5 && minuto >= 0 ) || 
-(hora >= 6 && minuto >= 0 ) || 
-(hora < 8) 
+if ((hora === 4) || 
+(hora === 5) || 
+(hora === 6) || 
+(hora === 21) 
 ) {
 document.body.classList.add("dark-mode");
 } else  {
