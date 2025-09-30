@@ -56,7 +56,7 @@ body.dark-mode #horario_atual {
 }
 
 body.dark-mode div.playing_now {
-  background: #22001a;
+  background: hsla(314, 100%, 7%, 0.54);
   border: 2px inset #00ffff;
   box-shadow: 0 0 8px #00ffff;
 }
@@ -85,7 +85,7 @@ body.dark-mode div.next,
 body.dark-mode div.info,
 body.dark-mode div.feed,
 body.dark-mode div.download {
-  background: #111;
+  background: #1212127D;
   border: 2px ridge #ff00cc;
   margin: 6px;
   padding: 10px;
