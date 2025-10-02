@@ -160,6 +160,13 @@ font-weight: 900;
 onclick="location.href='https://archive.org/download/station-609/Esta%C3%A7%C3%A3o%20609.apk'"><img width="24px" height="24px" src="assets/00_img/download.png" alt="download">Baixar App</a></button>
 </center>
 </div>
+<div id="overlay">
+  <div id="overlayBox">
+    <p>Você realmente quer atualizar a página?</p>
+    <button id="yesBtn">Sim</button>
+    <button id="noBtn">Não</button>
+  </div>
+</div>
 
 
 <footer>
@@ -321,6 +328,31 @@ document.body.classList.add("dark-mode");
 }
 aplicarTema();
 setInterval(aplicarTema, 60000);
+
+
+// pagina recarregada
+
+if (sessionStorage.getItem('recarregou') === 'true') {
+  // mostra overlay perguntando se quer atualizar novamente
+  document.getElementById('overlay').style.display = 'flex';
+  sessionStorage.removeItem('recarregou'); // limpa para próximas visitas
+}
+
+// Quando o usuário confirma recarregar
+document.getElementById('yesBtn').addEventListener('click', function() {
+  sessionStorage.setItem('recarregou', 'true'); // marca que vai recarregar
+  location.reload();
+});
+
+// Quando o usuário cancela
+document.getElementById('noBtn').addEventListener('click', function() {
+  document.getElementById('overlay').style.display = 'none';
+});
+
+// Marca que a página foi recarregada quando ele atualiza manualmente
+window.addEventListener('beforeunload', function() {
+  sessionStorage.setItem('recarregou', 'true');
+});
 </script>
 
 </body>
