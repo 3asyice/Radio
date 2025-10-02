@@ -333,26 +333,39 @@ setInterval(aplicarTema, 60000);
 
 // pagina recarregada
 
-if (sessionStorage.getItem('recarregou') === 'true') {
-  // mostra overlay perguntando se quer atualizar novamente
-  document.getElementById('overlay').style.display = 'flex';
-  sessionStorage.removeItem('recarregou'); // limpa para próximas visitas
+const overlay = document.getElementById('overlay');
+let reloadRequested = false;
+
+// Intercepta F5 e Ctrl+R
+window.addEventListener('keydown', function(e) {
+  if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+    e.preventDefault(); // impede atualização
+    showOverlay();
+  }
+});
+
+// Intercepta clique no botão atualizar (alguns navegadores permitem detectar via beforeunload)
+window.addEventListener('beforeunload', function(e) {
+  if (!reloadRequested) {
+    e.preventDefault();
+    showOverlay();
+    return false; // impede atualização imediata
+  }
+});
+
+function showOverlay() {
+  overlay.style.display = 'flex';
 }
 
-// Quando o usuário confirma recarregar
+// Usuário confirma atualização
 document.getElementById('yesBtn').addEventListener('click', function() {
-  sessionStorage.setItem('recarregou', 'true'); // marca que vai recarregar
-  location.reload();
+  reloadRequested = true;
+  location.reload(); // força atualização
 });
 
-// Quando o usuário cancela
+// Usuário cancela
 document.getElementById('noBtn').addEventListener('click', function() {
-  document.getElementById('overlay').style.display = 'none';
-});
-
-// Marca que a página foi recarregada quando ele atualiza manualmente
-window.addEventListener('beforeunload', function() {
-  sessionStorage.setItem('recarregou', 'true');
+  overlay.style.display = 'none';
 });
 </script>
 
