@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <title>Feedback Black Mirror</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
     * { font-family: 'Share Tech Mono', monospace; box-sizing: border-box; }
     body { margin: 0; padding: 0; background: radial-gradient(circle at center, #000 70%, #0f0f0f 100%); color: #eee; }
     h1 { text-align: center; font-size: 2rem; color: #ff0033; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 8px #ff0033, 0 0 20px #ff0033; margin: 20px 0; animation: glitch 2s infinite; }
@@ -25,25 +23,15 @@
     input:focus, textarea:focus { border:1px solid #ff0033; box-shadow:0 0 10px #ff0033; outline:none; }
     button { width:100%; padding:12px; border:none; border-radius:10px; background:linear-gradient(45deg,#ff0033,#5d00ff); color:#fff; font-weight:bold; text-transform:uppercase; letter-spacing:2px; cursor:pointer; transition:0.3s; box-shadow:0 0 12px #5d00ff; }
     button:hover { transform:scale(1.05); box-shadow:0 0 20px #ff0033, 0 0 30px #5d00ff; }
-
-    /* Scanlines */
     body::after { content:""; position:fixed; top:0; left:0; width:100%; height:100%; background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.02), rgba(255,255,255,0.02) 1px, transparent 1px, transparent 2px); pointer-events:none; z-index:999; }
-
     #confirmation { display:none; position:fixed; top:20px; right:20px; padding:15px 25px; background:rgba(0,0,0,0.85); border:1px solid #ff0033; border-radius:8px; color:#fff; font-weight:bold; text-shadow:0 0 6px #ff0033; box-shadow:0 0 15px rgba(255,0,51,0.6); z-index:1000; animation:fadeIn 0.5s ease; }
     @keyframes fadeIn { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
-
-    #recentFeedbacks { margin:30px auto; max-width:500px; background:rgba(20,20,20,0.9); border:1px solid #ff0033; border-radius:10px; padding:15px; box-shadow:0 0 15px rgba(255,0,51,0.6); }
-    #recentFeedbacks h2 { margin-top:0; text-align:center; font-size:1.2rem; color:#ff0033; text-shadow:0 0 6px #ff0033; }
-    .feedback-item { margin-bottom:12px; padding-bottom:8px; border-bottom:1px dashed #ff0033; }
-    .feedback-item p { margin:0; color:#eee; }
-    .feedback-item span { font-size:0.75rem; color:#ff0033; }
   </style>
 </head>
-
 <body>
   <header><h1>FEEDBACK3</h1></header>
   <main>
-    <form id="feedbackForm">
+    <form id="feedbackForm" action="https://formspree.io/f/manbroql" method="POST">
       <label>Seu Email:
         <input type="email" name="email" required placeholder="Digite seu email...">
       </label>
@@ -52,58 +40,37 @@
       </label>
       <button type="submit">ENVIAR</button>
     </form>
-
-    <section id="recentFeedbacks">
-      <h2>📡 Feedbacks Recentes</h2>
-      <div id="feedbackList"></div>
-    </section>
   </main>
 
   <div id="confirmation">✔ Formulário enviado</div>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwklA2XgAHmsRUOCCZySUYm-B-jH4_pnpWj6xYWQ7cH8gdbekcKC5BYPR2TV1lJatwZ/exec";
     const form = document.getElementById("feedbackForm");
     const confirmation = document.getElementById("confirmation");
-    const feedbackList = document.getElementById("feedbackList");
 
     form.addEventListener("submit", async function(e){
       e.preventDefault();
-      const data = { email: form.email.value, message: form.message.value };
-      try{
-        const res = await fetch(SCRIPT_URL, {
-          method:"POST",
-          body: JSON.stringify(data),
-          headers: {"Content-Type":"application/json"}
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
         });
-        const result = await res.json();
-        if(result.status === "success"){
+
+        if (res.ok) {
           confirmation.style.display = "block";
-          setTimeout(() => { confirmation.style.display = "none"; form.reset(); loadFeedbacks(); }, 3000);
+          form.reset();
+          setTimeout(() => confirmation.style.display = "none", 3000);
         } else {
-          alert("Erro ao enviar: " + result.message);
+          alert("Erro ao enviar o formulário 😢");
         }
-      } catch(err){
+      } catch (err) {
         alert("Erro de conexão 😢");
         console.error(err);
       }
     });
-
-    async function loadFeedbacks(){
-      try{
-        const res = await fetch(SCRIPT_URL);
-        const feedbacks = await res.json();
-        feedbackList.innerHTML = "";
-        feedbacks.slice(-5).reverse().forEach(fb=>{
-          const div = document.createElement("div");
-          div.className = "feedback-item";
-          div.innerHTML = `<p><strong>${fb.email}</strong> → ${fb.message}</p><span>${new Date(fb.timestamp).toLocaleString()}</span>`;
-          feedbackList.appendChild(div);
-        });
-      } catch(err){ console.error(err); }
-    }
-
-    loadFeedbacks();
   </script>
 </body>
 </html>
