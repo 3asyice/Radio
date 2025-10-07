@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Planner de Água - Macho Alfa</title>
+  <style>
+    :root{
+      --bg:#111; --card:#1a1a1a; --muted:#555; --accent:#0af; --item:#222; --danger:#ff3366;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:#eee;font-family:'Segoe UI',Tahoma, Geneva, Verdana, sans-serif;-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+    .page{display:flex;justify-content:center;align-items:flex-start;padding:40px 16px;min-height:100vh;box-sizing:border-box;}
+    .container{background:var(--card);padding:26px;border-radius:12px;box-shadow:0 0 20px rgba(10,170,255,0.06);max-width:520px;width:100%;}
+    h1{text-align:center;font-size:1.9em;margin:4px 0 18px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;}
+    .item{display:flex;align-items:center;justify-content:space-between;background:var(--item);padding:12px 16px;border-radius:8px;margin-bottom:10px;border-left:5px solid var(--accent);}
+    .item label{font-size:1.05em;}
+    input[type="checkbox"]{width:20px;height:20px;accent-color:var(--accent);}
+    footer{text-align:center;font-size:0.9em;margin-top:12px;color:var(--muted);}
+
+    .history{margin-top:14px;background:#0e0e0e;padding:12px;border-radius:8px;}
+    .history h2{margin:0 0 10px 0;font-size:1em;color:var(--accent);text-transform:uppercase;letter-spacing:0.6px;}
+    .registro{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:6px;background:#151515;margin-bottom:8px;font-size:0.95em;}
+    .registro .time{color:#ddd;}
+    .registro button{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:6px 8px;border-radius:6px;cursor:pointer;font-size:0.85em;}
+    .registro button:hover{border-color:var(--accent);color:var(--accent);}
+
+    .modal-backdrop{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75));display:flex;align-items:center;justify-content:center;z-index:999;padding:20px;box-sizing:border-box;}
+    .modal{background:linear-gradient(180deg,#0f1111,#151515);border:2px solid rgba(10,170,255,0.08);width:100%;max-width:520px;padding:18px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.7);color:#fff;}
+    .modal h3{margin:0 0 8px 0;color:var(--danger);font-size:1.25em;letter-spacing:0.6px;text-transform:uppercase;}
+    .modal p{margin:0 0 12px 0;color:#ddd;}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+    .btn{padding:10px 14px;border-radius:8px;cursor:pointer;border:0;font-weight:600;letter-spacing:0.3px;}
+    .btn-primary{background:var(--accent);color:#04121a;}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#ddd;}
+    .btn-danger{background:var(--danger);color:#fff;}
+    .time-input{display:flex;gap:8px;align-items:center;margin-left:auto;}
+    input[type="time"]{background:#0b0b0b;color:#fff;border:1px solid rgba(255,255,255,0.05);padding:8px;border-radius:6px;}
+
+    @media (max-width:420px){ .item label{font-size:0.95em;} }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <h1>Planner de Água</h1>
+
+      <div class="item"><label for="hora1">🕖 7h – Ao acordar (1ª garrafinha)</label><input type="checkbox" id="hora1"></div>
+      <div class="item"><label for="hora2">🕙 10h – Meio da manhã (2ª garrafinha)</label><input type="checkbox" id="hora2"></div>
+      <div class="item"><label for="hora3">🕐 13h – Após o almoço (3ª garrafinha)</label><input type="checkbox" id="hora3"></div>
+      <div class="item"><label for="hora4">🕓 16h – Meio da tarde (4ª garrafinha)</label><input type="checkbox" id="hora4"></div>
+      <div class="item"><label for="hora5">🕗 20h – Após o jantar (5ª garrafinha)</label><input type="checkbox" id="hora5"></div>
+
+      <div class="history" id="history">
+        <h2>Registros de hoje</h2>
+        <div id="lista-registros"></div>
+        <div style="display:flex;gap:8px;margin-top:10px;align-items:center;">
+          <input id="manual-time" type="time" aria-label="Hora manual" />
+          <button id="add-manual" class="btn btn-ghost">Registrar hora selecionada</button>
+        </div>
+      </div>
+
+      <footer>💪 Beba como um guerreiro. Hidratação é poder.</footer>
+    </div>
+  </div>
+
+  <!-- Modal ameaçador -->
+  <div class="modal-backdrop" id="modal" style="display:none;">
+    <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+      <h3 id="modalTitle">ATENÇÃO</h3>
+      <p id="modalText">Você bebeu água hoje? Responda ou aguarde as consequências.</p>
+
+      <div style="display:flex;align-items:center;margin-top:12px;">
+        <div class="controls">
+          <button id="btn-sim" class="btn btn-primary">Sim, tomei</button>
+          <button id="btn-nao" class="btn btn-ghost">Ainda não</button>
+          <button id="btn-registrar-agora" class="btn btn-danger">Tomar agora e registrar</button>
+        </div>
+
+        <div class="time-input">
+          <label for="modal-time" style="font-size:0.9em;color:#ccc;">Hora:</label>
+          <input id="modal-time" type="time" value="">
+        </div>
+      </div>
+
+      <p style="margin-top:10px;color:#b6b6b6;font-size:0.85em;">
+        Observação: ao registrar, salvamos no armazenamento local do seu navegador.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // ===== CONFIG =====
+    const horarios = ["hora1","hora2","hora3","hora4","hora5"];
+    const STORAGE_PREFIX = "agua_";
+    const STORAGE_REGISTROS = "agua_registros";
+    const STORAGE_NEXT_REMINDER = "agua_next_reminder"; // ISO datetime string
+    const REAPARECER_HORAS = 2; // se clicar "Ainda não", reabrir em 2 horas
+
+    // ===== Helpers de data =====
+    function isSameDay(d1, d2) {
+      return d1.getFullYear() === d2.getFullYear() &&
+             d1.getMonth() === d2.getMonth() &&
+             d1.getDate() === d2.getDate();
+    }
+
+    function formatTimestamp(ts) {
+      const d = new Date(ts);
+      const date = d.toLocaleDateString('pt-BR');
+      const time = d.toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
+      return `${date} ${time}`;
+    }
+
+    // ===== Storage registros =====
+    function carregarRegistros() {
+      const raw = localStorage.getItem(STORAGE_REGISTROS);
+      try { return raw ? JSON.parse(raw) : []; } catch(e) { return []; }
+    }
+    function salvarRegistros(arr) { localStorage.setItem(STORAGE_REGISTROS, JSON.stringify(arr)); }
+
+    function hasRegistroHoje() {
+      const arr = carregarRegistros();
+      const hoje = new Date();
+      return arr.some(iso => isSameDay(new Date(iso), hoje));
+    }
+
+    // ===== Checkboxes (persistência) =====
+    function carregarCheckboxes() {
+      horarios.forEach(id => {
+        const checkbox = document.getElementById(id);
+        const salvo = localStorage.getItem(STORAGE_PREFIX + id);
+        checkbox.checked = salvo === "true";
+        checkbox.addEventListener("change", () => {
+          localStorage.setItem(STORAGE_PREFIX + id, checkbox.checked);
+        });
+      });
+    }
+
+    // ===== Lista de registros UI =====
+    function atualizarLista() {
+      const container = document.getElementById('lista-registros');
+      container.innerHTML = "";
+      const arr = carregarRegistros();
+      if (arr.length === 0) {
+        container.innerHTML = '<div style="color:var(--muted);font-size:0.95em;">Nenhum registro ainda. Registre sua primeira água!</div>';
+        return;
+      }
+      const sorted = arr.slice().sort((a,b) => new Date(b) - new Date(a));
+      sorted.forEach(ts => {
+        const div = document.createElement('div');
+        div.className = 'registro';
+        const span = document.createElement('div');
+        span.className = 'time';
+        span.textContent = formatTimestamp(ts);
+        const btn = document.createElement('button');
+        btn.textContent = 'Remover';
+        btn.addEventListener('click', () => {
+          removerRegistro(ts);
+        });
+        div.appendChild(span);
+        div.appendChild(btn);
+        container.appendChild(div);
+      });
+    }
+
+    function adicionarRegistro(ts) {
+      const arr = carregarRegistros();
+      arr.push(new Date(ts).toISOString());
+      salvarRegistros(arr);
+      atualizarLista();
+      clearNextReminder();
+      flashToast('Registrado ✅ ' + new Date(ts).toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'}));
+    }
+
+    function removerRegistro(ts) {
+      let arr = carregarRegistros();
+      arr = arr.filter(x => x !== new Date(ts).toISOString());
+      arr = arr.filter(x => x !== ts);
+      salvarRegistros(arr);
+      atualizarLista();
+    }
+
+    // ===== Toast =====
+    function flashToast(msg) {
+      const t = document.createElement('div');
+      t.textContent = msg;
+      Object.assign(t.style, {
+        position:'fixed', right:'18px', bottom:'18px', padding:'10px 14px',
+        background:'#0c0c0c', color:'#e7f9ff', border:'1px solid rgba(10,170,255,0.12)',
+        borderRadius:'8px', zIndex:1200, boxShadow:'0 6px 20px rgba(0,0,0,0.6)', transition:'opacity 0.6s'
+      });
+      document.body.appendChild(t);
+      setTimeout(()=> t.style.opacity='0', 1600);
+      setTimeout(()=> t.remove(), 2200);
+    }
+
+    // ===== Modal & Lembrete (reaparecer) =====
+    const modal = document.getElementById('modal');
+    const btnSim = document.getElementById('btn-sim');
+    const btnNao = document.getElementById('btn-nao');
+    const btnRegistrarAgora = document.getElementById('btn-registrar-agora');
+    const modalTime = document.getElementById('modal-time');
+    const manualTimeInput = document.getElementById('manual-time');
+    const addManual = document.getElementById('add-manual');
+    const modalText = document.getElementById('modalText');
+
+    function setTimeInputsNow() {
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2,'0');
+      const mm = String(now.getMinutes()).padStart(2,'0');
+      const hhmm = hh + ':' + mm;
+      modalTime.value = hhmm;
+      manualTimeInput.value = hhmm;
+    }
+
+    function playBeep() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(880, ctx.currentTime); // tom agudo curto
+        g.gain.setValueAtTime(0.0001, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.start();
+        o.stop(ctx.currentTime + 0.26);
+      } catch(e){
+        // fallback: nada se não suportar audio
+        console.warn('Beep não suportado', e);
+      }
+    }
+
+    function abrirModal() {
+      setTimeInputsNow();
+      modal.style.display = 'flex';
+      modalText.textContent = 'Você bebeu água hoje? Responda ou aguarde as consequências.';
+      playBeep();
+      // se não registrar em 8s, muda a mensagem (ameaça)
+      setTimeout(() => {
+        if (modal.style.display !== 'none') {
+          modalText.textContent = "Tic tac. Seu corpo precisa de água — registra logo ou pare de reclamar.";
+        }
+      }, 8000);
+    }
+
+    function fecharModal() { modal.style.display = 'none'; }
+
+    function setNextReminder(hours) {
+      const next = new Date(Date.now() + hours * 3600_000);
+      localStorage.setItem(STORAGE_NEXT_REMINDER, next.toISOString());
+    }
+    function clearNextReminder() { localStorage.removeItem(STORAGE_NEXT_REMINDER); }
+    function getNextReminder() {
+      const raw = localStorage.getItem(STORAGE_NEXT_REMINDER);
+      if (!raw) return null;
+      const d = new Date(raw);
+      return isNaN(d) ? null : d;
+    }
+
+    // ===== Event handlers =====
+    btnSim.addEventListener('click', () => {
+      const timeValue = modalTime.value || (new Date().toTimeString().slice(0,5));
+      const hoje = new Date();
+      const [hh,mm] = timeValue.split(':').map(Number);
+      hoje.setHours(hh, mm, 0, 0);
+      adicionarRegistro(hoje.toISOString());
+      fecharModal();
+    });
+
+    btnRegistrarAgora.addEventListener('click', () => {
+      adicionarRegistro(new Date().toISOString());
+      fecharModal();
+    });
+
+    btnNao.addEventListener('click', () => {
+      // Agenda reaparecer em REAPARECER_HORAS
+      setNextReminder(REAPARECER_HORAS);
+      flashToast('Ok — vou te lembrar em ' + REAPARECER_HORAS + 'h.');
+      fecharModal();
+    });
+
+    addManual.addEventListener('click', () => {
+      const timeValue = manualTimeInput.value;
+      if (!timeValue) { flashToast('Selecione um horário primeiro.'); return; }
+      const hoje = new Date();
+      const [hh,mm] = timeValue.split(':').map(Number);
+      hoje.setHours(hh, mm, 0, 0);
+      adicionarRegistro(hoje.toISOString());
+    });
+
+    // ===== Checar se deve abrir modal ao carregar =====
+    function checarEabrirModalSeNecessario() {
+      // Se já registrou hoje, não abrir
+      if (hasRegistroHoje()) {
+        // limpar lembrete do dia caso houvesse
+        clearNextReminder();
+        return;
+      }
+      const next = getNextReminder();
+      const now = new Date();
+      if (!next) {
+        // se não existe lembrete, abrimos agora (primeira vez do dia)
+        abrirModal();
+        return;
+      }
+      // se já passou o nextReminder, abrir modal e apagar next
+      if (now >= next) {
+        abrirModal();
+        localStorage.removeItem(STORAGE_NEXT_REMINDER);
+      } else {
+        // caso contrário, não abrir agora
+        // nada a fazer
+      }
+    }
+
+    // Verifica a cada minuto se deve reabrir (ou se data mudou para um novo dia sem registros)
+    setInterval(() => {
+      // se modal já aberto, nada
+      if (modal.style.display === 'flex') return;
+      // se já registrou hoje, não precisa
+      if (hasRegistroHoje()) {
+        // se a data mudou (ex.: passou a meia-noite) e houver lembrete antigo, limpar
+        const next = getNextReminder();
+        if (next) {
+          // se next for de outro dia e hoje já tem registro, limpamos
+          // mas se não tem registro hoje e next em passado, abrir
+          // a função checarEabrirModalSeNecessario resolve
+        }
+        return;
+      }
+      checarEabrirModalSeNecessario();
+    }, 60_000); // 60s
+
+    // ===== Inicialização =====
+    window.addEventListener('DOMContentLoaded', () => {
+      carregarCheckboxes();
+      atualizarLista();
+      // Ao carregar, abrir modal somente se não registrou hoje e lembrete permite
+      checarEabrirModalSeNecessario();
+
+      // Se o modal ficar aberto mais de 3 minutos sem ação, reforce a mensagem
+      setInterval(() => {
+        if (modal.style.display === 'flex') {
+          modalText.textContent = "Ainda aí? Água não bebe sozinha. Registra ou toma agora.";
+        }
+      }, 180_000);
+    });
+
+  </script>
+</body>
+</html>
