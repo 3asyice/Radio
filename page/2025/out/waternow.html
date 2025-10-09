@@ -3,350 +3,468 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Planner de Água - Macho Alfa</title>
+  <title>Planner de Água - Macho Alfa (Completo)</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E%F0%9F%92%AA%3C/text%3E%3C/svg%3E">
   <style>
-    :root{
-      --bg:#111; --card:#1a1a1a; --muted:#555; --accent:#0af; --item:#222; --danger:#ff3366;
-    }
-    html,body{height:100%;margin:0;background:var(--bg);color:#eee;font-family:'Segoe UI',Tahoma, Geneva, Verdana, sans-serif;-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
-    .page{display:flex;justify-content:center;align-items:flex-start;padding:40px 16px;min-height:100vh;box-sizing:border-box;}
-    .container{background:var(--card);padding:26px;border-radius:12px;box-shadow:0 0 20px rgba(10,170,255,0.06);max-width:520px;width:100%;}
-    h1{text-align:center;font-size:1.9em;margin:4px 0 18px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;}
-    .item{display:flex;align-items:center;justify-content:space-between;background:var(--item);padding:12px 16px;border-radius:8px;margin-bottom:10px;border-left:5px solid var(--accent);}
-    .item label{font-size:1.05em;}
-    input[type="checkbox"]{width:20px;height:20px;accent-color:var(--accent);}
-    footer{text-align:center;font-size:0.9em;margin-top:12px;color:var(--muted);}
+    :root{ --bg:#0b0f12; --card:#0e1214; --muted:#7b8890; --accent:#00c2ff; --accent-2:#00ffa6; --item:#111316; --danger:#ff3366; }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#060708);color:#e6f7ff;font-family:Inter, 'Segoe UI',Tahoma, Geneva, Verdana, sans-serif;-webkit-font-smoothing:antialiased;}
+    .page{display:flex;justify-content:center;align-items:flex-start;padding:28px;min-height:100vh;box-sizing:border-box;}
+    .container{background:linear-gradient(180deg,#071017,#0d1113);padding:20px;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.7);max-width:920px;width:100%;border:1px solid rgba(0,200,255,0.06)}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+    h1{margin:0;font-size:1.45rem;color:var(--accent);letter-spacing:1px;text-transform:uppercase}
+    .meta{margin-left:auto;color:var(--muted);font-size:0.95rem}
 
-    .history{margin-top:14px;background:#0e0e0e;padding:12px;border-radius:8px;}
-    .history h2{margin:0 0 10px 0;font-size:1em;color:var(--accent);text-transform:uppercase;letter-spacing:0.6px;}
-    .registro{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:6px;background:#151515;margin-bottom:8px;font-size:0.95em;}
-    .registro .time{color:#ddd;}
-    .registro button{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:6px 8px;border-radius:6px;cursor:pointer;font-size:0.85em;}
-    .registro button:hover{border-color:var(--accent);color:var(--accent);}
+    .grid{display:grid;grid-template-columns:320px 1fr;gap:16px}
 
-    .modal-backdrop{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75));display:flex;align-items:center;justify-content:center;z-index:999;padding:20px;box-sizing:border-box;}
-    .modal{background:linear-gradient(180deg,#0f1111,#151515);border:2px solid rgba(10,170,255,0.08);width:100%;max-width:520px;padding:18px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.7);color:#fff;}
-    .modal h3{margin:0 0 8px 0;color:var(--danger);font-size:1.25em;letter-spacing:0.6px;text-transform:uppercase;}
-    .modal p{margin:0 0 12px 0;color:#ddd;}
-    .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
-    .btn{padding:10px 14px;border-radius:8px;cursor:pointer;border:0;font-weight:600;letter-spacing:0.3px;}
-    .btn-primary{background:var(--accent);color:#04121a;}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#ddd;}
-    .btn-danger{background:var(--danger);color:#fff;}
-    .time-input{display:flex;gap:8px;align-items:center;margin-left:auto;}
-    input[type="time"]{background:#0b0b0b;color:#fff;border:1px solid rgba(255,255,255,0.05);padding:8px;border-radius:6px;}
+    .card{background:linear-gradient(180deg,#071218,#081217);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .item{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:8px;margin-bottom:10px;background:rgba(255,255,255,0.01)}
 
-    @media (max-width:420px){ .item label{font-size:0.95em;} }
+    .history{max-height:420px;overflow:auto}
+    .registro{display:flex;align-items:center;justify-content:space-between;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);margin-bottom:8px}
+    .registro .info{display:flex;align-items:center;gap:10px}
+    .registro .time{color:#e6f7ff;font-weight:600}
+    .registro .ml{color:var(--accent);font-weight:700}
+    .btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:#cfefff}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021217}
+    .btn-danger{background:var(--danger);color:#fff}
+
+    .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+    .total-ml{font-size:1.1rem;font-weight:800;color:var(--accent);text-align:center;margin-bottom:8px}
+    .meta-small{font-size:0.85rem;color:var(--muted)}
+
+    /* progress cup */
+    .cup-wrap{position:relative;height:160px;display:flex;align-items:flex-end;justify-content:center}
+    .cup{width:120px;height:140px;border-radius:12px 12px 20px 20px;overflow:hidden;border:2px solid rgba(0,200,255,0.07);background:linear-gradient(180deg,#071219,#051017);position:relative}
+    .water{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,#00c2ff66,#00ffa666);transition:height 900ms cubic-bezier(.2,.9,.3,1);display:flex;align-items:flex-end;justify-content:center}
+    .water::after{content:'';width:140%;height:40px;border-radius:50%;background:rgba(255,255,255,0.06);position:absolute;top:-20px;filter:blur(8px)}
+    .cup-label{position:absolute;top:12px;left:0;right:0;text-align:center;color:var(--muted);font-size:0.85rem}
+
+    .progress-bar{height:12px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
+    .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width 900ms cubic-bezier(.2,.9,.3,1)}
+
+    .phrase{font-weight:700;color:#ffdede;text-align:center;margin:10px 0}
+
+    .small{font-size:0.85rem;color:var(--muted)}
+
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8));display:flex;align-items:center;justify-content:center;z-index:999;padding:16px}
+    .modal{background:#071217;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);width:100%;max-width:520px}
+
+    /* responsive */
+    @media (max-width:880px){.grid{grid-template-columns:1fr;}.cup-wrap{justify-content:flex-start}} 
   </style>
 </head>
 <body>
   <div class="page">
     <div class="container">
-      <h1>Planner de Água</h1>
+      <header>
+        <h1>Planner de Água — Macho Alfa</h1>
+        <div class="meta">v1.5 • Personalizado</div>
+      </header>
 
-      <div class="item"><label for="hora1">🕖 7h – Ao acordar (1ª garrafinha)</label><input type="checkbox" id="hora1"></div>
-      <div class="item"><label for="hora2">🕙 10h – Meio da manhã (2ª garrafinha)</label><input type="checkbox" id="hora2"></div>
-      <div class="item"><label for="hora3">🕐 13h – Após o almoço (3ª garrafinha)</label><input type="checkbox" id="hora3"></div>
-      <div class="item"><label for="hora4">🕓 16h – Meio da tarde (4ª garrafinha)</label><input type="checkbox" id="hora4"></div>
-      <div class="item"><label for="hora5">🕗 20h – Após o jantar (5ª garrafinha)</label><input type="checkbox" id="hora5"></div>
+      <div class="grid">
+        <div class="card">
+          <div class="cup-wrap">
+            <div class="cup" aria-hidden>
+              <div class="cup-label" id="cup-label">Meta: -- ml</div>
+              <div class="water" id="water"></div>
+            </div>
+          </div>
 
-      <div class="history" id="history">
-        <h2>Registros de hoje</h2>
-        <div id="lista-registros"></div>
-        <div style="display:flex;gap:8px;margin-top:10px;align-items:center;">
-          <input id="manual-time" type="time" aria-label="Hora manual" />
-          <button id="add-manual" class="btn btn-ghost">Registrar hora selecionada</button>
+          <div style="margin-top:10px">
+            <div class="total-ml" id="total-ml">Total: 0 ml</div>
+            <div class="progress-bar" title="Progresso">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;align-items:center">
+              <div class="meta-small">Meta diária: <strong id="meta-daily">-- ml</strong></div>
+              <div class="meta-small">Dias seguidos: <strong id="streak">0</strong></div>
+            </div>
+          </div>
+
+          <div class="phrase" id="phrase">Seja forte. Beba.</div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <input id="manual-time" type="time" style="background:#071217;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px;color:#fff" />
+            <input id="manual-ml" type="number" min="10" placeholder="ml" style="background:#071217;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px;color:#fff;width:92px;text-align:center" />
+            <button id="add-manual" class="btn btn-primary">Registrar</button>
+            <button id="add-now" class="btn btn-ghost">Registrar Agora</button>
+            <button id="edit-weight" class="btn btn-ghost">Editar Peso</button>
+          </div>
+
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+            <button id="export-btn" class="btn btn-ghost">Exportar .json</button>
+            <label class="btn btn-ghost" style="cursor:pointer"><input id="import-file" type="file" accept="application/json" style="display:none">Importar</label>
+            <button id="notify-btn" class="btn btn-ghost">Ativar Notifs</button>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+            <div class="small">Tema:</div>
+            <select id="theme-select" style="background:#071217;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px;color:#fff">
+              <option value="alpha">Noite Alfa</option>
+              <option value="bravo">Dia Bravo</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <h3 style="margin:0;color:var(--accent);">Registros de hoje</h3>
+            <div class="meta-small">Últimos 7 dias no gráfico</div>
+          </div>
+
+          <div class="history" id="lista-registros" aria-live="polite"></div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+            <button id="clear-day" class="btn btn-danger">Limpar hoje</button>
+            <button id="reset-all" class="btn btn-ghost">Reset Tudo</button>
+          </div>
+
+          <canvas id="chart" style="margin-top:12px;background:transparent;max-height:220px"></canvas>
         </div>
       </div>
 
-      <footer>💪 Beba como um guerreiro. Hidratação é poder.</footer>
+      <footer style="margin-top:12px;text-align:center;color:var(--muted)">Feito com crueldade motivacional 💧💪</footer>
     </div>
   </div>
 
-  <!-- Modal ameaçador -->
-  <div class="modal-backdrop" id="modal" style="display:none;">
-    <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
-      <h3 id="modalTitle">ATENÇÃO</h3>
-      <p id="modalText">Você bebeu água hoje? Responda ou aguarde as consequências.</p>
-
-      <div style="display:flex;align-items:center;margin-top:12px;">
-        <div class="controls">
-          <button id="btn-sim" class="btn btn-primary">Sim, tomei</button>
-          <button id="btn-nao" class="btn btn-ghost">Ainda não</button>
-          <button id="btn-registrar-agora" class="btn btn-danger">Tomar agora e registrar</button>
-        </div>
-
-        <div class="time-input">
-          <label for="modal-time" style="font-size:0.9em;color:#ccc;">Hora:</label>
-          <input id="modal-time" type="time" value="">
-        </div>
+  <!-- MODAL PESO (aparece uma única vez ou quando editar) -->
+  <div class="modal-backdrop" id="modal-peso" style="display:none">
+    <div class="modal">
+      <h3 style="margin-top:0;color:var(--accent)">Qual seu peso (kg)?</h3>
+      <p class="small">Usamos: meta (ml/dia) = peso (kg) × 35 ml</p>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
+        <input id="peso-input" type="number" min="30" placeholder="ex: 70" style="background:#071217;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px;color:#fff;width:120px;text-align:center" />
+        <button id="save-peso" class="btn btn-primary">Salvar peso</button>
+        <button id="skip-peso" class="btn btn-ghost">Pular (usar 2000ml)</button>
       </div>
-
-      <p style="margin-top:10px;color:#b6b6b6;font-size:0.85em;">
-        Observação: ao registrar, salvamos no armazenamento local do seu navegador.
-      </p>
+      <p class="small" style="margin-top:10px;color:var(--muted)">Você pode editar depois com o botão "Editar Peso".</p>
     </div>
   </div>
 
+  <!-- EDIT REG modal -->
+  <div class="modal-backdrop" id="modal-edit" style="display:none">
+    <div class="modal">
+      <h3 style="margin-top:0;color:var(--accent)">Editar registro</h3>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
+        <input id="edit-time" type="time" style="background:#071217;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px;color:#fff" />
+        <input id="edit-ml" type="number" min="10" style="background:#071217;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px;color:#fff;width:120px;text-align:center" />
+        <button id="save-edit" class="btn btn-primary">Salvar</button>
+        <button id="cancel-edit" class="btn btn-ghost">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     // ===== CONFIG =====
-    const horarios = ["hora1","hora2","hora3","hora4","hora5"];
-    const STORAGE_PREFIX = "agua_";
-    const STORAGE_REGISTROS = "agua_registros";
-    const STORAGE_NEXT_REMINDER = "agua_next_reminder"; // ISO datetime string
-    const REAPARECER_HORAS = 2; // se clicar "Ainda não", reabrir em 2 horas
+    const STORAGE = { REG:'agua_registros_v2', META:'agua_meta_v2', WEIGHT:'agua_weight_v2', STREAK:'agua_streak_v2', LASTDAY:'agua_lastday_v2' };
+    const DEFAULT_META = 2000;
+    const GLUP_VOL_MUL = 0.9; // controla som
 
-    // ===== Helpers de data =====
-    function isSameDay(d1, d2) {
-      return d1.getFullYear() === d2.getFullYear() &&
-             d1.getMonth() === d2.getMonth() &&
-             d1.getDate() === d2.getDate();
-    }
+    // ===== Helpers =====
+    function isSameDay(d1,d2){return d1.getFullYear()===d2.getFullYear() && d1.getMonth()===d2.getMonth() && d1.getDate()===d2.getDate();}
+    function nowISO(){ return new Date().toISOString(); }
 
-    function formatTimestamp(ts) {
-      const d = new Date(ts);
-      const date = d.toLocaleDateString('pt-BR');
-      const time = d.toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
-      return `${date} ${time}`;
-    }
+    function carregar(key){ try{ const r = localStorage.getItem(key); return r? JSON.parse(r): null }catch(e){return null} }
+    function salvar(key,val){ localStorage.setItem(key, JSON.stringify(val)); }
 
-    // ===== Storage registros =====
-    function carregarRegistros() {
-      const raw = localStorage.getItem(STORAGE_REGISTROS);
-      try { return raw ? JSON.parse(raw) : []; } catch(e) { return []; }
-    }
-    function salvarRegistros(arr) { localStorage.setItem(STORAGE_REGISTROS, JSON.stringify(arr)); }
+    // ===== Dados =====
+    function carregarRegistros(){ return carregar(STORAGE.REG) || []; }
+    function salvarRegistros(arr){ salvar(STORAGE.REG, arr); }
 
-    function hasRegistroHoje() {
-      const arr = carregarRegistros();
-      const hoje = new Date();
-      return arr.some(iso => isSameDay(new Date(iso), hoje));
-    }
+    // ===== UI refs =====
+    const totalEl = document.getElementById('total-ml');
+    const listaEl = document.getElementById('lista-registros');
+    const progressFill = document.getElementById('progress-fill');
+    const waterEl = document.getElementById('water');
+    const metaDailyEl = document.getElementById('meta-daily');
+    const cupLabel = document.getElementById('cup-label');
+    const phraseEl = document.getElementById('phrase');
+    const streakEl = document.getElementById('streak');
 
-    // ===== Checkboxes (persistência) =====
-    function carregarCheckboxes() {
-      horarios.forEach(id => {
-        const checkbox = document.getElementById(id);
-        const salvo = localStorage.getItem(STORAGE_PREFIX + id);
-        checkbox.checked = salvo === "true";
-        checkbox.addEventListener("change", () => {
-          localStorage.setItem(STORAGE_PREFIX + id, checkbox.checked);
-        });
-      });
-    }
-
-    // ===== Lista de registros UI =====
-    function atualizarLista() {
-      const container = document.getElementById('lista-registros');
-      container.innerHTML = "";
-      const arr = carregarRegistros();
-      if (arr.length === 0) {
-        container.innerHTML = '<div style="color:var(--muted);font-size:0.95em;">Nenhum registro ainda. Registre sua primeira água!</div>';
-        return;
-      }
-      const sorted = arr.slice().sort((a,b) => new Date(b) - new Date(a));
-      sorted.forEach(ts => {
-        const div = document.createElement('div');
-        div.className = 'registro';
-        const span = document.createElement('div');
-        span.className = 'time';
-        span.textContent = formatTimestamp(ts);
-        const btn = document.createElement('button');
-        btn.textContent = 'Remover';
-        btn.addEventListener('click', () => {
-          removerRegistro(ts);
-        });
-        div.appendChild(span);
-        div.appendChild(btn);
-        container.appendChild(div);
-      });
-    }
-
-    function adicionarRegistro(ts) {
-      const arr = carregarRegistros();
-      arr.push(new Date(ts).toISOString());
-      salvarRegistros(arr);
-      atualizarLista();
-      clearNextReminder();
-      flashToast('Registrado ✅ ' + new Date(ts).toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'}));
-    }
-
-    function removerRegistro(ts) {
-      let arr = carregarRegistros();
-      arr = arr.filter(x => x !== new Date(ts).toISOString());
-      arr = arr.filter(x => x !== ts);
-      salvarRegistros(arr);
-      atualizarLista();
-    }
-
-    // ===== Toast =====
-    function flashToast(msg) {
-      const t = document.createElement('div');
-      t.textContent = msg;
-      Object.assign(t.style, {
-        position:'fixed', right:'18px', bottom:'18px', padding:'10px 14px',
-        background:'#0c0c0c', color:'#e7f9ff', border:'1px solid rgba(10,170,255,0.12)',
-        borderRadius:'8px', zIndex:1200, boxShadow:'0 6px 20px rgba(0,0,0,0.6)', transition:'opacity 0.6s'
-      });
-      document.body.appendChild(t);
-      setTimeout(()=> t.style.opacity='0', 1600);
-      setTimeout(()=> t.remove(), 2200);
-    }
-
-    // ===== Modal & Lembrete (reaparecer) =====
-    const modal = document.getElementById('modal');
-    const btnSim = document.getElementById('btn-sim');
-    const btnNao = document.getElementById('btn-nao');
-    const btnRegistrarAgora = document.getElementById('btn-registrar-agora');
-    const modalTime = document.getElementById('modal-time');
-    const manualTimeInput = document.getElementById('manual-time');
+    // inputs
+    const manualTime = document.getElementById('manual-time');
+    const manualMl = document.getElementById('manual-ml');
     const addManual = document.getElementById('add-manual');
-    const modalText = document.getElementById('modalText');
+    const addNow = document.getElementById('add-now');
+    const modalPeso = document.getElementById('modal-peso');
+    const pesoInput = document.getElementById('peso-input');
+    const savePeso = document.getElementById('save-peso');
+    const skipPeso = document.getElementById('skip-peso');
+    const editWeightBtn = document.getElementById('edit-weight');
 
-    function setTimeInputsNow() {
+    // edit modal
+    const modalEdit = document.getElementById('modal-edit');
+    const editTimeInput = document.getElementById('edit-time');
+    const editMlInput = document.getElementById('edit-ml');
+    let editingIndex = null;
+
+    // other buttons
+    const exportBtn = document.getElementById('export-btn');
+    const importFile = document.getElementById('import-file');
+    const notifyBtn = document.getElementById('notify-btn');
+    const clearDayBtn = document.getElementById('clear-day');
+    const resetAllBtn = document.getElementById('reset-all');
+    const themeSelect = document.getElementById('theme-select');
+
+    // chart
+    const chartCtx = document.getElementById('chart').getContext('2d');
+    let myChart = null;
+
+    // frases
+    const PHRASES = [
+      "Água não espera por fracos.",
+      "Seu corpo implora por um gole. Dê-lhe atenção.",
+      "Sem água, nem alfa sustenta a postura.",
+      "Tic tac. Beba agora ou cale a boca.",
+      "Hidratação: disciplina de campeões.",
+      "Beba. Ou finja que bebe.",
+      "Cada ml conta. Cada ml é poder."
+    ];
+
+    // ===== Início =====
+    function init(){
+      // preencher hora atual nos inputs
       const now = new Date();
-      const hh = String(now.getHours()).padStart(2,'0');
-      const mm = String(now.getMinutes()).padStart(2,'0');
-      const hhmm = hh + ':' + mm;
-      modalTime.value = hhmm;
-      manualTimeInput.value = hhmm;
-    }
+      manualTime.value = now.toTimeString().slice(0,5);
 
-    function playBeep() {
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const o = ctx.createOscillator();
-        const g = ctx.createGain();
-        o.type = 'sine';
-        o.frequency.setValueAtTime(880, ctx.currentTime); // tom agudo curto
-        g.gain.setValueAtTime(0.0001, ctx.currentTime);
-        g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.01);
-        g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
-        o.connect(g);
-        g.connect(ctx.destination);
-        o.start();
-        o.stop(ctx.currentTime + 0.26);
-      } catch(e){
-        // fallback: nada se não suportar audio
-        console.warn('Beep não suportado', e);
-      }
-    }
-
-    function abrirModal() {
-      setTimeInputsNow();
-      modal.style.display = 'flex';
-      modalText.textContent = 'Você bebeu água hoje? Responda ou aguarde as consequências.';
-      playBeep();
-      // se não registrar em 8s, muda a mensagem (ameaça)
-      setTimeout(() => {
-        if (modal.style.display !== 'none') {
-          modalText.textContent = "Tic tac. Seu corpo precisa de água — registra logo ou pare de reclamar.";
-        }
-      }, 8000);
-    }
-
-    function fecharModal() { modal.style.display = 'none'; }
-
-    function setNextReminder(hours) {
-      const next = new Date(Date.now() + hours * 3600_000);
-      localStorage.setItem(STORAGE_NEXT_REMINDER, next.toISOString());
-    }
-    function clearNextReminder() { localStorage.removeItem(STORAGE_NEXT_REMINDER); }
-    function getNextReminder() {
-      const raw = localStorage.getItem(STORAGE_NEXT_REMINDER);
-      if (!raw) return null;
-      const d = new Date(raw);
-      return isNaN(d) ? null : d;
-    }
-
-    // ===== Event handlers =====
-    btnSim.addEventListener('click', () => {
-      const timeValue = modalTime.value || (new Date().toTimeString().slice(0,5));
-      const hoje = new Date();
-      const [hh,mm] = timeValue.split(':').map(Number);
-      hoje.setHours(hh, mm, 0, 0);
-      adicionarRegistro(hoje.toISOString());
-      fecharModal();
-    });
-
-    btnRegistrarAgora.addEventListener('click', () => {
-      adicionarRegistro(new Date().toISOString());
-      fecharModal();
-    });
-
-    btnNao.addEventListener('click', () => {
-      // Agenda reaparecer em REAPARECER_HORAS
-      setNextReminder(REAPARECER_HORAS);
-      flashToast('Ok — vou te lembrar em ' + REAPARECER_HORAS + 'h.');
-      fecharModal();
-    });
-
-    addManual.addEventListener('click', () => {
-      const timeValue = manualTimeInput.value;
-      if (!timeValue) { flashToast('Selecione um horário primeiro.'); return; }
-      const hoje = new Date();
-      const [hh,mm] = timeValue.split(':').map(Number);
-      hoje.setHours(hh, mm, 0, 0);
-      adicionarRegistro(hoje.toISOString());
-    });
-
-    // ===== Checar se deve abrir modal ao carregar =====
-    function checarEabrirModalSeNecessario() {
-      // Se já registrou hoje, não abrir
-      if (hasRegistroHoje()) {
-        // limpar lembrete do dia caso houvesse
-        clearNextReminder();
-        return;
-      }
-      const next = getNextReminder();
-      const now = new Date();
-      if (!next) {
-        // se não existe lembrete, abrimos agora (primeira vez do dia)
-        abrirModal();
-        return;
-      }
-      // se já passou o nextReminder, abrir modal e apagar next
-      if (now >= next) {
-        abrirModal();
-        localStorage.removeItem(STORAGE_NEXT_REMINDER);
+      // carregar peso/meta
+      let weight = carregar(STORAGE.WEIGHT);
+      let meta = carregar(STORAGE.META) || DEFAULT_META;
+      if (!weight){ // primeira vez
+        showPesoModal();
       } else {
-        // caso contrário, não abrir agora
-        // nada a fazer
+        setMetaDisplay(meta);
       }
+
+      // carregar registros
+      atualizarLista();
+      atualizarProgresso();
+      setupChart();
+
+      // check meia-noite reset
+      scheduleMidnightReset();
+
+      // frases
+      pickPhrase();
+
+      // theme
+      applyTheme(localStorage.getItem('agua_theme') || 'alpha');
+      themeSelect.value = localStorage.getItem('agua_theme') || 'alpha';
+
+      // streak calc
+      computeStreak();
     }
 
-    // Verifica a cada minuto se deve reabrir (ou se data mudou para um novo dia sem registros)
-    setInterval(() => {
-      // se modal já aberto, nada
-      if (modal.style.display === 'flex') return;
-      // se já registrou hoje, não precisa
-      if (hasRegistroHoje()) {
-        // se a data mudou (ex.: passou a meia-noite) e houver lembrete antigo, limpar
-        const next = getNextReminder();
-        if (next) {
-          // se next for de outro dia e hoje já tem registro, limpamos
-          // mas se não tem registro hoje e next em passado, abrir
-          // a função checarEabrirModalSeNecessario resolve
-        }
-        return;
-      }
-      checarEabrirModalSeNecessario();
-    }, 60_000); // 60s
+    // ===== Peso / Meta =====
+    function showPesoModal(){ modalPeso.style.display = 'flex'; }
+    function hidePesoModal(){ modalPeso.style.display = 'none'; }
 
-    // ===== Inicialização =====
-    window.addEventListener('DOMContentLoaded', () => {
-      carregarCheckboxes();
-      atualizarLista();
-      // Ao carregar, abrir modal somente se não registrou hoje e lembrete permite
-      checarEabrirModalSeNecessario();
-
-      // Se o modal ficar aberto mais de 3 minutos sem ação, reforce a mensagem
-      setInterval(() => {
-        if (modal.style.display === 'flex') {
-          modalText.textContent = "Ainda aí? Água não bebe sozinha. Registra ou toma agora.";
-        }
-      }, 180_000);
+    savePeso.addEventListener('click', ()=>{
+      const w = Number(pesoInput.value);
+      if (!w || w < 30) return alert('Informe um peso válido (kg)');
+      const meta = Math.round(w * 35);
+      salvar(STORAGE.WEIGHT, w);
+      salvar(STORAGE.META, meta);
+      setMetaDisplay(meta);
+      hidePesoModal();
+      flash('Peso salvo. Meta: ' + meta + ' ml');
     });
+
+    skipPeso.addEventListener('click', ()=>{
+      salvar(STORAGE.META, DEFAULT_META);
+      setMetaDisplay(DEFAULT_META);
+      hidePesoModal();
+      flash('Meta padrão aplicada: ' + DEFAULT_META + ' ml');
+    });
+
+    editWeightBtn.addEventListener('click', ()=>{ modalPeso.style.display='flex'; const w = carregar(STORAGE.WEIGHT); if(w) pesoInput.value = w; });
+
+    function setMetaDisplay(meta){ metaDailyEl.textContent = meta + ' ml'; cupLabel.textContent = 'Meta: ' + meta + ' ml'; }
+
+    // ===== Registros =====
+    function adicionarRegistroAt(timeISO, ml){
+      const arr = carregarRegistros();
+      const rec = { time: timeISO, ml: Number(ml) };
+      arr.push(rec);
+      salvarRegistros(arr);
+      atualizarLista();
+      atualizarProgresso();
+      playGlup();
+      pickPhrase();
+      computeStreak();
+      saveLastDay();
+    }
+
+    addManual.addEventListener('click', ()=>{
+      const time = manualTime.value;
+      let ml = Number(manualMl.value);
+      if (!time) return flash('Selecione um horário');
+      if (!ml || ml <=0) ml = 500;
+      const d = new Date();
+      const [hh,mm] = time.split(':').map(Number);
+      d.setHours(hh,mm,0,0);
+      adicionarRegistroAt(d.toISOString(), ml);
+      manualMl.value = '';
+    });
+
+    addNow.addEventListener('click', ()=>{
+      let ml = Number(manualMl.value) || 500;
+      adicionarRegistroAt(new Date().toISOString(), ml);
+      manualMl.value = '';
+    });
+
+    function atualizarLista(){
+      const arr = carregarRegistros();
+      const hoje = new Date();
+      const todayRegs = arr.filter(r => isSameDay(new Date(r.time), hoje)).sort((a,b) => new Date(b.time) - new Date(a.time));
+      listaEl.innerHTML = '';
+      if (todayRegs.length === 0){ listaEl.innerHTML = '<div class="small" style="padding:8px;color:var(--muted)">Nenhum registro hoje.</div>'; return; }
+      todayRegs.forEach((r, idx)=>{
+        const div = document.createElement('div'); div.className='registro';
+        const info = document.createElement('div'); info.className='info';
+        const time = document.createElement('div'); time.className='time'; time.textContent = new Date(r.time).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+        const ml = document.createElement('div'); ml.className='ml'; ml.textContent = r.ml + ' ml';
+        info.appendChild(time); info.appendChild(ml);
+
+        const actions = document.createElement('div'); actions.style.display='flex'; actions.style.gap='8px';
+        const edit = document.createElement('button'); edit.className='btn btn-ghost'; edit.textContent='Editar';
+        edit.onclick = ()=>{ openEditModal(r); };
+        const del = document.createElement('button'); del.className='btn btn-danger'; del.textContent='Remover';
+        del.onclick = ()=>{ removeRecord(r); };
+        actions.appendChild(edit); actions.appendChild(del);
+
+        div.appendChild(info); div.appendChild(actions);
+        listaEl.appendChild(div);
+      });
+    }
+
+    function openEditModal(rec){
+      modalEdit.style.display='flex';
+      editingIndex = rec.time + '::' + rec.ml; // unique key
+      editTimeInput.value = new Date(rec.time).toTimeString().slice(0,5);
+      editMlInput.value = rec.ml;
+    }
+    document.getElementById('save-edit').addEventListener('click', ()=>{
+      const newTime = editTimeInput.value; const newMl = Number(editMlInput.value) || 0;
+      if (!newTime) return flash('Hora inválida');
+      const arr = carregarRegistros();
+      // find by editingIndex
+      const idx = arr.findIndex(r => (r.time + '::' + r.ml) === editingIndex);
+      if (idx === -1) return flash('Registro não encontrado');
+      const d = new Date(arr[idx].time);
+      const [hh,mm] = newTime.split(':').map(Number); d.setHours(hh,mm,0,0);
+      arr[idx].time = d.toISOString(); arr[idx].ml = newMl;
+      salvarRegistros(arr);
+      modalEdit.style.display='none';
+      atualizarLista(); atualizarProgresso(); computeStreak(); saveLastDay();
+    });
+    document.getElementById('cancel-edit').addEventListener('click', ()=>{ modalEdit.style.display='none'; });
+
+    function removeRecord(rec){
+      let arr = carregarRegistros();
+      arr = arr.filter(r => !(r.time===rec.time && r.ml===rec.ml));
+      salvarRegistros(arr);
+      atualizarLista(); atualizarProgresso(); computeStreak();
+    }
+
+    // ===== Progresso =====
+    function calcularTotalHoje(){ const arr = carregarRegistros(); const hoje = new Date(); return arr.filter(r=>isSameDay(new Date(r.time),hoje)).reduce((s,r)=>s + (Number(r.ml)||0),0); }
+    function atualizarProgresso(){ const total = calcularTotalHoje(); const meta = carregar(STORAGE.META) || DEFAULT_META; totalEl.textContent = 'Total: ' + total + ' ml';
+      const pct = Math.min(Math.round((total/meta)*100),100);
+      progressFill.style.width = pct + '%';
+      waterEl.style.height = Math.min(100, pct) + '%';
+      pickPhrase();
+      // animation label
+      if (pct >= 100) flash('Meta batida! 🔥');
+      // update chart
+      updateChart();
+    }
+
+    // ===== Streak (dias seguidos) =====
+    function computeStreak(){ const streak = carregar(STORAGE.STREAK) || 0; // we'll recompute now
+      const arr = carregarRegistros();
+      // build set of days where meta met
+      const meta = carregar(STORAGE.META) || DEFAULT_META;
+      const dayHits = {};
+      arr.forEach(r => { const d = new Date(r.time); const key = d.toISOString().slice(0,10); dayHits[key] = (dayHits[key]||0) + Number(r.ml); });
+      // count consecutive days up to today
+      let count = 0; const today = new Date(); for (let i=0;i<365;i++){ const d = new Date(); d.setDate(today.getDate()-i); const key = d.toISOString().slice(0,10); if ((dayHits[key]||0) >= meta) count++; else break; }
+      salvar(STORAGE.STREAK, count); streakEl.textContent = count; return count;
+    }
+
+    function saveLastDay(){ const last = new Date().toISOString().slice(0,10); salvar(STORAGE.LASTDAY, last); }
+
+    // ===== Reset meia-noite =====
+    function scheduleMidnightReset(){ const now = new Date(); const nxt = new Date(now); nxt.setHours(24,0,0,200); const ms = nxt - now; setTimeout(()=>{ // ao passar meia noite
+        // atualizar UI, recalcular streak
+        atualizarLista(); atualizarProgresso(); computeStreak(); scheduleMidnightReset();
+        flash('Novo dia — siga firme.');
+      }, ms);
+    }
+
+    // ===== Chart (7 dias) =====
+    function setupChart(){ myChart = new Chart(chartCtx, { type:'bar', data:{ labels:[], datasets:[{ label:'ml', data:[], borderRadius:6 }] }, options:{ responsive:true, scales:{ y:{ beginAtZero:true } } } }); updateChart(); }
+    function updateChart(){ const arr = carregarRegistros(); const days = []; const labels = []; for(let i=6;i>=0;i--){ const d = new Date(); d.setDate(d.getDate()-i); const key = d.toISOString().slice(0,10); labels.push(key.slice(5)); days.push(key); }
+      const sums = days.map(k => arr.filter(r=> r.time.slice(0,10)===k).reduce((s,r)=>s + Number(r.ml),0)); myChart.data.labels = labels; myChart.data.datasets[0].data = sums; myChart.update(); }
+
+    // ===== Export/Import =====
+    exportBtn.addEventListener('click', ()=>{
+      const data = { registros: carregarRegistros(), meta: carregar(STORAGE.META), weight: carregar(STORAGE.WEIGHT) };
+      const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'agua_backup_' + new Date().toISOString().slice(0,10) + '.json'; a.click(); URL.revokeObjectURL(url);
+    });
+
+    importFile.addEventListener('change', (e)=>{
+      const f = e.target.files[0]; if(!f) return; const reader = new FileReader(); reader.onload = ()=>{
+        try{ const data = JSON.parse(reader.result); if (data.registros) salvarRegistros(data.registros); if (data.meta) salvar(STORAGE.META, data.meta); if (data.weight) salvar(STORAGE.WEIGHT, data.weight); atualizarLista(); atualizarProgresso(); updateChart(); flash('Import concluído'); } catch(err){ alert('Arquivo inválido'); }
+      }; reader.readAsText(f);
+    });
+
+    // ===== Notifications =====
+    notifyBtn.addEventListener('click', async ()=>{
+      if (!('Notification' in window)) return alert('Seu navegador não suporta notificações');
+      const p = await Notification.requestPermission(); if (p === 'granted') flash('Notificações ativadas'); else flash('Permissão negada');
+    });
+
+    // ===== Clear/Reset =====
+    clearDayBtn.addEventListener('click', ()=>{
+      if (!confirm('Limpar todos os registros de hoje?')) return;
+      const arr = carregarRegistros(); const hoje = new Date().toISOString().slice(0,10);
+      const novos = arr.filter(r => r.time.slice(0,10) !== hoje);
+      salvarRegistros(novos); atualizarLista(); atualizarProgresso(); computeStreak();
+    });
+
+    resetAllBtn.addEventListener('click', ()=>{
+      if (!confirm('Resetar tudo (registros, peso, meta, streak)?')) return;
+      localStorage.removeItem(STORAGE.REG); localStorage.removeItem(STORAGE.META); localStorage.removeItem(STORAGE.WEIGHT); localStorage.removeItem(STORAGE.STREAK); localStorage.removeItem(STORAGE.LASTDAY);
+      location.reload();
+    });
+
+    // ===== Theme =====
+    themeSelect.addEventListener('change', ()=>{ const v = themeSelect.value; applyTheme(v); localStorage.setItem('agua_theme', v); });
+    function applyTheme(v){ if(v==='bravo'){ document.documentElement.style.setProperty('--bg','#fff'); document.documentElement.style.setProperty('--card','#fbfbfb'); document.documentElement.style.setProperty('--muted','#6b6b6b'); document.documentElement.style.setProperty('--accent','#ffb84d'); document.documentElement.style.setProperty('--accent-2','#ff6b6b'); document.documentElement.style.setProperty('--item','#fff'); document.documentElement.style.setProperty('--danger','#ff3366'); } else { document.documentElement.style.setProperty('--bg','#0b0f12'); document.documentElement.style.setProperty('--card','#0e1214'); document.documentElement.style.setProperty('--muted','#7b8890'); document.documentElement.style.setProperty('--accent','#00c2ff'); document.documentElement.style.setProperty('--accent-2','#00ffa6'); document.documentElement.style.setProperty('--item','#111316'); document.documentElement.style.setProperty('--danger','#ff3366'); } }
+
+    // ===== Phrases =====
+    function pickPhrase(){ const total = calcularTotalHoje(); const meta = carregar(STORAGE.META) || DEFAULT_META; if (total===0) phraseEl.textContent = 'Água é para os vivos. Comece agora.'; else if (total < meta*0.25) phraseEl.textContent = PHRASES[ Math.floor(Math.random()*PHRASES.length) ]; else if (total < meta*0.75) phraseEl.textContent = 'Bom começo. Mantém o ritmo.'; else if (total < meta) phraseEl.textContent = 'Quase lá. Não ceda agora.'; else phraseEl.textContent = 'Meta alcançada — guerreiro hidratado!'; }
+
+    // ===== Sound (glup) via WebAudio =====
+    function playGlup(){ try{ const ctx = new (window.AudioContext || window.webkitAudioContext)(); const o = ctx.createOscillator(); const g = ctx.createGain(); o.type='sine'; o.frequency.setValueAtTime(600, ctx.currentTime); g.gain.setValueAtTime(0.001, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.12 * GLUP_VOL_MUL, ctx.currentTime + 0.02); o.connect(g); g.connect(ctx.destination); o.start(); o.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.18); g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.24); o.stop(ctx.currentTime + 0.25); } catch(e){ console.warn('audio fail', e); } }
+
+    // ===== Small utilities =====
+    function flash(msg){ const t = document.createElement('div'); t.textContent = msg; Object.assign(t.style,{position:'fixed',right:'18px',bottom:'18px',padding:'10px 14px',background:'#071217',color:'#e6f7ff',border:'1px solid rgba(0,200,255,0.08)',borderRadius:'8px',zIndex:1200}); document.body.appendChild(t); setTimeout(()=> t.remove(),2500); }
+
+    // ===== Save last day used for streak continuity =====
+    function loadLastDay(){ return localStorage.getItem(STORAGE.LASTDAY) || null; }
+
+    // ===== schedule auto-open modal on first visit if no weight =====
+    window.addEventListener('DOMContentLoaded', ()=>{ init(); });
+
+    // ===== utility: update chart when data changes =====
 
   </script>
 </body>
