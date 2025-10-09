@@ -157,6 +157,38 @@
       </div>
     </div>
   </div>
+<!-- Seção de alerta / conscientização -->
+<section id="alerta-agua" style="margin-top:32px;padding:20px;background:#321a1a;border-radius:12px;color:#fff;">
+  <h2 style="color:#ff3366;">⚠️ Atenção: excesso de água pode ser perigoso</h2>
+  <p style="line-height:1.5;">
+    Apesar de ser importante manter-se hidratado, ingerir uma quantidade muito grande de água em um curto período pode causar hiponatremia (intoxicação por água), o que leva ao desequilíbrio eletrolítico e pode resultar em inchaço cerebral, convulsões, coma e até morte.  
+    <a href="#ler-mais" style="color:#00c2ff;text-decoration:underline;">Leia mais sobre o caso de Ashley Summers abaixo.</a>
+  </p>
+  <div id="detalhes-alerta" style="display:none;background:#2a1111;padding:16px;border-radius:8px;margin-top:16px;color:#f0dcdc;">
+    <h3 style="margin-top:0;color:#ff6666;">Caso de Ashley Summers</h3>
+    <p>
+      Ashley Summers, uma mãe de 35 anos dos EUA, faleceu após ingerir um volume excessivo de água em um curto espaço de tempo.   
+      Segundo investigações, ela teria bebido cerca de 4 garrafas de água (aproximadamente **1,9 a 2 litros**) em cerca de 20 minutos.   
+      O laudo apontou que a causa da morte envolveu edema cerebral e herniação com lesão cerebral por anóxia, em decorrência de desequilíbrio eletrolítico (baixa concentração de sódio no sangue). 
+      Este caso, embora raro, serve como alerta de que **a moderação é essencial**, mesmo em algo aparentemente inofensivo como beber água.
+    </p>
+    <p style="font-size:0.9rem;color:#ddd;">
+      Fontes: <br>
+      – Coroner relatório sobre Ashley Summers <br>
+      – Artigo sobre intoxicação por água e seus riscos  <br>
+      – Cobertura jornalística do caso 
+    </p>
+  </div>
+</section>
+
+<script>
+  // Script simples para expandir o alerta
+  document.querySelector('#alerta-agua a').addEventListener('click', function(event) {
+    event.preventDefault();
+    const det = document.getElementById('detalhes-alerta');
+    det.style.display = (det.style.display === 'none') ? 'block' : 'none';
+  });
+</script>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
