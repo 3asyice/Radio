@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Universo Interativo</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Portal */
+  #portal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 3s forwards;
+  }
+
+  #portal h1 { font-size: 2rem; text-align: center; }
+
+  .mirror {
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    cursor: pointer;
+  }
+
+  .button {
+    margin-top: 30px;
+    padding: 15px 40px;
+    border: 2px solid #fff;
+    background: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .button:hover { background: #fff; color: #000; }
+
+  @keyframes fadeIn { from {opacity:0} to {opacity:1} }
+
+  /* Room */
+  #room { display: none; flex-direction: column; align-items: center; text-align: center; }
+  #room h2 { margin-bottom: 10px; }
+  .caderno { margin-top: 20px; padding: 20px; border: 1px solid #fff; cursor: pointer; transition: 0.3s; }
+  .caderno:hover { background: rgba(255,255,255,0.05); }
+
+  /* Form */
+  form { display: flex; flex-direction: column; margin-top: 20px; width: 300px; display:none; }
+  input, textarea { margin-bottom: 10px; padding: 8px; border: 1px solid #fff; background: #111; color: #fff; font-family: 'Courier New', monospace; }
+  textarea { resize: none; }
+  form button { border: 2px solid #fff; background: none; color: #fff; padding: 10px; cursor: pointer; transition: 0.3s; }
+  form button:hover { background: #fff; color: #000; }
+
+  /* Cards dos personagens */
+  #characters { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+  .character-card {
+    border: 1px solid #fff;
+    padding: 10px;
+    margin: 10px;
+    width: 220px;
+    background: rgba(255,255,255,0.05);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .character-card:hover { background: rgba(255,255,255,0.1); }
+
+</style>
+</head>
+<body>
+
+<div id="portal">
+  <h1>Tudo o que não é lembrado, não existe.</h1>
+  <div class="mirror" id="mirror">Toque para atravessar</div>
+  <button class="button" id="creatorBtn">Aceitar Existir</button>
+</div>
+
+<div id="room">
+  <h2>Você entrou no meu mundo.</h2>
+  <p>O quarto silencioso guarda os fragmentos da realidade que eu escolhi mostrar.</p>
+  <div class="caderno" id="caderno">Abrir o caderno</div>
+
+  <!-- Formulário de criação de personagem -->
+  <form id="characterForm">
+    <input type="text" name="Nome Completo" placeholder="Nome completo" required>
+    <input type="number" name="Idade" placeholder="Idade" required>
+    <input type="text" name="Profissão" placeholder="Profissão" required>
+    <input type="date" name="Data de Nascimento" placeholder="Data de nascimento" required>
+    <textarea name="Bio" placeholder="Bio curta (terceira pessoa)" rows="3" required></textarea>
+    <input type="url" name="Facebook" placeholder="Link do Facebook">
+    <input type="url" name="Instagram" placeholder="Link do Instagram">
+    <input type="url" name="Outra Rede Social" placeholder="Outro link de rede social">
+    <button type="submit">Adicionar ao meu mundo</button>
+  </form>
+
+  <!-- Área de personagens -->
+  <div id="characters"></div>
+</div>
+
+<script>
+const mirror = document.getElementById('mirror');
+const creatorBtn = document.getElementById('creatorBtn');
+const portal = document.getElementById('portal');
+const room = document.getElementById('room');
+const caderno = document.getElementById('caderno');
+const characterForm = document.getElementById('characterForm');
+const charactersDiv = document.getElementById('characters');
+
+function enterWorld() {
+  portal.style.display = 'none';
+  room.style.display = 'flex';
+}
+
+mirror.addEventListener('click', enterWorld);
+creatorBtn.addEventListener('click', enterWorld);
+
+// Abrir o caderno com animação
+caderno.addEventListener('click', () => {
+  characterForm.style.display = 'flex';
+  caderno.style.display = 'none';
+  alert('O caderno se abre... fragmentos do meu mundo começam a aparecer.');
+});
+
+// Envio do formulário via fetch sem redirecionamento
+characterForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(characterForm);
+  
+  // Enviar para o Formspree
+  try {
+    await fetch('https://formspree.io/f/xldplbwd', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    });
+    alert('Personagem adicionado ao seu mundo!');
+
+    // Criar cartão do personagem dentro do caderno
+    const card = document.createElement('div');
+    card.className = 'character-card';
+    card.innerHTML = `
+      <strong>${formData.get('Nome Completo')}</strong><br>
+      Idade: ${formData.get('Idade')}<br>
+      Profissão: ${formData.get('Profissão')}<br>
+      Nascimento: ${formData.get('Data de Nascimento')}<br>
+      Bio: ${formData.get('Bio')}<br>
+      <a href="${formData.get('Facebook')}" target="_blank">Facebook</a><br>
+      <a href="${formData.get('Instagram')}" target="_blank">Instagram</a><br>
+      <a href="${formData.get('Outra Rede Social')}" target="_blank">Outro link</a>
+    `;
+    charactersDiv.appendChild(card);
+
+    // Limpar formulário
+    characterForm.reset();
+  } catch (error) {
+    alert('Ocorreu um erro ao enviar o formulário.');
+    console.error(error);
+  }
+});
+</script>
+
+</body>
+</html>
