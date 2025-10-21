@@ -1,124 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Pesquisa Inteligente</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <title>Pesquisa Inteligente — Upload Imagem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'VT323', monospace;
-      background-color: #0b0b0b;
-      color: #e0e0e0;
-      line-height: 1.5;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    header h1 {
-      font-size: 2.2rem;
-      color: #e0e0e0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #333;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #111;
-      border-radius: 6px;
-      border: 1px solid #222;
-    }
-    .search-box {
-      display: flex;
-      margin-bottom: 20px;
-    }
-    .search-box input {
-      flex: 1;
-      padding: 12px 16px;
-      font-size: 1.2rem;
-      border: 1px solid #444;
-      border-radius: 4px;
-      background-color: #0b0b0b;
-      color: #e0e0e0;
-      outline: none;
-      transition: all 0.2s;
-    }
-    .search-box input:focus {
-      border-color: #ff3333;
-      box-shadow: 0 0 6px #ff3333;
-    }
-    .filters {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 10px 0;
-    }
-    .filters::-webkit-scrollbar {
-      height: 6px;
-    }
-    .filters::-webkit-scrollbar-thumb {
-      background-color: #333;
-      border-radius: 3px;
-    }
-    .filters::-webkit-scrollbar-track {
-      background-color: #111;
-    }
-    .filters button {
-      flex: 0 0 auto;
-      padding: 10px 18px;
-      font-size: 1rem;
-      border: 1px solid #333;
-      border-radius: 4px;
-      background-color: #111;
-      color: #e0e0e0;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .filters button::before {
-      content: "";
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 0, 0, 0.2);
-      transform: skewX(-20deg);
-      transition: all 0.4s ease;
-    }
-    .filters button:hover::before {
-      left: 100%;
-    }
-    .filters button:hover {
-      color: #ff4d4d;
-      border-color: #ff4d4d;
-      box-shadow: 0 0 8px #ff4d4d;
-      animation: glitch 0.3s;
-    }
-    @keyframes glitch {
-      0% { transform: translate(0); }
-      20% { transform: translate(-1px, 1px); }
-      40% { transform: translate(-2px, -1px); }
-      60% { transform: translate(1px, 0); }
-      80% { transform: translate(1px, -1px); }
-      100% { transform: translate(0); }
-    }
+    body{margin:0;font-family:'VT323',monospace;background:#0b0b0b;color:#e0e0e0;padding:20px;min-height:100vh;}
+    header{text-align:center;margin-bottom:18px}
+    header h1{font-size:2rem;border-bottom:1px solid #333;display:inline-block;padding-bottom:6px}
+    main{max-width:900px;margin:0 auto;background:#111;padding:18px;border-radius:6px;border:1px solid #222}
+    .search-box{display:flex;margin-bottom:14px}
+    .search-box input{flex:1;padding:12px 16px;font-size:1.1rem;border-radius:4px;border:1px solid #444;background:#0b0b0b;color:#e0e0e0}
+    .filters{display:flex;gap:8px;overflow-x:auto;padding:10px 0}
+    .filters button{padding:10px 14px;border-radius:4px;border:1px solid #333;background:#111;color:#e0e0e0;cursor:pointer;white-space:nowrap}
+    .preview{margin-top:12px;display:flex;gap:12px;align-items:center}
+    .preview img{max-width:160px;max-height:120px;border-radius:6px;border:1px solid #333}
+    .note{margin-top:12px;color:#cfcfcf;font-size:0.95rem}
+    .small{font-size:0.85rem;color:#aaa}
+    .hidden{display:none}
+    a { color: #ff4d4d }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Pesquisa Inteligente</h1>
-  </header>
-
+  <header><h1>Pesquisa Inteligente</h1></header>
   <main>
     <div class="search-box">
       <input id="searchInput" placeholder="Digite sua pesquisa...">
@@ -126,56 +31,114 @@
 
     <div class="filters">
       <button onclick="doSearch(2)">Imagens</button>
-      <button onclick="doSearch(6)">Aprendizado</button>
-      <button onclick="doSearch(7)">Vídeos</button>
-      <button onclick="doSearch(1)">Locais</button>
-      <button onclick="doSearch(12)">Notícias</button>
-      <button onclick="doSearch(18)">Fóruns</button>
-      <button onclick="doSearch(15)">Coisas legais</button>
-      <button onclick="doSearch(8)">Vagas</button>
-      <button onclick="doSearch(16)">Todos</button>
-      <button onclick="doSearch(14)">Web</button>
-      <button onclick="doSearch(28)">Compras</button>
-      <button onclick="doSearch(36)">Livros</button>
-      <button onclick="doSearch(37)">Produtos</button>
-      <button onclick="doSearch(39)">Vídeos Curtos</button>
       <button onclick="doSearch(44)">Imagens Exatas</button>
-      <button onclick="doSearch(48)">Correspondências Exatas</button>
-      <button onclick="searchFlights()">Voos</button>
-      <button onclick="doSearch(50)">IA</button>
-
-      <!-- 🔍 Novo botão: busca por imagem (upload) -->
-      <button onclick="document.getElementById('uploadImg').click()">Imagem do Usuário</button>
+      <button onclick="openImagesGoogle()">Abrir Google Imagens</button>
+      <button id="btnUpload" onclick="triggerFile()">Imagem do Usuário</button>
     </div>
 
-    <!-- Formulário invisível para upload de imagem e envio ao Google -->
-    <form id="imgForm" method="POST" enctype="multipart/form-data" 
-          action="https://www.google.com/searchbyimage/upload" target="_blank" style="display:none;">
-      <input type="file" id="uploadImg" name="encoded_image" accept="image/*" 
-             onchange="document.getElementById('imgForm').submit()">
+    <div class="preview hidden" id="previewWrap">
+      <img id="previewImg" alt="Pré-visualização">
+      <div>
+        <div class="small">Pré-visualização — confirme antes de enviar</div>
+        <div style="margin-top:8px">
+          <button onclick="submitUpload()">Enviar para busca (Google)</button>
+          <button onclick="cancelUpload()" style="margin-left:8px">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" id="msgArea">
+      Dica: se nada abrir ao enviar, verifique bloqueador de pop-ups do navegador. Se continuar sem funcionar, clique em <a href="#" onclick="openImagesGoogle();return false">Abrir Google Imagens</a> e use o ícone da câmera.
+    </div>
+
+    <!-- Formulário para envio ao Google (target _blank) -->
+    <form id="imgForm" method="POST" enctype="multipart/form-data"
+          action="https://www.google.com/searchbyimage/upload" target="_blank" class="hidden">
+      <!-- campos extras que ajudam em algumas variantes do endpoint -->
+      <input type="hidden" name="image_url" value="">
+      <input type="hidden" name="btnG" value="Search">
+      <input type="file" id="uploadImg" name="encoded_image" accept="image/*">
     </form>
   </main>
 
   <script>
+    // Funções de busca por texto (seu comportamento anterior)
     function doSearch(udm) {
-      const query = document.getElementById("searchInput").value.trim();
-      if (!query) {
-        alert("Por favor, insira um termo para pesquisar.");
-        return;
-      }
-      const url = `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=${udm}`;
-      window.open(url, "_blank");
+      const q = document.getElementById('searchInput').value.trim();
+      if (!q) { alert('Por favor, insira um termo para pesquisar.'); return; }
+      const url = `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=${udm}`;
+      window.open(url, '_blank');
     }
 
-    function searchFlights() {
-      const query = document.getElementById("searchInput").value.trim();
-      if (!query) {
-        alert("Por favor, insira um destino ou termo para pesquisar voos.");
+    function openImagesGoogle(){
+      // Abre a página de imagens (usuário pode clicar no ícone de câmera)
+      window.open('https://images.google.com', '_blank');
+    }
+
+    // Upload flow
+    function triggerFile(){
+      const input = document.getElementById('uploadImg');
+      input.value = ''; // reset
+      input.click();
+    }
+
+    document.getElementById('uploadImg').addEventListener('change', function(ev){
+      const file = ev.target.files && ev.target.files[0];
+      if (!file) return;
+      // Mostrar pré-visualização
+      const imgURL = URL.createObjectURL(file);
+      document.getElementById('previewImg').src = imgURL;
+      document.getElementById('previewWrap').classList.remove('hidden');
+      // Não submeter automaticamente — deixa o usuário confirmar (mais confiável em mobiles)
+    });
+
+    function cancelUpload(){
+      document.getElementById('uploadImg').value = '';
+      document.getElementById('previewImg').src = '';
+      document.getElementById('previewWrap').classList.add('hidden');
+    }
+
+    function submitUpload(){
+      const form = document.getElementById('imgForm');
+      const fileInput = document.getElementById('uploadImg');
+      if (!fileInput.files || !fileInput.files[0]) { alert('Nenhuma imagem selecionada.'); return; }
+
+      // Certifica-se que o fileInput dentro do form tem o arquivo (alguns navegadores tratam inputs separados)
+      // Para garantir, clonamos o arquivo para um input dentro do form dinamicamente
+      // (mas inputs de arquivo não suportam set via JS; então garantimos que o input do form é o mesmo)
+      // Aqui nos asseguramos de mover o arquivo: se os dois inputs não forem o mesmo elemento, substituímos.
+      if (fileInput !== form.elements['encoded_image']) {
+        // substitui o input do form pelo atual (mantendo arquivo)
+        // remove input antigo e adiciona o atual dentro do form
+        const old = form.querySelector('input[name="encoded_image"]');
+        if (old) old.remove();
+        // cria novo input dentro do form e copia o arquivo por referência apenas se forem o mesmo elemento.
+        // Observação: por restrições de segurança, não podemos atribuir programaticamente File em outro input.
+        // Portanto, para máxima compatibilidade, vamos mover o elemento de input para dentro do form DOM.
+        form.appendChild(fileInput);
+      }
+
+      // Tenta abrir a janela/aba — se bloqueada, avisamos
+      const win = window.open('', '_blank'); // cria/obtém janela para reduzir chance de bloqueio ao submit
+      if (!win) {
+        alert('O navegador bloqueou a abertura de nova aba. Desabilite bloqueador de pop-ups e tente novamente.');
         return;
       }
-      const url = `https://www.google.com/travel/flights?q=${encodeURIComponent(query)}`;
-      window.open(url, "_blank");
+
+      // Submete o form — o target é a aba que acabamos de abrir (browser pode reutilizar)
+      try {
+        form.submit();
+        // Após submeter, limpa preview
+        cancelUpload();
+      } catch (e){
+        // fallback: tenta abrir images.google.com
+        alert('Envio automático falhou — abrindo Google Imagens. Use o ícone da câmera para enviar manualmente.');
+        openImagesGoogle();
+      }
     }
+
+    // Observação útil: em alguns navegadores móveis, mover o input file para dentro do form é necessário para que o arquivo seja enviado.
+    // O código acima tenta mover o elemento input para o form antes do submit.
   </script>
 </body>
 </html>
