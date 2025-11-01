@@ -132,7 +132,7 @@ text-shadow: 0 0 4px #00ffee;
 font-size: 15px;
 margin-bottom: 20px;
 }
-#startBtn {
+#startBtn, #statitnow {
 background: #DE2432;
 color:#fff;
 font-weight: 900;
