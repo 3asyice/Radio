@@ -1,7 +1,8 @@
-const footer = document.getElementsByTagName('footer')[1];
+const footer = document.getElementsByTagName('footer')[0];
 
-const p = document.createElement('p').innerHTML = `© Fitas de 609 Carvalho`;
+const p = document.createElement('p');
 
-footer.addElement(p);
+p.innerHTML = `© Fitas de 609 Carvalho`;
+footer.appendChild(p);
 
 
