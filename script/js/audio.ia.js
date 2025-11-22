@@ -163,7 +163,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 59:07 +1min
 
 // 06h
-{ nome: "O 2º Quarto de Hora", arquivo: "assets/tape/F5LB.mp3", inicio: 6, minuto: 0, segundo: 0, fim: 7 },
+{ nome: "O 2º Quarto de Hora", arquivo: "assets/tape/F5LB.mp3", inicio: 6, minuto: 0, segundo: 0, fim: 7 }, 
 // 15:03
 { nome: "Capisani", arquivo: "assets/tape/F8LB.mp3", inicio: 6, minuto: 15, segundo: 3, fim: 7 },
 // 16:03 +1min

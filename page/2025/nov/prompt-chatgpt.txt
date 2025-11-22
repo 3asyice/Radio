@@ -1,0 +1,3 @@
+## Prompt
+
+Create an ultra-realistic 3D selfie in 9:16 vertical aspect ratio from the attached photo of the man (use the provided image for accurate facial features) with a T-800-style robot. The photo should look like a typical iPhone selfie—slightly uneven framing, camera angle of view, slight distortion from the front camera, natural skin texture, daylight in the background, an apocalyptic scene with other T-800-style robots, subtle motion blur from hand movements, and authentic depth of field from the iPhone's front camera. Maintain a high level of realism and detail, but with the casual, unpolished look of a real phone photo rather than a professional DSLR. 9:16 aspect ratio
