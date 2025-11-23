@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulador de Abelhas — Killer Vermelha Visível</title>
+<style>
+  html, body {margin:0; padding:0; height:100%; overflow:hidden; background:#001100; font-family:monospace; color:#e8ffe8;}
+  canvas{display:block;}
+  #log {position:absolute; bottom:0; left:0; width:100%; max-height:150px; overflow:auto; background:#000a; color:#8f8; font-size:12px; padding:6px;}
+</style>
+</head>
+<body>
+<canvas id="sim"></canvas>
+<div id="log"></div>
+<script>
+const canvas = document.getElementById('sim');
+const ctx = canvas.getContext('2d');
+const logEl = document.getElementById('log');
+function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+window.addEventListener('resize', resize);
+resize();
+
+function logMsg(text){
+  const div = document.createElement('div');
+  div.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+  logEl.appendChild(div);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+// URLs das imagens (killer reaproveita a vermelha)
+const BEE_IMAGES = {
+  "amarela": "https://files.catbox.moe/ni913r.png",
+  "azul": "https://files.catbox.moe/d72rd8.png",
+  "verde": "https://files.catbox.moe/8ri6mi.png",
+  "roxa": "https://files.catbox.moe/zonb9h.png",
+  "laranja": "https://files.catbox.moe/zvrji4.png",
+  "vermelha": "https://files.catbox.moe/49zcvv.png",
+  "ciano": "https://files.catbox.moe/x3gwhe.png",
+  // killer agora usa explicitamente a imagem vermelha (visível)
+  "killer": "https://files.catbox.moe/49zcvv.png"
+};
+
+// pré-carrega imagens para evitar flicker
+const IMG_CACHE = {};
+for(const k in BEE_IMAGES){
+  const im = new Image();
+  im.src = BEE_IMAGES[k];
+  IMG_CACHE[k] = im;
+}
+
+function distance(a,b){
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  return Math.sqrt(dx*dx + dy*dy);
+}
+
+let npcId = 0;
+const NPCS = [];
+const PARTICLES = []; // partículas para efeito de kill
+
+function makeNpc(x, y, color){
+  npcId++;
+  const baseSpeed = 2.0;
+  const speed = (color === "killer") ? baseSpeed * 2.2 : baseSpeed;
+  return {
+    id: npcId,
+    x: x,
+    y: y,
+    dx: (Math.random()-0.5)*speed,
+    dy: (Math.random()-0.5)*speed,
+    size: (color === "killer") ? 32 : 26,
+    color: color,
+    avatarKey: color,
+    lastReproduction: 0,
+    bornAt: Date.now()
+  }
+}
+
+// iniciadores
+NPCS.push(makeNpc(Math.random()*canvas.width, Math.random()*canvas.height, "amarela"));
+NPCS.push(makeNpc(Math.random()*canvas.width, Math.random()*canvas.height, "azul"));
+
+// regras genéticas (múltiplos resultados)
+const REPRO_RULES = {
+  "amarela+azul": ["verde", "ciano"],
+  "azul+amarela": ["verde", "ciano"],
+  "verde+azul": ["roxa", "azul"],
+  "azul+verde": ["roxa", "azul"],
+  "verde+amarela": ["laranja", "verde"],
+  "amarela+verde": ["laranja", "verde"],
+  "azul+roxa": ["vermelha", "ciano"],
+  "roxa+azul": ["vermelha", "ciano"],
+  "amarela+laranja": ["vermelha", "amarela"],
+  "laranja+amarela": ["vermelha", "amarela"],
+  "roxa+laranja": ["amarela", "verde"],
+  "laranja+roxa": ["amarela", "verde"],
+  "verde+verde": ["verde", "amarela"],
+  "roxa+roxa": ["roxa", "vermelha"],
+  "laranja+laranja": ["laranja", "vermelha"]
+};
+
+function maybeKiller(){ return Math.random() < 0.01; }
+
+function interacao(a, b){
+  const now = Date.now();
+  if(now - a.lastReproduction < 3000 || now - b.lastReproduction < 3000) return null;
+  if(a.color === "killer" || b.color === "killer") return null;
+  const key = `${a.color}+${b.color}`;
+  const options = REPRO_RULES[key];
+  if(options){
+    const babyColor = maybeKiller() ? "killer" : options[Math.floor(Math.random() * options.length)];
+    a.lastReproduction = now;
+    b.lastReproduction = now;
+    const baby = makeNpc((a.x+b.x)/2 + (Math.random()-0.5)*8, (a.y+b.y)/2 + (Math.random()-0.5)*8, babyColor);
+    return { baby };
+  }
+  return null;
+}
+
+// cria partículas quando há um kill
+function spawnKillParticles(x, y, count=12){
+  for(let i=0;i<count;i++){
+    PARTICLES.push({
+      x, y,
+      vx: (Math.random()-0.5)*3,
+      vy: (Math.random()-0.7)*3,
+      life: 600 + Math.random()*400,
+      born: Date.now(),
+      size: 2 + Math.random()*3,
+      alpha: 1
+    });
+  }
+}
+
+function updateParticles(now){
+  for(let i = PARTICLES.length-1; i>=0; i--){
+    const p = PARTICLES[i];
+    const t = now - p.born;
+    if(t > p.life){ PARTICLES.splice(i,1); continue; }
+    p.x += p.vx;
+    p.y += p.vy + 0.03; // gravidade leve
+    p.alpha = 1 - (t / p.life);
+  }
+}
+
+function drawParticles(){
+  for(const p of PARTICLES){
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255,60,60,${p.alpha})`;
+    ctx.fill();
+  }
+}
+
+function update(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const newNpcs = [];
+  const toRemove = new Set();
+  const now = Date.now();
+
+  // surge killer automático caso superpopulação (pode haver mais que uma)
+  if(NPCS.length > 80 && NPCS.filter(n=>n.color==="killer").length < Math.max(1, Math.floor(NPCS.length/200))){
+    const killer = makeNpc(Math.random()*canvas.width, Math.random()*canvas.height, "killer");
+    NPCS.push(killer);
+    logMsg("⚠️ Uma Abelha Killer (vermelha) surgiu para controlar a colônia!");
+  }
+
+  // atualiza e desenha cada NPC
+  for(let npc of NPCS.slice()){ // slice para snapshot
+    // killers morrem após 120s
+    if(npc.color === "killer" && now - npc.bornAt > 120000){
+      const idx = NPCS.indexOf(npc);
+      if(idx !== -1){ NPCS.splice(idx,1); logMsg(`☠️ A Killer #${npc.id} morreu após 2 minutos.`); }
+      continue;
+    }
+
+    // movimento simples e limites
+    npc.x += npc.dx;
+    npc.y += npc.dy;
+    if(npc.x < 0){ npc.x = 0; npc.dx *= -1; }
+    if(npc.y < 0){ npc.y = 0; npc.dy *= -1; }
+    if(npc.x > canvas.width - npc.size){ npc.x = canvas.width - npc.size; npc.dx *= -1; }
+    if(npc.y > canvas.height - npc.size){ npc.y = canvas.height - npc.size; npc.dy *= -1; }
+
+    // desenha: se tiver imagem no cache, desenha; se não, fallback círculo
+    const im = IMG_CACHE[npc.avatarKey];
+    if(im && im.complete){
+      ctx.drawImage(im, npc.x, npc.y, npc.size, npc.size);
+      // se for killer, desenha um contorno vermelho para destacar
+      if(npc.color === "killer"){
+        ctx.beginPath();
+        ctx.arc(npc.x + npc.size/2, npc.y + npc.size/2, npc.size/2 + 2, 0, Math.PI*2);
+        ctx.strokeStyle = "rgba(255,40,40,0.9)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    } else {
+      // fallback: círculo colorido
+      ctx.beginPath();
+      ctx.arc(npc.x + npc.size/2, npc.y + npc.size/2, npc.size/2, 0, Math.PI*2);
+      if(npc.color === "killer") ctx.fillStyle = "rgba(200,30,30,0.95)";
+      else {
+        const map = { amarela:"#ffd86b", azul:"#6fb3ff", verde:"#7ef08a", roxa:"#c08cff", laranja:"#ffb36b", vermelha:"#ff6b6b", ciano:"#6fffe0" };
+        ctx.fillStyle = map[npc.color] || "#ccc";
+      }
+      ctx.fill();
+    }
+  }
+
+  // interações (reprodução / kills)
+  for(let i=0;i<NPCS.length;i++){
+    for(let j=i+1;j<NPCS.length;j++){
+      const a = NPCS[i];
+      const b = NPCS[j];
+      if(!a || !b) continue;
+      if(distance(a,b) < 20){
+        // killer kills normal
+        if(a.color === "killer" && b.color !== "killer"){
+          const idx = NPCS.indexOf(b);
+          if(idx !== -1){ NPCS.splice(idx,1); logMsg(`💀 Killer #${a.id} eliminou a abelha #${b.id} (${b.color})`); spawnKillParticles(b.x + b.size/2, b.y + b.size/2); }
+          continue;
+        }
+        if(b.color === "killer" && a.color !== "killer"){
+          const idx = NPCS.indexOf(a);
+          if(idx !== -1){ NPCS.splice(idx,1); logMsg(`💀 Killer #${b.id} eliminou a abelha #${a.id} (${a.color})`); spawnKillParticles(a.x + a.size/2, a.y + a.size/2); }
+          continue;
+        }
+
+        // reprodução normal
+        const result = interacao(a,b);
+        if(result?.baby){
+          newNpcs.push(result.baby);
+          logMsg(`🌱 Nova abelha ${result.baby.color} nasceu entre #${a.id} (${a.color}) e #${b.id} (${b.color})`);
+        }
+      }
+    }
+  }
+
+  // adiciona novos nascimentos
+  NPCS.push(...newNpcs);
+
+  // atualiza partículas e desenha-as por cima
+  updateParticles(now);
+  drawParticles();
+
+  requestAnimationFrame(update);
+}
+
+update();
+</script>
+</body>
+</html>
