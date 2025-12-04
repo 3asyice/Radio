@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual dos Sonhos</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      background-color: #4b0000;
+      font-family: sans-serif;
+    }
+
+    header {
+      text-align: center;
+      color: #ff0000;
+      padding: 20px 10px;
+      text-shadow: 2px 2px 2px #7a1a1a;
+    }
+
+    header h1 {
+      font-size: 2.4em;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    header h2 {
+      margin-top: 5px;
+      font-size: 1.2em;
+      font-weight: 700;
+    }
+
+    nav {
+      background: #330000;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      border-bottom: 2px solid #7a1a1a;
+    }
+
+    nav a {
+      color: #ff4d4d;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      text-shadow: 1px 1px 1px #7a1a1a;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    .bloco-sonho {
+      background: #330000;
+      padding: 20px;
+      margin-bottom: 40px;
+      border-radius: 10px;
+      box-shadow: 1px 1px 10px #200000;
+    }
+
+    .data {
+      font-size: 1.1em;
+      color: #ff0000;
+      font-weight: 900;
+      margin-bottom: 18px;
+      text-shadow: 1px 1px 1px #7a1a1a;
+    }
+
+    p {
+      color: #ff4d4d;
+      font-size: 1.1em;
+      line-height: 1.6em;
+      text-shadow: 1px 1px 1px #7a1a1a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #ff0000;
+      font-size: 0.9em;
+      text-shadow: 1px 1px 1px #7a1a1a;
+      border-top: 2px solid #330000;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Manual dos Sonhos</h1>
+  <h2>por Guilherme Carvalho</h2>
+</header>
+
+<nav>
+  <a href="#hoje">Sonhos</a>
+  <a href="#sobre">Sobre o estudo</a>
+</nav>
+
+<section id="hoje">
+  <div id="lista-sonhos">
+    <!-- Todos os sonhos aparecerão aqui -->
+  </div>
+</section>
+
+<section id="sobre">
+  <h2 style="color:#ff0000;text-shadow:1px 1px 1px #7a1a1a;margin-left:10px;">
+    Sobre o estudo
+  </h2>
+  <p>
+    Este é um manual pessoal dedicado ao estudo dos sonhos: suas imagens, símbolos,
+    mensagens e conexões com a memória. Cada sonho é registrado manualmente e pode ser
+    analisado futuramente.
+  </p>
+</section>
+
+<footer>
+  Manual dos Sonhos © 2025 — Guilherme Carvalho
+</footer>
+
+<script>
+fetch('sonho.json')
+  .then(r => r.json())
+  .then(sonhos => {
+
+    // pegar div onde será exibido
+    const lista = document.getElementById("lista-sonhos");
+
+    // inverter ordem para mostrar mais recente primeiro
+    sonhos.reverse();
+
+    sonhos.forEach(sonho => {
+      const bloco = document.createElement("div");
+      bloco.className = "bloco-sonho";
+
+      // data
+      const dataEl = document.createElement("p");
+      dataEl.className = "data";
+      dataEl.textContent = sonho.data;
+      bloco.appendChild(dataEl);
+
+      // descricao (transforma em array se for string)
+      const textos = Array.isArray(sonho.descricao)
+        ? sonho.descricao
+        : [sonho.descricao];
+
+      textos.forEach(txt => {
+        const p = document.createElement("p");
+        p.textContent = txt;
+        bloco.appendChild(p);
+      });
+
+      lista.appendChild(bloco);
+    });
+
+  })
+  .catch(err => console.error("Erro ao carregar sonho.json:", err));
+</script>
+
+</body>
+</html>
