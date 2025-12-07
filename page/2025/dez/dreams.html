@@ -6,92 +6,218 @@
   <title>Manual dos Sonhos</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+/* ===============================
+   ESTILO MODERNO BLACK MIRROR
+   =============================== */
 
-    html, body {
-      margin: 0;
-      background-color: #4b0000;
-      font-family: sans-serif;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    header {
-      text-align: center;
-      color: #ff0000;
-      padding: 20px 10px;
-      text-shadow: 2px 2px 2px #7a1a1a;
-    }
+html, body {
+  background: #0a0a0a;
+  font-family: "Inter", Arial, sans-serif;
+  color: #e6e6e6;
+  overflow-x: hidden;
+}
 
-    header h1 {
-      font-size: 2.4em;
-      font-weight: 900;
-      margin: 0;
-    }
+/* Fundo com efeito sutil de ruído (vibe sci-fi) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8fPjwHwAFgwJ/l7cJsgAAAABJRU5ErkJggg==');
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}
 
-    header h2 {
-      margin-top: 5px;
-      font-size: 1.2em;
-      font-weight: 700;
-    }
+/* ===============================
+   CABEÇALHO — TÍTULO BLACK MIRROR
+   =============================== */
 
-    nav {
-      background: #330000;
-      padding: 12px;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      border-bottom: 2px solid #7a1a1a;
-    }
+header {
+  text-align: center;
+  padding: 40px 20px;
+  color: #fff;
+}
 
-    nav a {
-      color: #ff4d4d;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1em;
-      text-shadow: 1px 1px 1px #7a1a1a;
-    }
+header h1 {
+  font-size: 2.8em;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #ffffff;
+  filter: drop-shadow(0 0 10px #ff333322);
 
-    nav a:hover {
-      color: #ffffff;
-    }
+  /* efeito glitch lento */
+  position: relative;
+  animation: glitch 3.5s infinite ease-in-out alternate;
+}
 
-    section {
-      padding: 20px;
-    }
+@keyframes glitch {
+  0% { text-shadow: 0 0 2px #ff000044; }
+  50% { text-shadow: 2px 0 4px #ff000088; }
+  100% { text-shadow: -2px 0 4px #ff000088; }
+}
 
-    .bloco-sonho {
-      background: #330000;
-      padding: 20px;
-      margin-bottom: 40px;
-      border-radius: 10px;
-      box-shadow: 1px 1px 10px #200000;
-    }
+header h2 {
+  margin-top: 8px;
+  font-size: 1.1em;
+  opacity: 0.65;
+}
 
-    .data {
-      font-size: 1.1em;
-      color: #ff0000;
-      font-weight: 900;
-      margin-bottom: 18px;
-      text-shadow: 1px 1px 1px #7a1a1a;
-    }
+/* ===============================
+   NAV — LINHA FUTURISTA
+   =============================== */
 
-    p {
-      color: #ff4d4d;
-      font-size: 1.1em;
-      line-height: 1.6em;
-      text-shadow: 1px 1px 1px #7a1a1a;
-    }
+nav {
+  background: #111;
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  border-top: 1px solid #ff000022;
+  border-bottom: 1px solid #ff000022;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #ff0000;
-      font-size: 0.9em;
-      text-shadow: 1px 1px 1px #7a1a1a;
-      border-top: 2px solid #330000;
-      margin-top: 40px;
-    }
+nav a {
+  color: #d6d6d6;
+  text-decoration: none;
+  font-size: 1.15em;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #ff3333;
+  text-shadow: 0 0 8px #ff0000;
+}
+
+/* ===============================
+   CONTEÚDO
+   =============================== */
+
+section {
+  padding: 28px 20px;
+}
+
+/* Cards estilo Black Mirror */
+.bloco-sonho {
+  background: #111;
+  border: 1px solid #1f1f1f;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 45px;
+  box-shadow: 0 0 15px #00000080;
+  transition: 0.25s ease-in-out;
+}
+
+.bloco-sonho:hover {
+  transform: translateY(-4px) scale(1.005);
+  border-color: #ff000055;
+  box-shadow: 0 0 25px #ff000022;
+}
+
+/* DATA ESTILO MINIMALISTA */
+.data {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #ff3333;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+}
+
+/* TEXTO DOS SONHOS */
+p {
+  color: #d9d9d9;
+  font-size: 1.1em;
+  line-height: 1.65em;
+}
+
+/* ===============================
+   RODAPÉ — ESTILO NETFLIX/BLACK MIRROR
+   =============================== */
+
+footer {
+  text-align: center;
+  padding: 25px;
+  margin-top: 50px;
+  font-size: 0.9em;
+  color: #777;
+  border-top: 1px solid #1f1f1f;
+  background: #0d0d0d;
+}
+
+/* ===============================
+   MEDIA QUERIES — RESPONSIVO
+   =============================== */
+
+/* CELULARES PEQUENOS */
+@media (max-width: 480px) {
+
+  header h1 {
+    font-size: 2.2em;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 1.05em;
+  }
+
+  .bloco-sonho {
+    padding: 18px;
+  }
+
+  p {
+    font-size: 1.05em;
+  }
+}
+
+/* CELULARES MÉDIOS */
+@media (max-width: 768px) {
+
+  header h1 {
+    font-size: 2.4em;
+  }
+
+  .bloco-sonho {
+    padding: 22px;
+  }
+
+  section {
+    padding: 20px;
+  }
+}
+
+/* TABLETS */
+@media (max-width: 1024px) {
+  section {
+    padding: 22px 25px;
+  }
+}
+
+/* TELAS GRANDES */
+@media (min-width: 1200px) {
+
+  section {
+    width: 70%;
+    margin: auto;
+  }
+
+  .bloco-sonho {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
   </style>
 </head>
 
@@ -101,6 +227,25 @@
   <h1>Manual dos Sonhos</h1>
   <h2>por Guilherme Carvalho</h2>
 </header>
+<input
+  id="busca"
+  type="text"
+  placeholder="Buscar sonhos..."
+  autocomplete="off"
+  style="
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 25px;
+    border: 1px solid #ff000033;
+    background: #0f0f0f;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1.05em;
+    outline: none;
+    transition: 0.3s;
+    box-shadow: 0 0 12px #000;
+  "
+>
 
 <nav>
   <a href="#hoje">Sonhos</a>
@@ -122,11 +267,28 @@
     mensagens e conexões com a memória. Cada sonho é registrado manualmente e pode ser
     analisado futuramente.
   </p>
+<p>Ao longo do estudo irei abordar algumas regiões do cérebro humano que continuam ativas durante o sono, como se estivesse acordado. Estudarei sobre as sinapses que se ligam e desligam durante o sono REM.</p>
 </section>
 
 <footer>
   Manual dos Sonhos © 2025 — Guilherme Carvalho
 </footer>
+<script>
+// Campo de busca
+const campoBusca = document.getElementById("busca");
+
+// Filtragem em tempo real
+campoBusca.addEventListener("input", () => {
+  const termo = campoBusca.value.toLowerCase().trim();
+
+  document.querySelectorAll(".bloco-sonho").forEach(bloco => {
+    const texto = bloco.innerText.toLowerCase();
+
+    // mostra ou esconde o bloco
+    bloco.style.display = texto.includes(termo) ? "block" : "none";
+  });
+});
+</script>
 
 <script>
 fetch('sonho.json')
