@@ -133,7 +133,8 @@ section {
 p {
   color: #d9d9d9;
   font-size: 1.1em;
-  line-height: 1.65em;
+  line-height: 1.5em;
+  margin-top: 32px;
 }
 
 /* ===============================
@@ -255,6 +256,7 @@ footer {
 <section id="hoje">
   <div id="lista-sonhos">
     <!-- Todos os sonhos aparecerão aqui -->
+    
   </div>
 </section>
 
@@ -310,8 +312,23 @@ fetch('sonho.json')
       dataEl.className = "data";
       dataEl.textContent = sonho.data;
       bloco.appendChild(dataEl);
-
       // descricao (transforma em array se for string)
+const img = document.createElement("img");
+img.className = "image";
+img.src = sonho.img;
+img.style.display = 'block';
+img.style.margin = '0 auto';
+img.style.alignContent = 'center';
+img.style.width = 'fit-content';
+img.style.height = '200px';
+if (sonho.img === undefined){
+img.style.display = 'none';
+}
+else if (sonho.img === ""){
+img.atyle.display = 'none';
+}
+bloco.appendChild(img);
+
       const textos = Array.isArray(sonho.descricao)
         ? sonho.descricao
         : [sonho.descricao];
