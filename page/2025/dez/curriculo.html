@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gerador de Currículo</title>
+  <title>Gerador de Currículo — PDF com duas opções</title>
+
+  <!-- html2pdf para a opção 2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
     *{box-sizing:border-box}
@@ -11,18 +15,19 @@
       font-family:'Inter',sans-serif;
       background:#f4f6f8;
       margin:0;
-      display:flex;
+      display:block;
       justify-content:center;
       padding:30px 16px;
       color:#111;
     }
     .container{
       width:100%;
-      max-width:900px;
+      max-width:920px;
       background:#fff;
       border-radius:12px;
       box-shadow:0 6px 20px rgba(0,0,0,0.08);
       padding:22px;
+      margin-bottom:40px;
     }
     header{
       display:flex;
@@ -52,8 +57,26 @@
     .list-item{background:#fff;border:1px solid #e9eef6;padding:10px;border-radius:8px;margin-bottom:8px;position:relative}
     .list-item .remove{position:absolute;right:10px;top:10px;background:transparent;border:none;color:#c33;cursor:pointer;font-weight:700}
     .preview{margin-top:8px;text-align:center}
-    #codigoGerado{width:100%;height:320px;background:#0f0f0f;color:#0f0;padding:12px;border-radius:8px;font-family:monospace;resize:vertical}
+    #codigoGerado{width:100%;height:220px;background:#0f0f0f;color:#0f0;padding:12px;border-radius:8px;font-family:monospace;resize:vertical}
     @media (max-width:640px){ .row{flex-direction:column} .small{flex:1} }
+
+    /* Preview integrado (visível) */
+    #previewArea {
+      margin-top:18px;
+    }
+
+    /* Impressão: esconder controles e deixar só o currículo */
+    @media print {
+      body { background: #fff; }
+      .container, .controls, form, label, input, textarea, .actions, #codigoGerado { display: none !important; }
+      #previewArea { margin: 0; padding: 0; }
+      #previewArea .cv { box-shadow:none; border-radius:0; margin:0; }
+    }
+
+    /* placeholder para imagens que não puderam ser convertidas */
+    .img-placeholder {
+      width:120px;height:120px;background:#eee;border-radius:8px;display:inline-block;
+    }
   </style>
 </head>
 <body>
@@ -114,9 +137,7 @@
               <button class="btn ghost" type="button" onclick="adicionarExperiencia()">+ adicionar</button>
             </div>
           </div>
-          <div id="experienciasList" class="list-block" style="margin-top:8px">
-            <!-- Items adicionados dinamicamente -->
-          </div>
+          <div id="experienciasList" class="list-block" style="margin-top:8px"></div>
         </div>
 
         <!-- FORMAÇÕES -->
@@ -152,6 +173,15 @@
           <button class="btn" type="button" onclick="gerarHTML()">Gerar Página HTML</button>
           <button class="btn ghost" type="button" onclick="copiarCodigo()">📋 Copiar Código</button>
           <button class="btn ghost" type="button" onclick="enviarWhatsapp()">🖥️ Enviar pelo WhatsApp</button>
+
+          <!-- Opção A: impressão nativa (window.print) -->
+          <button class="btn" type="button" onclick="imprimirCurriculo()">🖨️ Salvar em PDF (print)</button>
+
+          <!-- Opção B: html2pdf com conversão de imagens para base64 
+          
+    <button class="btn" type="button" onclick="exportarPdfComImagens()">📄 Exportar PDF (html2pdf)</button>      
+          -->
+          
         </div>
 
       </form>
@@ -163,232 +193,372 @@
     </main>
   </div>
 
-  <script>
-    // Helper: cria um elemento com atributos
-    function el(tag, attrs = {}, children = []) {
-      const e = document.createElement(tag);
-      for (const k in attrs) {
-        if (k === 'class') e.className = attrs[k];
-        else if (k === 'text') e.textContent = attrs[k];
-        else e.setAttribute(k, attrs[k]);
-      }
-      if (!Array.isArray(children)) children = [children];
-      children.forEach(c => { if (typeof c === 'string') e.appendChild(document.createTextNode(c)); else if (c) e.appendChild(c) });
-      return e;
-    }
+  <!-- PREVIEW INTEGRADO LOGO ABAIXO (VISÍVEL, usado para print e html2pdf) -->
+  <div id="previewArea" style="width:100%;max-width:920px;margin:0 auto;">
+    <!-- conteúdo injetado por gerarHTML() -->
+  </div>
 
-    // Preview mini da foto
-    const fotoInput = document.getElementById('fotoURL');
-    const miniPreview = document.getElementById('miniPreview');
-    fotoInput.addEventListener('input', () => {
-      const url = fotoInput.value.trim();
-      miniPreview.innerHTML = '';
-      if (url) {
-        const img = el('img', { src: url, alt: 'foto', style: 'width:84px;height:84px;object-fit:cover;border-radius:8px;border:1px solid #e1e4e8' });
-        miniPreview.appendChild(img);
-      }
-    });
+<script>
+/* ------------------------
+   Helpers
+------------------------ */
+function el(tag, attrs = {}, children = []) {
+  const e = document.createElement(tag);
+  for (const k in attrs) {
+    if (k === 'class') e.className = attrs[k];
+    else if (k === 'text') e.textContent = attrs[k];
+    else e.setAttribute(k, attrs[k]);
+  }
+  if (!Array.isArray(children)) children = [children];
+  children.forEach(c => { if (typeof c === 'string') e.appendChild(document.createTextNode(c)); else if (c) e.appendChild(c) });
+  return e;
+}
+function escapeHtml(str){ if(str===undefined||str===null) return ''; return String(str).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function escapeAttr(s){ return escapeHtml(s).replace(/"/g,'&quot;'); }
 
-    // Gerenciamento de listas (Experiências / Formações)
-    function adicionarExperiencia(data = {}) {
-      const container = document.getElementById('experienciasList');
-      const item = el('div', { class: 'list-item' });
-      const remove = el('button', { class: 'remove', title: 'Remover' }, '✕');
-      remove.onclick = () => { container.removeChild(item); };
-      item.appendChild(remove);
+/* ------------------------
+   Mini-preview da foto (UI)
+------------------------ */
+const fotoInput = document.getElementById('fotoURL');
+const miniPreview = document.getElementById('miniPreview');
+fotoInput.addEventListener('input', () => {
+  const url = fotoInput.value.trim();
+  miniPreview.innerHTML = '';
+  if (url) {
+    const img = el('img', { src: url, alt: 'foto', style: 'width:84px;height:84px;object-fit:cover;border-radius:8px;border:1px solid #e1e4e8' });
+    img.crossOrigin = 'anonymous';
+    miniPreview.appendChild(img);
+  }
+});
 
-      const cargo = el('input', { type: 'text', placeholder: 'Cargo / Posição', value: data.cargo || '' });
-      const empresa = el('input', { type: 'text', placeholder: 'Empresa', value: data.empresa || '' });
-      const periodo = el('input', { type: 'text', placeholder: 'Período (Ex: Jan 2020 — Dez 2022)', value: data.periodo || '' });
-      const desc = el('textarea', { placeholder: 'Principais responsabilidades / realizações' }, data.desc || '');
+/* ------------------------
+   Adicionar experiência/ formacao
+------------------------ */
+function adicionarExperiencia(data={}) {
+  const container = document.getElementById('experienciasList');
+  const item = el('div', { class:'list-item' });
+  const remove = el('button', { class:'remove', title:'Remover' }, '✕');
+  remove.onclick = ()=> container.removeChild(item);
+  const cargo = el('input', { type:'text', placeholder:'Cargo / Posição', value: data.cargo||'' });
+  const empresa = el('input', { type:'text', placeholder:'Empresa', value: data.empresa||'' });
+  const periodo = el('input', { type:'text', placeholder:'Período', value: data.periodo||'' });
+  const desc = el('textarea', { placeholder:'Principais responsabilidades / realizações' }, data.desc||'' );
+  [cargo,empresa,periodo,desc].forEach(n=> { n.style.marginBottom='8px'; n.style.width='100%'; n.style.padding='8px'; n.style.borderRadius='6px'; n.style.border='1px solid #e6ebf3'; });
+  item.append(remove, cargo, empresa, periodo, desc);
+  container.appendChild(item);
+}
+function adicionarFormacao(data={}) {
+  const container = document.getElementById('formacoesList');
+  const item = el('div', { class:'list-item' });
+  const remove = el('button', { class:'remove', title:'Remover' }, '✕');
+  remove.onclick = ()=> container.removeChild(item);
+  const curso = el('input', { type:'text', placeholder:'Curso / Título', value: data.curso||'' });
+  const inst = el('input', { type:'text', placeholder:'Instituição', value: data.instituicao||'' });
+  const periodo = el('input', { type:'text', placeholder:'Período', value: data.periodo||'' });
+  const desc = el('textarea', { placeholder:'Observações (opcional)' }, data.desc||'' );
+  [curso,inst,periodo,desc].forEach(n=> { n.style.marginBottom='8px'; n.style.width='100%'; n.style.padding='8px'; n.style.borderRadius='6px'; n.style.border='1px solid #e6ebf3'; });
+  item.append(remove, curso, inst, periodo, desc);
+  container.appendChild(item);
+}
+adicionarExperiencia(); adicionarFormacao();
 
-      [cargo, empresa, periodo, desc].forEach(n => { n.style.marginBottom = '8px'; n.style.width = '100%'; n.style.padding = '8px'; n.style.borderRadius = '6px'; n.style.border = '1px solid #e6ebf3' });
-      item.appendChild(cargo);
-      item.appendChild(empresa);
-      item.appendChild(periodo);
-      item.appendChild(desc);
-      container.appendChild(item);
-    }
+/* ------------------------
+   Gerar HTML e inserir preview integrado
+------------------------ */
+function gerarHTML(){
+  const nome = document.getElementById('nome').value.trim();
+  if(!nome){ alert('Preencha o nome.'); return; }
+  const cargo = document.getElementById('cargo').value.trim();
+  const idade = document.getElementById('idade').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const telefone = document.getElementById('telefone').value.trim();
+  const localizacao = document.getElementById('localizacao').value.trim();
+  const foto = document.getElementById('fotoURL').value.trim();
+  const resumo = document.getElementById('resumo').value.trim();
+  const habilidadesRaw = document.getElementById('habilidades').value.trim();
+  const habilidades = habilidadesRaw ? habilidadesRaw.split(',').map(s=>s.trim()).filter(Boolean) : [];
+  const linkedin = document.getElementById('linkedin').value.trim();
+  const site = document.getElementById('site').value.trim();
 
-    function adicionarFormacao(data = {}) {
-      const container = document.getElementById('formacoesList');
-      const item = el('div', { class: 'list-item' });
-      const remove = el('button', { class: 'remove', title: 'Remover' }, '✕');
-      remove.onclick = () => { container.removeChild(item); };
-      item.appendChild(remove);
+  const expNodes = Array.from(document.querySelectorAll('#experienciasList .list-item'));
+  const experiencias = expNodes.map(node=>{
+    const i = node.querySelectorAll('input, textarea');
+    return { cargo: i[0].value.trim(), empresa: i[1].value.trim(), periodo: i[2].value.trim(), desc: i[3].value.trim() };
+  }).filter(e=>e.cargo||e.empresa||e.desc);
 
-      const curso = el('input', { type: 'text', placeholder: 'Curso / Título', value: data.curso || '' });
-      const instituicao = el('input', { type: 'text', placeholder: 'Instituição', value: data.instituicao || '' });
-      const periodo = el('input', { type: 'text', placeholder: 'Período (Ex: 2017 — 2020)', value: data.periodo || '' });
-      const desc = el('textarea', { placeholder: 'Observações (opcional)' }, data.desc || '');
+  const formNodes = Array.from(document.querySelectorAll('#formacoesList .list-item'));
+  const formacoes = formNodes.map(node=>{
+    const i = node.querySelectorAll('input, textarea');
+    return { curso: i[0].value.trim(), inst: i[1].value.trim(), periodo: i[2].value.trim(), desc: i[3].value.trim() };
+  }).filter(f=>f.curso||f.inst);
 
-      [curso, instituicao, periodo, desc].forEach(n => { n.style.marginBottom = '8px'; n.style.width = '100%'; n.style.padding = '8px'; n.style.borderRadius = '6px'; n.style.border = '1px solid #e6ebf3' });
-      item.appendChild(curso);
-      item.appendChild(instituicao);
-      item.appendChild(periodo);
-      item.appendChild(desc);
-      container.appendChild(item);
-    }
-
-    // Start with one empty experience and one formation
-    adicionarExperiencia();
-    adicionarFormacao();
-
-    // Gera HTML final do currículo
-    function gerarHTML() {
-      // coletar campos
-      const nome = document.getElementById('nome').value.trim();
-      if (!nome) { alert('Preencha o nome.'); return; }
-      const cargo = document.getElementById('cargo').value.trim();
-      const idade = document.getElementById('idade').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const telefone = document.getElementById('telefone').value.trim();
-      const localizacao = document.getElementById('localizacao').value.trim();
-      const foto = document.getElementById('fotoURL').value.trim();
-      const resumo = document.getElementById('resumo').value.trim();
-      const habilidadesRaw = document.getElementById('habilidades').value.trim();
-      const habilidades = habilidadesRaw ? habilidadesRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
-      const linkedin = document.getElementById('linkedin').value.trim();
-      const site = document.getElementById('site').value.trim();
-
-      // experiências
-      const expNodes = Array.from(document.querySelectorAll('#experienciasList .list-item'));
-      const experiencias = expNodes.map(node => {
-        const inputs = node.querySelectorAll('input, textarea');
-        return {
-          cargo: (inputs[0] && inputs[0].value.trim()) || '',
-          empresa: (inputs[1] && inputs[1].value.trim()) || '',
-          periodo: (inputs[2] && inputs[2].value.trim()) || '',
-          desc: (inputs[3] && inputs[3].value.trim()) || ''
-        };
-      }).filter(e => e.cargo || e.empresa || e.desc);
-
-      // formações
-      const formNodes = Array.from(document.querySelectorAll('#formacoesList .list-item'));
-      const formacoes = formNodes.map(node => {
-        const inputs = node.querySelectorAll('input, textarea');
-        return {
-          curso: (inputs[0] && inputs[0].value.trim()) || '',
-          instituicao: (inputs[1] && inputs[1].value.trim()) || '',
-          periodo: (inputs[2] && inputs[2].value.trim()) || '',
-          desc: (inputs[3] && inputs[3].value.trim()) || ''
-        };
-      }).filter(f => f.curso || f.instituicao);
-
-      // montagem do HTML (simples e responsivo)
-      const html = `<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${escapeHtml(nome)} - Currículo</title>
-<style>
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Inter',sans-serif;background:#f4f6f8;margin:0;padding:24px}
-  .cv{max-width:900px;margin:0 auto;background:#fff;padding:28px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
-  .top{display:flex;gap:18px;align-items:center}
-  .foto{width:120px;height:120px;border-radius:8px;object-fit:cover;background:#e9eef6}
-  .meta h1{margin:0;font-size:22px}
-  .meta p{margin:6px 0;color:#555}
-  hr{border:none;border-top:1px solid #eef3f8;margin:18px 0}
-  .section{margin-bottom:14px}
-  .section h3{margin:0 0 10px 0;font-size:16px}
-  .item{margin-bottom:12px}
-  .skill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e6eefb;margin:6px 6px 0 0;font-size:13px;color:#222;background:#fbfdff}
-  a{color:#0b76ff;text-decoration:none}
-  @media (max-width:680px){ .top{flex-direction:column;align-items:flex-start} .foto{width:96px;height:96px} }
-</style>
-</head>
-<body>
-  <div class="cv">
-    <div class="top">
-      ${ foto ? `<img class="foto" src="${escapeAttr(foto)}" alt="${escapeHtml(nome)}">` : `<div class="foto" aria-hidden></div>` }
-      <div class="meta">
-        <h1>${escapeHtml(nome)}</h1>
-        <p>${escapeHtml(cargo || '')}${idade ? ' • ' + escapeHtml(idade + ' anos') : ''}${localizacao ? ' • ' + escapeHtml(localizacao) : ''}</p>
-        <p>${email ? '✉︎ ' + escapeHtml(email) : ''}${telefone ? ' • ☎︎ ' + escapeHtml(telefone) : ''}</p>
-        <p>${linkedin ? '<a href="'+escapeAttr(linkedin)+'" target="_blank">LinkedIn</a>' : ''}${site ? (linkedin ? ' • ' : '') + '<a href="'+escapeAttr(site)+'" target="_blank">Portfólio</a>' : ''}</p>
+  // monta fragmento .cv
+  const cvHTML = `
+  <div class="cv" style="max-width:900px;margin:20px auto;background:#fff;padding:28px;border-radius:12px;font-family:Arial,Helvetica,sans-serif;color:#111">
+    <div style="display:flex;gap:18px;align-items:center;">
+      ${ foto ? `<img src="${escapeAttr(foto)}" style="width:120px;height:120px;border-radius:8px;object-fit:cover" crossorigin="anonymous">` : `<div style="width:120px;height:120px;border-radius:8px;background:#eee"></div>` }
+      <div>
+        <h1 style="margin:0;font-size:24px">${escapeHtml(nome)}</h1>
+        <p style="margin:6px 0;color:#555">${escapeHtml(cargo||'')}</p>
+        <p style="margin:6px 0;color:#555">${idade?escapeHtml(idade+' anos'):''}${localizacao?(' • '+escapeHtml(localizacao)):''}</p>
+        <p style="margin:6px 0;color:#555">${email?('✉︎ '+escapeHtml(email)):''}${telefone?(' • ☎︎ '+escapeHtml(telefone)):''}</p>
       </div>
     </div>
 
-    <hr>
+    <hr style="border:none;border-top:1px solid #eef3f8;margin:18px 0">
 
-    ${ resumo ? `<div class="section"><h3>Resumo</h3><p>${escapeHtml(resumo)}</p></div>` : '' }
+    ${ resumo ? `<div style="margin-bottom:14px"><h3 style="margin:0 0 8px 0">Resumo</h3><p style="margin:0;color:#333">${escapeHtml(resumo)}</p></div>` : '' }
 
-    ${ experiencias.length ? `<div class="section"><h3>Experiência</h3>` + experiencias.map(e => `
-      <div class="item">
-        <strong>${escapeHtml(e.cargo || e.empresa)}</strong>
-        <div style="color:#666;font-size:13px">${escapeHtml(e.empresa)}${e.periodo ? ' • ' + escapeHtml(e.periodo) : ''}</div>
+    ${ experiencias.length ? `<div style="margin-bottom:14px"><h3 style="margin:0 0 8px 0">Experiência</h3>` + experiencias.map(e=>`
+      <div style="margin-bottom:12px">
+        <strong>${escapeHtml(e.cargo||e.empresa)}</strong>
+        <div style="color:#666;font-size:13px">${escapeHtml(e.empresa)}${e.periodo?(' • '+escapeHtml(e.periodo)) : ''}</div>
         ${ e.desc ? '<p style="margin-top:6px">'+escapeHtml(e.desc)+'</p>' : '' }
-      </div>`).join('') + `</div>` : '' }
+      </div>`).join('')+`</div>` : '' }
 
-    ${ formacoes.length ? `<div class="section"><h3>Formação</h3>` + formacoes.map(f => `
-      <div class="item">
-        <strong>${escapeHtml(f.curso || f.instituicao)}</strong>
-        <div style="color:#666;font-size:13px">${escapeHtml(f.instituicao)}${f.periodo ? ' • ' + escapeHtml(f.periodo) : ''}</div>
+    ${ formacoes.length ? `<div style="margin-bottom:14px"><h3 style="margin:0 0 8px 0">Formação</h3>` + formacoes.map(f=>`
+      <div style="margin-bottom:12px">
+        <strong>${escapeHtml(f.curso||f.inst)}</strong>
+        <div style="color:#666;font-size:13px">${escapeHtml(f.inst)}${f.periodo?(' • '+escapeHtml(f.periodo)) : ''}</div>
         ${ f.desc ? '<p style="margin-top:6px">'+escapeHtml(f.desc)+'</p>' : '' }
-      </div>`).join('') + `</div>` : '' }
+      </div>`).join('')+`</div>` : '' }
 
-    ${ habilidades.length ? `<div class="section"><h3>Habilidades</h3><div>` + habilidades.map(s => `<span class="skill">${escapeHtml(s)}</span>`).join('') + `</div></div>` : '' }
+    ${ habilidades.length ? `<div style="margin-bottom:14px"><h3 style="margin:0 0 8px 0">Habilidades</h3><div>` + habilidades.map(s=>`<span style="display:inline-block;padding:6px 10px;border-radius:6px;background:#eef;margin:3px;font-size:14px">${escapeHtml(s)}</span>`).join('') + `</div></div>` : '' }
 
   </div>
-</body>
-</html>`;
+  `;
 
-      document.getElementById('codigoGerado').value = html.trim();
-      // small audio feedback (opcional)
-      try { new Audio('https://files.catbox.moe/dlj35a.mp3').play().catch(()=>{}); } catch(e){}
-      // mostrar preview simples: nome + foto
-      const prevBox = document.getElementById('miniPreview');
-      prevBox.innerHTML = '';
-      const p = document.createElement('div');
-      p.innerHTML = '<strong>Preview:</strong><div>' + (foto ? `<img src="${escapeAttr(foto)}" style="width:140px;height:140px;object-fit:cover;border-radius:8px;margin-top:8px">` : '<div style="width:140px;height:140px;background:#eef2fb;border-radius:8px;margin-top:8px"></div>') + '<div style="margin-top:8px">'+escapeHtml(nome)+'</div></div>';
-      prevBox.appendChild(p);
+  // preencher textarea com full HTML (para copiar/exportar)
+  const fullHtml = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(nome)} - Currículo</title></head><body>${cvHTML}</body></html>`;
+  document.getElementById('codigoGerado').value = fullHtml.trim();
+
+  // injetar preview integrado (visível)
+  const previewArea = document.getElementById('previewArea');
+  previewArea.innerHTML = cvHTML;
+
+  // garantir que imagens dentro do preview tentem usar crossorigin
+  Array.from(previewArea.querySelectorAll('img')).forEach(img=>{
+    try { img.setAttribute('crossorigin','anonymous'); } catch(e){}
+  });
+
+  // mostrar mini preview da foto
+  const prevBox = document.getElementById('miniPreview');
+  prevBox.innerHTML = '';
+  if(foto){
+    const img = el('img',{src:foto,style:'width:140px;height:140px;object-fit:cover;border-radius:8px;margin-top:8px'});
+    img.crossOrigin = 'anonymous';
+    prevBox.appendChild(img);
+  } else {
+    prevBox.innerHTML = '<div style="width:140px;height:140px;background:#eef2fb;border-radius:8px;margin-top:8px"></div>';
+  }
+}
+
+/* ------------------------
+   Copiar código
+------------------------ */
+function copiarCodigo(){
+  const area = document.getElementById('codigoGerado');
+  if(!area.value.trim()){ alert('Gere o código primeiro!'); return; }
+  area.select();
+  document.execCommand('copy');
+  alert('Código copiado!');
+}
+
+/* ------------------------
+   Enviar WhatsApp
+------------------------ */
+function enviarWhatsapp(){
+  const codigo = document.getElementById('codigoGerado').value;
+  if(!codigo.trim()){ alert('Gere o código antes de enviar.'); return; }
+  const numero = '55991639092';
+  const texto = 'Segue o HTML do currículo:\n\n' + codigo;
+  const url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto);
+  window.open(url,'_blank');
+}
+
+/* ------------------------
+   Imprimir nativo (opção A)
+   - Esconde controles via CSS @media print
+------------------------ */
+function imprimirCurriculo(){
+  // garante que o preview esteja gerado
+  const previewArea = document.getElementById('previewArea');
+  if(!previewArea.innerHTML.trim()){ if(!confirm('Preview não gerado. Gerar agora?')) return; gerarHTML(); }
+  // abre print dialog
+  window.print();
+}
+
+/* ------------------------
+   Converter <img> para dataURL (Base64) - tenta 2 estratégias:
+   1) criar Image() com crossorigin='anonymous' e desenhar em canvas
+   2) se falhar, tenta fetch do blob e converter (pode falhar em file://)
+   Se tudo falhar, coloca placeholder (não bloqueia)
+------------------------ */
+function imgToDataURL(imgEl, timeoutMs = 5000){
+  return new Promise((resolve) => {
+    const src = imgEl.src;
+    if(!src){ resolve(null); return; }
+
+    // Strategy 1: load via new Image with crossorigin
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    let settled = false;
+    const finish = (data) => { if(!settled){ settled=true; resolve(data); } };
+
+    const timer = setTimeout(()=> finish(null), timeoutMs);
+
+    img.onload = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth || img.width;
+        canvas.height = img.naturalHeight || img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img,0,0);
+        const dataURL = canvas.toDataURL('image/jpeg', 0.92);
+        clearTimeout(timer);
+        finish(dataURL);
+      } catch(e){
+        // drawing failed (CORS)
+        // fall back to fetch strategy
+        clearTimeout(timer);
+        fetch(src, { mode: 'cors' }).then(r => r.blob()).then(blob => {
+          try {
+            const reader = new FileReader();
+            reader.onloadend = () => finish(reader.result);
+            reader.onerror = () => finish(null);
+            reader.readAsDataURL(blob);
+          } catch(err){
+            finish(null);
+          }
+        }).catch(()=> finish(null));
+      }
+    };
+
+    img.onerror = () => {
+      clearTimeout(timer);
+      // fallback: try fetch
+      fetch(src, { mode: 'cors' }).then(r => r.blob()).then(blob => {
+        try {
+          const reader = new FileReader();
+          reader.onloadend = () => finish(reader.result);
+          reader.onerror = () => finish(null);
+          reader.readAsDataURL(blob);
+        } catch(err){ finish(null); }
+      }).catch(()=> finish(null));
+    };
+
+    // start loading
+    img.src = src;
+    // if already cached and complete, onload will fire; else it will attempt
+  });
+}
+
+/* ------------------------
+   Exportar via html2pdf (opção B)
+   - converte imagens para base64 antes de gerar
+------------------------ */
+async function exportarPdfComImagens(){
+  const previewArea = document.getElementById('previewArea');
+  if(!previewArea.innerHTML.trim()){ alert('Gere o currículo primeiro (Gerar Página HTML).'); return; }
+
+  // find .cv element (our render target)
+  const conteudo = previewArea.querySelector('.cv');
+  if(!conteudo){ alert('Conteúdo do currículo não encontrado. Gere novamente.'); return; }
+
+  // clonamos o conteúdo para não mexer no DOM visível
+  const clone = conteudo.cloneNode(true);
+
+  // obter todas as imagens do clone
+  const imgs = Array.from(clone.querySelectorAll('img'));
+
+  // converte imagens uma a uma
+  for(let i=0;i<imgs.length;i++){
+    const img = imgs[i];
+    try {
+      const dataURL = await imgToDataURL(img, 6000);
+      if(dataURL){
+        img.setAttribute('src', dataURL);
+        // remove crossorigin se houver
+        try { img.removeAttribute('crossorigin'); } catch(e){}
+      } else {
+        // falhou: substitui por placeholder para evitar canvas taint
+        const placeholder = document.createElement('div');
+        placeholder.className = 'img-placeholder';
+        img.parentNode.replaceChild(placeholder, img);
+      }
+    } catch(err){
+      // em qualquer erro, substitui por placeholder
+      const placeholder = document.createElement('div');
+      placeholder.className = 'img-placeholder';
+      img.parentNode.replaceChild(placeholder, img);
     }
+  }
 
-    // Copiar para clipboard
-    function copiarCodigo() {
-      const area = document.getElementById('codigoGerado');
-      if (!area.value.trim()) { alert('Gere o código primeiro.'); return; }
-      area.select();
-      document.execCommand('copy');
-      try { new Audio('https://files.catbox.moe/dlj35a.mp3').play().catch(()=>{}); } catch(e){}
-      alert('Código copiado para a área de transferência.');
-    }
+  // espera pequenas animações/carregamentos
+  await new Promise(r=>setTimeout(r, 250));
 
-    // Enviar pelo WhatsApp (usa encodeURIComponent)
-    function enviarWhatsapp() {
-      const codigo = document.getElementById('codigoGerado').value;
-      if (!codigo.trim()) { alert('Gere o código antes de enviar.'); return; }
-      const numero = '55991639092'; // você pode alterar para o número desejado
-      const texto = 'Segue o HTML do currículo:\\n\\n' + codigo;
-      const url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto);
-      window.open(url, '_blank');
-    }
+  // opções html2pdf
+  const opt = {
+    margin: 10,
+    filename: 'curriculo.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, allowTaint: false },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
 
-    // Resetar formulário
-    function resetar() {
-      if (!confirm('Limpar todos os campos?')) return;
-      document.getElementById('cvForm').reset();
-      document.getElementById('codigoGerado').value = '';
-      document.getElementById('miniPreview').innerHTML = '';
-      // limpar listas
-      document.getElementById('experienciasList').innerHTML = '';
-      document.getElementById('formacoesList').innerHTML = '';
-      adicionarExperiencia();
-      adicionarFormacao();
-    }
+  try {
+    // gera PDF a partir do clone (que contém imagens em base64 ou placeholders)
+    await html2pdf().set(opt).from(clone).save();
+  } catch(err){
+    console.error('Erro ao gerar PDF via html2pdf:', err);
+    alert('Erro ao gerar PDF (veja console). Tente a opção de impressão (Salvar como PDF).');
+  }
+}
 
-    // Escapa HTML para evitar quebra no HTML gerado
-    function escapeHtml(str){ if(!str && str !== 0) return ''; return String(str).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
-    function escapeAttr(s){ return escapeHtml(s).replace(/"/g,'&quot;'); }
+/* ------------------------
+   Espera imagens carregarem - util
+------------------------ */
+function waitForImages(container, timeoutMs = 5000){
+  const imgs = Array.from(container.querySelectorAll('img'));
+  if(imgs.length===0) return Promise.resolve();
+  return new Promise(resolve=>{
+    let loaded = 0, called=false;
+    const check = ()=>{ if(loaded>=imgs.length && !called){ called=true; resolve(); } };
+    imgs.forEach(img=>{
+      if(img.complete && img.naturalWidth!==0){ loaded++; check(); return; }
+      img.addEventListener('load', ()=>{ loaded++; check(); });
+      img.addEventListener('error', ()=>{ loaded++; check(); });
+    });
+    setTimeout(()=>{ if(!called){ called=true; resolve(); } }, timeoutMs);
+  });
+}
 
-    // Expor funções no escopo global (necessário para onclick inline)
-    window.adicionarExperiencia = adicionarExperiencia;
-    window.adicionarFormacao = adicionarFormacao;
-    window.gerarHTML = gerarHTML;
-    window.copiarCodigo = copiarCodigo;
-    window.enviarWhatsapp = enviarWhatsapp;
-    window.resetar = resetar;
-  </script>
+/* ------------------------
+   Resetar (limpar)
+------------------------ */
+function resetar(){
+  if(!confirm('Limpar todos os campos?')) return;
+  document.getElementById('cvForm').reset();
+  document.getElementById('codigoGerado').value = '';
+  document.getElementById('miniPreview').innerHTML = '';
+  document.getElementById('previewArea').innerHTML = '';
+  document.getElementById('experienciasList').innerHTML = '';
+  document.getElementById('formacoesList').innerHTML = '';
+  adicionarExperiencia(); adicionarFormacao();
+}
+
+/* ------------------------
+   Exportar funções para escopo global
+------------------------ */
+window.adicionarExperiencia = adicionarExperiencia;
+window.adicionarFormacao = adicionarFormacao;
+window.gerarHTML = gerarHTML;
+window.copiarCodigo = copiarCodigo;
+window.enviarWhatsapp = enviarWhatsapp;
+window.imprimirCurriculo = imprimirCurriculo;
+window.exportarPdfComImagens = exportarPdfComImagens;
+window.resetar = resetar;
+
+</script>
 </body>
 </html>

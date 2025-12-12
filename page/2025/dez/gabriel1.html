@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>José Gabriel de Abreu dos Santos - Currículo</title>
+
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Inter',sans-serif;background:#f4f6f8;margin:0;padding:24px}
+  .cv{max-width:900px;margin:0 auto;background:#fff;padding:28px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
+  .top{display:flex;gap:18px;align-items:center}
+  .foto{width:120px;height:120px;border-radius:8px;object-fit:cover;background:#e9eef6}
+  .meta h1{margin:0;font-size:22px}
+  .meta p{margin:6px 0;color:#555}
+  hr{border:none;border-top:1px solid #eef3f8;margin:18px 0}
+  .section{margin-bottom:14px}
+  .section h3{margin:0 0 10px 0;font-size:16px}
+  .item{margin-bottom:12px}
+  .skill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e6eefb;margin:6px 6px 0 0;font-size:13px;color:#222;background:#fbfdff}
+  a{color:#0b76ff;text-decoration:none}
+
+  /* botão */
+  #btnPDF{
+      display:inline-block;
+      margin-bottom:20px;
+      padding:10px 16px;
+      background:#0b76ff;
+      color:white;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:14px;
+  }
+  #btnPDF:hover{
+      background:#095fcc;
+  }
+
+  /* Modo impressão — remove botão */
+  @media print{
+    #btnPDF{ display:none !important; }
+    body{ background:#fff; padding:0; }
+    .cv{ box-shadow:none; border-radius:0; }
+  }
+
+  @media (max-width:680px){
+      .top{flex-direction:column;align-items:flex-start}
+      .foto{width:96px;height:96px}
+  }
+</style>
+
+<script>
+  function gerarPDF(){
+    window.print(); // O navegador gera o PDF automaticamente
+  }
+</script>
+
+</head>
+<body>
+
+<button id="btnPDF" onclick="gerarPDF()">📄 Baixar PDF</button>
+
+<div class="cv">
+  <div class="top">
+    <img class="foto" src="https://files.catbox.moe/pdm2yn.jpg" alt="José Gabriel de Abreu dos Santos">
+    <div class="meta">
+      <h1>José Gabriel de Abreu dos Santos</h1>
+      <p>• 22 anos • Ijuí, RS, Brasil</p>
+      <p>✉︎ guilhermekarvalho294@gmail.com • ☎︎ 5555991639092</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h3>Resumo</h3>
+    <p>Motivado, ético, facilidade em aprender e trabalhar em equipe. Desejo colaborar nesse ambiente de trabalho, em qualquer setor que a empresa estiver necessitando, onde possa colocar em prática meus conhecimentos em favor da empresa, objetivando sempre o benefício e o crescimento profissional.</p>
+  </div>
+
+  <div class="section">
+    <h3>Experiência</h3>
+    <div class="item">
+      <strong>Soldado EV</strong>
+      <div style="color:#666;font-size:13px">Exército Brasileiro • Março 2022 - Janeiro 2023</div>
+      <p style="margin-top:6px">Pelotão de Obras (PO). Pinturas e construção.</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
