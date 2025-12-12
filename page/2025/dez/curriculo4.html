@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gerador de Currículo — Corrigido PDF</title>
+
+  <!-- Biblioteca html2pdf -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+    *{box-sizing:border-box}
+    body{
+      font-family:'Inter',sans-serif;
+      background:#f4f6f8;
+      margin:0;
+      display:flex;
+      justify-content:center;
+      padding:30px 16px;
+      color:#111;
+    }
+    .container{
+      width:100%;
+      max-width:900px;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.08);
+      padding:22px;
+    }
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:12px;
+    }
+    header h1{font-size:20px;margin:0}
+    .controls button{
+      background:#111;color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer;margin-left:8px;
+    }
+    form{display:flex;flex-direction:column;gap:12px}
+    label{font-weight:600;font-size:14px}
+    input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea, select{
+      padding:10px;border:1px solid #d8dbe0;border-radius:8px;width:100%;
+    }
+    textarea{min-height:90px; resize:vertical}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    .small{flex:0 0 140px}
+    .foto-container{display:flex;gap:10px;align-items:center}
+    .foto-container img{width:84px;height:84px;object-fit:cover;border-radius:8px;border:1px solid #e1e4e8}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .btn{background:#0b76ff;color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer}
+    .btn.ghost{background:#f3f5f8;color:#111;border:1px solid #e1e4e8}
+    .list-block{background:#fbfdff;border:1px solid #eef3ff;padding:12px;border-radius:8px}
+    .list-item{background:#fff;border:1px solid #e9eef6;padding:10px;border-radius:8px;margin-bottom:8px;position:relative}
+    .list-item .remove{position:absolute;right:10px;top:10px;background:transparent;border:none;color:#c33;cursor:pointer;font-weight:700}
+    .preview{margin-top:8px;text-align:center}
+    #codigoGerado{width:100%;height:320px;background:#0f0f0f;color:#0f0;padding:12px;border-radius:8px;font-family:monospace;resize:vertical}
+    @media (max-width:640px){ .row{flex-direction:column} .small{flex:1} }
+
+    /* previewReal fica visível para o renderizador mas fora da tela */
+    #previewReal {
+      position: fixed;
+      left: -9999px;
+      top: 0;
+      width: 800px; /* largura usada para gerar PDF */
+      background: white;
+      padding: 0;
+      margin: 0;
+      z-index: 9999;
+      /* important: keep visible to rendering engine (not display:none) */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Gerador de Currículo (CV)</h1>
+      <div class="controls">
+        <button class="btn ghost" type="button" onclick="resetar()">↺ Limpar</button>
+        <button class="btn" type="button" onclick="gerarHTML()">Gerar HTML</button>
+      </div>
+    </header>
+
+    <main>
+      <form id="cvForm" onsubmit="return false;">
+        <div class="row">
+          <div class="col">
+            <label for="nome">Nome completo</label>
+            <input id="nome" type="text" placeholder="Ex: Maria da Silva" required>
+          </div>
+          <div class="small">
+            <label for="idade">Idade</label>
+            <input id="idade" type="number" min="0" placeholder="Ex: 29">
+          </div>
+        </div>
+
+        <label for="cargo">Título / Cargo desejado</label>
+        <input id="cargo" type="text" placeholder="Ex: Desenvolvedor Front-end">
+
+        <div class="row">
+          <div class="col">
+            <label for="email">E-mail</label>
+            <input id="email" type="email" placeholder="seu@exemplo.com">
+          </div>
+          <div class="col">
+            <label for="telefone">Telefone</label>
+            <input id="telefone" type="tel" placeholder="+55 11 9xxxx-xxxx">
+          </div>
+        </div>
+
+        <label for="localizacao">Localização (cidade / estado)</label>
+        <input id="localizacao" type="text" placeholder="São Paulo, SP">
+
+        <label for="fotoURL">Link da foto (opcional)</label>
+        <div class="foto-container">
+          <input id="fotoURL" type="text" placeholder="https://files.catbox.moe/xxxxx.jpg">
+          <a href="https://catbox.moe/" target="_blank" style="background:#0078ff;color:#fff;padding:10px;border-radius:8px;text-decoration:none">Enviar no Catbox</a>
+          <div class="preview" id="miniPreview"></div>
+        </div>
+
+        <label for="resumo">Resumo profissional (breve)</label>
+        <textarea id="resumo" placeholder="Resumo breve sobre experiência e objetivo"></textarea>
+
+        <!-- EXPERIÊNCIAS -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <label>Experiências profissionais</label>
+            <div>
+              <button class="btn ghost" type="button" onclick="adicionarExperiencia()">+ adicionar</button>
+            </div>
+          </div>
+          <div id="experienciasList" class="list-block" style="margin-top:8px"></div>
+        </div>
+
+        <!-- FORMAÇÕES -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <label>Formação / Cursos</label>
+            <div>
+              <button class="btn ghost" type="button" onclick="adicionarFormacao()">+ adicionar</button>
+            </div>
+          </div>
+          <div id="formacoesList" class="list-block" style="margin-top:8px"></div>
+        </div>
+
+        <!-- HABILIDADES -->
+        <div>
+          <label>Habilidades (separe por vírgula)</label>
+          <input id="habilidades" type="text" placeholder="JavaScript, HTML, CSS, React">
+        </div>
+
+        <!-- LINKS -->
+        <div class="row">
+          <div class="col">
+            <label for="linkedin">LinkedIn</label>
+            <input id="linkedin" type="text" placeholder="https://linkedin.com/in/seu-usuario">
+          </div>
+          <div class="col">
+            <label for="site">Site / Portfólio</label>
+            <input id="site" type="text" placeholder="https://seusite.com">
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="button" onclick="gerarHTML()">Gerar Página HTML</button>
+          <button class="btn ghost" type="button" onclick="copiarCodigo()">📋 Copiar Código</button>
+          <button class="btn ghost" type="button" onclick="enviarWhatsapp()">🖥️ Enviar pelo WhatsApp</button>
+          <button class="btn" type="button" onclick="exportarPDF()">📄 Exportar PDF</button>
+        </div>
+
+      </form>
+
+      <div style="margin-top:14px">
+        <label for="codigoGerado">Código HTML gerado</label>
+        <textarea id="codigoGerado" readonly placeholder="O código HTML aparecerá aqui..."></textarea>
+      </div>
+    </main>
+  </div>
+
+  <!-- CONTÊINER REAL PARA RENDERIZAR O CURRÍCULO (usado pelo html2pdf) -->
+  <div id="previewReal" aria-hidden="true"></div>
+
+  <script>
+    // ---------- helpers ----------
+    function el(tag, attrs = {}, children = []) {
+      const e = document.createElement(tag);
+      for (const k in attrs) {
+        if (k === 'class') e.className = attrs[k];
+        else if (k === 'text') e.textContent = attrs[k];
+        else e.setAttribute(k, attrs[k]);
+      }
+      if (!Array.isArray(children)) children = [children];
+      children.forEach(c => { if (typeof c === 'string') e.appendChild(document.createTextNode(c)); else if (c) e.appendChild(c) });
+      return e;
+    }
+
+    function escapeHtml(str){ if(str===undefined || str===null) return ''; return String(str).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+    function escapeAttr(s){ return escapeHtml(s).replace(/"/g,'&quot;'); }
+
+    // ---------- preview da foto ----------
+    const fotoInput = document.getElementById('fotoURL');
+    const miniPreview = document.getElementById('miniPreview');
+    fotoInput.addEventListener('input', () => {
+      const url = fotoInput.value.trim();
+      miniPreview.innerHTML = '';
+      if (url) {
+        const img = el('img', { src: url, alt: 'foto', style: 'width:84px;height:84px;object-fit:cover;border-radius:8px;border:1px solid #e1e4e8' });
+        // tentar definir crossorigin para tentar usar CORS (se o host permitir)
+        img.crossOrigin = 'anonymous';
+        miniPreview.appendChild(img);
+      }
+    });
+
+    // ---------- adicionar listas ----------
+    function adicionarExperiencia(data = {}) {
+      const container = document.getElementById('experienciasList');
+      const item = el('div', { class: 'list-item' });
+      const remove = el('button', { class: 'remove', title: 'Remover' }, '✕');
+      remove.onclick = () => { container.removeChild(item); };
+      item.appendChild(remove);
+
+      const cargo = el('input', { type: 'text', placeholder: 'Cargo / Posição', value: data.cargo || '' });
+      const empresa = el('input', { type: 'text', placeholder: 'Empresa', value: data.empresa || '' });
+      const periodo = el('input', { type: 'text', placeholder: 'Período (Ex: Jan 2020 — Dez 2022)', value: data.periodo || '' });
+      const desc = el('textarea', { placeholder: 'Principais responsabilidades / realizações' }, data.desc || '');
+
+      [cargo, empresa, periodo, desc].forEach(n => { n.style.marginBottom = '8px'; n.style.width = '100%'; n.style.padding = '8px'; n.style.borderRadius = '6px'; n.style.border = '1px solid #e6ebf3' });
+      item.appendChild(cargo);
+      item.appendChild(empresa);
+      item.appendChild(periodo);
+      item.appendChild(desc);
+      container.appendChild(item);
+    }
+
+    function adicionarFormacao(data = {}) {
+      const container = document.getElementById('formacoesList');
+      const item = el('div', { class: 'list-item' });
+      const remove = el('button', { class: 'remove', title: 'Remover' }, '✕');
+      remove.onclick = () => { container.removeChild(item); };
+      item.appendChild(remove);
+
+      const curso = el('input', { type: 'text', placeholder: 'Curso / Título', value: data.curso || '' });
+      const instituicao = el('input', { type: 'text', placeholder: 'Instituição', value: data.instituicao || '' });
+      const periodo = el('input', { type: 'text', placeholder: 'Período (Ex: 2017 — 2020)', value: data.periodo || '' });
+      const desc = el('textarea', { placeholder: 'Observações (opcional)' }, data.desc || '');
+
+      [curso, instituicao, periodo, desc].forEach(n => { n.style.marginBottom = '8px'; n.style.width = '100%'; n.style.padding = '8px'; n.style.borderRadius = '6px'; n.style.border = '1px solid #e6ebf3' });
+      item.appendChild(curso);
+      item.appendChild(instituicao);
+      item.appendChild(periodo);
+      item.appendChild(desc);
+      container.appendChild(item);
+    }
+
+    adicionarExperiencia();
+    adicionarFormacao();
+
+    // ---------- gerar HTML (e injetar previewReal corretamente) ----------
+    function gerarHTML() {
+      const nome = document.getElementById('nome').value.trim();
+      if (!nome) { alert('Preencha o nome.'); return; }
+      const cargo = document.getElementById('cargo').value.trim();
+      const idade = document.getElementById('idade').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const localizacao = document.getElementById('localizacao').value.trim();
+      const foto = document.getElementById('fotoURL').value.trim();
+      const resumo = document.getElementById('resumo').value.trim();
+      const habilidadesRaw = document.getElementById('habilidades').value.trim();
+      const habilidades = habilidadesRaw ? habilidadesRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+      const linkedin = document.getElementById('linkedin').value.trim();
+      const site = document.getElementById('site').value.trim();
+
+      const expNodes = Array.from(document.querySelectorAll('#experienciasList .list-item'));
+      const experiencias = expNodes.map(node => {
+        const inputs = node.querySelectorAll('input, textarea');
+        return {
+          cargo: (inputs[0] && inputs[0].value.trim()) || '',
+          empresa: (inputs[1] && inputs[1].value.trim()) || '',
+          periodo: (inputs[2] && inputs[2].value.trim()) || '',
+          desc: (inputs[3] && inputs[3].value.trim()) || ''
+        };
+      }).filter(e => e.cargo || e.empresa || e.desc);
+
+      const formNodes = Array.from(document.querySelectorAll('#formacoesList .list-item'));
+      const formacoes = formNodes.map(node => {
+        const inputs = node.querySelectorAll('input, textarea');
+        return {
+          curso: (inputs[0] && inputs[0].value.trim()) || '',
+          instituicao: (inputs[1] && inputs[1].value.trim()) || '',
+          periodo: (inputs[2] && inputs[2].value.trim()) || '',
+          desc: (inputs[3] && inputs[3].value.trim()) || ''
+        };
+      }).filter(f => f.curso || f.instituicao);
+
+      // montar apenas o conteúdo da .cv (fragmento) — não um documento inteiro
+      const cvHTML = `
+<div class="cv" style="max-width:900px;margin:0 auto;background:#fff;padding:28px;border-radius:12px;font-family:Arial,Helvetica,sans-serif;color:#111">
+  <div style="display:flex;gap:18px;align-items:center;">
+    ${ foto ? `<img src="${escapeAttr(foto)}" style="width:120px;height:120px;border-radius:8px;object-fit:cover" crossorigin="anonymous">` : `<div style="width:120px;height:120px;border-radius:8px;background:#eee"></div>` }
+    <div>
+      <h1 style="margin:0;font-size:24px">${escapeHtml(nome)}</h1>
+      <p style="margin:6px 0;color:#555">${escapeHtml(cargo || '')}${idade ? ' • ' + escapeHtml(idade + ' anos') : ''}${localizacao ? ' • ' + escapeHtml(localizacao) : ''}</p>
+      <p style="margin:6px 0;color:#555">${email ? '✉︎ ' + escapeHtml(email) : ''}${telefone ? ' • ☎︎ ' + escapeHtml(telefone) : ''}</p>
+      <p style="margin:6px 0;color:#555">${linkedin ? '<a href="'+escapeAttr(linkedin)+'" target="_blank">'+escapeHtml(linkedin)+'</a>' : ''}${site ? (linkedin ? ' • ' : '') + '<a href="'+escapeAttr(site)+'" target="_blank">'+escapeHtml(site)+'</a>' : ''}</p>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid #eef3f8;margin:18px 0">
+
+  ${ resumo ? `<div style="margin-bottom:14px"><h3 style="margin:0 0 8px 0">Resumo</h3><p style="margin:0;color:#333">${escapeHtml(resumo)}</p></div>` : '' }
+
+  ${ experiencias.length ? `<div style="margin-bottom:14px"><h3 style="margin:0 0 8px 0">Experiência</h3>` + experiencias.map(e => `
+    <div style="margin-bottom:12px">
+      <strong>${escapeHtml(e.cargo || e.empresa)}</strong>
+      <div style="color:#666;font-size:13px">${escapeHtml(e.empresa)}${e.periodo ? ' • ' + escapeHtml(e.periodo) : ''}</div>
+      ${ e.desc ? '<p style="margin-top:6px">'+escapeHtml(e.desc)+'</p>' : '' }
+    </div>
+  `).join('') + `</div>` : '' }
+
+  ${ formacoes.length ? `<div style="margin-bottom:14px"><h3 style="margin:0 0 8px 0">Formação</h3>` + formacoes.map(f => `
+    <div style="margin-bottom:12px">
+      <strong>${escapeHtml(f.curso || f.instituicao)}</strong>
+      <div style="color:#666;font-size:13px">${escapeHtml(f.instituicao)}${f.periodo ? ' • ' + escapeHtml(f.periodo) : ''}</div>
+      ${ f.desc ? '<p style="margin-top:6px">'+escapeHtml(f.desc)+'</p>' : '' }
+    </div>
+  `).join('') + `</div>` : '' }
+
+  ${ habilidades.length ? `<div style="margin-bottom:14px"><h3 style="margin:0 0 8px 0">Habilidades</h3><div>` + habilidades.map(s => `<span style="display:inline-block;padding:6px 10px;border-radius:6px;background:#eef;margin:3px;font-size:14px">${escapeHtml(s)}</span>`).join('') + `</div></div>` : '' }
+
+</div>
+`;
+
+      // preencher textarea com o HTML completo (para salvar/copiar): aqui crio um documento completo
+      const fullHtml = `<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(nome)} - Currículo</title></head>
+<body>${cvHTML}</body></html>`;
+      document.getElementById('codigoGerado').value = fullHtml.trim();
+
+      // INJETAR o fragmento real no previewReal (IMPORTANTE: não usar display:none)
+      const previewReal = document.getElementById('previewReal');
+      previewReal.innerHTML = ''; // limpa
+      // adiciona um container que html2pdf irá pegar
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = cvHTML;
+      previewReal.appendChild(wrapper);
+
+      // forçar que imagens tentem usar crossorigin (se houver)
+      Array.from(previewReal.querySelectorAll('img')).forEach(img => {
+        try { img.setAttribute('crossorigin', 'anonymous'); } catch(e) {}
+      });
+
+      // mostrar mini preview pequeno na UI principal
+      const prevBox = document.getElementById('miniPreview');
+      prevBox.innerHTML = '';
+      const p = document.createElement('div');
+      p.innerHTML = '<strong>Preview:</strong><div>' + (foto ? `<img src="${escapeAttr(foto)}" style="width:140px;height:140px;object-fit:cover;border-radius:8px;margin-top:8px">` : '<div style="width:140px;height:140px;background:#eef2fb;border-radius:8px;margin-top:8px"></div>') + '<div style="margin-top:8px">'+escapeHtml(nome)+'</div></div>';
+      prevBox.appendChild(p);
+    }
+
+    // ---------- copiar codigo ----------
+    function copiarCodigo() {
+      const area = document.getElementById('codigoGerado');
+      if (!area.value.trim()) { alert('Gere o código primeiro.'); return; }
+      area.select();
+      document.execCommand('copy');
+      alert('Código copiado!');
+    }
+
+    // ---------- enviar whatsapp ----------
+    function enviarWhatsapp() {
+      const codigo = document.getElementById('codigoGerado').value;
+      if (!codigo.trim()) { alert('Gere o código antes de enviar.'); return; }
+      const numero = '55991639092';
+      const texto = 'Segue o HTML do currículo:\n\n' + codigo;
+      const url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto);
+      window.open(url, '_blank');
+    }
+
+    // ---------- exportar PDF (espera imagens carregarem) ----------
+    function waitForImages(container, timeoutMs = 5000) {
+      const imgs = Array.from(container.querySelectorAll('img'));
+      if (imgs.length === 0) return Promise.resolve();
+      return new Promise(resolve => {
+        let loaded = 0;
+        let called = false;
+        const checkDone = () => {
+          if (loaded >= imgs.length && !called) { called = true; resolve(); }
+        };
+        imgs.forEach(img => {
+          if (img.complete && img.naturalWidth !== 0) { loaded++; checkDone(); return; }
+          img.addEventListener('load', () => { loaded++; checkDone(); });
+          img.addEventListener('error', () => { loaded++; checkDone(); });
+        });
+        // fallback timeout
+        setTimeout(() => { if (!called) { called = true; resolve(); } }, timeoutMs);
+      });
+    }
+
+    async function exportarPDF() {
+      const previewReal = document.getElementById('previewReal');
+      if (!previewReal || !previewReal.innerHTML.trim()) {
+        alert('Gere o HTML primeiro (clique "Gerar Página HTML").');
+        return;
+      }
+
+      // encontrar o container .cv dentro de previewReal
+      const conteudo = previewReal.querySelector('.cv');
+      if (!conteudo) { alert('Conteúdo do currículo não encontrado. Gere novamente.'); return; }
+
+      // espera imagens carregarem (ou timeout)
+      await waitForImages(previewReal, 6000);
+
+      // opções robustas para html2pdf
+      const opt = {
+        margin: 10,
+        filename: 'curriculo.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, allowTaint: false },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      try {
+        // desde que conteudo esteja em DOM e visível ao renderizador (mesmo off-screen), isso deve funcionar
+        await html2pdf().set(opt).from(conteudo).save();
+      } catch (err) {
+        console.error('Erro ao gerar PDF:', err);
+        alert('Ocorreu um erro ao gerar o PDF. Veja o console para detalhes.');
+      }
+    }
+
+    // ---------- reset ----------
+    function resetar() {
+      if (!confirm('Limpar todos os campos?')) return;
+      document.getElementById('cvForm').reset();
+      document.getElementById('codigoGerado').value = '';
+      document.getElementById('miniPreview').innerHTML = '';
+      document.getElementById('previewReal').innerHTML = '';
+      document.getElementById('experienciasList').innerHTML = '';
+      document.getElementById('formacoesList').innerHTML = '';
+      adicionarExperiencia();
+      adicionarFormacao();
+    }
+
+    // exportar funções para o escopo global (onclick inline)
+    window.adicionarExperiencia = adicionarExperiencia;
+    window.adicionarFormacao = adicionarFormacao;
+    window.gerarHTML = gerarHTML;
+    window.copiarCodigo = copiarCodigo;
+    window.enviarWhatsapp = enviarWhatsapp;
+    window.exportarPDF = exportarPDF;
+    window.resetar = resetar;
+
+  </script>
+</body>
+</html>

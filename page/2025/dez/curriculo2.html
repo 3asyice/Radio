@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Exportador de Sonhos</title>
+
+<!-- =============================
+     ESTILO BLACK MIRROR
+   ============================= -->
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background: #0b0b0b;
+    color: #e6e6e6;
+  }
+
+  header {
+    background: #0e0e0e;
+    padding: 25px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #222;
+  }
+
+  .container {
+    max-width: 920px;
+    margin: 35px auto;
+    padding: 25px;
+    background: #141414;
+    border-radius: 14px;
+    border: 1px solid #222;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.05);
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  textarea {
+    width: 100%;
+    height: 300px;
+    background: #1a1a1a;
+    color: #ddd;
+    border: 1px solid #333;
+    padding: 15px;
+    font-size: 16px;
+    outline: none;
+    border-radius: 10px;
+    resize: vertical;
+  }
+
+  .botoes {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+  }
+
+  button {
+    flex: 1;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+
+  .btn-html {
+    background: #242424;
+    color: #e9e9e9;
+  }
+  .btn-html:hover {
+    background: #333;
+  }
+
+  .btn-pdf {
+    background: #9c0606;
+    color: white;
+  }
+  .btn-pdf:hover {
+    background: #c00;
+  }
+</style>
+
+<!-- Biblioteca PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+</head>
+<body>
+
+<header>Exportador de Sonhos</header>
+
+<div class="container">
+  <h2>Conteúdo para Exportação</h2>
+  <p>Digite abaixo o texto que deseja exportar como <b>HTML</b> ou <b>PDF</b>:</p>
+
+  <textarea id="conteudoTexto" placeholder="Digite aqui..."></textarea>
+
+  <!-- DIV oculta usada somente para gerar PDF -->
+  <div id="conteudo" style="display:none;"></div>
+
+  <div class="botoes">
+    <button id="exportarHTML" class="btn-html">Exportar como HTML</button>
+    <button id="exportarPDF" class="btn-pdf">Exportar como PDF</button>
+  </div>
+</div>
+
+<!-- =============================
+     JAVASCRIPT DO SISTEMA
+   ============================= -->
+<script>
+
+/* ==========================================
+   EXPORTA COMO HTML
+   ========================================== */
+document.getElementById("exportarHTML").onclick = () => {
+  const texto = document.getElementById("conteudoTexto").value;
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Documento Exportado</title>
+</head>
+<body>
+<pre style="font-size:16px; white-space:pre-wrap;">${texto.replace(/</g, "&lt;")}</pre>
+</body>
+</html>
+`;
+
+  const blob = new Blob([html], { type: "text/html" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "documento.html";
+  a.click();
+
+  URL.revokeObjectURL(url);
+};
+
+
+/* ==========================================
+   EXPORTA COMO PDF
+   ========================================== */
+document.getElementById("exportarPDF").onclick = () => {
+  const texto = document.getElementById("conteudoTexto").value;
+
+  const campo = document.getElementById("conteudo");
+  campo.innerHTML = `
+<pre style="font-size:16px; white-space:pre-wrap; color:#000;">
+${texto.replace(/</g, "&lt;")}
+</pre>
+  `;
+
+  const opcoes = {
+    margin: 10,
+    filename: "documento.pdf",
+    image: { type: "jpeg", quality: 1 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+  };
+
+  html2pdf().from(campo).set(opcoes).save();
+};
+
+</script>
+
+</body>
+</html>
