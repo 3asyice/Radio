@@ -152,7 +152,7 @@
     </div>
 
 <div class="filters">
-<button onclick="doSearch(14)">Web</button>
+<button onclick="searchWeb()">Web</button>
 <button onclick="searchImage()">Imagens</button>
 <button onclick="searchGoggle()">Goggle</button>
 <button onclick="searchVideos()">Vídeos</button>
@@ -216,7 +216,15 @@ function searchForuns() {
   window.open(url, "_blank");
 }
 
-
+function searchWeb() {
+  const query = document.getElementById("searchInput").value.trim();
+  if (!query) {
+    alert("Por favor, insira um destino ou termo para pesquisar voos.");
+    return;
+  }
+  const url = `https://search.brave.com/search?q=${encodeURIComponent(query)}&result_filter=web`;
+  window.open(url, "_blank");
+}
 function searchGoggle() {
   const query = document.getElementById("searchInput").value.trim();
   if (!query) {
