@@ -160,8 +160,6 @@
 <button onclick="searchForuns()">Fóruns</button>
 <button onclick="searchAsk()">IA</button>
 <button onclick="dointernetArchive()">Internet Archive</button>
-<button onclick="doLens()">Google Lens</button>
-<button onclick="searchFlights()">Voos</button>
 </div>
   </main>
 
@@ -172,18 +170,9 @@
         alert("Por favor, insira um termo para pesquisar.");
         return;
       }
-      const url = `https://search.brave.com/search?q=${encodeURIComponent(query)}&udm=${udm}`;
+      const url = `https://safe.search.brave.com/search?q=${encodeURIComponent(query)}&udm=${udm}`;
       window.open(url, "_blank");
     }
-function searchFlights() {
-  const query = document.getElementById("searchInput").value.trim();
-  if (!query) {
-    alert("Por favor, insira um destino ou termo para pesquisar voos.");
-    return;
-  }
-  const url = `https://www.google.com/travel/flights?q=${encodeURIComponent(query)}`;
-  window.open(url, "_blank");
-}
 
 
 function searchForuns() {
@@ -211,7 +200,7 @@ function searchForuns() {
 
   const fullQuery = `${query} ${siteFilter}`;
 
-  const url = `https://search.brave.com/search?q=${encodeURIComponent(fullQuery)}&summary=0`;
+  const url = `https://safe.search.brave.com/search?q=${encodeURIComponent(fullQuery)}&summary=0`;
 
   window.open(url, "_blank");
 }
@@ -222,7 +211,7 @@ function searchWeb() {
     alert("Por favor, insira um destino ou termo para pesquisar voos.");
     return;
   }
-  const url = `https://search.brave.com/search?q=${encodeURIComponent(query)}&result_filter=web`;
+  const url = `https://safe.search.brave.com/search?q=${encodeURIComponent(query)}&result_filter=web`;
   window.open(url, "_blank");
 }
 function searchGoggle() {
@@ -231,7 +220,7 @@ function searchGoggle() {
     alert("Por favor, insira um destino ou termo para pesquisar voos.");
     return;
   }
-  const url = `https://search.brave.com/goggles?q=${encodeURIComponent(query)}`;
+  const url = `https://safe.search.brave.com/goggles?q=${encodeURIComponent(query)}`;
   window.open(url, "_blank");
 }
 function searchImage() {
@@ -240,7 +229,7 @@ function searchImage() {
     alert("Por favor, insira um destino ou termo para pesquisar voos.");
     return;
   }
-  const url = `https://search.brave.com/images?q=${encodeURIComponent(query)}`;
+  const url = `https://safe.search.brave.com/images?q=${encodeURIComponent(query)}`;
   window.open(url, "_blank");
 }
 function searchNews() {
@@ -249,7 +238,7 @@ function searchNews() {
     alert("Por favor, insira um destino ou termo para pesquisar voos.");
     return;
   }
-  const url = `https://search.brave.com/news?q=${encodeURIComponent(query)}`;
+  const url = `https://safe.search.brave.com/news?q=${encodeURIComponent(query)}`;
   window.open(url, "_blank");
 }
 function searchVideos() {
@@ -258,7 +247,7 @@ function searchVideos() {
     alert("Por favor, insira um destino ou termo para pesquisar voos.");
     return;
   }
-  const url = `https://search.brave.com/videos?q=${encodeURIComponent(query)}`;
+  const url = `https://safe.search.brave.com/videos?q=${encodeURIComponent(query)}`;
   window.open(url, "_blank");
 }
 
@@ -268,7 +257,7 @@ function searchAsk() {
     alert("Por favor, insira um destino ou termo para pesquisar voos.");
     return;
   }
-  const url = `https://search.brave.com/ask?q=${encodeURIComponent(query)}`;
+  const url = `https://safe.search.brave.com/ask?q=${encodeURIComponent(query)}`;
   window.open(url, "_blank");
 }
 /* 
