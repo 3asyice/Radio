@@ -47,7 +47,30 @@ body.dark-mode p {
   font-size: clamp(0.9rem, 1.2vw, 1.1rem);
   text-shadow: 0 0 6px #711D9A;
 }
+body.dark-mode .menu {
+top:0;right:0;left:60%;bottom:0;
+position:fixed;
+display:none;
+background: #FF0586;
+z-index:999;
+padding-top: 90px;
+}
 
+ body.dark-mode 
+ div.station_message div.a, body.dark-mode div.station_message div.b, body.dark-mode div.station_message div.c{
+background-color: #222222;
+}
+body.dark-mode div.station_message div.a p{
+  color:#FF3131;
+}
+
+ body.dark-mode div.station_message div.b p {
+  color: #1F51FF;
+}
+
+body.dark-mode div.station_message div.c p {
+  color: #FF8C00;
+}
 body.dark-mode #horario_atual {
   color: #ffcc00;
   text-shadow: 0 0 6px #ff0000, 0 0 12px #00ffaa;
