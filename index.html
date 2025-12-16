@@ -53,6 +53,21 @@ header h1 span{
 font-weight: 400;
 font-size:0.8em;
 }
+header button{
+display:block;
+position: absolute;
+top:20px;
+right:20px;
+color:#eee;
+font-size: 1.5em;
+}
+.menu {
+top:0;right:0;left:60%;bottom:50%;
+position:fixed;
+display:none;
+background: #2F2F2F;
+z-index:999;
+}
 </style>
 </head>
 <body>
@@ -60,8 +75,15 @@ font-size:0.8em;
 <img onclick="location.href='https://3asyice.github.io/Radio'" width="60px" height="60px" src="assets/00_img/radio_icon.png" alt="icon">
 <h1 onclick="location.href='https://3asyice.github.io/Radio'" >Rádio FM 609 <br>
 <span>Sua estação de música continua</span></h1>
-</header>
 
+<button onclick="openmenu()">☰</button>
+</header>
+<div class="menu" id="menu">
+<a href="">Home</a>
+<a href="arquivos.html">Arquivos</a>
+<a href="">Feed</a>
+<a href="">Sobre</a>
+</div>
 <!-- Login com Google -->
 <div class="login-area" style="text-align:center; margin:20px;">
   <p id="userInfo">Você não está logado.</p>
@@ -111,7 +133,6 @@ Online Agora
 <div class="next">
   <p><strong><span>⏲</span> Próxima Música </strong><br><br><span id="proximo_audio">---</span></p>
 </div>
-
 <div class="station_message">
 <p><span>‪‪♥️</span> Mensagens da Estação</p>
 <div class="a">
@@ -201,6 +222,7 @@ audio::-webkit-media-controls-time-remaining-display {
 </style>
 
 <script type="module">
+
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut }
@@ -260,6 +282,21 @@ logoutBtn.addEventListener("click", () => {
 </script>
 
 <script>
+var x = document.getElementById('menu');
+var y = false;
+function openmenu() {
+y = !y;
+if (y) {
+x.style.display = 'block';
+setTimeout(() => {
+x.classList.add('visible');
+}, 10);
+} else {
+x.classList.remove('visible');
+setTimeout(() => {
+x.style.display = 'none';
+}, 500);
+}}
 
   const audioc = document.getElementById("audioPlayer");
 
@@ -383,6 +420,8 @@ document.getElementById('yesBtn').addEventListener('click', function() {
 document.getElementById('noBtn').addEventListener('click', function() {
   overlay.style.display = 'none';
 });
+
+
 </script>
 
 </body>
