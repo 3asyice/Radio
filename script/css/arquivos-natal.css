@@ -1,0 +1,374 @@
+@import url(https://fonts.googleapis.com/css2?family=Lovers+Quarrel&display=swap);
+
+@font-face {
+  font-family: OCRA;
+  src: url('assets/font/ocra.otf') format('woff2');
+  font-display: swap;
+}
+
+* {
+  font-size: 24px;
+  font-family: 'OCRA', monospace
+}
+
+body,
+html {
+  width: 100%;
+  overflow-y: scroll;
+  background: #000;
+  margin: 0
+}
+
+div.link-item hr {
+  border: 1px dashed #8ed18c
+}
+
+.h1__title {
+  text-align: center;
+  font-size: 34px;
+  z-index: 1;
+  color: #9aff1d;
+  font-family: OCRA, serif;
+  font-weight: 400;
+  text-shadow: 2px 2px 5px #000;
+  margin: 0;
+  padding: 50px;
+  background-image: url(https://web.archive.org/web/20250605120657/https://www.big-loser.site/Caso/img/004.png), repeating-linear-gradient(to bottom, #1f1b1c, #1f1b1c 1px, #000 1px, #000 3px);
+  background-size: 180px auto, cover;
+  background-position: center, center;
+  background-repeat: no-repeat;
+  font-style: normal
+}
+
+#search {
+  color: #000;
+  background-color: #61ea53;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  font-family: OCRA, monospace;
+  width: 250px;
+  outline: 0;
+  padding: 5px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield;
+  -webkit-transition: all .3s ease-in;
+  -ms-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  transition: all .3s ease-in
+}
+
+#search:focus {
+  outline: 0;
+  border: none;
+  font-family: OCRA, monospace
+}
+
+section.save {
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  background-image: url(''), repeating-linear-gradient(to bottom, #1f1b1c, #1f1b1c 1px, #000 1px, #000 3px);
+  background-size: 180px auto, cover;
+  background-position: center, center;
+  background-repeat: no-repeat
+}
+
+#urlInput {
+  width: 80%;
+  background-image: linear-gradient(1deg, rgba(97, 86, 155, 1), #6768ab);
+  color: #eeff01;
+  font-weight: 800;
+  height: 25px;
+  border: none;
+  font-size: 12px;
+  justify-content: center
+}
+
+#urlInput::placeholder {
+  color: #ff4f59;
+  font-family: OCRA, monospace
+}
+
+#urlInput:focus {
+  outline: 0;
+  border: none
+}
+
+section.save button {
+  color: #5dc6c2;
+  margin-top: 15px;
+  border: none;
+  padding: 5px;
+  outline: 0;
+  font-size: 16px;
+  border-radius: 5px;
+  background-image: linear-gradient(1deg, red, rgba(171, 46, 50, 1), rgba(171, 46, 50, 1), rgba(171, 46, 50, 1), rgba(171, 46, 50, 1))
+}
+
+a {
+  color: rgba(18, 255, 0, 1);
+  font-size: 14px;
+  flex-wrap: wrap;
+  padding: 5px;
+  text-transform: lowercase;
+  background: #0000008F;
+  border: 5px solid #000;
+  outline: 1px solid #0f0;
+  border-radius: 20px;
+  text-decoration: none
+}
+
+a:hover {
+  color: rgba(207, 32, 32, 1);
+  text-shadow: 1px 0 0 rgba(18, 255, 0, 1);
+  padding: 8px
+}
+
+.date {
+  margin: 5px;
+  color: rgba(252, 255, 0, 1);
+  flex-wrap: wrap;
+  border: 3px solid #000;
+  outline: 1px solid #00ffe3;
+  padding: 5px 0 5px 0;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 1);
+  font-size: 12px;
+  float: right;
+  text-transform: lowercase;
+  margin-right: 20px
+}
+
+.date,
+a {
+  margin-left: 20px
+}
+
+.link-item {
+  display: inline-block;
+  background: 0 0;
+  flex: 100%;
+  width: 100%
+}
+
+#links {
+  margin-left: 0%;
+  margin-right: 0%;
+  width: 100%;
+  border-radius: 10px;
+  
+  
+  
+  
+  background: url('https://archive.org/download/spin-soldier/spin-soldier.gif') center/cover no-repeat fixed;
+  
+  /*
+  background: url('https://web.archive.org/web/20251025064024if_/https://3asyice.github.io/Spck-Test/spin-ho.gif') center/cover no-repeat fixed;
+  background: url('https://web.archive.org/web/20250815073048if_/https://3asyice.github.io/Spck-Test/wakeupneo.jpg') center/cover no-repeat fixed;
+  assets/img/bg/pc_bg.jpg
+  
+  
+  https://web.archive.org/web/20250721112836if_/https://3asyice.github.io/Spck-Test/newspaper_final_destination.jpg
+  background: url('https://web.archive.org/web/20250718104915/https://3asyice.github.io/Spck-Test/the_glitched_bg.png') center/cover no-repeat fixed;
+  
+  background: url('assets/img/bg/coded.jpg') center/cover no-repeat fixed;
+  
+  background: url(https://web.archive.org/web/20250420022153/https://www.big-loser.site/Caso/img/helloNeo.gif) center/cover no-repeat fixed; */
+}
+
+footer {
+  font-size: 12px;
+  padding: 15px;
+  text-align: center;
+  color: rgba(255, 255, 255, 1)
+}
+
+div.tape a {
+  padding: 0;
+  font-size: 10px;
+  line-height: 11px;
+  margin: 0 2px 0 2px;
+  font-family: OCRA, monospace;
+  text-transform: lowercase;
+}
+
+div.tape a.listen {
+  color: #D5FFD9;
+}
+
+div.tape {
+  padding-left: 0%;
+  font-size: 10px;
+  color: #D5FFD9;
+  padding-right: 0%;
+  display: inline-table;
+}
+
+#all_links {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+h2 {
+  color: #69e25b;
+  font-weight: 400;
+  font-size: 14px;
+  text-indent: 20px;
+  margin: 0;
+  flex: 100%;
+  padding-top: 50px;
+  background: repeating-linear-gradient(to bottom, #1f1b1c, #1f1b1c 1px, #000 1px, #000 3px);
+  padding-bottom: 10px;
+}
+
+#save__page {
+  background: 0 0;
+}
+
+#save__page p {
+  color: #e20000;
+}
+
+@media (max-width:600px) {
+  a {
+    color: #69e25b;
+    font-size: 12px;
+    background: 0 0;
+    border: none;
+    outline: 0;
+  }
+  
+  a:hover {
+    color: #fff;
+  }
+  
+  .date {
+    color: #cefcd2;
+    font-size: 9px;
+    display: inline-block;
+    background: 0 0;
+    border: none;
+    outline: 0;
+  }
+  
+  .date:hover {
+    color: #fff;
+    text-shadow: 1px 0 0 rgba(18, 255, 0, 1);
+  }
+}
+
+section.logo {
+  text-align: center;
+  justify-items: center;
+  padding-top: 15px;
+  background: repeating-linear-gradient(to bottom, #1f1b1c, #1f1b1c 1px, #000 1px, #000 3px);
+}
+
+@media (min-width:601px) and (max-width:1024px) {
+  a {
+    color: #61ea53;
+    font-size: 16px;
+    background: 0 0;
+    border: none;
+    margin-left: 10%;
+    outline: 0;
+  }
+  
+  a:hover {
+    color: #fff;
+    text-shadow: 1px 0 0 rgba(18, 255, 0, 1);
+  }
+  
+  div.tape a {
+    font-size: 14px;
+  }
+  
+  .date {
+    margin-right: 10%;
+    font-size: 16px;
+    color: #cefcd2;
+    background: 0 0;
+    border: none;
+    outline: 0;
+  }
+  
+  .date:hover {
+    color: #fff;
+    text-shadow: 1px 0 0 rgba(18, 255, 0, 1);
+  }
+}
+
+@media (min-width:1025px) {
+  #links {
+  margin-left: 0%;
+  margin-right: 0%;
+  width: 100%;
+  border-radius: 10px;
+  background: url('https://web.archive.org/web/20250913144918if_/https://3asyice.github.io/Spck-Test/15647.png') center/cover no-repeat fixed;
+  /* Final Destination Real Life --> background: url('https://web.archive.org/web/20250731141251if_/https://3asyice.github.io/Spck-Test/pc_bg1.jpg') center/cover no-repeat fixed; */
+  }
+  a {
+    color: #61ea53;
+    font-size: 18px;
+    background: 0 0;
+    border: none;
+    line-height: 24px;
+    margin-left: 5%;
+    outline: 0
+  }
+  
+  div.tape a {
+    font-size: 16px
+  }
+  
+  a:hover {
+    color: #fff
+  }
+  
+  .date {
+    margin-right: 5%;
+    font-size: 18px;
+    color: #cefcd2;
+    background: 0 0;
+    border: none;
+    outline: 0
+  }
+  
+  .date:hover {
+    color: #fff;
+    text-shadow: 1px 0 0 rgba(18, 255, 0, 1);
+  }
+}
+
+div.div-contain {
+  background: #000;
+  width: 100%;
+  display: inline-flex;
+}
+
+.f__name {
+  color: #D5FFD9;
+  font-size: 10px;
+  display: inline-block;
+  text-align: left;
+  float: left;
+  width: 50%;
+  margin-left: 35px;
+}
+
+.date_file {
+  color: #D5FFD9;
+  text-align: right;
+  float: right;
+  width: 50%;
+  display: inline-block;
+  font-size: 10px;
+  margin-right: 35px;
+}
