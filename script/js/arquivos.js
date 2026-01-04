@@ -35,9 +35,19 @@ const linkstwentytwentyfour = document.getElementById("linksScripted").innerHTML
 
 
 
-<div class="link-item"><a href="https://web.archive.org/web/20251216014854id_/https://rad609.bar/Feed.html"/>Rádio 609 Feed</a><p class="date">dec 15, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/sertanejo-universitario"/>sertanejos universitários</a><p class="date">jan 04, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://ww3.soap2dayhdz.com/"/>movies and series english</a><p class="date">dec 29, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://youtu.be/H2WqfX-WJj4?si=ekDOpczn3BPsNXto"/>Trailer de Filmes</a><p class="date">dec 29, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://www13.redecanais.in/episodio/stranger-things-5x5-5a-temporada-episodio-5/"/>stranger things volume 2</a><p class="date">dec 25, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20251223115956id_/https://rad609.bar/arquivos"/>rad609.bar arquivos</a><p class="date">dec 23, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://www.dailymotion.com/video/x9um5s0"/>Heated Rivalry</a><p class="date">dec 23, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://m.ok.ru/video/8766871112212"/>Arrival (2016)</a><p class="date">dec 23, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/filmes-de-tyler-2"/>Filmes teste 2</a><p class="date">dec 21, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://youtu.be/Om8v3lJXQZ8"/>Vídeos Motivacionais YT</a><p class="date">dec 20, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20251218121238if_/https://colaborae.com.br/blog/2023/07/14/imaginacao-e-visualizacao/"/>imaginação e visualização</a><p class="date">dec 15, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20251223120638id_/https://rad609.bar/Feed"/>Rádio 609 Feed</a><p class="date">dec 15, 2025 </p> <hr> </div>
 <div class="link-item"><a href="https://web.archive.org/web/20251216014502id_/https://rad609.bar"/>Rádio 609 </a><p class="date">dec 15, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://archive.org/details/bugs_20240315"/>Rabbit Tales </a><p class="date">dec 13, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/bugs_20240315"/>Rabbit Tales</a><p class="date">dec 13, 2025 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/looney-tunes-1994-tbs"/>Looney Tunes (1994)</a><p class="date">dec 13, 2025 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/dark_serie_br"/>Dark (2017)</a><p class="date">dec 12, 2025 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/my-vhs-saga-part-66/"/>The blair witch project/</a><p class="date">dec 11, 2025 </p> <hr> </div>
