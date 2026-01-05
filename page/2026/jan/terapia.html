@@ -149,10 +149,13 @@
   <!-- CHAT -->
   <div class="screen" id="chatScreen">
     <div class="chat" id="chat"></div>
-    <footer>
-      <textarea id="answer" placeholder="Digite sua resposta..."></textarea>
-      <button onclick="sendAnswer()">Enviar</button>
-    </footer>
+<footer>
+  <textarea id="answer" placeholder="Digite sua resposta..."></textarea>
+  <button onclick="sendAnswer()">Enviar</button>
+  <button onclick="endSessionEarly()" style="background:#0a2540">
+    Encerrar sessão
+  </button>
+</footer>
   </div>
 </div>
 
@@ -168,58 +171,53 @@
     "Pelo que você é grato na sua vida?",
     "O que traz atualmente significado para a sua vida?",
     "O que traria significado para a sua vida no futuro?",
-    "O que você pretende fazer para atingir os seus objetivos?",
-    "Como vai saber que os atingiu e o que vai fazer quando isso acontecer?",
     "O que te impede de conseguir o que você deseja?",
     "Como costuma ser o seu humor no dia a dia?",
-    "Você tem muitos pensamentos negativos?",
-    "Como esses fatores afetam a sua vida?",
-    "Você se sente mais mal do que bem de modo geral?",
-    "Como lida com emoções negativas?",
-    "Você tem pensamentos acelerados?",
+    "Como você lida com emoções negativas?",
     "Quais situações despertam mais ansiedade?",
-    "Como você lida com a inquietação?",
-    "Você se sente ansioso todos os dias?",
-    "O estresse também é um problema recorrente na sua vida?",
-    "Quais são as suas principais queixas e preocupações?",
-    "Como a criança se comporta na escola?",
-    "Como a criança se comporta em casa?",
-    "Como você reage aos problemas apresentados pela criança?",
-    "Qual é o seu principal objetivo com a terapia?",
-    "Quais são as suas principais queixas?",
     "Como você lida com o estresse?",
     "Como você vê a si mesmo?",
     "Como costuma lidar com os problemas?"
   ];
 
+  const MAX_SESSIONS = 10;
+
   let currentQuestion = 0;
-  let sessionSeconds = 3600; // 1 hora
+  let currentSession = 1;
+  let sessionSeconds = 3600;
   let timerInterval = null;
+  let userName = "";
 
   function login() {
-    const name = document.getElementById('username').value.trim();
+    const name = document.getElementById("username").value.trim();
     if (!name) {
-      alert('Digite um nome');
+      alert("Digite um nome");
       return;
     }
 
-    document.getElementById('loginScreen').classList.remove('active');
-    document.getElementById('chatScreen').classList.add('active');
+    userName = name;
 
-    addBotMessage(`Olá ${name}. Esta é sua sessão terapêutica de 1 hora.`);
+    document.getElementById("loginScreen").classList.remove("active");
+    document.getElementById("chatScreen").classList.add("active");
+
+    addBotMessage(
+      `Olá ${userName}. Sessão ${currentSession} de ${MAX_SESSIONS}. Duração: 1 hora.`
+    );
+
     startTimer();
     askQuestion();
   }
 
   function startTimer() {
-    const timerEl = document.getElementById('timer');
+    const timerEl = document.getElementById("timer");
+    sessionSeconds = 3600;
 
     timerInterval = setInterval(() => {
       sessionSeconds--;
 
-      const min = String(Math.floor(sessionSeconds / 60)).padStart(2, '0');
-      const sec = String(sessionSeconds % 60).padStart(2, '0');
-      timerEl.innerText = `Sessão: ${min}:${sec}`;
+      const min = String(Math.floor(sessionSeconds / 60)).padStart(2, "0");
+      const sec = String(sessionSeconds % 60).padStart(2, "0");
+      timerEl.innerText = `Sessão ${currentSession}/10 • ${min}:${sec}`;
 
       if (sessionSeconds <= 0) {
         clearInterval(timerInterval);
@@ -229,51 +227,84 @@
   }
 
   function endSession() {
-    addBotMessage('⏱️ Sua sessão de 1 hora foi encerrada automaticamente.');
-    addBotMessage('Por favor, faça login novamente para iniciar outra sessão.');
+    if (currentSession >= MAX_SESSIONS) {
+      addBotMessage("🎓 Alta terapêutica concedida.");
+      addBotMessage(
+        "Você concluiu o processo terapêutico. Parabéns pelo comprometimento com sua saúde emocional."
+      );
+      addBotMessage("Sessão encerrada.");
+
+      setTimeout(() => location.reload(), 7000);
+      return;
+    }
+
+    addBotMessage(
+      `⏱️ Sessão ${currentSession} encerrada. Nos vemos na próxima sessão.`
+    );
+
+    currentSession++;
+    currentQuestion = 0;
 
     setTimeout(() => {
-      location.reload();
-    }, 5000);
+      addBotMessage(
+        `Iniciando sessão ${currentSession} de ${MAX_SESSIONS}.`
+      );
+      startTimer();
+      askQuestion();
+    }, 4000);
   }
 
   function askQuestion() {
     if (currentQuestion < questions.length) {
       addBotMessage(questions[currentQuestion]);
     } else {
-      addBotMessage('As perguntas foram concluídas. Use o tempo restante para refletir. 🌱');
+      addBotMessage(
+        "As perguntas desta sessão foram concluídas. Use o tempo restante para reflexão ou converse com o criador +55 55 99163-9092"
+      );
     }
   }
 
   function sendAnswer() {
     if (sessionSeconds <= 0) return;
 
-    const input = document.getElementById('answer');
+    const input = document.getElementById("answer");
     const text = input.value.trim();
     if (!text) return;
 
     addUserMessage(text);
-    input.value = '';
+    input.value = "";
+
     currentQuestion++;
-    setTimeout(askQuestion, 500);
+    setTimeout(askQuestion, 400);
   }
 
   function addBotMessage(text) {
-    const chat = document.getElementById('chat');
-    const div = document.createElement('div');
-    div.className = 'msg bot';
+    const chat = document.getElementById("chat");
+    const div = document.createElement("div");
+    div.className = "msg bot";
     div.innerText = text;
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
   }
 
   function addUserMessage(text) {
-    const chat = document.getElementById('chat');
-    const div = document.createElement('div');
-    div.className = 'msg user';
+    const chat = document.getElementById("chat");
+    const div = document.createElement("div");
+    div.className = "msg user";
     div.innerText = text;
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
+  }
+</script>
+<script>
+  function endSessionEarly() {
+    if (!confirm("Tem certeza que deseja encerrar a sessão agora?")) return;
+
+    clearInterval(timerInterval);
+
+    addBotMessage("🛑 Sessão encerrada manualmente antes do tempo.");
+
+    endSession();
   }
 </script>
 
