@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat Terapêutico</title>
+  <style>
+    :root {
+      --blue-dark: #0a2540;
+      --blue-main: #1e88e5;
+      --blue-light: #e3f2fd;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--blue-dark), var(--blue-main));
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 420px;
+      height: 90vh;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--blue-main);
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .screen {
+      padding: 16px;
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    input, button, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      background: var(--blue-main);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .chat {
+      flex: 1;
+      overflow-y: auto;
+      background: var(--blue-light);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .msg {
+      margin-bottom: 10px;
+      padding: 10px;
+      margin-bottom: 42px;
+      border-radius: 8px;
+      max-width: 85%;
+      line-height: 1.4;
+    }
+
+    .bot {
+      background: white;
+      align-self: flex-start;
+    }
+
+    .user {
+      background: var(--blue-main);
+      color: white;
+      align-self: flex-end;
+    }
+
+    footer {
+      display: flex;
+      gap: 8px;
+      position: sticky;
+      bottom: 0;
+      background: var(--white);
+      padding-top: 8px;
+    }
+
+    @media (max-width: 480px) {
+      .app {
+        height: 80vh;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <header>
+      <div>Chat Terapêutico</div>
+      <small id="timer">Sessão: 60:00</small>
+    </header>
+
+  <!-- LOGIN -->
+  <div class="screen active" id="loginScreen">
+    <h3>Login</h3>
+    <input type="text" id="username" placeholder="Usuário" />
+    <select id="role">
+      <option value="paciente">Paciente</option>
+      <option value="profissional">Profissional</option>
+    </select>
+    <button onclick="login()">Entrar</button>
+  </div>
+
+  <!-- CHAT -->
+  <div class="screen" id="chatScreen">
+    <div class="chat" id="chat"></div>
+    <footer>
+      <textarea id="answer" placeholder="Digite sua resposta..."></textarea>
+      <button onclick="sendAnswer()">Enviar</button>
+    </footer>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    "Qual é o seu objetivo com a terapia?",
+    "Quais são as suas preocupações no momento?",
+    "O que ainda não está bem na sua vida?",
+    "O que você deseja mudar no seu jeito de ser, pensar, se relacionar, trabalhar ou viver hoje?",
+    "O que em sua vida faz com que você se sinta feliz?",
+    "O que em sua vida faz com que você se sinta triste?",
+    "Como você pode conseguir adicionar mais prazer à sua vida?",
+    "Pelo que você é grato na sua vida?",
+    "O que traz atualmente significado para a sua vida?",
+    "O que traria significado para a sua vida no futuro?",
+    "O que você pretende fazer para atingir os seus objetivos?",
+    "Como vai saber que os atingiu e o que vai fazer quando isso acontecer?",
+    "O que te impede de conseguir o que você deseja?",
+    "Como costuma ser o seu humor no dia a dia?",
+    "Você tem muitos pensamentos negativos?",
+    "Como esses fatores afetam a sua vida?",
+    "Você se sente mais mal do que bem de modo geral?",
+    "Como lida com emoções negativas?",
+    "Você tem pensamentos acelerados?",
+    "Quais situações despertam mais ansiedade?",
+    "Como você lida com a inquietação?",
+    "Você se sente ansioso todos os dias?",
+    "O estresse também é um problema recorrente na sua vida?",
+    "Quais são as suas principais queixas e preocupações?",
+    "Como a criança se comporta na escola?",
+    "Como a criança se comporta em casa?",
+    "Como você reage aos problemas apresentados pela criança?",
+    "Qual é o seu principal objetivo com a terapia?",
+    "Quais são as suas principais queixas?",
+    "Como você lida com o estresse?",
+    "Como você vê a si mesmo?",
+    "Como costuma lidar com os problemas?"
+  ];
+
+  let currentQuestion = 0;
+  let sessionSeconds = 3600; // 1 hora
+  let timerInterval = null;
+
+  function login() {
+    const name = document.getElementById('username').value.trim();
+    if (!name) {
+      alert('Digite um nome');
+      return;
+    }
+
+    document.getElementById('loginScreen').classList.remove('active');
+    document.getElementById('chatScreen').classList.add('active');
+
+    addBotMessage(`Olá ${name}. Esta é sua sessão terapêutica de 1 hora.`);
+    startTimer();
+    askQuestion();
+  }
+
+  function startTimer() {
+    const timerEl = document.getElementById('timer');
+
+    timerInterval = setInterval(() => {
+      sessionSeconds--;
+
+      const min = String(Math.floor(sessionSeconds / 60)).padStart(2, '0');
+      const sec = String(sessionSeconds % 60).padStart(2, '0');
+      timerEl.innerText = `Sessão: ${min}:${sec}`;
+
+      if (sessionSeconds <= 0) {
+        clearInterval(timerInterval);
+        endSession();
+      }
+    }, 1000);
+  }
+
+  function endSession() {
+    addBotMessage('⏱️ Sua sessão de 1 hora foi encerrada automaticamente.');
+    addBotMessage('Por favor, faça login novamente para iniciar outra sessão.');
+
+    setTimeout(() => {
+      location.reload();
+    }, 5000);
+  }
+
+  function askQuestion() {
+    if (currentQuestion < questions.length) {
+      addBotMessage(questions[currentQuestion]);
+    } else {
+      addBotMessage('As perguntas foram concluídas. Use o tempo restante para refletir. 🌱');
+    }
+  }
+
+  function sendAnswer() {
+    if (sessionSeconds <= 0) return;
+
+    const input = document.getElementById('answer');
+    const text = input.value.trim();
+    if (!text) return;
+
+    addUserMessage(text);
+    input.value = '';
+    currentQuestion++;
+    setTimeout(askQuestion, 500);
+  }
+
+  function addBotMessage(text) {
+    const chat = document.getElementById('chat');
+    const div = document.createElement('div');
+    div.className = 'msg bot';
+    div.innerText = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function addUserMessage(text) {
+    const chat = document.getElementById('chat');
+    const div = document.createElement('div');
+    div.className = 'msg user';
+    div.innerText = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
