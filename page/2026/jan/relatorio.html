@@ -3,153 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gerador de Relatório Investigativo</title>
+<title>Arquivo Investigativo</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;500;700&display=swap');
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:'IBM Plex Mono', monospace;
-  background:#0a0a0a;
-  color:#e5e5e5;
+  background:#070707;
+  color:#e0e0e0;
 }
 header{
   padding:20px;
   background:#000;
   border-bottom:1px solid #222;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
 }
-header h1{font-size:20px;letter-spacing:2px}
-button{
-  background:#111;
-  color:#fff;
-  border:1px solid #333;
-  padding:10px 14px;
-  cursor:pointer;
-}
-button:hover{background:#222}
+header h1{font-size:18px;letter-spacing:3px;color:#9fd6c3}
 main{
   max-width:900px;
   margin:40px auto;
   padding:30px;
-  background:#0f0f0f;
-  border:1px solid #222;
+  background:#0c0c0c;
+  border:1px solid #1e1e1e;
 }
-h2{border-left:4px solid #4fa38c;padding-left:10px;color:#bfe9dd}
-label{font-weight:500;margin-top:15px;display:block}
+h2{
+  font-size:16px;
+  border-left:4px solid #4fa38c;
+  padding-left:10px;
+  color:#bfe9dd;
+  margin-top:40px;
+}
+label{display:block;margin-top:15px;font-size:13px;color:#aaa}
 input,textarea,select{
   width:100%;
   margin-top:6px;
   padding:10px;
   background:#000;
-  color:#e5e5e5;
+  color:#e0e0e0;
   border:1px solid #333;
+  font-family:'IBM Plex Mono', monospace;
 }
-textarea{min-height:80px}
-.section{margin-top:35px}
-.output{
-  margin-top:30px;
+textarea{min-height:90px}
+button{
+  margin-top:25px;
   background:#000;
-  border:1px dashed #444;
+  color:#9fd6c3;
+  border:1px solid #4fa38c;
+  padding:12px 18px;
+  cursor:pointer;
+}
+button:hover{background:#111}
+.timeline-item{
+  border-left:2px solid #333;
+  padding-left:15px;
+  margin:20px 0;
+}
+.timeline-item span{color:#4fa38c;font-size:12px}
+.export{
+  margin-top:40px;
+  background:#000;
+  border:1px dashed #333;
   padding:20px;
-  white-space:pre-wrap;
+}
+.export textarea{
+  width:100%;
+  min-height:320px;
+  background:#000;
+  color:#8aff8a;
 }
 .report{
   background:#000;
-  color:#dcdcdc;
   padding:30px;
   border-left:4px solid #4fa38c;
+  color:#ddd;
 }
-.report h3{margin-top:0;color:#4fa38c}
-.meta{color:#888;font-size:13px}
-footer{text-align:center;color:#555;padding:20px}
+.report h3{color:#4fa38c;margin-top:0}
+.report .meta{font-size:12px;color:#777}
+footer{text-align:center;color:#444;padding:20px;font-size:12px}
 </style>
 </head>
 <body>
 <header>
-  <h1>RELATÓRIO INVESTIGATIVO</h1>
-  <button onclick="resetar()">Limpar</button>
+<h1>ARQUIVO • CONFIDENCIAL</h1>
 </header>
 
 <main>
-<h2>Dados do Caso</h2>
+<h2>Identificação do Caso</h2>
 <form id="form">
 <label>Código do Caso</label>
-<input id="codigo" placeholder="EX: TD-0917">
-
-<label>Data do Relatório</label>
+<input id="codigo" placeholder="TD-0009">
+<label>Investigador</label>
+<input id="investigador" placeholder="Identidade preservada">
+<label>Data</label>
 <input type="date" id="data">
 
-<label>Investigador Responsável</label>
-<input id="investigador" placeholder="Identidade preservada">
-
-<div class="section">
-<h2>Indivíduo / Foco</h2>
+<h2>Indivíduo / Evento Central</h2>
 <label>Nome / Identificação</label>
 <input id="nome">
 <label>Apelido / Codinome</label>
 <input id="apelido">
 <label>Status Atual</label>
-<select id="status"><option>Desconhecido</option><option>Vivo</option><option>Falecido</option></select>
-<label>Última Localização Conhecida</label>
+<select id="status"><option>Indeterminado</option><option>Vivo</option><option>Falecido</option></select>
+<label>Localização Relevante</label>
 <input id="local">
-</div>
 
-<div class="section">
 <h2>Observações de Campo</h2>
-<textarea id="observacoes" placeholder="Anotações diretas, sem interpretação emocional"></textarea>
-</div>
+<textarea id="obs" placeholder="O que foi visto. Nada além disso."></textarea>
 
-<div class="section">
-<h2>Padrões e Conexões</h2>
-<textarea id="padroes" placeholder="Repetições, símbolos, coincidências, vínculos"></textarea>
-</div>
+<h2>Padrões Identificados</h2>
+<textarea id="padroes" placeholder="Tudo se repete. Só muda a forma."></textarea>
 
-<div class="section">
 <h2>Hipóteses</h2>
-<textarea id="hipoteses" placeholder="Possíveis explicações (não confirmadas)"></textarea>
-</div>
+<textarea id="hipoteses" placeholder="A verdade não precisa ser confortável."></textarea>
 
-<div class="section">
+<h2>Linha do Tempo</h2>
+<label>Evento 1</label>
+<input id="t1d" placeholder="Data / Período">
+<textarea id="t1"></textarea>
+<label>Evento 2</label>
+<input id="t2d" placeholder="Data / Período">
+<textarea id="t2"></textarea>
+<label>Evento 3</label>
+<input id="t3d" placeholder="Data / Período">
+<textarea id="t3"></textarea>
+
 <h2>Conclusão Parcial</h2>
-<textarea id="conclusao" placeholder="O que se sabe até agora"></textarea>
-</div>
+<textarea id="conclusao" placeholder="Nada termina. Só se arrasta."></textarea>
 
-<br>
-<button type="button" onclick="gerar()">Gerar Relatório</button>
+<button type="button" onclick="gerar()">Gerar + Exportar HTML</button>
 </form>
 
-<div id="saida"></div>
+<div class="export" id="export"></div>
 </main>
 
 <footer>
-<p>Documento confidencial • uso investigativo</p>
+<p>Arquivo interno • observação contínua</p>
 </footer>
 
 <script>
-function gerar(){
-  const g=id=>document.getElementById(id).value||'-';
-  const html=`<div class="report">
-<h3>CASO ${g('codigo')}</h3>
-<p class="meta">Data: ${g('data')} • Investigador: ${g('investigador')}</p>
-
-<p><strong>Indivíduo:</strong> ${g('nome')} (${g('apelido')})</p>
-<p><strong>Status:</strong> ${g('status')} • <strong>Última localização:</strong> ${g('local')}</p>
-
-<hr>
-<p><strong>Observações de campo</strong><br>${g('observacoes')}</p>
-<p><strong>Padrões e conexões</strong><br>${g('padroes')}</p>
-<p><strong>Hipóteses</strong><br>${g('hipoteses')}</p>
-<p><strong>Conclusão parcial</strong><br>${g('conclusao')}</p>
-</div>`;
-  document.getElementById('saida').innerHTML=html;
+function v(id){
+  return document.getElementById(id).value || '-';
 }
-function resetar(){
-  document.getElementById('form').reset();
-  document.getElementById('saida').innerHTML='';
+
+function gerar(){
+  const output = document.getElementById('export');
+
+  const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="AnonymousDetective" />
+<meta name="description" content="Anonymous Investigation generated by Detective finding the truth." />
+<title>Relatório ${v('codigo')}</title>
+<style>
+body{
+  background:#050505;
+  color:#e0e0e0;
+  font-family:monospace;
+  padding:40px;
+}
+h1{color:#4fa38c}
+.section{margin-bottom:25px}
+.timeline{border-left:2px solid #333;padding-left:15px}
+.timeline div{margin-bottom:15px}
+.timeline span{color:#4fa38c;font-size:12px}
+</style>
+</head>
+<body>
+
+<h1>Relatório ${v('codigo')}</h1>
+
+<p>
+<strong>Investigador:</strong> ${v('investigador')}<br>
+<strong>Data:</strong> ${v('data')}
+</p>
+
+<div class="section">
+<strong>Indivíduo / Evento central</strong><br>
+${v('nome')} (${v('apelido')})<br>
+Status: ${v('status')}<br>
+Local: ${v('local')}
+</div>
+
+<div class="section">
+<strong>Observações de campo</strong><br>
+${v('obs')}
+</div>
+
+<div class="section">
+<strong>Padrões identificados</strong><br>
+${v('padroes')}
+</div>
+
+<div class="section">
+<strong>Hipóteses</strong><br>
+${v('hipoteses')}
+</div>
+
+<div class="section">
+<strong>Linha do tempo</strong>
+<div class="timeline">
+  <div><span>${v('t1d')}</span><br>${v('t1')}</div>
+  <div><span>${v('t2d')}</span><br>${v('t2')}</div>
+  <div><span>${v('t3d')}</span><br>${v('t3')}</div>
+</div>
+</div>
+
+<div class="section">
+<strong>Conclusão parcial</strong><br>
+${v('conclusao')}
+</div>
+
+</body>
+</html>`;
+
+  output.innerHTML = `
+    <h2>Exportação HTML limpa</h2>
+
+    <textarea id="htmlGerado" readonly
+      style="width:100%;min-height:360px;background:#000;color:#8aff8a;padding:12px;">
+${html.replace(/</g, '&lt;').replace(/>/g, '&gt;')}
+    </textarea>
+
+    <button onclick="copiarHTML()" style="
+      margin-top:15px;
+      background:#000;
+      color:#9fd6c3;
+      border:1px solid #4fa38c;
+      padding:10px 18px;
+      cursor:pointer;
+      font-family:monospace;
+    ">
+      📋 Copiar HTML completo
+    </button>
+  `;
+}
+
+function copiarHTML(){
+  const textarea = document.getElementById('htmlGerado');
+
+  textarea.select();
+  textarea.setSelectionRange(0, 999999); // compatível mobile
+
+  navigator.clipboard.writeText(textarea.value)
+    .then(() => {
+      // feedback silencioso estilo investigativo
+      console.log('HTML copiado');
+    })
+    .catch(() => {
+      alert('Não foi possível copiar automaticamente.');
+    });
 }
 </script>
+
 </body>
 </html>
