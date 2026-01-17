@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gerador de Relatório Investigativo</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;500;700&display=swap');
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'IBM Plex Mono', monospace;
+  background:#0a0a0a;
+  color:#e5e5e5;
+}
+header{
+  padding:20px;
+  background:#000;
+  border-bottom:1px solid #222;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+header h1{font-size:20px;letter-spacing:2px}
+button{
+  background:#111;
+  color:#fff;
+  border:1px solid #333;
+  padding:10px 14px;
+  cursor:pointer;
+}
+button:hover{background:#222}
+main{
+  max-width:900px;
+  margin:40px auto;
+  padding:30px;
+  background:#0f0f0f;
+  border:1px solid #222;
+}
+h2{border-left:4px solid #4fa38c;padding-left:10px;color:#bfe9dd}
+label{font-weight:500;margin-top:15px;display:block}
+input,textarea,select{
+  width:100%;
+  margin-top:6px;
+  padding:10px;
+  background:#000;
+  color:#e5e5e5;
+  border:1px solid #333;
+}
+textarea{min-height:80px}
+.section{margin-top:35px}
+.output{
+  margin-top:30px;
+  background:#000;
+  border:1px dashed #444;
+  padding:20px;
+  white-space:pre-wrap;
+}
+.report{
+  background:#000;
+  color:#dcdcdc;
+  padding:30px;
+  border-left:4px solid #4fa38c;
+}
+.report h3{margin-top:0;color:#4fa38c}
+.meta{color:#888;font-size:13px}
+footer{text-align:center;color:#555;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <h1>RELATÓRIO INVESTIGATIVO</h1>
+  <button onclick="resetar()">Limpar</button>
+</header>
+
+<main>
+<h2>Dados do Caso</h2>
+<form id="form">
+<label>Código do Caso</label>
+<input id="codigo" placeholder="EX: TD-0917">
+
+<label>Data do Relatório</label>
+<input type="date" id="data">
+
+<label>Investigador Responsável</label>
+<input id="investigador" placeholder="Identidade preservada">
+
+<div class="section">
+<h2>Indivíduo / Foco</h2>
+<label>Nome / Identificação</label>
+<input id="nome">
+<label>Apelido / Codinome</label>
+<input id="apelido">
+<label>Status Atual</label>
+<select id="status"><option>Desconhecido</option><option>Vivo</option><option>Falecido</option></select>
+<label>Última Localização Conhecida</label>
+<input id="local">
+</div>
+
+<div class="section">
+<h2>Observações de Campo</h2>
+<textarea id="observacoes" placeholder="Anotações diretas, sem interpretação emocional"></textarea>
+</div>
+
+<div class="section">
+<h2>Padrões e Conexões</h2>
+<textarea id="padroes" placeholder="Repetições, símbolos, coincidências, vínculos"></textarea>
+</div>
+
+<div class="section">
+<h2>Hipóteses</h2>
+<textarea id="hipoteses" placeholder="Possíveis explicações (não confirmadas)"></textarea>
+</div>
+
+<div class="section">
+<h2>Conclusão Parcial</h2>
+<textarea id="conclusao" placeholder="O que se sabe até agora"></textarea>
+</div>
+
+<br>
+<button type="button" onclick="gerar()">Gerar Relatório</button>
+</form>
+
+<div id="saida"></div>
+</main>
+
+<footer>
+<p>Documento confidencial • uso investigativo</p>
+</footer>
+
+<script>
+function gerar(){
+  const g=id=>document.getElementById(id).value||'-';
+  const html=`<div class="report">
+<h3>CASO ${g('codigo')}</h3>
+<p class="meta">Data: ${g('data')} • Investigador: ${g('investigador')}</p>
+
+<p><strong>Indivíduo:</strong> ${g('nome')} (${g('apelido')})</p>
+<p><strong>Status:</strong> ${g('status')} • <strong>Última localização:</strong> ${g('local')}</p>
+
+<hr>
+<p><strong>Observações de campo</strong><br>${g('observacoes')}</p>
+<p><strong>Padrões e conexões</strong><br>${g('padroes')}</p>
+<p><strong>Hipóteses</strong><br>${g('hipoteses')}</p>
+<p><strong>Conclusão parcial</strong><br>${g('conclusao')}</p>
+</div>`;
+  document.getElementById('saida').innerHTML=html;
+}
+function resetar(){
+  document.getElementById('form').reset();
+  document.getElementById('saida').innerHTML='';
+}
+</script>
+</body>
+</html>
