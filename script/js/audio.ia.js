@@ -480,6 +480,16 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 10:48
 { nome: "Katy Perry - Firework", arquivo: "assets/19h/KatyPerry_Firework.mp3", inicio: 18, minuto: 10, segundo: 48, fim: 19 },
 // 14:41
+{ nome: "Jessie J - Bang Bang ft. Ariana Grande l, Nicki Minaj", arquivo: "assets/19h/Jessie_J_Bang_Bang_ft_Ariana_Grande_Nicki_Minaj.mp3", inicio: 18, minuto: 14, segundo: 41, fim: 19 },
+// 19:03
+{ nome: "Katy Perry - Hot N Cold", arquivo: "assets/19h/KatyPerry_Hot_N_Cold.mp3", inicio: 18, minuto: 19, segundo: 3, fim: 19 },
+// 23:46
+{ nome: "Zara Larsson - Lush Life", arquivo: "assets/19h/ZaraLarsson_Lush_Life.mp3", inicio: 18, minuto: 23, segundo: 46, fim: 19 },
+// 27:07
+
+
+
+
 
 
 
