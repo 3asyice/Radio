@@ -486,9 +486,14 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 23:46
 { nome: "Zara Larsson - Lush Life", arquivo: "assets/19h/ZaraLarsson_Lush_Life.mp3", inicio: 18, minuto: 23, segundo: 46, fim: 19 },
 // 27:07
-
-
-
+{ nome: "Jessie J - Domino", arquivo: "assets/19h/JessieJ_Domino.mp3", inicio: 18, minuto: 27, segundo: 7, fim: 19 },
+// 31:01
+{ nome: "Carly Rae Jepsen - Call Me Maybe", arquivo: "assets/19h/CarlyRaeJepsen_Call_Me_Maybe.mp3", inicio: 18, minuto: 31, segundo: 1, fim: 19 },
+// 34:20
+{ nome: "Justin Bieber - What Do You Mean?", arquivo: "assets/19h/JustinBieber_WhatDoYouMean.mp3", inicio: 18, minuto: 34, segundo: 20, fim: 19 },
+// 37:45
+{ nome: "Lady Gaga - Just Dance", arquivo: "assets/19h/LadyGaga_JustDance.mp3", inicio: 18, minuto: 37, segundo: 45, fim: 19 },
+// 41:51
 
 
 
