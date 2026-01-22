@@ -494,6 +494,19 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 37:45
 { nome: "Lady Gaga - Just Dance", arquivo: "assets/19h/LadyGaga_JustDance.mp3", inicio: 18, minuto: 37, segundo: 45, fim: 19 },
 // 41:51
+{ nome: "Rihanna - Umbrella ft. Jay-Z", arquivo: "assets/19h/Rihanna_Umbrella_ft_JAYZ.mp3", inicio: 18, minuto: 41, segundo: 51, fim: 19 },
+// 46:05
+{ nome: "Ke$ha - Tik Tok", arquivo: "assets/19h/Kesha_TiK_ToK.mp3", inicio: 18, minuto: 46, segundo: 5, fim: 19 },
+// 49:40
+{ nome: "Clean Bandit - Symphony feat. Zara Larsson", arquivo: "assets/19h/CleanBandit_Symphony_feat_ZaraLarsson.mp3", inicio: 18, minuto: 49, segundo: 40, fim: 19 },
+// 53:48
+{ nome: "Rihanna - S&S", arquivo: "assets/19h/Rihanna_SeS.mp3", inicio: 18, minuto: 53, segundo: 48, fim: 19 },
+// 57:52
+{ nome: "Nicki Minaj - Starships", arquivo: "assets/19h/NickiMinaj_Starships.mp3", inicio: 18, minuto: 57, segundo: 52, fim: 19 },
+
+// 19h
+
+
 
 
 
