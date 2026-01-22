@@ -472,6 +472,9 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Highly Suspect - Alien Spaceship", arquivo: "assets/17h/HighlySuspect_AlienSpaceship.mp3", inicio: 17, minuto: 9, segundo: 12, fim: 18 },
 
 // 18h
+{ nome: "Mapei - Don't Wait", arquivo: "assets/19h/Mapei_DontWait.mp3", inicio: 18, minuto: 0, segundo: 0, fim: 19 },
+// 03:35
+{ nome: "", arquivo: "assets/19h/Mapei_DontWait.mp3", inicio: 18, minuto: 0, segundo: 0, fim: 19 },
 
 
 // 20h
