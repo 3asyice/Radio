@@ -474,7 +474,13 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 18h
 { nome: "Mapei - Don't Wait", arquivo: "assets/19h/Mapei_DontWait.mp3", inicio: 18, minuto: 0, segundo: 0, fim: 19 },
 // 03:35
-{ nome: "", arquivo: "assets/19h/Mapei_DontWait.mp3", inicio: 18, minuto: 0, segundo: 0, fim: 19 },
+{ nome: "Feist - My Moon My Man", arquivo: "assets/19h/Feist_My_Moon_My_Man.mp3", inicio: 18, minuto: 3, segundo: 35, fim: 19 },
+// 07:16
+{ nome: "Katy Perry - This Is How We Do", arquivo: "assets/19h/KatyPerry_This_Is_How_We_Do.mp3", inicio: 18, minuto: 7, segundo: 16, fim: 19 },
+// 10:48
+{ nome: "Katy Perry - Firework", arquivo: "assets/19h/KatyPerry_Firework.mp3", inicio: 18, minuto: 10, segundo: 48, fim: 19 },
+// 14:41
+
 
 
 // 20h
