@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arquivo Investigativo • Confidencial</title>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===================== BASE ===================== */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'IBM Plex Mono', monospace;
+  background:#070707;
+  color:#d6d6d6;
+  text-shadow:0 0 6px rgba(120,255,180,0.15);
+  animation:crt-flicker .12s infinite alternate;
+}
+
+/* ===================== CRT EFFECT ===================== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.02),
+    rgba(255,255,255,.02) 1px,
+    rgba(0,0,0,.04) 2px,
+    rgba(0,0,0,.04) 3px
+  );
+  z-index:999;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at center,
+    rgba(140,255,200,.08),
+    rgba(0,0,0,.85) 70%);
+  pointer-events:none;
+  z-index:998;
+}
+@keyframes crt-flicker{
+  from{opacity:.97}
+  to{opacity:1}
+}
+
+/* ===================== HEADER ===================== */
+header{
+  background:#000;
+  padding:20px;
+  border-bottom:1px solid #222;
+}
+header h1{
+  margin:0;
+  font-size:18px;
+  letter-spacing:3px;
+  color:#9fd6c3;
+}
+
+/* ===================== MAIN ===================== */
+main{
+  max-width:920px;
+  margin:40px auto;
+  padding:30px;
+  background:#0c0c0c;
+  border:1px solid #1e1e1e;
+}
+
+.boot{
+  font-size:13px;
+  color:#8aff8a;
+  margin-bottom:25px;
+  line-height:1.4;
+}
+
+/* ===================== FORM ===================== */
+h2{
+  font-size:15px;
+  border-left:4px solid #4fa38c;
+  padding-left:10px;
+  color:#bfe9dd;
+  margin-top:40px;
+}
+label{
+  display:block;
+  margin-top:15px;
+  font-size:13px;
+  color:#aaa;
+}
+input,textarea,select{
+  width:100%;
+  margin-top:6px;
+  padding:10px;
+  background:#000;
+  color:#e0e0e0;
+  border:1px solid #333;
+  font-family:'IBM Plex Mono', monospace;
+}
+textarea{min-height:90px}
+button{
+  margin-top:30px;
+  background:#000;
+  color:#9fd6c3;
+  border:1px solid #4fa38c;
+  padding:12px 20px;
+  cursor:pointer;
+}
+button:hover{background:#111}
+
+/* ===================== BOARD ===================== */
+.board{
+  position:relative;
+  margin:70px auto;
+  padding:50px;
+  background:#111;
+  border:2px dashed #333;
+}
+.board-title{
+  color:#9fd6c3;
+  margin-bottom:20px;
+  letter-spacing:2px;
+  font-size:14px;
+}
+.postit{
+  position:absolute;
+  width:180px;
+  min-height:120px;
+  padding:12px;
+  font-size:12px;
+  color:#000;
+  box-shadow:2px 4px 10px rgba(0,0,0,.6);
+}
+.postit strong{
+  display:block;
+  margin-bottom:6px;
+  text-transform:uppercase;
+  font-size:11px;
+}
+.yellow{background:#fff79a;transform:rotate(-2deg)}
+.green{background:#9affb3;transform:rotate(3deg)}
+.pink{background:#ff9ad5;transform:rotate(-4deg)}
+
+/* ===================== EXPORT ===================== */
+.export{
+  margin-top:50px;
+  border:1px dashed #333;
+  padding:20px;
+}
+.export textarea{
+  width:100%;
+  min-height:340px;
+  background:#000;
+  color:#8aff8a;
+  padding:15px;
+}
+
+/* ===================== FOOTER ===================== */
+footer{
+  text-align:center;
+  color:#444;
+  padding:20px;
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ARQUIVO • CONFIDENCIAL</h1>
+</header>
+
+<main>
+
+<div class="boot">
+> initializing investigation module...<br>
+> loading archived files...<br>
+> access level: CONFIDENTIAL<br>
+> system ready.
+</div>
+
+<form id="form">
+
+<h2>Identificação do Caso</h2>
+<label>Código</label><input id="codigo" value="TD-0009">
+<label>Investigador</label><input id="investigador">
+<label>Data</label><input type="date" id="data">
+
+<h2>Indivíduo / Evento Central</h2>
+<label>Nome</label><input id="nome">
+<label>Apelido</label><input id="apelido">
+<label>Status</label>
+<select id="status"><option>Indeterminado</option><option>Vivo</option><option>Falecido</option></select>
+<label>Local</label><input id="local">
+
+<h2>Observações</h2>
+<textarea id="obs"></textarea>
+
+<h2>Padrões</h2>
+<textarea id="padroes"></textarea>
+
+<h2>Hipóteses</h2>
+<textarea id="hipoteses"></textarea>
+
+<h2>Linha do Tempo</h2>
+<label>Evento 1</label><input id="t1d"><textarea id="t1"></textarea>
+<label>Evento 2</label><input id="t2d"><textarea id="t2"></textarea>
+<label>Evento 3</label><input id="t3d"><textarea id="t3"></textarea>
+
+<h2>Conclusão Parcial</h2>
+<textarea id="conclusao"></textarea>
+
+<button type="button" onclick="gerar()">Gerar + Exportar</button>
+</form>
+
+<div class="board">
+<div class="board-title">QUADRO INVESTIGATIVO</div>
+
+<div class="postit yellow" style="top:40px;left:30px">
+<strong>Padrão</strong>
+Eventos recorrentes<br>em horários fixos
+</div>
+
+<div class="postit green" style="top:200px;left:260px">
+<strong>Suspeita</strong>
+Ligação indireta<br>com casos antigos
+</div>
+
+<div class="postit pink" style="top:80px;right:40px">
+<strong>Alerta</strong>
+Informação omitida<br>intencionalmente
+</div>
+</div>
+
+<div class="export" id="export"></div>
+
+</main>
+
+<footer>
+Arquivo interno • observação contínua
+</footer>
+
+<script>
+function v(id){return document.getElementById(id).value||'-'}
+
+function gerar(){
+  const html = `
+<!DOCTYPE html><html><body><pre>
+RELATÓRIO ${v('codigo')}
+Investigador: ${v('investigador')}
+Data: ${v('data')}
+
+${v('obs')}
+</pre></body></html>`;
+  document.getElementById('export').innerHTML =
+  '<h2>HTML Gerado</h2><textarea readonly>'+html.replace(/</g,'&lt;')+'</textarea>';
+}
+</script>
+
+</body>
+</html>

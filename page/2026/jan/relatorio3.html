@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sistema Investigativo • Registro Federal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#e6e6e6;
+  color:#222;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:#d2d2d2;
+  border-bottom:2px solid #9a9a9a;
+  padding:15px 25px;
+}
+header h1{
+  margin:0;
+  font-size:18px;
+  letter-spacing:2px;
+}
+header span{
+  font-size:12px;
+  color:#555;
+}
+
+/* ===== MAIN ===== */
+main{
+  max-width:1100px;
+  margin:30px auto;
+  padding:20px;
+}
+
+/* ===== PANELS ===== */
+.panel{
+  background:#f4f4f4;
+  border:1px solid #aaa;
+  padding:20px;
+  margin-bottom:35px;
+}
+.panel h2{
+  font-size:14px;
+  margin:0 0 15px;
+  border-bottom:1px solid #bbb;
+  padding-bottom:6px;
+}
+
+/* ===== FORM ===== */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+label{
+  display:block;
+  margin-top:10px;
+  font-size:12px;
+}
+input, textarea, select{
+  width:100%;
+  margin-top:4px;
+  padding:8px;
+  border:1px solid #999;
+  background:#fafafa;
+  font-size:13px;
+}
+textarea{min-height:70px}
+.full{grid-column:1/3}
+
+/* ===== BUTTONS ===== */
+.actions{
+  margin-top:20px;
+}
+button{
+  padding:10px 14px;
+  border:1px solid #555;
+  background:#dedede;
+  cursor:pointer;
+  margin-right:10px;
+}
+button:hover{background:#cfcfcf}
+
+/* ===== FEEDBACK ===== */
+#feedback{
+  margin-top:15px;
+  padding:10px;
+  background:#e4ebf2;
+  border:1px solid #9aaec4;
+  font-size:12px;
+}
+
+/* ===== BOARD ===== */
+.board{
+  position:relative;
+  height:520px;
+  background:#f7f7f7;
+  border:2px solid #999;
+}
+.board-title{
+  padding:8px;
+  background:#ddd;
+  border-bottom:1px solid #aaa;
+  font-size:13px;
+}
+
+/* ===== POST-ITS ===== */
+.postit{
+  position:absolute;
+  width:190px;
+  min-height:110px;
+  padding:10px;
+  font-size:12px;
+  border:1px solid #666;
+}
+.postit strong{
+  display:block;
+  font-size:11px;
+  margin-bottom:6px;
+  text-transform:uppercase;
+}
+.alerta{background:#f4cccc}
+.suspeita{background:#fff2cc}
+.padrao{background:#d9ead3}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  font-size:11px;
+  color:#666;
+  padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>SISTEMA DE REGISTRO INVESTIGATIVO</h1>
+<span>Acesso institucional • dados sensíveis</span>
+</header>
+
+<main>
+
+<div class="panel">
+<h2>Registro do Caso</h2>
+
+<div class="grid">
+
+<div>
+<label>Código do Caso</label>
+<input id="codigo" value="TD-0010">
+
+<label>Investigador Responsável</label>
+<input id="investigador">
+
+<label>Data do Registro</label>
+<input type="date" id="data">
+</div>
+
+<div>
+<label>Nome do Indivíduo / Evento</label>
+<input id="nome">
+
+<label>Apelido</label>
+<input id="apelido">
+
+<label>Status</label>
+<select id="status">
+<option>Indeterminado</option>
+<option>Vivo</option>
+<option>Falecido</option>
+</select>
+</div>
+
+<div class="full">
+<label>Local Principal</label>
+<input id="local">
+</div>
+
+<div class="full">
+<label>Observações de Campo</label>
+<textarea id="obs"></textarea>
+</div>
+
+<div class="full">
+<label>Padrões Identificados</label>
+<textarea id="padroes"></textarea>
+</div>
+
+<div class="full">
+<label>Hipóteses em Aberto</label>
+<textarea id="hipoteses"></textarea>
+</div>
+
+</div>
+
+<div class="actions">
+<button onclick="salvar()">💾 Salvar Progresso</button>
+<button onclick="gerarArquivo()">📄 Gerar HTML para Arquivamento</button>
+</div>
+
+<div id="feedback">
+Sistema aguardando o preenchimento do caso.
+</div>
+</div>
+
+<div class="panel">
+<h2>Quadro Investigativo</h2>
+
+<div class="board">
+<div class="board-title">Análise Visual</div>
+
+<div class="postit alerta" style="top:70px;left:60px">
+<strong>Alerta</strong>
+Informação contraditória no depoimento.
+</div>
+
+<div class="postit suspeita" style="top:250px;left:300px">
+<strong>Suspeita</strong>
+Vínculo indireto com caso anterior.
+</div>
+
+<div class="postit padrao" style="top:100px;left:560px">
+<strong>Padrão</strong>
+Ocorrências em intervalos regulares.
+</div>
+
+</div>
+</div>
+
+</main>
+
+<footer>
+Arquivo institucional • manter integridade dos dados
+</footer>
+
+<script>
+const feedback = document.getElementById("feedback")
+
+function v(id){
+  const el = document.getElementById(id)
+  return el ? el.value.replace(/\n/g,"<br>") : ""
+}
+
+function salvar(){
+  const dados={}
+  document.querySelectorAll("input,textarea,select")
+    .forEach(e=>dados[e.id]=e.value)
+  localStorage.setItem("caso_atual",JSON.stringify(dados))
+  feedback.innerText="✔ Progresso salvo localmente."
+}
+
+function restaurar(){
+  const d=JSON.parse(localStorage.getItem("caso_atual"))
+  if(!d)return
+  Object.keys(d).forEach(id=>{
+    const el=document.getElementById(id)
+    if(el) el.value=d[id]
+  })
+}
+
+function gerarArquivo(){
+  salvar()
+
+  const nomeArquivo = codigo.value || "caso_sem_codigo"
+  const conteudo = `
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatório ${v('codigo')}</title>
+</head>
+<body>
+<h2>Relatório ${v('codigo')}</h2>
+<p><strong>Investigador:</strong> ${v('investigador')}</p>
+<p><strong>Data:</strong> ${v('data')}</p>
+<hr>
+<p><strong>Nome:</strong> ${v('nome')} (${v('apelido')})</p>
+<p><strong>Status:</strong> ${v('status')}</p>
+<p><strong>Local:</strong> ${v('local')}</p>
+<hr>
+<h3>Observações de Campo</h3>
+<p>${v('obs')}</p>
+<h3>Padrões Identificados</h3>
+<p>${v('padroes')}</p>
+<h3>Hipóteses em Aberto</h3>
+<p>${v('hipoteses')}</p>
+</body>
+</html>`
+
+  const blob=new Blob([conteudo],{type:"text/html"})
+  const a=document.createElement("a")
+  a.href=URL.createObjectURL(blob)
+  a.download=nomeArquivo+".html"
+  a.click()
+
+  feedback.innerText="📂 Arquivo HTML gerado com sucesso."
+}
+
+window.onload=restaurar
+</script>
+
+</body>
+</html>
