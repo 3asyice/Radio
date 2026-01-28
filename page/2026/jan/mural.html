@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <title>Mural Investigativo</title>
+  
+  <style>
+    body {
+      margin: 0;
+      background: #2b1e14;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
+    }
+    
+    /* ===== TOPO ===== */
+    #topbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 10px;
+      background: #1a120b;
+      border-bottom: 2px solid #4a3522;
+      color: #eee;
+      z-index: 10;
+    }
+    
+    /* ===== MURAL ===== */
+    #mural {
+      position: absolute;
+      top: 55px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        repeating-linear-gradient(45deg,
+          #3a2716,
+          #3a2716 10px,
+          #352213 10px,
+          #352213 20px);
+    }
+    
+    /* ===== FOTO ===== */
+    .foto {
+      position: absolute;
+      background: #111;
+      padding: 6px;
+      padding-top: 14px;
+      /* espaço pro pino */
+      border: 2px solid #222;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, .6);
+      cursor: grab;
+    }
+    
+    .foto.selecionada {
+      border-color: red;
+    }
+    
+    /* ===== PINO ===== */
+    .foto::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle at 30% 30%, #fff, #b00 40%, #600);
+      border-radius: 50%;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, .6);
+    }
+    
+    /* haste do pino */
+    .foto::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 10px;
+      background: #444;
+    }
+    
+    /* ===== IMAGEM ===== */
+    .foto img {
+      width: 160px;
+      display: block;
+    }
+    
+    /* ===== NOTA ===== */
+    .nota {
+      background: #f5f1e6;
+      color: #000;
+      font-size: 12px;
+      padding: 4px;
+      margin-top: 5px;
+      min-height: 25px;
+    }
+    
+    /* ===== BOTÃO ===== */
+    .foto button {
+      width: 100%;
+      margin-top: 3px;
+      background: #7a0000;
+      color: #fff;
+      border: none;
+      font-size: 11px;
+      padding: 4px;
+      cursor: pointer;
+    }
+    
+    /* ===== LINHAS ===== */
+    svg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div id="topbar">
+    <input type="file" id="upload" accept="image/*">
+    Clique em duas fotos para ligar
+  </div>
+  
+  <div id="mural">
+    <svg id="linhas"></svg>
+  </div>
+  
+  <script>
+    const mural = document.getElementById("mural");
+    const upload = document.getElementById("upload");
+    const svg = document.getElementById("linhas");
+    
+    let selecionada = null;
+    let ligacoes = [];
+    
+    /* ===== UPLOAD ===== */
+    upload.addEventListener("change", e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = () => {
+        criarFoto(reader.result);
+      };
+      reader.readAsDataURL(file);
+    });
+    
+    /* ===== CRIAR FOTO ===== */
+    function criarFoto(src) {
+      const div = document.createElement("div");
+      div.className = "foto";
+      div.style.left = Math.random() * 500 + "px";
+      div.style.top = Math.random() * 300 + "px";
+      
+      const img = document.createElement("img");
+      img.src = src;
+      
+      const nota = document.createElement("div");
+      nota.className = "nota";
+      nota.contentEditable = true;
+      nota.innerText = "Nota...";
+      
+      const btn = document.createElement("button");
+      btn.innerText = "Adicionar Nota";
+      btn.onclick = () => nota.focus();
+      
+      div.appendChild(img);
+      div.appendChild(nota);
+      div.appendChild(btn);
+      mural.appendChild(div);
+      
+      tornarArrastavel(div);
+      
+      div.addEventListener("click", e => {
+        e.stopPropagation();
+        selecionarFoto(div);
+      });
+    }
+    
+    /* ===== ARRASTAR ===== */
+    function tornarArrastavel(el) {
+      let offsetX, offsetY, ativo = false;
+      
+      el.addEventListener("pointerdown", e => {
+        ativo = true;
+        offsetX = e.clientX - el.offsetLeft;
+        offsetY = e.clientY - el.offsetTop;
+        el.setPointerCapture(e.pointerId);
+      });
+      
+      el.addEventListener("pointermove", e => {
+        if (!ativo) return;
+        el.style.left = (e.clientX - offsetX) + "px";
+        el.style.top = (e.clientY - offsetY) + "px";
+        atualizarLinhas();
+      });
+      
+      el.addEventListener("pointerup", () => {
+        ativo = false;
+      });
+    }
+    
+    /* ===== SELEÇÃO ===== */
+    function selecionarFoto(foto) {
+      if (!selecionada) {
+        selecionada = foto;
+        foto.classList.add("selecionada");
+      } else if (selecionada !== foto) {
+        criarLinha(selecionada, foto);
+        selecionada.classList.remove("selecionada");
+        selecionada = null;
+      }
+    }
+    
+    /* ===== LINHA ===== */
+    function criarLinha(a, b) {
+      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      line.setAttribute("stroke", "red");
+      line.setAttribute("stroke-width", "2");
+      svg.appendChild(line);
+      ligacoes.push({ a, b, line });
+      atualizarLinha(line, a, b);
+    }
+    
+    function atualizarLinha(line, a, b) {
+      const r1 = a.getBoundingClientRect();
+      const r2 = b.getBoundingClientRect();
+      line.setAttribute("x1", r1.left + r1.width / 2);
+      line.setAttribute("y1", r1.top + r1.height / 2);
+      line.setAttribute("x2", r2.left + r2.width / 2);
+      line.setAttribute("y2", r2.top + r2.height / 2);
+    }
+    
+    function atualizarLinhas() {
+      ligacoes.forEach(l => {
+        atualizarLinha(l.line, l.a, l.b);
+      });
+    }
+  </script>
+  
+</body>
+
+</html>
