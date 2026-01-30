@@ -61,7 +61,7 @@ padding-top: 90px;
 background-color: #222222;
 }
 body.dark-mode div.station_message div.a p{
-  color:#FF3131;
+ /*#DE2432 */ color:#13273E;
 }
 
  body.dark-mode div.station_message div.b p {
@@ -73,7 +73,7 @@ body.dark-mode div.station_message div.c p {
 }
 body.dark-mode #horario_atual {
   color: #ffcc00;
-  text-shadow: 0 0 6px #ff0000, 0 0 12px #00ffaa;
+  /*#ff0000 */text-shadow: 0 0 6px #13273E 0 0 12px #00ffaa;
   font-weight: bold;
   font-size: 1.1rem;
 }
@@ -124,11 +124,11 @@ background: #F3F4F6;
 
 h1, h2, h3 {
 color: #fff;
-background: #DE2432;
+/*#DE2432 */background: #13273E;
 text-shadow: 0 0 8px #F3F4F6;
 }
 header{
-background: #DE2432;
+/*#DE2432 */background: #13273E;
 display: flex;
 }
 button {
@@ -156,7 +156,7 @@ font-size: 15px;
 margin-bottom: 20px;
 }
 #startBtn, #statitnow {
-background: #DE2432;
+  /*#DE2432 */background: #13273E;
 color:#fff;
 font-weight: 900;
 width: 170px;
@@ -280,7 +280,7 @@ font-weight: 900;
 div.download{
 margin:50px 25px 0 25px;
 border:1px solid #B2B2B2;
-background: #DD242C;
+/*#DD242C */background: #13273E;
 border-radius:16px;
 box-shadow: 3px 3px 15px #ABABAB;
 }
@@ -299,7 +299,7 @@ padding:8px;
 font-weight: 900;
 margin: 20px 0 20px 0;
 border-radius:16px;
-color:#DD242C;
+/*#DE2432 */color:#13273E;
 width: 128px;
 display:flex;
 }
