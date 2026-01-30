@@ -118,7 +118,7 @@ body.dark-mode div.download {
 
 
 html, body {
-background: #F3F4F6;
+background: #184091;
 }
  
 
@@ -139,7 +139,7 @@ background-color: #00ff8840;
 }
 
 audio {
-filter: drop-shadow(0 0 6px #F3F4F6);
+filter: drop-shadow(0 0 6px #184091);
 margin-top: 20px;
 }
 
@@ -183,17 +183,17 @@ color:#F49E0B;
 div.btn_play{
 margin:0px 25px 0 25px;
 border:1px solid #B2B2B2;
-background: #F3F4F6;
+background: #B4B4B4;
 border-bottom-left-radius: 16px;
 border-bottom-right-radius: 16px;
-box-shadow: 3px 3px 15px #ABABAB;
+box-shadow: 3px 3px 15px #200069;
 }
 div.next{
 margin:50px 25px 0 25px;
 border:1px solid #B2B2B2;
-background: #F3F4F6;
+background: #B4B4B4;
 border-radius:16px;
-box-shadow: 3px 3px 15px #ABABAB;
+box-shadow: 3px 3px 15px #184091;
 }
 div.next p{
 color:#373737;
@@ -207,9 +207,9 @@ color:#F49E0B;
 div.station_message{
 margin:50px 25px 0 25px;
 border:1px solid #B2B2B2;
-background: #F3F4F6;
+background: #B4B4B4;
 border-radius:16px;
-box-shadow: 3px 3px 15px #ABABAB;
+box-shadow: 3px 3px 15px #184091;
 }
 div.station_message p{
 margin:30px 25px 30px 25px;
@@ -261,9 +261,9 @@ font-weight: 800;
 div.info{
 margin:50px 25px 0 25px;
 border:1px solid #B2B2B2;
-background: #F3F4F6;
+background: #B4B4B4;
 border-radius:16px;
-box-shadow: 3px 3px 15px #ABABAB;
+box-shadow: 3px 3px 15px #184091;
 }
 div.info p{
 margin:30px 25px 30px 25px;
@@ -282,7 +282,7 @@ margin:50px 25px 0 25px;
 border:1px solid #B2B2B2;
 /*#DD242C */background: #13273E;
 border-radius:16px;
-box-shadow: 3px 3px 15px #ABABAB;
+box-shadow: 3px 3px 15px #184091;
 }
 div.download p{
 color:#fff;
