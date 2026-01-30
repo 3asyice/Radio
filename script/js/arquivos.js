@@ -35,21 +35,135 @@ const linkstwentytwentyfour = document.getElementById("linksScripted").innerHTML
 
 
 
-<div class="link-item"><a href="https://archive.org/details/sertanejo-universitario"/>sertanejos universitários</a><p class="date">jan 04, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://ww3.soap2dayhdz.com/"/>movies and series english</a><p class="date">dec 29, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://youtu.be/H2WqfX-WJj4?si=ekDOpczn3BPsNXto"/>Trailer de Filmes</a><p class="date">dec 29, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://www13.redecanais.in/episodio/stranger-things-5x5-5a-temporada-episodio-5/"/>stranger things volume 2</a><p class="date">dec 25, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://web.archive.org/web/20251223115956id_/https://rad609.bar/arquivos"/>rad609.bar arquivos</a><p class="date">dec 23, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://www.dailymotion.com/video/x9um5s0"/>Heated Rivalry</a><p class="date">dec 23, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://m.ok.ru/video/8766871112212"/>Arrival (2016)</a><p class="date">dec 23, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://archive.org/details/filmes-de-tyler-2"/>Filmes teste 2</a><p class="date">dec 21, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://youtu.be/Om8v3lJXQZ8"/>Vídeos Motivacionais YT</a><p class="date">dec 20, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://web.archive.org/web/20251218121238if_/https://colaborae.com.br/blog/2023/07/14/imaginacao-e-visualizacao/"/>imaginação e visualização</a><p class="date">dec 15, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://web.archive.org/web/20251223120638id_/https://rad609.bar/Feed"/>Rádio 609 Feed</a><p class="date">dec 15, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://web.archive.org/web/20251216014502id_/https://rad609.bar"/>Rádio 609 </a><p class="date">dec 15, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://archive.org/details/bugs_20240315"/>Rabbit Tales</a><p class="date">dec 13, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://archive.org/details/looney-tunes-1994-tbs"/>Looney Tunes (1994)</a><p class="date">dec 13, 2025 </p> <hr> </div>
-<div class="link-item"><a href="https://archive.org/details/dark_serie_br"/>Dark (2017)</a><p class="date">dec 12, 2025 </p> <hr> </div>
+
+  
+
+<div class="link-item"><a href="https://3asyice.github.io/the-end-line/"/>the end line/</a><p class="date">jan 28, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/trtn-rzn-w"/>os 13 porquês/</a><p class="date">jan 28, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/animated-kids"/>desenhos animados/</a><p class="date">jan 25, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/black-mirror-bandersnatch_480"/>bandersnatch movie/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/monsters-inc-2002-vhs-1of-21/"/>spongebob vhs/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/fun-and-fancy-free-1997-vhs"/>vhs animated movies/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/page-chronicles-vol-9-flicks"/>movies collection 7/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/boys_20251027_20251027_1851"/>movies collection 6/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/boys_20251027_20251027_1851"/>the boys season 4/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/boys_20251027_20251027"/>the boys season 3/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/boys_20251027_202510"/>the boys season 2/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/boys_20251027"/>the boys season 1/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/spartacus-gods-of-the-arena"/>spartacus gods of the arena/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/spartacus-war-of-the-damned"/>spartacus season 3/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/spartacus-vengeance"/>spartacus season 2/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/spartacus-blood-and-sand"/>spartacus season 1/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/the-end-of-the-fucking-world_202512"/>teotfw series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/bsi-template#review-1767709635"/>movies collection en 5/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-pc-flicks-title#review-1768146701"/>movies collection en 4/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/page-chonicles-2025-violet/"/>movies collection en 3/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-pc-flick-title_202601/"/>movies collection en 2/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-pc-flick-title/"/>movies collection en/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-viking-valhalla"/>vikings valhalla series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/the-strain"/>the strain series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/alien-1979._202103"/>alien 1,2,3/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/deep-purple-videobiography-disk-1-and-2-kut"/>page's music video/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/lady-death-the-motion-picture-anime-o-1-h-16-min"/>x-men collection/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/twilight-zone-3_202510"/>the twilight zone 85 s3/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/twilight-zone-6"/>the twilight zone 85 s2/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/twilight-zone-3"/>the twilight zone 85 s1/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/severance-season-2-reportedly-facing-delays-due-to-concerning-reason"/>severance season 2/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/severance-spoiler-magazine"/>severance season 1/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/tru-det-4"/>true detective season 4/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/true-det-3"/>true detective season 3/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/true-detective-season-2-overview"/>true detective season 2/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/rbw-1"/>true detective season 1/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/american-horror-stories_202511/"/>ahs season 1/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/american-horror-stories-season-02"/>ahs season 2/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/matrix-collection-misc."/>the matrix collection/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/the-last-of-us-season-01"/>the last of us/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/titans-s-01"/>titans tv series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/x-files_202511"/>x-files series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/the-umbrella-academy-tv-series"/>the umbrella academy/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/legion-tv-series"/>legion tv series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/wandavision-s-01"/>wandavision series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/peacemaker_202512"/>peacemaker/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/the-terminal-list"/>the terminal list/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/love-death-and-robots"/>love, death + robots/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/pc-tba_202512"/>dark series en/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/superman-returns-man-of-steel-superman-christopher-reeve_202601"/>superman collection/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-b-c-s"/>better call saul series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-b-b"/>breaking bad series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-dex"/>Dexter series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-starwars-coll"/>star war collection/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-dex-new-bld"/>dexter new blood/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-dex-res"/>dexter resurrection/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/1-dex-or-sin_202601"/>dexter original sin/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-sprntrl_202601"/>Supernatural series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-it-welcone"/>It - welcome to derry/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/grimm-2"/>Grim Series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-vikings"/>Vikings Series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-the-twilight-zone"/>The Twilight Zone/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-star-trek-animated"/>Star Trek animated series/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/dos_20251021"/>Black Mirror EN/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/azofcoolcomputer0000rail/page/n141/mode/1up"/>book a-z games/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.retrogames.cz/play_171-Genesis.php"/>outrun sega/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://play.highscoregamearcade.com/thegames/e4faa109-6743-11ee-9879-16d64b27c4cb/index.html"/>break invaders/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://dopebox.to/tv/watch-greys-anatomy-online-hd-39545"/>grey's anatomy/</a><p class="date">jan 23, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://m.vk.com/video696059331_456239358"/>the last straight man/</a><p class="date">jan 22, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/official-arctic-monkeys"/>arctic monkeys releases/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://nuforc.org/map/"/>relatórios de ufos/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/video/bastardos-inglorios-2009-2h-33m"/>bastardos inglórios/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/fr/video/blue-valentine-2010"/>blue valentine/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/cisne-negro"/>cisne negro/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/pulp-fiction-tempo-de-violencia"/>pulp fiction/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/o-predador-1987-2"/>o predador (1987)/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/o-enigma-de-outro-mundo-1982"/>a coisa (1983)/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/nada-de-novo-no-front-2022-todos"/>nada de novo no front/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/batman-o-cavaleiro-das-trevas-2"/>batman cavaleiro das trevas/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/menina-de-ouro-2004-esporte-drama-vini7xg"/>menina de ouro (2004)/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/cidade-de-deus-pedroccc"/>cidade de deus (2002)/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/blade-runner-o-cacador-de-androides-1982-dublado-pt-br"/>blade runner (1982)/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/o-poderoso-chefao-1972"/>o poderoso chefão (1972)/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/psicose-psycho-1960"/>Psicose (1960)/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/um-corpo-que-cai-vertigo-1958-2h-8m-leg"/>Vertigo (1959)/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.dailymotion.com/video/x1e2csj"/>a streetcar named desire/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/a-lista-de-schindler-1993"/>a lista de schindler (1993)/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20251224070230id_/https://rad609.bar/page/2025/dez/dreams.html"/>Sonhos de Guilherme/</a><p class="date">jan 21, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/caminhos-da-memoria-2021-dublado"/>caminhos da memória.mp4/</a><p class="date">jan 18, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.dailymotion.com/video/x8bliyj"/>Expresso do amanhã.mp4/</a><p class="date">jan 18, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/a-maquina-de-lembrancas-2018-dublado"/>a máquina de lembranças/</a><p class="date">jan 18, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://dn721500.ca.archive.org/0/items/spin-soldier/Screenrecorder-2026-01-17-00-33-37-639.ia.mp4"/>motivações volume off/</a><p class="date">jan 18, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://dn721500.ca.archive.org/0/items/spin-soldier/evento-do-vini.ia.mp4"/>evento do vxni.mp4/</a><p class="date">jan 18, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.tokyvideo.com/br/video/amnesia"/>amnésia.mp4/</a><p class="date">jan 18, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://ia601508.us.archive.org/30/items/spin-soldier/o_grilo_live_17012026_4.ia.mp4"/>o grilo live ig 4/</a><p class="date">jan 17, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://ia601508.us.archive.org/30/items/spin-soldier/o_grilo_live_17012026_3.ia.mp4"/>o grilo live ig 3/</a><p class="date">jan 17, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://ia601508.us.archive.org/30/items/spin-soldier/o_grilo_live_17012026_2.ia.mp4"/>o grilo live ig 2/</a><p class="date">jan 17, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://ia601508.us.archive.org/30/items/spin-soldier/o_grilo_live_17012026.ia.mp4"/>o grilo live ig/</a><p class="date">jan 17, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/o-grilo-mp3"/>o grilo mp3/</a><p class="date">jan 17, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://3asyice.github.io/BlackMirrorwiki/page/season-3/nosedive.html"/>nosedive 03x01/</a><p class="date">jan 16, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/arsenalg-page-2"/>Arsenal G p2/</a><p class="date">jan 16, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/arsenalg"/>Arsenal G p1/</a><p class="date">jan 16, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://3asyice.github.io/Arsenal/"/>Arsenal G/</a><p class="date">jan 16, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://youtu.be/JKLVmvMF_9k?si=4PGx0yw28NFCG8td"/>white rabbit cover/</a><p class="date">jan 13, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/windows-11_202106"/>Windows 11.iso/</a><p class="date">jan 12, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://tubeflix.barramaisbaratovitrine.com/video/62/n%C3%A3o-adianta-fugir-2009-dublado-hd-imdb-4.6?channelName=Tubeflix"/>Não adianta fugir (2009)/</a><p class="date">jan 12, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/linkin-park-storage"/>Linkin Park Álbuns/</a><p class="date">jan 12, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://redecanaistv.fm/assistir-rede-globo-rj-online-24-horas-ao-vivo_89f2ea726.html"/>globo rj/</a><p class="date">jan 11, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://youtu.be/vqBXh4ltga0?si=q2Mn0SxDNIj3BbBO"/>série cosmos viagem no tempo/</a><p class="date">jan 11, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://november61987.com/"/>vecna lives/</a><p class="date">jan 07, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://dn720006.ca.archive.org/0/items/baudrillard.-1970.-the-consumer-society/Baudrillard.1981.Simulacra-and-Simulation.pdf"/>simulacra and simulation/</a><p class="date">jan 06, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/sertanejo-universitario"/>sertanejos universitários/</a><p class="date">jan 04, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://ww3.soap2dayhdz.com/"/>movies and series english/</a><p class="date">dec 29, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://youtu.be/H2WqfX-WJj4?si=ekDOpczn3BPsNXto"/>Trailer de Filmes/</a><p class="date">dec 29, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://www13.redecanais.in/episodio/stranger-things-5x5-5a-temporada-episodio-5/"/>stranger things volume 2/</a><p class="date">dec 25, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20251223115956id_/https://rad609.bar/arquivos"/>rad609.bar arquivos/</a><p class="date">dec 23, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://www.dailymotion.com/video/x9um5s0"/>Heated Rivalry/</a><p class="date">dec 23, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://m.ok.ru/video/8766871112212"/>Arrival (2016)/</a><p class="date">dec 23, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/filmes-de-tyler-2"/>Filmes teste 2/</a><p class="date">dec 21, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://youtu.be/Om8v3lJXQZ8"/>Vídeos Motivacionais YT/</a><p class="date">dec 20, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20251218121238if_/https://colaborae.com.br/blog/2023/07/14/imaginacao-e-visualizacao/"/>imaginação e visualização/</a><p class="date">dec 15, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20251223120638id_/https://rad609.bar/Feed"/>Rádio 609 Feed/</a><p class="date">dec 15, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20251216014502id_/https://rad609.bar"/>Rádio 609/</a><p class="date">dec 15, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/bugs_20240315"/>Rabbit Tales/</a><p class="date">dec 13, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/looney-tunes-1994-tbs"/>Looney Tunes (1994)/</a><p class="date">dec 13, 2025 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/dark_serie_br"/>Dark (2017)/</a><p class="date">dec 12, 2025 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/my-vhs-saga-part-66/"/>The blair witch project/</a><p class="date">dec 11, 2025 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/love.-death.and.-robots.-s-01-e-18.-the.-secret.-war.-1080p.-nf.-web-dl.-ddp-5.1.x-264-ntg/"/>Love, Death + Robots/</a><p class="date">dec 11, 2025 </p> <hr> </div>
 <div class="link-item"><a href="https://youtube.com/playlist?list=PLLN5GPLKgoiRZXZYgbi0C92me4GVTkMfU&si=7uVRV73rt5aqDn2j"/>Skins Dublado/</a><p class="date">dec 09, 2025 </p> <hr> </div>
