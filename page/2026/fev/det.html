@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Investigação Digital</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0e0e0e;
+  color: #e0e0e0;
+}
+
+header {
+  background: #111;
+  padding: 15px;
+  border-bottom: 2px solid crimson;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  color: crimson;
+}
+
+.container {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.section {
+  background: #161616;
+  border-left: 4px solid crimson;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  margin-top: 0;
+  color: #ff4d4d;
+}
+
+input, textarea, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: #0e0e0e;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+button {
+  background: crimson;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #ff3333;
+}
+
+.log {
+  border-bottom: 1px dashed #333;
+  padding: 10px 0;
+}
+
+.log small {
+  color: #aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🕵️ Painel de Vigilância Digital</h1>
+  <small>Uso interno • Observação estratégica</small>
+</header>
+
+<div class="container">
+
+  <div class="section">
+    <h2>🎯 Registrar Observação</h2>
+
+    <input id="alvo" placeholder="Nome do alvo / perfil">
+    <select id="plataforma">
+      <option>Instagram</option>
+      <option>X (Twitter)</option>
+      <option>Facebook</option>
+      <option>TikTok</option>
+      <option>Outro</option>
+    </select>
+
+    <input id="link" placeholder="Link observado">
+    <select id="categoria">
+      <option>Movimentação suspeita</option>
+      <option>Contato frequente</option>
+      <option>Padrão de comportamento</option>
+      <option>Publicação relevante</option>
+    </select>
+
+    <textarea id="descricao" rows="4" placeholder="Descrição detalhada da observação"></textarea>
+
+    <button onclick="salvar()">Salvar Registro</button>
+  </div>
+
+  <div class="section">
+    <h2>📂 Registros Coletados</h2>
+    <div id="registros"></div>
+  </div>
+
+</div>
+
+<script>
+let dados = JSON.parse(localStorage.getItem("investigacao")) || [];
+
+function salvar() {
+  const registro = {
+    alvo: alvo.value,
+    plataforma: plataforma.value,
+    link: link.value,
+    categoria: categoria.value,
+    descricao: descricao.value,
+    data: new Date().toLocaleString()
+  };
+
+  if (!registro.alvo || !registro.descricao) {
+    alert("Preencha pelo menos o alvo e a descrição.");
+    return;
+  }
+
+  dados.push(registro);
+  localStorage.setItem("investigacao", JSON.stringify(dados));
+  limpar();
+  renderizar();
+}
+
+function limpar() {
+  alvo.value = "";
+  link.value = "";
+  descricao.value = "";
+}
+
+function renderizar() {
+  registros.innerHTML = "";
+  dados.slice().reverse().forEach(r => {
+    registros.innerHTML += `
+      <div class="log">
+        <strong>${r.alvo}</strong> • ${r.plataforma} • ${r.categoria}<br>
+        <small>${r.data}</small><br>
+        <small><a href="${r.link}" target="_blank">${r.link}</a></small>
+        <p>${r.descricao}</p>
+      </div>
+    `;
+  });
+}
+
+renderizar();
+</script>
+
+</body>
+</html>

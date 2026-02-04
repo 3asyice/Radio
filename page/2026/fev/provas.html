@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel OSINT • Investigação Digital</title>
+
+<!-- PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+:root{
+  --bg:#050607;
+  --card:#0e1114;
+  --text:#d0d0d0;
+  --accent:#00ffc8;
+  --border:#00bfa5;
+  --danger:#ff3b3b;
+}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+header{
+  padding:15px;
+  border-bottom:2px solid var(--accent);
+  text-align:center;
+}
+
+header h1{
+  margin:0;
+  color:var(--accent);
+  letter-spacing:2px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:15px;
+  margin-bottom:20px;
+}
+
+.section h2{
+  margin-top:0;
+  color:var(--accent);
+}
+
+input, textarea, select, button{
+  width:100%;
+  background:#050607;
+  color:#fff;
+  border:1px solid var(--border);
+  padding:10px;
+  margin-top:8px;
+}
+
+button{
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button.primary{
+  background:var(--accent);
+  color:#000;
+}
+
+button.danger{
+  background:var(--danger);
+  border:none;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:15px;
+}
+
+.card{
+  background:#0b0d10;
+  border:1px solid #1c2228;
+  padding:12px;
+}
+
+.card img{
+  max-width:100%;
+  border:1px solid var(--border);
+  margin-top:8px;
+}
+
+.tag{
+  display:inline-block;
+  padding:3px 8px;
+  border:1px solid var(--border);
+  color:var(--accent);
+  font-size:12px;
+  margin-right:5px;
+}
+
+small{
+  color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>PAINEL OSINT</h1>
+  <small>Documentação • Vigilância digital • Uso interno</small>
+</header>
+
+<div class="container">
+
+<!-- REGISTRO -->
+<div class="section">
+<h2>📥 Registrar Prova</h2>
+
+<input id="alvo" placeholder="Alvo / Perfil observado">
+<select id="plataforma">
+  <option>Instagram</option>
+  <option>X (Twitter)</option>
+  <option>Facebook</option>
+  <option>TikTok</option>
+  <option>Outro</option>
+</select>
+
+<input id="urlOriginal" placeholder="URL original observada">
+<input id="printLink" placeholder="Link do print (Catbox, ImgBB, etc)">
+<select id="categoria">
+  <option>Movimentação suspeita</option>
+  <option>Contato frequente</option>
+  <option>Padrão de comportamento</option>
+  <option>Publicação relevante</option>
+</select>
+
+<textarea id="descricao" rows="4" placeholder="Descrição técnica da evidência"></textarea>
+
+<button class="primary" onclick="salvar()">Salvar Evidência</button>
+</div>
+
+<!-- MURAL -->
+<div class="section" id="relatorio">
+<h2>🧠 Mural Investigativo</h2>
+<div class="grid" id="mural"></div>
+</div>
+
+<button class="primary" onclick="exportarPDF()">📄 Exportar Relatório PDF</button>
+
+</div>
+
+<script>
+let banco = JSON.parse(localStorage.getItem("osint")) || [];
+
+function salvar(){
+  if(!alvo.value || !descricao.value){
+    alert("Alvo e descrição são obrigatórios.");
+    return;
+  }
+
+  banco.push({
+    alvo:alvo.value,
+    plataforma:plataforma.value,
+    url:urlOriginal.value,
+    print:printLink.value,
+    categoria:categoria.value,
+    descricao:descricao.value,
+    data:new Date().toLocaleString()
+  });
+
+  localStorage.setItem("osint", JSON.stringify(banco));
+  limpar();
+  render();
+}
+
+function limpar(){
+  alvo.value="";
+  urlOriginal.value="";
+  printLink.value="";
+  descricao.value="";
+}
+
+function render(){
+  mural.innerHTML="";
+  banco.slice().reverse().forEach(e=>{
+    mural.innerHTML+=`
+    <div class="card">
+      <strong>${e.alvo}</strong><br>
+      <small>${e.plataforma} • ${e.data}</small><br><br>
+      <span class="tag">${e.categoria}</span>
+      <p>${e.descricao}</p>
+      ${e.url ? `<small>URL: <a href="${e.url}" target="_blank">${e.url}</a></small>`:""}
+      ${e.print ? `<img src="${e.print}">`:""}
+    </div>`;
+  });
+}
+
+function exportarPDF(){
+  html2pdf().from(document.getElementById("relatorio")).save("Relatorio_OSINT.pdf");
+}
+
+render();
+</script>
+
+</body>
+</html>
