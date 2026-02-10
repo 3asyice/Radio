@@ -36,8 +36,22 @@ const linkstwentytwentyfour = document.getElementById("linksScripted").innerHTML
 
 
 
-  
 
+<div class="link-item"><a href="https://archive.org/details/0-the-cleveland-show"/>the cleveland show/</a><p class="date">feb 10, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-reacher"/>reacher series/</a><p class="date">feb 10, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-family-guy-4"/>family guy s11 - s20/</a><p class="date">feb 10, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-family-guy-n"/>family guy s1 - s10/</a><p class="date">feb 10, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-psych/"/>Psych series/</a><p class="date">feb 10, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-sarah-conner-chronicles"/>Terminator sarah connor chronic/</a><p class="date">feb 10, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20260210042040id_/https://rad609.bar/page/2026/jan/caso/0009.html"/>relatório 0009/</a><p class="date">feb 10, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://web.archive.org/web/20260210041344id_/https://rad609.bar/"/>radio fm 609/</a><p class="date">feb 10, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://youtu.be/LChVn_4KaZc?si=OJM5FSuSaqQsUFjD"/>masculine whitegirl playlist/</a><p class="date">feb 09, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.google.com/search?q=quando+aconteceu+a+trag%C3%A9dia+de+Brumadinho%3F&udm=50&mtid=0X6JaYONAcCp1sQP7euy0Aw&mstk=AUtExfAmhIKhrfYFupEXTyK1HrfZmOaEVJNrZHOixRQG7XKYt33s0Q7lr0bEMhP0Q2kVrrEKMPDh66aLlOYU2dSKra86wvwi4kOPCR5DZfarW7cirPoEqY26s4JP0YGW8BiagvAKLymoht_6f6jhqXZhnUHO697vCBA-p5CB1Dr55MDb8GAlNvXFIR57CuKS4CZkLAoFTHkvsr1qtBSqCCBIgFBarKLZ3ARsAKICNLJv6Pc_82Dpo6_DhNBHAV24uOfhchhCIrCIWKIKfaNpJSqjrW9tuRxan8YoymKxYQY9e5SiNoBYAJyTGkHL&csuir=1"/>tragédias pesquisa/</a><p class="date">feb 09, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.sonhorealonline.com.br/"/>sonho real online - loja/</a><p class="date">feb 09, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/sel-01x-01ia_202602"/>Serial Experimental Lain/</a><p class="date">feb 09, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://youtu.be/cK-Vem7WsdA"/>formatura técnico enfermagem 2025/</a><p class="date">feb 08, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/rcrdng-prnonline-p"/>alex hens model/</a><p class="date">feb 08, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.google.com/search?q=fortes+ind%C3%ADcios+de+que+a+vida+%C3%A9+uma+simula%C3%A7%C3%A3o+impar%C3%A1vel...+e+Se+tudo+isso+fosse+uma+simula%C3%A7%C3%A3o%3F+Quem+seria+o+criador+da+simula%C3%A7%C3%A3o%3F+E+por+que+simular+vidas%3F&udm=50&mstk=AUtExfAScLAgyKZ4s_NurxW90SQjALr28KYuuZlYf1VkAhWxpS1YjY7pPaKTXCBRYOJCcmi-ZvdsaGSuDCftCOZj4tDwqHWy3Ovgk173Vk6OZqzof1EteCx5_y2Jib2efSTiKgW0UTCgugFlHt0Oe2cT6toy6USrRblOOJnBnpiMleJFE-8asu4ynUV0QLUK0IRBEJZ5D0lAsnUjkcS_LhnyQg8pqnOMOZvLkSYBAupKkyf5tnWwicq1d8BwaA0Fsc1TTSQzr5ieNgedv7TvkP25Io9N9JQ2M13icajUIENexN_gGEvCg1mKxHub5-GHXrNf7QrzZTdn8p0QVQ&csuir=1&mtid=p5uGadbIOuyl1sQP16TAuAE"/>discussão realidade/</a><p class="date">feb 06, 2026 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/0-parks-and-recreation"/>parks and recreation/</a><p class="date">feb 03, 2026 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/0-indiana-jones-collection"/>indiana jones collection/</a><p class="date">feb 01, 2026 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/0-pc-flick_20260131"/>movies vol. 7/</a><p class="date">feb 01, 2026 </p> <hr> </div>
