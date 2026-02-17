@@ -1,0 +1,133 @@
+
+{
+title: "Beyond The Sea",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T6E3_Beyond_The_Sea.ia.mp4"
+},
+{
+title: "Demon 79",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T6E5_Demon_79.ia.mp4"
+},
+{
+title: "Plaything",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T7E4_Brinquedo.ia.mp4"
+},
+{
+title: "San Junipero",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T3E4_San_Junipero.ia.mp4"
+},
+{
+title: "Mazey Day",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T6E4_Mazey_Day.ia.mp4"
+},
+{
+title: "The National Anthem",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T1E1_Hino_Nacional.ia.mp4"
+},
+{
+title: "Smithereens",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T5E2_Smithereens.ia.mp4"
+},
+{
+title: "15 Million Merits",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T1E2_15_Milhoes_de_Meritos.ia.mp4"
+},
+{
+title: "The Waldo Moment",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T2E3_O_Momento_Waldo.ia.mp4"
+},
+{
+title: "Be Right Back",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T2E1_Volto_Ja.ia.mp4"
+},
+{
+title: "Shut Up and Dance",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T3E3_Cale_a_Boca_e_Dance.ia.mp4"
+},
+{
+title: "White Bear",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T2E2_Urso_Branco.ia.mp4"
+},
+{
+title: "Common People",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T7E1_Pessoas_Comuns.ia.mp4"
+},
+{
+title: "Playtest",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T3E2_Playtest.ia.mp4"
+},
+{
+title: "Hated in the Nation",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T3E6_Odiados_Pela_Nacao.ia.mp4"
+},
+{
+title: "Loch Henry",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T6E2_Loch_Henry.ia.mp4"
+},
+{
+title: "Joan is Awful",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T6E1_Joan_%C3%A9_P%C3%A9ssima.ia.mp4"
+},
+{
+title: "Bête Noire",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T7E2_Bet%C3%AA_Noire.ia.mp4"
+},
+{
+title: "Crododile",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T4E3_Crocodilo.ia.mp4"
+},
+{
+title: "Hotel Reverie",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T7E3_Hotel_Riverie.ia.mp4"
+},
+{
+title: "Eulogy",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T7E5_Eulogy.ia.mp4"
+},
+{
+title: "Nosedive",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T3E1_Queda_Livre.ia.mp4"
+},
+{
+title: "Men Against Fire",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T3E5_Homens_Contra_o_Fogo.ia.mp4"
+},
+{
+title: "Arkangel",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T4E2_Arkangel.ia.mp4"
+},
+{
+title: "The Entire History of You",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T1E3_Toda_A_Sua_Historia.ia.mp4"
+},
+{
+title: "White Christmas",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T2E4_Natal_Branco.ia.mp4"
+},
+{
+title: "Hang the DJ",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T4E4_Hang_the_DJ.ia.mp4"
+},
+{
+title: "USS Callister",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T4E1_USS_Callister.ia.mp4"
+},
+{
+title: "USS Callister: Into the Infinity",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T7E6_USS_CALLISTER_Into_The_Infinity.ia.mp4"
+},
+{
+title: "striking Vipers",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T5E1_Striking_Vipers.ia.mp4"
+},
+{
+title: "Black Museum",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T4E6_Museu_Negro.ia.mp4"
+},
+{
+title: "Rachel, Jack and Ashley Too",
+url: "https://ia902803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T5E3_Rachel%2C_Jack_and_Ashley_Too.ia.mp4"
+},
+{
+title: "Metalhead",
+url: "https://ia802803.us.archive.org/2/items/black-mirror-br/Black_Mirror_T4E5_Metalhead.ia.mp4"
+}
