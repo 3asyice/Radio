@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Diário Interno do Restaurante</title>
+  <meta name="description" content="Fofocas internas do restaurante - apenas para fins narrativos e legais.">
+  <meta name="keywords" content="restaurante, diário interno, bastidores, histórias">
+  <meta name="author" content="Suco">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #eee;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffcc00;
+    }
+
+    .card {
+      background: #1c1c1c;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .date {
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    .topic {
+      font-weight: bold;
+      color: #ffcc00;
+      margin-top: 5px;
+    }
+
+    .legal {
+      margin-top: 30px;
+      font-size: 0.8rem;
+      color: #777;
+      border-top: 1px solid #333;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🍸 Diário Interno do Restaurante</h1>
+
+  <div id="fofocas-container"></div>
+
+  <div class="legal">
+    Este site contém relatos narrativos fictícios ou genéricos sobre rotinas de trabalho.
+    Não há intenção de difamar pessoas reais. Conteúdo apenas para entretenimento.
+  </div>
+
+  <script>
+    fetch("fofocas.json")
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("fofocas-container");
+
+        data.forEach(item => {
+          const card = document.createElement("div");
+          card.classList.add("card");
+
+          card.innerHTML = `
+            <div class="date">📅 ${item.data}</div>
+            <div class="topic">🏷️ ${item.assunto}</div>
+            <p>${item.descricao}</p>
+          `;
+
+          container.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error("Erro ao carregar as fofocas:", error);
+      });
+  </script>
+
+</body>
+</html>
