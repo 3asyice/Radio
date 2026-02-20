@@ -34,9 +34,16 @@ const linkstwentytwentyfour = document.getElementById("linksScripted").innerHTML
 
 
 
-
-
-
+<div class="link-item"><a href="https://youtu.be/SRvJrxsrtsE"/>o substituto (2011)/</a><p class="date">feb 19, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-peripheral-15"/>Peripheral série Ptbr/</a><p class="date">feb 16, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-perry-mason-1"/>Perry Mason series/</a><p class="date">feb 15, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://www.google.com/search?q=fortes+ind%C3%ADcios+de+que+a+vida+%C3%A9+uma+simula%C3%A7%C3%A3o+impar%C3%A1vel...+e+Se+tudo+isso+fosse+uma+simula%C3%A7%C3%A3o%3F+Quem+seria+o+criador+da+simula%C3%A7%C3%A3o%3F+E+por+que+simular+vidas%3F&udm=50&mstk=AUtExfApfQ7cNY4J7Fc_CE3UPiwqL0nqH7r_Rz2GaBVQaTWDpg8oixaEkleyI9xOcvvj3_uG9vpewZgMp4dewYk3ijVa25B1SpxpozbMGLE2_xOse8U7DGcdR9qEbtBnpZiPxJ4co9aZavKIS6qO1tPJSiTvYc9d3xDgMsilD5SUd4XNGK14djT7t2f3eJ_IzlN3TFN9OxklgetcZDV1sj7EWsfQF0HxSzLkWfA9s1BgaXbZ-MxejRMkaCBUrmV-b72jOOs6AuK31byoVE1MGUO9jc7tm6WkASLPgggO4tr_6Jalgz4GBh0dGqVQaYq2fjbiGtGJWUbUAChvAw&csuir=1&mtid=p5uGadbIOuyl1sQP16TAuAE"/>humano-anomalia/</a><p class="date">feb 14, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-simpsons"/>The Simpsons 1989/</a><p class="date">feb 12, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-american-dad"/>American Dad series/</a><p class="date">feb 12, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-the-mentalist"/>the Mentalist series/</a><p class="date">feb 12, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-alien-earth"/>alien earth series/</a><p class="date">feb 12, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-green-lantern-the-animated-series"/>the green lantern/</a><p class="date">feb 12, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://archive.org/details/0-mission-impossible"/>mission impossible collection/</a><p class="date">feb 12, 2026 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/0-the-cleveland-show"/>the cleveland show/</a><p class="date">feb 10, 2026 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/0-reacher"/>reacher series/</a><p class="date">feb 10, 2026 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/0-family-guy-4"/>family guy s11 - s20/</a><p class="date">feb 10, 2026 </p> <hr> </div>
@@ -660,7 +667,7 @@ com json file/</a><p class="date">out 02, 2025 </p> <hr> </div>
 <div class="link-item"><a href="https://web.archive.org/web/20250301024124if_/https://www.big-loser.site/Caso/106">106 incorporacao/</a><p class="date"> mar 01, 2025 </p><hr></div>
 <div class="link-item"><a href="https://web.archive.org/web/20250301023707if_/https://www.big-loser.site/Caso/095">095 audio files/</a><p class="date"> mar 01, 2025 </p><hr></div>
 <div class="link-item"><a href="https://web.archive.org/web/20250301022959if_/https://www.big-loser.site/A/Audio/Mensagem.m4a">Mensagem.m4a/</a><p class="date">Mar 01, 2025</p><hr></div>
-<div class="link-item"><a href="https://web.archive.org/web/20250301002826if_/https://www.saocarlosagora.com.br/regiao/seis-militares-suspeitos-de-torturar-soldado-sao-expulsos-do-exercito/179370if_/">tortura de sd/</a><p class="date"> Mar 01, 2025 </p><hr></div>
+<div class="link-item"><a href="https://web.archive.org/web/20260215021824/https://www.saocarlosagora.com.br/regiao/seis-militares-suspeitos-de-torturar-soldado-sao-expulsos-do-exercito/179370/">tortura de sd/</a><p class="date"> Mar 01, 2025 </p><hr></div>
 <div class="link-item"><a href="https://web.archive.org/web/20250227193616if_/https://www.sociedademilitar.com.br/2025/02/militares-do-exercito-faz-relatos-chocantes-em-entrevista-sobre-suicidio-na-forca-denuncias-de-humilhacao-perseguicao-e-adoecimento-psicologico.html">relatos chocantes/</a><p class="date"> Feb 27, 2025 </p><hr></div>
  <div class="link-item"><a href="https://youtu.be/Gfvo3kMHoUs?si=39SJPFIcAq486Gdv">morte sd Vitor/</a> <p class="date"> Feb 27, 2025 </p> <hr></div>
 <div class="link-item"><a href="https://web.archive.org/web/20250227173247if_/https://noticias.r7.com/minas-gerais/mg-record/videos/familia-de-soldado-que-se-matou-em-quartel-do-exercito-diz-que-ele-sofria-humilhacoes-21022018/">suicídio sd pablo/</a><p class="date"> Feb 27, 2025 </p><hr></div> 
