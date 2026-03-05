@@ -33,7 +33,27 @@ const linkstwentytwentyfour = document.getElementById("linksScripted").innerHTML
 
 
 
-
+ 
+ <div class="link-item"><a href="https://archive.org/details/0-rick-and-marty-a"/>rick and morty series/</a><p class="date">mar 04, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://archive.org/details/0-south-park-1"/>south park series/</a><p class="date">mar 04, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://archive.org/details/0-its-always-sunny-in-philly"/>it's always sunny in Philadelphia/</a><p class="date">mar 04, 2026 </p> <hr> </div>
+<div class="link-item"><a href="https://ia600403.us.archive.org/4/items/0-filmow0987654321/Interstellar_%282008%29_br.ia.mp4"/>Interestelar (2008)/</a><p class="date">mar 03, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://ia600403.us.archive.org/4/items/0-filmow0987654321/As_Ru%C3%ADnas_%282008%29_.ia.mp4"/>As Ruínas (2008)/</a><p class="date">mar 02, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://startflix.vip/series/american-horror-stories/"/>american horror stories/</a><p class="date">mar 02, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://3asyice.github.io/SixOhNine/script/emporionossacasa/SandraRaugust.html"/>Sandra Teixeira Raugust/</a><p class="date">mar 01, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://3asyice.github.io/SixOhNine/script/emporionossacasa/JonasBarrachini.html"/>Jonas Tiago Dudar Barrachini/</a><p class="date">mar 01, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://3asyice.github.io/SixOhNine/script/sidebar/restaurante.html"/>steakhouse funcionários/</a><p class="date">mar 01, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://rad609.bar/page/2026/fev/job_tauan.html#"/>tauan do job joke/</a><p class="date">mar 01, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://web.archive.org/web/20260301032155id_/https://www.cartacapital.com.br/mundo/ataque-israelense-mata-mais-de-50-alunas-de-escola-feminina-no-ira/"/>ataque insraelense/</a><p class="date">feb 28, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://web.archive.org/web/20260301022742id_/https://www.brasil247.com/mundo/a-terceira-guerra-mundial-comecou"/>3ª guerra mundial?/</a><p class="date">feb 28, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://archive.org/details/0-the-100"/>the 100 series/</a><p class="date">feb 23, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://alexamogus.com/custom-server"/>alex among us custom server/</a><p class="date">feb 23, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://www.tokyvideo.com/br/video/a-experiencia-4-o-despertar-2007-terror-ficcao-cientifica-thriller"/>a experiência 4/</a><p class="date">feb 23, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://www.tokyvideo.com/br/video/a-experiencia-iii-2005-ficcao-cientifica-acao-terror"/>a experiência 3/</a><p class="date">feb 23, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://www.tokyvideo.com/br/video/a-experiencia-ii-a-mutacao-1998-ficcao-cientifica-acao-terror"/>a experiência 2/</a><p class="date">feb 23, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://www.tokyvideo.com/br/video/a-experiencia-1995"/>a experiência (1995)/</a><p class="date">feb 23, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://pics.io/video-metadata-viewer"/>video metadata viewer/</a><p class="date">feb 20, 2026 </p> <hr> </div>
+ <div class="link-item"><a href="https://archive.org/details/0-peaky-blinders"/>peaky blinders series/</a><p class="date">feb 20, 2026 </p> <hr> </div>
 <div class="link-item"><a href="https://youtu.be/SRvJrxsrtsE"/>o substituto (2011)/</a><p class="date">feb 19, 2026 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/0-peripheral-15"/>Peripheral série Ptbr/</a><p class="date">feb 16, 2026 </p> <hr> </div>
 <div class="link-item"><a href="https://archive.org/details/0-perry-mason-1"/>Perry Mason series/</a><p class="date">feb 15, 2026 </p> <hr> </div>
