@@ -61,7 +61,7 @@ padding-top: 90px;
 background-color: #222222;
 }
 body.dark-mode div.station_message div.a p{
- /*#DE2432 */ color:#13273E;
+  color:#FF3131;
 }
 
  body.dark-mode div.station_message div.b p {
@@ -73,7 +73,7 @@ body.dark-mode div.station_message div.c p {
 }
 body.dark-mode #horario_atual {
   color: #ffcc00;
-  /*#ff0000 */text-shadow: 0 0 6px #13273E 0 0 12px #00ffaa;
+  text-shadow: 0 0 6px #ff0000, 0 0 12px #00ffaa;
   font-weight: bold;
   font-size: 1.1rem;
 }
@@ -118,17 +118,17 @@ body.dark-mode div.download {
 
 
 html, body {
-background: #184091;
+background: #F3F4F6;
 }
  
 
 h1, h2, h3 {
 color: #fff;
-/*#DE2432 */background: #13273E;
+background: #DE2432;
 text-shadow: 0 0 8px #F3F4F6;
 }
 header{
-/*#DE2432 */background: #13273E;
+background: #DE2432;
 display: flex;
 }
 button {
@@ -139,7 +139,7 @@ background-color: #00ff8840;
 }
 
 audio {
-filter: drop-shadow(0 0 6px #184091);
+filter: drop-shadow(0 0 6px #F3F4F6);
 margin-top: 20px;
 }
 
@@ -156,7 +156,7 @@ font-size: 15px;
 margin-bottom: 20px;
 }
 #startBtn, #statitnow {
-  /*#DE2432 */background: #13273E;
+background: #DE2432;
 color:#fff;
 font-weight: 900;
 width: 170px;
@@ -183,17 +183,17 @@ color:#F49E0B;
 div.btn_play{
 margin:0px 25px 0 25px;
 border:1px solid #B2B2B2;
-background: #B4B4B4;
+background: #F3F4F6;
 border-bottom-left-radius: 16px;
 border-bottom-right-radius: 16px;
-box-shadow: 3px 3px 15px #200069;
+box-shadow: 3px 3px 15px #ABABAB;
 }
 div.next{
 margin:50px 25px 0 25px;
 border:1px solid #B2B2B2;
-background: #B4B4B4;
+background: #F3F4F6;
 border-radius:16px;
-box-shadow: 3px 3px 15px #184091;
+box-shadow: 3px 3px 15px #ABABAB;
 }
 div.next p{
 color:#373737;
@@ -207,9 +207,9 @@ color:#F49E0B;
 div.station_message{
 margin:50px 25px 0 25px;
 border:1px solid #B2B2B2;
-background: #B4B4B4;
+background: #F3F4F6;
 border-radius:16px;
-box-shadow: 3px 3px 15px #184091;
+box-shadow: 3px 3px 15px #ABABAB;
 }
 div.station_message p{
 margin:30px 25px 30px 25px;
@@ -261,9 +261,9 @@ font-weight: 800;
 div.info{
 margin:50px 25px 0 25px;
 border:1px solid #B2B2B2;
-background: #B4B4B4;
+background: #F3F4F6;
 border-radius:16px;
-box-shadow: 3px 3px 15px #184091;
+box-shadow: 3px 3px 15px #ABABAB;
 }
 div.info p{
 margin:30px 25px 30px 25px;
@@ -280,9 +280,9 @@ font-weight: 900;
 div.download{
 margin:50px 25px 0 25px;
 border:1px solid #B2B2B2;
-/*#DD242C */background: #13273E;
+background: #DD242C;
 border-radius:16px;
-box-shadow: 3px 3px 15px #184091;
+box-shadow: 3px 3px 15px #ABABAB;
 }
 div.download p{
 color:#fff;
@@ -299,7 +299,7 @@ padding:8px;
 font-weight: 900;
 margin: 20px 0 20px 0;
 border-radius:16px;
-/*#DE2432 */color:#13273E;
+color:#DD242C;
 width: 128px;
 display:flex;
 }
