@@ -4,11 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NC Steakhouse</title>
+
+  <!-- Fonte premium -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --gold: #c8a96a;
+      --dark: #0f0f0f;
+      --card: #1a1a1a;
+      --accent: #8b0000;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #0b0b0b, #1a1a1a);
       color: #fff;
     }
 
@@ -16,76 +27,76 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 25px;
-      background: #121212;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.8);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      padding: 20px 40px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: 600;
-      color: #e63946;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--gold);
+      letter-spacing: 1px;
     }
 
     .menu-btn {
-      font-size: 24px;
+      font-size: 26px;
       cursor: pointer;
     }
 
     .menu {
       position: absolute;
-      top: 70px;
-      right: 20px;
-      background: #1e1e1e;
+      top: 80px;
+      right: 40px;
+      background: var(--card);
       border-radius: 12px;
       display: none;
       flex-direction: column;
       padding: 10px;
-      width: 240px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+      width: 230px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
 
     .menu button {
       background: none;
       border: none;
-      color: #ddd;
+      color: white;
       padding: 12px;
       text-align: left;
       cursor: pointer;
       border-radius: 8px;
+      transition: 0.2s;
     }
 
     .menu button:hover {
-      background: #2a2a2a;
+      background: rgba(255,255,255,0.05);
     }
 
     .container {
       text-align: center;
-      margin-top: 90px;
-      padding-bottom: 80px;
+      margin-top: 120px;
+      padding: 20px;
     }
 
     h1 {
-      font-size: 26px;
-      font-weight: 500;
+      font-weight: 300;
+      margin-bottom: 20px;
     }
 
     .login-box {
       display: none;
-      background: #1e1e1e;
+      background: var(--card);
       padding: 25px;
       border-radius: 12px;
-      width: 300px;
+      width: 320px;
       margin: 20px auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
     }
 
     .playlists {
       display: none;
-      margin-top: 30px;
+      margin-top: 40px;
     }
 
     .playlist-btn {
@@ -95,48 +106,91 @@
       width: 300px;
       border-radius: 10px;
       border: none;
-      background: linear-gradient(45deg, #e63946, #ff4d5a);
+      background: linear-gradient(45deg, var(--accent), #b22222);
       color: white;
       cursor: pointer;
-      font-size: 15px;
-      font-weight: 500;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+      font-size: 16px;
+      transition: 0.2s;
     }
 
     .playlist-btn:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
 
     input {
       width: 100%;
       padding: 12px;
       margin: 8px 0;
-      border-radius: 8px;
+      border-radius: 6px;
       border: none;
-      background: #2a2a2a;
+      background: #111;
       color: white;
     }
 
     .btn {
-      background: linear-gradient(45deg, #e63946, #ff4d5a);
+      background: var(--gold);
       border: none;
       padding: 12px;
       width: 100%;
-      color: white;
+      color: black;
       cursor: pointer;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 500;
     }
 
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #121212;
-      text-align: center;
-      padding: 10px;
-      font-size: 13px;
-      color: #888;
+    /* RESPONSIVIDADE */
+
+    /* Notebooks e desktops */
+    @media (min-width: 768px) {
+      .container {
+        margin-top: 150px;
+      }
+
+      .playlist-btn {
+        width: 400px;
+        font-size: 18px;
+      }
+
+      .login-box {
+        width: 360px;
+      }
+    }
+
+    /* Telas grandes (PCs maiores) */
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 900px;
+        margin: 180px auto;
+      }
+
+      .playlist-btn {
+        width: 500px;
+      }
+
+      .logo {
+        font-size: 34px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      header {
+        padding: 15px 20px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .menu {
+        right: 20px;
+        width: 90%;
+      }
+
+      .playlist-btn {
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -151,7 +205,6 @@
   <button onclick="openLogin('gerente')">Entrar como Gerente</button>
   <button onclick="openLogin('garcom')">Entrar como Garçom</button>
   <button onclick="showPlaylists()">Playlists</button>
-  <button onclick="logout()">Sair</button>
 </div>
 
 <div class="container">
@@ -178,13 +231,8 @@
   </div>
 </div>
 
-<footer>
-  site desenvolvido pelo Garçom Guilherme
-</footer>
-
 <script>
   let currentRole = '';
-  let currentName = '';
 
   function toggleMenu() {
     const menu = document.getElementById('menu');
@@ -213,39 +261,14 @@
     const pass = document.getElementById('pass').value;
 
     if (currentRole === 'gerente' && user === 'admin' && pass === 'admin') {
-      currentName = 'Jonas';
-      saveSession();
+      alert('Bem-vindo Gerente!');
       showPlaylists();
-      setGreeting();
     } else if (currentRole === 'garcom' && user === 'admin' && pass === 'admin123') {
-      currentName = 'Théo';
-      saveSession();
+      alert('Bem-vindo Garçom!');
       showPlaylists();
-      setGreeting();
     } else {
       alert('Login inválido!');
     }
-  }
-
-  function saveSession() {
-    localStorage.setItem('role', currentRole);
-    localStorage.setItem('name', currentName);
-  }
-
-  function loadSession() {
-    const role = localStorage.getItem('role');
-    const name = localStorage.getItem('name');
-
-    if (role && name) {
-      currentRole = role;
-      currentName = name;
-      showPlaylists();
-    }
-  }
-
-  function logout() {
-    localStorage.clear();
-    location.reload();
   }
 
   function openPlaylist(url) {
@@ -257,21 +280,16 @@
     let greeting = '';
 
     if (hour >= 5 && hour < 12) {
-      greeting = 'Bom dia';
+      greeting = 'Bom dia!';
     } else if (hour >= 12 && hour < 18) {
-      greeting = 'Boa tarde';
+      greeting = 'Boa tarde!';
     } else {
-      greeting = 'Boa noite';
+      greeting = 'Boa noite!';
     }
 
-    if (currentName) {
-      greeting += ', ' + currentName;
-    }
-
-    document.getElementById('greeting').innerText = greeting + '!';
+    document.getElementById('greeting').innerText = greeting;
   }
 
-  loadSession();
   setGreeting();
 </script>
 
