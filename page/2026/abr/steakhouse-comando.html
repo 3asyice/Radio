@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NC Steakhouse</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 25px;
+      background: #121212;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.8);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 600;
+      color: #e63946;
+    }
+
+    .menu-btn {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: #1e1e1e;
+      border-radius: 12px;
+      display: none;
+      flex-direction: column;
+      padding: 10px;
+      width: 240px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+    }
+
+    .menu button {
+      background: none;
+      border: none;
+      color: #ddd;
+      padding: 12px;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .menu button:hover {
+      background: #2a2a2a;
+    }
+
+    .container {
+      text-align: center;
+      margin-top: 90px;
+      padding-bottom: 80px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 500;
+    }
+
+    .login-box {
+      display: none;
+      background: #1e1e1e;
+      padding: 25px;
+      border-radius: 12px;
+      width: 300px;
+      margin: 20px auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+    }
+
+    .playlists {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .playlist-btn {
+      display: block;
+      margin: 12px auto;
+      padding: 14px;
+      width: 300px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(45deg, #e63946, #ff4d5a);
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    }
+
+    .playlist-btn:hover {
+      transform: scale(1.03);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: none;
+      background: #2a2a2a;
+      color: white;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #e63946, #ff4d5a);
+      border: none;
+      padding: 12px;
+      width: 100%;
+      color: white;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #121212;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">NC Steakhouse</div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</header>
+
+<div class="menu" id="menu">
+  <button onclick="openLogin('gerente')">Entrar como Gerente</button>
+  <button onclick="openLogin('garcom')">Entrar como Garçom</button>
+  <button onclick="showPlaylists()">Playlists</button>
+  <button onclick="logout()">Sair</button>
+</div>
+
+<div class="container">
+  <h1 id="greeting"></h1>
+
+  <div class="login-box" id="loginBox">
+    <h3 id="loginTitle"></h3>
+    <input type="text" id="user" placeholder="Usuário">
+    <input type="password" id="pass" placeholder="Senha">
+    <button class="btn" onclick="login()">Entrar</button>
+  </div>
+
+  <div class="playlists" id="playlistBox">
+    <h2>Playlists NC Steakhouse</h2>
+
+    <button class="playlist-btn" onclick="openPlaylist('https://archive.org/details/0-stkhs-playlist-a')">
+      Steakhouse Classics Pt 1
+    </button>
+
+    <button class="playlist-btn" onclick="openPlaylist('https://archive.org/details/0-skhs-bc')">
+      Steakhouse Classics Pt 2
+    </button>
+
+  </div>
+</div>
+
+<footer>
+  site desenvolvido pelo Garçom Guilherme
+</footer>
+
+<script>
+  let currentRole = '';
+  let currentName = '';
+
+  function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function openLogin(role) {
+    currentRole = role;
+    document.getElementById('loginBox').style.display = 'block';
+    document.getElementById('playlistBox').style.display = 'none';
+
+    if (role === 'gerente') {
+      document.getElementById('loginTitle').innerText = 'Gerente - Jonas Tiago Dudar Barrachini';
+    } else {
+      document.getElementById('loginTitle').innerText = 'Garçom - Théo Ruver Rubin';
+    }
+  }
+
+  function showPlaylists() {
+    document.getElementById('playlistBox').style.display = 'block';
+    document.getElementById('loginBox').style.display = 'none';
+  }
+
+  function login() {
+    const user = document.getElementById('user').value;
+    const pass = document.getElementById('pass').value;
+
+    if (currentRole === 'gerente' && user === 'admin' && pass === 'admin') {
+      currentName = 'Jonas';
+      saveSession();
+      showPlaylists();
+      setGreeting();
+    } else if (currentRole === 'garcom' && user === 'admin' && pass === 'admin123') {
+      currentName = 'Théo';
+      saveSession();
+      showPlaylists();
+      setGreeting();
+    } else {
+      alert('Login inválido!');
+    }
+  }
+
+  function saveSession() {
+    localStorage.setItem('role', currentRole);
+    localStorage.setItem('name', currentName);
+  }
+
+  function loadSession() {
+    const role = localStorage.getItem('role');
+    const name = localStorage.getItem('name');
+
+    if (role && name) {
+      currentRole = role;
+      currentName = name;
+      showPlaylists();
+    }
+  }
+
+  function logout() {
+    localStorage.clear();
+    location.reload();
+  }
+
+  function openPlaylist(url) {
+    window.open(url, '_blank');
+  }
+
+  function setGreeting() {
+    const hour = new Date().getHours();
+    let greeting = '';
+
+    if (hour >= 5 && hour < 12) {
+      greeting = 'Bom dia';
+    } else if (hour >= 12 && hour < 18) {
+      greeting = 'Boa tarde';
+    } else {
+      greeting = 'Boa noite';
+    }
+
+    if (currentName) {
+      greeting += ', ' + currentName;
+    }
+
+    document.getElementById('greeting').innerText = greeting + '!';
+  }
+
+  loadSession();
+  setGreeting();
+</script>
+
+</body>
+</html>
