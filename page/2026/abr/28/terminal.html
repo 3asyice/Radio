@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Podcasts Directory</title>
+
+<style>
+body {
+    background: #000;
+    color: #00ff88;
+    font-family: "Courier New", monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+/* efeito tipo matrix leve */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,255,136,0.05),
+        rgba(0,255,136,0.05) 1px,
+        transparent 2px,
+        transparent 4px
+    );
+    pointer-events: none;
+}
+
+/* barra de busca */
+.search {
+    background: #00ff88;
+    color: #003322;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* título */
+.path {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* tabela */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: left;
+    border-bottom: 1px solid #00ff88;
+    padding: 10px 5px;
+    font-weight: normal;
+}
+
+.table td {
+    padding: 12px 5px;
+    border-bottom: 1px solid rgba(0,255,136,0.2);
+}
+
+/* hover estilo seleção */
+.row:hover {
+    background: rgba(0,255,136,0.1);
+    cursor: pointer;
+}
+
+/* nome com estilo */
+.name {
+    color: #00ff88;
+}
+
+/* tamanho e data mais suave */
+.size, .date {
+    color: #66ffaa;
+    font-size: 14px;
+}
+</style>
+
+</head>
+<body>
+
+<input class="search" placeholder="Type to search...">
+
+<div class="path">/podcasts/</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>File Name ↓</th>
+            <th>File Size ↓</th>
+            <th>Date ↓</th>
+        </tr>
+    </thead>
+
+    <tbody id="list">
+
+        <tr class="row">
+            <td class="name">Parent directory/</td>
+            <td class="size">-</td>
+            <td class="date">-</td>
+        </tr>
+
+        <tr class="row">
+            <td class="name">2600 Off The Hook/</td>
+            <td class="size">-</td>
+            <td class="date">2025 Dec 26 06:16</td>
+        </tr>
+
+        <tr class="row">
+            <td class="name">Application Security Podcast/</td>
+            <td class="size">-</td>
+            <td class="date">2025 Dec 26 06:17</td>
+        </tr>
+
+        <tr class="row">
+            <td class="name">CyberWire Daily/</td>
+            <td class="size">-</td>
+            <td class="date">2025 Dec 26 06:19</td>
+        </tr>
+
+        <tr class="row">
+            <td class="name">Darknet Diaries/</td>
+            <td class="size">-</td>
+            <td class="date">2025 Dec 26 06:20</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<script>
+// filtro de busca simples
+const search = document.querySelector(".search");
+const rows = document.querySelectorAll(".row");
+
+search.addEventListener("keyup", () => {
+    const value = search.value.toLowerCase();
+
+    rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(value) ? "" : "none";
+    });
+});
+</script>
+
+</body>
+</html>
