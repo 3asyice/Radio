@@ -156,6 +156,7 @@
 <button onclick="doSearch(2)">Imagens</button>
 <button onclick="doSearch(6)">Aprendizado</button>
 <button onclick="doSearch(7)">Vídeos</button>
+<button onclick="searchTokyvideo()">Tokyvideo</button>
 <button onclick="doSearch(1)">Locais</button>
 <button onclick="doSearch(12)">Notícias</button>
 <button onclick="doSearch(18)">Fóruns</button>
@@ -220,6 +221,17 @@ const url =
   window.open(url, "_blank");
 }
 
+
+function searchTokyvideo()
+{
+  const query = document.getElementById("searchInput").value.trim();
+  if (!query) {
+    alert("Por favor, digite algo!");
+    return;
+  }
+  const url = `https://www.google.com/search?q=${encodeURIComponent(query)}` + ` tokyvideo`;
+  window.open(url, "_blank");
+}
 /*
 
 */
