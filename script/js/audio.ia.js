@@ -516,7 +516,10 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 04:20
 // 11:11
 { nome: "The Handsome Family - Far From Any Road", arquivo: "assets/19h/TheHandsomeFamily_FarFromAnyRoad.mp3", inicio: 19, minuto: 11, segundo: 11, fim: 20 },
-
+// 11:11
+// 02:48
+// 13:59
+{ nome: "Bryan Adams - Heaven", arquivo: "assets/19h/BryanAdams_Heaven.mp3", inicio: 19, minuto: 13, segundo: 59, fim: 20 },
 
 
 
