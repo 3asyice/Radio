@@ -526,6 +526,8 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Linkin Park - The Emptiness Machine", arquivo: "assets/19h/LinkinPark_TheEmptinessMachine.mp3", inicio: 19, minuto: 18, segundo: 30, fim: 20 },
 
 
+
+
 // 20h
 { nome: "Locutor — Programação", arquivo: "assets/20h/Locutor_000.mp3", inicio: 20, minuto: 0, segundo: 0, fim: 21 },
 // 00:20
