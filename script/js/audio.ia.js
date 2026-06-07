@@ -511,7 +511,12 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 19:03:27
 // 19:03:24
 //.   6:51
-{ nome: "Bryan Adams - Run To You", arquivo: "assets/19h/BryanAdamsRunToYou.mp3", inicio: 19, minuto: 6, segundo: 51, fim: 20 },
+{ nome: "Bryan Adams - Run To You", arquivo: "assets/19h/BryanAdams_RunToYou.mp3", inicio: 19, minuto: 6, segundo: 51, fim: 20 },
+// 06:51
+// 04:20
+// 11:11
+{ nome: "The Handsome Family - Far From Any Road", arquivo: "assets/19h/TheHandsomeFamily_FarFromAnyRoad.mp3", inicio: 19, minuto: 11, segundo: 11, fim: 20 },
+
 
 
 
