@@ -505,6 +505,7 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Nicki Minaj - Starships", arquivo: "assets/19h/NickiMinaj_Starships.mp3", inicio: 18, minuto: 57, segundo: 52, fim: 19 },
 
 // 19h
+{ nome: "Men At Work - Who Can It Be Now?", arquivo: "assets/18hh/MenAtWork_WhoCanItBeNow.mp3", inicio: 19, minuto: 0, segundo: 0, fim: 19 },
 
 
 
