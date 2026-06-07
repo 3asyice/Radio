@@ -506,8 +506,12 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 
 // 19h
 { nome: "Men At Work - Who Can It Be Now?", arquivo: "assets/19h/MenAtWork_WhoCanItBeNow.mp3", inicio: 19, minuto: 0, segundo: 0, fim: 20 },
-
-
+// 19:03:27
+{ nome: "Mental As Anything - Live It Up", arquivo: "assets/19h/MentalAsAnythingLiveItUp.mp3", inicio: 19, minuto: 3, segundo: 27, fim: 20 },
+// 19:03:27
+// 19:03:24
+//.   6:51
+{ nome: "Bryan Adams - Run To You", arquivo: "assets/19h/BryanAdamsRunToYou.mp3", inicio: 19, minuto: 6, segundo: 51, fim: 20 },
 
 
 
