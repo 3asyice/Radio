@@ -472,40 +472,40 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 { nome: "Highly Suspect - Alien Spaceship", arquivo: "assets/17h/HighlySuspect_AlienSpaceship.mp3", inicio: 17, minuto: 9, segundo: 12, fim: 18 },
 
 // 18h
-{ nome: "Mapei - Don't Wait", arquivo: "assets/19h/Mapei_DontWait.mp3", inicio: 18, minuto: 0, segundo: 0, fim: 19 },
+{ nome: "Mapei - Don't Wait", arquivo: "assets/18h/Mapei_DontWait.mp3", inicio: 18, minuto: 0, segundo: 0, fim: 19 },
 // 03:35
-{ nome: "Feist - My Moon My Man", arquivo: "assets/19h/Feist_My_Moon_My_Man.mp3", inicio: 18, minuto: 3, segundo: 35, fim: 19 },
+{ nome: "Feist - My Moon My Man", arquivo: "assets/18h/Feist_My_Moon_My_Man.mp3", inicio: 18, minuto: 3, segundo: 35, fim: 19 },
 // 07:16
-{ nome: "Katy Perry - This Is How We Do", arquivo: "assets/19h/KatyPerry_This_Is_How_We_Do.mp3", inicio: 18, minuto: 7, segundo: 16, fim: 19 },
+{ nome: "Katy Perry - This Is How We Do", arquivo: "assets/18h/KatyPerry_This_Is_How_We_Do.mp3", inicio: 18, minuto: 7, segundo: 16, fim: 19 },
 // 10:48
-{ nome: "Katy Perry - Firework", arquivo: "assets/19h/KatyPerry_Firework.mp3", inicio: 18, minuto: 10, segundo: 48, fim: 19 },
+{ nome: "Katy Perry - Firework", arquivo: "assets/18h/KatyPerry_Firework.mp3", inicio: 18, minuto: 10, segundo: 48, fim: 19 },
 // 14:41
-{ nome: "Jessie J - Bang Bang ft. Ariana Grande l, Nicki Minaj", arquivo: "assets/19h/Jessie_J_Bang_Bang_ft_Ariana_Grande_Nicki_Minaj.mp3", inicio: 18, minuto: 14, segundo: 41, fim: 19 },
+{ nome: "Jessie J - Bang Bang ft. Ariana Grande l, Nicki Minaj", arquivo: "assets/18h/Jessie_J_Bang_Bang_ft_Ariana_Grande_Nicki_Minaj.mp3", inicio: 18, minuto: 14, segundo: 41, fim: 19 },
 // 19:03
-{ nome: "Katy Perry - Hot N Cold", arquivo: "assets/19h/KatyPerry_Hot_N_Cold.mp3", inicio: 18, minuto: 19, segundo: 3, fim: 19 },
+{ nome: "Katy Perry - Hot N Cold", arquivo: "assets/18h/KatyPerry_Hot_N_Cold.mp3", inicio: 18, minuto: 19, segundo: 3, fim: 19 },
 // 23:46
-{ nome: "Zara Larsson - Lush Life", arquivo: "assets/19h/ZaraLarsson_Lush_Life.mp3", inicio: 18, minuto: 23, segundo: 46, fim: 19 },
+{ nome: "Zara Larsson - Lush Life", arquivo: "assets/18h/ZaraLarsson_Lush_Life.mp3", inicio: 18, minuto: 23, segundo: 46, fim: 19 },
 // 27:07
-{ nome: "Jessie J - Domino", arquivo: "assets/19h/JessieJ_Domino.mp3", inicio: 18, minuto: 27, segundo: 7, fim: 19 },
+{ nome: "Jessie J - Domino", arquivo: "assets/18h/JessieJ_Domino.mp3", inicio: 18, minuto: 27, segundo: 7, fim: 19 },
 // 31:01
-{ nome: "Carly Rae Jepsen - Call Me Maybe", arquivo: "assets/19h/CarlyRaeJepsen_Call_Me_Maybe.mp3", inicio: 18, minuto: 31, segundo: 1, fim: 19 },
+{ nome: "Carly Rae Jepsen - Call Me Maybe", arquivo: "assets/18h/CarlyRaeJepsen_Call_Me_Maybe.mp3", inicio: 18, minuto: 31, segundo: 1, fim: 19 },
 // 34:20
-{ nome: "Justin Bieber - What Do You Mean?", arquivo: "assets/19h/JustinBieber_WhatDoYouMean.mp3", inicio: 18, minuto: 34, segundo: 20, fim: 19 },
+{ nome: "Justin Bieber - What Do You Mean?", arquivo: "assets/18h/JustinBieber_WhatDoYouMean.mp3", inicio: 18, minuto: 34, segundo: 20, fim: 19 },
 // 37:45
-{ nome: "Lady Gaga - Just Dance", arquivo: "assets/19h/LadyGaga_JustDance.mp3", inicio: 18, minuto: 37, segundo: 45, fim: 19 },
+{ nome: "Lady Gaga - Just Dance", arquivo: "assets/18h/LadyGaga_JustDance.mp3", inicio: 18, minuto: 37, segundo: 45, fim: 19 },
 // 41:51
-{ nome: "Rihanna - Umbrella ft. Jay-Z", arquivo: "assets/19h/Rihanna_Umbrella_ft_JAYZ.mp3", inicio: 18, minuto: 41, segundo: 51, fim: 19 },
+{ nome: "Rihanna - Umbrella ft. Jay-Z", arquivo: "assets/18h/Rihanna_Umbrella_ft_JAYZ.mp3", inicio: 18, minuto: 41, segundo: 51, fim: 19 },
 // 46:05
-{ nome: "Ke$ha - Tik Tok", arquivo: "assets/19h/Kesha_TiK_ToK.mp3", inicio: 18, minuto: 46, segundo: 5, fim: 19 },
+{ nome: "Ke$ha - Tik Tok", arquivo: "assets/18h/Kesha_TiK_ToK.mp3", inicio: 18, minuto: 46, segundo: 5, fim: 19 },
 // 49:40
-{ nome: "Clean Bandit - Symphony feat. Zara Larsson", arquivo: "assets/19h/CleanBandit_Symphony_feat_ZaraLarsson.mp3", inicio: 18, minuto: 49, segundo: 40, fim: 19 },
+{ nome: "Clean Bandit - Symphony feat. Zara Larsson", arquivo: "assets/18h/CleanBandit_Symphony_feat_ZaraLarsson.mp3", inicio: 18, minuto: 49, segundo: 40, fim: 19 },
 // 53:48
-{ nome: "Rihanna - S&S", arquivo: "assets/19h/Rihanna_SeS.mp3", inicio: 18, minuto: 53, segundo: 48, fim: 19 },
+{ nome: "Rihanna - S&S", arquivo: "assets/18h/Rihanna_SeS.mp3", inicio: 18, minuto: 53, segundo: 48, fim: 19 },
 // 57:52
-{ nome: "Nicki Minaj - Starships", arquivo: "assets/19h/NickiMinaj_Starships.mp3", inicio: 18, minuto: 57, segundo: 52, fim: 19 },
+{ nome: "Nicki Minaj - Starships", arquivo: "assets/18h/NickiMinaj_Starships.mp3", inicio: 18, minuto: 57, segundo: 52, fim: 19 },
 
 // 19h
-{ nome: "Men At Work - Who Can It Be Now?", arquivo: "assets/18hh/MenAtWork_WhoCanItBeNow.mp3", inicio: 19, minuto: 0, segundo: 0, fim: 20 },
+{ nome: "Men At Work - Who Can It Be Now?", arquivo: "assets/19h/MenAtWork_WhoCanItBeNow.mp3", inicio: 19, minuto: 0, segundo: 0, fim: 20 },
 
 
 
