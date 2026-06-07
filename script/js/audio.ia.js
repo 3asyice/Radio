@@ -520,8 +520,10 @@ const horarioAtualTexto = document.getElementById("horario_atual");
 // 02:48
 // 13:59
 { nome: "Bryan Adams - Heaven", arquivo: "assets/19h/BryanAdams_Heaven.mp3", inicio: 19, minuto: 13, segundo: 59, fim: 20 },
-
-
+// 13:59
+// 04:31
+// 18:30
+{ nome: "Linkin Park - The Emptiness Machine", arquivo: "assets/19h/LinkinPark_TheEmptinessMachine.mp3", inicio: 19, minuto: 18, segundo: 30, fim: 20 },
 
 
 // 20h
