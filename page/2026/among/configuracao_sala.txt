@@ -1,0 +1,29 @@
+⚙️ *CONFIGURAÇÕES SALA* ☀️
+
+- Reativação morte: 12,5s
+- Visão Impostor: 1,5x
+- Área: Curta
+- Velocidade: 2,0x
+- Visão Tripulante: 1,0x
+- Reuniões: 2
+- Reativação Reunião: 10s
+- Discussão: 30s
+- Voto: 45s
+- Votos anônimos: ✔️
+- Confirmar ejeções: ✔️
+- Atualizar tarefas: Reunião
+- Tarefas Comum: 1
+- Tarefas Longas: 0
+- Tarefas Curtas: 4
+- Tarefas Visíveis: 🚫
+
+🧑‍🔧 *PROFISSÕES:*
+
+- Anjo da guarda: 3 e 100% - reativação escudos: 35s - duração 25s
+- Engenheiro: 2 100% - reativação: 5s - tempo max: 55s
+- Barulhento: 2 e 100% - Impostor recebem alerta: ✔️ - duração: 10s
+- Localizador: 1 e 100% - tempo: 15s - atraso: 0s - duração: 40s
+- Detetive: 1 e 100% - suspeitos: 3
+- Metamorfo: 1 e 100% - deixar pistas: ✔️ - duração: 25s - reativação: 10s
+- Espetro: 1 e 100% - duração: 30s tempo de respera: 10s
+- Vibora: 1 e 100% - tempo de dissolução: 10s
