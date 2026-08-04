@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SISTEMA DE OTIMIZAÇÃO BIOMÉTRICA // V.2026</title>
+
+
+<style>
+
+:root {
+
+    --bg-color:#0d0e15;
+    --card-bg:#161923;
+    --neon-green:#00ff66;
+    --neon-amber:#ffb700;
+    --neon-red:#ff3333;
+    --text-color:#e2e8f0;
+    --text-muted:#64748b;
+    --border-color:#2a2f42;
+
+}
+
+
+* {
+    box-sizing:border-box;
+}
+
+
+body {
+
+    font-family:'Courier New', monospace;
+    background:var(--bg-color);
+    color:var(--text-color);
+    margin:0;
+    padding:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    letter-spacing:1px;
+
+}
+
+
+
+/* HEADER */
+
+
+header {
+
+    width:100%;
+    text-align:center;
+
+    padding:40px 20px;
+
+    border-bottom:
+    2px dashed var(--border-color);
+
+    background:
+    linear-gradient(
+    180deg,
+    #11141d,
+    var(--bg-color)
+    );
+
+}
+
+
+
+.system-status {
+
+    color:var(--neon-green);
+
+    font-size:.8rem;
+
+    animation:blink 1.5s infinite;
+
+}
+
+
+h1 {
+
+    color:white;
+
+    margin:15px 0 5px;
+
+    font-size:1.8rem;
+
+}
+
+
+
+.subtitle {
+
+    color:var(--text-muted);
+
+    font-size:.9rem;
+
+}
+
+
+
+
+/* CONTEÚDO */
+
+
+main {
+
+    width:90%;
+
+    max-width:650px;
+
+    margin:40px auto;
+
+}
+
+
+
+.card {
+
+    background:
+    var(--card-bg);
+
+    border:
+
+    1px solid var(--border-color);
+
+
+    padding:30px;
+
+    margin-bottom:35px;
+
+    border-radius:5px;
+
+
+    position:relative;
+
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.5);
+
+}
+
+.nutricao-item {
+    
+    margin-top: 20px;
+    
+    padding: 15px;
+    
+    border-left:
+    
+        3px solid var(--neon-green);
+    
+    background:
+    
+        rgba(0, 255, 102, 0.03);
+    
+}
+
+
+.nutricao-item h4 {
+    
+    color: var(--neon-green);
+    
+    margin: 0 0 10px;
+    
+    font-size: .95rem;
+    
+}
+
+
+.nutricao-item p {
+    
+    color: var(--text-color);
+    
+    line-height: 1.7;
+    
+    font-size: .9rem;
+    
+}
+
+.card::before {
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:
+    var(--border-color);
+
+}
+
+
+
+#box-diretriz::before {
+
+    background:
+    var(--neon-green);
+
+}
+
+
+
+
+h3 {
+
+    color:white;
+
+    font-size:1rem;
+
+    border-bottom:
+
+    1px solid var(--border-color);
+
+    padding-bottom:10px;
+
+}
+
+
+
+
+.frase-dia {
+
+    line-height:1.7;
+
+    color:white;
+
+    font-size:1.05rem;
+
+}
+
+
+
+.source-tag {
+
+    display:block;
+
+    margin-top:20px;
+
+    font-size:.75rem;
+
+    color:var(--text-muted);
+
+}
+
+
+
+/* BOTÃO */
+
+
+.btn {
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:12px;
+
+
+    background:transparent;
+
+
+    border:
+
+    1px solid var(--neon-green);
+
+
+    color:var(--neon-green);
+
+
+    font-family:'Courier New',monospace;
+
+    font-weight:bold;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+}
+
+
+
+.btn:hover {
+
+    background:var(--neon-green);
+
+    color:var(--bg-color);
+
+    box-shadow:
+
+    0 0 15px rgba(0,255,102,.5);
+
+}
+
+
+
+
+/* INPUT */
+
+
+.input-group {
+
+    margin:20px 0;
+
+}
+
+
+
+label {
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:var(--text-muted);
+
+    font-size:.85rem;
+
+}
+
+
+
+input {
+
+    width:100%;
+
+    padding:12px;
+
+
+    background:#08090d;
+
+
+    border:
+
+    1px solid var(--border-color);
+
+
+    color:white;
+
+
+    font-family:'Courier New',monospace;
+
+    font-size:1rem;
+
+}
+
+
+
+input:focus {
+
+    outline:none;
+
+    border-color:
+    var(--neon-green);
+
+}
+
+
+
+
+/* RESULTADO */
+
+
+#resultado {
+
+    display:none;
+
+    margin-top:25px;
+
+    padding:20px;
+
+    line-height:1.7;
+
+}
+
+
+
+.status-optimal {
+
+    border:
+
+    1px solid var(--neon-green);
+
+    color:var(--neon-green);
+
+    background:
+    rgba(0,255,102,.05);
+
+}
+
+
+
+.status-warning {
+
+    border:
+
+    1px solid var(--neon-amber);
+
+    color:var(--neon-amber);
+
+    background:
+    rgba(255,183,0,.05);
+
+}
+
+
+
+.status-critical {
+
+    border:
+
+    1px solid var(--neon-red);
+
+    color:var(--neon-red);
+
+    background:
+    rgba(255,51,51,.05);
+
+}
+
+
+
+
+@keyframes blink {
+
+0%,100% {
+
+opacity:1;
+
+}
+
+50% {
+
+opacity:.4;
+
+}
+
+}
+
+
+
+
+@media(max-width:600px){
+
+h1{
+
+font-size:1.3rem;
+
+}
+
+.card{
+
+padding:20px;
+
+}
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<header>
+
+
+<div class="system-status">
+
+● SISTEMA ONLINE // CONEXÃO BIOMÉTRICA ATIVA
+
+</div>
+
+
+
+<h1>
+
+DIAGNÓSTICO CORPORAL INTERATIVO
+
+</h1>
+
+
+
+<p class="subtitle">
+
+Seu corpo atual é apenas o início da sua evolução.
+
+</p>
+
+
+</header>
+
+
+
+
+<main>
+
+
+
+<section class="card" id="box-diretriz">
+
+
+<h3>
+
+[DIRETRIZ DE REPROGRAMAÇÃO DIÁRIA]
+
+</h3>
+
+
+
+<p class="frase-dia" id="texto-frase">
+
+"Chris Pratt eliminou cerca de 27 kg para interpretar Peter Quill em Guardiões da Galáxia através de treinamento intenso e alimentação estruturada."
+
+</p>
+
+
+
+<span class="source-tag">
+
+// FONTE: PROTOCOLO DE TRANSFORMAÇÃO HOLLYWOOD
+
+</span>
+
+
+
+<button class="btn" onclick="mudarDiretriz()">
+
+FORÇAR NOVA DIRETRIZ
+
+</button>
+
+
+</section><section class="card">
+
+
+<h3>
+
+[ESCANEAR ÍNDICE DE MASSA CORPORAL]
+
+</h3>
+
+
+
+<p style="color:var(--text-muted);font-size:.85rem">
+
+Insira seus dados físicos para calcular o índice de massa corporal.
+
+</p>
+
+
+
+
+<div class="input-group">
+
+<label for="peso">
+
+Massa Atual (kg):
+
+</label>
+
+
+<input 
+type="number"
+id="peso"
+step="0.1"
+placeholder="Ex: 75.5"
+>
+
+
+</div>
+
+
+
+
+
+<div class="input-group">
+
+<label for="altura">
+
+Altura (metros):
+
+</label>
+
+
+<input 
+type="number"
+id="altura"
+step="0.01"
+placeholder="Ex: 1.80"
+>
+
+
+</div>
+
+
+
+
+
+<button class="btn" onclick="calcularMetricas()">
+
+PROCESSAR DIAGNÓSTICO
+
+</button>
+
+
+
+
+
+<div id="resultado"></div>
+
+
+
+</section>
+
+
+</main>
+
+
+
+
+
+<script>
+
+
+const diretrizes = [
+
+
+"Chris Pratt passou por uma grande transformação física para interpretar Peter Quill, combinando treino, dieta e disciplina.",
+
+
+
+"A alimentação diária constrói o resultado futuro. Pequenas escolhas repetidas criam grandes mudanças.",
+
+
+
+"O açúcar em excesso pode contribuir para oscilações de energia e aumento do consumo calórico. Observe seus hábitos.",
+
+
+
+"A consistência supera a motivação. Resultados físicos são construídos através de repetição.",
+
+
+
+"Seu corpo responde aos estímulos que você oferece: sono, alimentação, treino e descanso fazem parte do processo.",
+
+
+
+"Planejamento alimentar reduz decisões impulsivas e ajuda a manter uma rotina saudável.",
+
+
+
+"A evolução física não acontece em um dia. Ela é resultado de milhares de pequenas decisões."
+
+];
+
+
+
+
+
+function mudarDiretriz(){
+
+
+let aleatorio = Math.floor(
+Math.random() * diretrizes.length
+);
+
+
+
+document.getElementById("texto-frase").innerText =
+`"${diretrizes[aleatorio]}"`;
+
+
+
+}
+
+
+
+
+
+
+
+function calcularMetricas(){
+
+
+
+const peso =
+parseFloat(
+document.getElementById("peso").value
+);
+
+
+
+const altura =
+parseFloat(
+document.getElementById("altura").value
+);
+
+
+
+const resultado =
+document.getElementById("resultado");
+
+
+
+
+
+if(
+!peso ||
+!altura ||
+peso <=0 ||
+altura <=0
+){
+
+
+resultado.style.display="block";
+
+
+resultado.className="status-critical";
+
+
+resultado.innerHTML=
+
+`
+[ERRO]
+
+<br>
+
+Dados inválidos.
+
+<br>
+
+Informe peso e altura corretamente.
+`;
+
+return;
+
+
+}
+
+
+
+
+
+const imc =
+(peso/(altura*altura)).toFixed(1);
+
+
+
+
+let status="";
+let classe="";
+let analise="";
+
+
+
+
+
+if(imc < 18.5){
+
+
+status="ABAIXO DO PESO";
+
+classe="status-warning";
+
+
+analise=
+"Seu IMC indica baixa massa corporal. Avalie sua alimentação e procure manter uma ingestão adequada de nutrientes.";
+
+
+
+}
+
+
+
+else if(imc >=18.5 && imc <=24.9){
+
+
+status="PESO NORMAL";
+
+classe="status-optimal";
+
+
+analise=
+"Seu IMC está dentro da faixa considerada adequada. Continue mantendo hábitos saudáveis.";
+
+
+
+}
+
+
+
+else if(imc >=25 && imc <=29.9){
+
+
+status="SOBREPESO";
+
+classe="status-warning";
+
+
+analise=
+"Existe indicação de excesso de peso. Ajustes na alimentação e atividade física podem auxiliar na evolução.";
+
+
+
+}
+
+
+
+else{
+
+
+status="OBESIDADE";
+
+classe="status-critical";
+
+
+analise=
+"O IMC indica obesidade. Uma mudança gradual e acompanhamento profissional podem ajudar na construção de uma rotina saudável.";
+
+}
+
+
+
+
+resultado.style.display="block";
+
+
+resultado.className=classe;
+
+
+
+resultado.innerHTML=
+
+`
+
+[MÉTRICA CONCLUÍDA]
+
+<br><br>
+
+
+<strong>IMC:</strong>
+
+${imc}
+
+
+<br><br>
+
+
+<strong>STATUS:</strong>
+
+${status}
+
+
+<br><br>
+
+
+<strong>[ANÁLISE DO SISTEMA]</strong>
+
+<br>
+
+${analise}
+
+
+`;
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html><section class="card">
+
+
+<h3>
+
+[ESCANEAR ÍNDICE DE MASSA CORPORAL]
+
+</h3>
+
+
+
+<p style="color:var(--text-muted);font-size:.85rem">
+
+Insira seus dados físicos para calcular o índice de massa corporal.
+
+</p>
+
+
+
+
+<div class="input-group">
+
+<label for="peso">
+
+Massa Atual (kg):
+
+</label>
+
+
+<input 
+type="number"
+id="peso"
+step="0.1"
+placeholder="Ex: 75.5"
+>
+
+
+</div>
+
+
+
+
+
+<div class="input-group">
+
+<label for="altura">
+
+Altura (metros):
+
+</label>
+
+
+<input 
+type="number"
+id="altura"
+step="0.01"
+placeholder="Ex: 1.80"
+>
+
+
+</div>
+
+
+
+
+
+<button class="btn" onclick="calcularMetricas()">
+
+PROCESSAR DIAGNÓSTICO
+
+</button>
+
+
+
+
+
+<div id="resultado"></div>
+
+
+
+</section>
+
+<section class="card" id="protocolo-nutricao">
+    
+    <h3>
+        [PROTOCOLO DE OTIMIZAÇÃO NUTRICIONAL]
+    </h3>
+    
+    
+    <p class="frase-dia">
+        Alimentos não são apenas combustível. Eles são informações enviadas ao seu organismo.
+        Escolha melhor os dados que você entrega ao seu corpo.
+    </p>
+    
+    
+    
+    <div class="nutricao-item">
+        
+        <h4>
+            🥩 PROTEÍNAS DE ALTA EFICIÊNCIA
+        </h4>
+        
+        <p>
+            Frango, ovos, peixe, carnes magras, iogurte natural e whey protein podem ajudar na manutenção da massa muscular e aumentar a sensação de saciedade.
+        </p>
+        
+    </div>
+    
+    
+    
+    <div class="nutricao-item">
+        
+        <h4>
+            🥦 VEGETAIS E FIBRAS
+        </h4>
+        
+        <p>
+            Brócolis, espinafre, alface, couve, cenoura e outros vegetais possuem fibras que ajudam no funcionamento intestinal e contribuem para uma alimentação com maior volume e menos calorias.
+        </p>
+        
+    </div>
+    
+    
+    
+    <div class="nutricao-item">
+        
+        <h4>
+            🍎 FRUTAS INTELIGENTES
+        </h4>
+        
+        <p>
+            Maçã, morango, frutas vermelhas, laranja e outras frutas fornecem vitaminas e fibras. Prefira consumir a fruta inteira em vez de apenas sucos.
+        </p>
+        
+    </div>
+    
+    
+    
+    <div class="nutricao-item">
+        
+        <h4>
+            🥑 GORDURAS BOAS
+        </h4>
+        
+        <p>
+            Abacate, azeite de oliva, castanhas e sementes possuem gorduras importantes para o organismo quando consumidas em quantidades adequadas.
+        </p>
+        
+    </div>
+    
+    
+    
+    <div class="nutricao-item">
+        
+        <h4>
+            💧 HIDRATAÇÃO DO SISTEMA
+        </h4>
+        
+        <p>
+            Beber água regularmente ajuda no funcionamento do organismo e muitas vezes reduz a confusão entre sede e fome.
+        </p>
+        
+    </div>
+    
+    
+    
+    <div class="nutricao-item">
+        
+        <h4>
+            ⚡ PRÁTICAS DE EVOLUÇÃO CORPORAL
+        </h4>
+        
+        <p>
+            
+            • Caminhar diariamente aumenta o gasto energético.<br><br>
+            
+            • Treino de força ajuda a preservar músculos durante o emagrecimento.<br><br>
+            
+            • Dormir bem favorece controle da fome e recuperação corporal.<br><br>
+            
+            • Planejar refeições reduz escolhas impulsivas.<br><br>
+            
+            • Reduzir bebidas açucaradas diminui uma fonte comum de calorias extras.
+            
+        </p>
+        
+    </div>
+    
+    
+</section>
+</main>
+
+
+
+
+
+<script>
+
+
+const diretrizes = [
+
+
+"Chris Pratt passou por uma grande transformação física para interpretar Peter Quill, combinando treino, dieta e disciplina.",
+
+
+
+"A alimentação diária constrói o resultado futuro. Pequenas escolhas repetidas criam grandes mudanças.",
+
+
+
+"O açúcar em excesso pode contribuir para oscilações de energia e aumento do consumo calórico. Observe seus hábitos.",
+
+
+
+"A consistência supera a motivação. Resultados físicos são construídos através de repetição.",
+
+
+
+"Seu corpo responde aos estímulos que você oferece: sono, alimentação, treino e descanso fazem parte do processo.",
+
+
+
+"Planejamento alimentar reduz decisões impulsivas e ajuda a manter uma rotina saudável.",
+
+
+
+"A evolução física não acontece em um dia. Ela é resultado de milhares de pequenas decisões."
+
+];
+
+
+
+
+
+function mudarDiretriz(){
+
+
+let aleatorio = Math.floor(
+Math.random() * diretrizes.length
+);
+
+
+
+document.getElementById("texto-frase").innerText =
+`"${diretrizes[aleatorio]}"`;
+
+
+
+}
+
+
+
+
+
+
+
+function calcularMetricas(){
+
+
+
+const peso =
+parseFloat(
+document.getElementById("peso").value
+);
+
+
+
+const altura =
+parseFloat(
+document.getElementById("altura").value
+);
+
+
+
+const resultado =
+document.getElementById("resultado");
+
+
+
+
+
+if(
+!peso ||
+!altura ||
+peso <=0 ||
+altura <=0
+){
+
+
+resultado.style.display="block";
+
+
+resultado.className="status-critical";
+
+
+resultado.innerHTML=
+
+`
+[ERRO]
+
+<br>
+
+Dados inválidos.
+
+<br>
+
+Informe peso e altura corretamente.
+`;
+
+return;
+
+
+}
+
+
+
+
+
+const imc =
+(peso/(altura*altura)).toFixed(1);
+
+
+
+
+let status="";
+let classe="";
+let analise="";
+
+
+
+
+
+if(imc < 18.5){
+
+
+status="ABAIXO DO PESO";
+
+classe="status-warning";
+
+
+analise=
+"Seu IMC indica baixa massa corporal. Avalie sua alimentação e procure manter uma ingestão adequada de nutrientes.";
+
+
+
+}
+
+
+
+else if(imc >=18.5 && imc <=24.9){
+
+
+status="PESO NORMAL";
+
+classe="status-optimal";
+
+
+analise=
+"Seu IMC está dentro da faixa considerada adequada. Continue mantendo hábitos saudáveis.";
+
+
+
+}
+
+
+
+else if(imc >=25 && imc <=29.9){
+
+
+status="SOBREPESO";
+
+classe="status-warning";
+
+
+analise=
+"Existe indicação de excesso de peso. Ajustes na alimentação e atividade física podem auxiliar na evolução.";
+
+
+
+}
+
+
+
+else{
+
+
+status="OBESIDADE";
+
+classe="status-critical";
+
+
+analise=
+"O IMC indica obesidade. Uma mudança gradual e acompanhamento profissional podem ajudar na construção de uma rotina saudável.";
+
+}
+
+
+
+
+resultado.style.display="block";
+
+
+resultado.className=classe;
+
+
+
+resultado.innerHTML=
+
+`
+
+[MÉTRICA CONCLUÍDA]
+
+<br><br>
+
+
+<strong>IMC:</strong>
+
+${imc}
+
+
+<br><br>
+
+
+<strong>STATUS:</strong>
+
+${status}
+
+
+<br><br>
+
+
+<strong>[ANÁLISE DO SISTEMA]</strong>
+
+<br>
+
+${analise}
+
+
+`;
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
