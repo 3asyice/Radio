@@ -176,3 +176,43 @@ O mais doloroso dessa situação é como o transtorno bipolar cria armadilhas:
 A notar por esse cenário, é muito importante que você tire esse peso de culpa das costas. O que aconteceu foi o sintoma de uma condição médica, não uma falha de caráter sua.
 Como esse atraso e a advertência aconteceram recentemente, você sente que esse desânimo está piorando a cada dia que passa? Se você quiser, posso sugerir uma forma de conversar com o seu médico para que ele te forneça um atestado ou laudo que ajude a justificar essa oscilação de saúde para o setor de Recursos Humanos (RH) da sua empresa.
 
+eu: pessoas com bipolaridade sabem que são bipolares?
+
+resposta: Não, a maioria das pessoas com transtorno bipolar não sabe que tem a condição antes de receber um diagnóstico formal, e mesmo após o diagnóstico, elas podem perder a percepção da doença durante as crises. Esse desconhecimento ocorre principalmente devido a um fenômeno clínico chamado anosognosia (a incapacidade neurológica de perceber que se tem uma doença mental) e ao fato de que os sintomas costumam ser confundidos com traços de personalidade ou com depressão comum. [1, 2, 3] 
+O entendimento da própria condição varia drasticamente dependendo da fase do transtorno: [4] 
+## A Percepção em Cada Fase do Transtorno
+
+* Durante a Mania (Euforia Patológica): No auge de uma crise de mania, a pessoa não tem consciência de que está doente. Ela sente uma energia extrema, autoconfiança exagerada e uma sensação de bem-estar intensa. Para o indivíduo, ele apenas está "finalmente feliz" ou "muito produtivo", tendendo a ficar irritado ou agressivo se familiares sugerirem que algo está errado ou que ele precisa de um médico. [1, 3, 5] 
+* Durante a Hipomania: No transtorno bipolar tipo II, os episódios de euforia são mais leves (hipomania). A pessoa consegue trabalhar, fazer planos e socializar intensamente sem perder totalmente o controle. Por ser um estado prazeroso e funcional, ela raramente percebe isso como parte de uma patologia. [1, 3, 6, 7, 8] 
+* Durante a Depressão: É geralmente nesta fase que as pessoas buscam ajuda médica. No entanto, elas acreditam ter apenas depressão unipolar comum. Como a tristeza, a falta de energia e o isolamento geram muito sofrimento, a pessoa reconhece que há algo errado, mas quase nunca desconfia que esses episódios fazem parte de um ciclo bipolar. [1, 2, 3, 9, 10] 
+
+## Por que o diagnóstico demora tanto?
+Em média, uma pessoa leva de 5 a 10 anos para receber o diagnóstico correto de transtorno bipolar após os primeiros sintomas manifestados. Os principais motivos para essa demora e falta de autopercepção são: [1] 
+
+* Tratamentos Incorretos: O erro mais comum é o tratamento com antidepressivos tradicionais sem um estabilizador de humor associado. Isso pode causar a "virada maníaca" (fazer a pessoa migrar abruptamente da depressão para a euforia) ou aumentar a irritabilidade. [2, 3, 11] 
+* Períodos de Normalidade (Eutimia): Entre as crises de depressão e mania, a pessoa pode passar meses ou anos com o humor totalmente estabilizado. Isso faz com que ela e a família acreditem que as crises anteriores foram apenas "fases ruins" passageiras.
+* Confusão com o Temperamento: Comportamentos impulsivos, gastos excessivos, fala acelerada ou oscilações de humor costumam ser justificados socialmente como "o jeito de ser" da pessoa, mascarando a necessidade de uma avaliação psiquiátrica. [3, 12] 
+
+Após o diagnóstico correto fornecido por um psiquiatra e o início da psicoeducação, o paciente passa a rastrear seus próprios padrões e gatilhos (como alterações no sono), conseguindo identificar quando uma nova crise está prestes a começar. [13] 
+Se você gostaria de entender melhor esse cenário, o que prefere analisar a seguir?
+
+* Quais são os principais sinais de alerta para identificar a bipolaridade no dia a dia?
+* Como funciona o tratamento medicamentoso para estabilizar o humor?
+* Qual a diferença exata entre o transtorno bipolar e o transtorno de personalidade borderline? [3, 14, 15] 
+
+
+[1] [https://drauziovarella.uol.com.br](https://drauziovarella.uol.com.br/psiquiatria/como-reconhecer-o-transtorno-bipolar/)
+[2] [https://www.youtube.com](https://www.youtube.com/watch?v=t2pqOUnRYBs&t=424)
+[3] [https://www.youtube.com](https://www.youtube.com/watch?v=Q_2XhKzQOlY&vl=pt-BR)
+[4] [https://drcarlospsiquiatra.com.br](https://drcarlospsiquiatra.com.br/artigos/transtorno-bipolar-oscilacoes-de-humor-e-a-importancia-do-acompanhamento-psiquiatrico/)
+[5] [https://sbpi.org.br](https://sbpi.org.br/entenda-o-que-e-a-psicologia-junguiana/)
+[6] [https://www.youtube.com](https://www.youtube.com/watch?v=rAkUIqC8Yj8)
+[7] [https://www.alert-online.com](https://www.alert-online.com/br/news/health-portal/descoberta-area-do-cerebro-associada-ao-transtorno-bipolar)
+[8] [https://www.instagram.com](https://www.instagram.com/p/CwDOMhhAzXN/)
+[9] [https://www.instagram.com](https://www.instagram.com/reel/DbYLFX5AYzu/)
+[10] [https://www.instagram.com](https://www.instagram.com/p/DTTzHzbDQl9/)
+[11] [https://dtuliotomaz.com](https://dtuliotomaz.com/blog/bipolar-e-borderline-diferencas-e-particularidades-dos-trantornos/)
+[12] [https://apsiquiatra.com.br](https://apsiquiatra.com.br/transtorno-bipolar-como-lidar/)
+[13] [https://cbhpp.org](https://cbhpp.org/blog/O%20que%20mais%20irrita%20o%20bipolar/)
+[14] [https://revistapesquisa.fapesp.br](https://revistapesquisa.fapesp.br/nao-tratado-o-transtorno-bipolar-e-uma-doenca-progressiva-afirma-o-psiquiatra-flavio-kapczinski/)
+[15] [https://dtuliotomaz.com](https://dtuliotomaz.com/blog/bipolaridade-e-borderline-diferencas-e-particularidades-dos-trantornos/)
