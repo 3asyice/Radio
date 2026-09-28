@@ -177,7 +177,9 @@
 
 
   </main>
-
+<div class="filters">
+  <button onclick="braveSearch()" style="position:fixed; bottom:50px">Perquisar no Brave</button>
+</div>
 
 <footer class="">
 </footer>
@@ -237,6 +239,12 @@ function searchTokyvideo()
   const url = `https://www.google.com/search?q=${encodeURIComponent(query)}` + ` tokyvideo`;
   window.open(url, "_blank");
 }
+
+function braveSearch()
+{
+  window.open("brave.html", "_blank");
+}
+
 /*
 
 */
