@@ -159,6 +159,7 @@
 <button onclick="searchNews()">Notícias</button>
 <button onclick="searchForuns()">Fóruns</button>
 <button onclick="searchAsk()">IA</button>
+<button onclick="searchClima()">Clima</button>
 <button onclick="dointernetArchive()">Internet Archive</button>
 </div>
   </main>
@@ -274,6 +275,28 @@ function dointernetArchive()
    window.open(url, "_blank");
  }
  
+function dointernetArchive()
+{
+  const query = document.getElementById("searchInput").value.trim();
+  if (!query) {
+    alert("Por favor, digite algo!");
+    return;
+  }
+  const url = `https://archive.org/search?ref=677533456&query=${encodeURIComponent(query)}`;
+  window.open(url, "_blank");
+}
+
+function searchClima()
+{
+const query = document.getElementById("searchInput").value.trim();
+if (query) {
+alert("Por favor, digite algo!");
+return;
+}
+const url = `https://safe.search.brave.com/search?q=clima%20hoje&result_filter=web`;
+window.open(url, "_blank");
+}
+
 function doLens() {
 const query = document.getElementById("searchInput").value.trim();
   if (query) {
