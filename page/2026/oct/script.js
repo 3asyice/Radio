@@ -9,11 +9,11 @@
     Formato:
     AAAA-MM-DDTHH:MM:SS
 
-    11/05/2026 às 14:15
+    11/04/2026 às 14:15
 */
 
 const relationshipStart =
-    new Date("2026-05-11T14:15:00");
+    new Date("2026-04-11T14:15:00");
 
 
 /* =========================================================
@@ -551,7 +551,7 @@ function createParticles() {
     Exemplo:
 
     {
-        data: "20/05/2026",
+        data: "20/04/2026",
         titulo: "Nosso primeiro passeio",
         descricao: "Descrição do momento.",
         foto: "fotos/passeio.jpg"
@@ -561,7 +561,7 @@ function createParticles() {
 const moments = [
 
     {
-        data: "11/05/2026",
+        data: "11/04/2026",
         titulo: "O começo",
         descricao:
             "O dia em que a nossa história começou.",
