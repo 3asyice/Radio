@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guilherme ♥ Elaine — Nosso Tempo</title>
+
+    <meta
+        name="description"
+        content="O tempo que Guilherme e Elaine estão juntos."
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CAMADA DE GLITCH -->
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+
+    <!-- PARTÍCULAS -->
+    <div id="particles"></div>
+
+    <!-- TELA INICIAL -->
+    <section id="introScreen" class="intro-screen">
+
+        <div class="intro-content">
+
+            <div class="system-label">
+                CONNECTION_ESTABLISHED
+            </div>
+
+            <h1>
+                GUILHERME
+                <span>♥</span>
+                ELAINE
+            </h1>
+
+            <p class="intro-text">
+                UMA CONEXÃO HUMANA FOI DETECTADA
+            </p>
+
+            <button id="startButton" class="cyber-button">
+                <span>▶ INICIAR NOSSA EXPERIÊNCIA</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- SITE PRINCIPAL -->
+    <main id="mainSite" class="hidden">
+
+        <!-- HEADER -->
+        <header class="top-bar">
+
+            <div class="status">
+                <span class="status-dot"></span>
+                CONNECTION: ACTIVE
+            </div>
+
+            <div class="system-time" id="systemTime">
+                00:00:00
+            </div>
+
+        </header>
+
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    RELATIONSHIP_PROTOCOL // 11.05.2026
+                </div>
+
+                <h1 class="main-title">
+                    GUILHERME
+                    <span>♥</span>
+                    ELAINE
+                </h1>
+
+                <p class="subtitle">
+                    O TEMPO CONTINUA.
+                    <br>
+                    E A NOSSA HISTÓRIA TAMBÉM.
+                </p>
+
+
+                <!-- CONTADOR PRINCIPAL -->
+                <div class="counter-container">
+
+                    <div class="counter-label">
+                        TEMPO CONECTADOS
+                    </div>
+
+                    <div class="counter-main">
+
+                        <div class="time-unit">
+                            <strong id="years">0</strong>
+                            <span>ANOS</span>
+                        </div>
+
+                        <div class="separator">:</div>
+
+                        <div class="time-unit">
+                            <strong id="months">0</strong>
+                            <span>MESES</span>
+                        </div>
+
+                        <div class="separator">:</div>
+
+                        <div class="time-unit">
+                            <strong id="days">0</strong>
+                            <span>DIAS</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="counter-secondary">
+
+                        <div>
+                            <strong id="hours">00</strong>
+                            <span>HORAS</span>
+                        </div>
+
+                        <div>
+                            <strong id="minutes">00</strong>
+                            <span>MINUTOS</span>
+                        </div>
+
+                        <div>
+                            <strong id="seconds">00</strong>
+                            <span>SEGUNDOS</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DATA -->
+                <div class="start-date">
+                    <span>CONEXÃO INICIADA EM</span>
+                    <strong>11 DE MAIO DE 2026 — 14:15</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOTO -->
+        <section class="photo-section">
+
+            <div class="section-title">
+                <span>// MEMÓRIA VISUAL</span>
+                <h2>NÓS</h2>
+            </div>
+
+            <div class="main-photo">
+
+                <!-- Troque por sua foto -->
+                <img
+                    src="fotos/foto1.jpg"
+                    alt="Guilherme e Elaine"
+                >
+
+                <div class="photo-overlay"></div>
+
+                <div class="photo-label">
+                    MEMORY_FILE_001
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NÚMEROS -->
+        <section class="numbers-section">
+
+            <div class="section-title">
+                <span>// DADOS DA CONEXÃO</span>
+                <h2>NOSSO TEMPO EM NÚMEROS</h2>
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span>DIAS</span>
+                    <strong id="totalDays">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>HORAS</span>
+                    <strong id="totalHours">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>MINUTOS</span>
+                    <strong id="totalMinutes">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>SEGUNDOS</span>
+                    <strong id="totalSeconds">0</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANIVERSÁRIO -->
+        <section class="anniversary-section">
+
+            <div class="section-title">
+                <span>// PRÓXIMO EVENTO</span>
+                <h2>ANIVERSÁRIO</h2>
+            </div>
+
+            <div class="anniversary-card">
+
+                <div class="anniversary-icon">
+                    ♥
+                </div>
+
+                <div>
+
+                    <div id="anniversaryTitle">
+                        PRÓXIMO ANIVERSÁRIO
+                    </div>
+
+                    <strong id="anniversaryCountdown">
+                        CALCULANDO...
+                    </strong>
+
+                    <p id="anniversaryDate">
+                        --
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FRASE -->
+        <section class="message-section">
+
+            <div class="message-box">
+
+                <div class="quote-mark">
+                    "
+                </div>
+
+                <p id="dynamicMessage">
+                    Cada segundo ao seu lado é um segundo que vale a pena.
+                </p>
+
+                <div class="message-signature">
+                    — Guilherme ♥ Elaine
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NOSSA HISTÓRIA -->
+        <section class="story-section">
+
+            <div class="section-title">
+                <span>// ARQUIVO DE MEMÓRIAS</span>
+                <h2>NOSSA HISTÓRIA</h2>
+            </div>
+
+            <div id="timeline" class="timeline"></div>
+
+        </section>
+
+
+        <!-- GALERIA -->
+        <section class="gallery-section">
+
+            <div class="section-title">
+                <span>// MEMORY_DATABASE</span>
+                <h2>NOSSOS MOMENTOS</h2>
+            </div>
+
+            <div class="gallery">
+
+                <div class="gallery-item">
+                    <img src="fotos/foto1.jpg" alt="Momento 1">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="fotos/foto2.jpg" alt="Momento 2">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="fotos/foto3.jpg" alt="Momento 3">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MODO SECRETO -->
+        <section class="secret-section">
+
+            <button id="secretButton" class="secret-button">
+                ACCESS // CLASSIFIED
+            </button>
+
+            <div id="secretMessage" class="secret-message hidden">
+
+                <div class="secret-glitch">
+                    CONNECTION_OVERRIDE
+                </div>
+
+                <h2>
+                    VOCÊ É MINHA ESCOLHA.
+                </h2>
+
+                <p>
+                    Se eu pudesse voltar ao início de tudo,
+                    escolheria você novamente.
+                </p>
+
+                <div class="big-heart">
+                    ♥
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HISTÓRIA FINAL -->
+        <section class="final-section">
+
+            <div class="final-content">
+
+                <div class="system-label">
+                    END_OF_TRANSMISSION
+                </div>
+
+                <h2>
+                    E ISSO É APENAS
+                    <span>O COMEÇO.</span>
+                </h2>
+
+                <p>
+                    Nossa história continua sendo escrita
+                    a cada segundo.
+                </p>
+
+                <div class="infinity">
+                    ∞
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div>
+                GUILHERME ♥ ELAINE
+            </div>
+
+            <div>
+                CONNECTION_STATUS: <span>STABLE</span>
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <!-- CONTROLE DE MÚSICA -->
+    <button id="musicButton" class="music-button hidden">
+        ♪
+    </button>
+
+    <audio id="backgroundMusic" loop>
+        <source src="musica/nossa-musica.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
