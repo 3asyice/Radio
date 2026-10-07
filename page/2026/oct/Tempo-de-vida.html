@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quanto tempo eu já vivi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0715; --panel:#150d27; --edge:#2a1a4d;
+  --pink:#ff3ea5; --cyan:#35f0ff; --dim:#6d5a99; --text:#e9defa;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; background:var(--bg); color:var(--text);
+  font-family:"Orbitron",system-ui,sans-serif;
+  display:flex; align-items:center; justify-content:center; padding:24px 16px;
+  background-image:
+    radial-gradient(60% 50% at 50% 0%, rgba(255,62,165,.16), transparent 70%),
+    radial-gradient(50% 40% at 50% 100%, rgba(53,240,255,.12), transparent 70%);
+}
+main{width:100%; max-width:980px}
+h1{
+  margin:0 0 6px; font-weight:800; font-size:clamp(1.3rem,3.6vw,2rem);
+  color:var(--pink); text-shadow:0 0 8px var(--pink),0 0 24px rgba(255,62,165,.6);
+  letter-spacing:.04em;
+}
+.sub{margin:0 0 28px; color:var(--dim); font-size:.85rem; font-weight:500}
+.grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+.cell{
+  background:var(--panel); border:1px solid var(--edge); border-radius:6px;
+  padding:16px 14px 12px; position:relative; overflow:hidden;
+  box-shadow:inset 0 0 24px rgba(0,0,0,.6);
+}
+.cell::after{ /* linhas de varredura */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px);
+}
+.num{
+  font-family:"VT323",monospace; font-size:clamp(3.2rem,9vw,5.6rem); line-height:1;
+  color:var(--cyan); text-shadow:0 0 6px var(--cyan),0 0 22px rgba(53,240,255,.55);
+  font-variant-numeric:tabular-nums; letter-spacing:.04em; white-space:nowrap;
+}
+.num .ghost{color:rgba(53,240,255,.12); text-shadow:none}
+.cell.hot .num{color:var(--pink); text-shadow:0 0 6px var(--pink),0 0 22px rgba(255,62,165,.55)}
+.cell.hot .num .ghost{color:rgba(255,62,165,.12)}
+.lab{margin-top:6px; font-size:.78rem; color:var(--dim); font-weight:500}
+.foot{margin-top:22px; color:var(--dim); font-size:.8rem; line-height:1.5}
+@media (max-width:640px){ .grid{grid-template-columns:repeat(2,1fr)} }
+@media (prefers-reduced-motion:no-preference){
+  .cell.hot .num{animation:hum 3s ease-in-out infinite}
+  @keyframes hum{50%{text-shadow:0 0 4px var(--pink),0 0 14px rgba(255,62,165,.4)}}
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>Tempo de vida</h1>
+  <p class="sub">Nascimento: 27/01/2005 às 16:45 (UTC-2, horário de verão de Brasília)</p>
+  <section class="grid" aria-label="Tempo vivido">
+    <div class="cell"><div class="num" id="anos"></div><div class="lab">anos</div></div>
+    <div class="cell"><div class="num" id="meses"></div><div class="lab">meses</div></div>
+    <div class="cell"><div class="num" id="semanas"></div><div class="lab">semanas</div></div>
+    <div class="cell"><div class="num" id="dias"></div><div class="lab">dias</div></div>
+    <div class="cell"><div class="num" id="horas"></div><div class="lab">horas</div></div>
+    <div class="cell"><div class="num" id="minutos"></div><div class="lab">minutos</div></div>
+    <div class="cell"><div class="num" id="segundos"></div><div class="lab">segundos</div></div>
+    <div class="cell hot"><div class="num" id="ms"></div><div class="lab">milissegundos</div></div>
+  </section>
+  <p class="foot">A contagem soma anos, meses, semanas, dias e o restante até o instante exato de agora.</p>
+</main>
+<script>
+(function(){
+  var OFFSET_MS = 2*3600*1000; // UTC-2
+  var B = {y:2005, m:0, d:27, h:16, mi:45, s:0, ms:0};
+  var els = {};
+  ["anos","meses","semanas","dias","horas","minutos","segundos","ms"].forEach(function(k){
+    els[k]=document.getElementById(k);
+  });
+  var last = {};
+  function pad(v,n){ var s=String(v); while(s.length<n) s="0"+s; return s; }
+  function set(k,v,n){
+    var s = pad(v,n);
+    if(last[k]===s) return;
+    last[k]=s;
+    var i=0; while(i<s.length-1 && s[i]==="0" && k!=="ms" && k!=="segundos" && k!=="minutos" && k!=="horas") i++;
+    els[k].innerHTML = (i? '<span class="ghost">'+s.slice(0,i)+'</span>':'') + s.slice(i);
+  }
+  function tick(){
+    var t = new Date(Date.now() - OFFSET_MS); // relógio local em UTC-2, lido via getUTC*
+    var ny=t.getUTCFullYear(), nm=t.getUTCMonth();
+    var ms=t.getUTCMilliseconds()-B.ms, s=t.getUTCSeconds()-B.s, mi=t.getUTCMinutes()-B.mi,
+        h=t.getUTCHours()-B.h, d=t.getUTCDate()-B.d, m=nm-B.m, y=ny-B.y;
+    if(ms<0){ms+=1000;s--}
+    if(s<0){s+=60;mi--}
+    if(mi<0){mi+=60;h--}
+    if(h<0){h+=24;d--}
+    if(d<0){ d+=new Date(Date.UTC(ny,nm,0)).getUTCDate(); m--; }
+    if(m<0){m+=12;y--}
+    set("anos",y,2); set("meses",m,2);
+    set("semanas",Math.floor(d/7),1); set("dias",d%7,1);
+    set("horas",h,2); set("minutos",mi,2); set("segundos",s,2); set("ms",ms,3);
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
