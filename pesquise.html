@@ -1,20 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Pesquisa Inteligente</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <meta name="description" content="Pesquisa Inteligente — atalhos rápidos para diferentes modos de pesquisa.">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Pesquisa Inteligente</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: 'VT323', monospace;
-      background-color: #0b0b0b;
-      color: #e0e0e0;
-      line-height: 1.5;
       min-height: 100vh;
       padding: 20px;
+      font-family: "Courier New", monospace;
+      background: #0b0b0b;
+      color: #e0e0e0;
+      line-height: 1.5;
     }
 
     header {
@@ -23,231 +32,1168 @@
     }
 
     header h1 {
+      margin: 0;
+      display: inline-block;
+      padding-bottom: 6px;
       font-size: 2.2rem;
       color: #e0e0e0;
       text-transform: uppercase;
       letter-spacing: 1px;
       border-bottom: 1px solid #333;
-      display: inline-block;
-      padding-bottom: 5px;
     }
 
     main {
+      width: 100%;
       max-width: 900px;
       margin: 0 auto;
       padding: 20px;
-      background-color: #111;
-      border-radius: 6px;
+      background: #111;
       border: 1px solid #222;
+      border-radius: 6px;
     }
+
+    /* PESQUISA */
 
     .search-box {
       display: flex;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      flex: 1;
     }
 
     .search-box input {
-      flex: 1;
+      width: 100%;
+      min-height: 48px;
       padding: 12px 16px;
       font-size: 1.2rem;
       border: 1px solid #444;
       border-radius: 4px;
-      background-color: #0b0b0b;
+      background: #0b0b0b;
       color: #e0e0e0;
       outline: none;
-      transition: all 0.2s;
+      transition: .2s;
     }
+
     .search-box input:focus {
       border-color: #ff3333;
       box-shadow: 0 0 6px #ff3333;
     }
 
+    .search-box input::placeholder {
+      color: #777;
+    }
+
+    .search-submit {
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background: #151515;
+      color: #e0e0e0;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .search-submit:hover {
+      color: #ff4d4d;
+      border-color: #ff4d4d;
+    }
+
+    /* SUGESTÕES */
+
+    .suggestions {
+      display: none;
+      position: absolute;
+      z-index: 100;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: #111;
+      border: 1px solid #444;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .suggestion {
+      display: block;
+      width: 100%;
+      padding: 9px 12px;
+      border: 0;
+      border-bottom: 1px solid #222;
+      background: #111;
+      color: #ccc;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .suggestion:hover {
+      background: #1a1a1a;
+      color: #ff4d4d;
+    }
+
+    /* AÇÕES */
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .actions button {
+      padding: 7px 11px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background: #111;
+      color: #aaa;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .actions button:hover {
+      color: #ff4d4d;
+      border-color: #ff4d4d;
+    }
+
+    /* CATEGORIAS */
+
+    .category-title {
+      margin: 13px 0 8px;
+      color: #888;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     .filters {
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
-      overflow-x: auto;
-      padding: 10px 0;
-    }
-
-    .filters::-webkit-scrollbar {
-      height: 6px;
-    }
-    .filters::-webkit-scrollbar-thumb {
-      background-color: #333;
-      border-radius: 3px;
-    }
-
-    .filters::-webkit-scrollbar-track {
-      background-color: #111;
     }
 
     .filters button {
       flex: 0 0 auto;
-      padding: 10px 18px;
+      position: relative;
+      overflow: hidden;
+      padding: 10px 15px;
       font-size: 1rem;
       border: 1px solid #333;
       border-radius: 4px;
-      background-color: #111;
+      background: #111;
       color: #e0e0e0;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.2s ease;
-      position: relative;
-      overflow: hidden;
+      transition: .2s ease;
+    }
+
+    .filters button:hover {
+      color: #ff4d4d;
+      border-color: #ff4d4d;
+      box-shadow: 0 0 8px rgba(255, 77, 77, .35);
+      animation: glitch .25s;
+    }
+
+    .filters button.active {
+      color: #ff4d4d;
+      border-color: #ff4d4d;
+      box-shadow: 0 0 8px rgba(255, 77, 77, .25);
     }
 
     .filters button::before {
       content: "";
       position: absolute;
-      top: 0; left: -100%;
+      top: 0;
+      left: -100%;
       width: 100%;
       height: 100%;
-      background: rgba(255, 0, 0, 0.2);
+      background: rgba(255, 0, 0, .12);
       transform: skewX(-20deg);
-      transition: all 0.4s ease;
+      transition: .35s;
     }
 
     .filters button:hover::before {
       left: 100%;
     }
 
-    .filters button:hover {
+    /* HISTÓRICO */
+
+    #historyPanel {
+      display: none;
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid #222;
+    }
+
+    #historyPanel.show {
+      display: block;
+    }
+
+    .history-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: #999;
+      font-size: .85rem;
+    }
+
+    #historyList {
+      max-height: 230px;
+      overflow-y: auto;
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #1d1d1d;
+    }
+
+    .history-item .history-search {
+      flex: 1;
+      padding: 8px 4px;
+      border: 0;
+      background: transparent;
+      color: #ccc;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .history-item .history-search:hover {
+      color: #ff4d4d;
+    }
+
+    .history-remove {
+      border: 0;
+      background: transparent;
+      color: #666;
+      cursor: pointer;
+      padding: 7px 10px;
+    }
+
+    .history-remove:hover {
+      color: #ff3333;
+    }
+
+    .empty-history {
+      color: #666;
+      font-size: .8rem;
+      padding: 5px 0;
+    }
+
+    /* STATUS */
+
+    #status {
+      min-height: 21px;
+      margin-top: 16px;
+      padding-top: 10px;
+      border-top: 1px solid #222;
+      color: #666;
+      font-size: .78rem;
+    }
+
+    #status.ok {
+      color: #777;
+    }
+
+    #status.error {
+      color: #ff5555;
+    }
+
+    footer {
+      max-width: 900px;
+      margin: 15px auto 0;
+      text-align: center;
+      color: #444;
+      font-size: .72rem;
+    }
+
+    /* BRAVE */
+
+    .brave-area {
+      max-width: 900px;
+      margin: 12px auto 0;
+    }
+
+    .brave-button {
+      padding: 9px 14px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background: #111;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .brave-button:hover {
       color: #ff4d4d;
       border-color: #ff4d4d;
-      box-shadow: 0 0 8px #ff4d4d;
     }
 
-    a {
-      color: #ff4d4d;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Pequeno efeito glitch no hover */
     @keyframes glitch {
       0% { transform: translate(0); }
-      20% { transform: translate(-1px, 1px); }
-      40% { transform: translate(-2px, -1px); }
-      60% { transform: translate(1px, 0); }
-      80% { transform: translate(1px, -1px); }
+      30% { transform: translate(-1px, 1px); }
+      60% { transform: translate(1px, -1px); }
       100% { transform: translate(0); }
     }
 
-    .filters button:hover {
-      animation: glitch 0.3s;
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+
+      header h1 {
+        font-size: 1.7rem;
+      }
+
+      main {
+        padding: 14px;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .search-submit {
+        width: 100%;
+      }
+
+      .filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .filters button {
+        flex-shrink: 0;
+      }
+
+      .actions button {
+        flex: 1 1 auto;
+      }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
-<body>
-  <header>
-    <h1>Pesquisa Inteligente</h1>
-  </header>
 
-  <main>
-    <div class="search-box">
-      <input id="searchInput" placeholder="Digite sua pesquisa...">
+<body>
+
+<header>
+  <h1>Pesquisa Inteligente</h1>
+</header>
+
+<main>
+
+  <form id="searchForm" class="search-box">
+    <div class="input-wrapper">
+      <input
+        id="searchInput"
+        type="search"
+        inputmode="search"
+        enterkeyhint="search"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Digite sua pesquisa..."
+        aria-label="Digite sua pesquisa"
+      >
+      <div id="suggestions" class="suggestions"></div>
     </div>
 
-<div class="filters">
-<button onclick="doSearch(14)">Web</button>
-<button onclick="doSearch(2)">Imagens</button>
-<button onclick="doSearch(6)">Aprendizado</button>
-<button onclick="doSearch(7)">Vídeos</button>
-<button onclick="searchTokyvideo()">Filme</button>
-<button onclick="doSearch(1)">Locais</button>
-<button onclick="doSearch(12)">Notícias</button>
-<button onclick="doSearch(18)">Fóruns</button>
-<button onclick="doSearch(50)">IA</button>
-<button onclick="doSearch(16)">Todos</button>
-<button onclick="doSearch(36)">Livros</button>
-<button onclick="dointernetArchive()">Internet Archive</button>
-<button onclick="doLens()">Google Lens</button>
-<button onclick="doSearch(8)">Vagas</button>
-<button onclick="doSearch(28)">Compras</button>
-<button onclick="doSearch(37)">Produtos</button>
-<button onclick="doSearch(39)">Vídeos Curtos</button>
-<button onclick="doSearch(15)">Coisas legais</button>
-<button onclick="doSearch(44)">Imagens Exatas</button>
-<button onclick="doSearch(48)">Correspondências Exatas</button>
-<button onclick="searchFlights()">Voos</button>
+    <button class="search-submit" type="submit">Pesquisar</button>
+  </form>
+
+  <div class="actions">
+    <button id="luckyButton" type="button">Estou com sorte</button>
+    <button id="copyButton" type="button">Copiar pesquisa</button>
+    <button id="historyButton" type="button">Histórico</button>
+    <button id="clearButton" type="button">Limpar</button>
+  </div>
+
+  <div class="category-title">Pesquisa</div>
+  <div id="filters" class="filters"></div>
+
+  <div id="historyPanel">
+    <div class="history-header">
+      <span>Pesquisas recentes</span>
+      <button id="clearHistory" type="button">Limpar histórico</button>
+    </div>
+    <div id="historyList"></div>
+  </div>
+
+  <div id="status">STATUS: pronto.</div>
+
+</main>
+
+<div class="brave-area">
+  <button class="brave-button" type="button" id="braveButton">
+    Pesquisar no Brave
+  </button>
 </div>
 
-
-  </main>
-<div class="filters">
-  <button onclick="braveSearch()" style="position:fixed; bottom:50px">Perquisar no Brave</button>
-</div>
-
-<footer class="">
+<footer>
+  Pesquisa Inteligente
 </footer>
-  <script>
-    function doSearch(udm) {
-      const query = document.getElementById("searchInput").value.trim();
-      if (!query) {
-        alert("Por favor, insira um termo para pesquisar.");
-        return;
-      }
-      const url = `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=${udm}`;
-      window.open(url, "_blank");
-    }
-function searchFlights() {
-  const query = document.getElementById("searchInput").value.trim();
-  if (!query) {
-    alert("Por favor, insira um destino ou termo para pesquisar voos.");
-    return;
-  }
-  const url = `https://www.google.com/travel/flights?q=${encodeURIComponent(query)}`;
-  window.open(url, "_blank");
-}
 
-/* 
-dark+tv+series
-*/
-function dointernetArchive()
- {
-   const query = document.getElementById("searchInput").value.trim();
-   if (!query) {
-     alert("Por favor, digite algo!");
-     return;
-   }
-   const url = `https://archive.org/search?ref=677533456&query=${encodeURIComponent(query)}`;
-   window.open(url, "_blank");
- }
- 
-function doLens() {
-const query = document.getElementById("searchInput").value.trim();
-  if (query) {
-    alert("Remova seu texto do input!");
-    return;
-  }
-const url = 
-`https://search.app.goo.gl/?ofl=https%3A%2F%2Flens.google&al=googleapp%3A%2F%2Flens%3Flens_data%3DKBE&apn=com.google.android.googlequicksearchbox&amv=301204913&isi=284815942&ius=googleapp&ibi=com.google.GoogleMobile&link=https%3A%2F%2Fgoo.gl%2Fiosgoogleapp%2Fdefault%3Furl%3Dgoogleapp%253A%252F%252Flens%253Fmin-version%253D180%2526lens_data%253DKBE&ifl=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fgoogle%2Fid284815942%3Fppid%3D1ac8cc35-d99c-4a1d-b909-321c8968cc74%26pt%3D9008%26mt%3D8%26ct%3D4815459-oo-lens-isb-bar-lens-cam%26UTM_campaign%3Dgoogle_search_mweb&efr=1&ct=4815459-oo-lens-isb-bar-lens-cam&utm_campaign=4815459-oo-lens-isb-bar-lens-cam&utm_source=google_search_mweb&utm_medium=owned&pt=9008&mt=8`;
-  window.open(url, "_blank");
-}
-
-
-function searchTokyvideo()
-{
-  const query = document.getElementById("searchInput").value.trim();
-  if (!query) {
-    alert("Por favor, digite algo!");
-    return;
-  }
-  const url = `https://www.google.com/search?q=${encodeURIComponent(query)}` + ` tokyvideo`;
-  window.open(url, "_blank");
-}
-
-function braveSearch()
-{
-  window.open("brave.html", "_blank");
-}
+<script>
+"use strict";
 
 /*
-
+=========================================================
+CONFIGURAÇÃO CENTRAL
+Para adicionar outro mecanismo no futuro, basta adicionar
+uma entrada neste objeto.
+=========================================================
 */
+
+const ENGINES = {
+
+  web: {
+    label: "Web",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=14`
+  },
+
+  images: {
+    label: "Imagens",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=2`
+  },
+
+  learning: {
+    label: "Aprendizado",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=6`
+  },
+
+  videos: {
+    label: "Vídeos",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=7`
+  },
+
+  movie: {
+    label: "Filme",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q + " tokyvideo")}`
+  },
+
+  places: {
+    label: "Locais",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=1`
+  },
+
+  news: {
+    label: "Notícias",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=12`
+  },
+
+  forums: {
+    label: "Fóruns",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=18`
+  },
+
+  ai: {
+    label: "IA",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=50`
+  },
+
+  all: {
+    label: "Todos",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}`
+  },
+
+  books: {
+    label: "Livros",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=36`
+  },
+
+  archive: {
+    label: "Internet Archive",
+    build: q => `https://archive.org/search?ref=677533456&query=${encodeURIComponent(q)}`
+  },
+
+  lens: {
+    label: "Google Lens",
+    noQuery: true,
+    build: () =>
+      `https://search.app.goo.gl/?ofl=https%3A%2F%2Flens.google&al=googleapp%3A%2F%2Flens%3Flens_data%3DKBE&apn=com.google.android.googlequicksearchbox&amv=301204913&isi=284815942&ius=googleapp&link=https%3A%2F%2Fgoo.gl%2Fiosgoogleapp%2Fdefault%3Furl%3Dgoogleapp%253A%252F%252Flens%253Fmin-version%253D180%2526lens_data%253DKBE&ifl=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fgoogle%2Fid284815942%3Fppid%3D1ac8cc35-d99c-4a1d-b909-321c8968cc74%26pt%3D9008%26mt%3D8%26ct%3D4815459-oo-lens-isb-bar-lens-cam%26UTM_campaign%3Dgoogle_search_mweb&efr=1&ct=4815459-oo-lens-isb-bar-lens-cam&utm_campaign=4815459-oo-lens-isb-bar-lens-cam&utm_source=google_search_mweb&utm_medium=owned&pt=9008&mt=8`
+  },
+
+  jobs: {
+    label: "Vagas",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=8`
+  },
+
+  shopping: {
+    label: "Compras",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=28`
+  },
+
+  products: {
+    label: "Produtos",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=37`
+  },
+
+  shorts: {
+    label: "Vídeos Curtos",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=39`
+  },
+
+  cool: {
+    label: "Coisas legais",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=15`
+  },
+
+  exactImages: {
+    label: "Imagens Exatas",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=44`
+  },
+
+  exactMatches: {
+    label: "Correspondências Exatas",
+    build: q => `https://www.google.com/search?q=${encodeURIComponent(q)}&udm=48`
+  },
+
+  flights: {
+    label: "Voos",
+    build: q => `https://www.google.com/travel/flights?q=${encodeURIComponent(q)}`
+  }
+};
+
+/*
+A ordem permanece praticamente igual à do seu código original.
+*/
+
+const ORDER = [
+  "web",
+  "images",
+  "learning",
+  "videos",
+  "movie",
+  "places",
+  "news",
+  "forums",
+  "ai",
+  "all",
+  "books",
+  "archive",
+  "lens",
+  "jobs",
+  "shopping",
+  "products",
+  "shorts",
+  "cool",
+  "exactImages",
+  "exactMatches",
+  "flights"
+];
+
+const STORAGE_KEY = "pesquisa_inteligente_historico";
+const MAX_HISTORY = 100;
+
+const input = document.getElementById("searchInput");
+const filters = document.getElementById("filters");
+const suggestions = document.getElementById("suggestions");
+const status = document.getElementById("status");
+const historyPanel = document.getElementById("historyPanel");
+const historyList = document.getElementById("historyList");
+
+let activeEngine = "web";
+let history = readHistory();
+
+/* ========================================================
+   INTERFACE
+======================================================== */
+
+function renderButtons() {
+  filters.innerHTML = "";
+
+  ORDER.forEach(id => {
+    const engine = ENGINES[id];
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.engine = id;
+    button.textContent = engine.label;
+
+    if (id === activeEngine) {
+      button.classList.add("active");
+    }
+
+    filters.appendChild(button);
+  });
+}
+
+function setActiveEngine(id) {
+  if (!ENGINES[id]) return;
+
+  activeEngine = id;
+
+  document.querySelectorAll(".filters button").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.engine === activeEngine
+    );
+  });
+}
+
+function setStatus(message, error = false) {
+  status.textContent = "STATUS: " + message;
+  status.className = error ? "error" : "ok";
+}
+
+/* ========================================================
+   HISTÓRICO
+======================================================== */
+
+function readHistory() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const parsed = saved ? JSON.parse(saved) : [];
+
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveHistory() {
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(history.slice(0, MAX_HISTORY))
+  );
+}
+
+function addToHistory(query) {
+  if (!query) return;
+
+  history = [
+    query,
+    ...history.filter(
+      item => item.toLowerCase() !== query.toLowerCase()
+    )
+  ].slice(0, MAX_HISTORY);
+
+  saveHistory();
+  renderHistory();
+}
+
+function renderHistory() {
+  if (!history.length) {
+    historyList.innerHTML =
+      '<div class="empty-history">Nenhuma pesquisa recente.</div>';
+    return;
+  }
+
+  historyList.innerHTML = "";
+
+  history.forEach((query, index) => {
+    const row = document.createElement("div");
+    row.className = "history-item";
+
+    const searchButton = document.createElement("button");
+    searchButton.type = "button";
+    searchButton.className = "history-search";
+    searchButton.textContent = "> " + query;
+
+    searchButton.addEventListener("click", () => {
+      input.value = query;
+      input.focus();
+      setStatus("pesquisa recuperada.");
+      updateURL();
+      showSuggestions();
+    });
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "history-remove";
+    removeButton.textContent = "×";
+    removeButton.title = "Remover";
+
+    removeButton.addEventListener("click", () => {
+      history.splice(index, 1);
+      saveHistory();
+      renderHistory();
+    });
+
+    row.append(searchButton, removeButton);
+    historyList.appendChild(row);
+  });
+}
+
+/* ========================================================
+   SUGESTÕES
+======================================================== */
+
+function showSuggestions() {
+  const query = input.value.trim().toLowerCase();
+
+  if (!query) {
+    suggestions.style.display = "none";
+    return;
+  }
+
+  const matches = history
+    .filter(item => item.toLowerCase().includes(query))
+    .slice(0, 6);
+
+  if (!matches.length) {
+    suggestions.style.display = "none";
+    return;
+  }
+
+  suggestions.innerHTML = "";
+
+  matches.forEach(item => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "suggestion";
+    button.textContent = "> " + item;
+
+    button.addEventListener("click", () => {
+      input.value = item;
+      suggestions.style.display = "none";
+      input.focus();
+      updateURL();
+    });
+
+    suggestions.appendChild(button);
+  });
+
+  suggestions.style.display = "block";
+}
+
+/* ========================================================
+   URL COMPARTILHÁVEL
+
+   Exemplo:
+   ?q=black+mirror&type=images
+======================================================== */
+
+function updateURL() {
+  const url = new URL(window.location.href);
+  const query = input.value.trim();
+
+  if (query) {
+    url.searchParams.set("q", query);
+  } else {
+    url.searchParams.delete("q");
+  }
+
+  url.searchParams.set("type", activeEngine);
+
+  window.history.replaceState({}, "", url);
+}
+
+function loadURL() {
+  const params = new URLSearchParams(window.location.search);
+
+  const query = params.get("q");
+  const type = params.get("type");
+
+  if (query) {
+    input.value = query;
+  }
+
+  if (type && ENGINES[type]) {
+    activeEngine = type;
+  }
+
+  renderButtons();
+}
+
+/* ========================================================
+   ABERTURA EXTERNA
+
+   Detecta quando o navegador bloqueia o popup.
+======================================================== */
+
+function openNewTab(url) {
+  const popup = window.open(
+    url,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+  if (!popup) {
+    setStatus(
+      "a nova aba foi bloqueada pelo navegador.",
+      true
+    );
+
+    return false;
+  }
+
+  return true;
+}
+
+/* ========================================================
+   PESQUISA
+======================================================== */
+
+function searchWith(engineId) {
+  const engine = ENGINES[engineId];
+
+  if (!engine) return;
+
+  const query = input.value.trim();
+
+  if (engine.noQuery) {
+    if (query) {
+      setStatus(
+        "remova o texto do campo para usar o Google Lens.",
+        true
+      );
+      return;
+    }
+
+    setActiveEngine(engineId);
+
+    if (openNewTab(engine.build())) {
+      setStatus("Google Lens aberto.");
+    }
+
+    return;
+  }
+
+  if (!query) {
+    setStatus(
+      "por favor, insira um termo para pesquisar.",
+      true
+    );
+
+    input.focus();
+    return;
+  }
+
+  setActiveEngine(engineId);
+  addToHistory(query);
+
+  const url = engine.build(query);
+
+  if (openNewTab(url)) {
+    input.value = "";
+    suggestions.style.display = "none";
+    updateURL();
+
+    setStatus(
+      "pesquisando em " + engine.label + "."
+    );
+  }
+}
+
+/* ========================================================
+   CLIQUE DOS BOTÕES
+======================================================== */
+
+filters.addEventListener("click", event => {
+  const button = event.target.closest("[data-engine]");
+
+  if (!button) return;
+
+  searchWith(button.dataset.engine);
+});
+
+/* ========================================================
+   ENTER
+======================================================== */
+
+document.getElementById("searchForm").addEventListener(
+  "submit",
+  event => {
+    event.preventDefault();
+    searchWith(activeEngine);
+  }
+);
+
+/* ========================================================
+   ESTOU COM SORTE
+======================================================== */
+
+document.getElementById("luckyButton").addEventListener(
+  "click",
+  () => {
+    const query = input.value.trim();
+
+    if (!query) {
+      setStatus(
+        "insira uma pesquisa antes de usar Estou com sorte.",
+        true
+      );
+      input.focus();
+      return;
+    }
+
+    addToHistory(query);
+
+    const url =
+      "https://www.google.com/search?q=" +
+      encodeURIComponent(query) +
+      "&btnI=1";
+
+    if (openNewTab(url)) {
+      input.value = "";
+      suggestions.style.display = "none";
+      updateURL();
+      setStatus("Estou com sorte.");
+    }
+  }
+);
+
+/* ========================================================
+   COPIAR
+======================================================== */
+
+document.getElementById("copyButton").addEventListener(
+  "click",
+  async () => {
+    const query = input.value.trim();
+
+    if (!query) {
+      setStatus("não há pesquisa para copiar.", true);
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(query);
+      setStatus("pesquisa copiada.");
+    } catch {
+      input.select();
+      document.execCommand("copy");
+      setStatus("pesquisa copiada.");
+    }
+  }
+);
+
+/* ========================================================
+   LIMPAR
+======================================================== */
+
+document.getElementById("clearButton").addEventListener(
+  "click",
+  () => {
+    input.value = "";
+    suggestions.style.display = "none";
+    updateURL();
+    setStatus("campo limpo.");
+    input.focus();
+  }
+);
+
+/* ========================================================
+   HISTÓRICO
+======================================================== */
+
+document.getElementById("historyButton").addEventListener(
+  "click",
+  () => {
+    historyPanel.classList.toggle("show");
+    renderHistory();
+  }
+);
+
+document.getElementById("clearHistory").addEventListener(
+  "click",
+  () => {
+    history = [];
+    saveHistory();
+    renderHistory();
+    setStatus("histórico apagado.");
+  }
+);
+
+/* ========================================================
+   BRAVE
+
+   Mantido exatamente como no conceito original:
+   abre brave.html.
+======================================================== */
+
+document.getElementById("braveButton").addEventListener(
+  "click",
+  () => {
+    openNewTab("brave.html");
+  }
+);
+
+/* ========================================================
+   SUGESTÕES
+======================================================== */
+
+input.addEventListener("input", () => {
+  showSuggestions();
+  updateURL();
+});
+
+document.addEventListener("click", event => {
+  if (!event.target.closest(".input-wrapper")) {
+    suggestions.style.display = "none";
+  }
+});
+
+/* ========================================================
+   DETECÇÃO AUTOMÁTICA
+
+   Apenas seleciona a categoria. O usuário ainda precisa
+   pressionar Enter ou clicar no botão.
+======================================================== */
+
+function detectCategory(query) {
+  const q = query.toLowerCase();
+
+  if (
+    /\b(voo|voos|passagem|passagens|avião|aviao|aeroporto)\b/.test(q)
+  ) {
+    return "flights";
+  }
+
+  if (
+    /\b(foto|fotos|imagem|imagens|wallpaper)\b/.test(q)
+  ) {
+    return "images";
+  }
+
+  if (
+    /\b(vídeo|vídeos|video|videos|assistir)\b/.test(q)
+  ) {
+    return "videos";
+  }
+
+  if (
+    /\b(notícia|notícias|noticia|noticias|jornal)\b/.test(q)
+  ) {
+    return "news";
+  }
+
+  if (
+    /\b(livro|livros|ebook)\b/.test(q)
+  ) {
+    return "books";
+  }
+
+  if (
+    /\b(vaga|vagas|emprego|empregos)\b/.test(q)
+  ) {
+    return "jobs";
+  }
+
+  if (
+    /\b(comprar|compra|preço|preco|produto|produtos)\b/.test(q)
+  ) {
+    return "shopping";
+  }
+
+  if (
+    /\b(restaurante|hotel|local|locais|perto de mim)\b/.test(q)
+  ) {
+    return "places";
+  }
+
+  if (
+    q.includes("archive.org") ||
+    q.includes("internet archive")
+  ) {
+    return "archive";
+  }
+
+  if (
+    /\b(fórum|fóruns|forum|foruns|reddit)\b/.test(q)
+  ) {
+    return "forums";
+  }
+
+  if (
+    /\b(ia|inteligência artificial|inteligencia artificial|chatgpt)\b/.test(q)
+  ) {
+    return "ai";
+  }
+
+  return "web";
+}
+
+input.addEventListener("change", () => {
+  const query = input.value.trim();
+
+  if (!query) return;
+
+  const detected = detectCategory(query);
+
+  if (detected !== activeEngine) {
+    setActiveEngine(detected);
+    updateURL();
+
+    setStatus(
+      "categoria detectada: " +
+      ENGINES[detected].label +
+      "."
+    );
+  }
+});
+
+/* ========================================================
+   ATALHOS DE TECLADO
+======================================================== */
+
+document.addEventListener("keydown", event => {
+
+  /* CTRL + K / CMD + K */
+  if (
+    (event.ctrlKey || event.metaKey) &&
+    event.key.toLowerCase() === "k"
+  ) {
+    event.preventDefault();
+    input.focus();
+    input.select();
+  }
+
+  /* ESC */
+  if (event.key === "Escape") {
+    input.value = "";
+    suggestions.style.display = "none";
+    updateURL();
+    setStatus("campo limpo.");
+  }
+
+  /*
+   ALT + 1..9
+   Seleciona rapidamente os primeiros mecanismos.
+  */
+  if (
+    event.altKey &&
+    /^[1-9]$/.test(event.key)
+  ) {
+    const index = Number(event.key) - 1;
+    const id = ORDER[index];
+
+    if (id) {
+      event.preventDefault();
+      setActiveEngine(id);
+      updateURL();
+      input.focus();
+      setStatus(
+        "mecanismo selecionado: " +
+        ENGINES[id].label +
+        "."
+      );
+    }
+  }
+});
+
+/* ========================================================
+   INICIALIZAÇÃO
+======================================================== */
+
+loadURL();
+renderHistory();
+
+setStatus("pronto.");
+
 </script>
+
 </body>
 </html>

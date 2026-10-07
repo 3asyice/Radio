@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050805">
+  <meta name="description" content="Painel de pesquisa avançada com atalhos para diferentes modos de pesquisa.">
+  <title>Pesquisa Inteligente</title>
+
+  <style>
+    :root {
+      --bg: #050805;
+      --panel: #0a0f0a;
+      --panel-2: #0d140d;
+      --border: #183018;
+      --border-bright: #245424;
+      --text: #d8e8d8;
+      --muted: #789078;
+      --green: #39ff72;
+      --green-2: #19c957;
+      --danger: #ff5757;
+      --shadow: 0 0 24px rgba(57, 255, 114, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(57,255,114,.06), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Courier New", monospace;
+      line-height: 1.5;
+    }
+
+    button, input { font: inherit; }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin: 12px 0 28px;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--green);
+      font-size: clamp(1.6rem, 5vw, 2.5rem);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(57,255,114,.3);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 7px;
+      font-size: .85rem;
+    }
+
+    main {
+      background: linear-gradient(180deg, rgba(13,20,13,.96), rgba(7,11,7,.96));
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: clamp(14px, 3vw, 24px);
+      box-shadow: var(--shadow);
+    }
+
+    .search-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-box input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 16px;
+      border: 1px solid #294229;
+      border-radius: 5px;
+      outline: none;
+      background: #050805;
+      color: var(--text);
+      font-size: 1rem;
+      transition: .2s ease;
+    }
+
+    .search-box input::placeholder {
+      color: #526552;
+    }
+
+    .search-box input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 2px rgba(57,255,114,.08), 0 0 16px rgba(57,255,114,.12);
+    }
+
+    .search-submit,
+    .secondary-button {
+      min-height: 52px;
+      border: 1px solid var(--border-bright);
+      border-radius: 5px;
+      background: #0b160b;
+      color: var(--green);
+      padding: 0 17px;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .search-submit:hover,
+    .secondary-button:hover {
+      background: #102010;
+      border-color: var(--green);
+      box-shadow: 0 0 12px rgba(57,255,114,.15);
+    }
+
+    .suggestions {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      top: calc(100% + 5px);
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      border: 1px solid var(--border-bright);
+      border-radius: 5px;
+      background: #081008;
+      box-shadow: 0 12px 30px rgba(0,0,0,.45);
+    }
+
+    .suggestion {
+      width: 100%;
+      display: block;
+      border: 0;
+      border-bottom: 1px solid #132313;
+      padding: 10px 13px;
+      text-align: left;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .suggestion:last-child { border-bottom: 0; }
+
+    .suggestion:hover {
+      background: #102010;
+      color: var(--green);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 10px 0 18px;
+    }
+
+    .toolbar button {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #090e09;
+      color: var(--muted);
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: .78rem;
+    }
+
+    .toolbar button:hover {
+      color: var(--green);
+      border-color: var(--border-bright);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 20px 0 9px;
+      color: var(--green);
+      font-size: .82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .section-title::before {
+      content: ">";
+      color: var(--green);
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+      gap: 8px;
+    }
+
+    .filter-button {
+      position: relative;
+      min-height: 44px;
+      padding: 9px 10px;
+      overflow: hidden;
+      border: 1px solid #1b321b;
+      border-radius: 4px;
+      background: #0a100a;
+      color: var(--text);
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .filter-button:hover {
+      color: var(--green);
+      border-color: var(--green-2);
+      transform: translateY(-1px);
+      box-shadow: 0 0 10px rgba(57,255,114,.12);
+    }
+
+    .filter-button.active {
+      color: #061006;
+      background: var(--green);
+      border-color: var(--green);
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(57,255,114,.2);
+    }
+
+    .filter-button::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+      transform: translateX(-110%);
+      transition: transform .45s;
+    }
+
+    .filter-button:hover::after { transform: translateX(110%); }
+
+    .history-panel {
+      display: none;
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: rgba(0,0,0,.15);
+    }
+
+    .history-panel.visible { display: block; }
+
+    .history-list {
+      display: grid;
+      gap: 5px;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border: 1px solid #142314;
+      border-radius: 4px;
+      background: #080d08;
+    }
+
+    .history-item button {
+      flex: 1;
+      min-width: 0;
+      padding: 9px 10px;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .history-item button:hover { color: var(--green); }
+
+    .remove-history {
+      border: 0;
+      background: transparent;
+      color: #536353;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    .remove-history:hover { color: var(--danger); }
+
+    .status {
+      min-height: 20px;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid #132113;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .status.success { color: var(--green); }
+    .status.error { color: var(--danger); }
+
+    .recent-empty {
+      color: var(--muted);
+      font-size: .8rem;
+      padding: 6px 0;
+    }
+
+    footer {
+      text-align: center;
+      color: #435243;
+      font-size: .72rem;
+      margin: 18px 0 5px;
+    }
+
+    .shortcut-hint {
+      margin-top: 8px;
+      color: #526152;
+      font-size: .7rem;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .search-submit {
+        width: 100%;
+      }
+
+      .filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .toolbar button {
+        flex: 1 1 auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>&gt; Pesquisa Inteligente_</h1>
+      <div class="subtitle">PAINEL DE PESQUISA AVANÇADA // LOCAL // SEM SERVIDOR</div>
+    </header>
+
+    <main>
+      <form id="searchForm" class="search-box" autocomplete="off">
+        <div class="search-input-wrap">
+          <input
+            id="searchInput"
+            type="search"
+            inputmode="search"
+            enterkeyhint="search"
+            placeholder="Digite sua pesquisa..."
+            aria-label="Digite sua pesquisa"
+            spellcheck="false"
+          >
+          <div id="suggestions" class="suggestions" aria-live="polite"></div>
+        </div>
+
+        <button class="search-submit" type="submit" title="Pesquisar">
+          [ ENTER ]
+        </button>
+      </form>
+
+      <div class="toolbar">
+        <button id="luckyButton" type="button">Estou com sorte</button>
+        <button id="copyButton" type="button">Copiar pesquisa</button>
+        <button id="historyButton" type="button">Histórico</button>
+        <button id="clearButton" type="button">Limpar</button>
+      </div>
+
+      <div class="section-title">Pesquisa</div>
+      <div id="filters" class="filters"></div>
+
+      <div id="historyPanel" class="history-panel">
+        <div class="section-title">Pesquisas recentes</div>
+        <div id="historyList" class="history-list"></div>
+      </div>
+
+      <div id="status" class="status" aria-live="polite">
+        STATUS: READY
+      </div>
+
+      <div class="shortcut-hint">
+        ENTER = pesquisar · CTRL+K = focar · ALT+1..9 = categorias · ESC = limpar
+      </div>
+    </main>
+
+    <footer>
+      Pesquisa Inteligente // GitHub Pages // HTML + CSS + JavaScript
+    </footer>
+  </div>
+
+  <script>
+    "use strict";
+
+    /*
+     * ==========================================================
+     * CONFIGURAÇÃO CENTRAL
+     * Para adicionar mecanismos futuramente, registre um novo
+     * objeto dentro de ENGINES.
+     * ==========================================================
+     */
+
+    const ENGINES = {
+      web: {
+        name: "Web",
+        icon: "WEB",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=14`
+      },
+
+      images: {
+        name: "Imagens",
+        icon: "IMG",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=2`
+      },
+
+      learning: {
+        name: "Aprendizado",
+        icon: "ESTUDO",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=6`
+      },
+
+      videos: {
+        name: "Vídeos",
+        icon: "VIDEO",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=7`
+      },
+
+      movies: {
+        name: "Filme",
+        icon: "FILME",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}+tokyvideo`
+      },
+
+      places: {
+        name: "Locais",
+        icon: "LOCAL",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=1`
+      },
+
+      news: {
+        name: "Notícias",
+        icon: "NEWS",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=12`
+      },
+
+      forums: {
+        name: "Fóruns",
+        icon: "FORUM",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=18`
+      },
+
+      ai: {
+        name: "IA",
+        icon: "IA",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=50`
+      },
+
+      all: {
+        name: "Todos",
+        icon: "TODOS",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}`
+      },
+
+      books: {
+        name: "Livros",
+        icon: "LIVRO",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=36`
+      },
+
+      archive: {
+        name: "Internet Archive",
+        icon: "ARCHIVE",
+        url: query => `https://archive.org/search?ref=677533456&query=${encodeURIComponent(query)}`
+      },
+
+      lens: {
+        name: "Google Lens",
+        icon: "LENS",
+        noQuery: true,
+        url: () =>
+          `https://search.app.goo.gl/?ofl=https%3A%2F%2Flens.google&al=googleapp%3A%2F%2Flens%3Flens_data%3DKBE&apn=com.google.android.googlequicksearchbox&amv=301204913&isi=284815942&ius=googleapp&link=https%3A%2F%2Fgoo.gl%2Fiosgoogleapp%2Fdefault%3Furl%3Dgoogleapp%253A%252F%252Flens%253Fmin-version%253D180%2526lens_data%253DKBE&ifl=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fgoogle%2Fid284815942%3Fppid%3D1ac8cc35-d99c-4a1d-b909-321c8968cc74%26pt%3D9008%26mt%3D8%26ct%3D4815459-oo-lens-isb-bar-lens-cam%26UTM_campaign%3Dgoogle_search_mweb&efr=1&ct=4815459-oo-lens-isb-bar-lens-cam&utm_campaign=4815459-oo-lens-isb-bar-lens-cam&utm_source=google_search_mweb&utm_medium=owned&pt=9008&mt=8`
+      },
+
+      jobs: {
+        name: "Vagas",
+        icon: "VAGAS",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=8`
+      },
+
+      shopping: {
+        name: "Compras",
+        icon: "COMPRAS",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=28`
+      },
+
+      products: {
+        name: "Produtos",
+        icon: "PROD",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=37`
+      },
+
+      shorts: {
+        name: "Vídeos Curtos",
+        icon: "SHORTS",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=39`
+      },
+
+      cool: {
+        name: "Coisas legais",
+        icon: "LEGAL",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=15`
+      },
+
+      exactImages: {
+        name: "Imagens Exatas",
+        icon: "IMG EXATA",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=44`
+      },
+
+      exactMatches: {
+        name: "Correspondências Exatas",
+        icon: "EXATA",
+        url: query => `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=48`
+      },
+
+      flights: {
+        name: "Voos",
+        icon: "VOOS",
+        url: query => `https://www.google.com/travel/flights?q=${encodeURIComponent(query)}`
+      },
+
+      brave: {
+        name: "Brave",
+        icon: "BRAVE",
+        special: true,
+        url: () => "brave.html"
+      }
+    };
+
+    const DISPLAY_ORDER = [
+      "web", "images", "learning", "videos", "movies",
+      "places", "news", "forums", "ai", "all",
+      "books", "archive", "lens", "jobs", "shopping",
+      "products", "shorts", "cool", "exactImages",
+      "exactMatches", "flights", "brave"
+    ];
+
+    const STORAGE_KEY = "pesquisa_inteligente_historico_v1";
+    const MAX_HISTORY = 100;
+
+    const input = document.getElementById("searchInput");
+    const form = document.getElementById("searchForm");
+    const filters = document.getElementById("filters");
+    const suggestions = document.getElementById("suggestions");
+    const status = document.getElementById("status");
+    const historyPanel = document.getElementById("historyPanel");
+    const historyList = document.getElementById("historyList");
+
+    let activeEngine = "web";
+    let history = loadHistory();
+
+    /*
+     * ==========================================================
+     * UTILITÁRIOS
+     * ==========================================================
+     */
+
+    function getQuery() {
+      return input.value.trim();
+    }
+
+    function setStatus(message, type = "") {
+      status.textContent = `STATUS: ${message}`;
+      status.className = `status ${type}`.trim();
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function loadHistory() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        return Array.isArray(saved) ? saved : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveHistory() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(0, MAX_HISTORY)));
+      } catch {
+        setStatus("não foi possível salvar o histórico", "error");
+      }
+    }
+
+    function addHistory(query) {
+      if (!query) return;
+
+      history = [
+        query,
+        ...history.filter(item => item.toLowerCase() !== query.toLowerCase())
+      ].slice(0, MAX_HISTORY);
+
+      saveHistory();
+      renderHistory();
+    }
+
+    function removeHistory(index) {
+      history.splice(index, 1);
+      saveHistory();
+      renderHistory();
+      showSuggestions();
+    }
+
+    function clearHistory() {
+      history = [];
+      saveHistory();
+      renderHistory();
+      showSuggestions();
+      setStatus("histórico apagado", "success");
+    }
+
+    function renderHistory() {
+      if (!history.length) {
+        historyList.innerHTML = `<div class="recent-empty">Nenhuma pesquisa recente.</div>`;
+        return;
+      }
+
+      historyList.innerHTML = history.map((item, index) => `
+        <div class="history-item">
+          <button type="button" data-history-index="${index}" title="Pesquisar novamente">
+            &gt; ${escapeHtml(item)}
+          </button>
+          <button
+            class="remove-history"
+            type="button"
+            data-remove-index="${index}"
+            title="Remover"
+            aria-label="Remover pesquisa"
+          >×</button>
+        </div>
+      `).join("");
+    }
+
+    function renderEngines() {
+      filters.innerHTML = DISPLAY_ORDER
+        .filter(id => ENGINES[id])
+        .map(id => {
+          const engine = ENGINES[id];
+          return `
+            <button
+              class="filter-button${id === activeEngine ? " active" : ""}"
+              type="button"
+              data-engine="${id}"
+              title="Pesquisar em ${escapeHtml(engine.name)}"
+            >${escapeHtml(engine.icon)}</button>
+          `;
+        })
+        .join("");
+    }
+
+    function selectEngine(id, updateUrl = true) {
+      if (!ENGINES[id]) return;
+
+      activeEngine = id;
+
+      document.querySelectorAll(".filter-button").forEach(button => {
+        button.classList.toggle("active", button.dataset.engine === id);
+      });
+
+      if (updateUrl) updateUrlState();
+
+      setStatus(`mecanismo selecionado: ${ENGINES[id].name}`);
+    }
+
+    /*
+     * ==========================================================
+     * URL / COMPARTILHAMENTO
+     * ==========================================================
+     */
+
+    function updateUrlState() {
+      const url = new URL(window.location.href);
+      const query = getQuery();
+
+      if (query) url.searchParams.set("q", query);
+      else url.searchParams.delete("q");
+
+      url.searchParams.set("type", activeEngine);
+
+      history.replaceState(null, "", url);
+    }
+
+    function loadUrlState() {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("q");
+      const type = params.get("type");
+
+      if (query) input.value = query;
+
+      if (type && ENGINES[type]) {
+        activeEngine = type;
+      }
+
+      renderEngines();
+
+      if (query) {
+        setStatus(`pesquisa carregada: ${activeEngine}`);
+      }
+    }
+
+    /*
+     * ==========================================================
+     * ABERTURA SEGURA DE NOVAS ABAS
+     * ==========================================================
+     */
+
+    function openExternal(url) {
+      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+
+      if (!newWindow) {
+        setStatus("a nova aba foi bloqueada pelo navegador", "error");
+        return false;
+      }
+
+      return true;
+    }
+
+    /*
+     * ==========================================================
+     * PESQUISA
+     * ==========================================================
+     */
+
+    function search(engineId = activeEngine) {
+      const engine = ENGINES[engineId];
+      if (!engine) return;
+
+      const query = getQuery();
+
+      if (engine.noQuery) {
+        if (query) {
+          setStatus("o Google Lens deve ser aberto com o campo vazio", "error");
+          return;
+        }
+
+        selectEngine(engineId);
+        openExternal(engine.url());
+        setStatus("Google Lens aberto", "success");
+        return;
+      }
+
+      if (!query) {
+        setStatus("digite algo para pesquisar", "error");
+        input.focus();
+        return;
+      }
+
+      addHistory(query);
+      selectEngine(engineId);
+
+      const url = engine.url(query);
+
+      if (openExternal(url)) {
+        input.value = "";
+        hideSuggestions();
+        updateUrlState();
+        setStatus(`pesquisando em ${engine.name}: ${query}`, "success");
+      }
+    }
+
+    /*
+     * Enter usa o mecanismo selecionado.
+     */
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      search(activeEngine);
+    });
+
+    filters.addEventListener("click", event => {
+      const button = event.target.closest("[data-engine]");
+      if (!button) return;
+      search(button.dataset.engine);
+    });
+
+    /*
+     * ==========================================================
+     * ESTOU COM SORTE
+     * ==========================================================
+     */
+
+    document.getElementById("luckyButton").addEventListener("click", () => {
+      const query = getQuery();
+
+      if (!query) {
+        setStatus("digite algo antes de usar Estou com sorte", "error");
+        input.focus();
+        return;
+      }
+
+      addHistory(query);
+
+      const url = `https://www.google.com/search?q=${encodeURIComponent(query)}&btnI=1`;
+
+      if (openExternal(url)) {
+        input.value = "";
+        hideSuggestions();
+        setStatus(`Estou com sorte: ${query}`, "success");
+      }
+    });
+
+    /*
+     * ==========================================================
+     * COPIAR
+     * ==========================================================
+     */
+
+    document.getElementById("copyButton").addEventListener("click", async () => {
+      const query = getQuery();
+
+      if (!query) {
+        setStatus("não há pesquisa para copiar", "error");
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(query);
+        setStatus("pesquisa copiada", "success");
+      } catch {
+        input.select();
+        document.execCommand("copy");
+        setStatus("pesquisa copiada", "success");
+      }
+    });
+
+    /*
+     * ==========================================================
+     * LIMPAR
+     * ==========================================================
+     */
+
+    document.getElementById("clearButton").addEventListener("click", () => {
+      input.value = "";
+      hideSuggestions();
+      updateUrlState();
+      setStatus("campo limpo", "success");
+      input.focus();
+    });
+
+    /*
+     * ==========================================================
+     * HISTÓRICO
+     * ==========================================================
+     */
+
+    document.getElementById("historyButton").addEventListener("click", () => {
+      historyPanel.classList.toggle("visible");
+
+      if (historyPanel.classList.contains("visible")) {
+        renderHistory();
+        setStatus("histórico aberto");
+      }
+    });
+
+    historyList.addEventListener("click", event => {
+      const searchButton = event.target.closest("[data-history-index]");
+      const removeButton = event.target.closest("[data-remove-index]");
+
+      if (removeButton) {
+        removeHistory(Number(removeButton.dataset.removeIndex));
+        return;
+      }
+
+      if (searchButton) {
+        const item = history[Number(searchButton.dataset.historyIndex)];
+        if (!item) return;
+
+        input.value = item;
+        input.focus();
+        showSuggestions();
+        updateUrlState();
+        setStatus(`pesquisa recuperada: ${item}`, "success");
+      }
+    });
+
+    /*
+     * ==========================================================
+     * SUGESTÕES BASEADAS NO LOCAL STORAGE
+     * ==========================================================
+     */
+
+    function showSuggestions() {
+      const query = getQuery().toLowerCase();
+
+      if (!query) {
+        hideSuggestions();
+        return;
+      }
+
+      const matches = history
+        .filter(item => item.toLowerCase().includes(query))
+        .filter((item, index, array) => array.indexOf(item) === index)
+        .slice(0, 7);
+
+      if (!matches.length) {
+        hideSuggestions();
+        return;
+      }
+
+      suggestions.innerHTML = matches.map(item => `
+        <button class="suggestion" type="button" data-suggestion="${escapeHtml(item)}">
+          &gt; ${escapeHtml(item)}
+        </button>
+      `).join("");
+
+      suggestions.style.display = "block";
+    }
+
+    function hideSuggestions() {
+      suggestions.style.display = "none";
+      suggestions.innerHTML = "";
+    }
+
+    input.addEventListener("input", () => {
+      updateUrlState();
+      showSuggestions();
+    });
+
+    suggestions.addEventListener("click", event => {
+      const button = event.target.closest("[data-suggestion]");
+      if (!button) return;
+
+      input.value = button.dataset.suggestion;
+      hideSuggestions();
+      updateUrlState();
+      input.focus();
+    });
+
+    document.addEventListener("click", event => {
+      if (!event.target.closest(".search-input-wrap")) {
+        hideSuggestions();
+      }
+    });
+
+    /*
+     * ==========================================================
+     * DETECÇÃO AUTOMÁTICA
+     * Não executa automaticamente: apenas seleciona uma
+     * categoria quando a pesquisa claramente indica uma intenção.
+     * ==========================================================
+     */
+
+    function detectEngine(query) {
+      const text = query.toLowerCase();
+
+      if (
+        /\b(voo|voos|passagem|passagens|avião|aviao|aeroporto)\b/.test(text) ||
+        /\b(de|para)\b.*\b(lisboa|londres|paris|roma|madrid|são paulo|sao paulo|porto alegre)\b/.test(text)
+      ) return "flights";
+
+      if (/\b(foto|fotos|imagem|imagens|wallpaper|papel de parede)\b/.test(text))
+        return "images";
+
+      if (/\b(vídeo|vídeos|video|videos|youtube|assistir)\b/.test(text))
+        return "videos";
+
+      if (/\b(notícia|notícias|noticia|noticias|jornal|últimas notícias)\b/.test(text))
+        return "news";
+
+      if (/\b(livro|livros|ebook|romance)\b/.test(text))
+        return "books";
+
+      if (/\b(vaga|vagas|emprego|empregos|trabalho)\b/.test(text))
+        return "jobs";
+
+      if (/\b(comprar|compra|preço|preco|produto|produtos)\b/.test(text))
+        return "shopping";
+
+      if (/\b(local|locais|perto de mim|restaurante|hotel)\b/.test(text))
+        return "places";
+
+      if (/\b(archive\.org|internet archive)\b/.test(text))
+        return "archive";
+
+      if (/\b(fórum|fóruns|forum|foruns|reddit)\b/.test(text))
+        return "forums";
+
+      if (/\b(ia|inteligência artificial|inteligencia artificial|chatgpt)\b/.test(text))
+        return "ai";
+
+      return "web";
+    }
+
+    input.addEventListener("change", () => {
+      const detected = detectEngine(getQuery());
+
+      if (getQuery() && detected !== activeEngine) {
+        selectEngine(detected);
+        setStatus(`categoria detectada: ${ENGINES[detected].name}`);
+      }
+    });
+
+    /*
+     * ==========================================================
+     * ATALHOS
+     * ==========================================================
+     */
+
+    document.addEventListener("keydown", event => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        input.focus();
+        input.select();
+      }
+
+      if (event.key === "Escape") {
+        input.value = "";
+        hideSuggestions();
+        updateUrlState();
+        setStatus("campo limpo", "success");
+      }
+
+      if (event.altKey && /^[1-9]$/.test(event.key)) {
+        const index = Number(event.key) - 1;
+        const id = DISPLAY_ORDER[index];
+
+        if (id && ENGINES[id]) {
+          event.preventDefault();
+          selectEngine(id);
+          input.focus();
+        }
+      }
+    });
+
+    /*
+     * ==========================================================
+     * INICIALIZAÇÃO
+     * ==========================================================
+     */
+
+    renderHistory();
+    renderEngines();
+    loadUrlState();
+
+    /*
+     * Se o usuário pressionar Enter com uma categoria não escolhida,
+     * Web continua sendo o padrão.
+     */
+    selectEngine(activeEngine, false);
+  </script>
+</body>
+</html>
